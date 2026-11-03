@@ -21,6 +21,61 @@ def _time(value):
     return datetime.fromisoformat(str(value).replace('Z','+00:00'))
 
 
+def market_favorite(match: dict, now: datetime) -> dict | None:
+    """Identify a clearly priced market favorite independently of the
+    uncalibrated model. Not a claim of positive expected value.
+    """
+    try:
+        kickoff=_time(match['kickoff'])
+        if match.get('status') not in ('SCHEDULED','TIMED') or kickoff<=now+timedelta(minutes=10):
+            return None
+    except (KeyError, TypeError, ValueError):
+        return None
+    prices={}
+    for code in ('H','U','B'):
+        q=(match.get('odds') or {}).get(code) or {}
+        try:
+            price=float(q['price'])
+            books=int(q['books'])
+            stamp=_time(q['lastUpdated'])
+        except (ValueError, TypeError, KeyError):
+            return None
+        age=(now-stamp).total_seconds()/3600
+        if not (1.01<=price<=50 and books>=3 and -1<=age<=12):
+            return None
+        prices[code]=(price,books,stamp)
+    implied={code:1/val[0] for code,val in prices.items()}
+    margin=sum(implied.values())
+    # A clearly inconsistent/misordered market should not be interpreted.
+    if not .98<=margin<=1.22:
+        return None
+    winner=min(('H','B'),key=lambda k:prices[k][0])
+    if prices[winner][0]>1.60:
+        return None
+    fair_prob=implied[winner]/margin
+    if fair_prob<.61:
+        return None
+    model=match.get('model') or {}
+    sample=model.get('sample') or []
+    if len(sample)!=2 or min(sample)<3:
+        return None
+    # A market favorite is not necessarily a good-value bet; the site shows
+    # where its probability came from rather than attributing it to the model.
+    return {'market':winner, 'label':MARKET_LABELS[winner], 'category':'safe',
+            'price':prices[winner][0], 'probability':round(fair_prob,4),
+            'probabilitySource':'market', 'modelEdge':None,
+            'bookmakers':prices[winner][1], 'oddsSource':'The Odds API · bookmaker-median',
+            'oddsUpdatedAt':prices[winner][2].isoformat(),
+            'score':round(30+fair_prob*35+min(prices[winner][1],10)*.2,2),
+            'formSample':list(sample),
+            'evidenceLevel':'markedsfavoritt',
+            'rationale':[f'Markedssjanse uten bookmaker-margin: {fair_prob*100:.0f} %',
+                         f'Odds fra {prices[winner][1]} bookmakere',
+                         'Ikke dokumentert positiv forventningsverdi'],
+            'formHome':match.get('formHome') or '',
+            'formAway':match.get('formAway') or '', 'externalSupport':0}
+
+
 def analyze_match(match: dict, now: datetime) -> list[dict]:
     """Return eligible selections ordered by rank; may be empty."""
     if match.get('status') not in ('SCHEDULED','TIMED'):
@@ -34,7 +89,10 @@ def analyze_match(match: dict, now: datetime) -> list[dict]:
     m = match.get('model') or {}
     samples = m.get('sample') or []
     if len(samples)!=2 or min(samples)<3:
-        return []
+        # With limited team history, only a sufficiently supported bookmaker
+        # favorite may appear; never create a Poisson-based recommendation.
+        fav=market_favorite(match,now)
+        return [fav] if fav else []
     sample_size=min(samples)
     # Limited form is allowed only for clearly marked high-risk ideas.
     # Safe bets and regular tips retain their stricter sample requirements.
@@ -97,13 +155,16 @@ def analyze_match(match: dict, now: datetime) -> list[dict]:
         else:
             reasons.append('Ingen uavhengig modellbekreftelse registrert')
         choices.append({'market':code,'label':MARKET_LABELS[code], 'category':category,
-                        'price':price,'probability':round(p,4), 'modelEdge':round(edge,4),
+                        'price':price,'probability':round(p,4), 'probabilitySource':'model', 'modelEdge':round(edge,4),
                         'bookmakers':books,'oddsSource':'The Odds API · bookmaker-median',
                         'oddsUpdatedAt':stamp,'score':score,
                         'formSample':list(samples),
                         'evidenceLevel':'begrenset' if sample_size<5 else 'standard',
                         'rationale':reasons,
                         'formHome':formh,'formAway':forma,'externalSupport':len(supporting)})
+    fav=market_favorite(match,now)
+    if fav and not any(x['market']==fav['market'] and x['category']=='safe' for x in choices):
+        choices.append(fav)
     return sorted(choices,key=lambda x:x['score'],reverse=True)
 
 
@@ -127,4 +188,26 @@ def curated_picks(matches: list[dict], now: datetime, limit: int=5) -> list[dict
         result.append(item)
         if len(result)>=limit:
             break
+    return result
+
+
+def category_picks(matches: list[dict], now: datetime, category: str, limit: int=3) -> list[dict]:
+    """Independently select category picks without being shadowed by a
+    higher ranking selection of another category for the same fixture.
+    """
+    choices=[]
+    for m in matches:
+        opts=[p for p in analyze_match(m, now) if p['category']==category]
+        if not opts:
+            continue
+        best=opts[0]
+        choices.append({**best, 'matchId':m.get('id'), 'league':m.get('league'),
+                        'home':m.get('home'), 'away':m.get('away'), 'kickoff':m.get('kickoff')})
+    choices.sort(key=lambda x:(-x['score'],x['kickoff']))
+    seen=set(); result=[]
+    for p in choices:
+        if p['matchId'] in seen:continue
+        seen.add(p['matchId'])
+        result.append(p)
+        if len(result)>=limit:break
     return result

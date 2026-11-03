@@ -21,7 +21,7 @@ from pathlib import Path
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
-from recommend import curated_picks
+from recommend import curated_picks, category_picks
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / 'site' / 'data' / 'today.json'
@@ -82,6 +82,60 @@ def normalized(value: str) -> str:
     return ' '.join(words)
 
 
+# A compact list of common provider-name variants. These improve matching,
+# without treating unrelated clubs as the same side.
+TEAM_NAME_ALIASES = {
+    'barca': 'barcelona',
+    'fc barca': 'barcelona',
+    'atleti': 'atletico madrid',
+    'atletico de madrid': 'atletico madrid',
+    'club atletico de madrid': 'atletico madrid',
+    'man united': 'manchester united',
+    'man utd': 'manchester united',
+    'man city': 'manchester city',
+    'manchester utd': 'manchester united',
+    'shaktar': 'shakhtar donetsk',
+    'shakhtar': 'shakhtar donetsk',
+    'shakhtar donetsk': 'shakhtar donetsk',
+    'sl bratislava': 'slovan bratislava',
+    'slovan': 'slovan bratislava',
+    'slovan bratislava': 'slovan bratislava',
+    'inter milan': 'internazionale',
+    'inter': 'internazionale',
+    'internazionale milano': 'internazionale',
+    'lask': 'lask linz',
+    'lask linz': 'lask linz',
+    'psg': 'paris saint germain',
+    'paris sg': 'paris saint germain',
+    'paris saint germain': 'paris saint germain',
+    'bodo glimt': 'bodo glimt',
+    'bodo glimt fk': 'bodo glimt',
+}
+
+
+def club_identity(value: str) -> str:
+    n = normalized(value)
+    return TEAM_NAME_ALIASES.get(n, n)
+
+
+def identity_score(a: str, b: str) -> float:
+    # Exact canonical aliases are very strong, but all nonalias matches still
+    # pass the ordinary conservative similarity threshold.
+    a_id, b_id = club_identity(a), club_identity(b)
+    if a_id and a_id == b_id:
+        return 1.0
+    return name_score(a, b)
+
+
+def team_candidate_names(match: dict, side: str) -> list[str]:
+    return [x for x in [match.get(side)] + list(match.get(side + 'Aliases') or []) if x]
+
+
+def event_identity_score(match: dict, event: dict, side: str) -> float:
+    return max((identity_score(name, event.get(side + '_team', ''))
+                for name in team_candidate_names(match, side)), default=0.0)
+
+
 def name_score(a: str, b: str) -> float:
     a, b = normalized(a), normalized(b)
     if a == b and a:
@@ -94,23 +148,34 @@ def name_score(a: str, b: str) -> float:
 
 
 def fixed_odds_event(match: dict, odds_events: list) -> dict:
-    """Only associate bookmakers if both team identities + kickoffs agree."""
-    best, score = None, 0
+    """Match names + kickoff, using official full names and safe aliases.
+
+    Do not attach odds if the team identity is uncertain or there are multiple
+    plausible matches. This is more important than filling every fixture.
+    """
+    candidates = []
     date = iso_datetime(match['kickoff'])
     for event in odds_events:
         try:
-            if abs((iso_datetime(event['commence_time']) - date).total_seconds()) > 3 * 3600:
+            seconds = abs((iso_datetime(event['commence_time']) - date).total_seconds())
+            if seconds > 2 * 3600:
                 continue
         except (KeyError, ValueError, TypeError):
             continue
-        hs = name_score(match['home'], event.get('home_team', ''))
-        aw = name_score(match['away'], event.get('away_team', ''))
+        hs = event_identity_score(match, event, 'home')
+        aw = event_identity_score(match, event, 'away')
         if min(hs, aw) < .77:
             continue
-        candidate = (hs + aw) / 2
-        if candidate > score:
-            score, best = candidate, event
-    return best or {}
+        score = (hs + aw) / 2 - .02 * seconds / 3600
+        candidates.append((score, event))
+    candidates.sort(key=lambda x: x[0], reverse=True)
+    if not candidates:
+        return {}
+    # Different event IDs at similarly high scores indicate ambiguity, e.g.
+    # names like 'United'. Refuse to silently cross-match those odds.
+    if len(candidates) > 1 and candidates[0][0] - candidates[1][0] < .025:
+        return {}
+    return candidates[0][1]
 
 
 def recent_team_form(matches: list, before: datetime, team_id: int, limit: int = 6) -> list:
@@ -282,7 +347,79 @@ def missing_form_teams(fixtures: list, now: datetime, limit: int = 16) -> list[i
     return pending
 
 
-def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manual_models: list, errors: list, status: dict) -> dict:
+def independent_api_predictions(fixtures: list, now: datetime, api_key: str,
+                                max_predictions: int = 10) -> tuple[dict, list[str]]:
+    """Optionally fetch a limited second model from the documented API-Football
+    Predictions API. Match team names AND start times, reject ambiguous matches.
+    Free-tier access depends on the provider's current season permissions.
+    Never turn unverified model opinions into bookmaker prices.
+    """
+    issues=[]
+    if not api_key:
+        return {}, issues
+    local_date=now.astimezone(OSLO).date().isoformat()
+    api_base='https://v3.football.api-sports.io'
+    headers={'x-apisports-key': api_key}
+    try:
+        events=fetch_json(api_base+'/fixtures?'+urlencode({'date':local_date,'timezone':'Europe/Oslo'}),headers).get('response',[])
+        if not isinstance(events,list):
+            raise ValueError('Unexpected fixtures format')
+    except Exception as exc:
+        return {}, ['API-Football fixtures: '+type(exc).__name__]
+    mapped={}
+    used=set()
+    for raw in fixtures:
+        if raw.get('status') not in ('SCHEDULED','TIMED'):
+            continue
+        try:
+            start=iso_datetime(raw['utcDate'])
+            if start<=now or start.astimezone(OSLO).date().isoformat()!=local_date:
+                continue
+        except (KeyError,TypeError,ValueError):
+            continue
+        home=(raw.get('homeTeam') or {}).get('name') or (raw.get('homeTeam') or {}).get('shortName') or ''
+        away=(raw.get('awayTeam') or {}).get('name') or (raw.get('awayTeam') or {}).get('shortName') or ''
+        matches=[]
+        for event in events:
+            f=event.get('fixture') or {}
+            try:
+                if abs((iso_datetime(f['date'])-start).total_seconds())>3600:
+                    continue
+                h=(event.get('teams') or {}).get('home',{}).get('name','')
+                a=(event.get('teams') or {}).get('away',{}).get('name','')
+                hs,aws=name_score(home,h),name_score(away,a)
+                if min(hs,aws)<.78:
+                    continue
+                matches.append((hs+aws,int(f['id'])))
+            except (ValueError,TypeError,KeyError):
+                continue
+        matches.sort(reverse=True)
+        if len(matches)!=1 or matches[0][1] in used:
+            continue
+        used.add(matches[0][1]);mapped[str(raw.get('id'))]=matches[0][1]
+        if len(mapped)>=max_predictions:
+            break
+    predictions={}
+    for match_id,external_id in mapped.items():
+        try:
+            rows=fetch_json(api_base+'/predictions?'+urlencode({'fixture':external_id}),headers).get('response',[])
+            if not isinstance(rows,list) or not rows:
+                continue
+            pct=((rows[0].get('predictions') or {}).get('percent') or {})
+            if not all(k in pct for k in ('home','draw','away')):
+                continue
+            numbers={code:float(str(pct[field]).strip().rstrip('%'))/100.0 for code,field in (('H','home'),('U','draw'),('B','away'))}
+            if not all(0<=x<=1 for x in numbers.values()) or not .95<=sum(numbers.values())<=1.05:
+                continue
+            predictions[match_id]=[{'source':'API-Football Predictions',
+                'url':'https://www.api-football.com/',
+                'probabilities':numbers,'entry':'api'}]
+        except Exception as exc:
+            issues.append('API-Football Predictions: '+type(exc).__name__)
+    return predictions,issues
+
+
+def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manual_models: list, errors: list, status: dict, external_predictions: dict | None = None) -> dict:
     today = now.astimezone(OSLO).date()
     cutoff = today + timedelta(days=1)
     output = []
@@ -308,21 +445,46 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
              'leagueCode': (raw.get('competition') or {}).get('code') or '',
              'home': home.get('shortName') or home.get('name') or 'Hjemmelag',
              'away': away.get('shortName') or away.get('name') or 'Bortelag',
+             'homeAliases': [home.get('name')],
+             'awayAliases': [away.get('name')],
              'kickoff': k.isoformat(), 'status': raw.get('status') or 'SCHEDULED',
              'formHome': ''.join(x[3] for x in hf), 'formAway': ''.join(x[3] for x in af),
              'model': model_probabilities(hf, af), 'odds': {}, 'predictions': []}
         if odds_events is not None:
             od = fixed_odds_event(m, odds_events)
             m['odds'] = extract_market_odds(od, m, now)
-        m['predictions'] = predictions_for(m, manual_models)
+        m['predictions'] = predictions_for(m, manual_models) + (external_predictions or {}).get(str(m['id']), [])
         output.append(m)
     output.sort(key=lambda m: m['kickoff'])
     todays = [m for m in output if iso_datetime(m['kickoff']).astimezone(OSLO).date() == today]
     picks = curated_picks(todays, now, limit=5)
-    all_eligible = curated_picks(todays, now, limit=len(todays))
-    safe_bets = [x for x in all_eligible if x['category'] == 'safe'][:3]
-    high_risk = [x for x in all_eligible if x['category'] == 'high'][:3]
-    return {'version': 3, 'recommendations':picks, 'safeBets':safe_bets, 'highRisk':high_risk, 'qualityGate':{
+    # Each category has its own shortlist. A higher-scoring risky option for
+    # a match must not hide an independently valid favorite for that match.
+    safe_bets = category_picks(todays, now, 'safe', limit=5)
+    high_risk = category_picks(todays, now, 'high', limit=5)
+    # Explain coverage and upstream provenance to the interface. Unconnected
+    # prediction websites must NEVER be represented as integrated sources.
+    active_today = [m for m in todays if m.get('status') in ('SCHEDULED','TIMED') and iso_datetime(m['kickoff']) > now]
+    coverage = {
+        'upcomingMatches': len(active_today),
+        'matchedOdds': sum(bool(m.get('odds')) for m in active_today),
+        'withModel': sum(bool(m.get('model')) for m in active_today),
+        'externalPredictions': sum(len(m.get('predictions') or []) for m in active_today),
+        'manualPredictions': sum(1 for m in active_today for pred in (m.get('predictions') or []) if pred.get('entry')=='manual'),
+        'apiPredictions': sum(1 for m in active_today for pred in (m.get('predictions') or []) if pred.get('entry')=='api'),
+        'safeFound': len(safe_bets), 'highFound': len(high_risk),
+        'targetPerCategory': [3, 5],
+    }
+    sources = [
+        {'name':'football-data.org', 'role':'Kampdata og form', 'state':'connected' if status.get('fixtures')=='ok' else 'unavailable'},
+        {'name':'The Odds API', 'role':'Bookmakerodds', 'state':'connected' if status.get('odds')=='ok' else 'unavailable'},
+        {'name':'API-Football Predictions', 'role':'Uavhengig modell',
+         'state':'connected' if status.get('externalPredictionsStatus')=='ok' else 'unavailable' if status.get('externalPredictionsStatus')=='error' else 'not_connected'},
+        {'name':'Eksterne prognoser', 'role':'Kildeangitte, manuelt innlagte vurderinger',
+         'state':'manual' if coverage['manualPredictions'] else 'not_connected'},
+    ]
+    return {'version': 3, 'recommendations':picks, 'safeBets':safe_bets, 'highRisk':high_risk,
+            'coverage':coverage,'sources':sources,'qualityGate':{
                 'minimumFormMatchesPerTeam':5, 'minimumFormHighRisk':3, 'minimumFormStandard':4, 'minimumBookmakers':2, 'maximumOddsAgeHours':12,
                 'explanation':'Intern, ikke-kalibrert Poisson-modell + form + bookmakerpriser. Ingen garantert verdi.'}, 'generatedAt': now.isoformat(), 'localDate': today.isoformat(),
             'dataStatus': status, 'errors': errors,
@@ -416,9 +578,42 @@ def main():
                 errors.append(f'Odds ({sport}): hentefeil ({type(exc).__name__})')
         status['odds'] = 'ok' if odds_events else 'empty' if not sports else 'error'
         status['oddsEventCount'] = len(odds_events)
+    external={}
+    third_key=os.getenv('API_FOOTBALL_KEY','').strip()
+    if third_key and fixtures:
+        external,external_errors=independent_api_predictions(fixtures, now, third_key, max_predictions=10)
+        errors.extend(external_errors)
+        status['externalPredictionsStatus']='ok' if external else 'error' if external_errors else 'empty'
+        status['externalPredictionsCount']=len(external)
+    else:
+        status['externalPredictionsStatus']='not_configured'
     snapshot = build_snapshot(now, fixtures, odds_events,
                               read_manual_models(ROOT / 'data' / 'manual_predictions.csv'),
-                              errors, status)
+                              errors, status, external_predictions=external)
+    # Visibility into the reason a full match programme produces few picks.
+    current_matches = [m for m in snapshot['matches']
+                       if iso_datetime(m['kickoff']).astimezone(OSLO).date() == date
+                       and m.get('status') in ('SCHEDULED', 'TIMED')
+                       and iso_datetime(m['kickoff']) > now]
+    coverage_by_league = {}
+    for m in current_matches:
+        code = m.get('leagueCode') or 'OTHER'
+        c = coverage_by_league.setdefault(code, {
+            'upcoming': 0, 'withOdds': 0, 'withModel': 0, 'eligible': 0})
+        c['upcoming'] += 1
+        if m.get('odds'):
+            c['withOdds'] += 1
+        if m.get('model'):
+            c['withModel'] += 1
+    for pick in snapshot['recommendations']:
+        code = next((m.get('leagueCode') for m in current_matches
+                     if str(m.get('id')) == str(pick.get('matchId'))), None)
+        if code in coverage_by_league:
+            coverage_by_league[code]['eligible'] += 1
+    snapshot['dataStatus']['coverageByLeague'] = coverage_by_league
+    for code, c in sorted(coverage_by_league.items()):
+        print(f"COVERAGE {code}: {c['upcoming']} upcoming, {c['withOdds']} with odds, "
+              f"{c['withModel']} with model, {c['eligible']} picks")
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2), encoding='utf-8')
     print(f"Built {len(snapshot['matches'])} fixtures. Fixture status={status['fixtures']}, odds status={status['odds']}; candidates={len(snapshot['recommendations'])}; requested leagues={status.get('requestedLeagues', [])}")

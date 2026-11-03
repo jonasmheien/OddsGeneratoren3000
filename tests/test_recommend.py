@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 from datetime import datetime, timedelta, timezone
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'scripts'))
-from recommend import analyze_match, curated_picks
+from recommend import analyze_match, curated_picks, category_picks
 from build_data import sports_today
 
 class RecommendationTests(unittest.TestCase):
@@ -62,6 +62,45 @@ class RecommendationTests(unittest.TestCase):
         self.assertEqual(analyze_match(self.m,self.now),[])
         self.m['model']['probabilities']['H']=.78
         self.assertEqual(analyze_match(self.m,self.now)[0]['category'],'safe')
+
+    def test_market_favorite_for_three_game_teams(self):
+        self.m['model']['sample']=[3,3]
+        self.m['model']['quality']='exploratory'
+        now=self.now
+        mk=lambda price,books=4: {'price':price,'books':books,
+              'lastUpdated':(now-timedelta(hours=1)).isoformat()}
+        self.m['odds']={'H':mk(1.35),'U':mk(5.2),'B':mk(9.0)}
+        result=analyze_match(self.m,self.now)
+        fav=[x for x in result if x['category']=='safe']
+        self.assertEqual(len(fav),1)
+        self.assertEqual(fav[0]['probabilitySource'],'market')
+        self.assertIsNone(fav[0]['modelEdge'])
+        self.assertGreater(fav[0]['probability'],.65)
+        self.assertEqual(len(category_picks([self.m],self.now,'safe')),1)
+
+    def test_market_favorite_does_not_claim_safety_without_form(self):
+        now=self.now
+        mk=lambda price: {'price':price,'books':4,'lastUpdated':(now-timedelta(hours=1)).isoformat()}
+        self.m['odds']={'H':mk(1.35),'U':mk(5.2),'B':mk(9.0)}
+        self.m['model']['sample']=[2,2]
+        self.assertEqual(analyze_match(self.m,now),[])
+
+    def test_market_favorite_requires_complete_fresh_consensus(self):
+        mk=lambda p,books=4: {'price':p,'books':books,
+             'lastUpdated':(self.now-timedelta(hours=1)).isoformat()}
+        self.m['odds']={'H':mk(1.35),'U':mk(5.2),'B':mk(9.0)}
+        self.m['odds']['U']['lastUpdated']=(self.now-timedelta(hours=13)).isoformat()
+        self.assertFalse(any(p.get('probabilitySource')=='market' for p in analyze_match(self.m,self.now)))
+        self.m['odds']['U']=mk(5.2,1)
+        self.assertFalse(any(p.get('probabilitySource')=='market' for p in analyze_match(self.m,self.now)))
+
+    def test_market_favorite_not_automatically_value(self):
+        now=self.now
+        mk=lambda price: {'price':price,'books':4,'lastUpdated':(now-timedelta(hours=1)).isoformat()}
+        self.m['odds']={'H':mk(1.35),'U':mk(5.2),'B':mk(9.0)}
+        fav=[p for p in analyze_match(self.m,self.now) if p['probabilitySource']=='market'][0]
+        self.assertIsNone(fav['modelEdge'])
+        self.assertTrue(fav['probability'] < 1/1.35)
 
     def test_dynamic_leagues_today_only(self):
         def f(code,hours, status='SCHEDULED'):

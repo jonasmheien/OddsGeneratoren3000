@@ -31,6 +31,7 @@ jobs:
         env:
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
           # ODDS_SPORTS settes normalt automatisk til inntil 3 ligaer som har kamper i dag.
         run: python scripts/build_data.py
       - uses: actions/configure-pages@v5

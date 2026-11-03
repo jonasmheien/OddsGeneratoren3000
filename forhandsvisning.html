@@ -9,26 +9,26 @@
   <style>
 :root {
   color-scheme: dark;
-  --bg: #13090d;
-  --panel: #1d1116;
-  --panel-hover:#25161e;
-  --stroke: #3b2530;
+  --bg: #10070b;
+  --panel: #1c0b11;
+  --panel-hover:#2b101b;
+  --stroke: #472130;
   --text: #f9f4f3;
   --muted: #b29da8;
   --subtle: #8f7782;
-  --burgundy: #650f2a;
-  --red: #d04a68;
-  --highlight: #f4bd84;
+  --burgundy: #6b0b2c;
+  --red: #e1667d;
+  --highlight: #f1bb83;
   --mint: #9bbca9;
 }
 * {box-sizing:border-box}
 html {scroll-behavior:smooth}
-body {margin:0; background:radial-gradient(ellipse at 70% -8%,#36101d 0,transparent 38%),var(--bg); color:var(--text);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+body {margin:0; background:radial-gradient(ellipse at 85% -20%,#560c29 0,transparent 42%),linear-gradient(135deg,#12070e,#10070b 75%); color:var(--text);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
 h1,h2,h3,p {margin:0} button {font:inherit} button:focus-visible {outline:2px solid var(--highlight);outline-offset:3px}
 .page {width:min(100%,1190px);margin:0 auto;padding:0 34px 90px}
 .masthead {padding:53px 0 34px;display:flex;align-items:end;justify-content:space-between;gap:15px;border-bottom:1px solid var(--stroke)}
 h1 {font-size:clamp(35px,5.1vw,66px);font-weight:790;line-height:1.12;letter-spacing:-2.5px}
-h1 span {color:#efa0aa}
+h1 span {color:#f198a9}
 .daily-meta {margin-top:15px;display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);flex-wrap:wrap}
 .meta-dot {color:#714857}
 #demo-marker {font-size:10px;color:#d3a888;border:1px solid #60413e;border-radius:99px;padding:4px 8px}
@@ -40,8 +40,8 @@ h1 span {color:#efa0aa}
 .section-heading h2 {font-size:25px;line-height:1.2;letter-spacing:-.65px;font-weight:730}
 .count {font-size:12px;font-weight:650;color:#d2b6c0;background:#2c1922;border:1px solid #49303b;border-radius:50px;padding:7px 10px;white-space:nowrap}
 .picks {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.pick {background:var(--panel);border:1px solid var(--stroke);border-radius:13px;padding:21px;display:flex;flex-direction:column;gap:17px;min-width:0}
-.pick:hover {border-color:#644151}
+.pick {background:linear-gradient(146deg,#261019,#1b0d13 75%);border:1px solid var(--stroke);border-radius:13px;padding:21px;display:flex;flex-direction:column;gap:17px;min-width:0}
+.pick:hover {border-color:#8b3d58;transform:translateY(-1px)}
 .pick-top {display:flex;justify-content:space-between;gap:12px;color:var(--subtle);font-size:11px;font-weight:620;letter-spacing:.2px}
 .fixture {font-size:20px;line-height:1.3;font-weight:720;letter-spacing:-.55px;min-height:52px}
 .market-row {margin-top:1px;display:flex;align-items:end;justify-content:space-between;gap:10px}
@@ -62,7 +62,6 @@ h1 span {color:#efa0aa}
 .details {display:none; border-top:1px solid var(--stroke);padding-top:13px}
 .details.open{display:block}
 .details-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px}
-.detail-span{grid-column:1/-1}.detail-value a{color:#f4bd84;text-decoration:underline;text-underline-offset:3px}
 .detail-title{font-size:10px;color:var(--subtle);margin-bottom:6px}
 .detail-value{font-size:13px;font-weight:640;color:#efe3e6}
 .two-columns {display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:39px}
@@ -70,7 +69,7 @@ h1 span {color:#efa0aa}
 .section-heading.compact h2{display:flex;align-items:center;gap:10px;font-size:23px}
 .signal {display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--mint)}
 .signal.high {background:#e58a78}
-.risk-list {border:1px solid var(--stroke);border-radius:13px;background:var(--panel);overflow:hidden;min-height:105px}
+.risk-list {border:1px solid var(--stroke);border-radius:13px;background:linear-gradient(160deg,#251018,#190b11);overflow:hidden;min-height:105px}
 .risk-item {display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:18px 19px;border-bottom:1px solid var(--stroke)}
 .risk-item:last-child {border-bottom:0}
 .risk-title {font-size:14px;font-weight:710;letter-spacing:-.2px;line-height:1.35}
@@ -113,6 +112,18 @@ h1 span {color:#efa0aa}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
+/* v0.7: precise, data-first expert treatment */
+.masthead {position:relative;}
+.masthead:before {content:"";position:absolute;left:0;top:0;height:3px;width:74px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,#9d1941,#e68aa0)}
+.engine-bar {margin-top:18px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:11px 14px;border:1px solid #46202f;background:rgba(37,14,25,.62);border-radius:9px;font-size:11px;font-weight:610;color:#eddfe4;}
+.engine-item {display:flex;align-items:center;gap:8px}
+.engine-item.muted {color:#b99ba8}
+.live-dot {width:7px;height:7px;border-radius:50%;background:#90bda0;box-shadow:0 0 0 3px rgba(144,189,160,.1)}
+.source-footnote {font-size:11px;color:#937d88;margin-top:15px;line-height:1.5}
+.pick {box-shadow:0 12px 38px rgba(0,0,0,.08);transition:transform .2s,border-color .2s}
+.stats-grid {grid-template-columns:repeat(4,1fr)}
+@media(max-width:700px){.engine-bar{gap:7px 16px;margin-top:12px;padding:10px 12px}.engine-item:last-child{width:100%}.stats-grid{grid-template-columns:repeat(2,1fr)}.stat{min-height:83px}}
+
 </style>
   
 </head>
@@ -121,12 +132,18 @@ h1 span {color:#efa0aa}
     <header class="masthead">
       <div>
         <h1>Dagens tips til <span>Jonnern</span></h1>
-        <div class="daily-meta"><time id="today-date">I dag</time><span class="meta-dot">•</span><span id="last-updated">Henter data</span><span id="demo-marker" hidden>Ekspertdata</span></div>
+        <div class="daily-meta"><time id="today-date">I dag</time><span class="meta-dot">•</span><span id="last-updated">Henter data</span><span id="demo-marker" hidden>Eksempeldata</span></div>
       </div>
       <button id="refresh-data" type="button" class="refresh" aria-label="Last inn siste publiserte tips"><span aria-hidden="true">↻</span><span>Oppdater</span></button>
     </header>
 
     <div id="alert" class="notice" role="status" aria-live="polite" hidden></div>
+
+    <div class="engine-bar" aria-label="Datakilder og dekning">
+      <div class="engine-item"><span class="live-dot"></span><span id="engine-status">Henter datagrunnlag</span></div>
+      <div class="engine-item muted" id="engine-coverage">–</div>
+      <div class="engine-item muted" id="engine-sources">–</div>
+    </div>
 
     <section class="section primary" aria-labelledby="tips-title">
       <div class="section-heading"><h2 id="tips-title">Dagens tips</h2><span id="tips-count" class="count">0 tips</span></div>
@@ -147,14 +164,15 @@ h1 span {color:#efa0aa}
     <section class="section stats-section" aria-labelledby="stats-title">
       <div class="section-heading"><h2 id="stats-title">Data og statistikk</h2></div>
       <div class="stats-grid">
-        <div class="stat"><div class="stat-value" id="stats-matches">–</div><div class="stat-label">Kamper vurdert</div></div>
+        <div class="stat"><div class="stat-value" id="stats-matches">–</div><div class="stat-label">Kamper i dag</div></div>
         <div class="stat"><div class="stat-value" id="stats-count">–</div><div class="stat-label">Utvalgte tips</div></div>
-        <div class="stat"><div class="stat-value" id="stats-average">–</div><div class="stat-label">Snitt, ekspertanslag</div></div>
+        <div class="stat"><div class="stat-value" id="stats-average">–</div><div class="stat-label">Snitt sannsynlighet</div></div>
+        <div class="stat"><div class="stat-value" id="stats-priced">–</div><div class="stat-label">Kamper med odds</div></div>
       </div>
+      <div class="source-footnote" id="source-footnote">Kildeinformasjon hentes sammen med dagens analyse.</div>
     </section>
   </main>
-<script>window.__ODDSGEN_DEMO__=true;</script>
-<script>
+<script>window.__ODDSGEN_DEMO__=true;</script><script>
 'use strict';
 const el=id=>document.getElementById(id);
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -172,44 +190,49 @@ function formText(s){
   const xs=[...'WDL'].map(k=>[...String(s).toUpperCase()].filter(x=>x===k).length);
   return `${xs[0]}S · ${xs[1]}U · ${xs[2]}T`;
 }
-const EXPERT_PICKS = [{"matchId":"exp-atalanta-parma","home":"Atalanta","away":"Parma","league":"Serie A","kickoff":"2026-11-02T20:45:00+01:00","label":"Atalanta vinner","price":1.56,"category":"standard","probability":0.63,"oddsUpdatedAt":"2026-11-02T10:00:00+01:00","expertSource":"TipsQuant","expertUrl":"https://tipsquant.com/serie-a-predictions/","oddsSource":"TipsQuant","oddsUrl":"https://tipsquant.com/serie-a-predictions/","statHome":"11 poeng etter 9 kamper","statAway":"5 mål på 9 kamper","highlight":"Parma har tapt seks bortekamper på rad.","highlightSource":"https://en.legaseriea.it/serie-a/news/atalanta-parma-brings-serie-a-matchday-10-to-a-close","modelEdge":-0.0172,"formHome":"","formAway":"","bookmakers":null},{"matchId":"exp-lorient-brest","home":"Lorient","away":"Brest","league":"Ligue 1","kickoff":"2026-11-02T20:45:00+01:00","label":"Lorient vinner","price":2.38,"category":"high","probability":0.47,"oddsUpdatedAt":"2026-11-02T10:00:00+01:00","expertSource":"getSmartBet","expertUrl":"https://www.getsmartbet.com/no/spilltips/2026-11-02","oddsSource":"GambleCode","oddsUrl":"https://www.gamblecode.com/football-predictions-today/","statHome":"3 strake kamper uten baklengs","statAway":"1 seier på siste 5","highlight":"Lorient har holdt nullen i tre strake ligakamper.","highlightSource":"https://www.sofascore.com/news/lorient-vs-brest-preview-form-h2h-and-key-stats","modelEdge":0.1186,"formHome":"","formAway":"","bookmakers":null},{"matchId":"exp-newcastle-everton","home":"Newcastle","away":"Everton","league":"Premier League","kickoff":"2026-11-02T21:00:00+01:00","label":"Newcastle eller uavgjort (1X)","price":1.43,"category":"safe","probability":0.68,"oddsUpdatedAt":"2026-11-02T07:00:00+01:00","expertSource":"FootballStats.ie","expertUrl":"https://footballstats.ie/match/newcastle-everton-2026-11-02/","oddsSource":"FootballStats.ie","oddsUrl":"https://footballstats.ie/match/newcastle-everton-2026-11-02/","statHome":"1 seier på 4 hjemmekamper","statAway":"3–1 i cupmøtet 29. okt.","highlight":"Ekspertanalysen vurderer 1X til 68 % sannsynlighet.","highlightSource":"https://footballstats.ie/match/newcastle-everton-2026-11-02/","modelEdge":-0.0276,"formHome":"","formAway":"","bookmakers":null},{"matchId":"exp-deportivo-osasuna","home":"Deportivo","away":"Osasuna","league":"LaLiga","kickoff":"2026-11-02T21:00:00+01:00","label":"Deportivo vinner","price":2.1,"category":"high","probability":0.51,"oddsUpdatedAt":"2026-11-02T10:00:00+01:00","expertSource":"Easy2Bets","expertUrl":"https://www.easy2bets.com/predictions/2026-11-02","oddsSource":"GambleCode","oddsUrl":"https://www.gamblecode.com/football-predictions-today/","statHome":"Hjemmesjanse 51 %","statAway":"Bortesjanse 27 %*","highlight":"Deportivo er en knepen favoritt i modellene. *Bortesjanse 27 % fra getSmartBet.","highlightSource":"https://www.getsmartbet.com/no/spilltips/2026-11-02","modelEdge":0.071,"formHome":"","formAway":"","bookmakers":null},{"matchId":"exp-benfica-alverca","home":"Benfica","away":"Alverca","league":"Primeira Liga","kickoff":"2026-11-02T21:15:00+01:00","label":"Benfica vinner","price":1.2,"category":"safe","probability":0.89,"oddsUpdatedAt":"2026-11-02T10:00:00+01:00","expertSource":"BankoZeka","expertUrl":"https://bankozeka.com/en/predictions/2026-11-02","oddsSource":"BankoZeka","oddsUrl":"https://bankozeka.com/en/predictions/2026-11-02","statHome":"4 seiere på siste 5 i ligaen","statAway":"3 seiere på siste 5","highlight":"Benfica er ubeseiret hjemme i ligaen etter fire kamper.","highlightSource":"https://www.myfootballfacts.com/match/primeira-liga-2026-27-benfica-vs-alverca-2026-11-02/","modelEdge":0.068,"formHome":"","formAway":"","bookmakers":null}];
-function expertSnapshot(){
-  const recommendations=EXPERT_PICKS;
-  return {
-    version:3,
-    localDate:'2026-11-02',
-    generatedAt:'2026-11-02T19:35:00+01:00',
-    matches:Array.from({length:7},()=>({})),
-    recommendations,
-    safeBets:recommendations.filter(x=>x.category==='safe'),
-    highRisk:recommendations.filter(x=>x.category==='high'),
-    dataStatus:{fixtures:'curated',odds:'published'}
-  };
+function demoSnapshot(){
+  const now=new Date();
+  const at=(h,m)=>{const d=new Date(now);d.setHours(h,m,0,0);return d.toISOString();};
+  const pick=(id,home,away,league,h,m,label,price,category,prob,formHome,formAway,bookmakers)=>({
+    matchId:id,home,away,league,kickoff:at(h,m),label,price,category,probability:prob,modelEdge:prob*price-1,formHome,formAway,bookmakers,
+    oddsUpdatedAt:now.toISOString(),oddsSource:'Eksempeldata'
+  });
+  const recommendations=[
+    pick('demo1','Nordby FK','Fjordvik','Eksempelliga',21,0,'Hjemmeseier',1.36,'safe',.70,'WWDWWW','LLDDWL',6),
+    pick('demo2','Sørbyen','Vestland','Eksempelliga',21,30,'Over 2,5 mål',2.05,'high',.54,'WDWWLW','WWDLLD',5),
+    pick('demo3','Lund Athletic','Havn FC','Eksempelcup',22,0,'Borteseier',2.64,'high',.43,'LLWDLD','WWDWWL',4),
+    pick('demo4','Skogstad','Østvik','Eksempelliga',22,15,'Begge lag scorer',1.73,'standard',.61,'WDLLWW','LWWWDW',5),
+    pick('demo5','Granheim','Vard','Eksempelliga',22,30,'Hjemmeseier',1.41,'safe',.69,'WWWDLW','LLLDLL',5)
+  ];
+  const safeBets=[recommendations[0],recommendations[4],pick('demo6','Kysten FK','Midtbyen','Eksempelcup',22,40,'Borteseier',1.45,'safe',.68,'DLDLWL','WWDWWD',5)];
+  const highRisk=[recommendations[1],recommendations[2],pick('demo7','Dalen','Åsen','Eksempelliga',22,45,'Over 3,5 mål',3.28,'high',.35,'WWLDWD','LWDWDL',4)];
+  for (const p of [...recommendations,...safeBets,...highRisk]) {p.formSample=[5,6];p.probabilitySource=p.category==='safe'?'market':'model';}
+  return {version:3,localDate:dayISO(now),generatedAt:now.toISOString(),matches:Array.from({length:13},()=>({})),recommendations,safeBets,highRisk,coverage:{upcomingMatches:13,matchedOdds:11,withModel:9,externalPredictions:0},sources:[{name:'football-data.org',state:'connected'},{name:'The Odds API',state:'connected'}],dataStatus:{fixtures:'demo',odds:'demo'}};
 }
 function chip(p){return p.category==='safe'?'Safe Bet':p.category==='high'?'High Risk':'Dagens tips';}
 function renderPick(p,i){
   const key=`stat-${i}`;
   const model=Number(p.probability);
   const breakEven=1/Number(p.price);
+  const sourceLabel=p.probabilitySource==='market'?'Markedssjanse':'Modellsjanse';
   return `<article class="pick">
     <div class="pick-top"><span>${esc(p.league)}</span><span>${timeFmt.format(new Date(p.kickoff))}</span></div>
     <h3 class="fixture">${esc(p.home)} – ${esc(p.away)}</h3>
-    <div class="market-row"><div><div class="market-label">Anbefalt spill</div><div class="market">${esc(p.label)}</div></div><div><div class="price">${fmtOdds(p.price)}</div><div class="price-caption">PUBLISERT ODDS</div></div></div>
-    <div class="key-stats"><div><div class="metric-name">Ekspertanslag</div><div class="metric-value prob">${pct(model)}</div></div><div><div class="metric-name">Krevd sannsynlighet</div><div class="metric-value">${pct(breakEven)}</div></div></div>
+    <div class="market-row"><div><div class="market-label">Anbefalt spill</div><div class="market">${esc(p.label)}</div></div><div><div class="price">${fmtOdds(p.price)}</div><div class="price-caption">ODDS</div></div></div>
+    <div class="key-stats"><div><div class="metric-name">${sourceLabel}</div><div class="metric-value prob">${pct(model)}</div></div><div><div class="metric-name">Krevd sannsynlighet</div><div class="metric-value">${pct(breakEven)}</div></div></div>
     <div class="card-actions"><span class="chip ${esc(p.category)}">${chip(p)}</span><button class="details-toggle" type="button" data-open="${key}" aria-expanded="false" aria-controls="${key}">Statistikk ＋</button></div>
     <div class="details" id="${key}"><div class="details-grid">
-      <div><div class="detail-title">${esc(p.home)} · statistikk</div><div class="detail-value">${esc(p.statHome||formText(p.formHome))}</div></div>
-      <div><div class="detail-title">${esc(p.away)} · statistikk</div><div class="detail-value">${esc(p.statAway||formText(p.formAway))}</div></div>
-      <div><div class="detail-title">Differanse mot odds</div><div class="detail-value">${Number.isFinite(p.modelEdge)?((p.modelEdge>=0?'+':'')+(p.modelEdge*100).toFixed(1).replace('.',',')+' %'):'–'}</div></div>
-      <div><div class="detail-title">Analysekilde</div><div class="detail-value">${p.expertUrl?`<a href="${esc(p.expertUrl)}" target="_blank" rel="noopener noreferrer">${esc(p.expertSource)} ↗</a>`:'–'}</div></div>
-      <div class="detail-span"><div class="detail-title">Kampstatistikk</div><div class="detail-value">${esc(p.highlight||'–')}</div></div>
-      <div><div class="detail-title">Oddskilde</div><div class="detail-value">${p.oddsUrl?`<a href="${esc(p.oddsUrl)}" target="_blank" rel="noopener noreferrer">${esc(p.oddsSource)} ↗</a>`:'–'}</div></div>
+      <div><div class="detail-title">${esc(p.home)} · siste kamper</div><div class="detail-value">${esc(formText(p.formHome))}</div></div>
+      <div><div class="detail-title">${esc(p.away)} · siste kamper</div><div class="detail-value">${esc(formText(p.formAway))}</div></div>
+      <div><div class="detail-title">Modellavvik</div><div class="detail-value">${p.modelEdge!=null && Number.isFinite(Number(p.modelEdge))?((p.modelEdge>=0?'+':'')+(p.modelEdge*100).toFixed(1).replace('.',',')+' %'):'–'}</div></div>
+      <div><div class="detail-title">Oddsgrunnlag</div><div class="detail-value">${esc(p.bookmakers||'–')} bookmakere</div></div>
+      <div><div class="detail-title">Datagrunnlag</div><div class="detail-value">${Array.isArray(p.formSample)?p.formSample.map(x=>Number(x)).join(' / ')+' kamper':'–'}</div></div>
     </div></div>
   </article>`;
 }
 function renderRisk(items,id){
   el(id+'-count').textContent=String(items.length);
-  el(id+'-list').innerHTML=items.length?items.map(p=>`<div class="risk-item"><div><div class="risk-title">${esc(p.home)} – ${esc(p.away)}</div><div class="risk-sub">${esc(p.label)} · ${timeFmt.format(new Date(p.kickoff))}</div><div class="risk-data"><span>Ekspert ${pct(p.probability)}</span><span>${esc(p.expertSource||'')}</span></div></div><div class="risk-price">${fmtOdds(p.price)}</div></div>`).join(''):'<div class="empty">Ingen tips i denne kategorien i dag</div>';
+  el(id+'-list').innerHTML=items.length?items.map(p=>`<div class="risk-item"><div><div class="risk-title">${esc(p.home)} – ${esc(p.away)}</div><div class="risk-sub">${esc(p.label)} · ${timeFmt.format(new Date(p.kickoff))}</div><div class="risk-data"><span>${p.probabilitySource==='market'?'Marked':'Modell'} ${pct(p.probability)}</span><span>Form ${esc(formText(p.formHome))}</span></div></div><div class="risk-price">${fmtOdds(p.price)}</div></div>`).join(''):'<div class="empty">Ingen kvalifiserte tips i denne kategorien akkurat nå</div>';
 }
 function show(data,preview){
   const now=new Date(), generatedAt=Date.parse(data.generatedAt);
@@ -217,19 +240,30 @@ function show(data,preview){
   const validPick=p=>Boolean(p.kickoff&&p.oddsUpdatedAt&&Number(p.price)>1 && Number.isFinite(Number(p.probability)) && Date.parse(p.kickoff)>now.getTime()+600000 && Date.parse(p.oddsUpdatedAt)<now.getTime()+3600000 && now.getTime()-Date.parse(p.oddsUpdatedAt)<=12*3600000);
   const include=p=>preview||validPick(p);
   const picks=(fresh?data.recommendations||[]:[]).filter(include).slice(0,5);
-  const safe=(fresh?data.safeBets||picks.filter(p=>p.category==='safe'):[]).filter(include).slice(0,3);
-  const high=(fresh?data.highRisk||picks.filter(p=>p.category==='high'):[]).filter(include).slice(0,3);
-  el('today-date').textContent=dateFmt.format(preview?new Date(data.generatedAt):now).replace(/^./,x=>x.toUpperCase());
-  el('last-updated').textContent=preview?'Ekspertutvalg fra 2. november':Number.isFinite(generatedAt)?'Oppdatert '+stampFmt.format(new Date(generatedAt)):'Ikke oppdatert';
+  const safe=(fresh?data.safeBets||picks.filter(p=>p.category==='safe'):[]).filter(include).slice(0,5);
+  const high=(fresh?data.highRisk||picks.filter(p=>p.category==='high'):[]).filter(include).slice(0,5);
+  el('today-date').textContent=dateFmt.format(now).replace(/^./,x=>x.toUpperCase());
+  el('last-updated').textContent=Number.isFinite(generatedAt)?'Oppdatert '+stampFmt.format(new Date(generatedAt)):'Ikke oppdatert';
   el('demo-marker').hidden=!preview;
   el('tips-count').textContent=`${picks.length} ${picks.length===1?'tips':'tips'}`;
   el('top-picks').innerHTML=picks.length?picks.map(renderPick).join(''):'<div class="empty">Ingen kvalifiserte tips tilgjengelig akkurat nå.</div>';
   renderRisk(safe,'safe');renderRisk(high,'high');
   const allMatches=Array.isArray(data.matches)?data.matches:[];
-  const todays=allMatches.filter(p=>!p.kickoff||dayISO(new Date(p.kickoff))===dayISO(preview?new Date(data.generatedAt):now));
+  const todays=allMatches.filter(p=>!p.kickoff||dayISO(new Date(p.kickoff))===dayISO(now));
   el('stats-matches').textContent=fresh?String(todays.length):'–';
   el('stats-count').textContent=String(picks.length);
   el('stats-average').textContent=picks.length?pct(picks.reduce((a,p)=>a+Number(p.probability),0)/picks.length):'–';
+  const coverage=data.coverage||{};
+  el('stats-priced').textContent=fresh?String(coverage.matchedOdds ?? allMatches.filter(m=>m.odds&&Object.keys(m.odds).length).length):'–';
+  const sources=Array.isArray(data.sources)?data.sources:[];
+  el('engine-status').textContent=preview?'Designforhåndsvisning':(data.dataStatus?.fixtures==='ok'&&data.dataStatus?.odds==='ok'?'Data oppdatert':'Datadekning begrenset');
+  el('engine-coverage').textContent=Number.isFinite(coverage.matchedOdds)?`${coverage.matchedOdds}/${coverage.upcomingMatches} kamper med odds`:'–';
+  const connected=sources.filter(x=>x.state==='connected');
+  el('engine-sources').textContent=preview?'Illustrasjonsdata':`${connected.length} automatiske datakilder`;
+  const manual=Number(coverage.manualPredictions||0);
+  const independent=Number(coverage.apiPredictions||0);
+  el('source-footnote').textContent=preview?'Illustrasjon, ikke ekte kampanbefalinger':`Automatisk: ${connected.map(x=>x.name).join(' + ') || 'ingen'} · API-prognoser: ${independent} · Manuelle vurderinger: ${manual}`;
+
   const notice=el('alert');notice.hidden=true;
   if(!preview&&!fresh){notice.hidden=false;notice.textContent='Dagens analyse er ennå ikke oppdatert.';}
   else if(!preview&&(data.dataStatus?.fixtures!=='ok'||data.dataStatus?.odds!=='ok')){notice.hidden=false;notice.textContent='Kampdata eller odds er ikke tilgjengelige.';}
@@ -238,7 +272,7 @@ function show(data,preview){
   }));
 }
 async function loadLatest(){
-  if(window.__ODDSGEN_DEMO__){show(expertSnapshot(),true);return;}
+  if(window.__ODDSGEN_DEMO__){show(demoSnapshot(),true);return;}
   try{
     const res=await fetch('data/today.json?v='+Date.now(),{cache:'no-store'});
     if(!res.ok)throw Error(`HTTP ${res.status}`);
@@ -250,6 +284,5 @@ const refresh=el('refresh-data');
 refresh.addEventListener('click',async()=>{refresh.disabled=true;try{await loadLatest()}finally{refresh.disabled=false}});
 loadLatest();
 
-</script>
-</body>
+</script></body>
 </html>

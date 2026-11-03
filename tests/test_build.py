@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 from datetime import datetime, timedelta, timezone
 sys.path.insert(0,str(Path(__file__).resolve().parent.parent / 'scripts'))
-from build_data import name_score, model_probabilities, fixed_odds_event, extract_market_odds, build_snapshot, predictions_for, missing_form_teams
+from build_data import identity_score, club_identity, name_score, model_probabilities, fixed_odds_event, extract_market_odds, build_snapshot, predictions_for, missing_form_teams
 
 class OddsLabTests(unittest.TestCase):
     def setUp(self):
@@ -13,6 +13,55 @@ class OddsLabTests(unittest.TestCase):
         self.fixture={'id':42,'status':'SCHEDULED','utcDate':self.k,
             'homeTeam':{'id':1,'shortName':'Liverpool'},'awayTeam':{'id':2,'shortName':'Chelsea'},
             'competition':{'code':'PL','name':'Premier League'}}
+
+    def test_common_cl_aliases(self):
+        for a,b in [('Barça','FC Barcelona'),('Atleti','Atlético de Madrid'),
+                    ('LASK','LASK Linz'),('Sl. Bratislava','Slovan Bratislava'),
+                    ('Man United','Manchester United')]:
+            self.assertEqual(identity_score(a,b),1.0)
+
+    def test_cl_alias_matches_both_sides(self):
+        m={'home':'Barça','away':'Aston Villa','kickoff':self.k}
+        event={'home_team':'FC Barcelona','away_team':'Aston Villa',
+               'commence_time':self.k,'bookmakers':[]}
+        self.assertEqual(fixed_odds_event(m,[event]),event)
+        m={'home':'LASK','away':'Sl. Bratislava','kickoff':self.k}
+        event={'home_team':'LASK Linz','away_team':'Slovan Bratislava',
+               'commence_time':self.k,'bookmakers':[]}
+        self.assertEqual(fixed_odds_event(m,[event]),event)
+
+    def test_end_to_end_barcelona_market_favorite(self):
+        # Realistic provider-name mismatch plus 3-game CL history.
+        from recommend import analyze_match
+        match={**self.fixture,
+            'homeTeam':{'id':1,'shortName':'Barça','name':'FC Barcelona'},
+            'awayTeam':{'id':2,'shortName':'Aston Villa','name':'Aston Villa FC'},
+            'competition':{'code':'CL','name':'Champions League'}}
+        hist=[]
+        for i in range(3):
+            t=(self.now-timedelta(days=i+1)).isoformat()
+            hist.append({'id':100+i,'status':'FINISHED','utcDate':t,
+                 'homeTeam':{'id':1},'awayTeam':{'id':10+i},
+                 'score':{'fullTime':{'home':3,'away':1}},
+                 'competition':{'code':'CL'}})
+            hist.append({'id':110+i,'status':'FINISHED','utcDate':t,
+                 'homeTeam':{'id':2},'awayTeam':{'id':20+i},
+                 'score':{'fullTime':{'home':2,'away':0}},
+                 'competition':{'code':'CL'}})
+        book=[]
+        for i in range(4):
+            book.append({'title':'Book '+str(i),'last_update':self.now.isoformat(),
+                         'markets':[{'key':'h2h','last_update':self.now.isoformat(),
+                         'outcomes':[{'name':'FC Barcelona','price':1.30},
+                                     {'name':'Draw','price':6.0},
+                                     {'name':'Aston Villa','price':10.0}]}]})
+        event={'home_team':'FC Barcelona','away_team':'Aston Villa',
+               'commence_time':self.k,'bookmakers':book}
+        snapshot=build_snapshot(self.now,[match,*hist],[event],[],[],{'fixtures':'ok','odds':'ok'})
+        self.assertEqual(len(snapshot['safeBets']),1)
+        self.assertEqual(snapshot['safeBets'][0]['market'],'H')
+        self.assertEqual(snapshot['safeBets'][0]['probabilitySource'],'market')
+        self.assertGreater(snapshot['safeBets'][0]['probability'],0.7)
 
     def test_normalize(self):
         self.assertGreater(name_score('Liverpool FC','Liverpool'),.95)
