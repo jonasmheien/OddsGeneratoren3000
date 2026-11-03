@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#180b10">
+  <meta name="description" content="Dagens fotballtips til Jonnern: dagens tips, Safe Bets, High Risk og statistikk.">
+  <title>Dagens tips til Jonnern</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="page" id="top">
+    <header class="masthead">
+      <div>
+        <h1>Dagens tips til <span>Jonnern</span></h1>
+        <div class="daily-meta"><time id="today-date">I dag</time><span class="meta-dot">•</span><span id="last-updated">Henter data</span><span id="demo-marker" hidden>Eksempeldata</span></div>
+      </div>
+      <button id="refresh-data" type="button" class="refresh" aria-label="Last inn siste publiserte tips"><span aria-hidden="true">↻</span><span>Oppdater</span></button>
+    </header>
+
+    <div id="alert" class="notice" role="status" aria-live="polite" hidden></div>
+
+    <section class="section primary" aria-labelledby="tips-title">
+      <div class="section-heading"><h2 id="tips-title">Dagens tips</h2><span id="tips-count" class="count">0 tips</span></div>
+      <div id="top-picks" class="picks"><div class="empty">Henter dagens tips …</div></div>
+    </section>
+
+    <div class="two-columns">
+      <section class="risk-section" aria-labelledby="safe-title">
+        <div class="section-heading compact"><h2 id="safe-title"><span class="signal safe"></span>Safe Bets</h2><span class="count" id="safe-count">0</span></div>
+        <div id="safe-list" class="risk-list"><div class="empty">Ingen tips ennå</div></div>
+      </section>
+      <section class="risk-section" aria-labelledby="high-title">
+        <div class="section-heading compact"><h2 id="high-title"><span class="signal high"></span>High Risk</h2><span class="count" id="high-count">0</span></div>
+        <div id="high-list" class="risk-list"><div class="empty">Ingen tips ennå</div></div>
+      </section>
+    </div>
+
+    <section class="section stats-section" aria-labelledby="stats-title">
+      <div class="section-heading"><h2 id="stats-title">Data og statistikk</h2></div>
+      <div class="stats-grid">
+        <div class="stat"><div class="stat-value" id="stats-matches">–</div><div class="stat-label">Kamper i dag</div></div>
+        <div class="stat"><div class="stat-value" id="stats-count">–</div><div class="stat-label">Utvalgte tips</div></div>
+        <div class="stat"><div class="stat-value" id="stats-average">–</div><div class="stat-label">Snitt, modellsjanse</div></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
