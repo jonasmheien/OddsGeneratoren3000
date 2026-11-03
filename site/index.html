@@ -3,55 +3,59 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#180b10">
-  <meta name="description" content="Dagens fotballtips til Jonnern: dagens tips, Safe Bets, High Risk og statistikk.">
+  <meta name="theme-color" content="#13070b">
+  <meta name="description" content="Dagens tips til Jonnern – kampanalyse, Safe Bets, High Risk og resultater.">
   <title>Dagens tips til Jonnern</title>
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
 <body>
-  <main class="page" id="top">
-    <header class="masthead">
-      <div>
-        <h1>Dagens tips til <span>Jonnern</span></h1>
-        <div class="daily-meta"><time id="today-date">I dag</time><span class="meta-dot">•</span><span id="last-updated">Henter data</span><span id="demo-marker" hidden>Eksempeldata</span></div>
+  <main class="shell">
+    <header class="hero">
+      <div class="hero-topline"><div class="mark" aria-hidden="true"><span>OG</span><i></i></div><div class="topstate"><i class="online-dot"></i><span id="engine-status">Laster analysen</span></div></div>
+      <div class="hero-content">
+        <div><h1>Dagens tips til <span>Jonnern</span></h1>
+          <div class="meta"><span id="today-date">Laster dato</span><span class="meta-dot"></span><span id="last-updated">Henter tips</span><span id="demo-marker" class="demo-mark" hidden>Design / demo</span></div>
+        </div>
+        <button id="refresh-data" class="refresh" type="button" aria-label="Hent sist publiserte analyse"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7v5h-5"/><path d="M4 17v-5h5"/><path d="M5.6 9a7.5 7.5 0 0 1 12.2-2L20 12M4 12l2.2 5a7.5 7.5 0 0 0 12.2-2"/></svg><span>Oppdater</span></button>
       </div>
-      <button id="refresh-data" type="button" class="refresh" aria-label="Last inn siste publiserte tips"><span aria-hidden="true">↻</span><span>Oppdater</span></button>
+      <div class="top-metrics" aria-label="Dagens resultatoversikt">
+        <div><span class="metric-caption">DAGENS UTVALG</span><b class="metric-num" id="metric-picks">0</b></div>
+        <div><span class="metric-caption">VUNNET</span><b class="metric-num win-num" id="metric-won">0</b></div>
+        <div><span class="metric-caption">TAPT</span><b class="metric-num loss-num" id="metric-lost">0</b></div>
+        <div><span class="metric-caption">PÅGÅR</span><b class="metric-num" id="metric-live">0</b></div>
+        <div class="metric-source"><span class="metric-caption">KAMPDEKNING</span><b class="metric-info" id="engine-coverage">–</b><small id="engine-sources">Datakilder</small></div>
+      </div>
     </header>
+    <div class="alert" id="alert" hidden role="status" aria-live="polite"></div>
 
-    <div id="alert" class="notice" role="status" aria-live="polite" hidden></div>
+    <nav class="page-nav" aria-label="Seksjoner"><a href="#dagens">Dagens tips</a><a href="#safe">Safe Bets</a><a href="#high">High Risk</a><a href="#stats">Statistikk</a></nav>
 
-    <div class="engine-bar" aria-label="Datakilder og dekning">
-      <div class="engine-item"><span class="live-dot"></span><span id="engine-status">Henter datagrunnlag</span></div>
-      <div class="engine-item muted" id="engine-coverage">–</div>
-      <div class="engine-item muted" id="engine-sources">–</div>
-    </div>
-
-    <section class="section primary" aria-labelledby="tips-title">
-      <div class="section-heading"><h2 id="tips-title">Dagens tips</h2><span id="tips-count" class="count">0 tips</span></div>
-      <div id="top-picks" class="picks"><div class="empty">Henter dagens tips …</div></div>
+    <section id="dagens" class="section" aria-labelledby="section-picks">
+      <div class="section-head"><div><span class="index">01 / UTVALG</span><h2 id="section-picks">Dagens tips</h2></div><span class="section-count" id="tips-count">0 tips</span></div>
+      <div id="top-picks" class="cards"><div class="empty">Henter dagsutgaven …</div></div>
     </section>
 
-    <div class="two-columns">
-      <section class="risk-section" aria-labelledby="safe-title">
-        <div class="section-heading compact"><h2 id="safe-title"><span class="signal safe"></span>Safe Bets</h2><span class="count" id="safe-count">0</span></div>
-        <div id="safe-list" class="risk-list"><div class="empty">Ingen tips ennå</div></div>
+    <div class="risk-grid">
+      <section id="safe" aria-labelledby="safe-head" class="section risk-section">
+        <div class="section-head"><div><span class="index">02 / FAVORITTER</span><h2 id="safe-head"><span class="category-icon mint"></span>Safe Bets</h2></div><span class="section-count" id="safe-count">0</span></div>
+        <div id="safe-list" class="risk-list"><div class="empty">Henter tips …</div></div>
       </section>
-      <section class="risk-section" aria-labelledby="high-title">
-        <div class="section-heading compact"><h2 id="high-title"><span class="signal high"></span>High Risk</h2><span class="count" id="high-count">0</span></div>
-        <div id="high-list" class="risk-list"><div class="empty">Ingen tips ennå</div></div>
+      <section id="high" aria-labelledby="high-head" class="section risk-section">
+        <div class="section-head"><div><span class="index">03 / HØYERE ODDS</span><h2 id="high-head"><span class="category-icon ember"></span>High Risk</h2></div><span class="section-count" id="high-count">0</span></div>
+        <div id="high-list" class="risk-list"><div class="empty">Henter tips …</div></div>
       </section>
     </div>
 
-    <section class="section stats-section" aria-labelledby="stats-title">
-      <div class="section-heading"><h2 id="stats-title">Data og statistikk</h2></div>
+    <section id="stats" class="section data-section" aria-labelledby="stats-head">
+      <div class="section-head"><div><span class="index">04 / DATA</span><h2 id="stats-head">Data og statistikk</h2></div></div>
       <div class="stats-grid">
-        <div class="stat"><div class="stat-value" id="stats-matches">–</div><div class="stat-label">Kamper i dag</div></div>
-        <div class="stat"><div class="stat-value" id="stats-count">–</div><div class="stat-label">Utvalgte tips</div></div>
-        <div class="stat"><div class="stat-value" id="stats-average">–</div><div class="stat-label">Snitt sannsynlighet</div></div>
-        <div class="stat"><div class="stat-value" id="stats-priced">–</div><div class="stat-label">Kamper med odds</div></div>
+        <div class="stats-cell"><span>Kamper analysert</span><strong id="stats-matches">–</strong></div>
+        <div class="stats-cell"><span>Kamper med odds</span><strong id="stats-priced">–</strong></div>
+        <div class="stats-cell"><span>Utvalgte tips</span><strong id="stats-count">–</strong></div>
+        <div class="stats-cell"><span>Snitt sannsynlighet</span><strong id="stats-average">–</strong></div>
       </div>
-      <div class="source-footnote" id="source-footnote">Kildeinformasjon hentes sammen med dagens analyse.</div>
+      <div class="source-strip"><span class="source-pulse"></span><span id="source-footnote">Kilder lastes</span><span id="result-updated">Resultater avventes</span></div>
     </section>
   </main>
 </body>

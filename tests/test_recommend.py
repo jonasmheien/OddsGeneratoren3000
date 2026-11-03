@@ -107,6 +107,8 @@ class RecommendationTests(unittest.TestCase):
             return {'status':status,'utcDate':(self.now+timedelta(hours=hours)).isoformat(),'competition':{'code':code}}
         sports=sports_today([f('PL',3),f('PL',5),f('SA',5),f('PD',5),f('PL',-3),f('ELC',6)],self.now)
         self.assertEqual(sports[0],'soccer_epl')
-        self.assertEqual(len(sports),3)
+        self.assertEqual(len(sports),4)
+        capped=sports_today([f('PL',3),f('PL',5),f('SA',5),f('PD',5),f('ELC',6)],self.now,max_sports=3)
+        self.assertEqual(len(capped),3)
 
 if __name__=='__main__':unittest.main()

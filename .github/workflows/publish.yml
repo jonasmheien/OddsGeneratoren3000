@@ -4,42 +4,100 @@ on:
   push:
     branches: [main]
   schedule:
+    # New edition: one analysis and odds request each morning, Norwegian time.
     - cron: '17 9 * * *'
       timezone: 'Europe/Oslo'
+    # Status updates use ONLY football-data.org, never bookmaker credits.
+    - cron: '7,37 15-23,0-3 * * *'
+      timezone: 'Europe/Oslo'
   workflow_dispatch:
+    inputs:
+      mode:
+        description: 'daily = ny utgave, results = oppdater resultater, deploy = vis lagret utgave'
+        type: choice
+        options: [deploy, results, daily]
+        default: deploy
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
 concurrency:
-  group: oddsgeneratoren-pages
+  group: oddsgeneratoren-state-and-pages
   cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      should_deploy: ${{ steps.mode.outputs.should_deploy }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Test kvalitetsregler og prognosemotor
+      - name: Test modeller, resultatkontroll og kvalitet
         run: python -m unittest discover -s tests -v
-      - name: Hent kampdata, beregn og vurder spill
+      - name: Velg riktig oppdatering
+        id: trigger
+        shell: bash
+        env:
+          EVENT: ${{ github.event_name }}
+          SCHEDULE: ${{ github.event.schedule }}
+          INPUT_MODE: ${{ inputs.mode }}
+        run: |
+          if [[ "$EVENT" == "push" ]]; then
+            echo "mode=deploy" >> "$GITHUB_OUTPUT"
+          elif [[ "$EVENT" == "schedule" && "$SCHEDULE" == "17 9 * * *" ]]; then
+            echo "mode=daily" >> "$GITHUB_OUTPUT"
+          elif [[ "$EVENT" == "schedule" ]]; then
+            echo "mode=results" >> "$GITHUB_OUTPUT"
+          else
+            echo "mode=${INPUT_MODE:-daily}" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Generer nytt dagsutvalg
+        if: steps.trigger.outputs.mode == 'daily'
         env:
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
-          # ODDS_SPORTS settes normalt automatisk til inntil 3 ligaer som har kamper i dag.
         run: python scripts/build_data.py
+      - name: Behold tips og oppdater resultatstatus
+        id: mode
+        shell: bash
+        env:
+          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
+          MODE: ${{ steps.trigger.outputs.mode }}
+        run: |
+          python scripts/lifecycle.py "$MODE" | tee /tmp/odds-lifecycle.txt
+          if [[ "$MODE" == "results" ]] && ! grep -q 'RESULTS_CHANGED=1' /tmp/odds-lifecycle.txt; then
+            echo 'should_deploy=false' >> "$GITHUB_OUTPUT"
+          else
+            echo 'should_deploy=true' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Lagre den valgte utgaven og resultatene
+        if: steps.trigger.outputs.mode != 'deploy'
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A -- state/ site/data/today.json
+          if ! git diff --cached --quiet; then
+            git commit -m '[snapshot] Keep daily tips and their settled results'
+            git push origin HEAD:main
+          fi
       - uses: actions/configure-pages@v5
+        if: steps.mode.outputs.should_deploy == 'true'
       - uses: actions/upload-pages-artifact@v4
+        if: steps.mode.outputs.should_deploy == 'true'
         with:
           path: site
   deploy:
     needs: build
+    if: needs.build.outputs.should_deploy == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages

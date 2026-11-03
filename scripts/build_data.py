@@ -38,8 +38,8 @@ SPORT_BY_COMPETITION = {
 }
 # Free plan: 500 credits/month as of project setup. One region × two markets
 # costs about 2 credits per league per run (provider rules may change).
-# One daily run × 3 leagues × 2 markets × 31 days = ~186 credits/month.
-ODDS_SPORTS_PER_RUN = min(3, max(1, int(os.getenv('ODDS_SPORTS_PER_RUN', '3'))))
+# One daily run × 5 leagues × 2 markets × 31 days = ~310 credits/month at most under the current credit formula.
+ODDS_SPORTS_PER_RUN = min(5, max(1, int(os.getenv('ODDS_SPORTS_PER_RUN', '5'))))
 MARKETS = ('H', 'U', 'B', 'O25', 'U25', 'O35', 'BTTS')
 
 
