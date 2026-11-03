@@ -32,10 +32,13 @@ def analyze_match(match: dict, now: datetime) -> list[dict]:
     if kickoff <= now + timedelta(minutes=10):
         return []
     m = match.get('model') or {}
-    if m.get('quality') != 'basic':
-        return []
     samples = m.get('sample') or []
-    if len(samples)!=2 or min(samples)<5:
+    if len(samples)!=2 or min(samples)<3:
+        return []
+    sample_size=min(samples)
+    # Limited form is allowed only for clearly marked high-risk ideas.
+    # Safe bets and regular tips retain their stricter sample requirements.
+    if m.get('quality') not in ('basic', 'exploratory'):
         return []
     choices=[]
     for code in ALLOWED:
@@ -58,15 +61,18 @@ def analyze_match(match: dict, now: datetime) -> list[dict]:
             continue
         edge = p*price-1
         if price<=1.5:
-            if p < .70 or edge < .045:
+            if sample_size<5 or p < .70 or edge < .045:
                 continue
             category='safe'
         elif price>=1.85:
-            if p < .28 or edge < .085:
+            # High risk can use 3-4 completed games on either side,
+            # but needs at least two independent bookmaker quotes.
+            min_edge=.035 if sample_size<5 else .085
+            if p < .23 or edge < min_edge:
                 continue
             category='high'
         else:
-            if p < .49 or edge < .065:
+            if sample_size<4 or p < .49 or edge < .065:
                 continue
             category='standard'
         # A manually recorded independent external model may support or oppose the baseline.
@@ -94,6 +100,8 @@ def analyze_match(match: dict, now: datetime) -> list[dict]:
                         'price':price,'probability':round(p,4), 'modelEdge':round(edge,4),
                         'bookmakers':books,'oddsSource':'The Odds API · bookmaker-median',
                         'oddsUpdatedAt':stamp,'score':score,
+                        'formSample':list(samples),
+                        'evidenceLevel':'begrenset' if sample_size<5 else 'standard',
                         'rationale':reasons,
                         'formHome':formh,'formAway':forma,'externalSupport':len(supporting)})
     return sorted(choices,key=lambda x:x['score'],reverse=True)

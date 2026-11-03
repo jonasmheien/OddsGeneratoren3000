@@ -25,6 +25,23 @@ class RecommendationTests(unittest.TestCase):
         self.assertEqual(analyze_match(self.m,self.now),[])
         self.m['odds']['H']['books']=3
         self.m['model']['sample']=[6,4]
+        self.assertTrue(any(x['category']=='high' for x in analyze_match(self.m,self.now)))
+
+    def test_high_risk_accepts_three_not_two(self):
+        self.m['model']['sample']=[3,3]
+        self.m['model']['quality']='exploratory'
+        result=analyze_match(self.m,self.now)
+        self.assertTrue(result)
+        self.assertEqual(result[0]['category'],'high')
+        self.assertEqual(result[0]['evidenceLevel'],'begrenset')
+        self.m['model']['sample']=[3,2]
+        self.assertEqual(analyze_match(self.m,self.now),[])
+
+    def test_low_odds_requires_five_matches(self):
+        self.m['model']['sample']=[4,4]
+        self.m['model']['quality']='exploratory'
+        self.m['odds']['H']['price']=1.4
+        self.m['model']['probabilities']['H']=.85
         self.assertEqual(analyze_match(self.m,self.now),[])
 
     def test_cannot_pick_started_or_many_picks_same_match(self):

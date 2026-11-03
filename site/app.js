@@ -46,6 +46,7 @@ function renderPick(p,i){
       <div><div class="detail-title">${esc(p.away)} · siste kamper</div><div class="detail-value">${esc(formText(p.formAway))}</div></div>
       <div><div class="detail-title">Modellavvik</div><div class="detail-value">${Number.isFinite(p.modelEdge)?((p.modelEdge>=0?'+':'')+(p.modelEdge*100).toFixed(1).replace('.',',')+' %'):'–'}</div></div>
       <div><div class="detail-title">Oddsgrunnlag</div><div class="detail-value">${esc(p.bookmakers||'–')} bookmakere</div></div>
+      <div><div class="detail-title">Datagrunnlag</div><div class="detail-value">${Array.isArray(p.formSample)?p.formSample.map(x=>Number(x)).join(' / ')+' kamper':'–'}</div></div>
     </div></div>
   </article>`;
 }

@@ -1,4 +1,4 @@
-# OddsGeneratoren – gratis, automatisk start (v0.4)
+# OddsGeneratoren – gratis, automatisk start (v0.5)
 
 **Ett sted for dagens fotballkamper.** Maks fem kuraterte spill, separat oversikt for «Safe Bets» og «High Risk». Ingen kupongbygger, ingen oppdiktede odds. Mobil og desktop.
 
@@ -41,15 +41,15 @@ football-data.org gratis: inntil 12 utvalgte konkurranser, 10 kall/minutt. **Ikk
 ## 3. Hva skjer automatisk?
 
 - 09.17 norsk lokal tid (også riktig ved sommertid) starter GitHub Actions. Jobbene kan bli forsinket av GitHub.
-- Henter dagens kamper og inntil 75 dagers historikk for de opptil tre valgte ligaene fra football-data.org.
+- Henter dagens kamper og inntil 75 dagers historikk for de opptil tre valgte ligaene fra football-data.org. Når CL-lag mangler formgrunnlag, forsøker den inntil 16 lagspesifikke oppslag på tvers av ligaer, hastighetsbegrenset for gratiskontoen.
 - Velger inntil tre konkurranser med kommende kamper, henter markedsodds fra The Odds API.
 - Matcher hjemmelag, bortelag og avspark (avviser usikre matcher).
 - Beregner en **foreløpig, ikke-kalibrert** Poisson-modell basert på inntil seks registrerte siste resultater per lag.
-- Viser bare anbefalinger som har >=5 kamper per lag, minst to oddsleverandører, odds yngre enn tolv timer, og passerer foreløpige kvalitetsgrenser.
+- Viser Safe Bets ved minst 5 tidligere kamper per lag, vanlige tips ved minst 4, og High Risk ved minst 3. Krever fremdeles minst to oddsleverandører, odds yngre enn tolv timer og en foreløpig beregnet fordel. For CL forsøker modellen nå også å hente lagenes hjemlige ligakamper.
 - Bygger en statisk `site/data/today.json` uten nøkkelopplysninger og publiserer den på GitHub Pages.
 - Fjerner automatisk utdaterte kampvalg fra nettleseren når dagens dato eller odds blir gamle.
 
-**Safe Bets** = normalt odds ≤1,50, med strengere foreløpig modellkrav; betyr ikke sikkert spill. **High Risk** = normalt odds ≥1,85. Kun H/U/B og over/under 2,5/over 3,5 er tilgjengelig når leverandøren har markedet. `Begge lag scorer` kan modelleres, men er **ikke** automatisk oddsdekket av gratis `h2h,totals` og blir derfor ikke foreslått i denne versjonen.
+**Safe Bets** = normalt odds ≤1,50 med minst 5 registrerte kamper per lag; betyr ikke sikkert spill. **High Risk** = normalt odds ≥1,85, med minst 3 tidligere kamper per lag og et markert begrenset datagrunnlag dersom det er under 5. Kun H/U/B og over/under 2,5/over 3,5 er tilgjengelig når leverandøren har markedet. `Begge lag scorer` kan modelleres, men er **ikke** automatisk oddsdekket av gratis `h2h,totals` og blir derfor ikke foreslått i denne versjonen.
 
 ### Datakvalitet
 

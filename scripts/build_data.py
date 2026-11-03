@@ -11,6 +11,7 @@ import math
 import os
 import re
 import statistics
+import time
 import sys
 import unicodedata
 from collections import defaultdict
@@ -171,7 +172,7 @@ def model_probabilities(home_form: list, away_form: list) -> dict | None:
                 prob['BTTS'] += p
     return {'probabilities': {k: round(v, 4) for k,v in prob.items()},
             'expectedGoals': [round(lh,2), round(la,2)],
-            'sample': [n_h, n_a], 'quality': 'preliminary' if min(n_h,n_a) < 5 else 'basic'}
+            'sample': [n_h, n_a], 'quality': 'exploratory' if min(n_h,n_a) < 5 else 'basic'}
 
 
 def extract_market_odds(event: dict, match: dict, asof: datetime | None = None) -> dict:
@@ -256,6 +257,31 @@ def predictions_for(m: dict, rows: list[dict]) -> list[dict]:
     return result
 
 
+def missing_form_teams(fixtures: list, now: datetime, limit: int = 16) -> list[int]:
+    """Find CL sides lacking even five past results in our fixture history.
+
+    Team endpoints can return domestic-league results as well as CL matches.
+    Only select teams involved in today's upcoming CL games.
+    """
+    pending=[]
+    for m in fixtures:
+        if (m.get('competition') or {}).get('code') != 'CL' or m.get('status') not in ('SCHEDULED','TIMED'):
+            continue
+        try:
+            start=iso_datetime(m['utcDate'])
+        except (KeyError,ValueError,TypeError):
+            continue
+        if start<=now or start.astimezone(OSLO).date()!=now.astimezone(OSLO).date():
+            continue
+        for item in ('homeTeam','awayTeam'):
+            team_id=(m.get(item) or {}).get('id')
+            if team_id and len(recent_team_form(fixtures,start,team_id))<5 and team_id not in pending:
+                pending.append(team_id)
+        if len(pending)>=limit:
+            return pending[:limit]
+    return pending
+
+
 def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manual_models: list, errors: list, status: dict) -> dict:
     today = now.astimezone(OSLO).date()
     cutoff = today + timedelta(days=1)
@@ -297,7 +323,7 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
     safe_bets = [x for x in all_eligible if x['category'] == 'safe'][:3]
     high_risk = [x for x in all_eligible if x['category'] == 'high'][:3]
     return {'version': 3, 'recommendations':picks, 'safeBets':safe_bets, 'highRisk':high_risk, 'qualityGate':{
-                'minimumFormMatchesPerTeam':5, 'minimumBookmakers':2, 'maximumOddsAgeHours':12,
+                'minimumFormMatchesPerTeam':5, 'minimumFormHighRisk':3, 'minimumFormStandard':4, 'minimumBookmakers':2, 'maximumOddsAgeHours':12,
                 'explanation':'Intern, ikke-kalibrert Poisson-modell + form + bookmakerpriser. Ingen garantert verdi.'}, 'generatedAt': now.isoformat(), 'localDate': today.isoformat(),
             'dataStatus': status, 'errors': errors,
             'method': 'Konservativ ikke-kalibrert Poisson-baseline fra siste inntil 6 registrerte resultater. Screening er en hypotese, ikke dokumentert positiv forventningsverdi.',
@@ -313,6 +339,15 @@ def main():
     status = {'fixtures': 'not_configured', 'odds': 'not_configured'}
     fixtures = []
     odds_events = None
+    last_football_request = 0.0
+    def fetch_football(url):
+        nonlocal last_football_request
+        # Free tier permits only ~10 API calls/minute. Stay below that.
+        wait=max(0.0, 6.5-(time.monotonic()-last_football_request)) if last_football_request else 0
+        if wait:
+            time.sleep(wait)
+        last_football_request=time.monotonic()
+        return fetch_json(url, {'X-Auth-Token': key})
     sports = []
     if key:
         # One small discovery query finds today's eligible fixtures. Pull full
@@ -321,7 +356,7 @@ def main():
                  'dateTo': (date + timedelta(days=2)).isoformat()}
         url = BASE + '/matches?' + urlencode(query)
         try:
-            response = fetch_json(url, {'X-Auth-Token': key})
+            response = fetch_football(url)
             day_fixtures = response.get('matches', [])
             if not isinstance(day_fixtures, list):
                 raise ValueError('Unknown API fixture response')
@@ -334,13 +369,30 @@ def main():
                     'dateFrom': (date - timedelta(days=75)).isoformat(),
                     'dateTo': (date + timedelta(days=2)).isoformat(), 'limit': 500})
                 try:
-                    hist = fetch_json(history_url, {'X-Auth-Token': key}).get('matches', [])
+                    hist = fetch_football(history_url).get('matches', [])
                     if not isinstance(hist, list):
                         raise ValueError('Unknown API history response')
                     fixtures_by_id.update({m['id']: m for m in hist if m.get('id')})
                 except Exception as exc:
                     errors.append(f'Historikk ({code}): feil ({type(exc).__name__})')
+            # CL form is often sparse in November. Supplement it with the
+            # teams' league results, while staying inside the API rate limit.
+            needs=missing_form_teams(list(fixtures_by_id.values()),now)
+            team_requests_ok=0
+            for team_id in needs:
+                url=BASE+f'/teams/{team_id}/matches?'+urlencode({
+                    'dateFrom':(date-timedelta(days=85)).isoformat(),
+                    'dateTo':date.isoformat(), 'status':'FINISHED','limit':100})
+                try:
+                    rows=fetch_football(url).get('matches', [])
+                    if isinstance(rows,list):
+                        fixtures_by_id.update({m['id']:m for m in rows if m.get('id')})
+                        team_requests_ok+=1
+                except Exception as exc:
+                    # Not all leagues / team endpoints are available on free plans.
+                    errors.append(f'Team form ({team_id}): {type(exc).__name__}')
             fixtures = list(fixtures_by_id.values())
+            status['teamFormRequests']=team_requests_ok
             status['fixtures'] = 'ok'
             status['fixtureCount'] = len(fixtures)
         except Exception as exc:

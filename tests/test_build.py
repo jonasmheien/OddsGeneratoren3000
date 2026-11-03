@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 from datetime import datetime, timedelta, timezone
 sys.path.insert(0,str(Path(__file__).resolve().parent.parent / 'scripts'))
-from build_data import name_score, model_probabilities, fixed_odds_event, extract_market_odds, build_snapshot, predictions_for
+from build_data import name_score, model_probabilities, fixed_odds_event, extract_market_odds, build_snapshot, predictions_for, missing_form_teams
 
 class OddsLabTests(unittest.TestCase):
     def setUp(self):
@@ -28,6 +28,16 @@ class OddsLabTests(unittest.TestCase):
         self.assertAlmostEqual(p['O25']+p['U25'],1,places=3)
         self.assertGreater(p['O25'],p['O35'])
         self.assertIsNone(model_probabilities(values[:2],a))
+
+    def test_model_three_matches_exploratory(self):
+        values=[(self.now,2,1,'W')]*3
+        model=model_probabilities(values, values)
+        self.assertEqual(model['quality'],'exploratory')
+
+    def test_cl_teams_get_extra_form(self):
+        m=dict(self.fixture)
+        m['competition']={'code':'CL','name':'Champions League'}
+        self.assertEqual(missing_form_teams([m],self.now),[1,2])
 
     def test_odds_not_cross_matched(self):
         m={'home':'Liverpool','away':'Chelsea','kickoff':self.k}
