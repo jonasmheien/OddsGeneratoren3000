@@ -1,0 +1,48 @@
+name: Oppdater OddsGeneratoren
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 9 * * *'
+      timezone: 'Europe/Oslo'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: oddsgeneratoren-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test kvalitetsregler og prognosemotor
+        run: python -m unittest discover -s tests -v
+      - name: Hent kampdata, beregn og vurder spill
+        env:
+          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          # ODDS_SPORTS settes normalt automatisk til inntil 3 ligaer som har kamper i dag.
+        run: python scripts/build_data.py
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment
