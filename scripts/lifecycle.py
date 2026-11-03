@@ -20,6 +20,7 @@ STATE = ROOT / 'state' / 'active.json'
 PUBLIC = ROOT / 'site' / 'data' / 'today.json'
 HISTORY = ROOT / 'state' / 'history'
 CATEGORIES = ('recommendations', 'safeBets', 'highRisk')
+CANDIDATE = Path(os.environ['ODDS_OUTPUT_PATH']) if os.environ.get('ODDS_OUTPUT_PATH') else PUBLIC
 CANCELLED = {'CANCELLED', 'POSTPONED', 'SUSPENDED', 'AWARDED'}
 IN_PLAY = {'IN_PLAY', 'PAUSED', 'LIVE', 'EXTRA_TIME', 'PENALTY_SHOOTOUT'}
 
@@ -198,14 +199,41 @@ def save_active(snapshot: dict):
     publish_history(snapshot)
 
 
+def published_edition_fallback():
+    """Recover a genuine previous edition if its state file was omitted in an upload.
+
+    Bundled demo/placeholder JSON must never be treated as a completed analysis.
+    """
+    data = read_json(PUBLIC)
+    return data if isinstance(data, dict) and data.get('editionLocked') is True and (data.get('editionDate') or data.get('localDate')) and data.get('dataStatus', {}).get('fixtures') == 'ok' else None
+
+
+def validate_edition(new_snapshot: dict):
+    if not isinstance(new_snapshot, dict):
+        raise ValueError('Analysis is not a JSON object')
+    status = new_snapshot.get('dataStatus') or {}
+    coverage = new_snapshot.get('coverage') or {}
+    if status.get('fixtures') != 'ok':
+        raise ValueError('Fixture feed unavailable; previous edition preserved')
+    if status.get('odds') != 'ok' and not (status.get('odds') == 'empty' and coverage.get('upcomingMatches') == 0):
+        raise ValueError('Odds feed unavailable; previous edition preserved')
+    if coverage.get('upcomingMatches', 0) > 0 and coverage.get('matchedOdds', 0) < 1:
+        raise ValueError('No upcoming matches linked to real bookmaker odds; previous edition preserved')
+    for key in CATEGORIES:
+        if not isinstance(new_snapshot.get(key), list):
+            raise ValueError(f'Malformed picks list {key}')
+    try:
+        date.fromisoformat(new_snapshot['localDate'])
+    except (KeyError, ValueError, TypeError):
+        raise ValueError('Invalid daily edition date')
+    return True
+
+
 def create_edition(new_snapshot: dict, prior: dict | None, api_key: str):
-    if new_snapshot.get('dataStatus', {}).get('fixtures') != 'ok':
-        raise ValueError('No verified fixture feed; old edition must remain')
-    if new_snapshot.get('dataStatus', {}).get('odds') == 'error':
-        raise ValueError('Odds provider error; old edition must remain')
-    if prior and prior.get('editionDate') == new_snapshot.get('localDate'):
-        # Re-running an edition is an explicit replacement, never an automatic status poll.
-        pass
+    validate_edition(new_snapshot)
+    if prior and prior.get('editionDate') == new_snapshot.get('localDate') and os.getenv('FORCE_REPLACE_EDITION') != '1':
+        # The daily edition is immutable, including manual retries on the same day.
+        return prior
     if prior and prior.get('editionDate') != new_snapshot.get('localDate'):
         # Settle overnight outcomes before archiving the old daily edition.
         if api_key:
@@ -221,16 +249,25 @@ def create_edition(new_snapshot: dict, prior: dict | None, api_key: str):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument('mode', choices=('daily','results','deploy'))
+    p.add_argument('mode', choices=('daily','results','deploy','is-current'))
     args = p.parse_args()
-    previous = read_json(STATE)
+    previous = read_json(STATE) or published_edition_fallback()
+    if args.mode == 'is-current':
+        # Used by the morning retry schedule: never spend API credits twice on a good edition.
+        from zoneinfo import ZoneInfo
+        today = datetime.now(ZoneInfo('Europe/Oslo')).date().isoformat()
+        print('CURRENT_EDITION='+str(bool(previous and previous.get('editionDate') == today)).lower())
+        raise SystemExit(0 if previous and previous.get('editionDate') == today else 1)
     if args.mode == 'daily':
-        # `scripts/build_data.py` runs BEFORE this command, writes a temporary public JSON.
-        data = read_json(PUBLIC)
+        # The data builder writes a candidate; publishing happens only after all checks.
+        data = read_json(CANDIDATE)
         if data is None:
             raise SystemExit('Snapshot not generated')
-        save_active(create_edition(data, previous, os.getenv('FOOTBALL_DATA_API_KEY','').strip()))
-        print('EDITION_CREATED='+str(data.get('localDate')))
+        revised = create_edition(data, previous, os.getenv('FOOTBALL_DATA_API_KEY','').strip())
+        save_active(revised)
+        if CANDIDATE != PUBLIC:
+            CANDIDATE.unlink(missing_ok=True)
+        print('EDITION_CREATED='+str(revised.get('editionDate')))
     elif args.mode == 'results':
         if not previous:
             print('NO_ACTIVE_EDITION')
@@ -247,8 +284,9 @@ def main():
             print('RESULTS_CHANGED=0')
     else:
         if previous:
-            atomic_json(PUBLIC, previous)
-        publish_history(previous)
+            save_active(previous)  # Recover state from a valid public snapshot when necessary.
+        else:
+            publish_history(None)
         print('DEPLOY_EXISTING_EDITION')
 
 

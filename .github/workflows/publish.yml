@@ -7,6 +7,11 @@ on:
     # New edition: one analysis and odds request each morning, Norwegian time.
     - cron: '17 9 * * *'
       timezone: 'Europe/Oslo'
+    # Retry on transient provider errors; skip if today's edition already exists.
+    - cron: '17 10 * * *'
+      timezone: 'Europe/Oslo'
+    - cron: '17 11 * * *'
+      timezone: 'Europe/Oslo'
     # Status updates use ONLY football-data.org, never bookmaker credits.
     - cron: '*/10 16-23 * * *'
       timezone: 'Europe/Oslo'
@@ -42,7 +47,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Test modeller, resultatkontroll og kvalitet
-        if: github.event_name != 'schedule' || github.event.schedule == '17 9 * * *'
+        if: github.event_name != 'schedule' || (github.event.schedule == '17 9 * * *' || github.event.schedule == '17 10 * * *' || github.event.schedule == '17 11 * * *')
         run: python -m unittest discover -s tests -v
       - name: Velg riktig oppdatering
         id: trigger
@@ -54,8 +59,12 @@ jobs:
         run: |
           if [[ "$EVENT" == "push" ]]; then
             echo "mode=deploy" >> "$GITHUB_OUTPUT"
-          elif [[ "$EVENT" == "schedule" && "$SCHEDULE" == "17 9 * * *" ]]; then
-            echo "mode=daily" >> "$GITHUB_OUTPUT"
+          elif [[ "$EVENT" == "schedule" && ( "$SCHEDULE" == "17 9 * * *" || "$SCHEDULE" == "17 10 * * *" || "$SCHEDULE" == "17 11 * * *" ) ]]; then
+            if python scripts/lifecycle.py is-current; then
+              echo "mode=deploy" >> "$GITHUB_OUTPUT"
+            else
+              echo "mode=daily" >> "$GITHUB_OUTPUT"
+            fi
           elif [[ "$EVENT" == "schedule" ]]; then
             echo "mode=results" >> "$GITHUB_OUTPUT"
           else
@@ -66,6 +75,7 @@ jobs:
         env:
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          ODDS_OUTPUT_PATH: state/.candidate.json
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
           # Only enable when the rights holder has approved use of club/league crests.
           SHOW_LICENSED_CRESTS: ${{ vars.SHOW_LICENSED_CRESTS }}
@@ -76,6 +86,7 @@ jobs:
         env:
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
           MODE: ${{ steps.trigger.outputs.mode }}
+          ODDS_OUTPUT_PATH: state/.candidate.json
         run: |
           python scripts/lifecycle.py "$MODE" | tee /tmp/odds-lifecycle.txt
           if [[ "$MODE" == "results" ]] && ! grep -q 'RESULTS_CHANGED=1' /tmp/odds-lifecycle.txt; then
@@ -89,7 +100,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A -- state/ site/data/today.json
+          git add -A -- state/ site/data/today.json site/data/history.json
           if ! git diff --cached --quiet; then
             git commit -m '[snapshot] Keep daily tips and their settled results'
             git push origin HEAD:main

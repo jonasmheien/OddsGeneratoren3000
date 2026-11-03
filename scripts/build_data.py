@@ -24,7 +24,7 @@ from zoneinfo import ZoneInfo
 from recommend import curated_picks, category_picks
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / 'site' / 'data' / 'today.json'
+OUT = Path(os.environ['ODDS_OUTPUT_PATH']) if os.environ.get('ODDS_OUTPUT_PATH') else ROOT / 'site' / 'data' / 'today.json'
 OSLO = ZoneInfo('Europe/Oslo')
 BASE = 'https://api.football-data.org/v4'
 ODDS_BASE = 'https://api.the-odds-api.com/v4'
@@ -633,6 +633,17 @@ def main():
         if code in coverage_by_league:
             coverage_by_league[code]['eligible'] += 1
     snapshot['dataStatus']['coverageByLeague'] = coverage_by_league
+    snapshot['dataStatus']['analysisReadiness'] = {
+        'upcoming':snapshot['coverage']['upcomingMatches'],
+        'matchedOdds':snapshot['coverage']['matchedOdds'],
+        'withModel':snapshot['coverage']['withModel'],
+        'recommended':len(snapshot['recommendations']),
+        'safe':len(snapshot['safeBets']),
+        'highRisk':len(snapshot['highRisk']),
+        'message': ('ingen kamp med tilgjengelig bookmakerodds' if snapshot['coverage']['upcomingMatches'] and not snapshot['coverage']['matchedOdds'] else
+                    'ingen spill passerte kvalitetsfiltrene' if snapshot['coverage']['matchedOdds'] and not (snapshot['safeBets'] or snapshot['highRisk'] or snapshot['recommendations']) else
+                    'analysert')
+    }
     for code, c in sorted(coverage_by_league.items()):
         print(f"COVERAGE {code}: {c['upcoming']} upcoming, {c['withOdds']} with odds, "
               f"{c['withModel']} with model, {c['eligible']} picks")
@@ -643,7 +654,14 @@ def main():
         for error in errors:
             print('WARN:', error, file=sys.stderr)
     # Fail the deployment rather than overwrite a previously valid snapshot with an empty API error.
-    if key and status['fixtures'] == 'error':
+    if status['fixtures'] != 'ok':
+        print('ERROR: kampdata mangler, behold forrige utgave', file=sys.stderr)
+        sys.exit(1)
+    if not odds_key or status['odds'] == 'error':
+        print('ERROR: odds-kilden er ikke tilgjengelig, behold forrige utgave', file=sys.stderr)
+        sys.exit(1)
+    if snapshot['coverage']['upcomingMatches'] and not snapshot['coverage']['matchedOdds']:
+        print('ERROR: kommende kamper uten noen matchede odds, prøv igjen i neste morgenkjøring', file=sys.stderr)
         sys.exit(1)
 
 if __name__ == '__main__':
