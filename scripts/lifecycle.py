@@ -10,7 +10,7 @@ import argparse
 import json
 import os
 from copy import deepcopy
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
@@ -59,6 +59,19 @@ def score_pick(pick: dict, match: dict) -> dict:
     home, away = settle_score.get('home'), settle_score.get('away')
     display_score = score.get('fullTime') or {}
     result = {'status': 'scheduled'}
+    if status in IN_PLAY:
+        # Only show a match minute if supplied by the provider.
+        minute = match.get('minute')
+        if type(minute) is int and 0 < minute <= 130:
+            result['minute'] = minute
+        if status == 'PAUSED':
+            result['phase'] = 'Pause'
+        elif status == 'EXTRA_TIME':
+            result['phase'] = 'Ekstraomganger'
+        elif status == 'PENALTY_SHOOTOUT':
+            result['phase'] = 'Straffer'
+        else:
+            result['phase'] = 'Live'
     if status in CANCELLED:
         result['status'] = 'postponed' if status == 'POSTPONED' else 'void'
     elif status in IN_PLAY:
@@ -99,6 +112,9 @@ def apply_results(snapshot: dict, matches: list, at: str | None = None):
             match = lookup.get(str(p.get('matchId')))
             if match:
                 new = score_pick(p, match)
+                # A temporary lag in a provider feed must not erase a settled bet.
+                if p.get('result', {}).get('status') in ('won', 'lost', 'void') and new.get('result', {}).get('status') in ('scheduled', 'live', 'unverified'):
+                    new['result'] = p['result']
                 if new.get('result') != p.get('result'):
                     changed = True
                 out.append(new)
@@ -111,20 +127,30 @@ def apply_results(snapshot: dict, matches: list, at: str | None = None):
 
 
 def fetch_results(snapshot: dict, key: str):
+    """Fetch one date-scoped match list; filter locally by the saved match IDs.
+
+    football-data.org documents dateFrom/dateTo for the matches endpoint.
+    A bare `ids=...` query is not a documented list filter and must not be
+    relied on for result matching. Nothing is fetched from the browser.
+    """
     if not key:
         raise RuntimeError('FOOTBALL_DATA_API_KEY is missing')
-    ids = sorted({str(p.get('matchId')) for category in CATEGORIES for p in snapshot.get(category, [])
-                  if str(p.get('matchId', '')).isdigit()})
+    ids = {str(p.get('matchId')) for category in CATEGORIES
+           for p in snapshot.get(category, []) if str(p.get('matchId', '')).isdigit()}
     if not ids:
         return []
-    # football-data.org supports ids=123,456; one request for all selected matches.
-    url = 'https://api.football-data.org/v4/matches?' + urlencode({'ids': ','.join(ids)})
-    req = Request(url, headers={'X-Auth-Token': key, 'User-Agent':'OddsGeneratoren/0.8 (personal research)'})
+    edition = date.fromisoformat(snapshot.get('editionDate') or snapshot['localDate'])
+    url = 'https://api.football-data.org/v4/matches?' + urlencode({
+        'dateFrom': (edition - timedelta(days=1)).isoformat(),
+        'dateTo': (edition + timedelta(days=2)).isoformat()})
+    req = Request(url, headers={'X-Auth-Token': key,
+                                'User-Agent': 'OddsGeneratoren/0.9 (personal research)'})
     with urlopen(req, timeout=35) as resp:
         data = json.load(resp)
-    if not isinstance(data.get('matches'), list):
+    rows = data.get('matches')
+    if not isinstance(rows, list):
         raise ValueError('Unknown match results response')
-    return data['matches']
+    return [m for m in rows if str(m.get('id')) in ids]
 
 
 def save_active(snapshot: dict):

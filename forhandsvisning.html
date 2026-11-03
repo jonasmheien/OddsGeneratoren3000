@@ -3,61 +3,174 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#13070b">
-  <meta name="description" content="Dagens tips til Jonnern – kampanalyse, Safe Bets, High Risk og resultater.">
+  <meta name="theme-color" content="#090d0d">
+  <meta name="description" content="Dagens tips til Jonnern: fotballanalyse, Safe Bets, High Risk og kampresultater.">
   <title>Dagens tips til Jonnern</title>
-  <link rel="stylesheet" href="site/styles.css">
-  <script>window.__ODDSGEN_DEMO__ = true;</script>
-  <script src="site/app.js" defer></script>
+  <style>
+:root{color-scheme:dark;--bg:#080d0d;--surface:#111819;--surface-2:#151f20;--surface-3:#1a2425;--line:#293739;--soft:#3a4746;--text:#f3f5ee;--sub:#bbc9c5;--muted:#879b94;--krypton:#b6e690;--krypton-deep:#79a66d;--gold:#dbc18a;--amber:#f0cda7;--loss:#f19c9f}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(ellipse 820px 590px at 81% -15%,#18372a9a,transparent 66%),radial-gradient(ellipse 550px 600px at -15% 21%,#16212391,transparent 68%),var(--bg);font-synthesis:none;-webkit-font-smoothing:antialiased;min-height:100vh}body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(#c1e1d309 1px,transparent 1px),linear-gradient(90deg,#c1e1d309 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,#0007,transparent 75%);z-index:-1}
+button,a{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}button:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}h1,h2,h3,p{margin:0}h1,h2,h3{font-weight:760}.shell{width:min(1180px,100%);margin:0 auto;padding:0 30px 90px}.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}.hero:after{content:"";pointer-events:none;position:absolute;right:22px;top:-120px;width:310px;height:310px;border:1px solid #b6e69016;border-radius:50%;box-shadow:0 0 0 40px #b6e69008,0 0 0 81px #b6e69004;opacity:.9}.header-rail{height:80px;display:flex;justify-content:space-between;align-items:center;gap:16px;border-bottom:1px solid #2634358c}.identity{display:flex;align-items:center;gap:12px}.monogram{height:34px;min-width:34px;border:1px solid #557466;color:var(--krypton);background:#1a2a24;border-radius:6px;display:flex;align-items:center;justify-content:center;position:relative;font-size:14px;letter-spacing:-.7px;font-weight:830}.monogram span{font-size:8px;align-self:flex-start;padding-top:7px;margin-left:1px}.identity-name{font-size:10px;letter-spacing:2.1px;font-weight:820;color:#c8d6ce}.identity-name span{color:var(--gold);margin-left:2px}.refresh{display:inline-flex;align-items:center;gap:9px;border:1px solid #3f554d;border-radius:8px;padding:11px 15px;background:#1b2824;color:#e8f0e8;font-size:12px;font-weight:650;transition:.15s}.refresh:hover{background:#293b32;border-color:#678c77}.refresh:disabled{opacity:.55}.hero-content{position:relative;z-index:1;padding:53px 0 45px}.hero h1{font-size:clamp(38px,5.15vw,66px);line-height:1.08;letter-spacing:-2.8px}.hero h1 span{color:var(--krypton)}.edition-meta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:19px;font-size:12px;color:#a5b8ad}.separator{width:4px;height:4px;background:#6f877a;border-radius:50%}.demo-mark{font-size:9px;letter-spacing:1px;font-weight:800;color:#e7c987;border:1px solid #7e6640;border-radius:4px;padding:4px 6px;background:#302b1b}.alert{border:1px solid #5a4937;background:#29231a;color:#eddaa5;padding:12px 15px;margin-top:17px;border-radius:8px;font-size:12px}
+.live-section{margin-top:28px;border:1px solid #456a54;background:linear-gradient(140deg,#182c24,#111b1a 75%);border-radius:12px;padding:15px 17px 17px;box-shadow:0 20px 42px #00000019}.live-head{display:flex;align-items:center;gap:8px;padding-bottom:12px}.live-head h2{letter-spacing:1.6px;font-size:12px;color:#d5f5d4;font-weight:830}.live-light{width:7px;height:7px;border-radius:50%;background:var(--krypton);box-shadow:0 0 0 4px #9ee88917,0 0 18px #93e77583;animation:pulse 2s ease-in-out infinite}.live-count{font-size:10px;border:1px solid #598264;border-radius:30px;color:#d7f7ce;padding:2px 7px}.live-updated{margin-left:auto;color:#83a293;font-size:10px}.live-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.live-match{border:1px solid #385343;background:#0f1b19;border-radius:8px;padding:13px 14px;display:flex;align-items:center;gap:14px}.live-match .live-teams{font-size:13px;font-weight:650;flex:1;line-height:1.4}.live-match .score{font-size:22px;color:var(--gold);font-weight:820;font-variant-numeric:tabular-nums;letter-spacing:-.5px;white-space:nowrap}.live-match .live-minute{font-size:10px;color:var(--krypton);font-weight:800;white-space:nowrap;min-width:35px;text-align:right}
+.section-tabs{display:flex;gap:34px;border-bottom:1px solid var(--line);margin-top:25px;overflow:auto}.section-tabs a{font-size:12px;color:#9fb2a9;white-space:nowrap;font-weight:690;padding:12px 0 14px;position:relative}.section-tabs a:hover{color:white}.section-tabs a.tab-active{color:#f2f5ec}.section-tabs a.tab-active:after{position:absolute;content:"";height:2px;bottom:0;left:0;right:0;background:var(--krypton);box-shadow:0 0 16px #b6e69080}.section{margin-top:37px;scroll-margin-top:18px}.section-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:16px}.heading-left{display:flex;align-items:center;gap:14px}.section-index{font-size:11px;letter-spacing:.7px;color:#8eaa9b;font-weight:780;border:1px solid #34493e;border-radius:5px;padding:7px 8px}.section-heading h2{font-size:24px;letter-spacing:-.8px}.heading-count{font-size:12px;color:var(--gold);font-weight:770;background:#2b281c;border:1px solid #544a30;border-radius:5px;min-width:30px;text-align:center;padding:5px 8px}
+.pick-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.pick{position:relative;min-width:0;overflow:hidden;background:linear-gradient(150deg,#192324 0%,#111819 64%,#121b1b 100%);border:1px solid #344548;border-radius:12px;padding:21px 21px 17px;box-shadow:0 16px 45px #0000001c;transition:border-color .18s,transform .18s}.pick:hover{border-color:#627669;transform:translateY(-1px)}.pick:before{position:absolute;content:"";left:0;top:0;height:2px;width:100%;background:linear-gradient(90deg,var(--krypton),#5d8972 55%,transparent 100%);opacity:.8}.pick-top{display:flex;justify-content:space-between;align-items:center;gap:9px;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:#9eb3aa;font-weight:730}.pick-top-right{display:flex;align-items:center;gap:8px}.fixture{display:flex;align-items:center;gap:16px;justify-content:space-between;margin-top:18px;min-height:52px}.team-names{font-size:19px;line-height:1.25;font-weight:750;letter-spacing:-.35px}.team-names .vs{color:#64776d;font-size:13px;font-weight:500;padding:0 7px}.fixture-score{font-variant-numeric:tabular-nums;font-size:19px;font-weight:820;color:var(--gold);white-space:nowrap}.result-badge{display:inline-flex;align-items:center;justify-content:center;padding:4px 7px;border:1px solid #495c54;border-radius:4px;color:#b9c6be;background:#25312c;font-size:9px;font-weight:750;letter-spacing:.2px;white-space:nowrap}.result-badge.live{color:#c9f7c3;border-color:#4d845d;background:#1d3827}.result-badge.live:before{content:"";height:5px;width:5px;background:#bbf29e;border-radius:50%;margin-right:5px}.result-badge.won{border-color:#416b51;background:#193325;color:#a8e9ae}.result-badge.lost{border-color:#704750;background:#362328;color:#f6b1b1}.result-badge.postponed,.result-badge.void,.result-badge.unverified{color:#c6c5b6}.result-badge.scheduled{display:none}.play-row{border-top:1px solid #324343;margin-top:15px;padding-top:17px;display:flex;justify-content:space-between;align-items:end;gap:15px}.play-label{font-size:9px;color:#92a99d;letter-spacing:.8px;font-weight:690;margin-bottom:7px}.play-name{font-size:15px;font-weight:760}.price{text-align:right;font-weight:850;color:var(--gold);font-size:33px;line-height:.96;letter-spacing:-1.3px;font-variant-numeric:tabular-nums}.price-caption{margin-top:7px;font-size:9px;display:block;text-align:right;color:#a3a98e;letter-spacing:.5px}.probline{border-top:1px solid #324343;margin-top:19px;padding-top:14px;display:flex;align-items:center;justify-content:space-between;gap:15px}.probline .prob-label{font-size:11px;color:#9bb4a6}.probline .prob-value{font-size:13px;color:var(--krypton);font-weight:820;font-variant-numeric:tabular-nums}.prob-track{height:4px;width:100%;background:#30423a;border-radius:10px;margin-top:9px;overflow:hidden}.prob-track-fill{height:100%;background:linear-gradient(90deg,#5f9472,var(--krypton));border-radius:10px;max-width:100%}.pick-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:17px}.tag{font-size:9px;text-transform:uppercase;letter-spacing:.55px;color:var(--krypton);font-weight:770}.tag.high{color:var(--gold)}.details-toggle{background:transparent;border:0;color:#9cad9f;font-size:11px;padding:4px 0;white-space:nowrap}.details-toggle:hover{color:#f5f7f1}.details{display:none;border-top:1px solid #33473f;margin-top:14px;padding-top:16px}.details.open{display:block}.detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.detail dt{font-size:10px;color:#8aa399;margin-bottom:6px}.detail dd{font-size:12px;color:#e7e9db;font-weight:650;margin:0}.detail-reasons{font-size:11px;color:#a7bbae;line-height:1.6;margin:14px 0 0;padding-left:15px}
+.categories{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.mini-list{border:1px solid #354646;border-radius:12px;overflow:hidden;background:linear-gradient(150deg,#192322,#111a1a);min-height:90px}.mini{padding:15px 18px;border-bottom:1px solid #314241;display:flex;align-items:center;gap:13px}.mini:last-child{border-bottom:0}.mini-main{flex:1;min-width:0}.mini-league{font-size:9px;color:#859f90;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}.mini-names{font-size:13px;line-height:1.35;font-weight:760}.mini-pick{margin-top:5px;color:#aebfb4;font-size:11px}.mini-right{display:flex;gap:5px;align-items:flex-end;flex-direction:column}.mini-price{color:var(--gold);font-size:22px;letter-spacing:-.6px;font-weight:820;font-variant-numeric:tabular-nums}.mini-score{font-size:10px;color:#9fc3b1}.mini .result-badge{font-size:9px}.empty{border:1px solid #364543;border-radius:11px;background:#152020;padding:26px;color:#98aea2;font-size:12px;grid-column:1/-1}.mini-list .empty{border:0}.footer{margin-top:55px;font-size:10px;color:#6c897b;display:flex;gap:14px;flex-wrap:wrap;align-items:center}.footer-rule{height:1px;width:100%;background:linear-gradient(90deg,#436550,transparent)}
+@keyframes pulse{50%{box-shadow:0 0 0 6px #9ee8890b,0 0 15px #93e7753d}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.live-light{animation:none}.pick{transition:none}}
+@media(max-width:860px){.shell{padding:0 20px 65px}.hero-content{padding:45px 0 38px}.hero h1{letter-spacing:-2px}.pick-grid,.categories,.live-grid{grid-template-columns:1fr}.categories{gap:0}.categories .section{margin-top:33px}}
+@media(max-width:530px){.shell{padding:0 17px 60px}.header-rail{height:67px}.identity-name{font-size:9px;letter-spacing:1.5px}.hero:after{right:-95px;top:-90px}.hero-content{padding:37px 0 32px}.hero h1{font-size:41px;letter-spacing:-1.8px;max-width:390px}.hero h1 span{display:block}.edition-meta{margin-top:14px;font-size:11px;gap:8px}.section-tabs{gap:25px;margin-top:17px}.section-tabs a{font-size:11px}.section{margin-top:31px}.section-heading h2{font-size:22px}.pick{padding:18px 17px 15px}.team-names{font-size:18px}.play-name{font-size:14px}.price{font-size:31px}.live-match{padding:12px}.live-section{padding:12px}.footer{margin-top:38px}}
+@media(max-width:370px){.hero h1{font-size:37px}.identity-name{letter-spacing:.9px}.refresh span{display:none}.refresh{padding:10px}.team-names{font-size:16px}.play-name{font-size:13px}}
+
+</style>
+  <script>window.__ODDSGEN_DEMO__=true;</script>
 </head>
 <body>
   <main class="shell">
     <header class="hero">
-      <div class="hero-topline"><div class="mark" aria-hidden="true"><span>OG</span><i></i></div><div class="topstate"><i class="online-dot"></i><span id="engine-status">Laster analysen</span></div></div>
-      <div class="hero-content">
-        <div><h1>Dagens tips til <span>Jonnern</span></h1>
-          <div class="meta"><span id="today-date">Laster dato</span><span class="meta-dot"></span><span id="last-updated">Henter tips</span><span id="demo-marker" class="demo-mark" hidden>Design / demo</span></div>
-        </div>
-        <button id="refresh-data" class="refresh" type="button" aria-label="Hent sist publiserte analyse"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7v5h-5"/><path d="M4 17v-5h5"/><path d="M5.6 9a7.5 7.5 0 0 1 12.2-2L20 12M4 12l2.2 5a7.5 7.5 0 0 0 12.2-2"/></svg><span>Oppdater</span></button>
+      <div class="header-rail">
+        <div class="identity" aria-label="OddsGeneratoren3000"><div class="monogram" aria-hidden="true">OG<span>3</span></div><span class="identity-name">ODDSGENERATOR<span>3000</span></span></div>
+        <button class="refresh" type="button" id="refresh-data" aria-label="Hent siste publiserte kampstatus">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5M5.7 9a7.5 7.5 0 0 1 12.3-2L20 12M4 12l2.1 5A7.5 7.5 0 0 0 18.4 15"/></svg>
+          <span>Oppdater</span>
+        </button>
       </div>
-      <div class="top-metrics" aria-label="Dagens resultatoversikt">
-        <div><span class="metric-caption">DAGENS UTVALG</span><b class="metric-num" id="metric-picks">0</b></div>
-        <div><span class="metric-caption">VUNNET</span><b class="metric-num win-num" id="metric-won">0</b></div>
-        <div><span class="metric-caption">TAPT</span><b class="metric-num loss-num" id="metric-lost">0</b></div>
-        <div><span class="metric-caption">PÅGÅR</span><b class="metric-num" id="metric-live">0</b></div>
-        <div class="metric-source"><span class="metric-caption">KAMPDEKNING</span><b class="metric-info" id="engine-coverage">–</b><small id="engine-sources">Datakilder</small></div>
+      <div class="hero-content">
+        <div>
+          <h1>Dagens tips <span>til Jonnern</span></h1>
+          <div class="edition-meta"><span id="today-date">Laster dagsutgave</span><span class="separator"></span><span id="last-updated">Henter tips</span><span class="demo-mark" id="demo-marker" hidden>DEMO</span></div>
+        </div>
       </div>
     </header>
-    <div class="alert" id="alert" hidden role="status" aria-live="polite"></div>
 
-    <nav class="page-nav" aria-label="Seksjoner"><a href="#dagens">Dagens tips</a><a href="#safe">Safe Bets</a><a href="#high">High Risk</a><a href="#stats">Statistikk</a></nav>
+    <div id="alert" class="alert" role="status" aria-live="polite" hidden></div>
 
-    <section id="dagens" class="section" aria-labelledby="section-picks">
-      <div class="section-head"><div><span class="index">01 / UTVALG</span><h2 id="section-picks">Dagens tips</h2></div><span class="section-count" id="tips-count">0 tips</span></div>
-      <div id="top-picks" class="cards"><div class="empty">Henter dagsutgaven …</div></div>
+    <section id="live" class="live-section" hidden aria-labelledby="live-title">
+      <div class="live-head"><span class="live-light"></span><h2 id="live-title">LIVE</h2><span class="live-count" id="live-count"></span><span id="result-updated" class="live-updated"></span></div>
+      <div id="live-list" class="live-grid"></div>
     </section>
 
-    <div class="risk-grid">
-      <section id="safe" aria-labelledby="safe-head" class="section risk-section">
-        <div class="section-head"><div><span class="index">02 / FAVORITTER</span><h2 id="safe-head"><span class="category-icon mint"></span>Safe Bets</h2></div><span class="section-count" id="safe-count">0</span></div>
-        <div id="safe-list" class="risk-list"><div class="empty">Henter tips …</div></div>
+    <nav class="section-tabs" aria-label="Gå til seksjon">
+      <a href="#dagens" class="tab-active">Dagens tips</a><a href="#safe">Safe Bets</a><a href="#high">High Risk</a>
+    </nav>
+
+    <section id="dagens" class="section" aria-labelledby="dagens-title">
+      <div class="section-heading"><div class="heading-left"><span class="section-index">01</span><h2 id="dagens-title">Dagens tips</h2></div><span id="tips-count" class="heading-count">0</span></div>
+      <div id="top-picks" class="pick-grid"><div class="empty">Henter tips ...</div></div>
+    </section>
+
+    <div class="categories">
+      <section id="safe" class="section" aria-labelledby="safe-title">
+        <div class="section-heading"><div class="heading-left"><span class="section-index">02</span><h2 id="safe-title">Safe Bets</h2></div><span id="safe-count" class="heading-count">0</span></div>
+        <div id="safe-list" class="mini-list"><div class="empty">Henter tips ...</div></div>
       </section>
-      <section id="high" aria-labelledby="high-head" class="section risk-section">
-        <div class="section-head"><div><span class="index">03 / HØYERE ODDS</span><h2 id="high-head"><span class="category-icon ember"></span>High Risk</h2></div><span class="section-count" id="high-count">0</span></div>
-        <div id="high-list" class="risk-list"><div class="empty">Henter tips …</div></div>
+      <section id="high" class="section" aria-labelledby="high-title">
+        <div class="section-heading"><div class="heading-left"><span class="section-index">03</span><h2 id="high-title">High Risk</h2></div><span id="high-count" class="heading-count">0</span></div>
+        <div id="high-list" class="mini-list"><div class="empty">Henter tips ...</div></div>
       </section>
     </div>
 
-    <section id="stats" class="section data-section" aria-labelledby="stats-head">
-      <div class="section-head"><div><span class="index">04 / DATA</span><h2 id="stats-head">Data og statistikk</h2></div></div>
-      <div class="stats-grid">
-        <div class="stats-cell"><span>Kamper analysert</span><strong id="stats-matches">–</strong></div>
-        <div class="stats-cell"><span>Kamper med odds</span><strong id="stats-priced">–</strong></div>
-        <div class="stats-cell"><span>Utvalgte tips</span><strong id="stats-count">–</strong></div>
-        <div class="stats-cell"><span>Snitt sannsynlighet</span><strong id="stats-average">–</strong></div>
-      </div>
-      <div class="source-strip"><span class="source-pulse"></span><span id="source-footnote">Kilder lastes</span><span id="result-updated">Resultater avventes</span></div>
-    </section>
+    <footer class="footer"><div class="footer-rule"></div><span id="footer-status"></span><span id="demo-note" hidden>Illustrasjonsdata, ikke reelle spill</span></footer>
   </main>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const dayFormat=new Intl.DateTimeFormat('nb-NO',{timeZone:'Europe/Oslo',day:'numeric',month:'long',year:'numeric'});
+const clockFormat=new Intl.DateTimeFormat('nb-NO',{timeZone:'Europe/Oslo',hour:'2-digit',minute:'2-digit'});
+const fmtOdds=value=>Number(value).toLocaleString('nb-NO',{minimumFractionDigits:2,maximumFractionDigits:2});
+const fmtPct=value=>`${Math.round(Number(value)*100)} %`;
+const dateISO=date=>{const p=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Oslo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(date).filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));return `${p.year}-${p.month}-${p.day}`;};
+const labelDate=day=>/^\d{4}-\d{2}-\d{2}$/.test(day||'')?dayFormat.format(new Date(`${day}T12:00:00Z`)):'Ingen dagsutgave';
+const statusNames={scheduled:'Ikke startet',live:'LIVE',won:'Vunnet',lost:'Tapt',void:'Avlyst',postponed:'Utsatt',unverified:'Avventer'};
+const resultOf=pick=>pick?.result||{status:'scheduled'};
+const statusOf=pick=>resultOf(pick).status||'scheduled';
+const validScore=score=>score&&Number.isInteger(score.home)&&Number.isInteger(score.away);
+const scoreText=pick=>validScore(resultOf(pick).score)?`${resultOf(pick).score.home}–${resultOf(pick).score.away}`:null;
+function statusText(pick){
+  const r=resultOf(pick),s=statusOf(pick);
+  if(s==='live'){
+    if(r.phase==='Pause')return 'Pause';
+    if(r.phase==='Ekstraomganger')return 'Ekstraomganger';
+    if(r.phase==='Straffer')return 'Straffer';
+    return Number.isInteger(r.minute)?`${r.minute}′ LIVE`:'LIVE';
+  }
+  if(s==='scheduled'&&Date.parse(pick.kickoff)<Date.now())return 'Avventer';
+  return statusNames[s]||'Avventer';
+}
+function badge(pick){let s=statusOf(pick);if(s==='scheduled'&&Date.parse(pick.kickoff)<Date.now())s='unverified';return `<span class="result-badge ${escapeHtml(s)}">${escapeHtml(statusText(pick))}</span>`;}
+function formText(s){if(!s)return '–';const a=[...'WDL'].map(x=>[...String(s).toUpperCase()].filter(v=>v===x).length);return `${a[0]}S · ${a[1]}U · ${a[2]}T`;}
+function atTime(s){const dt=new Date(s);return Number.isFinite(dt.getTime())?clockFormat.format(dt):'–';}
+function probabilityName(p){return p.probabilitySource==='market'?'Markedssjanse':'Modellanslag';}
+function pickCard(p,i){
+  const probability=Number(p.probability),niceProb=Number.isFinite(probability)?Math.max(0,Math.min(100,probability*100)):0;
+  const id=`details-${i}`;
+  const reasonList=(p.rationale||[]).slice(0,4).map(s=>`<li>${escapeHtml(s)}</li>`).join('');
+  const stats=[
+    ['Hjemmelag, siste kamper',formText(p.formHome)],
+    ['Bortelag, siste kamper',formText(p.formAway)],
+    ['Kamper i modellgrunnlaget',Array.isArray(p.formSample)?p.formSample.join(' / '):'–'],
+    ['Odds fra',p.bookmakers?`${p.bookmakers} bookmakere`:'–']
+  ];
+  return `<article class="pick" data-match-id="${escapeHtml(p.matchId||'')}">
+    <div class="pick-top"><span>${escapeHtml(p.league||'Fotball')}</span><div class="pick-top-right">${badge(p)}<span>${atTime(p.kickoff)}</span></div></div>
+    <div class="fixture"><h3 class="team-names">${escapeHtml(p.home)}<span class="vs">–</span>${escapeHtml(p.away)}</h3>${scoreText(p)?`<strong class="fixture-score">${scoreText(p)}</strong>`:''}</div>
+    <div class="play-row"><div><div class="play-label">ANBEFALT SPILL</div><div class="play-name">${escapeHtml(p.label)}</div></div><div><div class="price">${fmtOdds(p.price)}</div><span class="price-caption">ODDS VED ANALYSE</span></div></div>
+    <div class="probline"><span class="prob-label">${escapeHtml(probabilityName(p))}</span><span class="prob-value">${fmtPct(probability)}</span></div><div class="prob-track" aria-hidden="true"><div class="prob-track-fill" style="width:${niceProb.toFixed(1)}%"></div></div>
+    <div class="pick-foot"><span class="tag ${p.category==='high'?'high':''}">${escapeHtml(p.category==='safe'?'SAFE BET':p.category==='high'?'HIGH RISK':'DAGENS TIPS')}</span><button type="button" class="details-toggle" data-open="${id}" aria-controls="${id}" aria-expanded="false">Vis analyse +</button></div>
+    <div class="details" id="${id}"><dl class="detail-grid">${stats.map(([k,v])=>`<div class="detail"><dt>${escapeHtml(k)}</dt><dd>${escapeHtml(v)}</dd></div>`).join('')}</dl>${reasonList?`<ul class="detail-reasons">${reasonList}</ul>`:''}</div>
+  </article>`;
+}
+function smallCard(p){const score=scoreText(p);return `<article class="mini"><div class="mini-main"><div class="mini-league">${escapeHtml(p.league||'Fotball')} · ${atTime(p.kickoff)}</div><div class="mini-names">${escapeHtml(p.home)} – ${escapeHtml(p.away)}</div><div class="mini-pick">${escapeHtml(p.label)}</div></div><div class="mini-right"><span class="mini-price">${fmtOdds(p.price)}</span>${score?`<span class="mini-score">${score}</span>`:''}${badge(p)}</div></article>`;}
+function uniqueMatches(data){const map=new Map();for(const p of [...(data.recommendations||[]),...(data.safeBets||[]),...(data.highRisk||[])]){const id=String(p.matchId||`${p.home}-${p.away}-${p.kickoff}`);if(!map.has(id))map.set(id,p);else if(statusOf(p)==='live'&&statusOf(map.get(id))!=='live')map.set(id,p);}return [...map.values()];}
+function liveCard(p){return `<article class="live-match"><div class="live-teams">${escapeHtml(p.home)} – ${escapeHtml(p.away)}</div><div class="score">${scoreText(p)||'– : –'}</div><div class="live-minute">${escapeHtml(statusText(p))}</div></article>`;}
+function show(data,demo=false){
+  const ed=data.editionDate||data.localDate;
+  const picks=(data.recommendations||[]).slice(0,5);
+  const safe=(data.safeBets||[]).slice(0,5),high=(data.highRisk||[]).slice(0,5);
+  $('today-date').textContent=labelDate(ed);
+  $('last-updated').textContent=data.generatedAt?`Analyse ${atTime(data.generatedAt)}`:'Ingen analyse';
+  $('demo-marker').hidden=!demo;
+  $('demo-note').hidden=!demo;
+  $('tips-count').textContent=String(picks.length);$('safe-count').textContent=String(safe.length);$('high-count').textContent=String(high.length);
+  $('top-picks').innerHTML=picks.length?picks.map(pickCard).join(''):'<div class="empty">Ingen utvalgte tips i denne dagsutgaven.</div>';
+  $('safe-list').innerHTML=safe.length?safe.map(smallCard).join(''):'<div class="empty">Ingen kvalifiserte Safe Bets denne dagen.</div>';
+  $('high-list').innerHTML=high.length?high.map(smallCard).join(''):'<div class="empty">Ingen kvalifiserte High Risk-spill denne dagen.</div>';
+  const live=uniqueMatches(data).filter(p=>statusOf(p)==='live');
+  $('live').hidden=!live.length;
+  $('live-count').textContent=live.length?String(live.length):'';
+  $('live-list').innerHTML=live.map(liveCard).join('');
+  $('result-updated').textContent=data.resultUpdatedAt?`Sist oppdatert ${atTime(data.resultUpdatedAt)}`:'Oppdatering avventes';
+  $('footer-status').textContent=data.resultUpdatedAt?`Resultater ${atTime(data.resultUpdatedAt)}`:'';
+  const notice=$('alert');notice.hidden=true;
+  if(!demo&&(!ed||!(data.dataStatus&&Array.isArray(data.recommendations)))){
+    notice.textContent='Ingen dagsutgave er publisert ennå.';notice.hidden=false;
+  }
+  document.querySelectorAll('.details-toggle').forEach(btn=>btn.addEventListener('click',()=>{const d=$(btn.dataset.open),opened=d.classList.toggle('open');btn.setAttribute('aria-expanded',String(opened));btn.textContent=opened?'Skjul analyse −':'Vis analyse +';}));
+}
+function demoSnapshot(){
+  const now=new Date(),today=dateISO(now);let i=0;
+  const at=(h,m)=>{const x=new Date(now);x.setHours(h,m,0,0);return x.toISOString();};
+  const make=(home,away,league,market,label,price,prob,category,result,clock,form=['WWDWLW','DLWDLW'])=>({matchId:'demo'+(++i),home,away,league,market,label,price,probability:prob,category,kickoff:at(clock,0),probabilitySource:category==='safe'?'market':'model',bookmakers:5,formHome:form[0],formAway:form[1],formSample:[6,5],modelEdge:prob*price-1,rationale:['Form siste seks kamper','Odds fra fem bookmakere'],result});
+  const a=make('Northbridge','Westfield','Champions League','H','Hjemmeseier',1.43,.68,'safe',{status:'live',score:{home:2,away:0},minute:67,phase:'Live'},21);
+  const b=make('Riverside','Linden','Championship','O25','Over 2,5 mål',2.18,.49,'high',{status:'live',score:{home:1,away:1},minute:72,phase:'Live'},21);
+  const c=make('Fjordvik','Rosendale','Champions League','B','Borteseier',3.15,.39,'high',{status:'scheduled'},22);
+  const d=make('Olympia','Harbour FC','Serie A','H','Hjemmeseier',1.56,.64,'safe',{status:'won',score:{home:2,away:0}},18);
+  const e=make('Eastside','Arbor','La Liga','O35','Over 3,5 mål',2.76,.40,'high',{status:'lost',score:{home:1,away:1}},19);
+  const f=make('Alpen','Valletta','Bundesliga','H','Hjemmeseier',1.51,.65,'safe',{status:'scheduled'},22);
+  return {version:3,editionDate:today,localDate:today,generatedAt:at(9,17),resultUpdatedAt:now.toISOString(),recommendations:[a,b,c,d,e],safeBets:[a,d,f],highRisk:[b,c,e],dataStatus:{fixtures:'ok',odds:'ok'}};
+}
+async function loadLatest(){
+  if(window.__ODDSGEN_DEMO__){show(demoSnapshot(),true);return;}
+  try{
+    const res=await fetch(`data/today.json?v=${Date.now()}`,{cache:'no-store'});
+    if(!res.ok)throw Error(`Snapshot unavailable ${res.status}`);
+    const data=await res.json();if(!Array.isArray(data.recommendations))throw Error('Unexpected snapshot');show(data,false);
+  }catch(e){show({recommendations:[],safeBets:[],highRisk:[],dataStatus:{}},false);}
+}
+const refresh=$('refresh-data');refresh.addEventListener('click',async()=>{refresh.disabled=true;try{await loadLatest();}finally{refresh.disabled=false;}});
+// Refreshes the already-published GitHub Pages snapshot; no secrets or bookmaker calls in browser.
+// GitHub Actions publishes changes periodically, not as a true second-by-second live feed.
+setInterval(()=>{if(document.visibilityState==='visible'&&!window.__ODDSGEN_DEMO__)loadLatest();},60*1000);
+loadLatest();
+
+</script>
 </body>
 </html>

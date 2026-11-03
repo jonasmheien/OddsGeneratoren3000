@@ -8,7 +8,9 @@ on:
     - cron: '17 9 * * *'
       timezone: 'Europe/Oslo'
     # Status updates use ONLY football-data.org, never bookmaker credits.
-    - cron: '7,37 15-23,0-3 * * *'
+    - cron: '*/10 16-23 * * *'
+      timezone: 'Europe/Oslo'
+    - cron: '*/20 0-2 * * *'
       timezone: 'Europe/Oslo'
   workflow_dispatch:
     inputs:
@@ -40,6 +42,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Test modeller, resultatkontroll og kvalitet
+        if: github.event_name != 'schedule' || github.event.schedule == '17 9 * * *'
         run: python -m unittest discover -s tests -v
       - name: Velg riktig oppdatering
         id: trigger
