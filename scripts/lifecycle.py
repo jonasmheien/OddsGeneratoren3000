@@ -153,9 +153,49 @@ def fetch_results(snapshot: dict, key: str):
     return [m for m in rows if str(m.get('id')) in ids]
 
 
+def published_history(active: dict | None):
+    """Build a compact, verifiable results feed from archived editions.
+
+    Only a real, official FINISHED state ('won'/'lost') is counted. A
+    recommendation repeated in multiple visible categories counts once.
+    """
+    archive=[]
+    if HISTORY.exists():
+        for f in sorted(HISTORY.glob('????-??-??.json'), reverse=True)[:30]:
+            obj=read_json(f)
+            if isinstance(obj,dict): archive.append(obj)
+    if active:
+        archive=[active]+[x for x in archive if (x.get('editionDate') or x.get('localDate'))!=(active.get('editionDate') or active.get('localDate'))]
+    summaries=[]
+    for snap in archive[:14]:
+        selected={}
+        for category in CATEGORIES:
+            for p in snap.get(category,[]):
+                # Canonical market ID, with no double counting between sections.
+                identity=(str(p.get('matchId')),str(p.get('market') or p.get('label')))
+                selected.setdefault(identity,p)
+                current=selected[identity]
+                if current.get('result',{}).get('status') not in ('won','lost','void'):
+                    selected[identity]=p
+        settled=[]
+        for p in selected.values():
+            status=(p.get('result') or {}).get('status')
+            if status in ('won','lost','void'):
+                settled.append({'status':status,'matchId':str(p.get('matchId')),'market':p.get('market'),'price':p.get('price')})
+        date_value=snap.get('editionDate') or snap.get('localDate')
+        if settled and isinstance(date_value,str):
+            summaries.append({'date':date_value,'picks':settled})
+    return summaries
+
+
+def publish_history(active: dict | None):
+    atomic_json(ROOT / 'site' / 'data' / 'history.json', published_history(active))
+
+
 def save_active(snapshot: dict):
     atomic_json(STATE, snapshot)
     atomic_json(PUBLIC, snapshot)
+    publish_history(snapshot)
 
 
 def create_edition(new_snapshot: dict, prior: dict | None, api_key: str):
@@ -203,10 +243,12 @@ def main():
         else:
             # Ensure the public copy is reconstructed even on empty changes.
             atomic_json(PUBLIC, previous)
+            publish_history(previous)
             print('RESULTS_CHANGED=0')
     else:
         if previous:
             atomic_json(PUBLIC, previous)
+        publish_history(previous)
         print('DEPLOY_EXISTING_EDITION')
 
 

@@ -443,6 +443,8 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
         af = recent_team_form(fixtures, k, away['id'])
         m = {'id': str(raw.get('id') or ''), 'league': (raw.get('competition') or {}).get('name') or 'Annen',
              'leagueCode': (raw.get('competition') or {}).get('code') or '',
+             'leagueCrest': (raw.get('competition') or {}).get('emblem'),
+             'homeCrest': home.get('crest'), 'awayCrest': away.get('crest'),
              'home': home.get('shortName') or home.get('name') or 'Hjemmelag',
              'away': away.get('shortName') or away.get('name') or 'Bortelag',
              'homeAliases': [home.get('name')],
@@ -462,6 +464,24 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
     # a match must not hide an independently valid favorite for that match.
     safe_bets = category_picks(todays, now, 'safe', limit=5)
     high_risk = category_picks(todays, now, 'high', limit=5)
+    # Join stable presentation metadata from the exact same fixture ID.
+    # Crests are only displayed after the site owner has obtained the rights;
+    # football-data.org expressly notes ownership by the clubs.
+    match_by_id={str(m['id']):m for m in todays}
+    for choice in (picks, safe_bets, high_risk):
+        for p in choice:
+            match=match_by_id.get(str(p.get('matchId')),{})
+            for field in ('homeCrest','awayCrest','leagueCrest'):
+                p[field]=match.get(field)
+            confirmed=[]
+            code=p.get('market')
+            for pred in match.get('predictions') or []:
+                v=(pred.get('probabilities') or {}).get(code)
+                if isinstance(v,(float,int)) and abs(v-p['probability'])<=.12 and v*float(p['price'])>=1:
+                    name=pred.get('source')
+                    if name and name not in confirmed:
+                        confirmed.append(name)
+            p['predictionSources']=confirmed
     # Explain coverage and upstream provenance to the interface. Unconnected
     # prediction websites must NEVER be represented as integrated sources.
     active_today = [m for m in todays if m.get('status') in ('SCHEDULED','TIMED') and iso_datetime(m['kickoff']) > now]
@@ -484,7 +504,9 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
          'state':'manual' if coverage['manualPredictions'] else 'not_connected'},
     ]
     return {'version': 3, 'recommendations':picks, 'safeBets':safe_bets, 'highRisk':high_risk,
-            'coverage':coverage,'sources':sources,'qualityGate':{
+            'coverage':coverage,'sources':sources,
+            'visualAssets':{'licensedCrests':os.getenv('SHOW_LICENSED_CRESTS','').strip()=='1'},
+            'qualityGate':{
                 'minimumFormMatchesPerTeam':5, 'minimumFormHighRisk':3, 'minimumFormStandard':4, 'minimumBookmakers':2, 'maximumOddsAgeHours':12,
                 'explanation':'Intern, ikke-kalibrert Poisson-modell + form + bookmakerpriser. Ingen garantert verdi.'}, 'generatedAt': now.isoformat(), 'localDate': today.isoformat(),
             'dataStatus': status, 'errors': errors,

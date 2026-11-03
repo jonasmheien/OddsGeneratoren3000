@@ -67,6 +67,8 @@ jobs:
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          # Only enable when the rights holder has approved use of club/league crests.
+          SHOW_LICENSED_CRESTS: ${{ vars.SHOW_LICENSED_CRESTS }}
         run: python scripts/build_data.py
       - name: Behold tips og oppdater resultatstatus
         id: mode

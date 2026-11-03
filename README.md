@@ -1,49 +1,59 @@
-# OddsGeneratoren3000 v0.9 · Clean Tech / Live Tracker
+# OddsGeneratoren3000 v1.0 · Pro interface
 
-**Dagens tips til Jonnern**. Et privat analyse-dashboard med tydelige tips, separate Safe Bets og High Risk, og kampstatus. Ingen brukernøkkel lagres i nettsiden.
+**Dagens tips til Jonnern** – komplett statisk nettside med daglig låst analyse, live-resultatoppfølging og historikk.
 
-## Hva er nytt fra v0.8?
+## Nytt i v1.0
 
-- **Renere grensesnitt:** Fjernet «Dekning begrenset», hele «Data og statistikk»-panelet og den store tellerraden på toppen. Kun Dagens tips, Safe Bets, High Risk og en *betinget* LIVE-visning.
-- **Ny visuell retning:** mørk grafitt med Krypton-inspirerte grønne aksenter og Swedish Gold-inspirerte gulltoner. Fargene er skjermtilpassede tilnærminger, ikke offisielle fabrikklakk-koder.
-- **Live for utvalgte kamper:** en kompakt LIVE-strip vises **bare når minst ett lagret tips har `live`-status**. Stilling, kampminutt og pause vises når den autoriserte kampdatakilden leverer feltene. Ingen minutter eller resultater blir gjettet.
-- **Oppdatert kampstatus:** GitHub Actions spør football-data.org omtrent hver 10. minutt fra 16.00 til 23.59 og omtrent hvert 20. minutt fra 00.00 til 02.59 norsk tid. Planlagte GitHub-jobber kan starte forsinket. Dette er en **periodisk oppdatert scoretracker, ikke en sanntidsfeed på sekundnivå**.
-- **Oppdater-knappen og automatisk nettleserrefresh:** siden henter sist publiserte JSON ved klikk og hvert minutt mens fanen er aktiv. Disse hentene bruker ikke API-nøkler og genererer ingen nye spill.
-- **Bedre resultathenting:** bytter ut udokumentert `ids=`-filter på `/matches` med dokumentert `dateFrom/dateTo` og filtrering på lagrede kamp-ID-er lokalt. Sluttstatus blir ikke overstyrt av et forsinket «Pågår»-svar.
-- **Fast dagsutgave:** v0.8-funksjonen er beholdt. Tips og opprinnelig odds blir stående til neste vellykkede dagsanalyse. Kun kampresultater og status endres i mellomtiden.
+- Egen, original **OG-logo** som lokalt SVG-ikon og favicon (`site/assets/og-mark.svg`). Ingen tredjeparts logo ble kopiert.
+- Ny designprofil: mørk grafitt, Krypton-inspirert grønt og Swedish Gold-inspirert gull. Premium kampkort med tydelig odds og responsive mobilkort.
+- **Klubb-badges** laget av initialer som fungerer for alle lag. Fotball-API-et leverer også `crest`/`emblem`-adresser; de lagres som metadata og kan vises *hvis brukstillatelse er ordnet* (se under).
+- **Kampdetaljer** kan åpnes både på Dagens tips og i Safe Bets / High Risk, med sannsynlighetskilde, bookmakergrunnlag, lagform og reelle kildeangitte prognoser der de finnes.
+- **Live nå** er kun synlig når minst én anbefalt kamp faktisk har live-status. Viser klubber, løpende resultat, kampminutt hvis levert, og alle anbefalte spill på kampen. Ved overmål/BTTS vises progresjon – aldri forhåndsavregning som Vunnet.
+- **Resultater** vises bare når minst ett tips er avregnet. En kompakt oversikt leser de siste arkiverte utgavene, uten å telle samme kamp/spill flere ganger fra ulike kategorier.
+- Ingen generiske dekningsvarsler eller meningsløst statistikkpanel på forsiden.
 
-## Installasjon i eksisterende GitHub-repository
+## Slik oppdaterer du GitHub Pages
 
-1. Last ned ZIP, pakk den ut på Mac.
+1. Pakk ut ZIP-filen.
 2. GitHub Desktop → **Repository → Show in Finder**.
-3. Kopier **innholdet** fra den utpakkede mappen inn i eksisterende `OddsGeneratoren3000`. Velg *Erstatt* ved filkonflikter. **Ikke slett `.git`, `state/active.json` eller hele repositorymappen**. Husk at `.github` er skjult. `Cmd + Shift + .` viser skjulte filer på Mac.
-4. GitHub Desktop → **Summary:** `v0.9 clean tech and live scores` → **Commit to main** → **Push origin**.
-5. Åpne [Actions](https://github.com/jonasmheien/OddsGeneratoren3000/actions) og kontroller grønne `build`/`deploy`.
-6. Åpne [OddsGeneratoren](https://jonasmheien.github.io/OddsGeneratoren3000/). En kodeendring publiserer den **eksisterende lagrede dagsutgaven**. Den lager ikke nye tips. `daily` må kun startes eksplisitt eller fra neste morgenplan.
+3. Kopier **innholdet** fra ZIP-mappen inn i eksisterende `OddsGeneratoren3000`-mappe. Velg **Erstatt** for eksisterende filer. **Ikke slett `.git`, `state/active.json` eller `state/history/`**, som inneholder ekte dagsutgaver og historikk. `.github` er skjult i Finder, vis med `Cmd + Shift + .`.
+4. GitHub Desktop → **Summary:** `Upgrade OddsGeneratoren to v1.0 Pro` → **Commit to main** → **Push origin**.
+5. Se etter grønne `build` og `deploy` på [GitHub Actions](https://github.com/jonasmheien/OddsGeneratoren3000/actions). Åpne [nettsiden](https://jonasmheien.github.io/OddsGeneratoren3000/) og gjør en hard refresh ved behov.
 
-## Automatisering
+En **push** distribuerer designet og gjenoppretter gjeldende lagrede dagsutgave; den kjører **ikke ny oddsberegning**. Den nye dagsanalysen skjer ved neste vellykkede planlagte kjøring kl. 09.17 (Europe/Oslo), eventuelt ved manuelt `Run workflow` → `daily`. Starter du `daily` sent etter kampstart, kan dagen bli stående uten kvalifiserte tips.
 
-| Oppgave | Tidspunkt | Kilde | Endrer tips? |
-|---|---|---|---|
-| Dagsanalyse | 09.17 Europe/Oslo | football-data.org, The Odds API, evt. API-Football | **Ja**, ny dagsutgave |
-| Score- og resultatkontroll | Ca. hvert 10. minutt 16–23 og hvert 20. minutt 00–02 | football-data.org | **Nei**, kun resultater/status |
-| Nettleser / Oppdater | Hvert minutt mens fanen er synlig / ved klikk | publisert GitHub Pages JSON | **Nei** |
+## Live- og resultatlogikk
 
-Ingen oppdatering er garantert til nøyaktig minutt. Kampminutt avhenger av dekning på football-data.org sitt abonnement. Ved `FINISHED` avregnes 1X2 og målspill etter regulær tid slik kildefeltene tillater. Kamper med manglende avregningsgrunnlag blir stående som «Avventer».
+- GitHub Actions henter kampstatus fra **football-data.org** omtrent hvert 10. minutt 16.00–23.59 og hvert 20. minutt 00.00–02.59 norsk tid. Planlagte jobber kan bli forsinket.
+- Når HTML-siden er åpen, sjekker nettleseren den **publiserte** JSON-filen hvert minutt. Den har aldri tilgang til API-nøklene, og dette er **ikke et push-basert sanntidssignal**.
+- Vunnet/tapt krever offisiell `FINISHED` og tilstrekkelig grunnlag. Kampresultat i ekstraomganger avregnes med `regularTime` når kildefeltet finnes, ellers står markedet som uavklart.
+- Den lagrede dagsutgaven er fast frem til neste vellykkede dagsanalyse. Odds og tips blir ikke erstattet av en resultatoppdatering.
+- Ved nytt døgn arkiveres forrige utgave i `state/history/`. `site/data/history.json` genereres fra avregnede kamper, med deduplisering av samme spill.
 
-## Datakilder og avgrensninger
+## Klubblogoer og rettigheter
 
-**Aktive ved oppgitt nøkkel:** football-data.org og The Odds API. **Valgfritt:** API-Football Predictions med `API_FOOTBALL_KEY`.
+**Viktig:** Football-data.org API v4 leverer `homeTeam.crest`, `awayTeam.crest` og `competition.emblem`, men leverandørens vilkår, punkt 9.2, sier at disse grafikkene er opphavsrettslig beskyttet og at brukstillatelse må innhentes fra de respektive rettighetshaverne. En GitHub Pages-side er offentlig, selv om den er ment til personlig bruk.
 
-**Ikke integrert:** Vitibet, Forebet, Reddit- og andre ekspert-/forumsignaler. Disse kan ikke omtales som aktive eller automatisk inkludert før korrekt og tillatt datatilgang er ordnet.
+Derfor er **ekte klubblogoer av som standard**. Den gjennomførte fallback-visningen bruker klubbinitialer. Når du har nødvendig tillatelse, kan du opprette en GitHub Actions *repository variable* `SHOW_LICENSED_CRESTS=1` under Settings → Secrets and variables → Actions → Variables. Deretter vil *neste dagsanalyse* merke nye anbefalinger med godkjente eksterne logo-URL-er og frontend vil vise dem, bare fra kildedomener `crests.football-data.org` og `upload.wikimedia.org`. Ikke sett denne variabelen uten å ha avklart rettighetene.
 
-Dette er fortsatt en **ikke-kalibrert modell** og er ikke dokumentert å slå markedet. Safe Bets betyr relativt tydeligere markedsfavoritter, ikke sikker gevinst. Kategorien får maks fem faktiske kandidater når data tilsier det; ingen syntetiske tips blir fylt inn.
+## Datakilder
 
-## Testing
+| Kilde | Status |
+| --- | --- |
+| football-data.org | Tilkoblet hvis `FOOTBALL_DATA_API_KEY` finnes, for kamper, historikk og score |
+| The Odds API | Tilkoblet hvis `ODDS_API_KEY` finnes, for bookmakerpriser |
+| API-Football Predictions | Valgfri med `API_FOOTBALL_KEY`, tilgang avhenger av abonnement |
+| Vitibet / Forebet / Reddit / ekspertfora | **Ikke automatisk integrert**. Krever tillatt tilkobling og pålitelige data |
+
+Modellen er ikke ferdig backtestet eller kalibrert. Ingen antall Safe Bets/High Risk kan garanteres uten å dikte opp kandidater. Designendringen gjør ikke analysen mer treffsikker i seg selv.
+
+## Test og forhåndsvisning
 
 ```bash
-python3 -m unittest discover -s tests -v
+python3 -m unittest discover -s tests -q
 node --check site/app.js
 ```
 
-`forhandsvisning.html` er en **selvstendig design-demo** med oppdiktede lag og utfall. Den bruker ikke API-er og er ikke reelle tipseanbefalinger. Nettsiden i `site/` henter `site/data/today.json` fra GitHub Pages.
+- `forhandsvisning.html` i ZIP-filen er en **fungerende offline-demo** med oppdiktede kamper/utfall; den bruker ingen API-forespørsler.
+- `site/` er den faktiske nettsiden, med relative filer for GitHub Pages.
+- Illustrasjonsskjermbilder følger separat, ikke som faktiske kampanbefalinger.

@@ -1,100 +1,63 @@
 'use strict';
 const $=id=>document.getElementById(id);
-const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const dayFormat=new Intl.DateTimeFormat('nb-NO',{timeZone:'Europe/Oslo',day:'numeric',month:'long',year:'numeric'});
-const clockFormat=new Intl.DateTimeFormat('nb-NO',{timeZone:'Europe/Oslo',hour:'2-digit',minute:'2-digit'});
-const fmtOdds=value=>Number(value).toLocaleString('nb-NO',{minimumFractionDigits:2,maximumFractionDigits:2});
-const fmtPct=value=>`${Math.round(Number(value)*100)} %`;
-const dateISO=date=>{const p=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Oslo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(date).filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));return `${p.year}-${p.month}-${p.day}`;};
-const labelDate=day=>/^\d{4}-\d{2}-\d{2}$/.test(day||'')?dayFormat.format(new Date(`${day}T12:00:00Z`)):'Ingen dagsutgave';
-const statusNames={scheduled:'Ikke startet',live:'LIVE',won:'Vunnet',lost:'Tapt',void:'Avlyst',postponed:'Utsatt',unverified:'Avventer'};
-const resultOf=pick=>pick?.result||{status:'scheduled'};
-const statusOf=pick=>resultOf(pick).status||'scheduled';
-const validScore=score=>score&&Number.isInteger(score.home)&&Number.isInteger(score.away);
-const scoreText=pick=>validScore(resultOf(pick).score)?`${resultOf(pick).score.home}–${resultOf(pick).score.away}`:null;
-function statusText(pick){
-  const r=resultOf(pick),s=statusOf(pick);
-  if(s==='live'){
-    if(r.phase==='Pause')return 'Pause';
-    if(r.phase==='Ekstraomganger')return 'Ekstraomganger';
-    if(r.phase==='Straffer')return 'Straffer';
-    return Number.isInteger(r.minute)?`${r.minute}′ LIVE`:'LIVE';
-  }
-  if(s==='scheduled'&&Date.parse(pick.kickoff)<Date.now())return 'Avventer';
-  return statusNames[s]||'Avventer';
-}
-function badge(pick){let s=statusOf(pick);if(s==='scheduled'&&Date.parse(pick.kickoff)<Date.now())s='unverified';return `<span class="result-badge ${escapeHtml(s)}">${escapeHtml(statusText(pick))}</span>`;}
-function formText(s){if(!s)return '–';const a=[...'WDL'].map(x=>[...String(s).toUpperCase()].filter(v=>v===x).length);return `${a[0]}S · ${a[1]}U · ${a[2]}T`;}
-function atTime(s){const dt=new Date(s);return Number.isFinite(dt.getTime())?clockFormat.format(dt):'–';}
-function probabilityName(p){return p.probabilitySource==='market'?'Markedssjanse':'Modellanslag';}
-function pickCard(p,i){
-  const probability=Number(p.probability),niceProb=Number.isFinite(probability)?Math.max(0,Math.min(100,probability*100)):0;
-  const id=`details-${i}`;
-  const reasonList=(p.rationale||[]).slice(0,4).map(s=>`<li>${escapeHtml(s)}</li>`).join('');
-  const stats=[
-    ['Hjemmelag, siste kamper',formText(p.formHome)],
-    ['Bortelag, siste kamper',formText(p.formAway)],
-    ['Kamper i modellgrunnlaget',Array.isArray(p.formSample)?p.formSample.join(' / '):'–'],
-    ['Odds fra',p.bookmakers?`${p.bookmakers} bookmakere`:'–']
-  ];
-  return `<article class="pick" data-match-id="${escapeHtml(p.matchId||'')}">
-    <div class="pick-top"><span>${escapeHtml(p.league||'Fotball')}</span><div class="pick-top-right">${badge(p)}<span>${atTime(p.kickoff)}</span></div></div>
-    <div class="fixture"><h3 class="team-names">${escapeHtml(p.home)}<span class="vs">–</span>${escapeHtml(p.away)}</h3>${scoreText(p)?`<strong class="fixture-score">${scoreText(p)}</strong>`:''}</div>
-    <div class="play-row"><div><div class="play-label">ANBEFALT SPILL</div><div class="play-name">${escapeHtml(p.label)}</div></div><div><div class="price">${fmtOdds(p.price)}</div><span class="price-caption">ODDS VED ANALYSE</span></div></div>
-    <div class="probline"><span class="prob-label">${escapeHtml(probabilityName(p))}</span><span class="prob-value">${fmtPct(probability)}</span></div><div class="prob-track" aria-hidden="true"><div class="prob-track-fill" style="width:${niceProb.toFixed(1)}%"></div></div>
-    <div class="pick-foot"><span class="tag ${p.category==='high'?'high':''}">${escapeHtml(p.category==='safe'?'SAFE BET':p.category==='high'?'HIGH RISK':'DAGENS TIPS')}</span><button type="button" class="details-toggle" data-open="${id}" aria-controls="${id}" aria-expanded="false">Vis analyse +</button></div>
-    <div class="details" id="${id}"><dl class="detail-grid">${stats.map(([k,v])=>`<div class="detail"><dt>${escapeHtml(k)}</dt><dd>${escapeHtml(v)}</dd></div>`).join('')}</dl>${reasonList?`<ul class="detail-reasons">${reasonList}</ul>`:''}</div>
-  </article>`;
-}
-function smallCard(p){const score=scoreText(p);return `<article class="mini"><div class="mini-main"><div class="mini-league">${escapeHtml(p.league||'Fotball')} · ${atTime(p.kickoff)}</div><div class="mini-names">${escapeHtml(p.home)} – ${escapeHtml(p.away)}</div><div class="mini-pick">${escapeHtml(p.label)}</div></div><div class="mini-right"><span class="mini-price">${fmtOdds(p.price)}</span>${score?`<span class="mini-score">${score}</span>`:''}${badge(p)}</div></article>`;}
-function uniqueMatches(data){const map=new Map();for(const p of [...(data.recommendations||[]),...(data.safeBets||[]),...(data.highRisk||[])]){const id=String(p.matchId||`${p.home}-${p.away}-${p.kickoff}`);if(!map.has(id))map.set(id,p);else if(statusOf(p)==='live'&&statusOf(map.get(id))!=='live')map.set(id,p);}return [...map.values()];}
-function liveCard(p){return `<article class="live-match"><div class="live-teams">${escapeHtml(p.home)} – ${escapeHtml(p.away)}</div><div class="score">${scoreText(p)||'– : –'}</div><div class="live-minute">${escapeHtml(statusText(p))}</div></article>`;}
-function show(data,demo=false){
-  const ed=data.editionDate||data.localDate;
-  const picks=(data.recommendations||[]).slice(0,5);
-  const safe=(data.safeBets||[]).slice(0,5),high=(data.highRisk||[]).slice(0,5);
-  $('today-date').textContent=labelDate(ed);
-  $('last-updated').textContent=data.generatedAt?`Analyse ${atTime(data.generatedAt)}`:'Ingen analyse';
-  $('demo-marker').hidden=!demo;
-  $('demo-note').hidden=!demo;
-  $('tips-count').textContent=String(picks.length);$('safe-count').textContent=String(safe.length);$('high-count').textContent=String(high.length);
-  $('top-picks').innerHTML=picks.length?picks.map(pickCard).join(''):'<div class="empty">Ingen utvalgte tips i denne dagsutgaven.</div>';
-  $('safe-list').innerHTML=safe.length?safe.map(smallCard).join(''):'<div class="empty">Ingen kvalifiserte Safe Bets denne dagen.</div>';
-  $('high-list').innerHTML=high.length?high.map(smallCard).join(''):'<div class="empty">Ingen kvalifiserte High Risk-spill denne dagen.</div>';
-  const live=uniqueMatches(data).filter(p=>statusOf(p)==='live');
-  $('live').hidden=!live.length;
-  $('live-count').textContent=live.length?String(live.length):'';
-  $('live-list').innerHTML=live.map(liveCard).join('');
-  $('result-updated').textContent=data.resultUpdatedAt?`Sist oppdatert ${atTime(data.resultUpdatedAt)}`:'Oppdatering avventes';
-  $('footer-status').textContent=data.resultUpdatedAt?`Resultater ${atTime(data.resultUpdatedAt)}`:'';
-  const notice=$('alert');notice.hidden=true;
-  if(!demo&&(!ed||!(data.dataStatus&&Array.isArray(data.recommendations)))){
-    notice.textContent='Ingen dagsutgave er publisert ennå.';notice.hidden=false;
-  }
-  document.querySelectorAll('.details-toggle').forEach(btn=>btn.addEventListener('click',()=>{const d=$(btn.dataset.open),opened=d.classList.toggle('open');btn.setAttribute('aria-expanded',String(opened));btn.textContent=opened?'Skjul analyse −':'Vis analyse +';}));
-}
-function demoSnapshot(){
-  const now=new Date(),today=dateISO(now);let i=0;
-  const at=(h,m)=>{const x=new Date(now);x.setHours(h,m,0,0);return x.toISOString();};
-  const make=(home,away,league,market,label,price,prob,category,result,clock,form=['WWDWLW','DLWDLW'])=>({matchId:'demo'+(++i),home,away,league,market,label,price,probability:prob,category,kickoff:at(clock,0),probabilitySource:category==='safe'?'market':'model',bookmakers:5,formHome:form[0],formAway:form[1],formSample:[6,5],modelEdge:prob*price-1,rationale:['Form siste seks kamper','Odds fra fem bookmakere'],result});
-  const a=make('Northbridge','Westfield','Champions League','H','Hjemmeseier',1.43,.68,'safe',{status:'live',score:{home:2,away:0},minute:67,phase:'Live'},21);
-  const b=make('Riverside','Linden','Championship','O25','Over 2,5 mål',2.18,.49,'high',{status:'live',score:{home:1,away:1},minute:72,phase:'Live'},21);
-  const c=make('Fjordvik','Rosendale','Champions League','B','Borteseier',3.15,.39,'high',{status:'scheduled'},22);
-  const d=make('Olympia','Harbour FC','Serie A','H','Hjemmeseier',1.56,.64,'safe',{status:'won',score:{home:2,away:0}},18);
-  const e=make('Eastside','Arbor','La Liga','O35','Over 3,5 mål',2.76,.40,'high',{status:'lost',score:{home:1,away:1}},19);
-  const f=make('Alpen','Valletta','Bundesliga','H','Hjemmeseier',1.51,.65,'safe',{status:'scheduled'},22);
-  return {version:3,editionDate:today,localDate:today,generatedAt:at(9,17),resultUpdatedAt:now.toISOString(),recommendations:[a,b,c,d,e],safeBets:[a,d,f],highRisk:[b,c,e],dataStatus:{fixtures:'ok',odds:'ok'}};
-}
-async function loadLatest(){
-  if(window.__ODDSGEN_DEMO__){show(demoSnapshot(),true);return;}
-  try{
-    const res=await fetch(`data/today.json?v=${Date.now()}`,{cache:'no-store'});
-    if(!res.ok)throw Error(`Snapshot unavailable ${res.status}`);
-    const data=await res.json();if(!Array.isArray(data.recommendations))throw Error('Unexpected snapshot');show(data,false);
-  }catch(e){show({recommendations:[],safeBets:[],highRisk:[],dataStatus:{}},false);}
-}
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const dateFmt=new Intl.DateTimeFormat('nb-NO',{timeZone:'Europe/Oslo',weekday:'long',day:'numeric',month:'long'});
+const timeFmt=new Intl.DateTimeFormat('nb-NO',{timeZone:'Europe/Oslo',hour:'2-digit',minute:'2-digit'});
+const fmtOdds=n=>Number.isFinite(Number(n))?Number(n).toLocaleString('nb-NO',{minimumFractionDigits:2,maximumFractionDigits:2}):'–';
+const fmtPct=n=>Number.isFinite(Number(n))?`${Math.round(100*Number(n))} %`:'–';
+const fmtTime=s=>{const d=new Date(s);return Number.isNaN(d.getTime())?'–':timeFmt.format(d);};
+const formattedEdition=s=>/^\d{4}-\d{2}-\d{2}$/.test(s||'')?dateFmt.format(new Date(`${s}T12:00:00Z`)).replace(/^./,c=>c.toUpperCase()):'Ingen dagsutgave';
+const state=p=>p?.result?.status||'scheduled';
+const hasScore=p=>Number.isInteger(p?.result?.score?.home)&&Number.isInteger(p?.result?.score?.away);
+const score=p=>hasScore(p)?`${p.result.score.home}–${p.result.score.away}`:'';
+const names={scheduled:'Ikke startet',live:'Live',won:'Vunnet',lost:'Tapt',void:'Avlyst',postponed:'Utsatt',unverified:'Avventer'};
+const canUseCrests=data=>data?.visualAssets?.licensedCrests===true;
+function safeCrest(url){if(typeof url!=='string')return '';try{const u=new URL(url);if(u.protocol!=='https:')return '';if(!['crests.football-data.org','upload.wikimedia.org'].includes(u.hostname))return '';return u.href;}catch{return '';}}
+function initials(name){const x=String(name||'?').replace(/[^\p{L}\p{N}\s]/gu,' ').trim().split(/\s+/).filter(Boolean);return (x.length>1?x.slice(0,2).map(z=>z[0]).join(''):x[0]?.slice(0,2)||'?').toLocaleUpperCase('nb-NO');}
+function crest(name,url,allowed,small=false){const src=allowed?safeCrest(url):'';const code=esc(initials(name));return src?`<span class="team-badge has-img${small?' small':''}"><span class="initials" hidden>${code}</span><img src="${esc(src)}" alt="" loading="lazy" decoding="async"></span>`:`<span class="team-badge${small?' small':''}" aria-hidden="true">${code}</span>`;}
+function leagueMark(p,allowed){const image=allowed?safeCrest(p.leagueCrest):'';return image?`<span class="league-mark has-img"><span class="initials" hidden>●</span><img src="${esc(image)}" alt="" loading="lazy"></span>`:'<span class="league-mark" aria-hidden="true">●</span>';}
+function statusText(p){const r=p.result||{},s=state(p);if(s==='live'){if(r.phase==='Pause')return 'Pause';if(r.phase==='Ekstraomganger')return 'Forlengning';if(r.phase==='Straffer')return 'Straffer';return Number.isInteger(r.minute)?`${r.minute}′ live`:'Live';}if(s==='scheduled'&&Date.parse(p.kickoff)<Date.now())return 'Avventer';return names[s]||'Avventer';}
+function badge(p){let s=state(p);if(s==='scheduled'&&Date.parse(p.kickoff)<Date.now())s='unverified';return `<span class="result-badge ${esc(s)}">${esc(statusText(p))}</span>`;}
+function formatForm(v){if(!v)return '–';const counts=[...'WDL'].map(c=>[...String(v).toUpperCase()].filter(x=>x===c).length);return `${counts[0]}S · ${counts[1]}U · ${counts[2]}T`;}
+function modelLabel(p){return p.probabilitySource==='market'?'Markedsvurdering':'Modellanslag';}
+function analysis(p){const sample=Array.isArray(p.formSample)?p.formSample.join(' / '):'–';const stats=[['Hjemmeform',formatForm(p.formHome)],['Borteform',formatForm(p.formAway)],['Formgrunnlag',`${sample} kamper`],['Oddsgrunnlag',p.bookmakers?`${p.bookmakers} bookmakere`:'–'],['Sannsynlighetskilde',modelLabel(p)],['Nullpunkt i odds',Number(p.price)>1?fmtPct(1/Number(p.price)):'–']];const reasons=(Array.isArray(p.rationale)?p.rationale:[]).filter(s=>typeof s==='string').slice(0,5);const sources=(Array.isArray(p.predictionSources)?p.predictionSources:[]).filter(s=>typeof s==='string');return `<dl class="detail-grid">${stats.map(([k,v])=>`<div class="detail"><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>${reasons.length?`<ul class="detail-reasons">${reasons.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}${sources.length?`<div class="provider-credits">Eksterne prognoser: ${esc(sources.join(' · '))}</div>`:''}`;}
+function teams(p,allowed){return `<div class="fixture-teams"><div class="team-row">${crest(p.home,p.homeCrest,allowed)}<span class="team-name">${esc(p.home)}</span></div><div class="team-row">${crest(p.away,p.awayCrest,allowed)}<span class="team-name">${esc(p.away)}</span></div></div>`;}
+function pickCard(p,i,allowed){const id=`a-${i}`;const probability=Number(p.probability);const width=Number.isFinite(probability)?Math.max(0,Math.min(100,probability*100)):0;const category=p.category==='safe'?'SAFE BET':p.category==='high'?'HIGH RISK':'DAGENS TIPS';return `<article class="pick${state(p)==='live'?' pick-live':''}" data-match-id="${esc(p.matchId||'')}">
+ <div class="pick-top"><div class="league-line">${leagueMark(p,allowed)}<span class="league-name">${esc(p.league||'Fotball')}</span></div><div class="pick-right-meta">${badge(p)}<span class="kickoff-time">${fmtTime(p.kickoff)}</span></div></div>
+ <div class="fixture-row">${teams(p,allowed)}${hasScore(p)?`<div class="fixture-score">${score(p)}<small>${state(p)==='live'?'LIVE':'RESULTAT'}</small></div>`:''}</div>
+ <div class="pick-play"><div><div class="play-kicker">ANBEFALT SPILL</div><div class="play-name">${esc(p.label||'–')}</div></div><div class="odd-wrap"><div class="odd-number">${fmtOdds(p.price)}</div><div class="odd-caption">ODDS VED ANALYSE</div></div></div>
+ <div class="insight-bar"><span class="insight-label">${esc(modelLabel(p))}</span><span class="insight-value">${fmtPct(probability)}</span><div class="insight-track" aria-hidden="true"><i style="width:${width.toFixed(1)}%"></i></div></div>
+ <div class="pick-bottom"><span class="category-badge${p.category==='high'?' high':''}">${category}</span><button type="button" class="details-toggle" aria-expanded="false" aria-controls="${id}" data-open="${id}">Vis analyse +</button></div>
+ <div id="${id}" class="details">${analysis(p)}</div></article>`;}
+function miniCard(p,allowed){return `<details class="mini mini-details"><summary class="mini-summary" title="Åpne kampanalyse"><div class="mini-teams">${crest(p.home,p.homeCrest,allowed,true)}${crest(p.away,p.awayCrest,allowed,true)}</div><div class="mini-main"><div class="mini-league">${esc(p.league||'Fotball')} · ${fmtTime(p.kickoff)}</div><div class="mini-names">${esc(p.home)} – ${esc(p.away)}</div><div class="mini-pick">${esc(p.label||'')}</div></div><div class="mini-right"><span class="mini-price">${fmtOdds(p.price)}</span>${hasScore(p)?`<span class="mini-score">${score(p)}</span>`:''}${badge(p)}</div><span class="mini-chevron" aria-hidden="true">⌄</span></summary><div class="mini-analysis">${analysis(p)}</div></details>`;}
+function uniqueTips(data){const map=new Map();for(const p of [...(data.recommendations||[]),...(data.safeBets||[]),...(data.highRisk||[])]){const id=String(p.matchId||`${p.home}-${p.away}-${p.kickoff}`);const code=String(p.market||p.label||'');const key=`${id}:${code}`;if(!map.has(key))map.set(key,p);else if(state(p)==='live'&&state(map.get(key))!=='live')map.set(key,p);}return [...map.values()];}
+function groupedLive(data){const matches=new Map();for(const p of uniqueTips(data)){const id=String(p.matchId||`${p.home}-${p.away}-${p.kickoff}`);if(!matches.has(id))matches.set(id,[]);matches.get(id).push(p);}return [...matches.values()].filter(items=>items.some(p=>state(p)==='live')).map(items=>({p:items.find(p=>state(p)==='live'),selections:items}));}
+function liveProgress(p){const s=p.result?.score;if(!hasScore(p))return '';const total=s.home+s.away,code=p.market;
+ if(code==='O25'||code==='O35'){const target=code==='O25'?3:4;const progress=Math.min(total/target,1)*100;return `<div class="goal-tracker" role="progressbar" aria-valuemin="0" aria-valuemax="${target}" aria-valuenow="${Math.min(total,target)}" aria-label="Antall mål mot målet"><i style="width:${progress}%"></i></div><div class="tracker-label">${total} av ${target} mål${total>=target?' · målgrensen nådd':''}</div>`;}
+ if(code==='BTTS')return `<div class="tracker-label">${(s.home>0?1:0)+(s.away>0?1:0)} av 2 lag har scoret</div>`;
+ if(code==='H'||code==='B')return `<div class="tracker-label">${s.home===s.away?'Foreløpig uavgjort':(code==='H'?s.home>s.away:s.away>s.home)?'Valgt lag leder':'Valgt lag ligger under'} · ikke avgjort</div>`;
+ if(code==='U25')return `<div class="tracker-label">${total} mål hittil · under 2,5 krever maks 2 ved fulltid</div>`;
+ return '';}
+function liveCard(group,allowed){const p=group.p;return `<article class="live-match"><div class="live-match-main"><div class="live-match-teams"><div class="live-team">${crest(p.home,p.homeCrest,allowed,true)}${esc(p.home)}</div><div class="live-team">${crest(p.away,p.awayCrest,allowed,true)}${esc(p.away)}</div></div><div class="live-score">${hasScore(p)?score(p):'– : –'}</div></div><div class="live-state"><span class="live-pick">${group.selections.length} anbefalt${group.selections.length===1?' spill':'e spill'}</span><span class="live-phase">${esc(statusText(p))}</span></div>${group.selections.map(s=>`<div class="tracked-selection"><div class="tracked-title">${esc(s.label||'')}</div>${liveProgress({...s,result:p.result})}</div>`).join('')}</article>`;}
+function installImages(){document.querySelectorAll('.has-img img').forEach(img=>{img.addEventListener('error',()=>{const parent=img.parentNode,fb=parent?.querySelector('.initials');if(parent){parent.classList.remove('has-img');if(fb)fb.hidden=false;}img.remove();},{once:true});if(img.complete&&img.naturalWidth===0){img.dispatchEvent(new Event('error'));}});}
+function show(data,history=[],demo=false){const date=data.editionDate||data.localDate,allowed=canUseCrests(data);const picks=(data.recommendations||[]).slice(0,5),safe=(data.safeBets||[]).slice(0,5),high=(data.highRisk||[]).slice(0,5);$('today-date').textContent=formattedEdition(date);$('last-updated').textContent=data.generatedAt?`Analyse ${fmtTime(data.generatedAt)}`:'Ingen analyse';$('demo-marker').hidden=!demo;$('demo-note').hidden=!demo;
+ $('tips-count').textContent=picks.length;$('safe-count').textContent=safe.length;$('high-count').textContent=high.length;
+ $('top-picks').innerHTML=picks.length?picks.map((p,i)=>pickCard(p,i,allowed)).join(''):'<div class="empty">Ingen kvalifiserte tips i denne dagsutgaven.</div>';
+ $('safe-list').innerHTML=safe.length?safe.map(p=>miniCard(p,allowed)).join(''):'<div class="empty">Ingen kvalifiserte Safe Bets i dag.</div>';
+ $('high-list').innerHTML=high.length?high.map(p=>miniCard(p,allowed)).join(''):'<div class="empty">Ingen kvalifiserte High Risk-spill i dag.</div>';
+ const live=groupedLive(data);$('live').hidden=!live.length;$('nav-live').hidden=!live.length;$('live-count').textContent=live.length;$('live-list').innerHTML=live.map(p=>liveCard(p,allowed)).join('');$('result-updated').textContent=data.resultUpdatedAt?`Siste kampdata ${fmtTime(data.resultUpdatedAt)}`:'Kampdata avventes';
+ const finished=uniqueTips(data).filter(p=>['won','lost'].includes(state(p)));$('footer-status').textContent=finished.length?`${finished.filter(p=>state(p)==='won').length} vunnet · ${finished.filter(p=>state(p)==='lost').length} tapt i denne utgaven`:'';
+ const alert=$('alert');alert.hidden=true;if(!demo&&!date){alert.textContent='Ingen dagsutgave er publisert ennå.';alert.hidden=false;}
+ if(!demo&&date&&data.dataStatus?.fixtures==='not_configured'){alert.textContent='Viser en lagret eksempelutgave. Neste dagsanalyse er ikke publisert.';alert.hidden=false;}
+ showHistory(history,demo);
+ document.querySelectorAll('.details-toggle').forEach(btn=>btn.addEventListener('click',()=>{const panel=$(btn.dataset.open),on=panel.classList.toggle('open');btn.setAttribute('aria-expanded',String(on));btn.textContent=on?'Skjul analyse −':'Vis analyse +';}));installImages();}
+function showHistory(history,demo){const editions=Array.isArray(history)?history:[];const rows=editions.map(d=>{const picks=(d.picks||[]).filter(p=>['won','lost','void'].includes(p.status));const won=picks.filter(p=>p.status==='won').length,lost=picks.filter(p=>p.status==='lost').length;return {date:d.date,settled:won+lost,won,lost,picks};}).filter(d=>d.settled>0).slice(0,7);const shown=rows.length>0;$('resultater').hidden=!shown;$('nav-results').hidden=!shown;if(!shown)return;const totalW=rows.reduce((a,b)=>a+b.won,0),totalL=rows.reduce((a,b)=>a+b.lost,0);$('results-summary').textContent=`${totalW} vunnet · ${totalL} tapt`;
+ $('results-list').innerHTML=rows.map(d=>`<article class="history-day"><div class="history-date">${esc(formattedEdition(d.date))}</div><div class="history-metric">${d.won} <span style="color:#6c8b85">/</span> ${d.settled}</div><div class="history-sub">Vunnet / avregnede tips</div><div class="history-streak" aria-label="${d.won} vunnet, ${d.lost} tapt">${d.picks.slice(0,16).map(p=>`<i class="${esc(p.status)}" title="${esc(p.status==='won'?'Vunnet':p.status==='lost'?'Tapt':'Avlyst')}"></i>`).join('')}</div></article>`).join('');}
+function demoData(){const now=new Date(),local= new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Oslo',year:'numeric',month:'2-digit',day:'2-digit'}).format(now);let id=0;const at=h=>{const d=new Date(now);d.setHours(h,0,0,0);return d.toISOString();};const mk=(home,away,league,market,label,price,prob,category,result,h=21)=>({matchId:'demo'+(++id),home,away,league,market,label,price,probability:prob,category,kickoff:at(h),bookmakers:5,formHome:'WWDLWW',formAway:'LDWWDL',formSample:[6,6],probabilitySource:'model',rationale:['Siste seks kampresultater', 'Oddsgrunnlag fra flere bookmakere'],result});
+ const a=mk('Nordhavn','Vestby','Champions League','H','Hjemmeseier',1.43,.68,'safe',{status:'live',score:{home:2,away:0},minute:67,phase:'Live'}),b=mk('Riverside','Linden','Championship','O25','Over 2,5 mål',2.18,.49,'high',{status:'live',score:{home:1,away:1},minute:72,phase:'Live'}),c=mk('Fjordvik','Rosendale','Champions League','B','Borteseier',3.15,.39,'high',{status:'scheduled'},22),d=mk('Olympia','Harbour','Serie A','H','Hjemmeseier',1.56,.64,'safe',{status:'won',score:{home:2,away:0}},18),e=mk('Eastside','Arbor','La Liga','O35','Over 3,5 mål',2.76,.40,'high',{status:'lost',score:{home:1,away:1}},19),f=mk('Alpen','Valletta','Bundesliga','H','Hjemmeseier',1.51,.65,'safe',{status:'scheduled'},22);return {snapshot:{editionDate:local,localDate:local,generatedAt:at(9),resultUpdatedAt:now.toISOString(),visualAssets:{licensedCrests:false},recommendations:[a,b,c,d,e],safeBets:[a,d,f],highRisk:[b,c,e],dataStatus:{fixtures:'ok',odds:'ok'}},history:[{date:local,picks:[{status:'won'},{status:'won'},{status:'lost'},{status:'won'},{status:'void'}]}]};}
+async function loadLatest(){if(window.__ODDSGEN_DEMO__){const d=demoData();show(d.snapshot,d.history,true);return;}try{const [a,b]=await Promise.all([fetch(`data/today.json?v=${Date.now()}`,{cache:'no-store'}),fetch(`data/history.json?v=${Date.now()}`,{cache:'no-store'}).catch(()=>null)]);if(!a.ok)throw Error('Ingen dagsutgave');const data=await a.json();if(!Array.isArray(data.recommendations))throw Error('Feil i datagrunnlaget');const history=b&&b.ok?await b.json():[];show(data,history);}catch(e){show({recommendations:[],safeBets:[],highRisk:[],dataStatus:{}},[]);}}
 const refresh=$('refresh-data');refresh.addEventListener('click',async()=>{refresh.disabled=true;try{await loadLatest();}finally{refresh.disabled=false;}});
-// Refreshes the already-published GitHub Pages snapshot; no secrets or bookmaker calls in browser.
-// GitHub Actions publishes changes periodically, not as a true second-by-second live feed.
-setInterval(()=>{if(document.visibilityState==='visible'&&!window.__ODDSGEN_DEMO__)loadLatest();},60*1000);
+// GitHub Actions updates the static JSON every ~10 minutes when scheduled jobs work.
+// Browser polls that published copy every minute; this is not real-time streaming.
+setInterval(()=>{if(document.visibilityState==='visible'&&!window.__ODDSGEN_DEMO__)loadLatest();},60000);
 loadLatest();
