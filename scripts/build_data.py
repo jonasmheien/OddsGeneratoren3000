@@ -24,6 +24,7 @@ from zoneinfo import ZoneInfo
 from recommend import curated_picks, category_picks
 from form_v21 import adjusted_form, effective_form_sample, opponent_indices
 from expanded_sources_v23 import discover as discover_extra, odds_remaining
+from odds_first_v25 import preview_sports, fixtures_from_quotes
 from market_expansion import extend_goal_probabilities, first_half_probabilities, corner_probabilities
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -697,6 +698,10 @@ def main():
         explicit = os.getenv('ODDS_SPORTS', '').strip()
         sports = ([x.strip() for x in explicit.split(',') if x.strip()] if explicit
                   else sports)
+        if preview_offset == 1 and not explicit:
+            # football-data.org may omit UEFA's Thursday fixtures on the free tier.
+            # Query only two known, active football competitions in next-day mode.
+            sports = preview_sports(sports, max_sports=ODDS_SPORTS_PER_RUN)
         # The sports endpoint has zero quota cost and reports remaining
         # credits in response headers. Leave room for later daily editions.
         remaining=None
@@ -708,7 +713,10 @@ def main():
         if remaining is not None:
             # Each h2h + totals request costs two credits (one region).
             # Reserve 48 credits and up to 6 credits for potential extras.
-            affordable=max(0,(remaining-54)//2)
+            # Previews need only four credits for the two standard markets.
+            # Keep at least 20 credits for the regular morning analysis.
+            reserve=20 if preview_offset == 1 else 54
+            affordable=max(0,(remaining-reserve)//2)
             sports=sports[:affordable]
         status['requestedLeagues'] = sports[:ODDS_SPORTS_PER_RUN]
         status['oddsMarketKeys'] = ['h2h', 'totals']
@@ -729,6 +737,14 @@ def main():
         status['extraEventsLoaded']=sum(bool(e.get('extraMarketsLoaded')) for e in odds_events)
         status['odds'] = 'ok' if odds_events else 'empty' if not sports else 'error'
         status['oddsEventCount'] = len(odds_events)
+        if preview_offset == 1 and odds_events:
+            # True bookmaker-listed fixtures, even when another feed omits them.
+            # Synthetic provider-scoped IDs carry NO fake historical form.
+            recovered=fixtures_from_quotes(odds_events,now,date,fixtures)
+            if recovered:
+                fixtures.extend(recovered)
+                status['oddsFixtureSource'] = 'The Odds API (bookmaker listings)'
+            status['oddsFirstFixtures'] = len(recovered)
     external={}
     third_key=os.getenv('API_FOOTBALL_KEY','').strip()
     if third_key and fixtures:

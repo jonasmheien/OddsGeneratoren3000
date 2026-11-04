@@ -55,10 +55,19 @@
       const eligible=(Array.isArray(obj.recommendations)?obj.recommendations:[]).filter(p=>p && p.home && p.away && p.market && Number(p.price)>1);
       const more=eligible.length>5?`<p class="tomorrow-extra">${eligible.length-5} flere kvalifiserte spill i forhåndsanalysen.</p>`:'';
       const observations=Number(obj.qualityAudit?.observations ?? obj.observations?.length ?? 0);
+      // Show real bookmaker-quoted games even when no independent team history
+      // supports a recommendation. Never relabel a quote as a qualified pick.
+      const quoted=(Array.isArray(obj.matches)?obj.matches:[])
+        .filter(m => m && m.home && m.away && m.kickoff && m.odds && Object.keys(m.odds).length)
+        .sort((a,b) => String(a.kickoff).localeCompare(String(b.kickoff)));
+      const matchesHtml=quoted.length?`<div class="tomorrow-quoted-title">${quoted.length} kamper med registrerte bookmakerodds</div>
+        <div class="tomorrow-quoted-list">${quoted.slice(0,16).map(m=>`<div class="tomorrow-quoted-game"><span>${escape(m.home)} – ${escape(m.away)}</span><small>${escape(m.league)} · ${escape(kickoffTime(m.kickoff))}</small></div>`).join('')}</div>
+        ${quoted.length>16?`<p class="tomorrow-extra">${quoted.length-16} flere kamper med odds inngår i analysen.</p>`:''}`:'';
       section.innerHTML=`<div class="tomorrow-heading"><div><div class="tomorrow-kicker">FORHÅNDSANALYSE</div><h2>Tips for ${escape(dateLabel(obj.editionDate))}</h2></div><div class="tomorrow-count">${eligible.length} kvalifiserte</div></div>
         <p class="tomorrow-intro">Analysert på forhånd med tilgjengelige bookmakerodds. Spill kan endre seg før kampstart. Ny kontroll utføres i morgen kl. 09:17.</p>
         ${eligible.length?`<div class="tomorrow-grid">${eligible.slice(0,5).map(card).join('')}</div>${more}`:
-         `<p class="tomorrow-empty">Ingen kvalifiserte spill i forhåndsanalysen. ${observations} markeder er markert for observasjon.</p>`}`;
+         `<p class="tomorrow-empty">Ingen kvalifiserte spill ennå: det mangler tilstrekkelig uavhengig statistikk eller dokumentert verdi. ${observations} markeder er markert for observasjon.</p>`}
+        ${matchesHtml}`;
       section.hidden=false;
     } catch {if(section)section.hidden=true;}
   }
