@@ -15,3 +15,6 @@
 .mini-details{display:block;padding:0}.mini-summary{list-style:none;display:flex;gap:13px;align-items:center;padding:14px 17px;cursor:pointer;min-width:0}.mini-summary::-webkit-details-marker{display:none}.mini-summary:focus-visible{outline:2px solid var(--gold);outline-offset:-4px}.mini-details[open]{background:#1a2927}.mini-chevron{font-size:17px;color:#77988b;transition:transform .15s;align-self:center;padding-left:2px}.mini-details[open] .mini-chevron{transform:rotate(180deg)}.mini-analysis{border-top:1px solid #334646;padding:15px 17px 18px}.mini-analysis .detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))}@media(max-width:560px){.mini-summary{padding:12px;gap:8px}.mini-chevron{font-size:14px}}
 
 .tracked-selection{padding-top:9px}.tracked-selection+.tracked-selection{margin-top:7px;border-top:1px solid #2b4b42}.tracked-title{font-size:11px;font-weight:700;color:#d5e9da}.live-state{margin-bottom:5px}.tracked-selection .goal-tracker{margin-top:8px}
+
+/* v1.5: Original club-specific monograms when licensed crests are unavailable */
+.team-badge.team-monogram{color:var(--team-accent,#c5dfca);border-color:color-mix(in srgb,var(--team-accent,#c5dfca) 45%,#29383a);background:linear-gradient(145deg,color-mix(in srgb,var(--team-accent,#c5dfca) 15%,#162323),#122021)}

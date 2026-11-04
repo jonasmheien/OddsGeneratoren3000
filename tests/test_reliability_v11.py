@@ -84,7 +84,11 @@ class DailyReliabilityTests(unittest.TestCase):
         self.assertIn("cron: '17 10 * * *'", workflow)
         self.assertIn("cron: '17 11 * * *'", workflow)
         self.assertIn('python scripts/lifecycle.py is-current',workflow)
-        self.assertIn('if [[ "$EVENT" == "push" ]]; then\n            echo "mode=deploy"',workflow)
+        # By default a code push deploys the stored edition. The explicit
+        # one-time v1.5 release marker is the sole exception.
+        self.assertIn('if [[ "$EVENT" == "push" ]]; then',workflow)
+        self.assertIn('echo "mode=deploy" >> "$GITHUB_OUTPUT"',workflow)
+        self.assertIn("grep -qx 'REFRESH_ON_NEXT_PUSH'",workflow)
         self.assertIn('ODDS_OUTPUT_PATH: state/.candidate.json',workflow)
         self.assertIn('git add -A -- state/ site/data/today.json site/data/history.json',workflow)
 

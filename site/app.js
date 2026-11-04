@@ -14,7 +14,19 @@ const names={scheduled:'Ikke startet',live:'Live',won:'Vunnet',lost:'Tapt',void:
 const canUseCrests=data=>data?.visualAssets?.licensedCrests===true;
 function safeCrest(url){if(typeof url!=='string')return '';try{const u=new URL(url);if(u.protocol!=='https:')return '';if(!['crests.football-data.org','upload.wikimedia.org'].includes(u.hostname))return '';return u.href;}catch{return '';}}
 function initials(name){const x=String(name||'?').replace(/[^\p{L}\p{N}\s]/gu,' ').trim().split(/\s+/).filter(Boolean);return (x.length>1?x.slice(0,2).map(z=>z[0]).join(''):x[0]?.slice(0,2)||'?').toLocaleUpperCase('nb-NO');}
-function crest(name,url,allowed,small=false){const src=allowed?safeCrest(url):'';const code=esc(initials(name));return src?`<span class="team-badge has-img${small?' small':''}"><span class="initials" hidden>${code}</span><img src="${esc(src)}" alt="" loading="lazy" decoding="async"></span>`:`<span class="team-badge${small?' small':''}" aria-hidden="true">${code}</span>`;}
+function badgeAccent(name){
+  // Original team identifiers, not unofficial copies of club trademarks.
+  const palette=['#a9d6a1','#d7c084','#85c3bc','#b1b7dc','#d9a79a','#a3d2c5'];
+  let hash=0;for(const ch of String(name||''))hash=((hash*31)+ch.charCodeAt(0))>>>0;
+  return palette[hash%palette.length];
+}
+function crest(name,url,allowed,small=false){
+  const src=allowed?safeCrest(url):'';
+  const code=esc(initials(name));
+  const accent=badgeAccent(name);
+  return src?`<span class="team-badge has-img${small?' small':''}"><span class="initials" hidden>${code}</span><img src="${esc(src)}" alt="" loading="lazy" decoding="async"></span>`:
+    `<span class="team-badge team-monogram${small?' small':''}" style="--team-accent:${accent}" aria-label="${esc(name)}">${code}</span>`;
+}
 function leagueMark(p,allowed){const image=allowed?safeCrest(p.leagueCrest):'';return image?`<span class="league-mark has-img"><span class="initials" hidden>●</span><img src="${esc(image)}" alt="" loading="lazy"></span>`:'<span class="league-mark" aria-hidden="true">●</span>';}
 function statusText(p){const r=p.result||{},s=state(p);if(s==='live'){if(r.phase==='Pause')return 'Pause';if(r.phase==='Ekstraomganger')return 'Forlengning';if(r.phase==='Straffer')return 'Straffer';return Number.isInteger(r.minute)?`${r.minute}′ live`:'Live';}if(s==='scheduled'&&Date.parse(p.kickoff)<Date.now())return 'Avventer';return names[s]||'Avventer';}
 function badge(p){let s=state(p);if(s==='scheduled'&&Date.parse(p.kickoff)<Date.now())s='unverified';return `<span class="result-badge ${esc(s)}">${esc(statusText(p))}</span>`;}
@@ -32,15 +44,11 @@ function pickCard(p,i,allowed){const id=`a-${i}`;const probability=Number(p.prob
 function miniCard(p,allowed){return `<details class="mini mini-details"><summary class="mini-summary" title="Åpne kampanalyse"><div class="mini-teams">${crest(p.home,p.homeCrest,allowed,true)}${crest(p.away,p.awayCrest,allowed,true)}</div><div class="mini-main"><div class="mini-league">${esc(p.league||'Fotball')} · ${fmtTime(p.kickoff)}</div><div class="mini-names">${esc(p.home)} – ${esc(p.away)}</div><div class="mini-pick">${esc(p.label||'')}</div></div><div class="mini-right"><span class="mini-price">${fmtOdds(p.price)}</span>${hasScore(p)?`<span class="mini-score">${score(p)}</span>`:''}${badge(p)}</div><span class="mini-chevron" aria-hidden="true">⌄</span></summary><div class="mini-analysis">${analysis(p)}</div></details>`;}
 function uniqueTips(data){const map=new Map();for(const p of [...(data.recommendations||[]),...(data.safeBets||[]),...(data.highRisk||[])]){const id=String(p.matchId||`${p.home}-${p.away}-${p.kickoff}`);const code=String(p.market||p.label||'');const key=`${id}:${code}`;if(!map.has(key))map.set(key,p);else if(state(p)==='live'&&state(map.get(key))!=='live')map.set(key,p);}return [...map.values()];}
 function groupedLive(data){const matches=new Map();for(const p of uniqueTips(data)){const id=String(p.matchId||`${p.home}-${p.away}-${p.kickoff}`);if(!matches.has(id))matches.set(id,[]);matches.get(id).push(p);}return [...matches.values()].filter(items=>items.some(p=>state(p)==='live')).map(items=>({p:items.find(p=>state(p)==='live'),selections:items}));}
-function liveProgress(p){const s=p.result?.score;if(!hasScore(p))return '';const total=s.home+s.away,code=String(p.market||'');
- const over=code.match(/^O(15|25|35)$/);
- if(over){const target=Number(over[1])/10+.5,progress=Math.min(total/target,1)*100;return `<div class="goal-tracker" role="progressbar" aria-valuemin="0" aria-valuemax="${target}" aria-valuenow="${Math.min(total,target)}" aria-label="Antall mål mot målet"><i style="width:${progress}%"></i></div><div class="tracker-label">${total} av ${target} mål${total>=target?' · målgrensen er nådd':' · ikke avgjort før fulltid'}</div>`;}
- if(code.startsWith('THO')||code.startsWith('TAO')){const side=code.startsWith('THO')?s.home:s.away;const target=Number(code.slice(3))/10+.5;return `<div class="tracker-label">${side} av ${target} mål for valgt lag · ikke avgjort før fulltid</div>`;}
- if(code.startsWith('H1'))return `<div class="tracker-label">Første omgang · avregnes fra offisiell pause-/sluttstilling</div>`;
- if(code.startsWith('CO'))return `<div class="tracker-label">Hjørnespark · avventer verifisert statistikk</div>`;
+function liveProgress(p){const s=p.result?.score;if(!hasScore(p))return '';const total=s.home+s.away,code=p.market;
+ if(code==='O25'||code==='O35'){const target=code==='O25'?3:4;const progress=Math.min(total/target,1)*100;return `<div class="goal-tracker" role="progressbar" aria-valuemin="0" aria-valuemax="${target}" aria-valuenow="${Math.min(total,target)}" aria-label="Antall mål mot målet"><i style="width:${progress}%"></i></div><div class="tracker-label">${total} av ${target} mål${total>=target?' · målgrensen nådd':''}</div>`;}
  if(code==='BTTS')return `<div class="tracker-label">${(s.home>0?1:0)+(s.away>0?1:0)} av 2 lag har scoret</div>`;
  if(code==='H'||code==='B')return `<div class="tracker-label">${s.home===s.away?'Foreløpig uavgjort':(code==='H'?s.home>s.away:s.away>s.home)?'Valgt lag leder':'Valgt lag ligger under'} · ikke avgjort</div>`;
- if(code.startsWith('U'))return `<div class="tracker-label">${total} mål hittil · utfallet avgjøres ved fulltid</div>`;
+ if(code==='U25')return `<div class="tracker-label">${total} mål hittil · under 2,5 krever maks 2 ved fulltid</div>`;
  return '';}
 function liveCard(group,allowed){const p=group.p;return `<article class="live-match"><div class="live-match-main"><div class="live-match-teams"><div class="live-team">${crest(p.home,p.homeCrest,allowed,true)}${esc(p.home)}</div><div class="live-team">${crest(p.away,p.awayCrest,allowed,true)}${esc(p.away)}</div></div><div class="live-score">${hasScore(p)?score(p):'– : –'}</div></div><div class="live-state"><span class="live-pick">${group.selections.length} anbefalt${group.selections.length===1?' spill':'e spill'}</span><span class="live-phase">${esc(statusText(p))}</span></div>${group.selections.map(s=>`<div class="tracked-selection"><div class="tracked-title">${esc(s.label||'')}</div>${liveProgress({...s,result:p.result})}</div>`).join('')}</article>`;}
 function installImages(){document.querySelectorAll('.has-img img').forEach(img=>{img.addEventListener('error',()=>{const parent=img.parentNode,fb=parent?.querySelector('.initials');if(parent){parent.classList.remove('has-img');if(fb)fb.hidden=false;}img.remove();},{once:true});if(img.complete&&img.naturalWidth===0){img.dispatchEvent(new Event('error'));}});}

@@ -461,17 +461,33 @@ def run(snapshot,key,stats_key,at,cap=1):
     tips=tips[:4]
     represented={(p['matchId'],p['market']) for p in tips}
     watch=[p for p in watch if (p['matchId'],p['market']) not in represented]
-    # Represent diverse market families, not six variants of one popular game.
-    priority={'goalscorer':0,'cards':1,'corners':2,'goals':3,'team_goals':4,'first_half':5,'btts':6}
-    watch.sort(key=lambda x:(priority.get(x['marketType'],9),-x['bookmakers'],x['kickoff']))
+    # v1.5: do not hide team goals, first-half totals and under markets merely
+    # because one event contains several player quotes. Two prices on the same
+    # line (over and under) are distinct inspectable outcomes, never both tips.
+    priority={'goals':0,'team_goals':1,'btts':2,'first_half':3,
+              'corners':4,'cards':5,'goalscorer':6}
+    def direction(p):
+        code=str(p.get('market') or '')
+        if code.startswith('GS:'):return 'player'
+        if code in ('BTTS','BTTSN'):return code
+        if code.startswith(('CO','CA')):return code[2]
+        if code.startswith(('TH','TA','H1')):return code[2] if code.startswith(('TH','TA')) else code[2]
+        return code[:1]
+    watch.sort(key=lambda p:(priority.get(p['marketType'],9),
+                              -p['bookmakers'],p.get('kickoff') or ''))
+    per_group=defaultdict(int)
     compact=[];seen=set()
+    # Fairly spread available markets across the page; not every match
+    # receives a featured entry and no unsupported outcome is fabricated.
     for p in watch:
-        key=(p['matchId'],p['marketType'])
-        if key in seen:continue
-        seen.add(key);compact.append(p)
-        if len(compact)>=8:break
+        kind=p['marketType']
+        ident=(str(p['matchId']),kind,direction(p))
+        if ident in seen or per_group[kind]>=3:continue
+        seen.add(ident);per_group[kind]+=1;compact.append(p)
+        if len(compact)>=21:break
     snapshot['additionalMarkets']={'tips':tips,'watchlist':compact,
         'coverage':{CATEGORY_NAMES.get(k,k):counted.get(k,0) for k in CATEGORY_NAMES},
+        'marketFamilies':[{'key':k,'label':CATEGORY_NAMES[k],'availableQuotes':counted.get(k,0)} for k in CATEGORY_NAMES],
         'issues':issues[:6], 'providerRequests':budgets['odds_requests'],
         'notes':'Kun verifiserte bookmakerpriser. For kort/hjørnespark kreves historiske data. Målscorer krever bekreftet startoppstilling.'}
     return snapshot

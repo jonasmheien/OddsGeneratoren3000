@@ -63,7 +63,16 @@ jobs:
           INPUT_MODE: ${{ inputs.mode }}
         run: |
           if [[ "$EVENT" == "push" ]]; then
-            echo "mode=deploy" >> "$GITHUB_OUTPUT"
+            # A release can opt in to exactly one new same-day analysis.
+            # Ordinary code pushes continue to deploy the stored snapshot.
+            if [[ -f .github/refresh-once-v15 ]] && grep -qx 'REFRESH_ON_NEXT_PUSH' .github/refresh-once-v15; then
+              echo "mode=daily" >> "$GITHUB_OUTPUT"
+              echo "refresh_on_push=true" >> "$GITHUB_OUTPUT"
+              echo 'ONE_TIME_REFRESH: new match and bookmaker analysis requested'
+            else
+              echo "mode=deploy" >> "$GITHUB_OUTPUT"
+              echo "refresh_on_push=false" >> "$GITHUB_OUTPUT"
+            fi
           elif [[ "$EVENT" == "schedule" && ( "$SCHEDULE" == "17 9 * * *" || "$SCHEDULE" == "17 10 * * *" || "$SCHEDULE" == "17 11 * * *" ) ]]; then
             if python scripts/lifecycle.py is-current; then
               echo "mode=deploy" >> "$GITHUB_OUTPUT"
@@ -107,7 +116,7 @@ jobs:
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
           MODE: ${{ steps.trigger.outputs.mode }}
           ODDS_OUTPUT_PATH: state/.candidate.json
-          FORCE_REPLACE_EDITION: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'daily' && inputs.force_refresh && '1' || '0' }}
+          FORCE_REPLACE_EDITION: ${{ ((github.event_name == 'workflow_dispatch' && inputs.mode == 'daily' && inputs.force_refresh) || steps.trigger.outputs.refresh_on_push == 'true') && '1' || '0' }}
         run: |
           python scripts/lifecycle.py "$MODE" | tee /tmp/odds-lifecycle.txt
           if [[ "$MODE" == "results" ]] && ! grep -q 'RESULTS_CHANGED=1' /tmp/odds-lifecycle.txt; then
@@ -118,10 +127,17 @@ jobs:
       - name: Lagre den valgte utgaven og resultatene
         if: steps.trigger.outputs.mode != 'deploy'
         shell: bash
+        env:
+          MODE: ${{ steps.trigger.outputs.mode }}
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A -- state/ site/data/today.json site/data/history.json
+          # The trigger disappears only after a successful new daily edition.
+          # A failed data pull leaves the trigger available for a job re-run.
+          if [[ "${MODE}" == 'daily' ]] && [[ -f .github/refresh-once-v15 ]]; then
+            git rm -f -- .github/refresh-once-v15
+          fi
           if ! git diff --cached --quiet; then
             git commit -m '[snapshot] Keep daily tips and their settled results'
             git push origin HEAD:main
