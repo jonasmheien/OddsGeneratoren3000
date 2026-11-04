@@ -37,58 +37,64 @@ def atomic_json(path: Path, obj):
 
 
 def pick_outcome(market: str, home: int, away: int):
-    if market == 'H': return home > away
-    if market == 'U': return home == away
-    if market == 'B': return home < away
-    if market == 'O25': return home+away >= 3
-    if market == 'U25': return home+away < 3
-    if market == 'O35': return home+away >= 4
-    if market == 'BTTS': return home > 0 and away > 0
+    """Return True/False only for markets settled by these full-/half-time scores."""
+    if market=='H':return home>away
+    if market=='U':return home==away
+    if market=='B':return home<away
+    if market=='BTTS':return home>0 and away>0
+    if market.startswith(('O','U')) and market[1:] in ('15','25','35'):
+        line=int(market[1:])/10
+        return (home+away>line) if market.startswith('O') else (home+away<line)
+    if market.startswith(('THO','TAO')) and market[3:] in ('05','15'):
+        side=home if market.startswith('THO') else away
+        return side>int(market[3:])/10
+    if market.startswith('H1') and market[2:] in ('O05','O15','U15'):
+        code=market[2:]
+        return (home+away>int(code[1:])/10) if code[0]=='O' else (home+away<int(code[1:])/10)
+    if market in ('CO85','CO95'):
+        return home+away>int(market[2:])/10
     return None
 
 
 def score_pick(pick: dict, match: dict) -> dict:
-    """Settle only on official FINISHED with integer fullTime goals."""
-    out = deepcopy(pick)
-    status = match.get('status', '')
-    score = match.get('score') or {}
-    duration = score.get('duration')
-    # Football wagers are normally graded over 90 minutes, not extra time.
-    # If regularTime is unavailable after ET/penalties, do not guess.
-    settle_score = (score.get('regularTime') if duration in ('EXTRA_TIME','PENALTY_SHOOTOUT')
-                    else score.get('fullTime')) or {}
-    home, away = settle_score.get('home'), settle_score.get('away')
-    display_score = score.get('fullTime') or {}
-    result = {'status': 'scheduled'}
+    """Settle only against known, official period-specific FINISHED scores."""
+    out=deepcopy(pick)
+    status=match.get('status','')
+    score=match.get('score') or {}
+    duration=score.get('duration')
+    regular=(score.get('regularTime') if duration in ('EXTRA_TIME','PENALTY_SHOOTOUT') else score.get('fullTime')) or {}
+    display=score.get('fullTime') or {}
+    market=str(pick.get('market') or '')
+    settle=regular
+    if market.startswith('H1'):
+        settle=score.get('halfTime') or {}
+    elif market.startswith('CO'):
+        h=(match.get('homeTeam') or {}).get('statistics') or {}
+        a=(match.get('awayTeam') or {}).get('statistics') or {}
+        settle={'home':h.get('corner_kicks'),'away':a.get('corner_kicks')}
+    home,away=settle.get('home'),settle.get('away')
+    result={'status':'scheduled'}
     if status in IN_PLAY:
-        # Only show a match minute if supplied by the provider.
-        minute = match.get('minute')
-        if type(minute) is int and 0 < minute <= 130:
-            result['minute'] = minute
-        if status == 'PAUSED':
-            result['phase'] = 'Pause'
-        elif status == 'EXTRA_TIME':
-            result['phase'] = 'Ekstraomganger'
-        elif status == 'PENALTY_SHOOTOUT':
-            result['phase'] = 'Straffer'
-        else:
-            result['phase'] = 'Live'
+        minute=match.get('minute')
+        if type(minute) is int and 0<minute<=130:result['minute']=minute
+        result['phase']=('Pause' if status=='PAUSED' else
+                         'Ekstraomganger' if status=='EXTRA_TIME' else
+                         'Straffer' if status=='PENALTY_SHOOTOUT' else 'Live')
     if status in CANCELLED:
-        result['status'] = 'postponed' if status == 'POSTPONED' else 'void'
+        result['status']='postponed' if status=='POSTPONED' else 'void'
     elif status in IN_PLAY:
-        result['status'] = 'live'
-    elif status == 'FINISHED' and not (type(home) is int and type(away) is int):
-        result['status'] = 'unverified'
-    elif status == 'FINISHED' and type(home) is int and type(away) is int:
-        hit = pick_outcome(str(pick.get('market') or ''), home, away)
-        result['status'] = 'won' if hit is True else 'lost' if hit is False else 'unverified'
-    if status in (IN_PLAY | {'FINISHED'}):
-        dh, da = display_score.get('home'), display_score.get('away')
+        result['status']='live'
+    elif status=='FINISHED' and type(home) is int and type(away) is int:
+        hit=pick_outcome(market,home,away)
+        result['status']='won' if hit is True else 'lost' if hit is False else 'unverified'
+    elif status=='FINISHED':
+        result['status']='unverified'
+    if status in IN_PLAY | {'FINISHED'}:
+        dh,da=display.get('home'),display.get('away')
         if type(dh) is int and type(da) is int:
-            result['score'] = {'home': dh, 'away': da}
-    out['result'] = result
+            result['score']={'home':dh,'away':da}
+    out['result']=result
     return out
-
 
 def with_initial_results(data: dict):
     snapshot = deepcopy(data)

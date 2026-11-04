@@ -22,6 +22,7 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
 from recommend import curated_picks, category_picks
+from market_expansion import extend_goal_probabilities, first_half_probabilities, corner_probabilities
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = Path(os.environ['ODDS_OUTPUT_PATH']) if os.environ.get('ODDS_OUTPUT_PATH') else ROOT / 'site' / 'data' / 'today.json'
@@ -40,6 +41,13 @@ SPORT_BY_COMPETITION = {
 # costs about 2 credits per league per run (provider rules may change).
 # One daily run × 5 leagues × 2 markets × 31 days = ~310 credits/month at most under the current credit formula.
 ODDS_SPORTS_PER_RUN = min(5, max(1, int(os.getenv('ODDS_SPORTS_PER_RUN', '5'))))
+# Extra bookmaker markets cost per event. Keep to two events by default to
+# respect free-tier monthly credits; adjust only after checking account usage.
+ODDS_EXTRA_EVENTS = min(5, max(0, int(os.getenv('ODDS_EXTRA_EVENTS', '3'))))
+EXTRA_MARKET_KEYS = 'btts,team_totals,totals_h1,alternate_totals'
+# Corners requires historical corners stats; enable when a licensed stats feed is available.
+if os.getenv('ODDS_CORNERS_ENABLED','') == '1':
+    EXTRA_MARKET_KEYS += ',alternate_totals_corners'
 MARKETS = ('H', 'U', 'B', 'O25', 'U25', 'O35', 'BTTS')
 
 
@@ -235,61 +243,124 @@ def model_probabilities(home_form: list, away_form: list) -> dict | None:
                 prob['O35'] += p
             if h > 0 and a > 0:
                 prob['BTTS'] += p
-    return {'probabilities': {k: round(v, 4) for k,v in prob.items()},
-            'expectedGoals': [round(lh,2), round(la,2)],
-            'sample': [n_h, n_a], 'quality': 'exploratory' if min(n_h,n_a) < 5 else 'basic'}
+    model={'probabilities': {k: round(v, 4) for k,v in prob.items()},
+           'expectedGoals': [round(lh,2), round(la,2)],
+           'sample': [n_h, n_a], 'quality': 'exploratory' if min(n_h,n_a) < 5 else 'basic'}
+    extend_goal_probabilities(model)
+    return model
 
 
 def extract_market_odds(event: dict, match: dict, asof: datetime | None = None) -> dict:
-    values = defaultdict(list)
+    """Parse bookmaker markets, always keying by BOTH line and team.
+
+    Duplicate book+market observations from featured + event endpoints do
+    not inflate the bookmaker count. Invalid/unknown points are excluded.
+    """
+    values = defaultdict(dict)
     for book in event.get('bookmakers', []):
-        bookname = book.get('title') or book.get('key') or 'Ukjent'
+        bookname = book.get('key') or book.get('title') or 'Ukjent'
         for market in book.get('markets', []):
             updated = market.get('last_update') or book.get('last_update')
             if asof is not None:
-                if not updated:
-                    continue
+                if not updated:continue
                 try:
-                    age = (asof - iso_datetime(updated)).total_seconds() / 3600
-                    if not -1 <= age <= 12:
-                        continue
-                except (TypeError,ValueError):
-                    continue
-            key = market.get('key')
+                    age=(asof-iso_datetime(updated)).total_seconds()/3600
+                    if not -1<=age<=12:continue
+                except (TypeError,ValueError):continue
+            key=market.get('key')
             for item in market.get('outcomes', []):
-                try:
-                    price = float(item.get('price'))
-                except (TypeError, ValueError):
-                    continue
-                if price < 1.01 or price > 1000:
-                    continue
-                selection = None
-                name = item.get('name', '')
-                if key == 'h2h':
-                    if name_score(name, event.get('home_team','')) >= .77:
-                        selection = 'H'
-                    elif name_score(name, event.get('away_team','')) >= .77:
-                        selection = 'B'
-                    elif name.lower() == 'draw':
-                        selection = 'U'
-                elif key == 'totals':
-                    point = item.get('point')
-                    if point == 2.5:
-                        selection = 'O25' if name.lower() == 'over' else 'U25' if name.lower() == 'under' else None
-                    elif point == 3.5 and name.lower() == 'over':
-                        selection = 'O35'
+                try:price=float(item.get('price'))
+                except (ValueError,TypeError):continue
+                if not 1.01<=price<=1000:continue
+                name=str(item.get('name','')).strip()
+                low=name.lower()
+                point=item.get('point')
+                selection=None
+                if key=='h2h':
+                    if name_score(name,event.get('home_team',''))>=.77:selection='H'
+                    elif name_score(name,event.get('away_team',''))>=.77:selection='B'
+                    elif low=='draw':selection='U'
+                elif key in ('totals','alternate_totals'):
+                    if point in (1.5,2.5,3.5) and low in ('over','under'):
+                        selection= ('O' if low=='over' else 'U')+f'{int(point*10):02d}'
+                elif key=='btts' and low=='yes':
+                    selection='BTTS'
+                elif key in ('team_totals','alternate_team_totals'):
+                    # The Odds API records the target team in 'description';
+                    # an unlabeled line must never be assigned to a side.
+                    desc=str(item.get('description') or '')
+                    if low=='over' and point in (.5,1.5):
+                        if name_score(desc,event.get('home_team',''))>=.77:
+                            selection='THO'+f'{int(point*10):02d}'
+                        elif name_score(desc,event.get('away_team',''))>=.77:
+                            selection='TAO'+f'{int(point*10):02d}'
+                elif key in ('totals_h1','alternate_totals_h1'):
+                    if point in (.5,1.5) and low in ('over','under'):
+                        selection='H1'+('O' if low=='over' else 'U')+f'{int(point*10):02d}'
+                elif key=='alternate_totals_corners' and point in (8.5,9.5) and low=='over':
+                    selection='CO'+f'{int(point*10):02d}'
                 if selection:
-                    values[selection].append({'price': price, 'book': bookname, 'updated':market.get('last_update') or book.get('last_update')})
-    ret = {}
-    for market, choices in values.items():
-        prices = [v['price'] for v in choices]
-        median = statistics.median(prices)
-        timestamps = [v['updated'] for v in choices if v.get('updated')]
-        ret[market] = {'price': round(median, 2), 'source': 'The Odds API · bookmaker-median',
-                       'books': len(choices), 'lastUpdated': max(timestamps) if timestamps else None,
-                       'sampleBook': min(choices, key=lambda v: abs(v['price'] - median))['book']}
+                    values[selection][bookname]={'price':price,'book':bookname,'updated':updated}
+    ret={}
+    for code,bookvalues in values.items():
+        choices=list(bookvalues.values())
+        prices=[v['price'] for v in choices]
+        median=statistics.median(prices)
+        timestamps=[v['updated'] for v in choices if v.get('updated')]
+        ret[code]={'price':round(median,2),'source':'The Odds API · bookmaker-median',
+                   'books':len(choices),'lastUpdated':max(timestamps) if timestamps else None,
+                   'sampleBook':min(choices,key=lambda v:abs(v['price']-median))['book']}
     return ret
 
+
+def fetch_extra_event_markets(sports: list[str], odds_events: list[dict], now: datetime,
+                              max_events: int = ODDS_EXTRA_EVENTS) -> tuple[list[dict], list[str]]:
+    """Limited per-fixture odds enrichment without spending the monthly quota blindly.
+
+    Enrichment is optional: missing markets never block the core analysis.
+    No request is made without an explicit active ODDS_API_KEY.
+    """
+    key=os.getenv('ODDS_API_KEY','').strip()
+    if not key or max_events<=0:return odds_events,[]
+    updated=list(odds_events)
+    issues=[]
+    selected=[]
+    today=now.astimezone(OSLO).date()
+    for event in odds_events:
+        if event.get('sport_key') not in sports:continue
+        try:
+            kickoff=iso_datetime(event['commence_time'])
+            if kickoff <= now+timedelta(minutes=40) or kickoff.astimezone(OSLO).date()!=today:continue
+        except (KeyError,ValueError,TypeError):continue
+        if event.get('id'):
+            selected.append(event)
+    selected.sort(key=lambda e:e.get('commence_time',''))
+    # Approximate budget ceiling of 15 provider credits per daily run.
+    # Featured odds cost ~2 per sport; extra event odds ~4 per event.
+    allowed_events=max(0,min(max_events,(15-2*len(sports))//len(EXTRA_MARKET_KEYS.split(','))))
+    for event in selected[:allowed_events]:
+        sport=event.get('sport_key')
+        eid=event.get('id')
+        args=urlencode({'apiKey':key,'regions':'eu','markets':EXTRA_MARKET_KEYS,'oddsFormat':'decimal'})
+        url=f'{ODDS_BASE}/sports/{sport}/events/{eid}/odds?{args}'
+        try:
+            req=Request(url,headers={'User-Agent':'OddsGeneratoren/1.2'})
+            with urlopen(req,timeout=28) as response:
+                remaining=response.headers.get('x-requests-remaining')
+                extra=json.load(response)
+            if isinstance(extra,dict) and isinstance(extra.get('bookmakers'),list):
+                # Keep featured and extra market entries. The parser deduplicates
+                # by bookmaker ID and exact selection market.
+                event['bookmakers']=list(event.get('bookmakers',[]))+extra['bookmakers']
+                event['extraMarketsLoaded']=True
+            if remaining is not None and int(remaining)<35:
+                issues.append('Odds API: lav gjenværende kvote, flere ekstramarkeder ble ikke hentet')
+                break
+        except Exception as exc:
+            issues.append('Ekstramarkeder (ikke-kritisk): '+type(exc).__name__)
+            # If the provider rejects this market set, avoid repeated futile calls.
+            if type(exc).__name__ == 'HTTPError':break
+    return updated,issues
 
 def read_manual_models(path: Path) -> list[dict]:
     if not path.exists():
@@ -452,6 +523,9 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
              'kickoff': k.isoformat(), 'status': raw.get('status') or 'SCHEDULED',
              'formHome': ''.join(x[3] for x in hf), 'formAway': ''.join(x[3] for x in af),
              'model': model_probabilities(hf, af), 'odds': {}, 'predictions': []}
+        if m['model'] is not None:
+            m['model']['probabilities'].update(first_half_probabilities(fixtures,k,home['id'],away['id']))
+            m['model']['probabilities'].update(corner_probabilities(fixtures,k,home['id'],away['id']))
         if odds_events is not None:
             od = fixed_odds_event(m, odds_events)
             m['odds'] = extract_market_odds(od, m, now)
@@ -464,6 +538,15 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
     # a match must not hide an independently valid favorite for that match.
     safe_bets = category_picks(todays, now, 'safe', limit=5)
     high_risk = category_picks(todays, now, 'high', limit=5)
+    # Opposing outcomes in the very same game must not be recommended as
+    # independently sound bets across Safe Bets and High Risk.
+    def incompatible(a,b):
+        opposite=[{'H','B','U'},{'O15','U15'},{'O25','U25'},
+                  {'O35','U35'},{'H1O15','H1U15'}]
+        return any(a in group and b in group and a != b for group in opposite)
+    high_risk=[p for p in high_risk if not any(str(p['matchId'])==str(s['matchId']) and incompatible(p['market'],s['market']) for s in safe_bets)]
+    # Main recommendations must obey the same cross-category rule.
+    picks=[p for p in picks if not any(str(p['matchId'])==str(s['matchId']) and incompatible(p['market'],s['market']) for s in safe_bets)]
     # Join stable presentation metadata from the exact same fixture ID.
     # Crests are only displayed after the site owner has obtained the rights;
     # football-data.org expressly notes ownership by the clubs.
@@ -598,6 +681,10 @@ def main():
                 odds_events.extend(items)
             except Exception as exc:
                 errors.append(f'Odds ({sport}): hentefeil ({type(exc).__name__})')
+        if odds_events:
+            odds_events,extra_issues=fetch_extra_event_markets(sports,odds_events,now)
+            errors.extend(extra_issues)
+        status['extraEventsLoaded']=sum(bool(e.get('extraMarketsLoaded')) for e in odds_events)
         status['odds'] = 'ok' if odds_events else 'empty' if not sports else 'error'
         status['oddsEventCount'] = len(odds_events)
     external={}
