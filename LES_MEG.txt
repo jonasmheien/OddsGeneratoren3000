@@ -1,16 +1,24 @@
-OddsGeneratoren 1.2 – engangsoppdatering av dagens tips
+ODDSGENERATOR3000 — v1.3 | SKRIFTLIG SPILLANALYSE
 
-Denne pakken endrer KUN .github/workflows/publish.yml.
-Den gjør at du kan velge 'force_refresh' ved manuell 'daily'-kjøring.
+Denne oppdateringen legger en kort, etterprøvbar vurdering inn i eksisterende «Vis analyse» for alle Dagens tips, Safe Bets og High Risk. Den oppdaterer også eksisterende dagsutgaver på skjermen uten å kjøre analysen på nytt.
 
-1. Pakk ut ZIP.
-2. Åpne GitHub Desktop > Repository > Show in Finder.
-3. I prosjektmappen: gå til .github/workflows (trykk Cmd+Shift+. for å vise skjulte mapper i Finder).
-4. Erstatt KUN filen publish.yml med den fra pakken.
-5. Commit og Push origin i GitHub Desktop.
-6. GitHub > Actions > Oppdater OddsGeneratoren > Run workflow.
-7. Velg 'daily' og huk av 'force_refresh'. Trykk Run workflow.
-8. Når kjøringen er fullført og Pages er publisert, oppdater nettstedet.
+INNHOLD
+  site/index.html             (samme eksisterende fil + 1 skriptreferanse)
+  site/analysis-insights.js   (nytt analysepanel, inkludert stil)
 
-OBS: Den gamle dagsutgaven erstattes. Nye analyser er ikke garantert å finne spill i alle markeder.
-Ikke erstatt hele prosjektmappen eller slett state/ eller site/data/.
+INSTALLASJON (GitHub Desktop)
+  1. Pakk ut ZIP-filen.
+  2. Åpne prosjektet i GitHub Desktop og velg Repository > Show in Finder.
+  3. Dra mappen «site» fra denne pakken inn i prosjektmappen. Velg å slå sammen mappene og erstatt bare site/index.html.
+  4. Commit to main og Push origin.
+  5. Vent til GitHub Actions har publisert, og oppdater nettsiden.
+
+VIKTIG
+  * Ikke slett eller erstatt site/data/, state/ eller andre prosjektfiler.
+  * Ingen nye API-nøkler er nødvendige for denne UI-oppdateringen.
+  * Dette er faktisk skriftlig forklaring fra eksisterende kampdata, ikke en KI som gjør nye nett-søk for hvert tips.
+  * Vitibet, Forebet og andre eksperter blir ALDRI påstått å støtte et tips dersom ingen verifisert kilde er registrert i dataene.
+  * Kvaliteten på beregnet oddsverdi avhenger fortsatt av modellen i scripts/recommend.py.
+  * For full ekstern kildeanalyse kreves separate, stabile integrasjoner og kilde-URL-er.
+
+Teknisk integrasjonstest verifisert med v1.1 app.js, HTML escaping, høy-odds/avvik-warning, market vs model, kilde-fravær og tekst fra registrert ekstern kilde.
