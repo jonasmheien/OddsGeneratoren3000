@@ -1,4 +1,4 @@
-"""Regression checks for the v1.5 market-family and identity UI.
+"""Regression checks for v1.5 data, updated for the selective v1.6 presentation.
 
 No outside web calls, no invented expert projections or official logo licenses.
 """
@@ -17,11 +17,11 @@ NOW = datetime(2026,11,4,8,20,tzinfo=timezone.utc)
 class MarketViewV15Tests(unittest.TestCase):
     def test_all_seven_market_groups_are_explicit(self):
         source = (ROOT/'site'/'market-board-v14.js').read_text(encoding='utf-8')
-        for name in ('Over / under mål', 'Lagmål', 'Begge lag scorer', '1. omgang',
+        for name in ('Mål', 'Lagmål', 'Begge lag scorer', '1. omgang',
                      'Hjørnespark', 'Kort', 'Målscorer'):
             self.assertIn(name, source)
         self.assertIn('aria-pressed', source)
-        self.assertIn('Ingen dokumenterte odds', source)
+        self.assertIn('Ingen ekstra markeder oppfyller kvalitetskravene', source)
 
     def test_score_consensus_is_not_hidden_when_missing(self):
         js=(ROOT/'site'/'score-consensus-v14.js').read_text(encoding='utf-8')
@@ -39,8 +39,8 @@ class MarketViewV15Tests(unittest.TestCase):
 
     def test_no_site_data_or_state_is_overwritten_by_patch(self):
         index=(ROOT/'site'/'index.html').read_text(encoding='utf-8')
-        self.assertIn('market-board-v14.js?v=15', index)
-        self.assertIn('score-consensus-v14.js?v=15', index)
+        self.assertIn('market-board-v14.js?v=16', index)
+        self.assertIn('score-consensus-v14.js?v=16', index)
         self.assertIn('Data provided by football-data.org', index)
         self.assertTrue((ROOT/'site'/'data'/'today.json').exists())
 
