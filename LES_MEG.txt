@@ -1,0 +1,16 @@
+OddsGeneratoren 1.2 – engangsoppdatering av dagens tips
+
+Denne pakken endrer KUN .github/workflows/publish.yml.
+Den gjør at du kan velge 'force_refresh' ved manuell 'daily'-kjøring.
+
+1. Pakk ut ZIP.
+2. Åpne GitHub Desktop > Repository > Show in Finder.
+3. I prosjektmappen: gå til .github/workflows (trykk Cmd+Shift+. for å vise skjulte mapper i Finder).
+4. Erstatt KUN filen publish.yml med den fra pakken.
+5. Commit og Push origin i GitHub Desktop.
+6. GitHub > Actions > Oppdater OddsGeneratoren > Run workflow.
+7. Velg 'daily' og huk av 'force_refresh'. Trykk Run workflow.
+8. Når kjøringen er fullført og Pages er publisert, oppdater nettstedet.
+
+OBS: Den gamle dagsutgaven erstattes. Nye analyser er ikke garantert å finne spill i alle markeder.
+Ikke erstatt hele prosjektmappen eller slett state/ eller site/data/.

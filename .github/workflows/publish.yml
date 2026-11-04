@@ -24,6 +24,11 @@ on:
         type: choice
         options: [deploy, results, daily]
         default: deploy
+      force_refresh:
+        description: 'Erstatt dagens utgave med en ny analyse med gjeldende kode'
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
@@ -87,6 +92,8 @@ jobs:
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
           MODE: ${{ steps.trigger.outputs.mode }}
           ODDS_OUTPUT_PATH: state/.candidate.json
+          # Only an explicit manual daily run with force_refresh can replace the locked daily edition.
+          FORCE_REPLACE_EDITION: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'daily' && inputs.force_refresh && '1' || '0' }}
         run: |
           python scripts/lifecycle.py "$MODE" | tee /tmp/odds-lifecycle.txt
           if [[ "$MODE" == "results" ]] && ! grep -q 'RESULTS_CHANGED=1' /tmp/odds-lifecycle.txt; then
