@@ -1,0 +1,15 @@
+.tomorrow-section{margin:33px 0 26px;padding:25px;border:1px solid #536552;border-radius:15px;background:linear-gradient(135deg,rgba(30,53,38,.62),rgba(12,22,23,.95));color:#eaf0eb}
+.tomorrow-heading{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.tomorrow-heading h2{font-size:clamp(22px,3vw,33px);letter-spacing:-.6px;font-weight:650;margin:3px 0}
+.tomorrow-kicker{font-size:10px;font-weight:700;letter-spacing:1.9px;color:#b9ed77}
+.tomorrow-count{font-size:12px;color:#d6e5d8;white-space:nowrap}
+.tomorrow-intro,.tomorrow-empty,.tomorrow-extra{font-size:12px;color:#aabdb4;line-height:1.65}
+.tomorrow-intro{margin:10px 0 18px}
+.tomorrow-empty{margin:12px 0 0}
+.tomorrow-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.tomorrow-card{min-width:0;padding:16px;border:1px solid #34473b;border-radius:11px;background:rgba(9,18,19,.68)}
+.tomorrow-league{font-size:10px;color:#abc3b2}.tomorrow-match{font-size:16px;font-weight:650;margin:9px 0}.tomorrow-match span{color:#69847e}
+.tomorrow-market{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px}
+.tomorrow-market strong{color:#edc679;font-size:19px;font-variant-numeric:tabular-nums}
+.tomorrow-card p{font-size:11px;line-height:1.5;color:#9eada7;margin:8px 0 0}
+@media(max-width:650px){.tomorrow-section{padding:17px}.tomorrow-grid{grid-template-columns:1fr}.tomorrow-heading{align-items:flex-start;flex-direction:column;gap:4px}}

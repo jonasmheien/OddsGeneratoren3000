@@ -56,10 +56,10 @@ if os.getenv('ODDS_CORNERS_ENABLED','') == '1':
 MARKETS = ('H', 'U', 'B', 'O25', 'U25', 'O35', 'BTTS')
 
 
-def sports_today(fixtures: list, now: datetime, max_sports: int = ODDS_SPORTS_PER_RUN) -> list[str]:
+def sports_today(fixtures: list, now: datetime, max_sports: int = ODDS_SPORTS_PER_RUN, target_date=None) -> list[str]:
     """Use API quota on eligible upcoming competitions, not arbitrary fixed leagues."""
     counts = defaultdict(int)
-    today = now.astimezone(OSLO).date()
+    today = target_date or now.astimezone(OSLO).date()
     for fixture in fixtures:
         if fixture.get('status') not in ('SCHEDULED', 'TIMED'):
             continue
@@ -398,7 +398,7 @@ def predictions_for(m: dict, rows: list[dict]) -> list[dict]:
     return result
 
 
-def missing_form_teams(fixtures: list, now: datetime, limit: int = 16) -> list[int]:
+def missing_form_teams(fixtures: list, now: datetime, limit: int = 16, target_date=None) -> list[int]:
     """Find CL sides lacking even five past results in our fixture history.
 
     Team endpoints can return domestic-league results as well as CL matches.
@@ -412,7 +412,7 @@ def missing_form_teams(fixtures: list, now: datetime, limit: int = 16) -> list[i
             start=iso_datetime(m['utcDate'])
         except (KeyError,ValueError,TypeError):
             continue
-        if start<=now or start.astimezone(OSLO).date()!=now.astimezone(OSLO).date():
+        if start<=now or start.astimezone(OSLO).date()!=(target_date or now.astimezone(OSLO).date()):
             continue
         for item in ('homeTeam','awayTeam'):
             team_id=(m.get(item) or {}).get('id')
@@ -424,7 +424,7 @@ def missing_form_teams(fixtures: list, now: datetime, limit: int = 16) -> list[i
 
 
 def independent_api_predictions(fixtures: list, now: datetime, api_key: str,
-                                max_predictions: int = 10) -> tuple[dict, list[str]]:
+                                max_predictions: int = 10, target_date=None) -> tuple[dict, list[str]]:
     """Optionally fetch a limited second model from the documented API-Football
     Predictions API. Match team names AND start times, reject ambiguous matches.
     Free-tier access depends on the provider's current season permissions.
@@ -433,7 +433,7 @@ def independent_api_predictions(fixtures: list, now: datetime, api_key: str,
     issues=[]
     if not api_key:
         return {}, issues
-    local_date=now.astimezone(OSLO).date().isoformat()
+    local_date=(target_date or now.astimezone(OSLO).date()).isoformat()
     api_base='https://v3.football.api-sports.io'
     headers={'x-apisports-key': api_key}
     try:
@@ -495,8 +495,8 @@ def independent_api_predictions(fixtures: list, now: datetime, api_key: str,
     return predictions,issues
 
 
-def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manual_models: list, errors: list, status: dict, external_predictions: dict | None = None) -> dict:
-    today = now.astimezone(OSLO).date()
+def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manual_models: list, errors: list, status: dict, external_predictions: dict | None = None, target_date=None) -> dict:
+    today = target_date or now.astimezone(OSLO).date()
     cutoff = today + timedelta(days=1)
     output = []
     strengths = opponent_indices(fixtures, now)
@@ -609,7 +609,10 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
 
 def main():
     now = datetime.now(timezone.utc)
-    date = now.astimezone(OSLO).date()
+    preview_offset = int(os.getenv('ODDS_TARGET_DAY_OFFSET', '0'))
+    if preview_offset not in (0, 1):
+        raise ValueError('ODDS_TARGET_DAY_OFFSET must be 0 or 1')
+    date = now.astimezone(OSLO).date() + timedelta(days=preview_offset)
     key = os.getenv('FOOTBALL_DATA_API_KEY', '').strip()
     odds_key = os.getenv('ODDS_API_KEY', '').strip()
     errors = []
@@ -637,11 +640,13 @@ def main():
             day_fixtures = response.get('matches', [])
             if not isinstance(day_fixtures, list):
                 raise ValueError('Unknown API fixture response')
-            sports = sports_today(day_fixtures, now)
+            sports = sports_today(day_fixtures, now, target_date=date)
             fixtures_by_id = {m['id']: m for m in day_fixtures if m.get('id')}
             sport_to_code = {v: k for k,v in SPORT_BY_COMPETITION.items()}
             for sport in sports:
                 code = sport_to_code[sport]
+                if code.startswith('APF-'):
+                    continue  # API-Football leagues have their own history source.
                 history_url = BASE + f'/competitions/{code}/matches?' + urlencode({
                     'dateFrom': (date - timedelta(days=180)).isoformat(),
                     'dateTo': (date + timedelta(days=2)).isoformat(), 'limit': 500})
@@ -654,7 +659,7 @@ def main():
                     errors.append(f'Historikk ({code}): feil ({type(exc).__name__})')
             # CL form is often sparse in November. Supplement it with the
             # teams' league results, while staying inside the API rate limit.
-            needs=missing_form_teams(list(fixtures_by_id.values()),now)
+            needs=missing_form_teams(list(fixtures_by_id.values()),now,target_date=date)
             team_requests_ok=0
             for team_id in needs:
                 url=BASE+f'/teams/{team_id}/matches?'+urlencode({
@@ -684,7 +689,7 @@ def main():
             combined={str(m['id']):m for m in fixtures if m.get('id')}
             combined.update({str(m['id']):m for m in extra if m.get('id')})
             fixtures=list(combined.values())
-            sports=sports_today(fixtures,now)
+            sports=sports_today(fixtures,now,target_date=date)
         status['apiFootballExtraFixtures']=sum(m.get('status')=='SCHEDULED' for m in extra)
         status['apiFootballExtraHistory']=sum(m.get('status')=='FINISHED' for m in extra)
     if odds_key:
@@ -727,7 +732,7 @@ def main():
     external={}
     third_key=os.getenv('API_FOOTBALL_KEY','').strip()
     if third_key and fixtures:
-        external,external_errors=independent_api_predictions(fixtures, now, third_key, max_predictions=10)
+        external,external_errors=independent_api_predictions(fixtures, now, third_key, max_predictions=10, target_date=date)
         errors.extend(external_errors)
         status['externalPredictionsStatus']='ok' if external else 'error' if external_errors else 'empty'
         status['externalPredictionsCount']=len(external)
@@ -735,7 +740,7 @@ def main():
         status['externalPredictionsStatus']='not_configured'
     snapshot = build_snapshot(now, fixtures, odds_events,
                               read_manual_models(ROOT / 'data' / 'manual_predictions.csv'),
-                              errors, status, external_predictions=external)
+                              errors, status, external_predictions=external, target_date=date)
     # Visibility into the reason a full match programme produces few picks.
     current_matches = [m for m in snapshot['matches']
                        if iso_datetime(m['kickoff']).astimezone(OSLO).date() == date
