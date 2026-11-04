@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" role="img" aria-labelledby="t d">
+ <title id="t">OddsGeneratoren ikon</title><desc id="d">Originalt teknologisk OG-monogram med grønn signalring og gyllen G</desc>
+ <defs><linearGradient id="k" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c8fb71"/><stop offset="1" stop-color="#70d5a0"/></linearGradient><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f3d88a"/><stop offset="1" stop-color="#bb9451"/></linearGradient></defs>
+ <rect x="1.5" y="1.5" width="77" height="77" rx="18" fill="#101819" stroke="#3a5351" stroke-width="2"/>
+ <path d="M54.5 15.5 A29 29 0 1 0 64 31" fill="none" stroke="url(#k)" stroke-width="8" stroke-linecap="square"/>
+ <path d="M39 28 H54 L61 35 V51 L52 59 H38" fill="none" stroke="url(#g)" stroke-width="7" stroke-linecap="square" stroke-linejoin="bevel"/>
+ <path d="M61 42 H48" stroke="url(#g)" stroke-width="7"/>
+ <path d="M15 17 L23 9" stroke="#d2efb3" stroke-width="3" opacity=".65"/><path d="M62 13 L70 21" stroke="#e1c77d" stroke-width="3" opacity=".75"/>
+</svg>
