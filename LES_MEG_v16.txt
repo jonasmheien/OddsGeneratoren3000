@@ -1,0 +1,30 @@
+OddsGeneratoren v1.6 – Ryddigere tipsvisning
+
+Hva er endret:
+- «Flere spillmarkeder» viser KUN kvalifiserte spill fra analysen.
+  Ren bookmakerdekning og «til vurdering» ligger fortsatt i den lagrede datafilen,
+  men vises ikke som anbefalinger.
+- Over og under på samme linje vises aldri samtidig. For en kamp og en
+  markedsfamilie vises høyst én kvalifisert linje.
+- Et marked vises ikke på nytt dersom identisk spill allerede er under Dagens tips.
+- Dagens tips, Flere Safe Bets og Flere High Risk viser ikke samme kamp flere ganger.
+- Forventet resultat fremhever inntil fem kamper som også har anbefalte spill.
+- Ikke-kvalifiserte kort-/hjørnespark-/målscorermarkeder blir ikke fremstilt
+  som spillforslag.
+
+Dette er en VISNINGSOPPDATERING og endrer ikke oddsmodell eller markedskilder.
+Dagens publiserte spill/odds beholdes, og push utløser vanlig deploy, ikke ny
+analyse. Manglende kvalifiserte spill er et helt gyldig resultat.
+
+INSTALLASJON (viktig: IKKE erstatt hele «site»-mappen):
+1. Åpne Github Desktop → Repository → Show in Finder.
+2. Åpne den eksisterende «site»-mappen i prosjektet.
+3. Kopier de FIRE filene app.js, index.html, market-board-v14.js og
+   score-consensus-v14.js fra ZIP inn i akkurat denne mappen.
+4. Velg Erstatt på enkeltfilene med samme navn.
+5. Åpne GitHub Desktop. Kontroller at akkurat disse fire filene er endret,
+   og at ingen andre filer er slettet.
+6. Commit to main → Push origin.
+7. Etter grønn GitHub Actions-publisering: åpne nettsiden og trykk Oppdater.
+
+Ingen .github/, state/, data/ eller tests/-filer skal kopieres.
