@@ -48,7 +48,10 @@
     if(!dataset){holder.innerHTML='<p class="score-prediction-intro">Dagsutgaven er ennå ikke analysert med resultatprognosemodulen. En ny dagsanalyse må kjøres før denne delen kan vise kamper.</p>';return;}
     const sourceCount=Number(dataset.sourceForecasts||0),combined=Number(dataset.fixturesWithConsensus||0);
     const intro=`<p class="score-prediction-intro">${combined?`${combined} kamper har et samlet scoreanslag fra minst to ulike kilder.`:'Ingen kamper har ennå minst to dokumenterte eksterne scoreprognoser.'} ${sourceCount} eksterne resultattips registrert. Egen modell vises separat.</p>`;
-    const visible=games.filter(g=>g.home&&g.away).slice(0,8);
+    const featured=[...(snapshot.recommendations||[]),...(snapshot.safeBets||[]),...(snapshot.highRisk||[])];
+    const order=new Map();for(const p of featured)if(!order.has(String(p.matchId)))order.set(String(p.matchId),order.size);
+    const visible=games.filter(g=>g.home&&g.away&&order.has(String(g.matchId)))
+      .sort((a,b)=>order.get(String(a.matchId))-order.get(String(b.matchId))).slice(0,5);
     holder.innerHTML=intro+(visible.length?`<div class="score-prediction-grid">${visible.map(g=>gameCard(g,fixtures.get(String(g.matchId))||{},allowed)).join('')}</div>`:'<div class="score-prediction-empty">Ingen resultattips tilgjengelig i denne dagsutgaven.</div>')+
       '<p class="score-prediction-note">Forebet, Vitibet, PredictZ og WinDrawWin er ikke automatisk tilkoblet. Deres tips inngår bare når de er registrert med datostempel og kildelenke. API-Football kan brukes dersom abonnement og API-nøkkel er konfigurert. Ingen oppdiktede kilder.</p>';
     root.querySelectorAll('img').forEach(img=>img.addEventListener('error',()=>{img.replaceWith(document.createTextNode('?'));},{once:true}));

@@ -1,17 +1,17 @@
 'use strict';
-/* v1.5: Market families remain visible, even when optional feeds have no quotes.
-   'Til vurdering' is never represented as a confirmed betting recommendation. */
+/* v1.6: Show selections, never a catalogue of both outcomes or unqualified watch items.
+   Archived watch candidates remain in JSON for audit, but are not betting tips. */
 (() => {
   const $ = id => document.getElementById(id);
-  const esc = v => String(v ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const groups = [
-    ['goals','Over / under mål'],['team_goals','Lagmål'],['btts','Begge lag scorer'],
-    ['first_half','1. omgang'],['corners','Hjørnespark'],['cards','Kort'],['goalscorer','Målscorer'],
+    ['goals','Mål'],['team_goals','Lagmål'],['btts','Begge lag scorer'],
+    ['first_half','1. omgang'],['corners','Hjørnespark'],['cards','Kort'],['goalscorer','Målscorer']
   ];
   const groupLabel = Object.fromEntries(groups);
-  const odds = n => Number(n).toLocaleString('nb-NO',{minimumFractionDigits:2,maximumFractionDigits:2});
-  const time = value => { const d = new Date(value); return Number.isNaN(+d)?'':new Intl.DateTimeFormat('nb-NO',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/Oslo'}).format(d); };
-  const permittedImage = url => { try {const u=new URL(url);return u.protocol==='https:'&&['crests.football-data.org','upload.wikimedia.org'].includes(u.hostname)?u.href:null;}catch{return null;} };
+  const fmtOdds = n => Number(n).toLocaleString('nb-NO',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const fmtTime = v => {const d=new Date(v);return Number.isNaN(+d)?'':new Intl.DateTimeFormat('nb-NO',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/Oslo'}).format(d);};
+  const image = url => {try{const u=new URL(url);return u.protocol==='https:'&&['crests.football-data.org','upload.wikimedia.org'].includes(u.hostname)?u.href:null;}catch{return null;}};
   const familyOf = code => {
     code=String(code||'');
     if(code.startsWith('CO'))return 'corners';
@@ -23,85 +23,108 @@
     if(/^[OU](15|25|35)$/.test(code))return 'goals';
     return null;
   };
-  let host, active='all', snapshot=null;
-  function ensure(){
-    if(host)return host;
-    host=document.createElement('section');host.id='spesialmarkeder';host.className='extra-market-section';
-    host.setAttribute('aria-labelledby','special-market-heading');
-    host.innerHTML='<div class="extra-heading"><div><div class="extra-kicker">ODDS OG SPILLMARKEDER</div><h2 id="special-market-heading">Flere spillmarkeder</h2></div></div><div id="market-filters" class="market-filters" role="group" aria-label="Filtrer spillmarkeder"></div><div id="extra-market-body"></div>';
-    const before=document.querySelector('#resultater');
-    if(before)before.before(host); else document.querySelector('main')?.appendChild(host);
-    host.querySelector('#market-filters').addEventListener('click', event=>{
-      const target=event.target.closest('button[data-family]');if(!target)return;
-      active=target.dataset.family; if(snapshot)render(snapshot);
-    });
-    return host;
+  function lineKey(code){
+    code=String(code||'');
+    if(/^CO[OU]\d+$/.test(code)||/^CA[OU]\d+$/.test(code))return code.slice(0,2)+':'+code.slice(3);
+    if(/^H1[OU]\d+$/.test(code))return 'H1:'+code.slice(3);
+    if(/^T[HA][OU]\d+$/.test(code))return code.slice(0,2)+':'+code.slice(3);
+    if(/^[OU]\d+$/.test(code))return 'FT:'+code.slice(1);
+    if(code==='BTTS'||code==='BTTSN')return 'BTTS';
+    return code;
   }
-  function badge(name,url,approved){
-    const initials=String(name||'?').split(/\s+/).filter(Boolean).slice(0,2).map(s=>s[0]).join('').toUpperCase()||'?';
-    const src=approved?permittedImage(url):null;
+  const keyOf = p => String(p.matchId)+'|'+String(p.market);
+  const confidence = p => {
+    const prob=Number(p.probability),price=Number(p.price),books=Number(p.bookmakers);
+    const edge=Number.isFinite(prob)&&Number.isFinite(price)?prob*price-1:0;
+    return (Number.isFinite(Number(p.score))?Number(p.score):0)+Math.min(Math.max(edge,-1),.25)*5+Math.min(books||0,10)*.05;
+  };
+  function selectRecommended(data){
+    const otherSelections=new Set();
+    for(const section of ['recommendations','safeBets','highRisk']){
+      for(const p of (data?.[section]||[]))otherSelections.add(keyOf(p));
+    }
+    const matches=new Map((data?.matches||[]).map(m=>[String(m.id),m]));
+    const grouped=new Map();
+    for(const p of (data?.additionalMarkets?.tips||[])){
+      if(!p || p.verified!==true || p.needsLineup===true || otherSelections.has(keyOf(p)))continue;
+      const family=p.marketType||familyOf(p.market);
+      const price=Number(p.price),prob=Number(p.probability),books=Number(p.bookmakers);
+      if(!groupLabel[family] || !Number.isFinite(price) || price<=1 ||
+         !Number.isFinite(prob) || prob<=0 || prob>=1 || books<2)continue;
+      // Exactly one recommendation per match, family and line; the rejected
+      // opposite can never become a second recommendation on screen.
+      const key=String(p.matchId)+'|'+family+'|'+lineKey(p.market);
+      const match=matches.get(String(p.matchId))||{};
+      const enriched={...p,marketType:family,homeCrest:p.homeCrest||match.homeCrest,awayCrest:p.awayCrest||match.awayCrest};
+      if(!grouped.has(key)||confidence(enriched)>confidence(grouped.get(key)))grouped.set(key,enriched);
+    }
+    // Avoid multiple different thresholds or overlapping special bets from
+    // the same match and family. The top certified selection wins.
+    const unique=new Map();
+    for(const p of grouped.values()){
+      const key=String(p.matchId)+'|'+p.marketType;
+      if(!unique.has(key)||confidence(p)>confidence(unique.get(key)))unique.set(key,p);
+    }
+    return [...unique.values()].sort((a,b)=>confidence(b)-confidence(a)).slice(0,5);
+  }
+  let root,active='all',snapshot=null;
+  function ensure(){
+    if(root)return root;
+    root=document.createElement('section');root.id='spesialmarkeder';root.className='extra-market-section';
+    root.setAttribute('aria-labelledby','special-market-heading');
+    root.innerHTML='<div class="extra-heading"><div><div class="extra-kicker">KVALIFISERTE SPILL</div><h2 id="special-market-heading">Andre spillmarkeder</h2></div></div><div class="market-filters" id="market-filters" role="group" aria-label="Filtrer anbefalte markeder"></div><div id="extra-market-body"></div>';
+    const before=document.querySelector('#resultater');
+    if(before)before.before(root);else document.querySelector('main')?.appendChild(root);
+    root.querySelector('#market-filters').addEventListener('click',event=>{
+      const button=event.target.closest('button[data-family]');if(!button)return;
+      active=button.dataset.family;if(snapshot)render(snapshot);
+    });
+    return root;
+  }
+  function badge(name,url,allow){
+    const initials=String(name||'?').split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase()||'?';
+    const src=allow?image(url):null;
     return `<span class="extra-team-mark" aria-hidden="true">${src?`<img src="${esc(src)}" loading="lazy" alt="">`:esc(initials)}</span>`;
   }
-  function collect(data){
-    const opts=data?.additionalMarkets||{};
-    const matches=new Map((data?.matches||[]).map(m=>[String(m.id),m]));
-    const seen=new Set(), out=[];
-    function add(p,qualified){
-      if(!p || !Number.isFinite(Number(p.price)) || Number(p.price)<=1 || !p.label)return;
-      const kind=p.marketType||familyOf(p.market);if(!kind||!groupLabel[kind])return;
-      const key=String(p.matchId)+'|'+String(p.market);if(seen.has(key))return;seen.add(key);
-      const fixture=matches.get(String(p.matchId))||{};
-      out.push({...p,marketType:kind,verified:qualified,homeCrest:p.homeCrest||fixture.homeCrest,awayCrest:p.awayCrest||fixture.awayCrest});
-    }
-    for(const key of ['recommendations','safeBets','highRisk'])for(const p of (data?.[key]||[]))add(p,true);
-    for(const p of (opts.tips||[]))add(p,true);
-    for(const p of (opts.watchlist||[]))add(p,false);
-    return out;
-  }
-  function card(p,approved){
-    const good=p.verified===true;
-    const reasons=(Array.isArray(p.rationale)?p.rationale:[]).filter(s=>typeof s==='string').slice(0,5);
-    const probability=Number(p.probability);
-    const probLine=Number.isFinite(probability) && probability>0 && probability<1
-      ?`<span class="market-prob">Modellanslag: ${Math.round(100*probability)} %</span>`:'';
-    return `<details class="extra-market-card ${good?'market-good':'market-watch'}">
-      <summary><span class="extra-market-main"><span class="extra-market-league">${esc(p.league||'Fotball')} · ${esc(time(p.kickoff))}</span>
-        <span class="extra-market-match">${badge(p.home,p.homeCrest,approved)}${esc(p.home)} <span class="market-vs">–</span> ${badge(p.away,p.awayCrest,approved)}${esc(p.away)}</span>
-        <span class="extra-market-play">${esc(p.label)}</span></span>
-        <span class="extra-market-right"><strong>${esc(odds(p.price))}</strong><span>${good?'ANALYSERT':'TIL VURDERING'}</span></span></summary>
-      <div class="extra-market-analysis"><p>${good?'Dette utfallet passerte analysekravene ved publisering. Modellsannsynligheten er ikke kalibrert.':'Bookmakerprisen er tilgjengelig, men utfallet er ikke godkjent som et anbefalt spill.'}</p>${probLine}
-        ${reasons.length?`<ul>${reasons.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
-        <span class="extra-market-source">${esc(p.oddsSource||p.source||'The Odds API')} · pris ved analyse${p.bookmakers?' · '+esc(p.bookmakers)+' bookmakere':''}</span></div></details>`;
+  function card(p,allowed){
+    const reasons=(Array.isArray(p.rationale)?p.rationale:[]).filter(x=>typeof x==='string').slice(0,4);
+    const prob=Number(p.probability);
+    return `<details class="extra-market-card market-good"><summary>
+      <span class="extra-market-main"><span class="extra-market-league">${esc(p.league||'Fotball')} · ${esc(fmtTime(p.kickoff))}</span>
+      <span class="extra-market-match">${badge(p.home,p.homeCrest,allowed)} ${esc(p.home)} <span class="market-vs">–</span> ${badge(p.away,p.awayCrest,allowed)} ${esc(p.away)}</span>
+      <span class="extra-market-play">${esc(p.label)}</span></span>
+      <span class="extra-market-right"><strong>${esc(fmtOdds(p.price))}</strong><span>ANALYSERT</span></span>
+      </summary><div class="extra-market-analysis"><p>Dette er den best rangerte, kvalifiserte linjen i markedet for denne kampen. Et modellanslag er ikke en garanti for verdi.</p>
+      <span class="market-prob">Modellanslag: ${Math.round(prob*100)} %</span>
+      ${reasons.length?`<ul>${reasons.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
+      <span class="extra-market-source">${esc(p.oddsSource||p.source||'The Odds API')} · odds ved analyse · ${esc(p.bookmakers)} bookmakere</span></div></details>`;
   }
   function render(data){
     snapshot=data;ensure();
-    const extra=data?.additionalMarkets;
-    const all=collect(data);
-    const filters=[['all','Alle',all.length],...groups.map(([key,label])=>[key,label,all.filter(p=>p.marketType===key).length])];
-    $('market-filters').innerHTML=filters.map(([key,label,count])=>`<button type="button" data-family="${key}" aria-pressed="${String(active===key)}" class="market-filter${active===key?' selected':''}">${esc(label)} <span>${count}</span></button>`).join('');
-    const shown=active==='all'?groups.filter(([key])=>all.some(p=>p.marketType===key)):groups.filter(([key])=>key===active);
-    const approved=data?.visualAssets?.licensedCrests===true;
-    let body='';
-    if(!extra){body+='<p class="market-status">Dagens analyse ble publisert før de nye markedene ble hentet. Ordinære målspill kan vises nedenfor. De øvrige markedsdataene blir tilgjengelige etter en ny dagsanalyse.</p>';}
-    else if(extra.issues?.length){body+='<p class="market-status">Noen spesialmarkeder kunne ikke hentes i dag. Eksisterende tips påvirkes ikke.</p>';}
-    if(!shown.length)body+='<div class="extra-market-empty">Ingen tilgjengelige odds i de valgte markedene. Velg en kategori for å se statusen.</div>';
-    for(const [key,label] of shown){
-      const allForGroup=all.filter(p=>p.marketType===key);
-      const top=allForGroup.filter(x=>x.verified).slice(0,3);
-      const watch=allForGroup.filter(x=>!x.verified).slice(0,4);
-      const count=top.length+watch.length;
-      body+=`<div class="market-family"><div class="market-family-title"><strong>${esc(label)}</strong><span>${count?`${count} viste utfall`:'Ingen dokumenterte odds'}</span></div>`;
-      if(count){body+=`<div class="extra-market-grid">${[...top,...watch].map(p=>card(p,approved)).join('')}</div>`;}
-      else{body+=`<div class="extra-market-empty">${!extra?'Ikke analysert med denne versjonen ennå.':'Ingen verifiserbare odds eller tilstrekkelig grunnlag i dagens utgave.'}</div>`;}
-      body+='</div>';
+    const all=selectRecommended(data);
+    const body=$('extra-market-body');const filters=$('market-filters');
+    const available=groups.filter(([key])=>all.some(p=>p.marketType===key));
+    if(active!=='all'&&!available.some(([key])=>key===active))active='all';
+    root.hidden=false;
+    if(!all.length){
+      filters.innerHTML='';
+      body.innerHTML='<p class="extra-market-empty">Ingen ekstra markeder oppfyller kvalitetskravene i denne dagsutgaven. Kort, hjørnespark og målscorere vises ikke som tips bare fordi bookmakerne tilbyr odds.</p>';
+      return;
     }
-    body+='<p class="extra-market-footnote">Over/under-markeder kan ha ulike linjer og oppgjørsregler hos bookmakerne. Målscorere krever kontroll av startoppstilling. Fravær av odds eller statistikk gir ingen spillanbefaling.</p>';
-    $('extra-market-body').innerHTML=body;
-    host.querySelectorAll('img').forEach(img=>img.addEventListener('error',()=>{img.replaceWith(document.createTextNode('?'));},{once:true}));
+    filters.innerHTML=[['all','Alle',all.length],...available.map(([key,label])=>[key,label,all.filter(p=>p.marketType===key).length])]
+      .map(([key,label,count])=>`<button type="button" data-family="${key}" aria-pressed="${String(active===key)}" class="market-filter${active===key?' selected':''}">${esc(label)} <span>${count}</span></button>`).join('');
+    const shown=active==='all'?all:all.filter(p=>p.marketType===active);
+    const approved=data?.visualAssets?.licensedCrests===true;
+    body.innerHTML=`<p class="extra-market-intro">Kun godkjente analyser. Vi viser ikke begge sider av samme linje, duplikater fra Dagens tips eller rene oddsobservasjoner.</p><div class="extra-market-grid">${shown.map(p=>card(p,approved)).join('')}</div>`;
+    root.querySelectorAll('img').forEach(img=>img.addEventListener('error',()=>{img.replaceWith(document.createTextNode('?'));},{once:true}));
   }
   async function load(){
-    try{const response=await fetch(`data/today.json?markets_v15=${Date.now()}`,{cache:'no-store'});if(response.ok)render(await response.json());}
-    catch{/* this secondary display cannot block the main pick list */}
+    try{const r=await fetch(`data/today.json?clean_v16=${Date.now()}`,{cache:'no-store'});if(r.ok)render(await r.json());}
+    catch{/* Secondary UI must never prevent the main daily tips from rendering. */}
   }
-  document.addEventListener('DOMContentLoaded',()=>{ensure();load();$('refresh-data')?.addEventListener('click',load);setInterval(()=>{if(document.visibilityState==='visible')load();},60000);});
+  if(typeof module==='object'&&module.exports)module.exports={selectRecommended,lineKey,familyOf};
+  if(typeof document!=='undefined')document.addEventListener('DOMContentLoaded',()=>{
+    ensure();load();$('refresh-data')?.addEventListener('click',load);
+    setInterval(()=>{if(document.visibilityState==='visible')load();},60000);
+  });
 })();
