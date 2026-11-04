@@ -22,6 +22,7 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
 from recommend import curated_picks, category_picks
+from form_v21 import adjusted_form, effective_form_sample, opponent_indices
 from market_expansion import extend_goal_probabilities, first_half_probabilities, corner_probabilities
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -186,7 +187,7 @@ def fixed_odds_event(match: dict, odds_events: list) -> dict:
     return candidates[0][1]
 
 
-def recent_team_form(matches: list, before: datetime, team_id: int, limit: int = 6) -> list:
+def recent_team_form(matches: list, before: datetime, team_id: int, limit: int = 16) -> list:
     values = []
     for m in matches:
         if m.get('status') != 'FINISHED':
@@ -207,7 +208,7 @@ def recent_team_form(matches: list, before: datetime, team_id: int, limit: int =
             continue
         ish = home == team_id
         gf, ga = (hg, ag) if ish else (ag, hg)
-        values.append((kickoff, gf, ga, 'W' if gf > ga else 'D' if gf == ga else 'L'))
+        values.append((kickoff, gf, ga, 'W' if gf > ga else 'D' if gf == ga else 'L', away if ish else home))
     values.sort(reverse=True)
     return values[:limit]
 
@@ -494,6 +495,7 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
     today = now.astimezone(OSLO).date()
     cutoff = today + timedelta(days=1)
     output = []
+    strengths = opponent_indices(fixtures, now)
     for raw in fixtures:
         if raw.get('status') in ('CANCELLED','POSTPONED'):
             continue
@@ -522,7 +524,11 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
              'awayAliases': [away.get('name')],
              'kickoff': k.isoformat(), 'status': raw.get('status') or 'SCHEDULED',
              'formHome': ''.join(x[3] for x in hf), 'formAway': ''.join(x[3] for x in af),
-             'model': model_probabilities(hf, af), 'odds': {}, 'predictions': []}
+             'model': model_probabilities(adjusted_form(hf, strengths, k), adjusted_form(af, strengths, k)), 'odds': {}, 'predictions': []}
+        if m['model'] is not None:
+            m['model']['effectiveSample'] = [effective_form_sample(hf, k), effective_form_sample(af, k)]
+            m['model']['modelMethod'] = 'strength_adjusted_v21'
+            m['model']['historyWindowDays'] = 180
         if m['model'] is not None:
             m['model']['probabilities'].update(first_half_probabilities(fixtures,k,home['id'],away['id']))
             m['model']['probabilities'].update(corner_probabilities(fixtures,k,home['id'],away['id']))
@@ -633,7 +639,7 @@ def main():
             for sport in sports:
                 code = sport_to_code[sport]
                 history_url = BASE + f'/competitions/{code}/matches?' + urlencode({
-                    'dateFrom': (date - timedelta(days=75)).isoformat(),
+                    'dateFrom': (date - timedelta(days=180)).isoformat(),
                     'dateTo': (date + timedelta(days=2)).isoformat(), 'limit': 500})
                 try:
                     hist = fetch_football(history_url).get('matches', [])
@@ -648,7 +654,7 @@ def main():
             team_requests_ok=0
             for team_id in needs:
                 url=BASE+f'/teams/{team_id}/matches?'+urlencode({
-                    'dateFrom':(date-timedelta(days=85)).isoformat(),
+                    'dateFrom':(date-timedelta(days=180)).isoformat(),
                     'dateTo':date.isoformat(), 'status':'FINISHED','limit':100})
                 try:
                     rows=fetch_football(url).get('matches', [])
