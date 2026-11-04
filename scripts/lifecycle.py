@@ -14,6 +14,8 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
+from versions_v22 import record_revision, publish_version_history
+from expanded_sources_v23 import results_for
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE = ROOT / 'state' / 'active.json'
@@ -142,22 +144,32 @@ def fetch_results(snapshot: dict, key: str):
     """
     if not key:
         raise RuntimeError('FOOTBALL_DATA_API_KEY is missing')
-    ids = {str(p.get('matchId')) for category in CATEGORIES
-           for p in snapshot.get(category, []) if str(p.get('matchId', '')).isdigit()}
-    if not ids:
+    all_ids = {str(p.get('matchId')) for category in CATEGORIES
+               for p in snapshot.get(category, []) if p.get('matchId') is not None}
+    ids = {x for x in all_ids if x.isdigit()}
+    apf_ids = {x for x in all_ids if x.startswith('apf:') and x[4:].isdigit()}
+    if not ids and not apf_ids:
         return []
-    edition = date.fromisoformat(snapshot.get('editionDate') or snapshot['localDate'])
-    url = 'https://api.football-data.org/v4/matches?' + urlencode({
-        'dateFrom': (edition - timedelta(days=1)).isoformat(),
-        'dateTo': (edition + timedelta(days=2)).isoformat()})
-    req = Request(url, headers={'X-Auth-Token': key,
-                                'User-Agent': 'OddsGeneratoren/0.9 (personal research)'})
-    with urlopen(req, timeout=35) as resp:
-        data = json.load(resp)
-    rows = data.get('matches')
-    if not isinstance(rows, list):
-        raise ValueError('Unknown match results response')
-    return [m for m in rows if str(m.get('id')) in ids]
+    found=[]
+    if ids:
+        edition = date.fromisoformat(snapshot.get('editionDate') or snapshot['localDate'])
+        url = 'https://api.football-data.org/v4/matches?' + urlencode({
+            'dateFrom': (edition - timedelta(days=1)).isoformat(),
+            'dateTo': (edition + timedelta(days=2)).isoformat()})
+        req = Request(url, headers={'X-Auth-Token': key,
+                                    'User-Agent': 'OddsGeneratoren/0.9 (personal research)'})
+        with urlopen(req, timeout=35) as resp:
+            data = json.load(resp)
+        rows = data.get('matches')
+        if not isinstance(rows, list):
+            raise ValueError('Unknown match results response')
+        found.extend(m for m in rows if str(m.get('id')) in ids)
+    if apf_ids and os.getenv('API_FOOTBALL_KEY', '').strip():
+        try:
+            found.extend(results_for(apf_ids, os.environ['API_FOOTBALL_KEY']))
+        except (OSError, ValueError, TimeoutError) as exc:
+            print('WARN: API-Football result feed unavailable:', type(exc).__name__)
+    return found
 
 
 def published_history(active: dict | None):
@@ -203,6 +215,7 @@ def save_active(snapshot: dict):
     atomic_json(STATE, snapshot)
     atomic_json(PUBLIC, snapshot)
     publish_history(snapshot)
+    publish_version_history(ROOT)
 
 
 def published_edition_fallback():
@@ -270,6 +283,8 @@ def main():
         if data is None:
             raise SystemExit('Snapshot not generated')
         revised = create_edition(data, previous, os.getenv('FOOTBALL_DATA_API_KEY','').strip())
+        if previous and os.getenv('FORCE_REPLACE_EDITION') == '1':
+            record_revision(previous, revised, ROOT)
         save_active(revised)
         if CANDIDATE != PUBLIC:
             CANDIDATE.unlink(missing_ok=True)

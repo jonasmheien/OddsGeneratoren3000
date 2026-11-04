@@ -117,6 +117,7 @@ jobs:
         shell: bash
         env:
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
           MODE: ${{ steps.trigger.outputs.mode }}
           ODDS_OUTPUT_PATH: state/.candidate.json
           FORCE_REPLACE_EDITION: ${{ ((github.event_name == 'workflow_dispatch' && inputs.mode == 'daily' && inputs.force_refresh) || steps.trigger.outputs.refresh_on_push == 'true') && '1' || '0' }}
@@ -135,7 +136,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A -- state/ site/data/today.json site/data/history.json
+          git add -A -- state/ site/data/today.json site/data/history.json site/data/versions.json
           # The trigger disappears only after a successful new daily edition.
           # A failed data pull leaves the trigger available for a job re-run.
           if [[ "${MODE}" == 'daily' ]] && [[ -f .github/refresh-once-v15 ]]; then

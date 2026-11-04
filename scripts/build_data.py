@@ -23,6 +23,7 @@ from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
 from recommend import curated_picks, category_picks
 from form_v21 import adjusted_form, effective_form_sample, opponent_indices
+from expanded_sources_v23 import discover as discover_extra, odds_remaining
 from market_expansion import extend_goal_probabilities, first_half_probabilities, corner_probabilities
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -37,6 +38,9 @@ SPORT_BY_COMPETITION = {
     'PD':'soccer_spain_la_liga', 'FL1':'soccer_france_ligue_one',
     'DED':'soccer_netherlands_eredivisie', 'PPL':'soccer_portugal_primeira_liga',
     'ELC':'soccer_efl_champ', 'EL':'soccer_uefa_europa_league',
+    'APF-NO1':'soccer_norway_eliteserien', 'APF-SE1':'soccer_sweden_allsvenskan',
+    'APF-SE2':'soccer_sweden_superettan', 'APF-DK1':'soccer_denmark_superliga',
+    'APF-ES2':'soccer_spain_segunda_division', 'APF-FI1':'soccer_finland_veikkausliiga',
 }
 # Free plan: 500 credits/month as of project setup. One region × two markets
 # costs about 2 credits per league per run (provider rules may change).
@@ -671,11 +675,36 @@ def main():
         except Exception as exc:
             errors.append('Kampdata: feil ved henting (' + type(exc).__name__ + ')')
             status['fixtures'] = 'error'
+    # Add explicitly matched API-Football league fixtures only when the
+    # account grants actual current-season coverage. No synthetic scores.
+    if os.getenv('API_FOOTBALL_KEY','').strip():
+        extra, extra_notes = discover_extra(date,now,os.environ['API_FOOTBALL_KEY'],max_history_calls=12)
+        errors.extend(extra_notes)
+        if extra:
+            combined={str(m['id']):m for m in fixtures if m.get('id')}
+            combined.update({str(m['id']):m for m in extra if m.get('id')})
+            fixtures=list(combined.values())
+            sports=sports_today(fixtures,now)
+        status['apiFootballExtraFixtures']=sum(m.get('status')=='SCHEDULED' for m in extra)
+        status['apiFootballExtraHistory']=sum(m.get('status')=='FINISHED' for m in extra)
     if odds_key:
         odds_events = []
         explicit = os.getenv('ODDS_SPORTS', '').strip()
         sports = ([x.strip() for x in explicit.split(',') if x.strip()] if explicit
                   else sports)
+        # The sports endpoint has zero quota cost and reports remaining
+        # credits in response headers. Leave room for later daily editions.
+        remaining=None
+        try:
+            remaining=odds_remaining(odds_key)
+        except (OSError,ValueError,TimeoutError) as exc:
+            errors.append('Odds quota check: '+type(exc).__name__)
+        status['oddsCreditsRemaining']=remaining
+        if remaining is not None:
+            # Each h2h + totals request costs two credits (one region).
+            # Reserve 48 credits and up to 6 credits for potential extras.
+            affordable=max(0,(remaining-54)//2)
+            sports=sports[:affordable]
         status['requestedLeagues'] = sports[:ODDS_SPORTS_PER_RUN]
         status['oddsMarketKeys'] = ['h2h', 'totals']
         for sport in sports[:ODDS_SPORTS_PER_RUN]:
@@ -687,9 +716,11 @@ def main():
                 odds_events.extend(items)
             except Exception as exc:
                 errors.append(f'Odds ({sport}): hentefeil ({type(exc).__name__})')
-        if odds_events:
+        if odds_events and (remaining is None or remaining >= 64):
             odds_events,extra_issues=fetch_extra_event_markets(sports,odds_events,now)
             errors.extend(extra_issues)
+        elif odds_events:
+            status['extraMarketsSkippedQuota']=True
         status['extraEventsLoaded']=sum(bool(e.get('extraMarketsLoaded')) for e in odds_events)
         status['odds'] = 'ok' if odds_events else 'empty' if not sports else 'error'
         status['oddsEventCount'] = len(odds_events)
