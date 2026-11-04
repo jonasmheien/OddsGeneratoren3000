@@ -1,0 +1,76 @@
+ODDSGENERATOREN v1.4 – Flere markeder og resultatprognoser
+==========================================================
+
+Dette er en PATCH, ikke et nytt helt nettsted.
+
+MERK: Oppdater bare filene som faktisk følger med. IKKE slett eller
+bytt ut hele site/, data/, scripts/ eller state/-mappene. Da kan de
+publiserte tipsene og siden forsvinne.
+
+INSTALLASJON
+1. Pakk ut ZIP-filen.
+2. Åpne GitHub Desktop > Repository > Show in Finder.
+3. Kopier de nye filene ENKELTVIS inn i de tilsvarende undermappene
+   i repository-mappen. Erstatt filer med samme navn, men IKKE bytt
+   ut hele mapper. La state/ og site/data/ være helt urørt.
+4. I GitHub Desktop: Commit to main > Push origin.
+5. Sjekk at GitHub Actions er grønn. Dagens eksisterende tips beholdes.
+6. For å bruke de nye skanningene I DAG må du manuelt starte
+   Actions > Oppdater OddsGeneratoren > Run workflow > mode=daily og
+   force_refresh=true. Dette bruker API-kvoter og erstatter dagens tips.
+   Alternativt: La neste automatiske morgenanalyse kjøre.
+
+NYE MARKEDER
+- Over/under antall hjørnespark og over/under kort: henter faktiske
+  tilgjengelige bookmakerodds, og anbefaler bare hvis registrert,
+  verifiserbar historikk oppfyller minstekrav.
+- Målscorer: faktiske odds og evt. ligascorere; kun til vurdering
+  inntil bekreftet startoppstilling. Ingen oppdiktet spillerstatistikk.
+- Mål, lagmål, begge scorer og første omgang: beholdes fra v1.2.
+  V1.4 undersøker i tillegg under-linjer for lagmål, «begge lag scorer: nei»
+  og førsteomgangslinjer der de faktisk tilbys. Uten sterkt
+  datagrunnlag merkes disse bare «til vurdering».
+- Ekstramarkeder er valgfrie. Hvis en leverandør ikke tilbyr odds,
+  påvirkes ikke hovedanalysen.
+
+FORVENTET RESULTAT / SCORE PREDICTION
+- Eget felt for opp til åtte av dagens kamper.
+- Eksterne scoreprognoser vises med kilde, resultattips og lenke.
+- Dersom MINST TO uavhengige, verifiserte kilder har et eksakt
+  resultat, beregnes gjennomsnittsmål for hvert lag og rundes til
+  nærmeste heltall. Ingen kilde teller mer enn én gang.
+- OddsGeneratorens egen Poisson-baserte prognose vises separat.
+- Uten verifiserte eksterne prediksjoner sier vi det tydelig.
+
+Eksterne kilder:
+- API-Football Predictions kan brukes automatisk hvis du har
+  konfigurerte GitHub Secrets: API_FOOTBALL_KEY. Eksakt score krever
+  at API-et returnerer HELTALL for begge lag, ikke målgrenser.
+- Forebet, Vitibet, PredictZ, WinDrawWin og FootballPredictions.net
+  kan inngå via data/score_predictions.csv når verifiserte, datostemplede
+  kilder er registrert. Det finnes INGEN aktiv automatisk kobling
+  til disse nettstedene i denne pakken. Filen er en tom mal.
+- Vi kan ikke hevde å kombinere 'samtlige prediksjonssider' uten å
+  ha lovlig, stabil og kvalitetssikret tilgang til kildene.
+
+MAL for data/score_predictions.csv:
+date,home,away,match_id,source,source_url,home_goals,away_goals,observed_at
+
+- date: kampdato YYYY-MM-DD i norsk eller UTC tid.
+- home/away: faktiske lagnavn som skal stemme med kampoppsettet.
+- match_id: offisiell fixture-ID fra football-data.org når kjent.
+- source: Forebet, Vitibet, PredictZ, WinDrawWin,
+  FootballPredictions.net eller API-Football.
+- source_url: HTTPS-lenke til den faktiske prediksjonen, med riktig domenenavn.
+- home_goals/away_goals: eksakte heltall 0 til 8.
+- observed_at: ISO 8601-tidspunkt med tidsone, senest før kampstart,
+  maksimum tre døgn gammelt ved dagens analyse.
+
+VIKTIG: CSV-filen blir ikke automatisk fylt av andre nettsteder.
+
+TESTER
+Python 3.12+ fra repo-roten:
+  python -m unittest discover -s tests -v
+
+Denne pakken inneholder bare nye/endrede filer. Ingen kopier av
+site/data/today.json eller state/active.json.

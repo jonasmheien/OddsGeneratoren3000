@@ -1,0 +1,26 @@
+.extra-market-section{margin-top:44px;margin-bottom:44px}
+.extra-heading{display:flex;justify-content:space-between;align-items:center;padding-bottom:18px;border-bottom:1px solid rgba(149,184,163,.18)}
+.extra-kicker{font-size:10px;font-weight:750;letter-spacing:.16em;color:#a8d29e;margin-bottom:5px}
+.extra-heading h2{margin:0;font-size:23px;letter-spacing:-.035em;color:#e9eee9;font-weight:650}
+.extra-market-intro{color:#acb9b5;font-size:12px;line-height:1.7;max-width:650px;margin:18px 0 24px}
+.extra-market-subhead{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.07em;text-transform:uppercase;font-weight:700;color:#dbe8dc;margin:24px 0 12px}
+.extra-market-subhead span{border:1px solid #354b42;border-radius:10px;padding:2px 8px;color:#b8d6aa;font-size:10px}
+.extra-market-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.extra-market-card{background:#10191a;border:1px solid #2c3e3b;border-radius:11px;overflow:hidden}
+.extra-market-card.market-good{border-color:#506545}
+.extra-market-card summary{cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px 16px;list-style:none}
+.extra-market-card summary::-webkit-details-marker{display:none}
+.extra-market-main{display:flex;flex-direction:column;min-width:0;gap:4px}
+.extra-market-league{font-size:10px;color:#92a9a4}
+.extra-market-match{font-size:12px;color:#d7e6e0;font-weight:600}
+.extra-market-play{font-size:13px;color:#f4f7f1;font-weight:720}
+.extra-market-right{display:flex;flex-direction:column;align-items:flex-end;gap:5px;white-space:nowrap}
+.extra-market-right strong{font-size:19px;font-variant-numeric:tabular-nums;color:#e6c87e}
+.extra-market-right span{font-size:9px;letter-spacing:.08em;color:#91a8a0}
+.extra-market-analysis{border-top:1px solid #263c36;padding:13px 16px;font-size:12px;line-height:1.6;color:#a6b8b0}
+.extra-market-analysis p{margin:0 0 8px}.extra-market-analysis ul{padding-left:18px;margin:8px 0}
+.extra-market-analysis li{margin:4px 0}
+.extra-market-source,.extra-market-footnote{font-size:10px;color:#829991}
+.extra-market-footnote{line-height:1.6;margin-top:16px}
+.extra-market-empty{font-size:12px;padding:18px;background:#10191a;border:1px solid #273935;border-radius:10px;color:#a5b8af}
+@media(max-width:680px){.extra-market-grid{grid-template-columns:1fr}.extra-market-section{margin-top:32px}.extra-heading h2{font-size:20px}}

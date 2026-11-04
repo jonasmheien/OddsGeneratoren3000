@@ -1,0 +1,28 @@
+.score-prediction-section{margin:36px 0 44px}
+.score-prediction-heading{padding:0 0 15px;border-bottom:1px solid rgba(149,184,163,.18)}
+.score-prediction-kicker{font-size:10px;letter-spacing:.15em;color:#a8d29e;font-weight:750;margin-bottom:5px}
+.score-prediction-heading h2{margin:0;color:#e8eee9;font-size:22px;letter-spacing:-.035em}
+.score-prediction-intro{color:#a5b9b2;font-size:12px;line-height:1.65;max-width:680px;margin:16px 0}
+.score-prediction-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.score-prediction-game{background:#10191a;border:1px solid #29403a;border-radius:11px;overflow:hidden}
+.score-prediction-game summary{list-style:none;cursor:pointer;display:flex;gap:12px;padding:15px;align-items:center;justify-content:space-between}
+.score-prediction-game summary::-webkit-details-marker{display:none}
+.score-prediction-main{display:flex;flex-direction:column;gap:5px;min-width:0}
+.score-league{font-size:10px;color:#8fa69d}
+.score-teams{font-size:13px;color:#ecf3ee;font-weight:650}
+.score-caption{color:#9bb3a5;font-size:11px}
+.score-forecast{display:flex;align-items:flex-end;flex-direction:column;flex-shrink:0;gap:4px;font-variant-numeric:tabular-nums}
+.score-forecast strong{font-size:25px;letter-spacing:-.04em;color:#e1ca87}
+.score-forecast small{font-size:9px;color:#8eaaa0;letter-spacing:.07em}
+.score-prediction-details{border-top:1px solid #263b35;padding:13px 15px;color:#abbfb5;font-size:12px;line-height:1.6}
+.score-prediction-details p{margin:0 0 10px}
+.score-prediction-details .score-votes{font-size:11px;color:#93bd9d}
+.score-prediction-source-list{border-top:1px solid #203831;padding-top:6px}
+.score-prediction-source-list>div{display:flex;justify-content:space-between;gap:10px;padding:5px 0}
+.score-prediction-source-list strong,.score-prediction-model strong{color:#e0ebde;font-variant-numeric:tabular-nums}
+.score-source-note{font-size:10px;color:#829b91}
+.score-prediction-source-list a{color:#b9dfbb;text-decoration:underline;text-decoration-color:#4b7060;text-underline-offset:3px}
+.score-prediction-model{border-top:1px solid #283a34;margin-top:9px;padding-top:10px;display:flex;justify-content:space-between;gap:10px}
+.score-disclaimer{font-size:10px;color:#839a90;display:block;margin-top:12px}
+.score-prediction-note{font-size:10px;line-height:1.6;color:#809a8e;margin-top:15px}
+@media(max-width:680px){.score-prediction-grid{grid-template-columns:1fr}.score-prediction-section{margin:30px 0 36px}.score-prediction-heading h2{font-size:20px}}
