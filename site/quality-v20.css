@@ -1,0 +1,37 @@
+/* Only hide legacy cards after valid v2 data has loaded successfully. */
+.v20-active #dagens,.v20-active .categories,.v20-active #spesialmarkeder{display:none!important}
+.q20-root{margin:34px 0 28px;color:#e3ebea}
+.q20-heading{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:16px}
+.q20-heading h2{font-size:clamp(25px,3vw,36px);font-weight:620;letter-spacing:-1.3px;margin:5px 0 6px}
+.q20-heading p,.q20-sub{color:#8ca6a3;font-size:13px;margin:0;line-height:1.5}
+.q20-kicker{font-size:10px;letter-spacing:2px;color:#bbc88e;font-weight:750}
+#q20-counter{font-size:11px;color:#849b9a;white-space:nowrap}
+.q20-filters{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 18px}
+.q20-filter{border:1px solid #334442;background:transparent;color:#a8bbba;border-radius:999px;padding:9px 15px;font:inherit;font-size:12px;cursor:pointer}
+.q20-filter:hover,.q20-filter.is-active{background:#cbd5b2;color:#101a19;border-color:#cbd5b2}
+.q20-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.q20-card,.q20-observation{min-width:0;border:1px solid #344440;background:rgba(18,32,32,.75);border-radius:13px;padding:18px}
+.q20-top{display:flex;justify-content:space-between;align-items:center;gap:8px;color:#9bacaa;font-size:11px;line-height:1.4}
+.q20-top span:last-child{text-align:right;color:#c8cead}
+.q20-match{font-weight:600;font-size:15px;margin-top:12px;overflow-wrap:anywhere}
+.q20-match span{color:#69847e}
+.q20-bet{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:8px 0 0;font-size:15px}
+.q20-odds{font-size:24px;font-variant-numeric:tabular-nums;color:#d7d9bb}
+.q20-explain,.q20-observation p{color:#a9b8b6;font-size:12px;line-height:1.6;margin:12px 0 0}
+.q20-details{border-top:1px solid #344440;margin-top:13px;padding-top:11px;font-size:12px}
+.q20-details summary{color:#c9d3c9;cursor:pointer;list-style:none;user-select:none}
+.q20-details summary::after{content:' +';float:right}
+.q20-details[open] summary::after{content:' −'}
+.q20-detail-body{color:#abbbba;line-height:1.65;padding-top:12px}
+.q20-detail-body li{padding-bottom:5px}
+.q20-detail-body ul{padding-left:18px;margin:0}
+.q20-detail-body p{margin:9px 0 0}
+#q20-more-wrap,.q20-watch{margin-top:28px}
+#q20-more-wrap h3,.q20-watch h3{font-size:21px;margin:0 0 12px}
+.q20-watch{border-top:1px solid #344440;padding-top:23px}
+.q20-watch .q20-grid{margin-top:14px}
+.q20-observation{background:rgba(17,25,25,.4);border-color:#283735}
+.q20-observation .q20-bet{color:#bac9c4}
+.q20-empty{color:#98aba8;font-size:13px;line-height:1.6;padding:24px;border:1px dashed #40504d;border-radius:12px}
+.q20-footnote{color:#809996;font-size:11px;line-height:1.65;margin-top:23px}
+@media(max-width:740px){.q20-heading{align-items:start;flex-direction:column}.q20-grid{grid-template-columns:1fr}.q20-card,.q20-observation{padding:15px}}

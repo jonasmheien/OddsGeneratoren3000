@@ -109,6 +109,9 @@ jobs:
         env:
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
         run: python scripts/score_consensus_v14.py state/.candidate.json
+      - name: Kvalifiser anbefalinger og observasjoner v2.0
+        if: steps.trigger.outputs.mode == 'daily'
+        run: python scripts/qualify_v20.py state/.candidate.json
       - name: Behold tips og oppdater resultatstatus
         id: mode
         shell: bash
