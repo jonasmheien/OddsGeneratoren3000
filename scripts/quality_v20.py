@@ -162,6 +162,11 @@ def screen(match, code, now, *, estimate=None, sample=None, kind='regular', quot
         if len(sizes) != 2 or not all(type(n) is int for n in sizes):
             return None
         sample = min(sizes)
+        # Raw match count overstates confidence when most games are old.
+        effective = model.get('effectiveSample')
+        if (isinstance(effective, list) and len(effective) == 2 and
+                all(number(v) is not None and number(v) >= 0 for v in effective)):
+            sample = min(sample, int(min(effective)))
     if estimate is None:
         estimate = (model.get('probabilities') or {}).get(code)
     price = number(q.get('price'))
@@ -191,3 +196,44 @@ def screen(match, code, now, *, estimate=None, sample=None, kind='regular', quot
 
 def ranking(pick):
     return (-float(pick['conservativeEdge']), str(pick.get('kickoff') or ''), str(pick.get('matchId') or ''))
+
+
+def rejection_reason(match, code, now, *, estimate=None, sample=None, kind='regular', quote=None):
+    """Diagnostic only; never overrides the actual quality decision."""
+    if match.get('status') not in ('SCHEDULED', 'TIMED'):
+        return 'kamp_ikke_kommende'
+    kickoff = dt(match.get('kickoff'))
+    if not kickoff or kickoff <= now + timedelta(minutes=10):
+        return 'kamp_startet_eller_snart_start'
+    odds = match.get('odds') or {}
+    q = quote if quote is not None else odds.get(code)
+    if not fresh_quote(q, now):
+        return 'manglende_eller_gamle_odds'
+    model = match.get('model') or {}
+    sizes = model.get('sample') or []
+    if sample is None:
+        if len(sizes) != 2 or not all(type(n) is int for n in sizes):
+            return 'manglende_kamphistorikk'
+        sample = min(sizes)
+        effective = model.get('effectiveSample')
+        if isinstance(effective, list) and len(effective) == 2 and all(number(v) is not None for v in effective):
+            sample = min(sample, int(min(effective)))
+    if sample < (8 if kind == 'special' else 5):
+        return 'for_lite_historikk'
+    if estimate is None:
+        estimate = (model.get('probabilities') or {}).get(code)
+    p = number(estimate)
+    if p is None or not .03 <= p <= .97:
+        return 'manglende_eller_usannsynlig_modellestimat'
+    price = number(q.get('price'))
+    if price is None or not 1.05 <= price <= 25:
+        return 'ugyldige_odds'
+    ref, _ = reference_probability(code, odds, now) if quote is None else (1 / price, 'single_quote_break_even')
+    if ref is None or not .03 <= ref <= .97:
+        return 'manglende_markedsreferanse'
+    if abs(p - ref) > .22:
+        return 'stort_modell_marked_avvik'
+    books = number(q.get('books', q.get('bookmakers')))
+    if books is None or (books < 2 and sample < 8):
+        return 'svak_bookmakerdekning'
+    return 'for_lav_konservativ_verdi'

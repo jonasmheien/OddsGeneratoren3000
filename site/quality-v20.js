@@ -40,18 +40,34 @@
     const picks = (edition?.recommendations||[]).filter(p=>Number.isFinite(Number(p.price)) &&
       Number.isFinite(Number(p.conservativeEdge)) && Number(p.conservativeEdge) >= .02);
     const shown=active==='all'?picks:picks.filter(p=>p.category===active);
-    $('q20-counter').textContent = `${picks.length} kvalifiserte · ${edition.observations?.length||0} observasjoner`;
+    const visibleObservations = (Array.isArray(edition.observations)?edition.observations:[])
+      .filter(p=>p.probability==null || (Number.isFinite(Number(p.probability)) && Number.isFinite(Number(p.price)) && Number(p.probability)*Number(p.price)-1 <= .70));
+    $('q20-counter').textContent = `${picks.length} kvalifiserte · ${visibleObservations.length} observasjoner`;
     $('q20-filters').innerHTML = [['all','Alle'],['safe','Safe Bets'],['high','High Risk'],['standard','Andre']]
       .filter(([key])=>key==='all'||picks.some(p=>p.category===key))
       .map(([key,name])=>`<button type="button" data-filter="${key}" class="q20-filter ${active===key?'is-active':''}" aria-pressed="${active===key}">${name}</button>`).join('');
     const limit=5;
+    const reasons = edition?.qualityAudit?.rejections || {};
+    const descriptions = {
+      for_lav_konservativ_verdi:'for lav beregnet verdi etter usikkerhetsjustering',
+      for_lite_historikk:'for få relevante kamper',
+      stort_modell_marked_avvik:'store avvik mellom modellen og bookmakerne',
+      manglende_eller_gamle_odds:'manglende eller utdaterte odds',
+      manglende_kamphistorikk:'manglende kamphistorikk',
+      svak_bookmakerdekning:'utilstrekkelige bookmakerdata',
+      manglende_eller_usannsynlig_modellestimat:'manglende modellestimat'
+    };
+    const summary = Object.entries(reasons).sort((a,b)=>b[1]-a[1]).slice(0,3)
+      .map(([key,n])=>`${Number(n)}: ${descriptions[key]||key.replaceAll('_',' ')}`).join(' · ');
     $('q20-top').innerHTML = shown.length?shown.slice(0,limit).map(view).join(''):
-      '<p class="q20-empty">Ingen kvalifiserte anbefalinger i denne kategorien. Vi fyller ikke opp listen med svakere spill.</p>';
+      `<p class="q20-empty">Ingen kvalifiserte anbefalinger i denne kategorien. Vi fyller ikke opp listen med svakere spill.${picks.length===0 && summary?'<span style="display:block;margin-top:10px">Hvorfor: '+esc(summary)+'</span>':''}</p>`;
     const remaining=shown.slice(limit);
     $('q20-more-wrap').hidden=!remaining.length;
     $('q20-more-title').textContent=`Flere kvalifiserte spill (${remaining.length})`;
     $('q20-more').innerHTML=remaining.map(view).join('');
-    const obs = Array.isArray(edition.observations)?edition.observations:[];
+    // Do not showcase implausible raw edges in existing archived observations
+    // while a fresh, validated snapshot is not yet published.
+    const obs = visibleObservations;
     $('q20-observations').innerHTML=obs.length?obs.map(observation).join(''):
       '<p class="q20-empty">Ingen dokumenterte observasjoner i denne dagsutgaven.</p>';
   }

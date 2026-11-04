@@ -12,7 +12,7 @@ import sys
 from collections import Counter
 from pathlib import Path
 
-from quality_v20 import dt, family, fresh_quote, number, overlaps, ranking, screen
+from quality_v20 import dt, family, fresh_quote, number, overlaps, ranking, screen, rejection_reason, reference_probability
 from recommend import MARKET_LABELS
 
 
@@ -78,11 +78,17 @@ def qualify(snapshot):
         if metrics:
             options.append(_candidate(m,code,q,metrics,label,kind))
             return
-        failures['ikke_kvalifisert'] += 1
+        failures[rejection_reason(m, code, when, estimate=estimate, sample=sample, kind=kind, quote=q if kind=='special' else None)] += 1
         # Observations require an actual *statistical signal*, not merely odds.
         prob = number(estimate if estimate is not None else ((m.get('model') or {}).get('probabilities') or {}).get(code))
         price = number(q.get('price'))
         if prob is None or price is None or not (.07 <= prob <= .93) or prob * price - 1 < .04:
+            return
+        # Outliers can indicate mismatched opponents or an underpowered
+        # Poisson estimate, not a giant betting opportunity.
+        ref, _ = (reference_probability(code, m.get('odds') or {}, when) if kind != 'special'
+                  else (1 / price, 'single_quote_break_even'))
+        if ref is None or abs(prob - ref) > .22:
             return
         if m.get('status') not in ('SCHEDULED', 'TIMED') or not dt(m.get('kickoff')) or dt(m['kickoff']) <= when:
             return
@@ -175,6 +181,7 @@ def qualify(snapshot):
         'calibrated':False,
         'method':'Eksplisitt sensitivitetsscenario, markedsforankring og usikkerhetstrekk; ikke validert som konfidensintervall',
         'coverageLimit':'Tilgjengelige kilde-/bookmakerodds, ikke alle globale markeder',
+        'whyNoPicks':'Ingen tips bestod den usikkerhetsjusterte verdikontrollen. Se rejection-tall for årsaker.' if not chosen else None,
     }
     snapshot['qualityGate'] = {
         'minimumFormMatchesPerTeam':5, 'minimumSpecialStatisticsPerTeam':8,
