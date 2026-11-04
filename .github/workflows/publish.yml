@@ -12,7 +12,9 @@ on:
       timezone: 'Europe/Oslo'
     - cron: '17 11 * * *'
       timezone: 'Europe/Oslo'
-    # Status updates use ONLY football-data.org, never bookmaker credits.
+    # Check automatically after kickoffs; standard results updates spend no odds credits.
+    - cron: '*/10 11-15 * * *'
+      timezone: 'Europe/Oslo'
     - cron: '*/10 16-23 * * *'
       timezone: 'Europe/Oslo'
     - cron: '*/20 0-2 * * *'
@@ -83,7 +85,11 @@ jobs:
               echo "mode=daily" >> "$GITHUB_OUTPUT"
             fi
           elif [[ "$EVENT" == "schedule" ]]; then
-            echo "mode=results" >> "$GITHUB_OUTPUT"
+            if python scripts/rollover_v26.py --due; then
+              echo "mode=tomorrow" >> "$GITHUB_OUTPUT"
+            else
+              echo "mode=results" >> "$GITHUB_OUTPUT"
+            fi
           else
             echo "mode=${INPUT_MODE:-daily}" >> "$GITHUB_OUTPUT"
           fi
