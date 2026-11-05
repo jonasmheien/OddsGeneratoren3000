@@ -68,6 +68,7 @@ jobs:
         run: |
           node --check site/three-fields-v26.js
           node tests/test_tip_ui_v32.cjs
+          node tests/test_tip_audit_v34.cjs
       - name: Velg riktig oppdatering
         id: trigger
         shell: bash
@@ -169,8 +170,13 @@ jobs:
               echo 'should_deploy=true' >> "$GITHUB_OUTPUT"
             fi
           fi
+      - name: Arkiver viste tips og kontroller datagrunnlag v34
+        id: tip_audit
+        if: steps.trigger.outputs.mode != 'results'
+        continue-on-error: true
+        run: node scripts/capture_visible_v34.cjs
       - name: Lagre den valgte utgaven og resultatene
-        if: steps.trigger.outputs.mode != 'deploy'
+        if: steps.trigger.outputs.mode != 'deploy' || steps.tip_audit.outputs.changed == 'true'
         shell: bash
         env:
           MODE: ${{ steps.trigger.outputs.mode }}
@@ -178,6 +184,9 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A -- state/ site/data/today.json site/data/history.json site/data/versions.json
+          if [[ -f site/data/tip-audit-v34.json ]]; then
+            git add -A -- site/data/tip-audit-v34.json
+          fi
           if [[ -f site/data/tomorrow.json ]]; then
             git add -A -- site/data/tomorrow.json
           fi
