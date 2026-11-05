@@ -24,6 +24,7 @@ from zoneinfo import ZoneInfo
 from recommend import curated_picks, category_picks
 from form_v21 import adjusted_form, effective_form_sample, opponent_indices
 from expanded_sources_v23 import discover as discover_extra, odds_remaining
+from form_bridge_v27 import load_free_history, bridge
 from odds_first_v25 import preview_sports, fixtures_from_quotes
 from market_expansion import extend_goal_probabilities, first_half_probabilities, corner_probabilities
 
@@ -698,7 +699,7 @@ def main():
         explicit = os.getenv('ODDS_SPORTS', '').strip()
         sports = ([x.strip() for x in explicit.split(',') if x.strip()] if explicit
                   else sports)
-        if preview_offset == 1 and not explicit:
+        if not explicit and (preview_offset == 1 or not sports):
             # football-data.org may omit UEFA's Thursday fixtures on the free tier.
             # Query only two known, active football competitions in next-day mode.
             sports = preview_sports(sports, max_sports=ODDS_SPORTS_PER_RUN)
@@ -737,7 +738,7 @@ def main():
         status['extraEventsLoaded']=sum(bool(e.get('extraMarketsLoaded')) for e in odds_events)
         status['odds'] = 'ok' if odds_events else 'empty' if not sports else 'error'
         status['oddsEventCount'] = len(odds_events)
-        if preview_offset == 1 and odds_events:
+        if odds_events:
             # True bookmaker-listed fixtures, even when another feed omits them.
             # Synthetic provider-scoped IDs carry NO fake historical form.
             recovered=fixtures_from_quotes(odds_events,now,date,fixtures)
@@ -745,6 +746,17 @@ def main():
                 fixtures.extend(recovered)
                 status['oddsFixtureSource'] = 'The Odds API (bookmaker listings)'
             status['oddsFirstFixtures'] = len(recovered)
+            # UEFA fixtures discovered from bookmaker quotes may be absent from
+            # football-data.org's free UEFA fixture feed. Reuse VERIFIED domestic
+            # results from competitions already included in the free plan.
+            # The identity bridge rejects uncertain clubs and never invents form.
+            if recovered and key:
+                domestic_history, history_errors = load_free_history(fetch_football, BASE, date)
+                errors.extend(history_errors)
+                fixtures, diagnostics = bridge(fixtures, domestic_history, now, identity_score)
+                status['officialFormBridge'] = diagnostics
+                status['fixtureCount'] = len(fixtures)
+                print('FORM_BRIDGE', diagnostics)
     external={}
     third_key=os.getenv('API_FOOTBALL_KEY','').strip()
     if third_key and fixtures:
