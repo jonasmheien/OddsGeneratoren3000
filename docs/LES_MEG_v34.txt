@@ -1,0 +1,30 @@
+OddsGeneratoren 3000 - Sporbarhet og datakvalitet v34
+====================================================
+
+Installasjon (fra GitHub Desktop -> Repository -> Open in Terminal):
+  unzip -o ~/Downloads/OddsGeneratoren_sporbarhet_v34.zip -d .
+  python3 installer_v34.py
+
+Deretter: Commit to main -> Push origin i GitHub Desktop.
+
+Ingen eksisterende tipsregler, HTML, CSS, API-konfigurasjon eller tidspunkter
+endres. Installereren oppdaterer bare GitHub Actions slik at en supplerende
+Node-jobb lagrer det utvalget nettsidens EKSISTERENDE algoritme viser.
+
+Resultater:
+- state/tip-audit-v34/YYYY-MM-DD.json (per-dag versjoner, fryser odds og data)
+- site/data/tip-audit-v34.json (sist publiserte kvalitetsoppsummering)
+
+Hver revisjon har de faktiske utvalgte High Risk, Safe Bets og interessante
+objektene, med tidspunkt, kamp, marked, odds og datastatus. Manglende kampform,
+modell eller odds blir registrert og aldri funnet på. Det hevdes ikke at
+bookmakersannsynligheter er selvstendige prognoser.
+
+Begrensninger: Den registrerer publiseringer, ikke hvert minutt nettsiden er
+åpen. Resultater fra eksterne bookmaker-ID-er blir IKKE automatisk avgjort i
+denne oppdateringen; status blir stående ikke verifisert. Full automatisk
+gevinst/tap-regnskap kan bygges når resultatkoblingen er pålitelig.
+
+Risikosperre: V34 kan ikke endre tipsutvalget. Hvis tilleggskjøringen feiler,
+kan nettstedets eksisterende publiseringsjobb fortsatt fullføre. Den nye
+funksjonen testes i et uavhengig syntetisk testsett før installering og i CI.
