@@ -226,69 +226,82 @@ function highMarketCandidates(edition,now){
     return new Intl.DateTimeFormat('nb-NO',{timeZone:'Europe/Oslo',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).format(new Date(value));
   };
   function analysisDetails(p,recommended,edition){
-    const match=(Array.isArray(edition?.matches)?edition.matches:[]).find(m=>m && String(m.id)===String(p.matchId));
+    const match=(Array.isArray(edition?.matches)?edition.matches:[])
+      .find(m=>m && String(m.id)===String(p.matchId));
     const model=match?.model || null;
     const quote=match?.odds?.[p.market] || null;
-    const rawProbability=finiteNumber(p.probability ?? model?.probabilities?.[p.market]);
-    const conservativeProbability=finiteNumber(p.conservativeProbability);
-    const estimatedGoals=Array.isArray(model?.expectedGoals)?model.expectedGoals:[];
-    const sample=Array.isArray(model?.sample)?model.sample:Array.isArray(p.formSample)?p.formSample:[];
-    const homeSample=Number.isInteger(Number(sample[0])) && Number(sample[0])>0 ? Number(sample[0]) : null;
-    const awaySample=Number.isInteger(Number(sample[1])) && Number(sample[1])>0 ? Number(sample[1]) : null;
-    const rows=[];
-    const row=(label,value)=>{if(value!==null && value!==undefined && value!=='')rows.push(`<div class="tf-fact"><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`);};
-    row('Bookmakerodds',Number(p.price)>1 ? price(p.price) : null);
-    const books=finiteNumber(p.bookmakers ?? quote?.books);
-    row('Antall bookmakere',books!==null && Number.isInteger(books) && books>0?books:null);
-    row('Odds registrert',recordedAt(p.oddsUpdatedAt ?? quote?.lastUpdated));
-    if(homeSample!==null && awaySample!==null)row('Kamper i formutvalget',`${homeSample} hjemmelag / ${awaySample} bortelag`);
     const formHome=String(match?.formHome || p.formHome || '').trim();
     const formAway=String(match?.formAway || p.formAway || '').trim();
-    if(/^[WDL]{3,20}$/.test(formHome))row(`${p.home} · resultatrekke`,formHome.replaceAll('W','S').replaceAll('D','U').replaceAll('L','T'));
-    if(/^[WDL]{3,20}$/.test(formAway))row(`${p.away} · resultatrekke`,formAway.replaceAll('W','S').replaceAll('D','U').replaceAll('L','T'));
-    if(estimatedGoals.length===2 && decimal(estimatedGoals[0])!==null && decimal(estimatedGoals[1])!==null){
-      row('Forventede mål · modell',`${decimal(estimatedGoals[0])} / ${decimal(estimatedGoals[1])}`);
+
+    // The data provider stores results newest first. Show at most five real
+    // results, never pad missing history with invented outcomes.
+    const recentForm=(team,sequence)=>{
+      const results=/^[WDL]{1,20}$/.test(sequence)?sequence.slice(0,5).split(''):[];
+      const meaning={W:'Seier',D:'Uavgjort',L:'Tap'};
+      const short={W:'S',D:'U',L:'T'};
+      const badges=results.length?results.map(v=>
+        `<span class="tf-form-badge tf-form-${v}" title="${meaning[v]}" aria-label="${meaning[v]}">${short[v]}</span>`
+      ).join(''):'<span class="tf-missing">Ingen registrert kampform</span>';
+      return `<div class="tf-form-team"><span class="tf-form-name">${esc(team)}</span><div class="tf-form-badges">${badges}</div></div>`;
+    };
+
+    // Do not misrepresent bookmaker-implied percentages as independent models.
+    const modelChance=finiteNumber(model?.probabilities?.[p.market]);
+    const recordedChance=finiteNumber(p.probability);
+    const conservativeChance=finiteNumber(p.conservativeProbability);
+    let chance=null, method='';
+    if(recommended && !p._candidateType && conservativeChance!==null){
+      chance=conservativeChance;method='Konservativt modellscenario, ikke kalibrert';
+    }else if(p._candidateType==='market'){
+      chance=recordedChance;
+      if(chance===null && match)chance=fairMarket(match,p.market,new Date());
+      method='Anslått fra bookmakerodds uten margin';
+    }else if(modelChance!==null){
+      chance=modelChance;method='Formmodell, ikke historisk kalibrert';
+    }else if(recordedChance!==null && p._candidateType==='model'){
+      chance=recordedChance;method='Foreløpig modellanslag, ikke kalibrert';
+    }else if(match){
+      chance=fairMarket(match,p.market,new Date());
+      method='Anslått fra bookmakerodds uten margin';
     }
-    if(rawProbability!==null)row(p._candidateType==='market'?'Markedsanslag uten margin':'Modellestimat for utfallet',fraction(rawProbability));
-    if(recommended && conservativeProbability!==null)row('Usikkerhetsjustert estimat',fraction(conservativeProbability));
-    if(recommended && finiteNumber(p.conservativeEdge)!==null){
-      const edge=finiteNumber(p.conservativeEdge);
-      row('Beregnet verdi i scenario',`${edge>=0?'+':''}${(edge*100).toLocaleString('nb-NO',{maximumFractionDigits:1})} %`);
+    const chanceText=chance!==null && chance>=0 && chance<=1 ? fraction(chance) : null;
+
+    // An expert quote must have attribution. Provider numeric forecasts alone
+    // do not constitute an expert's written explanation.
+    const verifiedExpert=(typeof p.expertReason==='string' && p.expertReason.trim() &&
+      typeof p.expertSource==='string' && p.expertSource.trim())?
+      {reason:p.expertReason.trim(),source:p.expertSource.trim()}:
+      (Array.isArray(match?.predictions)?match.predictions:[])
+        .filter(x=>x && typeof x.reason==='string' && x.reason.trim() &&
+          typeof x.source==='string' && x.source.trim())[0];
+    let heading='Vurdering';
+    let reason='';
+    if(verifiedExpert){
+      heading='Ekspertens begrunnelse';
+      reason=`${esc(verifiedExpert.reason)} <span class="tf-attribution">${esc(verifiedExpert.source)}</span>`;
+    }else if(p._candidateType==='market'){
+      reason='Spillet er valgt ut fra registrerte bookmakerodds. Det er en markedsbasert kandidat, ikke et dokumentert verdiobjekt.';
+    }else if(p._candidateType==='model'){
+      reason='Spillet er valgt som modellkandidat ut fra registrert lagform og bookmakerpriser. Modellens treffsikkerhet er ikke dokumentert.';
+    }else if(recommended){
+      reason='Spillet har passert modellens verdifilter. Beregningen er foreløpig og er ikke historisk kalibrert.';
+    }else{
+      reason=esc(p.reason || p._why || 'Kampen er under vurdering, men datagrunnlaget er foreløpig utilstrekkelig.');
     }
-    const sourcePredictions=Array.isArray(match?.predictions)?match.predictions:[];
-    const predictions=sourcePredictions.filter(x=>x && typeof x.source==='string' && x.source.length && fraction(x.probabilities?.[p.market])!==null).slice(0,2);
-    for(const prediction of predictions){
-      row(`${prediction.source} · anslag`,`${fraction(prediction.probabilities[p.market])} (ekstern prognose)`);
-    }
-    const statements=(Array.isArray(p.rationale)?p.rationale:[]).filter(s=>typeof s==='string' && s.trim()).slice(0,6);
-    const reason= !recommended ? (p.reason || p._why || 'Ikke tilstrekkelig grunnlag for anbefaling.') :
-      (statements[0] || 'Spillet har passert kvalitetskontrollen for denne utgaven.');
-    const why=statements.length?`<ul class="tf-analysis-list">${statements.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:
-      `<p>${esc(reason)}</p>`;
-    const warning= p._candidateType==='market' ?
-      (p.category==='high'?'Bookmakerbasert risikokandidat, ikke en statistisk verdianbefaling. Odds kan ha endret seg.':'Kun bookmakerbasert favorittrangering, ingen dokumentert spillverdi. Kontroller aktuell odds og kampinformasjon før spill.') :
-      p._candidateType==='model' ?
-      'Foreløpig, ikke kalibrert modellkandidat. Spillet er ikke godkjent av den strenge verdikontrollen. Kontroller aktuell odds.' :
-      !recommended ?
-      (!model ? 'Ingen verifisert, komplett formmodell for begge lag i denne kampen. Registrert odds er ikke et spilltips.' :
-       'En modellberegning finnes, men spillet oppfylte ikke kravene til anbefaling. Modellen er ikke historisk kalibrert.') :
-      'Estimater er usikre og ikke historisk kalibrert. Oppgitt odds er en bookmaker-median, ikke en garantert spillbar pris.';
-    const sources=[];
-    if(model)sources.push('Lagform: registrerte kampresultater fra tilknyttede datakilder.');
-    if(Number(p.price)>1)sources.push('Odds: The Odds API, oppgitt som indikativ bookmaker-median.');
-    if(predictions.length)sources.push('Eksterne anslag vises separat og er ikke dokumentert som treffsikre.');
-    if(!sources.length)sources.push('Uavhengig datagrunnlag er ikke tilgjengelig for dette utfallet.');
-    const formLegend=/^[WDL]{3,20}$/.test(formHome) || /^[WDL]{3,20}$/.test(formAway) ? '<p class="tf-legend">S = seier · U = uavgjort · T = tap</p>' : '';
-    const facts=rows.length?`<dl class="tf-facts">${rows.join('')}</dl>${formLegend}`:
-      '<p>Ingen verifiserbare nøkkeltall tilgjengelige for denne kampen.</p>';
+
     const analysisKey=`${dayOf(edition)}|${String(p.matchId??'')}|${String(p.market??'')}`;
     return `<details class="tf-analysis" data-analysis-key="${esc(analysisKey)}">
       <summary><span class="tf-show">Vis analysen</span><span class="tf-hide">Skjul analysen</span></summary>
-      <div class="tf-analysis-body">
-        <h3>Datagrunnlag</h3>${facts}
-        <h3>${recommended?'Hvorfor dette spillet?':'Hvorfor ikke anbefalt?'}</h3>${why}
-        <p class="tf-analysis-warning">${esc(warning)}</p>
-        <p class="tf-analysis-sources">${sources.map(esc).join(' ')}</p>
+      <div class="tf-analysis-body tf-analysis-compact">
+        <section class="tf-compact-block"><h3>${heading}</h3><p>${reason}</p></section>
+        <section class="tf-compact-block"><h3>Siste fem kamper <span class="tf-form-order">nyeste først</span></h3>
+          ${recentForm(p.home,formHome)}
+          ${recentForm(p.away,formAway)}
+        </section>
+        <section class="tf-compact-block"><h3>Sannsynlighet for spillet</h3>
+          <div class="tf-probability">${chanceText===null?'Ikke beregnet':esc(chanceText)}</div>
+          ${chanceText===null?'':`<p class="tf-probability-source">${esc(method)}</p>`}
+        </section>
       </div>
     </details>`;
   }
