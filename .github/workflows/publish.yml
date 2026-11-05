@@ -12,6 +12,9 @@ on:
       timezone: 'Europe/Oslo'
     - cron: '17 11 * * *'
       timezone: 'Europe/Oslo'
+    # Second bookmaker snapshot before the evening fixtures (Norwegian local time).
+    - cron: '17 16 * * *'
+      timezone: 'Europe/Oslo'
     # Check automatically after kickoffs; standard results updates spend no odds credits.
     - cron: '*/10 11-15 * * *'
       timezone: 'Europe/Oslo'
@@ -58,8 +61,13 @@ jobs:
           git fetch --quiet origin main
           git reset --hard origin/main
       - name: Test modeller, resultatkontroll og kvalitet
-        if: github.event_name != 'schedule' || (github.event.schedule == '17 9 * * *' || github.event.schedule == '17 10 * * *' || github.event.schedule == '17 11 * * *')
+        if: github.event_name != 'schedule' || (github.event.schedule == '17 9 * * *' || github.event.schedule == '17 10 * * *' || github.event.schedule == '17 11 * * *' || github.event.schedule == '17 16 * * *')
         run: python -m unittest discover -s tests -v
+      - name: Test tipsvisning og datakvalitet
+        if: github.event_name != 'schedule' || (github.event.schedule == '17 9 * * *' || github.event.schedule == '17 10 * * *' || github.event.schedule == '17 11 * * *' || github.event.schedule == '17 16 * * *')
+        run: |
+          node --check site/three-fields-v26.js
+          node tests/test_tip_ui_v32.cjs
       - name: Velg riktig oppdatering
         id: trigger
         shell: bash
@@ -90,6 +98,9 @@ jobs:
             else
               echo "mode=deploy" >> "$GITHUB_OUTPUT"
             fi
+          elif [[ "$EVENT" == "schedule" && "$SCHEDULE" == "17 16 * * *" ]]; then
+            echo "mode=daily" >> "$GITHUB_OUTPUT"
+            echo "refresh_on_schedule=true" >> "$GITHUB_OUTPUT"
           elif [[ "$EVENT" == "schedule" ]]; then
             if python scripts/rollover_v26.py --due; then
               echo "mode=tomorrow" >> "$GITHUB_OUTPUT"
