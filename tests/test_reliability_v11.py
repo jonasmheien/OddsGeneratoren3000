@@ -83,7 +83,7 @@ class DailyReliabilityTests(unittest.TestCase):
         workflow=(ROOT/'.github/workflows/publish.yml').read_text()
         self.assertIn("cron: '17 10 * * *'", workflow)
         self.assertIn("cron: '17 11 * * *'", workflow)
-        self.assertIn('python scripts/lifecycle.py is-current',workflow)
+        self.assertIn('python scripts/morning_refresh_v29.py --due',workflow)
         # By default a code push deploys the stored edition. The explicit
         # one-time v1.5 release marker is the sole exception.
         self.assertIn('if [[ "$EVENT" == "push" ]]; then',workflow)

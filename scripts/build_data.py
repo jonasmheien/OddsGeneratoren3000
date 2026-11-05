@@ -25,6 +25,7 @@ from recommend import curated_picks, category_picks
 from form_v21 import adjusted_form, effective_form_sample, opponent_indices
 from expanded_sources_v23 import discover as discover_extra, odds_remaining
 from form_bridge_v27 import load_free_history, bridge
+from form_bridge_v29 import load_cached_history, attach_additional_form
 from odds_first_v25 import preview_sports, fixtures_from_quotes
 from market_expansion import extend_goal_probabilities, first_half_probabilities, corner_probabilities
 
@@ -598,6 +599,8 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
         {'name':'Eksterne prognoser', 'role':'Kildeangitte, manuelt innlagte vurderinger',
          'state':'manual' if coverage['manualPredictions'] else 'not_connected'},
     ]
+    if status.get('additionalFormBridge', {}).get('teamsLinked'):
+        sources.append({'name':'football-data.co.uk', 'role':'Verifiserte ligakamper til privat formanalyse', 'state':'connected'})
     return {'version': 3, 'recommendations':picks, 'safeBets':safe_bets, 'highRisk':high_risk,
             'coverage':coverage,'sources':sources,
             'visualAssets':{'licensedCrests':os.getenv('SHOW_LICENSED_CRESTS','').strip()=='1'},
@@ -757,6 +760,20 @@ def main():
                 status['officialFormBridge'] = diagnostics
                 status['fixtureCount'] = len(fixtures)
                 print('FORM_BRIDGE', diagnostics)
+            if recovered:
+                # A small, cached, personal-use history supplement. At most once per
+                # 96 hours; does not replace any verified football-data.org team IDs.
+                try:
+                    additional_history, history_details = load_cached_history(
+                        now, ROOT / '.cache' / 'form-v29.json')
+                    fixtures, attached = attach_additional_form(fixtures, additional_history, identity_score)
+                    status['additionalFormBridge'] = {**history_details, **attached}
+                    status['fixtureCount'] = len(fixtures)
+                    print('EXTRA_FORM_BRIDGE', status['additionalFormBridge'])
+                    for issue in history_details.get('errors', []):
+                        errors.append('Tilleggsform (' + issue + ')')
+                except (OSError, ValueError, RuntimeError, TypeError) as exc:
+                    errors.append('Tilleggsform: ' + type(exc).__name__)
     external={}
     third_key=os.getenv('API_FOOTBALL_KEY','').strip()
     if third_key and fixtures:

@@ -79,10 +79,12 @@ jobs:
               echo "refresh_on_push=false" >> "$GITHUB_OUTPUT"
             fi
           elif [[ "$EVENT" == "schedule" && ( "$SCHEDULE" == "17 9 * * *" || "$SCHEDULE" == "17 10 * * *" || "$SCHEDULE" == "17 11 * * *" ) ]]; then
-            if python scripts/lifecycle.py is-current; then
-              echo "mode=deploy" >> "$GITHUB_OUTPUT"
-            else
+            # A same-day 08:00 preview must not block the 09:17 fresh morning run.
+            if python scripts/morning_refresh_v29.py --due; then
               echo "mode=daily" >> "$GITHUB_OUTPUT"
+              echo "refresh_on_schedule=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "mode=deploy" >> "$GITHUB_OUTPUT"
             fi
           elif [[ "$EVENT" == "schedule" ]]; then
             if python scripts/rollover_v26.py --due; then
@@ -93,6 +95,14 @@ jobs:
           else
             echo "mode=${INPUT_MODE:-daily}" >> "$GITHUB_OUTPUT"
           fi
+      - name: Bruk privat mellomlager for ligahistorikk
+        if: steps.trigger.outputs.mode == 'daily' || steps.trigger.outputs.mode == 'tomorrow'
+        uses: actions/cache@v4
+        with:
+          path: .cache/form-v29.json
+          key: form-v29-${{ github.run_id }}
+          restore-keys: |
+            form-v29-
       - name: Generer nytt dagsutvalg
         if: steps.trigger.outputs.mode == 'daily' || steps.trigger.outputs.mode == 'tomorrow'
         env:
@@ -130,7 +140,7 @@ jobs:
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
           MODE: ${{ steps.trigger.outputs.mode }}
           ODDS_OUTPUT_PATH: state/.candidate.json
-          FORCE_REPLACE_EDITION: ${{ ((github.event_name == 'workflow_dispatch' && inputs.mode == 'daily' && inputs.force_refresh) || steps.trigger.outputs.refresh_on_push == 'true') && '1' || '0' }}
+          FORCE_REPLACE_EDITION: ${{ ((github.event_name == 'workflow_dispatch' && inputs.mode == 'daily' && inputs.force_refresh) || steps.trigger.outputs.refresh_on_push == 'true' || steps.trigger.outputs.refresh_on_schedule == 'true') && '1' || '0' }}
         run: |
           if [[ "$MODE" == "tomorrow" ]]; then
             python scripts/tomorrow_v24.py state/.candidate.json
