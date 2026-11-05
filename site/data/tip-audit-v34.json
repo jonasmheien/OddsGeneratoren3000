@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 34,
+  "editionDate": "2026-11-05",
+  "revisionId": "bfb944733f774ff756fb51b8",
+  "editionGeneratedAt": "2026-11-05T18:05:32.642721+00:00",
+  "recordedAt": "2026-11-05T19:10:01.819Z",
+  "summary": {
+    "total": 15,
+    "high": 5,
+    "safe": 5,
+    "watch": 5,
+    "withBothFive": 4,
+    "withFormModel": 4,
+    "marketBased": 6,
+    "expertWritten": 0,
+    "modelMarketConflicts": 0,
+    "unverifiedResults": 15
+  },
+  "notes": [
+    "Records are the selections actually produced by the current published UI algorithm at capture time.",
+    "Percentages are not historically calibrated. Bookmaker-based percentages are not independent forecasts.",
+    "Result status is unverified until matched to an authoritative final score; no wins/losses are inferred."
+  ]
+}

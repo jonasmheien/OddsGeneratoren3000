@@ -1,0 +1,530 @@
+{
+  "schemaVersion": 34,
+  "editionDate": "2026-11-05",
+  "revisions": [
+    {
+      "id": "bfb944733f774ff756fb51b8",
+      "editionGeneratedAt": "2026-11-05T18:05:32.642721+00:00",
+      "recordedAt": "2026-11-05T19:10:01.819Z",
+      "summary": {
+        "total": 15,
+        "high": 5,
+        "safe": 5,
+        "watch": 5,
+        "withBothFive": 4,
+        "withFormModel": 4,
+        "marketBased": 6,
+        "expertWritten": 0,
+        "modelMarketConflicts": 0,
+        "unverifiedResults": 15
+      },
+      "groups": {
+        "high": [
+          {
+            "matchId": "odds:35d4f8b2b7ec249fd22afd235c31ef2d",
+            "home": "AS Monaco",
+            "away": "FC Nordsjaelland",
+            "league": "UEFA Conference League",
+            "kickoff": "2026-11-05T20:00:00+00:00",
+            "market": "B",
+            "label": "Borteseier",
+            "price": 5.96,
+            "probability": 0.3165,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-05T18:05:32Z",
+            "bookmakerCount": 15,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LDLDW",
+              "awayLastFive": "LDDDL",
+              "modelSample": [
+                9,
+                15
+              ],
+              "formModelProbability": 0.3165,
+              "bookmakerImpliedProbability": 0.15845204369794533,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "odds:5ecf6578ba030a1e99abaa3200319e37",
+            "home": "Celtic",
+            "away": "Besiktas JK",
+            "league": "UEFA Europa League",
+            "kickoff": "2026-11-05T20:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 3,
+            "probability": 0.4609,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-05T18:05:27Z",
+            "bookmakerCount": 20,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LDWWW",
+              "awayLastFive": "DWLWL",
+              "modelSample": [
+                12,
+                10
+              ],
+              "formModelProbability": 0.4609,
+              "bookmakerImpliedProbability": 0.31839469160369094,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "odds:5f12be0b4bcb21b30f6f0cd3326c14ba",
+            "home": "Getafe",
+            "away": "Brighton and Hove Albion",
+            "league": "UEFA Conference League",
+            "kickoff": "2026-11-05T20:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 6.25,
+            "probability": 0.2813,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-05T18:05:32Z",
+            "bookmakerCount": 15,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "WLDLW",
+              "awayLastFive": "WLWWW",
+              "modelSample": [
+                11,
+                10
+              ],
+              "formModelProbability": 0.2813,
+              "bookmakerImpliedProbability": 0.1520804312276664,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "odds:e1c3625feeebcd65317e17a4e9a38c4f",
+            "home": "Bayer Leverkusen",
+            "away": "Marseille",
+            "league": "UEFA Europa League",
+            "kickoff": "2026-11-05T20:00:00+00:00",
+            "market": "U25",
+            "label": "Under 2,5 mål",
+            "price": 3.35,
+            "probability": 0.4007,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-05T18:05:27Z",
+            "bookmakerCount": 3,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LLWWW",
+              "awayLastFive": "WWWWL",
+              "modelSample": [
+                8,
+                9
+              ],
+              "formModelProbability": 0.4007,
+              "bookmakerImpliedProbability": 0.2811158798283262,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "odds:b828d43ba5fa1c8cdd2e34aabea9d0ce",
+            "home": "Celta Vigo",
+            "away": "Union Saint-Gilloise",
+            "league": "UEFA Europa League",
+            "kickoff": "2026-11-05T20:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 2.37,
+            "probability": 0.4005640063570208,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-05T18:05:27Z",
+            "bookmakerCount": 20,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "odds_only",
+              "homeLastFive": "",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.4005640063570208,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          }
+        ],
+        "safe": [
+          {
+            "matchId": "odds:158d65d9ca4cd4baf93be0a4c2b9e83a",
+            "home": "FC Lugano",
+            "away": "FK Kauno Žalgiris",
+            "league": "UEFA Conference League",
+            "kickoff": "2026-11-05T20:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 1.15,
+            "probability": 0.8223453226183975,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-05T18:05:32Z",
+            "bookmakerCount": 15,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "partial_form",
+              "homeLastFive": "WWWWW",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.8223453226183975,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "odds:91f5f46805156c8d245a9bb89f59969a",
+            "home": "FC Twente Enschede",
+            "away": "Pafos FC",
+            "league": "UEFA Conference League",
+            "kickoff": "2026-11-05T20:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 1.22,
+            "probability": 0.7732097634570828,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-05T18:05:32Z",
+            "bookmakerCount": 15,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "odds_only",
+              "homeLastFive": "",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.7732097634570828,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "odds:fdfe43b1709a68218ab42934f7355032",
+            "home": "Universitatea Craiova",
+            "away": "KF Egnatia",
+            "league": "UEFA Conference League",
+            "kickoff": "2026-11-05T20:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 1.33,
+            "probability": 0.7156871357872852,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-05T18:05:32Z",
+            "bookmakerCount": 15,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "odds_only",
+              "homeLastFive": "",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.7156871357872852,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "odds:8a2c155e7fe5e67981b44e12c0c6eba6",
+            "home": "Panathinaikos FC",
+            "away": "PFC CSKA Sofia",
+            "league": "UEFA Conference League",
+            "kickoff": "2026-11-05T20:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 1.32,
+            "probability": 0.7134409187818049,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-05T18:05:32Z",
+            "bookmakerCount": 15,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "partial_form",
+              "homeLastFive": "WWWLW",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.7134409187818049,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "odds:6dad8d4dd99ba6f5dae0b3abdf8f669b",
+            "home": "Sunderland",
+            "away": "Dinamo Zagreb",
+            "league": "UEFA Europa League",
+            "kickoff": "2026-11-05T20:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 1.42,
+            "probability": 0.6666113378702947,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-05T18:05:27Z",
+            "bookmakerCount": 20,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "partial_form",
+              "homeLastFive": "LDLLL",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.6666113378702947,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          }
+        ],
+        "watch": [
+          {
+            "matchId": "odds:c91f4c9744f6ca502b7986a564e858df",
+            "home": "AZ Alkmaar",
+            "away": "Juventus",
+            "league": "UEFA Europa League",
+            "kickoff": "2026-11-05T20:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 3.9,
+            "probability": 0.24414426863815383,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-05T18:05:27Z",
+            "bookmakerCount": 20,
+            "sourceType": "observation",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "partial_form",
+              "homeLastFive": "",
+              "awayLastFive": "WLWLD",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.24414426863815383,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "odds:bc4a4cc34a2219d9564b7b0c17ba2934",
+            "home": "Benfica",
+            "away": "Lech Poznań",
+            "league": "UEFA Europa League",
+            "kickoff": "2026-11-05T20:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 1.12,
+            "probability": 0.8505670446964644,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-05T18:05:27Z",
+            "bookmakerCount": 20,
+            "sourceType": "observation",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "partial_form",
+              "homeLastFive": "",
+              "awayLastFive": "WWWWW",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.8505670446964644,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "odds:402e102fa845ed84ab7e59b3b17f8c29",
+            "home": "Torreense",
+            "away": "FC Ararat-Armenia",
+            "league": "UEFA Europa League",
+            "kickoff": "2026-11-05T20:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 1.7,
+            "probability": 0.5600082445085685,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-05T18:05:27Z",
+            "bookmakerCount": 20,
+            "sourceType": "observation",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "odds_only",
+              "homeLastFive": "",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.5600082445085685,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "odds:5d2de41c72a26f06f5b1f85676a7df00",
+            "home": "FC Copenhagen",
+            "away": "FC Iberia 1999",
+            "league": "UEFA Conference League",
+            "kickoff": "2026-11-05T20:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 1.11,
+            "probability": 0.8507237596834276,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-05T18:05:32Z",
+            "bookmakerCount": 15,
+            "sourceType": "observation",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "partial_form",
+              "homeLastFive": "WDDLW",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.8507237596834276,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "odds:2af127e906ae56f3543d283b85f7b54e",
+            "home": "Hapoel Be'er Sheva",
+            "away": "OFI Crete",
+            "league": "UEFA Europa League",
+            "kickoff": "2026-11-05T20:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 2.13,
+            "probability": 0.44726301735647533,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-05T18:05:27Z",
+            "bookmakerCount": 20,
+            "sourceType": "observation",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "partial_form",
+              "homeLastFive": "",
+              "awayLastFive": "WWLLD",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.44726301735647533,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "model_unavailable"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
