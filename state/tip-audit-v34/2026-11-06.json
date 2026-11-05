@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 34,
+  "editionDate": "2026-11-06",
+  "revisions": [
+    {
+      "id": "3d9c4a6f4dfbedec8f6abfe0",
+      "editionGeneratedAt": "2026-11-05T22:00:04.516910+00:00",
+      "recordedAt": "2026-11-05T22:01:20.352Z",
+      "summary": {
+        "total": 3,
+        "high": 3,
+        "safe": 0,
+        "watch": 0,
+        "withBothFive": 2,
+        "withFormModel": 2,
+        "marketBased": 1,
+        "expertWritten": 0,
+        "modelMarketConflicts": 0,
+        "unverifiedResults": 3
+      },
+      "groups": {
+        "high": [
+          {
+            "matchId": "561932",
+            "home": "Derby County",
+            "away": "Bolton",
+            "league": "Championship",
+            "kickoff": "2026-11-06T20:00:00+00:00",
+            "market": "B",
+            "label": "Borteseier",
+            "price": 2.7,
+            "probability": 0.3805,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-05T22:00:15Z",
+            "bookmakerCount": 22,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LLDLL",
+              "awayLastFive": "WLLDW",
+              "modelSample": [
+                14,
+                14
+              ],
+              "formModelProbability": 0.3805,
+              "bookmakerImpliedProbability": 0.34577603143418467,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "odds:af665449ac9e2c4e1f183376e85fc936",
+            "home": "Derby County",
+            "away": "Bolton Wanderers",
+            "league": "Championship",
+            "kickoff": "2026-11-06T20:00:00+00:00",
+            "market": "B",
+            "label": "Borteseier",
+            "price": 2.7,
+            "probability": 0.3805,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-05T22:00:15Z",
+            "bookmakerCount": 22,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LLDLL",
+              "awayLastFive": "WLLDW",
+              "modelSample": [
+                14,
+                14
+              ],
+              "formModelProbability": 0.3805,
+              "bookmakerImpliedProbability": 0.34577603143418467,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "odds:49ae8401ae66921bf2db3a4bc2d751a5",
+            "home": "Silkeborg IF",
+            "away": "Lyngby",
+            "league": "Superliga",
+            "kickoff": "2026-11-06T18:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 2.35,
+            "probability": 0.3955954089539301,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-05T22:00:16Z",
+            "bookmakerCount": 23,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "partial_form",
+              "homeLastFive": "",
+              "awayLastFive": "WLDLL",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.3955954089539301,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "model_unavailable"
+              ]
+            }
+          }
+        ],
+        "safe": [],
+        "watch": []
+      }
+    }
+  ]
+}
