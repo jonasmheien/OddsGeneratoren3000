@@ -28,7 +28,7 @@ class AnalysisDetailsV28(unittest.TestCase):
                      "querySelectorAll('details.tf-analysis[open]')"):
             self.assertIn(part,code)
         self.assertIn('tf-analysis summary:focus-visible',CSS.read_text(encoding='utf-8'))
-        self.assertIn('three-fields-v26.js?v=28',HTML.read_text(encoding='utf-8'))
+        self.assertIn('three-fields-v26.js?v=31',HTML.read_text(encoding='utf-8'))
         self.assertIn('three-fields-v26.css?v=28',HTML.read_text(encoding='utf-8'))
 
     @unittest.skipUnless(shutil.which('node'),'Node.js unavailable')
