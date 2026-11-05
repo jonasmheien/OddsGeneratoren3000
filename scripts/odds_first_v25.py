@@ -19,6 +19,20 @@ PREVIEW_SPORTS = (
 COMPETITIONS = {
     'soccer_uefa_europa_league': ('ODDS-EL', 'UEFA Europa League'),
     'soccer_uefa_europa_conference_league': ('ODDS-ECL', 'UEFA Conference League'),
+    'soccer_epl': ('ODDS-PL', 'Premier League'),
+    'soccer_efl_champ': ('ODDS-ELC', 'Championship'),
+    'soccer_italy_serie_a': ('ODDS-SA', 'Serie A'),
+    'soccer_germany_bundesliga': ('ODDS-BL1', 'Bundesliga'),
+    'soccer_spain_la_liga': ('ODDS-PD', 'La Liga'),
+    'soccer_france_ligue_one': ('ODDS-FL1', 'Ligue 1'),
+    'soccer_netherlands_eredivisie': ('ODDS-DED', 'Eredivisie'),
+    'soccer_portugal_primeira_liga': ('ODDS-PPL', 'Primeira Liga'),
+    'soccer_uefa_champs_league': ('ODDS-CL', 'UEFA Champions League'),
+    'soccer_norway_eliteserien': ('ODDS-NOR', 'Eliteserien'),
+    'soccer_sweden_allsvenskan': ('ODDS-SWE', 'Allsvenskan'),
+    'soccer_sweden_superettan': ('ODDS-SE2', 'Superettan'),
+    'soccer_denmark_superliga': ('ODDS-DNK', 'Superliga'),
+    'soccer_spain_segunda_division': ('ODDS-SP2', 'La Liga 2'),
 }
 
 

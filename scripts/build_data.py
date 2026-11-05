@@ -25,7 +25,7 @@ from recommend import curated_picks, category_picks
 from form_v21 import adjusted_form, effective_form_sample, opponent_indices
 from expanded_sources_v23 import discover as discover_extra, odds_remaining
 from form_bridge_v27 import load_free_history, bridge
-from form_bridge_v29 import load_cached_history, attach_additional_form
+from form_bridge_v30 import load_cached_history, attach_additional_form
 from odds_first_v25 import preview_sports, fixtures_from_quotes
 from market_expansion import extend_goal_probabilities, first_half_probabilities, corner_probabilities
 

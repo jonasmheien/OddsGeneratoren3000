@@ -100,8 +100,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .cache/form-v29.json
-          key: form-v29-${{ github.run_id }}
+          key: form-v30-${{ github.run_id }}
           restore-keys: |
+            form-v30-
             form-v29-
       - name: Generer nytt dagsutvalg
         if: steps.trigger.outputs.mode == 'daily' || steps.trigger.outputs.mode == 'tomorrow'
