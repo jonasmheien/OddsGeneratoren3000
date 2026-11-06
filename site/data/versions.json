@@ -1,5 +1,56 @@
 [
   {
+    "date": "2026-11-06",
+    "before": "2026-11-06T09:13:58.966476+00:00",
+    "after": "2026-11-06T11:00:28.984062+00:00",
+    "added": [
+      {
+        "matchId": "564741",
+        "market": "H",
+        "home": "Valencia",
+        "away": "Real Madrid",
+        "label": "Hjemmeseier",
+        "price": 9.24,
+        "category": "high",
+        "kickoff": "2026-11-07T20:00:00+00:00"
+      },
+      {
+        "matchId": "564741",
+        "market": "U25",
+        "home": "Valencia",
+        "away": "Real Madrid",
+        "label": "Under 2,5 mål",
+        "price": 2.88,
+        "category": "high",
+        "kickoff": "2026-11-07T20:00:00+00:00"
+      },
+      {
+        "matchId": "565850",
+        "market": "U25",
+        "home": "Dortmund",
+        "away": "Elversberg",
+        "label": "Under 2,5 mål",
+        "price": 3.2,
+        "category": "high",
+        "kickoff": "2026-11-07T14:30:00+00:00"
+      }
+    ],
+    "removed": [],
+    "repriced": [
+      {
+        "matchId": "561935",
+        "market": "H",
+        "oldPrice": 4.63,
+        "newPrice": 4.66
+      }
+    ],
+    "changeCounts": {
+      "removed": 0,
+      "added": 3,
+      "repriced": 1
+    }
+  },
+  {
     "date": "2026-11-05",
     "before": "2026-11-05T11:08:43.764862+00:00",
     "after": "2026-11-05T18:05:32.642721+00:00",
