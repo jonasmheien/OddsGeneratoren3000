@@ -1,0 +1,5461 @@
+{
+  "date": "2026-11-06",
+  "before": "2026-11-06T12:32:05.331112+00:00",
+  "after": "2026-11-06T15:54:47.901955+00:00",
+  "changeCounts": {
+    "removed": 0,
+    "added": 0,
+    "repriced": 0
+  },
+  "removed": [],
+  "added": [],
+  "repriced": [],
+  "previousEdition": {
+    "version": 3,
+    "recommendations": [],
+    "safeBets": [],
+    "highRisk": [],
+    "coverage": {
+      "upcomingMatches": 14,
+      "matchedOdds": 12,
+      "withModel": 12,
+      "externalPredictions": 6,
+      "manualPredictions": 0,
+      "apiPredictions": 6,
+      "safeFound": 0,
+      "highFound": 0,
+      "targetPerCategory": [
+        3,
+        5
+      ],
+      "qualified": 0
+    },
+    "sources": [
+      {
+        "name": "football-data.org",
+        "role": "Kampdata og form",
+        "state": "connected"
+      },
+      {
+        "name": "The Odds API",
+        "role": "Bookmakerodds",
+        "state": "connected"
+      },
+      {
+        "name": "API-Football Predictions",
+        "role": "Uavhengig modell",
+        "state": "connected"
+      },
+      {
+        "name": "Eksterne prognoser",
+        "role": "Kildeangitte, manuelt innlagte vurderinger",
+        "state": "not_connected"
+      }
+    ],
+    "visualAssets": {
+      "licensedCrests": false
+    },
+    "qualityGate": {
+      "minimumFormMatchesPerTeam": 5,
+      "minimumSpecialStatisticsPerTeam": 8,
+      "maximumOddsAgeHours": 6,
+      "oneBookmakerRequiresSamples": 8,
+      "minimumConservativeScenarioEdge": 0.02,
+      "explanation": "Ukalibrert sannsynlighetsmodell. Kun positiv forventet verdi i et konservativt scenario, ikke påvist langsiktig avkastning."
+    },
+    "generatedAt": "2026-11-06T12:32:05.331112+00:00",
+    "localDate": "2026-11-06",
+    "dataStatus": {
+      "fixtures": "ok",
+      "odds": "ok",
+      "teamFormRequests": 0,
+      "fixtureCount": 2349,
+      "apiFootballExtraFixtures": 2,
+      "apiFootballExtraHistory": 0,
+      "oddsCreditsRemaining": 364,
+      "requestedLeagues": [
+        "soccer_denmark_superliga",
+        "soccer_efl_champ",
+        "soccer_epl",
+        "soccer_france_ligue_one",
+        "soccer_germany_bundesliga",
+        "soccer_italy_serie_a",
+        "soccer_netherlands_eredivisie",
+        "soccer_portugal_primeira_liga",
+        "soccer_spain_la_liga"
+      ],
+      "oddsMarketKeys": [
+        "h2h",
+        "totals"
+      ],
+      "extraEventsLoaded": 0,
+      "oddsEventCount": 132,
+      "oddsFixtureSource": "The Odds API (bookmaker listings)",
+      "oddsFirstFixtures": 4,
+      "officialFormBridge": {
+        "historyFixturesAvailable": 809,
+        "matchedOddsTeams": 8,
+        "oddsFixturesWithBothTeamsMatched": 4
+      },
+      "additionalFormBridge": {
+        "mode": "cached",
+        "sourceCount": 12,
+        "completedFixtures": 1294,
+        "lastAttempt": "2026-11-05T11:08:43.764862+00:00",
+        "errors": [],
+        "teamsLinked": 0,
+        "fixturesTouched": 0,
+        "historyMatches": 1294
+      },
+      "externalPredictionsStatus": "ok",
+      "externalPredictionsCount": 6,
+      "coverageByLeague": {
+        "APF-SE1": {
+          "upcoming": 1,
+          "withOdds": 0,
+          "withModel": 0,
+          "eligible": 0
+        },
+        "APF-DK1": {
+          "upcoming": 1,
+          "withOdds": 0,
+          "withModel": 0,
+          "eligible": 0
+        },
+        "DED": {
+          "upcoming": 1,
+          "withOdds": 1,
+          "withModel": 1,
+          "eligible": 1
+        },
+        "ODDS-DED": {
+          "upcoming": 1,
+          "withOdds": 1,
+          "withModel": 1,
+          "eligible": 1
+        },
+        "BL1": {
+          "upcoming": 1,
+          "withOdds": 1,
+          "withModel": 1,
+          "eligible": 0
+        },
+        "ODDS-BL1": {
+          "upcoming": 1,
+          "withOdds": 1,
+          "withModel": 1,
+          "eligible": 0
+        },
+        "FL1": {
+          "upcoming": 1,
+          "withOdds": 1,
+          "withModel": 1,
+          "eligible": 0
+        },
+        "SA": {
+          "upcoming": 1,
+          "withOdds": 1,
+          "withModel": 1,
+          "eligible": 1
+        },
+        "ODDS-SA": {
+          "upcoming": 1,
+          "withOdds": 1,
+          "withModel": 1,
+          "eligible": 0
+        },
+        "PD": {
+          "upcoming": 1,
+          "withOdds": 1,
+          "withModel": 1,
+          "eligible": 0
+        },
+        "ELC": {
+          "upcoming": 1,
+          "withOdds": 1,
+          "withModel": 1,
+          "eligible": 0
+        },
+        "PL": {
+          "upcoming": 1,
+          "withOdds": 1,
+          "withModel": 1,
+          "eligible": 1
+        },
+        "ODDS-PD": {
+          "upcoming": 1,
+          "withOdds": 1,
+          "withModel": 1,
+          "eligible": 0
+        },
+        "PPL": {
+          "upcoming": 1,
+          "withOdds": 1,
+          "withModel": 1,
+          "eligible": 1
+        }
+      },
+      "analysisReadiness": {
+        "upcoming": 14,
+        "matchedOdds": 12,
+        "withModel": 12,
+        "recommended": 0,
+        "safe": 0,
+        "highRisk": 5,
+        "message": "analysert"
+      }
+    },
+    "errors": [
+      "API-Football team history 363 unavailable: ValueError",
+      "API-Football team history 372 unavailable: ValueError",
+      "API-Football team history 2073 unavailable: ValueError",
+      "API-Football team history 625 unavailable: ValueError"
+    ],
+    "method": "Konservativ ikke-kalibrert Poisson-baseline fra siste inntil 6 registrerte resultater. Screening er en hypotese, ikke dokumentert positiv forventningsverdi.",
+    "matches": [
+      {
+        "id": "apf:1494334",
+        "league": "Allsvenskan",
+        "leagueCode": "APF-SE1",
+        "leagueCrest": null,
+        "homeCrest": null,
+        "awayCrest": null,
+        "home": "Hammarby FF",
+        "away": "IF Elfsborg",
+        "homeAliases": [
+          "Hammarby FF"
+        ],
+        "awayAliases": [
+          "IF Elfsborg"
+        ],
+        "kickoff": "2026-11-06T18:00:00+00:00",
+        "status": "SCHEDULED",
+        "formHome": "",
+        "formAway": "",
+        "model": null,
+        "odds": {},
+        "predictions": [
+          {
+            "source": "API-Football Predictions",
+            "url": "https://www.api-football.com/",
+            "probabilities": {
+              "H": 0.45,
+              "U": 0.45,
+              "B": 0.1
+            },
+            "entry": "api"
+          }
+        ]
+      },
+      {
+        "id": "apf:1549057",
+        "league": "Superliga",
+        "leagueCode": "APF-DK1",
+        "leagueCrest": null,
+        "homeCrest": null,
+        "awayCrest": null,
+        "home": "Silkeborg",
+        "away": "Lyngby",
+        "homeAliases": [
+          "Silkeborg"
+        ],
+        "awayAliases": [
+          "Lyngby"
+        ],
+        "kickoff": "2026-11-06T18:00:00+00:00",
+        "status": "SCHEDULED",
+        "formHome": "",
+        "formAway": "",
+        "model": null,
+        "odds": {},
+        "predictions": [
+          {
+            "source": "API-Football Predictions",
+            "url": "https://www.api-football.com/",
+            "probabilities": {
+              "H": 0.33,
+              "U": 0.33,
+              "B": 0.33
+            },
+            "entry": "api"
+          }
+        ]
+      },
+      {
+        "id": "558845",
+        "league": "Eredivisie",
+        "leagueCode": "DED",
+        "leagueCrest": "https://crests.football-data.org/ED.png",
+        "homeCrest": "https://crests.football-data.org/672.png",
+        "awayCrest": "https://crests.football-data.org/684.png",
+        "home": "Willem II",
+        "away": "Zwolle",
+        "homeAliases": [
+          "Willem II Tilburg"
+        ],
+        "awayAliases": [
+          "PEC Zwolle"
+        ],
+        "kickoff": "2026-11-06T19:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "LLLLLLDLDLL",
+        "formAway": "WDWLLLDLWLLLL",
+        "model": {
+          "probabilities": {
+            "H": 0.3623,
+            "U": 0.2524,
+            "B": 0.3853,
+            "O25": 0.532,
+            "U25": 0.468,
+            "O35": 0.3094,
+            "BTTS": 0.5686,
+            "O15": 0.7706,
+            "U15": 0.2294,
+            "U35": 0.6897,
+            "THO05": 0.7484,
+            "THO15": 0.4012,
+            "TAO05": 0.7607,
+            "TAO15": 0.4185,
+            "H1O05": 0.6951,
+            "H1O15": 0.333,
+            "H1U15": 0.667
+          },
+          "expectedGoals": [
+            1.38,
+            1.43
+          ],
+          "sample": [
+            11,
+            13
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            8.04,
+            8.53
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 2.07,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "nordicbet"
+          },
+          "H": {
+            "price": 3.25,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "onexbet"
+          },
+          "U": {
+            "price": 3.55,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "marathonbet"
+          },
+          "O25": {
+            "price": 1.67,
+            "source": "The Odds API · bookmaker-median",
+            "books": 12,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "betsson"
+          },
+          "U25": {
+            "price": 2.12,
+            "source": "The Odds API · bookmaker-median",
+            "books": 12,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "nordicbet"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "odds:926c11a6b5d1773d9024296a215d0f71",
+        "league": "Eredivisie",
+        "leagueCode": "ODDS-DED",
+        "leagueCrest": null,
+        "homeCrest": null,
+        "awayCrest": null,
+        "home": "Willem II",
+        "away": "FC Zwolle",
+        "homeAliases": [
+          "Willem II"
+        ],
+        "awayAliases": [
+          "FC Zwolle"
+        ],
+        "kickoff": "2026-11-06T19:00:00+00:00",
+        "status": "SCHEDULED",
+        "formHome": "LLLLLLDLDLL",
+        "formAway": "WDWLLLDLWLLLL",
+        "model": {
+          "probabilities": {
+            "H": 0.3623,
+            "U": 0.2524,
+            "B": 0.3853,
+            "O25": 0.532,
+            "U25": 0.468,
+            "O35": 0.3094,
+            "BTTS": 0.5686,
+            "O15": 0.7706,
+            "U15": 0.2294,
+            "U35": 0.6897,
+            "THO05": 0.7484,
+            "THO15": 0.4012,
+            "TAO05": 0.7607,
+            "TAO15": 0.4185,
+            "H1O05": 0.6951,
+            "H1O15": 0.333,
+            "H1U15": 0.667
+          },
+          "expectedGoals": [
+            1.38,
+            1.43
+          ],
+          "sample": [
+            11,
+            13
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            8.04,
+            8.53
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 2.07,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "nordicbet"
+          },
+          "H": {
+            "price": 3.25,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "onexbet"
+          },
+          "U": {
+            "price": 3.55,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "marathonbet"
+          },
+          "O25": {
+            "price": 1.67,
+            "source": "The Odds API · bookmaker-median",
+            "books": 12,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "betsson"
+          },
+          "U25": {
+            "price": 2.12,
+            "source": "The Odds API · bookmaker-median",
+            "books": 12,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "nordicbet"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "565852",
+        "league": "Bundesliga",
+        "leagueCode": "BL1",
+        "leagueCrest": "https://crests.football-data.org/BL1.png",
+        "homeCrest": "https://crests.football-data.org/7.png",
+        "awayCrest": "https://crests.football-data.org/18.png",
+        "home": "HSV",
+        "away": "M'gladbach",
+        "homeAliases": [
+          "Hamburger SV"
+        ],
+        "awayAliases": [
+          "Borussia Mönchengladbach"
+        ],
+        "kickoff": "2026-11-06T19:30:00+00:00",
+        "status": "TIMED",
+        "formHome": "LLWWWLLLDW",
+        "formAway": "DWLLLLLLW",
+        "model": {
+          "probabilities": {
+            "H": 0.4109,
+            "U": 0.249,
+            "B": 0.34,
+            "O25": 0.5439,
+            "U25": 0.4561,
+            "O35": 0.3207,
+            "BTTS": 0.5765,
+            "O15": 0.7789,
+            "U15": 0.2211,
+            "U35": 0.6786,
+            "THO05": 0.7791,
+            "THO15": 0.4455,
+            "TAO05": 0.7408,
+            "TAO15": 0.3908,
+            "H1O05": 0.7311,
+            "H1O15": 0.3779,
+            "H1U15": 0.6221
+          },
+          "expectedGoals": [
+            1.51,
+            1.35
+          ],
+          "sample": [
+            10,
+            9
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            6.84,
+            6.54
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 2.98,
+            "source": "The Odds API · bookmaker-median",
+            "books": 23,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "coolbet"
+          },
+          "H": {
+            "price": 2.31,
+            "source": "The Odds API · bookmaker-median",
+            "books": 23,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "marathonbet"
+          },
+          "U": {
+            "price": 3.45,
+            "source": "The Odds API · bookmaker-median",
+            "books": 23,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "winamax_de"
+          },
+          "O25": {
+            "price": 1.75,
+            "source": "The Odds API · bookmaker-median",
+            "books": 15,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "williamhill"
+          },
+          "U25": {
+            "price": 2.1,
+            "source": "The Odds API · bookmaker-median",
+            "books": 15,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "marathonbet"
+          }
+        },
+        "predictions": [
+          {
+            "source": "API-Football Predictions",
+            "url": "https://www.api-football.com/",
+            "probabilities": {
+              "H": 0.45,
+              "U": 0.45,
+              "B": 0.1
+            },
+            "entry": "api"
+          }
+        ]
+      },
+      {
+        "id": "odds:295076c39e49863cb54db085ac3cd340",
+        "league": "Bundesliga",
+        "leagueCode": "ODDS-BL1",
+        "leagueCrest": null,
+        "homeCrest": null,
+        "awayCrest": null,
+        "home": "Hamburger SV",
+        "away": "Borussia Monchengladbach",
+        "homeAliases": [
+          "Hamburger SV"
+        ],
+        "awayAliases": [
+          "Borussia Monchengladbach"
+        ],
+        "kickoff": "2026-11-06T19:30:00+00:00",
+        "status": "SCHEDULED",
+        "formHome": "LLWWWLLLDW",
+        "formAway": "DWLLLLLLW",
+        "model": {
+          "probabilities": {
+            "H": 0.4109,
+            "U": 0.249,
+            "B": 0.34,
+            "O25": 0.5439,
+            "U25": 0.4561,
+            "O35": 0.3207,
+            "BTTS": 0.5765,
+            "O15": 0.7789,
+            "U15": 0.2211,
+            "U35": 0.6786,
+            "THO05": 0.7791,
+            "THO15": 0.4455,
+            "TAO05": 0.7408,
+            "TAO15": 0.3908,
+            "H1O05": 0.7311,
+            "H1O15": 0.3779,
+            "H1U15": 0.6221
+          },
+          "expectedGoals": [
+            1.51,
+            1.35
+          ],
+          "sample": [
+            10,
+            9
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            6.84,
+            6.54
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 2.98,
+            "source": "The Odds API · bookmaker-median",
+            "books": 23,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "coolbet"
+          },
+          "H": {
+            "price": 2.31,
+            "source": "The Odds API · bookmaker-median",
+            "books": 23,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "marathonbet"
+          },
+          "U": {
+            "price": 3.45,
+            "source": "The Odds API · bookmaker-median",
+            "books": 23,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "winamax_de"
+          },
+          "O25": {
+            "price": 1.75,
+            "source": "The Odds API · bookmaker-median",
+            "books": 15,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "williamhill"
+          },
+          "U25": {
+            "price": 2.1,
+            "source": "The Odds API · bookmaker-median",
+            "books": 15,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "marathonbet"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "559638",
+        "league": "Ligue 1",
+        "leagueCode": "FL1",
+        "leagueCrest": "https://crests.football-data.org/FL1.png",
+        "homeCrest": "https://crests.football-data.org/511.png",
+        "awayCrest": "https://crests.football-data.org/576.png",
+        "home": "Toulouse",
+        "away": "Strasbourg",
+        "homeAliases": [
+          "Toulouse FC"
+        ],
+        "awayAliases": [
+          "RC Strasbourg Alsace"
+        ],
+        "kickoff": "2026-11-06T19:45:00+00:00",
+        "status": "TIMED",
+        "formHome": "LDWDWDLDLW",
+        "formAway": "WLLLLDWWLWWD",
+        "model": {
+          "probabilities": {
+            "H": 0.435,
+            "U": 0.2392,
+            "B": 0.3258,
+            "O25": 0.5853,
+            "U25": 0.4147,
+            "O35": 0.3613,
+            "BTTS": 0.6066,
+            "O15": 0.8053,
+            "U15": 0.1947,
+            "U35": 0.6405,
+            "THO05": 0.806,
+            "THO15": 0.4879,
+            "TAO05": 0.7509,
+            "TAO15": 0.4047,
+            "H1O05": 0.676,
+            "H1O15": 0.3108,
+            "H1U15": 0.6892
+          },
+          "expectedGoals": [
+            1.64,
+            1.39
+          ],
+          "sample": [
+            10,
+            12
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            7.12,
+            7.73
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 3.12,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "unibet_nl"
+          },
+          "H": {
+            "price": 2.15,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "unibet_fr"
+          },
+          "U": {
+            "price": 3.65,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "winamax_de"
+          },
+          "O25": {
+            "price": 1.65,
+            "source": "The Odds API · bookmaker-median",
+            "books": 12,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "nordicbet"
+          },
+          "U25": {
+            "price": 2.2,
+            "source": "The Odds API · bookmaker-median",
+            "books": 12,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "marathonbet"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "558537",
+        "league": "Serie A",
+        "leagueCode": "SA",
+        "leagueCrest": "https://crests.football-data.org/c111.png",
+        "homeCrest": "https://crests.football-data.org/454.png",
+        "awayCrest": "https://crests.football-data.org/115.png",
+        "home": "Venezia FC",
+        "away": "Udinese",
+        "homeAliases": [
+          "Venezia FC"
+        ],
+        "awayAliases": [
+          "Udinese Calcio"
+        ],
+        "kickoff": "2026-11-06T19:45:00+00:00",
+        "status": "TIMED",
+        "formHome": "LLLWLLLLLL",
+        "formAway": "LDLLLLLLWDLL",
+        "model": {
+          "probabilities": {
+            "H": 0.3906,
+            "U": 0.2722,
+            "B": 0.3372,
+            "O25": 0.4456,
+            "U25": 0.5544,
+            "O35": 0.2337,
+            "BTTS": 0.4997,
+            "O15": 0.7044,
+            "U15": 0.2956,
+            "U35": 0.7661,
+            "THO05": 0.7247,
+            "THO15": 0.3696,
+            "TAO05": 0.6896,
+            "TAO15": 0.3265,
+            "H1O05": 0.687,
+            "H1O15": 0.3234,
+            "H1U15": 0.6766
+          },
+          "expectedGoals": [
+            1.29,
+            1.17
+          ],
+          "sample": [
+            10,
+            12
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            7.79,
+            8.43
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 3.15,
+            "source": "The Odds API · bookmaker-median",
+            "books": 24,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "everygame"
+          },
+          "H": {
+            "price": 2.31,
+            "source": "The Odds API · bookmaker-median",
+            "books": 24,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "everygame"
+          },
+          "U": {
+            "price": 3.35,
+            "source": "The Odds API · bookmaker-median",
+            "books": 24,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "unibet_nl"
+          },
+          "O25": {
+            "price": 1.83,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "unibet_se"
+          },
+          "U25": {
+            "price": 1.96,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "marathonbet"
+          }
+        },
+        "predictions": [
+          {
+            "source": "API-Football Predictions",
+            "url": "https://www.api-football.com/",
+            "probabilities": {
+              "H": 0.1,
+              "U": 0.45,
+              "B": 0.45
+            },
+            "entry": "api"
+          }
+        ]
+      },
+      {
+        "id": "odds:fa069801a5c9b49143447a1a1d173fd1",
+        "league": "Serie A",
+        "leagueCode": "ODDS-SA",
+        "leagueCrest": null,
+        "homeCrest": null,
+        "awayCrest": null,
+        "home": "Venezia",
+        "away": "Udinese",
+        "homeAliases": [
+          "Venezia"
+        ],
+        "awayAliases": [
+          "Udinese"
+        ],
+        "kickoff": "2026-11-06T19:45:00+00:00",
+        "status": "SCHEDULED",
+        "formHome": "LLLWLLLLLL",
+        "formAway": "LDLLLLLLWDLL",
+        "model": {
+          "probabilities": {
+            "H": 0.3906,
+            "U": 0.2722,
+            "B": 0.3372,
+            "O25": 0.4456,
+            "U25": 0.5544,
+            "O35": 0.2337,
+            "BTTS": 0.4997,
+            "O15": 0.7044,
+            "U15": 0.2956,
+            "U35": 0.7661,
+            "THO05": 0.7247,
+            "THO15": 0.3696,
+            "TAO05": 0.6896,
+            "TAO15": 0.3265,
+            "H1O05": 0.687,
+            "H1O15": 0.3234,
+            "H1U15": 0.6766
+          },
+          "expectedGoals": [
+            1.29,
+            1.17
+          ],
+          "sample": [
+            10,
+            12
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            7.79,
+            8.43
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 3.15,
+            "source": "The Odds API · bookmaker-median",
+            "books": 24,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "everygame"
+          },
+          "H": {
+            "price": 2.31,
+            "source": "The Odds API · bookmaker-median",
+            "books": 24,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "everygame"
+          },
+          "U": {
+            "price": 3.35,
+            "source": "The Odds API · bookmaker-median",
+            "books": 24,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "unibet_nl"
+          },
+          "O25": {
+            "price": 1.83,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "unibet_se"
+          },
+          "U25": {
+            "price": 1.96,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "marathonbet"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "564740",
+        "league": "Primera Division",
+        "leagueCode": "PD",
+        "leagueCrest": "https://crests.football-data.org/laliga.png",
+        "homeCrest": "https://crests.football-data.org/559.png",
+        "awayCrest": "https://crests.football-data.org/263.png",
+        "home": "Sevilla FC",
+        "away": "Alavés",
+        "homeAliases": [
+          "Sevilla FC"
+        ],
+        "awayAliases": [
+          "Deportivo Alavés"
+        ],
+        "kickoff": "2026-11-06T20:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "LWLDLWWDLWWLLW",
+        "formAway": "LDLLDLLWWDWLWW",
+        "model": {
+          "probabilities": {
+            "H": 0.4237,
+            "U": 0.257,
+            "B": 0.3193,
+            "O25": 0.5031,
+            "U25": 0.4969,
+            "O35": 0.283,
+            "BTTS": 0.5428,
+            "O15": 0.7495,
+            "U15": 0.2505,
+            "U35": 0.7163,
+            "THO05": 0.7678,
+            "THO15": 0.4287,
+            "TAO05": 0.7077,
+            "TAO15": 0.3482,
+            "H1O05": 0.6976,
+            "H1O15": 0.3359,
+            "H1U15": 0.6641
+          },
+          "expectedGoals": [
+            1.46,
+            1.23
+          ],
+          "sample": [
+            14,
+            14
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            9.04,
+            8.99
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 4.55,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:02Z",
+            "sampleBook": "marathonbet"
+          },
+          "H": {
+            "price": 1.85,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:02Z",
+            "sampleBook": "williamhill"
+          },
+          "U": {
+            "price": 3.4,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:02Z",
+            "sampleBook": "winamax_de"
+          },
+          "O25": {
+            "price": 2.16,
+            "source": "The Odds API · bookmaker-median",
+            "books": 11,
+            "lastUpdated": "2026-11-06T12:33:01Z",
+            "sampleBook": "unibet_se"
+          },
+          "U25": {
+            "price": 1.67,
+            "source": "The Odds API · bookmaker-median",
+            "books": 11,
+            "lastUpdated": "2026-11-06T12:33:01Z",
+            "sampleBook": "williamhill"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "561932",
+        "league": "Championship",
+        "leagueCode": "ELC",
+        "leagueCrest": "https://crests.football-data.org/ELC.png",
+        "homeCrest": "https://crests.football-data.org/342.png",
+        "awayCrest": "https://crests.football-data.org/60.png",
+        "home": "Derby County",
+        "away": "Bolton",
+        "homeAliases": [
+          "Derby County FC"
+        ],
+        "awayAliases": [
+          "Bolton Wanderers FC"
+        ],
+        "kickoff": "2026-11-06T20:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "LLDLLDDLLLWLDL",
+        "formAway": "WLLDWLWWLLLLDW",
+        "model": {
+          "probabilities": {
+            "H": 0.3619,
+            "U": 0.2576,
+            "B": 0.3805,
+            "O25": 0.5085,
+            "U25": 0.4915,
+            "O35": 0.2879,
+            "BTTS": 0.5503,
+            "O15": 0.7513,
+            "U15": 0.2487,
+            "U35": 0.7141,
+            "THO05": 0.7355,
+            "THO15": 0.3838,
+            "TAO05": 0.7459,
+            "TAO15": 0.3978,
+            "H1O05": 0.7494,
+            "H1O15": 0.4026,
+            "H1U15": 0.5974
+          },
+          "expectedGoals": [
+            1.33,
+            1.37
+          ],
+          "sample": [
+            14,
+            14
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            10.52,
+            10.51
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 2.62,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "onexbet"
+          },
+          "H": {
+            "price": 2.5,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "unibet_nl"
+          },
+          "U": {
+            "price": 3.45,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "codere_it"
+          },
+          "O25": {
+            "price": 1.71,
+            "source": "The Odds API · bookmaker-median",
+            "books": 15,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "onexbet"
+          },
+          "U25": {
+            "price": 2.06,
+            "source": "The Odds API · bookmaker-median",
+            "books": 15,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "onexbet"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "560634",
+        "league": "Premier League",
+        "leagueCode": "PL",
+        "leagueCrest": "https://crests.football-data.org/PL.png",
+        "homeCrest": "https://crests.football-data.org/62.png",
+        "awayCrest": "https://crests.football-data.org/1076.png",
+        "home": "Everton",
+        "away": "Coventry City",
+        "homeAliases": [
+          "Everton FC"
+        ],
+        "awayAliases": [
+          "Coventry City FC"
+        ],
+        "kickoff": "2026-11-06T20:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "WLLDWDDDWLLD",
+        "formAway": "WLLWWLLLL",
+        "model": {
+          "probabilities": {
+            "H": 0.4439,
+            "U": 0.2689,
+            "B": 0.2872,
+            "O25": 0.4429,
+            "U25": 0.5571,
+            "O35": 0.2315,
+            "BTTS": 0.4906,
+            "O15": 0.7023,
+            "U15": 0.2977,
+            "U35": 0.7682,
+            "THO05": 0.7509,
+            "THO15": 0.4047,
+            "TAO05": 0.6535,
+            "TAO15": 0.2863,
+            "H1O05": 0.5962,
+            "H1O15": 0.23,
+            "H1U15": 0.77
+          },
+          "expectedGoals": [
+            1.39,
+            1.06
+          ],
+          "sample": [
+            12,
+            9
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            7.75,
+            6.85
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 5.0,
+            "source": "The Odds API · bookmaker-median",
+            "books": 25,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "everygame"
+          },
+          "H": {
+            "price": 1.67,
+            "source": "The Odds API · bookmaker-median",
+            "books": 25,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "sport888"
+          },
+          "U": {
+            "price": 4.0,
+            "source": "The Odds API · bookmaker-median",
+            "books": 25,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "winamax_de"
+          },
+          "O25": {
+            "price": 1.73,
+            "source": "The Odds API · bookmaker-median",
+            "books": 17,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "gtbets"
+          },
+          "U25": {
+            "price": 2.1,
+            "source": "The Odds API · bookmaker-median",
+            "books": 17,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "williamhill"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "odds:9dd0014685fd62d9b2890d7c33a8c9ab",
+        "league": "La Liga",
+        "leagueCode": "ODDS-PD",
+        "leagueCrest": null,
+        "homeCrest": null,
+        "awayCrest": null,
+        "home": "Sevilla",
+        "away": "Alavés",
+        "homeAliases": [
+          "Sevilla"
+        ],
+        "awayAliases": [
+          "Alavés"
+        ],
+        "kickoff": "2026-11-06T20:00:00+00:00",
+        "status": "SCHEDULED",
+        "formHome": "LWLDLWWDLWWLLW",
+        "formAway": "LDLLDLLWWDWLWW",
+        "model": {
+          "probabilities": {
+            "H": 0.4237,
+            "U": 0.257,
+            "B": 0.3193,
+            "O25": 0.5031,
+            "U25": 0.4969,
+            "O35": 0.283,
+            "BTTS": 0.5428,
+            "O15": 0.7495,
+            "U15": 0.2505,
+            "U35": 0.7163,
+            "THO05": 0.7678,
+            "THO15": 0.4287,
+            "TAO05": 0.7077,
+            "TAO15": 0.3482,
+            "H1O05": 0.6976,
+            "H1O15": 0.3359,
+            "H1U15": 0.6641
+          },
+          "expectedGoals": [
+            1.46,
+            1.23
+          ],
+          "sample": [
+            14,
+            14
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            9.04,
+            8.99
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 4.55,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:02Z",
+            "sampleBook": "marathonbet"
+          },
+          "H": {
+            "price": 1.85,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:02Z",
+            "sampleBook": "williamhill"
+          },
+          "U": {
+            "price": 3.4,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:02Z",
+            "sampleBook": "winamax_de"
+          },
+          "O25": {
+            "price": 2.16,
+            "source": "The Odds API · bookmaker-median",
+            "books": 11,
+            "lastUpdated": "2026-11-06T12:33:01Z",
+            "sampleBook": "unibet_se"
+          },
+          "U25": {
+            "price": 1.67,
+            "source": "The Odds API · bookmaker-median",
+            "books": 11,
+            "lastUpdated": "2026-11-06T12:33:01Z",
+            "sampleBook": "williamhill"
+          }
+        },
+        "predictions": [
+          {
+            "source": "API-Football Predictions",
+            "url": "https://www.api-football.com/",
+            "probabilities": {
+              "H": 0.45,
+              "U": 0.45,
+              "B": 0.1
+            },
+            "entry": "api"
+          }
+        ]
+      },
+      {
+        "id": "567353",
+        "league": "Primeira Liga",
+        "leagueCode": "PPL",
+        "leagueCrest": "https://crests.football-data.org/PPL.png",
+        "homeCrest": "https://crests.football-data.org/5531.png",
+        "awayCrest": "https://crests.football-data.org/712.png",
+        "home": "Famalicão",
+        "away": "Arouca",
+        "homeAliases": [
+          "FC Famalicão"
+        ],
+        "awayAliases": [
+          "FC Arouca"
+        ],
+        "kickoff": "2026-11-06T20:45:00+00:00",
+        "status": "TIMED",
+        "formHome": "LWLWDDDLLDWD",
+        "formAway": "WWWDLDWLWWWW",
+        "model": {
+          "probabilities": {
+            "H": 0.332,
+            "U": 0.2768,
+            "B": 0.3912,
+            "O25": 0.427,
+            "U25": 0.573,
+            "O35": 0.2187,
+            "BTTS": 0.4846,
+            "O15": 0.6872,
+            "U15": 0.3128,
+            "U35": 0.7829,
+            "THO05": 0.677,
+            "THO15": 0.3119,
+            "TAO05": 0.7135,
+            "TAO15": 0.3554,
+            "H1O05": 0.6743,
+            "H1O15": 0.3089,
+            "H1U15": 0.6911
+          },
+          "expectedGoals": [
+            1.13,
+            1.25
+          ],
+          "sample": [
+            12,
+            12
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            7.68,
+            7.68
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 3.08,
+            "source": "The Odds API · bookmaker-median",
+            "books": 20,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "betclic_fr"
+          },
+          "H": {
+            "price": 2.29,
+            "source": "The Odds API · bookmaker-median",
+            "books": 20,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "tipico_de"
+          },
+          "U": {
+            "price": 3.15,
+            "source": "The Odds API · bookmaker-median",
+            "books": 20,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "winamax_fr"
+          },
+          "O25": {
+            "price": 2.11,
+            "source": "The Odds API · bookmaker-median",
+            "books": 12,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "coolbet"
+          },
+          "U25": {
+            "price": 1.67,
+            "source": "The Odds API · bookmaker-median",
+            "books": 12,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "unibet_nl"
+          }
+        },
+        "predictions": [
+          {
+            "source": "API-Football Predictions",
+            "url": "https://www.api-football.com/",
+            "probabilities": {
+              "H": 0.35,
+              "U": 0.35,
+              "B": 0.3
+            },
+            "entry": "api"
+          }
+        ]
+      },
+      {
+        "id": "555079",
+        "league": "Campeonato Brasileiro Série A",
+        "leagueCode": "BSA",
+        "leagueCrest": "https://crests.football-data.org/bsa.png",
+        "homeCrest": "https://crests.football-data.org/1782.png",
+        "awayCrest": "https://crests.football-data.org/1765.png",
+        "home": "Vitória",
+        "away": "Fluminense",
+        "homeAliases": [
+          "EC Vitória"
+        ],
+        "awayAliases": [
+          "Fluminense FC"
+        ],
+        "kickoff": "2026-11-06T23:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "",
+        "formAway": "",
+        "model": null,
+        "odds": {},
+        "predictions": []
+      },
+      {
+        "id": "561938",
+        "league": "Championship",
+        "leagueCode": "ELC",
+        "leagueCrest": "https://crests.football-data.org/ELC.png",
+        "homeCrest": "https://crests.football-data.org/325.png",
+        "awayCrest": "https://crests.football-data.org/70.png",
+        "home": "Portsmouth",
+        "away": "Stoke",
+        "homeAliases": [
+          "Portsmouth FC"
+        ],
+        "awayAliases": [
+          "Stoke City FC"
+        ],
+        "kickoff": "2026-11-07T12:30:00+00:00",
+        "status": "TIMED",
+        "formHome": "WDWDWWLDDWLLWL",
+        "formAway": "WWDWLWWWDWWLLL",
+        "model": {
+          "probabilities": {
+            "H": 0.4031,
+            "U": 0.2669,
+            "B": 0.3299,
+            "O25": 0.4649,
+            "U25": 0.5351,
+            "O35": 0.2497,
+            "BTTS": 0.5143,
+            "O15": 0.7188,
+            "U15": 0.2812,
+            "U35": 0.7511,
+            "THO05": 0.7382,
+            "THO15": 0.3873,
+            "TAO05": 0.6958,
+            "TAO15": 0.3338,
+            "H1O05": 0.5902,
+            "H1O15": 0.2246,
+            "H1U15": 0.7754
+          },
+          "expectedGoals": [
+            1.34,
+            1.19
+          ],
+          "sample": [
+            14,
+            14
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            10.69,
+            10.45
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "H": {
+            "price": 2.33,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "nordicbet"
+          },
+          "B": {
+            "price": 3.05,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "unibet_se"
+          },
+          "U": {
+            "price": 3.18,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "unibet_se"
+          },
+          "O25": {
+            "price": 2.08,
+            "source": "The Odds API · bookmaker-median",
+            "books": 15,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "onexbet"
+          },
+          "U25": {
+            "price": 1.69,
+            "source": "The Odds API · bookmaker-median",
+            "books": 15,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "gtbets"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "560632",
+        "league": "Premier League",
+        "leagueCode": "PL",
+        "leagueCrest": "https://crests.football-data.org/PL.png",
+        "homeCrest": "https://crests.football-data.org/341.png",
+        "awayCrest": "https://crests.football-data.org/73.png",
+        "home": "Leeds United",
+        "away": "Tottenham",
+        "homeAliases": [
+          "Leeds United FC"
+        ],
+        "awayAliases": [
+          "Tottenham Hotspur FC"
+        ],
+        "kickoff": "2026-11-07T12:30:00+00:00",
+        "status": "TIMED",
+        "formHome": "LDDLDWDDWLWD",
+        "formAway": "WWWDLDDLLWLD",
+        "model": {
+          "probabilities": {
+            "H": 0.4194,
+            "U": 0.2902,
+            "B": 0.2904,
+            "O25": 0.3702,
+            "U25": 0.6298,
+            "O35": 0.1755,
+            "BTTS": 0.4337,
+            "O15": 0.6381,
+            "U15": 0.3619,
+            "U35": 0.8252,
+            "THO05": 0.7018,
+            "THO15": 0.341,
+            "TAO05": 0.6171,
+            "TAO15": 0.2495,
+            "H1O05": 0.6139,
+            "H1O15": 0.2464,
+            "H1U15": 0.7536
+          },
+          "expectedGoals": [
+            1.21,
+            0.96
+          ],
+          "sample": [
+            12,
+            12
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            7.72,
+            7.71
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "H": {
+            "price": 2.74,
+            "source": "The Odds API · bookmaker-median",
+            "books": 25,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "betsson"
+          },
+          "B": {
+            "price": 2.6,
+            "source": "The Odds API · bookmaker-median",
+            "books": 25,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "codere_it"
+          },
+          "U": {
+            "price": 3.35,
+            "source": "The Odds API · bookmaker-median",
+            "books": 25,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "winamax_de"
+          },
+          "O25": {
+            "price": 1.93,
+            "source": "The Odds API · bookmaker-median",
+            "books": 18,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "leovegas_se"
+          },
+          "U25": {
+            "price": 1.87,
+            "source": "The Odds API · bookmaker-median",
+            "books": 18,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "unibet_nl"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "561933",
+        "league": "Championship",
+        "leagueCode": "ELC",
+        "leagueCrest": "https://crests.football-data.org/ELC.png",
+        "homeCrest": "https://crests.football-data.org/404.png",
+        "awayCrest": "https://crests.football-data.org/76.png",
+        "home": "Wrexham",
+        "away": "Wolverhampton",
+        "homeAliases": [
+          "Wrexham AFC"
+        ],
+        "awayAliases": [
+          "Wolverhampton Wanderers FC"
+        ],
+        "kickoff": "2026-11-07T12:30:00+00:00",
+        "status": "TIMED",
+        "formHome": "WLLWLDWLDDWLDD",
+        "formAway": "WWWDWLLWWDLWWDDD",
+        "model": {
+          "probabilities": {
+            "H": 0.3676,
+            "U": 0.266,
+            "B": 0.3664,
+            "O25": 0.4726,
+            "U25": 0.5274,
+            "O35": 0.2563,
+            "BTTS": 0.5221,
+            "O15": 0.7248,
+            "U15": 0.2752,
+            "U35": 0.7447,
+            "THO05": 0.722,
+            "THO15": 0.3661,
+            "TAO05": 0.722,
+            "TAO15": 0.3661,
+            "H1O05": 0.6881,
+            "H1O15": 0.3247,
+            "H1U15": 0.6753
+          },
+          "expectedGoals": [
+            1.28,
+            1.28
+          ],
+          "sample": [
+            14,
+            16
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            10.46,
+            11.3
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 2.2,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "coolbet"
+          },
+          "H": {
+            "price": 3.2,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "coolbet"
+          },
+          "U": {
+            "price": 3.34,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "onexbet"
+          },
+          "O25": {
+            "price": 1.88,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "nordicbet"
+          },
+          "U25": {
+            "price": 1.85,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "leovegas_se"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "561939",
+        "league": "Championship",
+        "leagueCode": "ELC",
+        "leagueCrest": "https://crests.football-data.org/ELC.png",
+        "homeCrest": "https://crests.football-data.org/387.png",
+        "awayCrest": "https://crests.football-data.org/68.png",
+        "home": "Bristol City",
+        "away": "Norwich",
+        "homeAliases": [
+          "Bristol City FC"
+        ],
+        "awayAliases": [
+          "Norwich City FC"
+        ],
+        "kickoff": "2026-11-07T12:30:00+00:00",
+        "status": "TIMED",
+        "formHome": "LWDLLDWLLWWWDL",
+        "formAway": "WWWLLLLLWWLWLL",
+        "model": {
+          "probabilities": {
+            "H": 0.3997,
+            "U": 0.2525,
+            "B": 0.3478,
+            "O25": 0.5297,
+            "U25": 0.4703,
+            "O35": 0.3072,
+            "BTTS": 0.5661,
+            "O15": 0.7689,
+            "U15": 0.2311,
+            "U35": 0.6919,
+            "THO05": 0.7678,
+            "THO15": 0.4287,
+            "TAO05": 0.7382,
+            "TAO15": 0.3873,
+            "H1O05": 0.7131,
+            "H1O15": 0.3549,
+            "H1U15": 0.6451
+          },
+          "expectedGoals": [
+            1.46,
+            1.34
+          ],
+          "sample": [
+            14,
+            14
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            10.49,
+            10.47
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "H": {
+            "price": 2.64,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "onexbet"
+          },
+          "B": {
+            "price": 2.5,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "coolbet"
+          },
+          "U": {
+            "price": 3.4,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "unibet_nl"
+          },
+          "O25": {
+            "price": 1.75,
+            "source": "The Odds API · bookmaker-median",
+            "books": 15,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "nordicbet"
+          },
+          "U25": {
+            "price": 2.03,
+            "source": "The Odds API · bookmaker-median",
+            "books": 15,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "coolbet"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "564744",
+        "league": "Primera Division",
+        "leagueCode": "PD",
+        "leagueCrest": "https://crests.football-data.org/laliga.png",
+        "homeCrest": "https://crests.football-data.org/84.png",
+        "awayCrest": "https://crests.football-data.org/5335.png",
+        "home": "Málaga",
+        "away": "Santander",
+        "homeAliases": [
+          "Málaga CF"
+        ],
+        "awayAliases": [
+          "Real Racing Club de Santander"
+        ],
+        "kickoff": "2026-11-07T13:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "LDLDLLDDLDL",
+        "formAway": "LWLDLLWLWLD",
+        "model": {
+          "probabilities": {
+            "H": 0.4248,
+            "U": 0.2481,
+            "B": 0.3271,
+            "O25": 0.5447,
+            "U25": 0.4553,
+            "O35": 0.3214,
+            "BTTS": 0.5758,
+            "O15": 0.7789,
+            "U15": 0.2211,
+            "U35": 0.6786,
+            "THO05": 0.7856,
+            "THO15": 0.4555,
+            "TAO05": 0.7329,
+            "TAO15": 0.3802,
+            "H1O05": 0.7594,
+            "H1O15": 0.4167,
+            "H1U15": 0.5833
+          },
+          "expectedGoals": [
+            1.54,
+            1.32
+          ],
+          "sample": [
+            11,
+            11
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            8.09,
+            8.07
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "H": {
+            "price": 2.4,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:02Z",
+            "sampleBook": "betsson"
+          },
+          "B": {
+            "price": 2.85,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:02Z",
+            "sampleBook": "tipico_de"
+          },
+          "U": {
+            "price": 3.5,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:02Z",
+            "sampleBook": "williamhill"
+          },
+          "O25": {
+            "price": 1.65,
+            "source": "The Odds API · bookmaker-median",
+            "books": 12,
+            "lastUpdated": "2026-11-06T12:33:01Z",
+            "sampleBook": "williamhill"
+          },
+          "U25": {
+            "price": 2.22,
+            "source": "The Odds API · bookmaker-median",
+            "books": 12,
+            "lastUpdated": "2026-11-06T12:33:01Z",
+            "sampleBook": "marathonbet"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "558532",
+        "league": "Serie A",
+        "leagueCode": "SA",
+        "leagueCrest": "https://crests.football-data.org/c111.png",
+        "homeCrest": "https://crests.football-data.org/586.png",
+        "awayCrest": "https://crests.football-data.org/5890.png",
+        "home": "Torino",
+        "away": "Lecce",
+        "homeAliases": [
+          "Torino FC"
+        ],
+        "awayAliases": [
+          "US Lecce"
+        ],
+        "kickoff": "2026-11-07T14:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "LLWWWDLWLLDL",
+        "formAway": "LLLWLLWLLWWW",
+        "model": {
+          "probabilities": {
+            "H": 0.4653,
+            "U": 0.2515,
+            "B": 0.2831,
+            "O25": 0.5098,
+            "U25": 0.4902,
+            "O35": 0.289,
+            "BTTS": 0.5411,
+            "O15": 0.7549,
+            "U15": 0.2451,
+            "U35": 0.7097,
+            "THO05": 0.7899,
+            "THO15": 0.4621,
+            "TAO05": 0.6865,
+            "TAO15": 0.3229,
+            "H1O05": 0.7445,
+            "H1O15": 0.3958,
+            "H1U15": 0.6042
+          },
+          "expectedGoals": [
+            1.56,
+            1.16
+          ],
+          "sample": [
+            12,
+            12
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            8.37,
+            8.4
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 4.47,
+            "source": "The Odds API · bookmaker-median",
+            "books": 24,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "nordicbet"
+          },
+          "H": {
+            "price": 1.8,
+            "source": "The Odds API · bookmaker-median",
+            "books": 24,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "sport888"
+          },
+          "U": {
+            "price": 3.6,
+            "source": "The Odds API · bookmaker-median",
+            "books": 24,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "unibet_nl"
+          },
+          "O25": {
+            "price": 1.92,
+            "source": "The Odds API · bookmaker-median",
+            "books": 17,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "matchbook"
+          },
+          "U25": {
+            "price": 1.9,
+            "source": "The Odds API · bookmaker-median",
+            "books": 17,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "nordicbet"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "558534",
+        "league": "Serie A",
+        "leagueCode": "SA",
+        "leagueCrest": "https://crests.football-data.org/c111.png",
+        "homeCrest": "https://crests.football-data.org/104.png",
+        "awayCrest": "https://crests.football-data.org/470.png",
+        "home": "Cagliari",
+        "away": "Frosinone",
+        "homeAliases": [
+          "Cagliari Calcio"
+        ],
+        "awayAliases": [
+          "Frosinone Calcio"
+        ],
+        "kickoff": "2026-11-07T14:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "LLLLDWWWLWWW",
+        "formAway": "WWDWLWDWWL",
+        "model": {
+          "probabilities": {
+            "H": 0.379,
+            "U": 0.2561,
+            "B": 0.3648,
+            "O25": 0.5153,
+            "U25": 0.4847,
+            "O35": 0.294,
+            "BTTS": 0.5556,
+            "O15": 0.7567,
+            "U15": 0.2433,
+            "U35": 0.7075,
+            "THO05": 0.7484,
+            "THO15": 0.4012,
+            "TAO05": 0.7408,
+            "TAO15": 0.3908,
+            "H1O05": 0.7852,
+            "H1O15": 0.4548,
+            "H1U15": 0.5452
+          },
+          "expectedGoals": [
+            1.38,
+            1.35
+          ],
+          "sample": [
+            12,
+            10
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            8.37,
+            7.75
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "H": {
+            "price": 2.75,
+            "source": "The Odds API · bookmaker-median",
+            "books": 24,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "codere_it"
+          },
+          "B": {
+            "price": 2.44,
+            "source": "The Odds API · bookmaker-median",
+            "books": 24,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "gtbets"
+          },
+          "U": {
+            "price": 3.67,
+            "source": "The Odds API · bookmaker-median",
+            "books": 24,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "gtbets"
+          },
+          "O35": {
+            "price": 2.37,
+            "source": "The Odds API · bookmaker-median",
+            "books": 6,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "matchbook"
+          },
+          "U35": {
+            "price": 1.58,
+            "source": "The Odds API · bookmaker-median",
+            "books": 6,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "gtbets"
+          },
+          "O25": {
+            "price": 1.55,
+            "source": "The Odds API · bookmaker-median",
+            "books": 7,
+            "lastUpdated": "2026-11-06T12:32:41Z",
+            "sampleBook": "unibet_nl"
+          },
+          "U25": {
+            "price": 2.43,
+            "source": "The Odds API · bookmaker-median",
+            "books": 7,
+            "lastUpdated": "2026-11-06T12:32:41Z",
+            "sampleBook": "unibet_se"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "565850",
+        "league": "Bundesliga",
+        "leagueCode": "BL1",
+        "leagueCrest": "https://crests.football-data.org/BL1.png",
+        "homeCrest": "https://crests.football-data.org/4.png",
+        "awayCrest": "https://crests.football-data.org/719.png",
+        "home": "Dortmund",
+        "away": "Elversberg",
+        "homeAliases": [
+          "Borussia Dortmund"
+        ],
+        "awayAliases": [
+          "SV 07 Elversberg"
+        ],
+        "kickoff": "2026-11-07T14:30:00+00:00",
+        "status": "TIMED",
+        "formHome": "DWDDWWWWW",
+        "formAway": "WLWLDLWW",
+        "model": {
+          "probabilities": {
+            "H": 0.5201,
+            "U": 0.2464,
+            "B": 0.2336,
+            "O25": 0.4933,
+            "U25": 0.5067,
+            "O35": 0.2743,
+            "BTTS": 0.5121,
+            "O15": 0.7421,
+            "U15": 0.2579,
+            "U35": 0.7251,
+            "THO05": 0.806,
+            "THO15": 0.4879,
+            "TAO05": 0.6358,
+            "TAO15": 0.2679,
+            "H1O05": 0.6322,
+            "H1O15": 0.2643,
+            "H1U15": 0.7357
+          },
+          "expectedGoals": [
+            1.64,
+            1.01
+          ],
+          "sample": [
+            9,
+            8
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            6.49,
+            6.2
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "H": {
+            "price": 1.29,
+            "source": "The Odds API · bookmaker-median",
+            "books": 23,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "sport888"
+          },
+          "B": {
+            "price": 8.54,
+            "source": "The Odds API · bookmaker-median",
+            "books": 23,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "gtbets"
+          },
+          "U": {
+            "price": 6.2,
+            "source": "The Odds API · bookmaker-median",
+            "books": 23,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "marathonbet"
+          },
+          "O35": {
+            "price": 1.85,
+            "source": "The Odds API · bookmaker-median",
+            "books": 13,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "coolbet"
+          },
+          "U35": {
+            "price": 1.93,
+            "source": "The Odds API · bookmaker-median",
+            "books": 13,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "pinnacle"
+          },
+          "O25": {
+            "price": 1.35,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "nordicbet"
+          },
+          "U25": {
+            "price": 3.2,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "betsson"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "565848",
+        "league": "Bundesliga",
+        "leagueCode": "BL1",
+        "leagueCrest": "https://crests.football-data.org/BL1.png",
+        "homeCrest": "https://crests.football-data.org/721.png",
+        "awayCrest": "https://crests.football-data.org/16.png",
+        "home": "RB Leipzig",
+        "away": "Augsburg",
+        "homeAliases": [
+          "RB Leipzig"
+        ],
+        "awayAliases": [
+          "FC Augsburg"
+        ],
+        "kickoff": "2026-11-07T14:30:00+00:00",
+        "status": "TIMED",
+        "formHome": "WWLWLWLWL",
+        "formAway": "LDLDLDWWL",
+        "model": {
+          "probabilities": {
+            "H": 0.5032,
+            "U": 0.2266,
+            "B": 0.2701,
+            "O25": 0.6127,
+            "U25": 0.3873,
+            "O35": 0.3896,
+            "BTTS": 0.6157,
+            "O15": 0.8248,
+            "U15": 0.1752,
+            "U35": 0.6092,
+            "THO05": 0.8443,
+            "THO15": 0.5548,
+            "TAO05": 0.7302,
+            "TAO15": 0.3767,
+            "H1O05": 0.7551,
+            "H1O15": 0.4106,
+            "H1U15": 0.5894
+          },
+          "expectedGoals": [
+            1.86,
+            1.31
+          ],
+          "sample": [
+            9,
+            9
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            6.51,
+            6.51
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 5.7,
+            "source": "The Odds API · bookmaker-median",
+            "books": 23,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "betsson"
+          },
+          "H": {
+            "price": 1.45,
+            "source": "The Odds API · bookmaker-median",
+            "books": 23,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "betsson"
+          },
+          "U": {
+            "price": 5.16,
+            "source": "The Odds API · bookmaker-median",
+            "books": 23,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "gtbets"
+          },
+          "O35": {
+            "price": 1.63,
+            "source": "The Odds API · bookmaker-median",
+            "books": 10,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "tipico_de"
+          },
+          "U35": {
+            "price": 2.21,
+            "source": "The Odds API · bookmaker-median",
+            "books": 10,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "marathonbet"
+          },
+          "O25": {
+            "price": 1.25,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "williamhill"
+          },
+          "U25": {
+            "price": 3.85,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "nordicbet"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "565851",
+        "league": "Bundesliga",
+        "leagueCode": "BL1",
+        "leagueCrest": "https://crests.football-data.org/BL1.png",
+        "homeCrest": "https://crests.football-data.org/15.png",
+        "awayCrest": "https://crests.football-data.org/5.png",
+        "home": "Mainz",
+        "away": "Bayern",
+        "homeAliases": [
+          "1. FSV Mainz 05"
+        ],
+        "awayAliases": [
+          "FC Bayern München"
+        ],
+        "kickoff": "2026-11-07T14:30:00+00:00",
+        "status": "TIMED",
+        "formHome": "LLWLWLWDWL",
+        "formAway": "DWWDWWDWW",
+        "model": {
+          "probabilities": {
+            "H": 0.3002,
+            "U": 0.2306,
+            "B": 0.4691,
+            "O25": 0.6146,
+            "U25": 0.3854,
+            "O35": 0.3916,
+            "BTTS": 0.6246,
+            "O15": 0.8248,
+            "U15": 0.1752,
+            "U35": 0.6092,
+            "THO05": 0.7509,
+            "THO15": 0.4047,
+            "TAO05": 0.8314,
+            "TAO15": 0.5312,
+            "H1O05": 0.8201,
+            "H1O15": 0.5115,
+            "H1U15": 0.4885
+          },
+          "expectedGoals": [
+            1.39,
+            1.78
+          ],
+          "sample": [
+            10,
+            9
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            6.78,
+            6.5
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {},
+        "predictions": []
+      },
+      {
+        "id": "565853",
+        "league": "Bundesliga",
+        "leagueCode": "BL1",
+        "leagueCrest": "https://crests.football-data.org/BL1.png",
+        "homeCrest": "https://crests.football-data.org/29.png",
+        "awayCrest": "https://crests.football-data.org/19.png",
+        "home": "SC Paderborn",
+        "away": "Frankfurt",
+        "homeAliases": [
+          "SC Paderborn 07"
+        ],
+        "awayAliases": [
+          "Eintracht Frankfurt"
+        ],
+        "kickoff": "2026-11-07T14:30:00+00:00",
+        "status": "TIMED",
+        "formHome": "DWDLWLLD",
+        "formAway": "WLWLDWLDD",
+        "model": {
+          "probabilities": {
+            "H": 0.4255,
+            "U": 0.2704,
+            "B": 0.304,
+            "O25": 0.4439,
+            "U25": 0.5561,
+            "O35": 0.2323,
+            "BTTS": 0.4945,
+            "O15": 0.7023,
+            "U15": 0.2977,
+            "U35": 0.7682,
+            "THO05": 0.7408,
+            "THO15": 0.3908,
+            "TAO05": 0.6671,
+            "TAO15": 0.301,
+            "H1O05": 0.7315,
+            "H1O15": 0.3784,
+            "H1U15": 0.6216
+          },
+          "expectedGoals": [
+            1.35,
+            1.1
+          ],
+          "sample": [
+            8,
+            9
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            6.2,
+            6.5
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 2.15,
+            "source": "The Odds API · bookmaker-median",
+            "books": 23,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "nordicbet"
+          },
+          "H": {
+            "price": 3.0,
+            "source": "The Odds API · bookmaker-median",
+            "books": 23,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "winamax_de"
+          },
+          "U": {
+            "price": 3.75,
+            "source": "The Odds API · bookmaker-median",
+            "books": 23,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "winamax_de"
+          },
+          "O35": {
+            "price": 2.14,
+            "source": "The Odds API · bookmaker-median",
+            "books": 9,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "leovegas_se"
+          },
+          "U35": {
+            "price": 1.71,
+            "source": "The Odds API · bookmaker-median",
+            "books": 9,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "leovegas_se"
+          },
+          "O25": {
+            "price": 1.48,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "nordicbet"
+          },
+          "U25": {
+            "price": 2.62,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "williamhill"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "560640",
+        "league": "Premier League",
+        "leagueCode": "PL",
+        "leagueCrest": "https://crests.football-data.org/PL.png",
+        "homeCrest": "https://crests.football-data.org/57.png",
+        "awayCrest": "https://crests.football-data.org/322.png",
+        "home": "Arsenal",
+        "away": "Hull City",
+        "homeAliases": [
+          "Arsenal FC"
+        ],
+        "awayAliases": [
+          "Hull City AFC"
+        ],
+        "kickoff": "2026-11-07T15:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "WWWWLWWWWWWW",
+        "formAway": "DDLDLDDWWWW",
+        "model": {
+          "probabilities": {
+            "H": 0.4751,
+            "U": 0.2836,
+            "B": 0.2413,
+            "O25": 0.3677,
+            "U25": 0.6323,
+            "O35": 0.1737,
+            "BTTS": 0.4186,
+            "O15": 0.6381,
+            "U15": 0.3619,
+            "U35": 0.8252,
+            "THO05": 0.7329,
+            "THO15": 0.3802,
+            "TAO05": 0.5726,
+            "TAO15": 0.2093,
+            "H1O05": 0.6707,
+            "H1O15": 0.305,
+            "H1U15": 0.695
+          },
+          "expectedGoals": [
+            1.32,
+            0.85
+          ],
+          "sample": [
+            12,
+            11
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            7.71,
+            7.4
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "H": {
+            "price": 1.16,
+            "source": "The Odds API · bookmaker-median",
+            "books": 25,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "pinnacle"
+          },
+          "B": {
+            "price": 17.93,
+            "source": "The Odds API · bookmaker-median",
+            "books": 25,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "pinnacle"
+          },
+          "U": {
+            "price": 7.9,
+            "source": "The Odds API · bookmaker-median",
+            "books": 25,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "nordicbet"
+          },
+          "O35": {
+            "price": 2.29,
+            "source": "The Odds API · bookmaker-median",
+            "books": 10,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "marathonbet"
+          },
+          "U35": {
+            "price": 1.6,
+            "source": "The Odds API · bookmaker-median",
+            "books": 10,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "tipico_de"
+          },
+          "O25": {
+            "price": 1.5,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "nordicbet"
+          },
+          "U25": {
+            "price": 2.6,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "betsson"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "561936",
+        "league": "Championship",
+        "leagueCode": "ELC",
+        "leagueCrest": "https://crests.football-data.org/ELC.png",
+        "homeCrest": "https://crests.football-data.org/74.png",
+        "awayCrest": "https://crests.football-data.org/384.png",
+        "home": "West Brom",
+        "away": "Millwall",
+        "homeAliases": [
+          "West Bromwich Albion FC"
+        ],
+        "awayAliases": [
+          "Millwall FC"
+        ],
+        "kickoff": "2026-11-07T15:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "DWDWWLLDWWDLWW",
+        "formAway": "LWLDLWDDLWLLWWL",
+        "model": {
+          "probabilities": {
+            "H": 0.4731,
+            "U": 0.254,
+            "B": 0.2728,
+            "O25": 0.4931,
+            "U25": 0.5069,
+            "O35": 0.2741,
+            "BTTS": 0.5257,
+            "O15": 0.7421,
+            "U15": 0.2579,
+            "U35": 0.7251,
+            "THO05": 0.7856,
+            "THO15": 0.4555,
+            "TAO05": 0.6704,
+            "TAO15": 0.3046,
+            "H1O05": 0.7335,
+            "H1O15": 0.3811,
+            "H1U15": 0.6189
+          },
+          "expectedGoals": [
+            1.54,
+            1.11
+          ],
+          "sample": [
+            14,
+            15
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            10.46,
+            10.77
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 3.5,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "leovegas_se"
+          },
+          "H": {
+            "price": 1.99,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "onexbet"
+          },
+          "U": {
+            "price": 3.5,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "nordicbet"
+          },
+          "O25": {
+            "price": 1.75,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "williamhill"
+          },
+          "U25": {
+            "price": 2.01,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "coolbet"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "560633",
+        "league": "Premier League",
+        "leagueCode": "PL",
+        "leagueCrest": "https://crests.football-data.org/PL.png",
+        "homeCrest": "https://crests.football-data.org/63.png",
+        "awayCrest": "https://crests.football-data.org/67.png",
+        "home": "Fulham",
+        "away": "Newcastle",
+        "homeAliases": [
+          "Fulham FC"
+        ],
+        "awayAliases": [
+          "Newcastle United FC"
+        ],
+        "kickoff": "2026-11-07T15:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "DWWLDDLLLWD",
+        "formAway": "LWLLWLDWDLWD",
+        "model": {
+          "probabilities": {
+            "H": 0.4495,
+            "U": 0.2608,
+            "B": 0.2897,
+            "O25": 0.4752,
+            "U25": 0.5248,
+            "O35": 0.2585,
+            "BTTS": 0.5161,
+            "O15": 0.7287,
+            "U15": 0.2713,
+            "U35": 0.7403,
+            "THO05": 0.7678,
+            "THO15": 0.4287,
+            "TAO05": 0.6737,
+            "TAO15": 0.3083,
+            "H1O05": 0.6225,
+            "H1O15": 0.2548,
+            "H1U15": 0.7452
+          },
+          "expectedGoals": [
+            1.46,
+            1.12
+          ],
+          "sample": [
+            11,
+            12
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            7.42,
+            7.73
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "H": {
+            "price": 2.05,
+            "source": "The Odds API · bookmaker-median",
+            "books": 25,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "sport888"
+          },
+          "B": {
+            "price": 3.53,
+            "source": "The Odds API · bookmaker-median",
+            "books": 25,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "betsson"
+          },
+          "U": {
+            "price": 3.66,
+            "source": "The Odds API · bookmaker-median",
+            "books": 25,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "gtbets"
+          },
+          "O25": {
+            "price": 1.68,
+            "source": "The Odds API · bookmaker-median",
+            "books": 13,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "marathonbet"
+          },
+          "U25": {
+            "price": 2.18,
+            "source": "The Odds API · bookmaker-median",
+            "books": 13,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "nordicbet"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "561934",
+        "league": "Championship",
+        "leagueCode": "ELC",
+        "leagueCrest": "https://crests.football-data.org/ELC.png",
+        "homeCrest": "https://crests.football-data.org/346.png",
+        "awayCrest": "https://crests.football-data.org/343.png",
+        "home": "Watford",
+        "away": "Middlesbrough",
+        "homeAliases": [
+          "Watford FC"
+        ],
+        "awayAliases": [
+          "Middlesbrough FC"
+        ],
+        "kickoff": "2026-11-07T15:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "WLLWLLLLWLLDDW",
+        "formAway": "LWWDWWDDWWDWLWLL",
+        "model": {
+          "probabilities": {
+            "H": 0.3218,
+            "U": 0.256,
+            "B": 0.4222,
+            "O25": 0.5081,
+            "U25": 0.4919,
+            "O35": 0.2874,
+            "BTTS": 0.547,
+            "O15": 0.7513,
+            "U15": 0.2487,
+            "U35": 0.7141,
+            "THO05": 0.7106,
+            "THO15": 0.3518,
+            "TAO05": 0.7678,
+            "TAO15": 0.4287,
+            "H1O05": 0.7312,
+            "H1O15": 0.378,
+            "H1U15": 0.622
+          },
+          "expectedGoals": [
+            1.24,
+            1.46
+          ],
+          "sample": [
+            14,
+            16
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            10.45,
+            11.09
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 1.53,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "sport888"
+          },
+          "H": {
+            "price": 5.25,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "coolbet"
+          },
+          "U": {
+            "price": 4.5,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "unibet_se"
+          },
+          "O35": {
+            "price": 2.12,
+            "source": "The Odds API · bookmaker-median",
+            "books": 11,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "unibet_se"
+          },
+          "U35": {
+            "price": 1.66,
+            "source": "The Odds API · bookmaker-median",
+            "books": 11,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "unibet_se"
+          },
+          "O25": {
+            "price": 1.47,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "nordicbet"
+          },
+          "U25": {
+            "price": 2.62,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "williamhill"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "561930",
+        "league": "Championship",
+        "leagueCode": "ELC",
+        "leagueCrest": "https://crests.football-data.org/ELC.png",
+        "homeCrest": "https://crests.football-data.org/715.png",
+        "awayCrest": "https://crests.football-data.org/328.png",
+        "home": "Cardiff",
+        "away": "Burnley",
+        "homeAliases": [
+          "Cardiff City FC"
+        ],
+        "awayAliases": [
+          "Burnley FC"
+        ],
+        "kickoff": "2026-11-07T15:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "DLWDWLWLDLLDDD",
+        "formAway": "DDLLDWDLDLDLLDDL",
+        "model": {
+          "probabilities": {
+            "H": 0.4746,
+            "U": 0.2423,
+            "B": 0.283,
+            "O25": 0.5497,
+            "U25": 0.4503,
+            "O35": 0.3262,
+            "BTTS": 0.5714,
+            "O15": 0.7838,
+            "U15": 0.2162,
+            "U35": 0.6719,
+            "THO05": 0.8099,
+            "THO15": 0.4942,
+            "TAO05": 0.7077,
+            "TAO15": 0.3482,
+            "H1O05": 0.7779,
+            "H1O15": 0.4437,
+            "H1U15": 0.5563
+          },
+          "expectedGoals": [
+            1.66,
+            1.23
+          ],
+          "sample": [
+            14,
+            16
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            10.47,
+            11.07
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 3.05,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "unibet_se"
+          },
+          "H": {
+            "price": 2.13,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "gtbets"
+          },
+          "U": {
+            "price": 3.7,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "unibet_se"
+          },
+          "O35": {
+            "price": 2.18,
+            "source": "The Odds API · bookmaker-median",
+            "books": 9,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "leovegas_se"
+          },
+          "U35": {
+            "price": 1.59,
+            "source": "The Odds API · bookmaker-median",
+            "books": 9,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "onexbet"
+          },
+          "O25": {
+            "price": 1.5,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "williamhill"
+          },
+          "U25": {
+            "price": 2.52,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "nordicbet"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "561940",
+        "league": "Championship",
+        "leagueCode": "ELC",
+        "leagueCrest": "https://crests.football-data.org/ELC.png",
+        "homeCrest": "https://crests.football-data.org/332.png",
+        "awayCrest": "https://crests.football-data.org/72.png",
+        "home": "Birmingham",
+        "away": "Swansea",
+        "homeAliases": [
+          "Birmingham City FC"
+        ],
+        "awayAliases": [
+          "Swansea City AFC"
+        ],
+        "kickoff": "2026-11-07T15:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "WWLWWWDWLDDWDD",
+        "formAway": "LWLLWWWWLDWWDW",
+        "model": {
+          "probabilities": {
+            "H": 0.4644,
+            "U": 0.262,
+            "B": 0.2737,
+            "O25": 0.4621,
+            "U25": 0.5379,
+            "O35": 0.2474,
+            "BTTS": 0.5021,
+            "O15": 0.7168,
+            "U15": 0.2832,
+            "U35": 0.7533,
+            "THO05": 0.7678,
+            "THO15": 0.4287,
+            "TAO05": 0.6535,
+            "TAO15": 0.2863,
+            "H1O05": 0.7647,
+            "H1O15": 0.4243,
+            "H1U15": 0.5757
+          },
+          "expectedGoals": [
+            1.46,
+            1.06
+          ],
+          "sample": [
+            14,
+            14
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            10.45,
+            10.45
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "H": {
+            "price": 1.83,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "unibet_nl"
+          },
+          "B": {
+            "price": 4.04,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "onexbet"
+          },
+          "U": {
+            "price": 3.6,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "codere_it"
+          },
+          "O25": {
+            "price": 1.85,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "williamhill"
+          },
+          "U25": {
+            "price": 1.92,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "betsson"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "561931",
+        "league": "Championship",
+        "leagueCode": "ELC",
+        "leagueCrest": "https://crests.football-data.org/ELC.png",
+        "homeCrest": "https://crests.football-data.org/348.png",
+        "awayCrest": "https://crests.football-data.org/356.png",
+        "home": "Charlton",
+        "away": "Sheffield Utd",
+        "homeAliases": [
+          "Charlton Athletic FC"
+        ],
+        "awayAliases": [
+          "Sheffield United FC"
+        ],
+        "kickoff": "2026-11-07T15:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "LLLLDDLDDLDWWW",
+        "formAway": "WWDWLWLLWLWDDD",
+        "model": {
+          "probabilities": {
+            "H": 0.3384,
+            "U": 0.2769,
+            "B": 0.3847,
+            "O25": 0.4276,
+            "U25": 0.5724,
+            "O35": 0.2191,
+            "BTTS": 0.4855,
+            "O15": 0.6894,
+            "U15": 0.3106,
+            "U35": 0.7808,
+            "THO05": 0.6834,
+            "THO15": 0.3192,
+            "TAO05": 0.7106,
+            "TAO15": 0.3518,
+            "H1O05": 0.736,
+            "H1O15": 0.3844,
+            "H1U15": 0.6156
+          },
+          "expectedGoals": [
+            1.15,
+            1.24
+          ],
+          "sample": [
+            14,
+            14
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            10.46,
+            10.45
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "H": {
+            "price": 3.5,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "unibet_se"
+          },
+          "B": {
+            "price": 2.02,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "unibet_se"
+          },
+          "U": {
+            "price": 3.4,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "codere_it"
+          },
+          "O25": {
+            "price": 1.85,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "coolbet"
+          },
+          "U25": {
+            "price": 1.9,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "nordicbet"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "561937",
+        "league": "Championship",
+        "leagueCode": "ELC",
+        "leagueCrest": "https://crests.football-data.org/ELC.png",
+        "homeCrest": "https://crests.football-data.org/1081.png",
+        "awayCrest": "https://crests.football-data.org/340.png",
+        "home": "Preston NE",
+        "away": "Southampton",
+        "homeAliases": [
+          "Preston North End FC"
+        ],
+        "awayAliases": [
+          "Southampton FC"
+        ],
+        "kickoff": "2026-11-07T15:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "LLDLLLDLLWLLLL",
+        "formAway": "DWWDWWLWWDDWWLW",
+        "model": {
+          "probabilities": {
+            "H": 0.2505,
+            "U": 0.2378,
+            "B": 0.5118,
+            "O25": 0.545,
+            "U25": 0.455,
+            "O35": 0.3217,
+            "BTTS": 0.5579,
+            "O15": 0.7806,
+            "U15": 0.2194,
+            "U35": 0.6763,
+            "THO05": 0.6802,
+            "THO15": 0.3156,
+            "TAO05": 0.8227,
+            "TAO15": 0.516,
+            "H1O05": 0.743,
+            "H1O15": 0.3938,
+            "H1U15": 0.6062
+          },
+          "expectedGoals": [
+            1.14,
+            1.73
+          ],
+          "sample": [
+            14,
+            15
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            10.45,
+            10.75
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "H": {
+            "price": 4.72,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "unibet_nl"
+          },
+          "B": {
+            "price": 1.62,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "marathonbet"
+          },
+          "U": {
+            "price": 4.12,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "unibet_se"
+          },
+          "O35": {
+            "price": 2.2,
+            "source": "The Odds API · bookmaker-median",
+            "books": 5,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "unibet_se"
+          },
+          "U35": {
+            "price": 1.61,
+            "source": "The Odds API · bookmaker-median",
+            "books": 5,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "unibet_se"
+          },
+          "O25": {
+            "price": 1.55,
+            "source": "The Odds API · bookmaker-median",
+            "books": 8,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "codere_it"
+          },
+          "U25": {
+            "price": 2.36,
+            "source": "The Odds API · bookmaker-median",
+            "books": 8,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "gtbets"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "561929",
+        "league": "Championship",
+        "leagueCode": "ELC",
+        "leagueCrest": "https://crests.football-data.org/ELC.png",
+        "homeCrest": "https://crests.football-data.org/69.png",
+        "awayCrest": "https://crests.football-data.org/1126.png",
+        "home": "QPR",
+        "away": "Lincoln City",
+        "homeAliases": [
+          "Queens Park Rangers FC"
+        ],
+        "awayAliases": [
+          "Lincoln City FC"
+        ],
+        "kickoff": "2026-11-07T15:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "DLWLWDDDDLWWDW",
+        "formAway": "LLWDLLLWWDDWLL",
+        "model": {
+          "probabilities": {
+            "H": 0.5045,
+            "U": 0.2519,
+            "B": 0.2435,
+            "O25": 0.4799,
+            "U25": 0.5201,
+            "O35": 0.2626,
+            "BTTS": 0.506,
+            "O15": 0.7307,
+            "U15": 0.2693,
+            "U35": 0.7382,
+            "THO05": 0.794,
+            "THO15": 0.4686,
+            "TAO05": 0.6358,
+            "TAO15": 0.2679,
+            "H1O05": 0.743,
+            "H1O15": 0.3938,
+            "H1U15": 0.6062
+          },
+          "expectedGoals": [
+            1.58,
+            1.01
+          ],
+          "sample": [
+            14,
+            14
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            10.46,
+            10.49
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 4.77,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "betonlineag"
+          },
+          "H": {
+            "price": 1.65,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "pinnacle"
+          },
+          "U": {
+            "price": 3.94,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "onexbet"
+          },
+          "O25": {
+            "price": 1.74,
+            "source": "The Odds API · bookmaker-median",
+            "books": 15,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "onexbet"
+          },
+          "U25": {
+            "price": 2.03,
+            "source": "The Odds API · bookmaker-median",
+            "books": 15,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "coolbet"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "561935",
+        "league": "Championship",
+        "leagueCode": "ELC",
+        "leagueCrest": "https://crests.football-data.org/ELC.png",
+        "homeCrest": "https://crests.football-data.org/59.png",
+        "awayCrest": "https://crests.football-data.org/563.png",
+        "home": "Blackburn",
+        "away": "West Ham",
+        "homeAliases": [
+          "Blackburn Rovers FC"
+        ],
+        "awayAliases": [
+          "West Ham United FC"
+        ],
+        "kickoff": "2026-11-07T15:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "LLWLWWDWLLDLWD",
+        "formAway": "DLLWWDDWWWWDLDWL",
+        "model": {
+          "probabilities": {
+            "H": 0.3646,
+            "U": 0.2366,
+            "B": 0.3988,
+            "O25": 0.6075,
+            "U25": 0.3925,
+            "O35": 0.3841,
+            "BTTS": 0.6269,
+            "O15": 0.8208,
+            "U15": 0.1792,
+            "U35": 0.6159,
+            "THO05": 0.7835,
+            "THO15": 0.4522,
+            "TAO05": 0.8001,
+            "TAO15": 0.4783,
+            "H1O05": 0.7937,
+            "H1O15": 0.468,
+            "H1U15": 0.532
+          },
+          "expectedGoals": [
+            1.53,
+            1.61
+          ],
+          "sample": [
+            14,
+            16
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            10.45,
+            11.07
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "H": {
+            "price": 4.66,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "betsson"
+          },
+          "B": {
+            "price": 1.65,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "unibet_nl"
+          },
+          "U": {
+            "price": 4.0,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "codere_it"
+          },
+          "O25": {
+            "price": 1.61,
+            "source": "The Odds API · bookmaker-median",
+            "books": 13,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "unibet_se"
+          },
+          "U25": {
+            "price": 2.25,
+            "source": "The Odds API · bookmaker-median",
+            "books": 13,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "codere_it"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "564745",
+        "league": "Primera Division",
+        "leagueCode": "PD",
+        "leagueCrest": "https://crests.football-data.org/laliga.png",
+        "homeCrest": "https://crests.football-data.org/80.png",
+        "awayCrest": "https://crests.football-data.org/560.png",
+        "home": "Espanyol",
+        "away": "Deportivo",
+        "homeAliases": [
+          "RCD Espanyol de Barcelona"
+        ],
+        "awayAliases": [
+          "RC Deportivo La Coruña"
+        ],
+        "kickoff": "2026-11-07T15:15:00+00:00",
+        "status": "TIMED",
+        "formHome": "WLLDLLWDLLWDWW",
+        "formAway": "WLDLDLDWWDD",
+        "model": {
+          "probabilities": {
+            "H": 0.4264,
+            "U": 0.2701,
+            "B": 0.3035,
+            "O25": 0.445,
+            "U25": 0.555,
+            "O35": 0.2332,
+            "BTTS": 0.4953,
+            "O15": 0.7044,
+            "U15": 0.2956,
+            "U35": 0.7661,
+            "THO05": 0.7433,
+            "THO15": 0.3943,
+            "TAO05": 0.6671,
+            "TAO15": 0.301,
+            "H1O05": 0.6145,
+            "H1O15": 0.247,
+            "H1U15": 0.753
+          },
+          "expectedGoals": [
+            1.36,
+            1.1
+          ],
+          "sample": [
+            14,
+            11
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            8.94,
+            8.09
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 3.2,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:02Z",
+            "sampleBook": "nordicbet"
+          },
+          "H": {
+            "price": 2.3,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:02Z",
+            "sampleBook": "betsson"
+          },
+          "U": {
+            "price": 3.25,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:02Z",
+            "sampleBook": "nordicbet"
+          },
+          "O25": {
+            "price": 2.02,
+            "source": "The Odds API · bookmaker-median",
+            "books": 15,
+            "lastUpdated": "2026-11-06T12:33:02Z",
+            "sampleBook": "marathonbet"
+          },
+          "U25": {
+            "price": 1.8,
+            "source": "The Odds API · bookmaker-median",
+            "books": 15,
+            "lastUpdated": "2026-11-06T12:33:02Z",
+            "sampleBook": "williamhill"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "558844",
+        "league": "Eredivisie",
+        "leagueCode": "DED",
+        "leagueCrest": "https://crests.football-data.org/ED.png",
+        "homeCrest": "https://crests.football-data.org/1920.png",
+        "awayCrest": "https://crests.football-data.org/1912.png",
+        "home": "Sittard",
+        "away": "Telstar",
+        "homeAliases": [
+          "Fortuna Sittard"
+        ],
+        "awayAliases": [
+          "Telstar 1963"
+        ],
+        "kickoff": "2026-11-07T15:30:00+00:00",
+        "status": "TIMED",
+        "formHome": "DWDDWLWWLWDLW",
+        "formAway": "WLLDLDLDLLWWW",
+        "model": {
+          "probabilities": {
+            "H": 0.4359,
+            "U": 0.2495,
+            "B": 0.3145,
+            "O25": 0.5338,
+            "U25": 0.4662,
+            "O35": 0.3111,
+            "BTTS": 0.5657,
+            "O15": 0.7706,
+            "U15": 0.2294,
+            "U35": 0.6897,
+            "THO05": 0.7856,
+            "THO15": 0.4555,
+            "TAO05": 0.7192,
+            "TAO15": 0.3625,
+            "H1O05": 0.7595,
+            "H1O15": 0.4168,
+            "H1U15": 0.5832
+          },
+          "expectedGoals": [
+            1.54,
+            1.27
+          ],
+          "sample": [
+            13,
+            13
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            8.48,
+            8.56
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "H": {
+            "price": 2.03,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "coolbet"
+          },
+          "B": {
+            "price": 3.31,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "betsson"
+          },
+          "U": {
+            "price": 3.55,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "winamax_de"
+          },
+          "O25": {
+            "price": 1.58,
+            "source": "The Odds API · bookmaker-median",
+            "books": 10,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "betsson"
+          },
+          "U25": {
+            "price": 2.25,
+            "source": "The Odds API · bookmaker-median",
+            "books": 10,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "nordicbet"
+          },
+          "O35": {
+            "price": 2.45,
+            "source": "The Odds API · bookmaker-median",
+            "books": 1,
+            "lastUpdated": "2026-11-06T12:32:40Z",
+            "sampleBook": "marathonbet"
+          },
+          "U35": {
+            "price": 1.51,
+            "source": "The Odds API · bookmaker-median",
+            "books": 1,
+            "lastUpdated": "2026-11-06T12:32:40Z",
+            "sampleBook": "marathonbet"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "567352",
+        "league": "Primeira Liga",
+        "leagueCode": "PPL",
+        "leagueCrest": "https://crests.football-data.org/PPL.png",
+        "homeCrest": "https://crests.football-data.org/5529.png",
+        "awayCrest": "https://crests.football-data.org/5527.png",
+        "home": "CD Nacional",
+        "away": "Acad. Viseu",
+        "homeAliases": [
+          "CD Nacional"
+        ],
+        "awayAliases": [
+          "Académico de Viseu FC"
+        ],
+        "kickoff": "2026-11-07T15:30:00+00:00",
+        "status": "TIMED",
+        "formHome": "LWLLLLLLWDWL",
+        "formAway": "WWWWWWLDLD",
+        "model": {
+          "probabilities": {
+            "H": 0.3466,
+            "U": 0.26,
+            "B": 0.3934,
+            "O25": 0.4967,
+            "U25": 0.5033,
+            "O35": 0.2773,
+            "BTTS": 0.5405,
+            "O15": 0.744,
+            "U15": 0.256,
+            "U35": 0.7229,
+            "THO05": 0.722,
+            "THO15": 0.3661,
+            "TAO05": 0.7484,
+            "TAO15": 0.4012,
+            "H1O05": 0.722,
+            "H1O15": 0.3662,
+            "H1U15": 0.6338
+          },
+          "expectedGoals": [
+            1.28,
+            1.38
+          ],
+          "sample": [
+            12,
+            10
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            7.64,
+            7.04
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {},
+        "predictions": []
+      },
+      {
+        "id": "558535",
+        "league": "Serie A",
+        "leagueCode": "SA",
+        "leagueCrest": "https://crests.football-data.org/c111.png",
+        "homeCrest": "https://crests.football-data.org/112.png",
+        "awayCrest": "https://crests.football-data.org/103.png",
+        "home": "Parma",
+        "away": "Bologna",
+        "homeAliases": [
+          "Parma Calcio 1913"
+        ],
+        "awayAliases": [
+          "Bologna FC 1909"
+        ],
+        "kickoff": "2026-11-07T17:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "WDLLLWLDLLWLL",
+        "formAway": "WWWLWDLDLLDWW",
+        "model": {
+          "probabilities": {
+            "H": 0.3547,
+            "U": 0.2734,
+            "B": 0.3719,
+            "O25": 0.4424,
+            "U25": 0.5576,
+            "O35": 0.2311,
+            "BTTS": 0.498,
+            "O15": 0.7023,
+            "U15": 0.2977,
+            "U35": 0.7682,
+            "THO05": 0.7018,
+            "THO15": 0.341,
+            "TAO05": 0.7106,
+            "TAO15": 0.3518,
+            "H1O05": 0.7236,
+            "H1O15": 0.3682,
+            "H1U15": 0.6318
+          },
+          "expectedGoals": [
+            1.21,
+            1.24
+          ],
+          "sample": [
+            13,
+            13
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            8.66,
+            8.65
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 1.83,
+            "source": "The Odds API · bookmaker-median",
+            "books": 24,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "leovegas_se"
+          },
+          "H": {
+            "price": 4.5,
+            "source": "The Odds API · bookmaker-median",
+            "books": 24,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "gtbets"
+          },
+          "U": {
+            "price": 3.5,
+            "source": "The Odds API · bookmaker-median",
+            "books": 24,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "unibet_se"
+          },
+          "O25": {
+            "price": 2.13,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "marathonbet"
+          },
+          "U25": {
+            "price": 1.72,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "tipico_de"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "564739",
+        "league": "Primera Division",
+        "leagueCode": "PD",
+        "leagueCrest": "https://crests.football-data.org/laliga.png",
+        "homeCrest": "https://crests.football-data.org/79.png",
+        "awayCrest": "https://crests.football-data.org/77.png",
+        "home": "Osasuna",
+        "away": "Athletic",
+        "homeAliases": [
+          "CA Osasuna"
+        ],
+        "awayAliases": [
+          "Athletic Club"
+        ],
+        "kickoff": "2026-11-07T17:30:00+00:00",
+        "status": "TIMED",
+        "formHome": "LLWLDLLLWWDLLL",
+        "formAway": "WWLDDDWWLLLDLL",
+        "model": {
+          "probabilities": {
+            "H": 0.3387,
+            "U": 0.2634,
+            "B": 0.3979,
+            "O25": 0.4812,
+            "U25": 0.5188,
+            "O35": 0.2637,
+            "BTTS": 0.5278,
+            "O15": 0.7326,
+            "U15": 0.2674,
+            "U35": 0.736,
+            "THO05": 0.7106,
+            "THO15": 0.3518,
+            "TAO05": 0.7433,
+            "TAO15": 0.3943,
+            "H1O05": 0.7013,
+            "H1O15": 0.3404,
+            "H1U15": 0.6596
+          },
+          "expectedGoals": [
+            1.24,
+            1.36
+          ],
+          "sample": [
+            14,
+            14
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            9.05,
+            8.66
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {},
+        "predictions": []
+      },
+      {
+        "id": "560641",
+        "league": "Premier League",
+        "leagueCode": "PL",
+        "leagueCrest": "https://crests.football-data.org/PL.png",
+        "homeCrest": "https://crests.football-data.org/351.png",
+        "awayCrest": "https://crests.football-data.org/65.png",
+        "home": "Nottingham",
+        "away": "Man City",
+        "homeAliases": [
+          "Nottingham Forest FC"
+        ],
+        "awayAliases": [
+          "Manchester City FC"
+        ],
+        "kickoff": "2026-11-07T17:30:00+00:00",
+        "status": "TIMED",
+        "formHome": "LDLLLWDDLDLD",
+        "formAway": "LLWWWWWWWLDW",
+        "model": {
+          "probabilities": {
+            "H": 0.3131,
+            "U": 0.2651,
+            "B": 0.4218,
+            "O25": 0.4675,
+            "U25": 0.5325,
+            "O35": 0.2519,
+            "BTTS": 0.5143,
+            "O15": 0.7228,
+            "U15": 0.2772,
+            "U35": 0.7468,
+            "THO05": 0.6865,
+            "THO15": 0.3229,
+            "TAO05": 0.7509,
+            "TAO15": 0.4047,
+            "H1O05": 0.7214,
+            "H1O15": 0.3654,
+            "H1U15": 0.6346
+          },
+          "expectedGoals": [
+            1.16,
+            1.39
+          ],
+          "sample": [
+            12,
+            12
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            7.68,
+            7.7
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 1.7,
+            "source": "The Odds API · bookmaker-median",
+            "books": 25,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "sport888"
+          },
+          "H": {
+            "price": 4.65,
+            "source": "The Odds API · bookmaker-median",
+            "books": 25,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "nordicbet"
+          },
+          "U": {
+            "price": 4.06,
+            "source": "The Odds API · bookmaker-median",
+            "books": 25,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "betonlineag"
+          },
+          "O25": {
+            "price": 1.62,
+            "source": "The Odds API · bookmaker-median",
+            "books": 13,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "williamhill"
+          },
+          "U25": {
+            "price": 2.26,
+            "source": "The Odds API · bookmaker-median",
+            "books": 13,
+            "lastUpdated": "2026-11-06T12:32:57Z",
+            "sampleBook": "gtbets"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "565849",
+        "league": "Bundesliga",
+        "leagueCode": "BL1",
+        "leagueCrest": "https://crests.football-data.org/BL1.png",
+        "homeCrest": "https://crests.football-data.org/10.png",
+        "awayCrest": "https://crests.football-data.org/12.png",
+        "home": "Stuttgart",
+        "away": "Bremen",
+        "homeAliases": [
+          "VfB Stuttgart"
+        ],
+        "awayAliases": [
+          "SV Werder Bremen"
+        ],
+        "kickoff": "2026-11-07T17:30:00+00:00",
+        "status": "TIMED",
+        "formHome": "WLLWLLWLD",
+        "formAway": "WWDDWDWLL",
+        "model": {
+          "probabilities": {
+            "H": 0.422,
+            "U": 0.2422,
+            "B": 0.3358,
+            "O25": 0.5745,
+            "U25": 0.4255,
+            "O35": 0.3504,
+            "BTTS": 0.5996,
+            "O15": 0.7994,
+            "U15": 0.2006,
+            "U35": 0.6495,
+            "THO05": 0.7961,
+            "THO15": 0.4718,
+            "TAO05": 0.7534,
+            "TAO15": 0.4082,
+            "H1O05": 0.7004,
+            "H1O15": 0.3393,
+            "H1U15": 0.6607
+          },
+          "expectedGoals": [
+            1.59,
+            1.4
+          ],
+          "sample": [
+            9,
+            9
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            6.48,
+            6.49
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "H": {
+            "price": 1.66,
+            "source": "The Odds API · bookmaker-median",
+            "books": 23,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "marathonbet"
+          },
+          "B": {
+            "price": 4.33,
+            "source": "The Odds API · bookmaker-median",
+            "books": 23,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "pinnacle"
+          },
+          "U": {
+            "price": 4.5,
+            "source": "The Odds API · bookmaker-median",
+            "books": 23,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "tipico_de"
+          },
+          "O35": {
+            "price": 1.86,
+            "source": "The Odds API · bookmaker-median",
+            "books": 13,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "marathonbet"
+          },
+          "U35": {
+            "price": 1.96,
+            "source": "The Odds API · bookmaker-median",
+            "books": 13,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "marathonbet"
+          },
+          "O25": {
+            "price": 1.32,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "nordicbet"
+          },
+          "U25": {
+            "price": 3.37,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-06T12:32:58Z",
+            "sampleBook": "betsson"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "558841",
+        "league": "Eredivisie",
+        "leagueCode": "DED",
+        "leagueCrest": "https://crests.football-data.org/ED.png",
+        "homeCrest": "https://crests.football-data.org/680.png",
+        "awayCrest": "https://crests.football-data.org/6806.png",
+        "home": "Den Haag",
+        "away": "Sparta",
+        "homeAliases": [
+          "ADO Den Haag"
+        ],
+        "awayAliases": [
+          "Sparta Rotterdam"
+        ],
+        "kickoff": "2026-11-07T17:45:00+00:00",
+        "status": "TIMED",
+        "formHome": "LLWDDLLDLLL",
+        "formAway": "WLWDLLDLDWLLL",
+        "model": {
+          "probabilities": {
+            "H": 0.4468,
+            "U": 0.2396,
+            "B": 0.3136,
+            "O25": 0.5787,
+            "U25": 0.4213,
+            "O35": 0.3547,
+            "BTTS": 0.5998,
+            "O15": 0.8023,
+            "U15": 0.1977,
+            "U35": 0.645,
+            "THO05": 0.8099,
+            "THO15": 0.4942,
+            "TAO05": 0.7408,
+            "TAO15": 0.3908,
+            "H1O05": 0.7832,
+            "H1O15": 0.4518,
+            "H1U15": 0.5482
+          },
+          "expectedGoals": [
+            1.66,
+            1.35
+          ],
+          "sample": [
+            11,
+            13
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            7.9,
+            8.47
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "H": {
+            "price": 2.46,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "codere_it"
+          },
+          "B": {
+            "price": 2.6,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "sport888"
+          },
+          "U": {
+            "price": 3.54,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "marathonbet"
+          },
+          "O35": {
+            "price": 2.25,
+            "source": "The Odds API · bookmaker-median",
+            "books": 7,
+            "lastUpdated": "2026-11-06T12:32:42Z",
+            "sampleBook": "tipico_de"
+          },
+          "U35": {
+            "price": 1.57,
+            "source": "The Odds API · bookmaker-median",
+            "books": 7,
+            "lastUpdated": "2026-11-06T12:32:42Z",
+            "sampleBook": "onexbet"
+          },
+          "O25": {
+            "price": 1.55,
+            "source": "The Odds API · bookmaker-median",
+            "books": 4,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "williamhill"
+          },
+          "U25": {
+            "price": 2.34,
+            "source": "The Odds API · bookmaker-median",
+            "books": 4,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "betsson"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "567347",
+        "league": "Primeira Liga",
+        "leagueCode": "PPL",
+        "leagueCrest": "https://crests.football-data.org/PPL.png",
+        "homeCrest": "https://crests.football-data.org/7822.png",
+        "awayCrest": "https://crests.football-data.org/6618.png",
+        "home": "Alverca",
+        "away": "Casa Pia",
+        "homeAliases": [
+          "FC Alverca"
+        ],
+        "awayAliases": [
+          "Casa Pia AC"
+        ],
+        "kickoff": "2026-11-07T18:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "LLWWWLDLDLLD",
+        "formAway": "LWLWLDLLLLDW",
+        "model": {
+          "probabilities": {
+            "H": 0.4971,
+            "U": 0.2671,
+            "B": 0.2359,
+            "O25": 0.418,
+            "U25": 0.582,
+            "O35": 0.2115,
+            "BTTS": 0.4557,
+            "O15": 0.6827,
+            "U15": 0.3173,
+            "U35": 0.787,
+            "THO05": 0.7654,
+            "THO15": 0.4253,
+            "TAO05": 0.5975,
+            "TAO15": 0.2312,
+            "H1O05": 0.6686,
+            "H1O15": 0.3026,
+            "H1U15": 0.6974
+          },
+          "expectedGoals": [
+            1.45,
+            0.91
+          ],
+          "sample": [
+            12,
+            12
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            7.62,
+            7.62
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "H": {
+            "price": 1.71,
+            "source": "The Odds API · bookmaker-median",
+            "books": 20,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "winamax_de"
+          },
+          "B": {
+            "price": 4.6,
+            "source": "The Odds API · bookmaker-median",
+            "books": 20,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "leovegas_se"
+          },
+          "U": {
+            "price": 3.6,
+            "source": "The Odds API · bookmaker-median",
+            "books": 20,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "betclic_fr"
+          },
+          "O25": {
+            "price": 1.9,
+            "source": "The Odds API · bookmaker-median",
+            "books": 14,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "tipico_de"
+          },
+          "U25": {
+            "price": 1.83,
+            "source": "The Odds API · bookmaker-median",
+            "books": 14,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "unibet_nl"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "559637",
+        "league": "Ligue 1",
+        "leagueCode": "FL1",
+        "leagueCrest": "https://crests.football-data.org/FL1.png",
+        "homeCrest": "https://crests.football-data.org/519.png",
+        "awayCrest": "https://crests.football-data.org/1045.png",
+        "home": "Auxerre",
+        "away": "Paris FC",
+        "homeAliases": [
+          "AJ Auxerre"
+        ],
+        "awayAliases": [
+          "Paris FC"
+        ],
+        "kickoff": "2026-11-07T18:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "LDWLWWLLLWW",
+        "formAway": "WLWLWDWWDWL",
+        "model": {
+          "probabilities": {
+            "H": 0.3517,
+            "U": 0.249,
+            "B": 0.3993,
+            "O25": 0.5464,
+            "U25": 0.4536,
+            "O35": 0.323,
+            "BTTS": 0.5793,
+            "O15": 0.7806,
+            "U15": 0.2194,
+            "U35": 0.6763,
+            "THO05": 0.7484,
+            "THO15": 0.4012,
+            "TAO05": 0.7746,
+            "TAO15": 0.4388,
+            "H1O05": 0.6708,
+            "H1O15": 0.305,
+            "H1U15": 0.695
+          },
+          "expectedGoals": [
+            1.38,
+            1.49
+          ],
+          "sample": [
+            11,
+            11
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            7.39,
+            7.39
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "H": {
+            "price": 4.3,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "onexbet"
+          },
+          "B": {
+            "price": 1.75,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "williamhill"
+          },
+          "U": {
+            "price": 3.88,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "winamax_fr"
+          },
+          "O25": {
+            "price": 1.7,
+            "source": "The Odds API · bookmaker-median",
+            "books": 13,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "nordicbet"
+          },
+          "U25": {
+            "price": 2.14,
+            "source": "The Odds API · bookmaker-median",
+            "books": 13,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "unibet_nl"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "558531",
+        "league": "Serie A",
+        "leagueCode": "SA",
+        "leagueCrest": "https://crests.football-data.org/c111.png",
+        "homeCrest": "https://crests.football-data.org/100.png",
+        "awayCrest": "https://crests.football-data.org/471.png",
+        "home": "Roma",
+        "away": "Sassuolo",
+        "homeAliases": [
+          "AS Roma"
+        ],
+        "awayAliases": [
+          "US Sassuolo Calcio"
+        ],
+        "kickoff": "2026-11-07T19:45:00+00:00",
+        "status": "TIMED",
+        "formHome": "WWDWDDWWWWWWW",
+        "formAway": "LLLLDLWDWLLL",
+        "model": {
+          "probabilities": {
+            "H": 0.6191,
+            "U": 0.1987,
+            "B": 0.1822,
+            "O25": 0.6369,
+            "U25": 0.3631,
+            "O35": 0.4157,
+            "BTTS": 0.5921,
+            "O15": 0.839,
+            "U15": 0.161,
+            "U35": 0.5848,
+            "THO05": 0.887,
+            "THO15": 0.6405,
+            "TAO05": 0.6671,
+            "TAO15": 0.301,
+            "H1O05": 0.7918,
+            "H1O15": 0.4651,
+            "H1U15": 0.5349
+          },
+          "expectedGoals": [
+            2.18,
+            1.1
+          ],
+          "sample": [
+            13,
+            12
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            8.64,
+            8.34
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "H": {
+            "price": 1.29,
+            "source": "The Odds API · bookmaker-median",
+            "books": 24,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "pinnacle"
+          },
+          "B": {
+            "price": 8.98,
+            "source": "The Odds API · bookmaker-median",
+            "books": 24,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "gtbets"
+          },
+          "U": {
+            "price": 6.1,
+            "source": "The Odds API · bookmaker-median",
+            "books": 24,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "codere_it"
+          },
+          "O35": {
+            "price": 1.94,
+            "source": "The Odds API · bookmaker-median",
+            "books": 14,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "marathonbet"
+          },
+          "U35": {
+            "price": 1.88,
+            "source": "The Odds API · bookmaker-median",
+            "books": 14,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "betonlineag"
+          },
+          "O25": {
+            "price": 1.35,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-06T12:32:41Z",
+            "sampleBook": "williamhill"
+          },
+          "U25": {
+            "price": 3.15,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-06T12:32:41Z",
+            "sampleBook": "nordicbet"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "558843",
+        "league": "Eredivisie",
+        "leagueCode": "DED",
+        "leagueCrest": "https://crests.football-data.org/ED.png",
+        "homeCrest": "https://crests.football-data.org/670.png",
+        "awayCrest": "https://crests.football-data.org/718.png",
+        "home": "Excelsior",
+        "away": "Go Ahead",
+        "homeAliases": [
+          "SBV Excelsior"
+        ],
+        "awayAliases": [
+          "Go Ahead Eagles"
+        ],
+        "kickoff": "2026-11-07T20:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "LLLLDLDWWLWWD",
+        "formAway": "LWLDDDDLWDWLL",
+        "model": {
+          "probabilities": {
+            "H": 0.433,
+            "U": 0.2319,
+            "B": 0.3351,
+            "O25": 0.6242,
+            "U25": 0.3758,
+            "O35": 0.4018,
+            "BTTS": 0.6375,
+            "O15": 0.8301,
+            "U15": 0.1699,
+            "U35": 0.6003,
+            "THO05": 0.8209,
+            "THO15": 0.5129,
+            "TAO05": 0.7746,
+            "TAO15": 0.4388,
+            "H1O05": 0.7732,
+            "H1O15": 0.4367,
+            "H1U15": 0.5633
+          },
+          "expectedGoals": [
+            1.72,
+            1.49
+          ],
+          "sample": [
+            13,
+            13
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            8.54,
+            8.48
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "H": {
+            "price": 2.7,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "sport888"
+          },
+          "B": {
+            "price": 2.35,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "marathonbet"
+          },
+          "U": {
+            "price": 3.61,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "betonlineag"
+          },
+          "O25": {
+            "price": 1.5,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "williamhill"
+          },
+          "U25": {
+            "price": 2.48,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-06T12:32:59Z",
+            "sampleBook": "betsson"
+          },
+          "O35": {
+            "price": 2.2,
+            "source": "The Odds API · bookmaker-median",
+            "books": 8,
+            "lastUpdated": "2026-11-06T12:32:42Z",
+            "sampleBook": "onexbet"
+          },
+          "U35": {
+            "price": 1.6,
+            "source": "The Odds API · bookmaker-median",
+            "books": 8,
+            "lastUpdated": "2026-11-06T12:32:42Z",
+            "sampleBook": "unibet_nl"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "564741",
+        "league": "Primera Division",
+        "leagueCode": "PD",
+        "leagueCrest": "https://crests.football-data.org/laliga.png",
+        "homeCrest": "https://crests.football-data.org/95.png",
+        "awayCrest": "https://crests.football-data.org/86.png",
+        "home": "Valencia",
+        "away": "Real Madrid",
+        "homeAliases": [
+          "Valencia CF"
+        ],
+        "awayAliases": [
+          "Real Madrid CF"
+        ],
+        "kickoff": "2026-11-07T20:00:00+00:00",
+        "status": "TIMED",
+        "formHome": "WLDDLWLLLLDWWDW",
+        "formAway": "WWWWLWWLWWWWWWL",
+        "model": {
+          "probabilities": {
+            "H": 0.3018,
+            "U": 0.261,
+            "B": 0.4372,
+            "O25": 0.4799,
+            "U25": 0.5201,
+            "O35": 0.2626,
+            "BTTS": 0.5221,
+            "O15": 0.7307,
+            "U15": 0.2693,
+            "U35": 0.7382,
+            "THO05": 0.6834,
+            "THO15": 0.3192,
+            "TAO05": 0.7631,
+            "TAO15": 0.4219,
+            "H1O05": 0.657,
+            "H1O15": 0.29,
+            "H1U15": 0.71
+          },
+          "expectedGoals": [
+            1.15,
+            1.44
+          ],
+          "sample": [
+            15,
+            15
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            9.28,
+            9.29
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "B": {
+            "price": 1.26,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:02Z",
+            "sampleBook": "leovegas_se"
+          },
+          "H": {
+            "price": 9.4,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:02Z",
+            "sampleBook": "codere_it"
+          },
+          "U": {
+            "price": 6.3,
+            "source": "The Odds API · bookmaker-median",
+            "books": 21,
+            "lastUpdated": "2026-11-06T12:33:02Z",
+            "sampleBook": "betsson"
+          },
+          "O25": {
+            "price": 1.41,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-06T12:33:01Z",
+            "sampleBook": "nordicbet"
+          },
+          "U25": {
+            "price": 2.88,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-06T12:33:01Z",
+            "sampleBook": "williamhill"
+          },
+          "O35": {
+            "price": 2.08,
+            "source": "The Odds API · bookmaker-median",
+            "books": 11,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "unibet_se"
+          },
+          "U35": {
+            "price": 1.74,
+            "source": "The Odds API · bookmaker-median",
+            "books": 11,
+            "lastUpdated": "2026-11-06T12:32:45Z",
+            "sampleBook": "unibet_se"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "559635",
+        "league": "Ligue 1",
+        "leagueCode": "FL1",
+        "leagueCrest": "https://crests.football-data.org/FL1.png",
+        "homeCrest": "https://crests.football-data.org/524.png",
+        "awayCrest": "https://crests.football-data.org/531.png",
+        "home": "PSG",
+        "away": "Troyes",
+        "homeAliases": [
+          "Paris Saint-Germain FC"
+        ],
+        "awayAliases": [
+          "ES Troyes AC"
+        ],
+        "kickoff": "2026-11-07T20:05:00+00:00",
+        "status": "TIMED",
+        "formHome": "WWWWWWLDDLWW",
+        "formAway": "WDLLLLLWD",
+        "model": {
+          "probabilities": {
+            "H": 0.5743,
+            "U": 0.2343,
+            "B": 0.1914,
+            "O25": 0.494,
+            "U25": 0.506,
+            "O35": 0.2749,
+            "BTTS": 0.4904,
+            "O15": 0.7421,
+            "U15": 0.2579,
+            "U35": 0.7251,
+            "THO05": 0.8262,
+            "THO15": 0.5221,
+            "TAO05": 0.5934,
+            "TAO15": 0.2275,
+            "H1O05": 0.6753,
+            "H1O15": 0.3101,
+            "H1U15": 0.6899
+          },
+          "expectedGoals": [
+            1.75,
+            0.9
+          ],
+          "sample": [
+            12,
+            9
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            7.67,
+            6.8
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {
+          "H": {
+            "price": 1.11,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "williamhill"
+          },
+          "B": {
+            "price": 18.51,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "betonlineag"
+          },
+          "U": {
+            "price": 10.55,
+            "source": "The Odds API · bookmaker-median",
+            "books": 22,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "betonlineag"
+          },
+          "O25": {
+            "price": 1.25,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-06T12:32:39Z",
+            "sampleBook": "williamhill"
+          },
+          "U25": {
+            "price": 3.85,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-06T12:32:39Z",
+            "sampleBook": "nordicbet"
+          },
+          "O35": {
+            "price": 1.65,
+            "source": "The Odds API · bookmaker-median",
+            "books": 9,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "codere_it"
+          },
+          "U35": {
+            "price": 2.2,
+            "source": "The Odds API · bookmaker-median",
+            "books": 9,
+            "lastUpdated": "2026-11-06T12:33:00Z",
+            "sampleBook": "tipico_de"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "567350",
+        "league": "Primeira Liga",
+        "leagueCode": "PPL",
+        "leagueCrest": "https://crests.football-data.org/PPL.png",
+        "homeCrest": "https://crests.football-data.org/498.png",
+        "awayCrest": "https://crests.football-data.org/583.png",
+        "home": "Sporting CP",
+        "away": "Moreirense",
+        "homeAliases": [
+          "Sporting Clube de Portugal"
+        ],
+        "awayAliases": [
+          "Moreirense FC"
+        ],
+        "kickoff": "2026-11-07T20:30:00+00:00",
+        "status": "TIMED",
+        "formHome": "WLWDDWWWWDWW",
+        "formAway": "WWLDWLLWLDDL",
+        "model": {
+          "probabilities": {
+            "H": 0.5752,
+            "U": 0.2239,
+            "B": 0.201,
+            "O25": 0.5502,
+            "U25": 0.4498,
+            "O35": 0.3267,
+            "BTTS": 0.5384,
+            "O15": 0.7822,
+            "U15": 0.2178,
+            "U35": 0.6741,
+            "THO05": 0.8459,
+            "THO15": 0.5577,
+            "TAO05": 0.6358,
+            "TAO15": 0.2679,
+            "H1O05": 0.6661,
+            "H1O15": 0.2998,
+            "H1U15": 0.7002
+          },
+          "expectedGoals": [
+            1.87,
+            1.01
+          ],
+          "sample": [
+            12,
+            12
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            7.59,
+            7.69
+          ],
+          "modelMethod": "strength_adjusted_v21",
+          "historyWindowDays": 180
+        },
+        "odds": {},
+        "predictions": []
+      }
+    ],
+    "additionalMarkets": {
+      "tips": [],
+      "watchlist": [
+        {
+          "matchId": "560632",
+          "home": "Leeds United",
+          "away": "Tottenham",
+          "league": "Premier League",
+          "kickoff": "2026-11-07T12:30:00+00:00",
+          "market": "O25",
+          "label": "Over 2,5 mål",
+          "marketType": "goals",
+          "price": 1.93,
+          "bookmakers": 18,
+          "oddsUpdatedAt": "2026-11-06T12:32:57Z",
+          "probability": 0.3702,
+          "verified": false,
+          "rationale": [
+            "Verifisert bookmakerpris, men ikke kvalifisert som et hovedtips",
+            "Pris fra 18 bookmakere",
+            "Eget, ikke-kalibrert modellanslag: 37 %"
+          ],
+          "source": "The Odds API",
+          "sampleSize": 12
+        },
+        {
+          "matchId": "560632",
+          "home": "Leeds United",
+          "away": "Tottenham",
+          "league": "Premier League",
+          "kickoff": "2026-11-07T12:30:00+00:00",
+          "market": "U25",
+          "label": "Under 2,5 mål",
+          "marketType": "goals",
+          "price": 1.87,
+          "bookmakers": 18,
+          "oddsUpdatedAt": "2026-11-06T12:32:57Z",
+          "probability": 0.6298,
+          "verified": false,
+          "rationale": [
+            "Verifisert bookmakerpris, men ikke kvalifisert som et hovedtips",
+            "Pris fra 18 bookmakere",
+            "Eget, ikke-kalibrert modellanslag: 63 %"
+          ],
+          "source": "The Odds API",
+          "sampleSize": 12
+        },
+        {
+          "matchId": "560634",
+          "home": "Everton",
+          "away": "Coventry City",
+          "league": "Premier League",
+          "kickoff": "2026-11-06T20:00:00+00:00",
+          "market": "O25",
+          "label": "Over 2,5 mål",
+          "marketType": "goals",
+          "price": 1.73,
+          "bookmakers": 17,
+          "oddsUpdatedAt": "2026-11-06T12:32:57Z",
+          "probability": 0.4429,
+          "verified": false,
+          "rationale": [
+            "Verifisert bookmakerpris, men ikke kvalifisert som et hovedtips",
+            "Pris fra 17 bookmakere",
+            "Eget, ikke-kalibrert modellanslag: 44 %"
+          ],
+          "source": "The Odds API",
+          "sampleSize": 9
+        },
+        {
+          "matchId": "565852",
+          "home": "HSV",
+          "away": "M'gladbach",
+          "league": "Bundesliga",
+          "kickoff": "2026-11-06T19:30:00+00:00",
+          "market": "BTTS",
+          "label": "Begge lag scorer: Ja",
+          "marketType": "btts",
+          "price": 1.6,
+          "bookmakers": 4,
+          "oddsUpdatedAt": "2026-11-06T12:33:46Z",
+          "probability": 0.5765,
+          "verified": false,
+          "rationale": [
+            "Verifisert bookmakerpris fra 4 bookmakere",
+            "Kun markedsovervåkning, ikke nok uavhengig grunnlag til å anbefale"
+          ],
+          "source": "The Odds API"
+        },
+        {
+          "matchId": "565852",
+          "home": "HSV",
+          "away": "M'gladbach",
+          "league": "Bundesliga",
+          "kickoff": "2026-11-06T19:30:00+00:00",
+          "market": "BTTSN",
+          "label": "Begge lag scorer: Nei",
+          "marketType": "btts",
+          "price": 2.33,
+          "bookmakers": 4,
+          "oddsUpdatedAt": "2026-11-06T12:33:46Z",
+          "probability": 0.4235,
+          "verified": false,
+          "rationale": [
+            "Verifisert bookmakerpris fra 4 bookmakere",
+            "Kun markedsovervåkning, ikke nok uavhengig grunnlag til å anbefale"
+          ],
+          "source": "The Odds API"
+        },
+        {
+          "matchId": "565852",
+          "home": "HSV",
+          "away": "M'gladbach",
+          "league": "Bundesliga",
+          "kickoff": "2026-11-06T19:30:00+00:00",
+          "market": "COO95",
+          "label": "Over 9.5 hjørnespark",
+          "marketType": "corners",
+          "price": 1.91,
+          "bookmakers": 1,
+          "oddsUpdatedAt": "2026-11-06T12:33:40Z",
+          "probability": null,
+          "verified": false,
+          "rationale": [
+            "Mangler verifiserbar kort- eller hjørnesparkhistorikk",
+            "Pris fra 1 bookmakere"
+          ],
+          "source": "The Odds API",
+          "sampleSize": 0
+        },
+        {
+          "matchId": "565852",
+          "home": "HSV",
+          "away": "M'gladbach",
+          "league": "Bundesliga",
+          "kickoff": "2026-11-06T19:30:00+00:00",
+          "market": "COU95",
+          "label": "Under 9.5 hjørnespark",
+          "marketType": "corners",
+          "price": 1.93,
+          "bookmakers": 1,
+          "oddsUpdatedAt": "2026-11-06T12:33:40Z",
+          "probability": null,
+          "verified": false,
+          "rationale": [
+            "Mangler verifiserbar kort- eller hjørnesparkhistorikk",
+            "Pris fra 1 bookmakere"
+          ],
+          "source": "The Odds API",
+          "sampleSize": 0
+        },
+        {
+          "matchId": "565852",
+          "home": "HSV",
+          "away": "M'gladbach",
+          "league": "Bundesliga",
+          "kickoff": "2026-11-06T19:30:00+00:00",
+          "market": "CAO35",
+          "label": "Over 3.5 kort",
+          "marketType": "cards",
+          "price": 1.67,
+          "bookmakers": 1,
+          "oddsUpdatedAt": "2026-11-06T12:33:40Z",
+          "probability": null,
+          "verified": false,
+          "rationale": [
+            "Mangler verifiserbar kort- eller hjørnesparkhistorikk",
+            "Pris fra 1 bookmakere"
+          ],
+          "source": "The Odds API",
+          "sampleSize": 0
+        },
+        {
+          "matchId": "565852",
+          "home": "HSV",
+          "away": "M'gladbach",
+          "league": "Bundesliga",
+          "kickoff": "2026-11-06T19:30:00+00:00",
+          "market": "CAU35",
+          "label": "Under 3.5 kort",
+          "marketType": "cards",
+          "price": 2.18,
+          "bookmakers": 1,
+          "oddsUpdatedAt": "2026-11-06T12:33:40Z",
+          "probability": null,
+          "verified": false,
+          "rationale": [
+            "Mangler verifiserbar kort- eller hjørnesparkhistorikk",
+            "Pris fra 1 bookmakere"
+          ],
+          "source": "The Odds API",
+          "sampleSize": 0
+        },
+        {
+          "matchId": "565852",
+          "home": "HSV",
+          "away": "M'gladbach",
+          "league": "Bundesliga",
+          "kickoff": "2026-11-06T19:30:00+00:00",
+          "market": "GS:shuto-machino",
+          "label": "Shuto Machino scorer",
+          "marketType": "goalscorer",
+          "price": 3.6,
+          "bookmakers": 4,
+          "oddsUpdatedAt": "2026-11-06T12:33:47Z",
+          "probability": null,
+          "verified": false,
+          "rationale": [
+            "Mangler verifisert scorerhistorikk",
+            "Pris fra 4 bookmakere",
+            "Startoppstilling må bekreftes før spill"
+          ],
+          "source": "The Odds API",
+          "sampleSize": 0,
+          "needsLineup": true,
+          "statisticallyInteresting": false
+        }
+      ],
+      "coverage": {
+        "Hjørnespark": 6,
+        "Kort": 4,
+        "Målscorer": 14,
+        "Mål": 162,
+        "Lagmål": 0,
+        "1. omgang": 0,
+        "Begge lag scorer": 2
+      },
+      "marketFamilies": [
+        {
+          "key": "corners",
+          "label": "Hjørnespark",
+          "availableQuotes": 6
+        },
+        {
+          "key": "cards",
+          "label": "Kort",
+          "availableQuotes": 4
+        },
+        {
+          "key": "goalscorer",
+          "label": "Målscorer",
+          "availableQuotes": 14
+        },
+        {
+          "key": "goals",
+          "label": "Mål",
+          "availableQuotes": 162
+        },
+        {
+          "key": "team_goals",
+          "label": "Lagmål",
+          "availableQuotes": 0
+        },
+        {
+          "key": "first_half",
+          "label": "1. omgang",
+          "availableQuotes": 0
+        },
+        {
+          "key": "btts",
+          "label": "Begge lag scorer",
+          "availableQuotes": 2
+        }
+      ],
+      "issues": [],
+      "providerRequests": 3,
+      "notes": "Kun verifiserte bookmakerpriser. For kort/hjørnespark kreves historiske data. Målscorer krever bekreftet startoppstilling."
+    },
+    "scorePredictions": {
+      "games": [
+        {
+          "matchId": "567353",
+          "home": "Famalicão",
+          "away": "Arouca",
+          "kickoff": "2026-11-06T20:45:00+00:00",
+          "league": "Primeira Liga",
+          "sources": [],
+          "consensus": null,
+          "ownModel": {
+            "homeGoals": 1,
+            "awayGoals": 1,
+            "method": "Uavhengig Poisson-modell fra registrerte kampresultater"
+          }
+        },
+        {
+          "matchId": "558845",
+          "home": "Willem II",
+          "away": "Zwolle",
+          "kickoff": "2026-11-06T19:00:00+00:00",
+          "league": "Eredivisie",
+          "sources": [],
+          "consensus": null,
+          "ownModel": {
+            "homeGoals": 1,
+            "awayGoals": 1,
+            "method": "Uavhengig Poisson-modell fra registrerte kampresultater"
+          }
+        },
+        {
+          "matchId": "odds:926c11a6b5d1773d9024296a215d0f71",
+          "home": "Willem II",
+          "away": "FC Zwolle",
+          "kickoff": "2026-11-06T19:00:00+00:00",
+          "league": "Eredivisie",
+          "sources": [],
+          "consensus": null,
+          "ownModel": {
+            "homeGoals": 1,
+            "awayGoals": 1,
+            "method": "Uavhengig Poisson-modell fra registrerte kampresultater"
+          }
+        },
+        {
+          "matchId": "560634",
+          "home": "Everton",
+          "away": "Coventry City",
+          "kickoff": "2026-11-06T20:00:00+00:00",
+          "league": "Premier League",
+          "sources": [],
+          "consensus": null,
+          "ownModel": {
+            "homeGoals": 1,
+            "awayGoals": 1,
+            "method": "Uavhengig Poisson-modell fra registrerte kampresultater"
+          }
+        },
+        {
+          "matchId": "558537",
+          "home": "Venezia FC",
+          "away": "Udinese",
+          "kickoff": "2026-11-06T19:45:00+00:00",
+          "league": "Serie A",
+          "sources": [],
+          "consensus": null,
+          "ownModel": {
+            "homeGoals": 1,
+            "awayGoals": 1,
+            "method": "Uavhengig Poisson-modell fra registrerte kampresultater"
+          }
+        },
+        {
+          "matchId": "apf:1494334",
+          "home": "Hammarby FF",
+          "away": "IF Elfsborg",
+          "kickoff": "2026-11-06T18:00:00+00:00",
+          "league": "Allsvenskan",
+          "sources": [],
+          "consensus": null,
+          "ownModel": null
+        },
+        {
+          "matchId": "apf:1549057",
+          "home": "Silkeborg",
+          "away": "Lyngby",
+          "kickoff": "2026-11-06T18:00:00+00:00",
+          "league": "Superliga",
+          "sources": [],
+          "consensus": null,
+          "ownModel": null
+        },
+        {
+          "matchId": "565852",
+          "home": "HSV",
+          "away": "M'gladbach",
+          "kickoff": "2026-11-06T19:30:00+00:00",
+          "league": "Bundesliga",
+          "sources": [],
+          "consensus": null,
+          "ownModel": {
+            "homeGoals": 1,
+            "awayGoals": 1,
+            "method": "Uavhengig Poisson-modell fra registrerte kampresultater"
+          }
+        }
+      ],
+      "sourceForecasts": 0,
+      "fixturesWithConsensus": 0,
+      "issues": [],
+      "method": "Lik vekt for ulike, kildeangitte resultattips; krever minst to uavhengige kilder for samlet prognose",
+      "coverageNote": "Forebet, Vitibet, PredictZ og WinDrawWin kan inkluderes ved manuelt registrerte, datostemplede resultattips med kildelenker. Kildeinnholdet kontrolleres ikke automatisk. API-Football krever egen API-nøkkel. Egen modell holdes separat."
+    },
+    "observations": [
+      {
+        "matchId": "564740",
+        "home": "Sevilla FC",
+        "away": "Alavés",
+        "league": "Primera Division",
+        "kickoff": "2026-11-06T20:00:00+00:00",
+        "market": "B",
+        "marketType": "winner",
+        "label": "Borteseier",
+        "price": 4.55,
+        "probability": 0.3193,
+        "oddsUpdatedAt": "2026-11-06T12:33:02Z",
+        "bookmakers": 21,
+        "status": "observation",
+        "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+      },
+      {
+        "matchId": "odds:9dd0014685fd62d9b2890d7c33a8c9ab",
+        "home": "Sevilla",
+        "away": "Alavés",
+        "league": "La Liga",
+        "kickoff": "2026-11-06T20:00:00+00:00",
+        "market": "B",
+        "marketType": "winner",
+        "label": "Borteseier",
+        "price": 4.55,
+        "probability": 0.3193,
+        "oddsUpdatedAt": "2026-11-06T12:33:02Z",
+        "bookmakers": 21,
+        "status": "observation",
+        "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+      },
+      {
+        "matchId": "560634",
+        "home": "Everton",
+        "away": "Coventry City",
+        "league": "Premier League",
+        "kickoff": "2026-11-06T20:00:00+00:00",
+        "market": "B",
+        "marketType": "winner",
+        "label": "Borteseier",
+        "price": 5.0,
+        "probability": 0.2872,
+        "oddsUpdatedAt": "2026-11-06T12:32:57Z",
+        "bookmakers": 25,
+        "status": "observation",
+        "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+      },
+      {
+        "matchId": "567353",
+        "home": "Famalicão",
+        "away": "Arouca",
+        "league": "Primeira Liga",
+        "kickoff": "2026-11-06T20:45:00+00:00",
+        "market": "B",
+        "marketType": "winner",
+        "label": "Borteseier",
+        "price": 3.08,
+        "probability": 0.3912,
+        "oddsUpdatedAt": "2026-11-06T12:32:59Z",
+        "bookmakers": 20,
+        "status": "observation",
+        "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+      },
+      {
+        "matchId": "558845",
+        "home": "Willem II",
+        "away": "Zwolle",
+        "league": "Eredivisie",
+        "kickoff": "2026-11-06T19:00:00+00:00",
+        "market": "H",
+        "marketType": "winner",
+        "label": "Hjemmeseier",
+        "price": 3.25,
+        "probability": 0.3623,
+        "oddsUpdatedAt": "2026-11-06T12:33:00Z",
+        "bookmakers": 22,
+        "status": "observation",
+        "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+      },
+      {
+        "matchId": "odds:926c11a6b5d1773d9024296a215d0f71",
+        "home": "Willem II",
+        "away": "FC Zwolle",
+        "league": "Eredivisie",
+        "kickoff": "2026-11-06T19:00:00+00:00",
+        "market": "H",
+        "marketType": "winner",
+        "label": "Hjemmeseier",
+        "price": 3.25,
+        "probability": 0.3623,
+        "oddsUpdatedAt": "2026-11-06T12:33:00Z",
+        "bookmakers": 22,
+        "status": "observation",
+        "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+      },
+      {
+        "matchId": "560634",
+        "home": "Everton",
+        "away": "Coventry City",
+        "league": "Premier League",
+        "kickoff": "2026-11-06T20:00:00+00:00",
+        "market": "U25",
+        "marketType": "goals",
+        "label": "Under 2,5 mål",
+        "price": 2.1,
+        "probability": 0.5571,
+        "oddsUpdatedAt": "2026-11-06T12:32:57Z",
+        "bookmakers": 17,
+        "status": "observation",
+        "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+      },
+      {
+        "matchId": "564740",
+        "home": "Sevilla FC",
+        "away": "Alavés",
+        "league": "Primera Division",
+        "kickoff": "2026-11-06T20:00:00+00:00",
+        "market": "O25",
+        "marketType": "goals",
+        "label": "Over 2,5 mål",
+        "price": 2.16,
+        "probability": 0.5031,
+        "oddsUpdatedAt": "2026-11-06T12:33:01Z",
+        "bookmakers": 11,
+        "status": "observation",
+        "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+      }
+    ],
+    "modelVersion": "2.0-foundation",
+    "qualityAudit": {
+      "screened": 67,
+      "qualified": 0,
+      "topLimit": 5,
+      "observations": 8,
+      "rejections": {
+        "for_lav_konservativ_verdi": 60,
+        "for_lite_historikk": 7
+      },
+      "calibrated": false,
+      "method": "Eksplisitt sensitivitetsscenario, markedsforankring og usikkerhetstrekk; ikke validert som konfidensintervall",
+      "coverageLimit": "Tilgjengelige kilde-/bookmakerodds, ikke alle globale markeder",
+      "whyNoPicks": "Ingen tips bestod den usikkerhetsjusterte verdikontrollen. Se rejection-tall for årsaker."
+    },
+    "editionDate": "2026-11-06",
+    "resultUpdatedAt": null,
+    "editionLocked": true
+  },
+  "note": "Utelatt tips er ikke automatisk dokumentert å ha mistet oddsverdi."
+}

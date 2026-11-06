@@ -1,20 +1,20 @@
 {
   "schemaVersion": 34,
   "editionDate": "2026-11-06",
-  "revisionId": "f91b5b7d36bd883852231eb4",
-  "editionGeneratedAt": "2026-11-06T12:32:05.331112+00:00",
-  "recordedAt": "2026-11-06T12:33:57.248Z",
+  "revisionId": "9485c543eb09b6aa97a1fa36",
+  "editionGeneratedAt": "2026-11-06T15:54:47.901955+00:00",
+  "recordedAt": "2026-11-06T15:56:13.224Z",
   "summary": {
-    "total": 10,
-    "high": 5,
-    "safe": 0,
-    "watch": 5,
-    "withBothFive": 10,
-    "withFormModel": 10,
-    "marketBased": 0,
+    "total": 5,
+    "high": 3,
+    "safe": 2,
+    "watch": 0,
+    "withBothFive": 5,
+    "withFormModel": 5,
+    "marketBased": 2,
     "expertWritten": 0,
     "modelMarketConflicts": 0,
-    "unverifiedResults": 10
+    "unverifiedResults": 5
   },
   "notes": [
     "Records are the selections actually produced by the current published UI algorithm at capture time.",
