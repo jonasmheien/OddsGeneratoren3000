@@ -123,6 +123,194 @@
         "safe": [],
         "watch": []
       }
+    },
+    {
+      "id": "f27007a735103da23e69b53d",
+      "editionGeneratedAt": "2026-11-06T09:13:58.966476+00:00",
+      "recordedAt": "2026-11-06T09:15:25.100Z",
+      "summary": {
+        "total": 5,
+        "high": 5,
+        "safe": 0,
+        "watch": 0,
+        "withBothFive": 4,
+        "withFormModel": 4,
+        "marketBased": 4,
+        "expertWritten": 0,
+        "modelMarketConflicts": 0,
+        "unverifiedResults": 5
+      },
+      "groups": {
+        "high": [
+          {
+            "matchId": "560634",
+            "home": "Everton",
+            "away": "Coventry City",
+            "league": "Premier League",
+            "kickoff": "2026-11-06T20:00:00+00:00",
+            "market": "B",
+            "label": "Borteseier",
+            "price": 4.95,
+            "probability": 0.2872,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-06T09:14:28Z",
+            "bookmakerCount": 25,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "WLLDW",
+              "awayLastFive": "WLLWW",
+              "modelSample": [
+                12,
+                9
+              ],
+              "formModelProbability": 0.2872,
+              "bookmakerImpliedProbability": 0.19224957909429727,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "559638",
+            "home": "Toulouse",
+            "away": "Strasbourg",
+            "league": "Ligue 1",
+            "kickoff": "2026-11-06T19:45:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 2.25,
+            "probability": 0.42210919008123593,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-06T09:14:11Z",
+            "bookmakerCount": 22,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LDWDW",
+              "awayLastFive": "WLLLL",
+              "modelSample": [
+                10,
+                12
+              ],
+              "formModelProbability": 0.435,
+              "bookmakerImpliedProbability": 0.42210919008123593,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "odds:49ae8401ae66921bf2db3a4bc2d751a5",
+            "home": "Silkeborg IF",
+            "away": "Lyngby",
+            "league": "Superliga",
+            "kickoff": "2026-11-06T18:00:00+00:00",
+            "market": "U25",
+            "label": "Under 2,5 mål",
+            "price": 2.25,
+            "probability": 0.41406249999999994,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-06T09:14:12Z",
+            "bookmakerCount": 15,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "partial_form",
+              "homeLastFive": "",
+              "awayLastFive": "WLDLL",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.41406249999999994,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "561932",
+            "home": "Derby County",
+            "away": "Bolton",
+            "league": "Championship",
+            "kickoff": "2026-11-06T20:00:00+00:00",
+            "market": "B",
+            "label": "Borteseier",
+            "price": 2.51,
+            "probability": 0.3732974815190163,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-06T09:14:09Z",
+            "bookmakerCount": 22,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LLDLL",
+              "awayLastFive": "WLLDW",
+              "modelSample": [
+                14,
+                14
+              ],
+              "formModelProbability": 0.3805,
+              "bookmakerImpliedProbability": 0.3732974815190163,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "odds:af665449ac9e2c4e1f183376e85fc936",
+            "home": "Derby County",
+            "away": "Bolton Wanderers",
+            "league": "Championship",
+            "kickoff": "2026-11-06T20:00:00+00:00",
+            "market": "B",
+            "label": "Borteseier",
+            "price": 2.51,
+            "probability": 0.3732974815190163,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-06T09:14:09Z",
+            "bookmakerCount": 22,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LLDLL",
+              "awayLastFive": "WLLDW",
+              "modelSample": [
+                14,
+                14
+              ],
+              "formModelProbability": 0.3805,
+              "bookmakerImpliedProbability": 0.3732974815190163,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          }
+        ],
+        "safe": [],
+        "watch": []
+      }
     }
   ]
 }
