@@ -73,6 +73,13 @@ def _normalized(value):
     return re.sub(r'[^a-z0-9]+', '', value.casefold())
 
 
+def _fixture_team_key(value):
+    """Only verified, narrow aliases for the same club in fixture matching."""
+    name = _normalized(value)
+    return {'boltonwanderers': 'bolton',
+            'silkeborgif': 'silkeborg'}.get(name, name)
+
+
 def _quoted(event):
     """Require observed valid numerical prices, not just an empty bookmaker ID."""
     for bookmaker in event.get('bookmakers') or []:
@@ -96,15 +103,15 @@ def _already_listed(name_home, name_away, kickoff, existing):
     Deliberately avoid fuzzy single-team matching: uncertain sources are kept
     separately and never get odds attached to the wrong fixture.
     """
-    home, away = _normalized(name_home), _normalized(name_away)
+    home, away = _fixture_team_key(name_home), _fixture_team_key(name_away)
     for item in existing:
         h = item.get('homeTeam') or {}
         a = item.get('awayTeam') or {}
         h_names = [h.get('name'), h.get('shortName')]
         a_names = [a.get('name'), a.get('shortName')]
-        if home not in {_normalized(x) for x in h_names if isinstance(x, str)}:
+        if home not in {_fixture_team_key(x) for x in h_names if isinstance(x, str)}:
             continue
-        if away not in {_normalized(x) for x in a_names if isinstance(x, str)}:
+        if away not in {_fixture_team_key(x) for x in a_names if isinstance(x, str)}:
             continue
         current = _utc(item.get('utcDate'))
         if current is not None and abs((current - kickoff).total_seconds()) <= 3600:

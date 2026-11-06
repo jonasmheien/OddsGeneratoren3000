@@ -48,7 +48,7 @@ SPORT_BY_COMPETITION = {
 # Free plan: 500 credits/month as of project setup. One region × two markets
 # costs about 2 credits per league per run (provider rules may change).
 # One daily run × 5 leagues × 2 markets × 31 days = ~310 credits/month at most under the current credit formula.
-ODDS_SPORTS_PER_RUN = min(5, max(1, int(os.getenv('ODDS_SPORTS_PER_RUN', '5'))))
+ODDS_SPORTS_PER_RUN = min(9, max(1, int(os.getenv('ODDS_SPORTS_PER_RUN', '5'))))
 # Extra bookmaker markets cost per event. Keep to two events by default to
 # respect free-tier monthly credits; adjust only after checking account usage.
 ODDS_EXTRA_EVENTS = min(5, max(0, int(os.getenv('ODDS_EXTRA_EVENTS', '3'))))

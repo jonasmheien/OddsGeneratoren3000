@@ -127,7 +127,7 @@ jobs:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           ODDS_OUTPUT_PATH: state/.candidate.json
           # Limit credits (free plan), while keeping multiple leagues.
-          ODDS_SPORTS_PER_RUN: ${{ steps.trigger.outputs.mode == 'tomorrow' && '2' || '4' }}
+          ODDS_SPORTS_PER_RUN: ${{ steps.trigger.outputs.refresh_on_push == 'true' && '9' || (steps.trigger.outputs.mode == 'tomorrow' && '2' || '4') }}
           ODDS_EXTRA_EVENTS: ${{ steps.trigger.outputs.mode == 'tomorrow' && '0' || '1' }}
           ODDS_TARGET_DAY_OFFSET: ${{ steps.trigger.outputs.mode == 'tomorrow' && '1' || '0' }}
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
