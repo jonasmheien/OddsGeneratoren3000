@@ -69,6 +69,8 @@ jobs:
           node --check site/three-fields-v26.js
           node tests/test_tip_ui_v32.cjs
           node tests/test_tip_audit_v34.cjs
+          node --check site/market-radar-v39.js
+          node tests/test_market_radar_v39.cjs
       - name: Velg riktig oppdatering
         id: trigger
         shell: bash

@@ -93,7 +93,7 @@
     const choices=[];
     for(const m of (edition?.matches||[])){
       if(!m||!isOnDay(m,edition,now))continue;
-      for(const code of ['H','B']){
+      for(const code of ['H','B','O25','U25','O35','U35']){
         const q=m.odds?.[code];
         if(!freshBookmaker(q,now)||Number(q.price)<1.14||Number(q.price)>1.70)continue;
         const fair=fairMarket(m,code,now);
@@ -384,6 +384,13 @@ function highMarketCandidates(edition,now){
       let edition=useTomorrow?preview:today;
       if(!edition && preview && dayOf(preview)>=osloDate(now)){edition=preview;}
       const editionDay=dayOf(edition);
+      // Share the actual edition selected by the existing picker with the
+      // supplementary market radar. No new odds or tips are calculated here.
+      const marketRoot=$('tf-root');
+      if(marketRoot?.dataset){
+        marketRoot.dataset.ogEditionDate=editionDay;
+        marketRoot.dataset.ogEditionFile=edition===preview?'tomorrow':'today';
+      }
       const todayExpired=edition && editionDay<osloDate(now);
       const starts=shownKickoffs(edition,now);
       const expired=!!(todayExpired || (edition&&!useTomorrow&&starts.length&&starts.every(t=>t<=+now)));
