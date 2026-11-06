@@ -1,0 +1,38 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const root=path.resolve(__dirname,'..');
+const js=fs.readFileSync(path.join(root,'site/sportsbook-v37.js'),'utf8');
+const css=fs.readFileSync(path.join(root,'site/sportsbook-v37.css'),'utf8');
+const html=fs.readFileSync(path.join(root,'site/index.html'),'utf8');
+const {norm,trustFromCard,config,tokens}=require(path.join(root,'site/sportsbook-v37.js'));
+// No analysis changes, source of picks is the current UI only.
+assert.match(js,/querySelectorAll\('\.tf-card'\)/);
+assert.match(js,/No.*fabricate|Does not decide tips/);
+assert.doesNotMatch(js,/api\.the-odds-api\.com|FOOTBALL_DATA_API_KEY|API_FOOTBALL_KEY/);
+assert.ok(!js.includes('localStorage'));
+assert.ok(!js.includes('Plasser spill'));
+assert.equal(config.length,3);
+assert.deepEqual(config.map(x=>x.key),['safe','high','watch']);
+assert.equal(norm('Håmmarby Älvesborg'),'hammarby alvesborg');
+function stub(text){return {querySelector:s=>s==='.tf-note'?{textContent:text}:null};}
+assert.equal(trustFromCard(stub('Markedsbasert Safe Bet · ikke modellbekreftet'),'safe'),'market');
+assert.equal(trustFromCard(stub('Modellkandidat · ikke kvalifisert'),'high'),'model');
+assert.equal(trustFromCard(stub('Kvalifisert i modellens konservative scenario'),'safe'),'qualified');
+assert.equal(trustFromCard(stub(''),'watch'),'observation');
+assert.equal(trustFromCard(stub(''),'high'),null);
+assert.equal(tokens.market,'Markedskandidat');
+assert.match(html,/sportsbook-v37\.css\?v=37/);
+assert.match(html,/sportsbook-v37\.js\?v=37/);
+assert.match(css,/safe-area-inset-bottom/);
+assert.match(css,/@media\(max-width:760px\)/);
+assert.match(css,/\.tf-list\{display:grid;grid-template-columns:1fr/);
+assert.match(css,/body\.three-v26\.og-v37 main > #og-tools/);
+assert.match(js,/search\.addEventListener\('input'/);
+assert.match(js,/card\.hidden=!matches/);
+assert.match(js,/source\.querySelector\('details\.tf-analysis'\)/);
+assert.match(js,/MutationObserver/);
+assert.match(js,/el\('nav','og-dock'\)/);
+assert.match(js,/body\.classList\.add\('og-v37'\)/);
+console.log('PASS: v37 assets, categories, trust tiers, no new pick engine, search, navigation, responsive CSS');
