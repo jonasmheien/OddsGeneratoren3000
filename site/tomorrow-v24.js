@@ -33,6 +33,8 @@
       const response = await fetch(`data/tomorrow.json?v=${Date.now()}`,{cache:'no-store'});
       if(!response.ok){if(section)section.hidden=true;return;}
       const obj = await response.json();
+      // Legacy previews never bypass v40's authoritative backend selection.
+      if(obj?.finalSelection?.version!==40){if(section)section.hidden=true;return;}
       if(!obj.previewEdition || !/^\d{4}-\d{2}-\d{2}$/.test(obj.editionDate) || obj.editionDate < localDate()){
         if(section)section.hidden=true;return;
       }

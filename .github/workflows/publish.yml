@@ -71,6 +71,10 @@ jobs:
           node tests/test_tip_audit_v34.cjs
           node --check site/market-radar-v39.js
           node tests/test_market_radar_v39.cjs
+          node --check site/visible-selection-v40.js
+          node tests/test_visible_selection_v40.cjs
+          node tests/test_selection_v36.cjs
+          node tests/test_tip_audit_v34.cjs
       - name: Velg riktig oppdatering
         id: trigger
         shell: bash

@@ -8,6 +8,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const vm = require('node:vm');
+const visibleV40=require('../site/visible-selection-v40.js');
 
 const ANCHOR = "  document.addEventListener('DOMContentLoaded',()=>{";
 const GROUPS = ['high', 'safe', 'watch'];
@@ -15,39 +16,13 @@ const stableHash = obj => crypto.createHash('sha256').update(JSON.stringify(obj)
 function localDay(date) {
   return new Intl.DateTimeFormat('en-CA', {timeZone:'Europe/Oslo',year:'numeric',month:'2-digit',day:'2-digit'}).format(date);
 }
-function getPicker(jsPath, at) {
-  const source = fs.readFileSync(jsPath, 'utf8');
-  if (source.split(ANCHOR).length !== 2) throw new Error('UI selector anchor changed; no tips were archived');
-  const modified = source.replace(ANCHOR, '  globalThis.__capture_v34 = {featured,interesting,shouldShowTomorrow,shownKickoffs,dayOf,osloDate,gameToken};\n' + ANCHOR);
-  class Clock extends Date {
-    constructor(...a) {super(...(a.length ? a : [at.getTime()]));}
-    static now(){return at.getTime();}
-  }
-  const context = {document:{addEventListener(){}},Date:Clock,Intl,Math,Number,String,Array,Object,Set,JSON};
-  vm.createContext(context);
-  vm.runInContext(modified,context,{timeout:5000,filename:'three-fields-v26.js'});
-  if (!context.__capture_v34) throw new Error('UI selector unavailable');
-  return context.__capture_v34;
+function getPicker(){
+  // Deprecated interface retained for callers. Never evaluates frontend code.
+  return {dayOf:visibleV40.dayOf,selectEdition:visibleV40.selectEdition};
 }
-function selectAsDisplayed(today, tomorrow, picker, now) {
-  const useTomorrow = picker.shouldShowTomorrow(today, tomorrow, now);
-  let edition = useTomorrow ? tomorrow : today;
-  if (!edition && tomorrow && picker.dayOf(tomorrow) >= picker.osloDate(now)) edition=tomorrow;
-  if (!edition) return null;
-  const day = picker.dayOf(edition);
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) return null;
-  const kickoffs = picker.shownKickoffs(edition,now);
-  const expired = day < picker.osloDate(now) ||
-    (!useTomorrow && kickoffs.length > 0 && kickoffs.every(t=>t <= +now));
-  if (expired) return {edition,groups:{high:[],safe:[],watch:[]},expired:true};
-  const safe=picker.featured(edition,'safe',now);
-  const occupied=new Set();
-  const occupy = p => { occupied.add(String(p.matchId)); const token=picker.gameToken(p); if(token)occupied.add(token); };
-  for(const p of safe)occupy(p);
-  const high=picker.featured(edition,'high',now,occupied);
-  for(const p of high)occupy(p);
-  const watch=picker.interesting(edition,now,occupied);
-  return {edition,groups:{high,safe,watch},expired:false};
+function selectAsDisplayed(today,tomorrow,_picker,now){
+  // The published UI and archive invoke precisely the same pure projection.
+  return visibleV40.selectEdition(today,tomorrow,now);
 }
 const numeric = v => v !== '' && v !== undefined && v !== null && Number.isFinite(Number(v)) ? Number(v) : null;
 function noVigMarketChance(match, market, at){
@@ -140,13 +115,12 @@ function archiveSnapshot(root,{now=new Date()}={}) {
   if(!fs.existsSync(todayPath))throw new Error('Missing published today.json');
   const today=JSON.parse(fs.readFileSync(todayPath,'utf8'));
   const tomorrow=fs.existsSync(tomorrowPath)?JSON.parse(fs.readFileSync(tomorrowPath,'utf8')):null;
-  const picker=getPicker(path.join(root,'site/three-fields-v26.js'),now);
-  const selected=selectAsDisplayed(today,tomorrow,picker,now);
+  const selected=selectAsDisplayed(today,tomorrow,null,now);
   if (!selected) return {changed:false,reason:'no_edition'};
   const {edition,groups,expired}=selected;
   const n=GROUPS.reduce((sum,key)=>sum+groups[key].length,0);
   if (!n) return {changed:false,reason:expired?'edition_expired':'no_visible_candidates'};
-  const day=picker.dayOf(edition);
+  const day=visibleV40.dayOf(edition);
   if(day<localDay(now))return {changed:false,reason:'historical_edition'};
   const records=Object.fromEntries(GROUPS.map(group=>[group,groups[group].map(p=>inspect(p,group,edition,now))]));
   const all=GROUPS.flatMap(k=>records[k]);
@@ -170,7 +144,7 @@ function archiveSnapshot(root,{now=new Date()}={}) {
   const publicReport={schemaVersion:34,editionDate:day,revisionId:id,
     editionGeneratedAt:revision.editionGeneratedAt,recordedAt:revision.recordedAt,
     summary,notes:[
-      'Records are the selections actually produced by the current published UI algorithm at capture time.',
+      'Records are exactly the preselected backend v40 objects visible in the shared frontend projection at capture time.',
       'Percentages are not historically calibrated. Bookmaker-based percentages are not independent forecasts.',
       'Result status is unverified until matched to an authoritative final score; no wins/losses are inferred.',
     ]};

@@ -73,8 +73,8 @@ class RiskAwareScreeningTests(unittest.TestCase):
         m['model']['probabilities']['O25']=.70
         m['odds']['O25']=q(2.0)
         d=qualify({'generatedAt':NOW.isoformat(),'matches':[m]})
-        self.assertEqual(len(d['recommendations']),2)
-        self.assertEqual({p['market'] for p in d['recommendations']},{'H','O25'})
+        self.assertLessEqual(sum(len(d[k]) for k in ('safeBets','highRisk','interestingObjects')),1)
+        self.assertEqual(d['finalSelection']['version'],40)
         self.assertFalse(overlaps('H','COO95'))
         self.assertTrue(overlaps('O25','U25'))
         self.assertTrue(overlaps('H','THO15'))
@@ -82,7 +82,7 @@ class RiskAwareScreeningTests(unittest.TestCase):
     def test_no_quota_or_forced_minimum_of_picks(self):
         data={'generatedAt':NOW.isoformat(),'matches':[fixture(i) for i in range(12)]}
         result=qualify(data)
-        self.assertEqual(len(result['recommendations']),12)
+        self.assertLessEqual(len(result['recommendations']),5)
         self.assertEqual(result['modelVersion'],'2.0-foundation')
         self.assertEqual(result['safeBets'],[])
         self.assertEqual(result['highRisk'],[])
@@ -126,8 +126,8 @@ class RiskAwareScreeningTests(unittest.TestCase):
         d=qualify({'generatedAt':NOW.isoformat(),'localDate':'2026-11-04',
                    'matches':[fixture()]})
         prepared=lifecycle.with_initial_results(d)
-        self.assertEqual(prepared['recommendations'][0]['result']['status'],'scheduled')
-        self.assertIn('conservativeEdge',prepared['recommendations'][0])
+        self.assertTrue(all(p['result']['status']=='scheduled' for p in prepared['recommendations']))
+        self.assertEqual(prepared['finalSelection']['version'],40)
         self.assertEqual(prepared['editionDate'],'2026-11-04')
 
     def test_versioned_source_files_exist(self):

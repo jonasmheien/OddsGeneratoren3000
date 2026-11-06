@@ -41,13 +41,26 @@
   const teamKey=name=>{
     const s=norm(name).replace(/[^a-z0-9]+/g,'');
     return ({boltonwanderers:'bolton',silkeborgif:'silkeborg',sevillafc:'sevilla',
-      peczwolle:'zwolle',fczwolle:'zwolle'})[s]||s;
+      peczwolle:'zwolle',fczwolle:'zwolle',
+      hsv:'hamburgersv',hamburgsv:'hamburgersv',
+      mgladbach:'monchengladbach',borussiamgladbach:'monchengladbach',
+      borussiamonchengladbach:'monchengladbach'})[s]||s;
   };
   // Only explicit, narrow aliases. Uncertain club identities are not merged.
   const sameFixture=(a,b)=>Number.isFinite(+new Date(a.kickoff))&&Number.isFinite(+new Date(b.kickoff))&&
     Math.abs(+new Date(a.kickoff)-+new Date(b.kickoff))<=HOUR&&
     teamKey(a.home)===teamKey(b.home)&&teamKey(a.away)===teamKey(b.away);
-  const labelFor=(entry,market)=>String(entry.label||CORE[market]||market).slice(0,120);
+  const labelFor=(entry,market)=>{
+    if(CORE[market])return CORE[market];
+    const rule=/^H1([OU])(\d{2,3})$/.exec(market);
+    if(rule)return `1. omgang ${rule[1]==='O'?'over':'under'} ${(Number(rule[2])/10).toLocaleString('nb-NO',{minimumFractionDigits:1})} mål`;
+    const t=/^T([HA])([OU])(\d{2,3})$/.exec(market);
+    if(t)return `${t[1]==='H'?'Hjemmelaget':'Bortelaget'} ${t[2]==='O'?'over':'under'} ${(Number(t[3])/10).toLocaleString('nb-NO',{minimumFractionDigits:1})} mål`;
+    const c=/^C([OA])([OU])(\d{2,3})$/.exec(market);
+    if(c)return `${c[2]==='O'?'Over':'Under'} ${(Number(c[3])/10).toLocaleString('nb-NO',{minimumFractionDigits:1})} ${c[1]==='O'?'hjørnespark':'kort'}`;
+    const label=String(entry.label||'').trim();
+    return label&&label!==market?label.slice(0,120):null;
+  };
   function extractMarketItems(edition,now=new Date(),maxItems=28){
     const day=String(edition?.editionDate||edition?.localDate||'');
     if(!/^\d{4}-\d{2}-\d{2}$/.test(day)||day<osloDay(now))return [];
@@ -63,10 +76,12 @@
       if(!match)return; // Never display a quote unlinked to a known current fixture.
       if(entry.home && teamKey(entry.home)!==teamKey(match.home))return;
       if(entry.away && teamKey(entry.away)!==teamKey(match.away))return;
+      const label=labelFor(entry,String(entry.market));
+      if(!label)return; // An undecodable market code is never shown as a wager.
       const prob=Number(entry.probability);
       const chance=entry.probability!==null&&entry.probability!==undefined&&Number.isFinite(prob)&&prob>=0&&prob<=1?prob:null;
       choices.push({matchId:String(match.id),home:match.home,away:match.away,league:match.league||'Fotball',
-        kickoff:match.kickoff,market:String(entry.market),label:labelFor(entry,entry.market),family,
+        kickoff:match.kickoff,market:String(entry.market),label,family,
         price:valuePrice(entry),books:Number(entry.bookmakers??entry.books),updated:String(entry.oddsUpdatedAt??entry.lastUpdated),
         source:String(entry.source||entry.oddsSource||'The Odds API').slice(0,90),tier,
         probability:chance,needsLineup:entry.needsLineup===true,
@@ -93,7 +108,7 @@
     choices.sort((a,b)=>priority[a.tier]-priority[b.tier]||b.books-a.books||+new Date(a.kickoff)-+new Date(b.kickoff)||a.market.localeCompare(b.market));
     const unique=[];
     for(const c of choices){
-      if(unique.some(x=>x.market===c.market && (marketKey(x)===marketKey(c)||sameFixture(x,c))))continue;
+      if(unique.some(x=>sameFixture(x,c)))continue;
       unique.push(c);
     }
     // Fair distribution. A large number of goal quotes must not obscure BTTS,

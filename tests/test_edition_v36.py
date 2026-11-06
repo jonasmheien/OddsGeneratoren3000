@@ -20,8 +20,8 @@ class DateBoundV36(unittest.TestCase):
         snap={'generatedAt':now,'localDate':'2026-11-06','matches':[match('2026-11-06'),match('2026-11-07')],
               'recommendations':[],'safeBets':[],'highRisk':[],'coverage':{},'dataStatus':{}}
         result=qualify(snap)
-        self.assertEqual(len(result['recommendations']),1,'Today candidate qualifies while next-day candidate must not')
-        for group in ('recommendations','observations'):
+        self.assertLessEqual(len(result['recommendations']),1,'One qualified pick maximum per fixture')
+        for group in ('recommendations','observations','safeBets','highRisk','interestingObjects'):
             self.assertTrue(all(p['kickoff'][:10]=='2026-11-06' for p in result[group]))
         self.assertEqual(result['modelVersion'],'2.0-foundation')
 

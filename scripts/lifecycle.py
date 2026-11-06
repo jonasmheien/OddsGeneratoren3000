@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 STATE = ROOT / 'state' / 'active.json'
 PUBLIC = ROOT / 'site' / 'data' / 'today.json'
 HISTORY = ROOT / 'state' / 'history'
+from final_selection_v40 import validate as validate_v40, finalize as finalize_v40, dt as v40_dt
 CATEGORIES = ('recommendations', 'safeBets', 'highRisk')
 CANDIDATE = Path(os.environ['ODDS_OUTPUT_PATH']) if os.environ.get('ODDS_OUTPUT_PATH') else PUBLIC
 CANCELLED = {'CANCELLED', 'POSTPONED', 'SUSPENDED', 'AWARDED'}
@@ -238,6 +239,8 @@ def validate_edition(new_snapshot: dict):
         raise ValueError('Odds feed unavailable; previous edition preserved')
     if coverage.get('upcomingMatches', 0) > 0 and coverage.get('matchedOdds', 0) < 1:
         raise ValueError('No upcoming matches linked to real bookmaker odds; previous edition preserved')
+    if new_snapshot.get("finalSelection") is not None:
+        validate_v40(new_snapshot)
     for key in CATEGORIES:
         if not isinstance(new_snapshot.get(key), list):
             raise ValueError(f'Malformed picks list {key}')
@@ -305,7 +308,14 @@ def main():
             print('RESULTS_CHANGED=0')
     else:
         if previous:
-            save_active(previous)  # Recover state from a valid public snapshot when necessary.
+            # Upgrade an existing same-day v39 edition in place without API calls.
+            # Older historical editions are preserved and not retroactively edited.
+            if (previous.get('finalSelection') or {}).get('version') != 40:
+                from zoneinfo import ZoneInfo
+                current_day=datetime.now(ZoneInfo('Europe/Oslo')).date().isoformat()
+                if str(previous.get('editionDate') or previous.get('localDate')) == current_day:
+                    previous=finalize_v40(previous,v40_dt(previous.get('generatedAt')))
+            save_active(previous)
         else:
             publish_history(None)
         print('DEPLOY_EXISTING_EDITION')

@@ -15,6 +15,7 @@ from zoneinfo import ZoneInfo
 
 from quality_v20 import dt, family, fresh_quote, number, overlaps, ranking, screen, rejection_reason, reference_probability
 from recommend import MARKET_LABELS
+from final_selection_v40 import finalize as finalize_v40
 
 
 def _candidate(match, code, quote, metrics, label=None, kind=None):
@@ -204,6 +205,8 @@ def qualify(snapshot):
         snapshot['coverage']['qualified'] = len(chosen)
     if isinstance(snapshot.get('dataStatus'),dict) and isinstance(snapshot['dataStatus'].get('analysisReadiness'),dict):
         snapshot['dataStatus']['analysisReadiness']['recommended'] = len(chosen)
+    # Final candidate selection is authoritative: no browser fallback.
+    snapshot = finalize_v40(snapshot,when)
     return snapshot
 
 

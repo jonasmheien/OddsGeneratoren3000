@@ -89,145 +89,8 @@
     if(overround<.98||overround>1.27)return null;
     return (1/Number(quotes[code].price))/overround;
   }
-  function safeMarketCandidates(edition, now){
-    const choices=[];
-    for(const m of (edition?.matches||[])){
-      if(!m||!isOnDay(m,edition,now))continue;
-      for(const code of ['H','B','O25','U25','O35','U35']){
-        const q=m.odds?.[code];
-        if(!freshBookmaker(q,now)||Number(q.price)<1.14||Number(q.price)>1.70)continue;
-        const fair=fairMarket(m,code,now);
-        if(fair===null||fair<.58)continue;
-        const modelChance=numberIn(m.model?.probabilities?.[code]);
-        // Never promote a market favourite when our available form model
-        // strongly contradicts that favourite.
-        if(modelChance!==null && modelChance<fair-.16)continue;
-        const bookCount=Number(q.books??q.bookmakers);
-        const reasons=[
-          `Markedsbasert kandidat: ${Math.round(fair*100)} % anslått fra bookmakerodds uten margin. Dette er ikke dokumentert spillverdi.`,
-          `Basert på prisene fra ${bookCount} bookmakere. Ikke et uavhengig modellbekreftet tips.`,
-        ];
-        if(modelChance!==null)reasons.push(`Formmodell: ${Math.round(modelChance*100)} %. Modellen er ikke kalibrert.`);
-        choices.push({matchId:m.id,home:m.home,away:m.away,league:m.league,kickoff:m.kickoff,
-          market:code,label:labels[code],price:Number(q.price),bookmakers:bookCount,
-          oddsUpdatedAt:q.lastUpdated,oddsSource:q.source||'The Odds API',
-          probability:fair,category:'safe',_candidateType:'market',rationale:reasons,
-          _rank:fair+.001*bookCount+(modelChance!==null?.02:0)});
-      }
-    }
-    return choices.sort((a,b)=>b._rank-a._rank||a.price-b.price);
-  }
-  function highModelCandidates(edition, now){
-    const choices=[];
-    for(const m of (edition?.matches||[])){
-      if(!m||!isOnDay(m,edition,now)||!m.model)continue;
-      const sample=m.model.sample;
-      if(!Array.isArray(sample)||sample.length!==2||!sample.every(x=>Number.isInteger(x)&&x>=5))continue;
-      const effective=m.model.effectiveSample;
-      if(Array.isArray(effective)&&effective.length===2 && Math.min(...effective.map(Number))<4)continue;
-      for(const code of ['H','B','U','O25','U25','O35','U35']){
-        const q=m.odds?.[code], modelChance=numberIn(m.model.probabilities?.[code]);
-        if(!freshBookmaker(q,now)||Number(q.price)<2.20||Number(q.price)>8||modelChance===null||modelChance<.20||modelChance>.75)continue;
-        const fair=fairMarket(m,code,now);
-        if(fair===null || Math.abs(modelChance-fair)>.20 || modelChance<fair+.015)continue;
-        const comparisons=(m.predictions||[]).map(src=>numberIn(src?.probabilities?.[code])).filter(x=>x!==null);
-        if(comparisons.some(x=>x<modelChance-.22))continue;
-        const books=Number(q.books??q.bookmakers);
-        const reasons=[
-          `Modellkandidat: ${Math.round(modelChance*100)} % fra lagform mot ${Math.round(fair*100)} % anslått fra bookmakerodds uten margin.`,
-          `Formgrunnlag: ${sample[0]} og ${sample[1]} kamper. Odds fra ${books} bookmakere.`,
-          'Foreløpig modellanslag. Spillet bestod ikke den strenge verdikontrollen og er ikke historisk validert.'
-        ];
-        choices.push({matchId:m.id,home:m.home,away:m.away,league:m.league,kickoff:m.kickoff,
-          market:code,label:labels[code],price:Number(q.price),bookmakers:books,
-          oddsUpdatedAt:q.lastUpdated,oddsSource:q.source||'The Odds API',
-          probability:modelChance,formSample:sample,category:'high',
-          _candidateType:'model',rationale:reasons,
-          _rank:(modelChance-fair)+.001*books+.001*Math.min(...sample)});
-      }
-    }
-    return choices.sort((a,b)=>b._rank-a._rank||a.price-b.price);
-  }
-
-// Supplement the high-risk list with sourced bookmaker outcomes only when
-// the form model cannot produce five viable candidates.  This is an
-// explicit MARKET-BASED longshot, never a purported statistical edge.
-function highMarketCandidates(edition,now){
-  const choices=[];
-  for(const m of (edition?.matches||[])){
-    if(!m||!isOnDay(m,edition,now))continue;
-    for(const code of ['H','B','O25','U25','O35','U35']){
-      const q=m.odds?.[code];
-      if(!freshBookmaker(q,now)||Number(q.price)<2.2||Number(q.price)>5.5)continue;
-      const fair=fairMarket(m,code,now);
-      if(fair===null||fair<.18||fair>.47)continue;
-      const actualModel=numberIn(m.model?.probabilities?.[code]);
-      // If a real form model exists and disagrees materially with the
-      // bookmaker's implied chance, do not promote the candidate.
-      if(actualModel!==null&&actualModel<fair-.12)continue;
-      const books=Number(q.books??q.bookmakers);
-      if(books<5)continue;
-      const why=[
-        `Bookmakerbasert risikokandidat: omtrent ${Math.round(fair*100)} % markedsanslag uten margin. Ingen dokumentert positiv spillverdi.`,
-        `Pris fra ${books} bookmakere. Ikke kvalifisert gjennom den strenge modellkontrollen.`,
-      ];
-      if(actualModel!==null)why.push(`Formmodell: ${Math.round(actualModel*100)} % (ikke kalibrert).`);
-      else why.push('Fullstendig verifisert formstatistikk mangler for minst ett lag.');
-      choices.push({matchId:m.id,home:m.home,away:m.away,league:m.league,kickoff:m.kickoff,
-        market:code,label:labels[code],price:Number(q.price),bookmakers:books,
-        oddsUpdatedAt:q.lastUpdated,oddsSource:q.source||'The Odds API',probability:fair,
-        category:'high',_candidateType:'market',rationale:why,
-        _rank:fair+.002*Math.min(books,20)+(actualModel!==null?.03:0)});
-    }
-  }
-  return choices.sort((a,b)=>b._rank-a._rank||a.price-b.price);
-}
-  function featured(edition,category,now,usedMatches=new Set()){
-    const strict=unique((edition?.recommendations||[]).filter(p=>p?.category===category))
-      .filter(p=>isOnDay(p,edition,now)&&Number(p.price)>1 &&
-        numberIn(p.conservativeEdge)!==null && Number(p.conservativeEdge)>=.02 &&
-        freshBookmaker({price:p.price,books:p.bookmakers,lastUpdated:p.oddsUpdatedAt},now));
-    const out=[], seen=new Set(usedMatches);
-    for(const p of strict){
-      if(alreadyUsed(seen,p))continue;
-      out.push(p);markUsed(seen,p);
-      if(out.length>=5)return out;
-    }
-    const candidates=category==='safe'?safeMarketCandidates(edition,now):
-      [...highModelCandidates(edition,now),...highMarketCandidates(edition,now)];
-    for(const p of candidates){
-      if(alreadyUsed(seen,p))continue;
-      out.push(p);markUsed(seen,p);
-      if(out.length>=5)break;
-    }
-    return out;
-  }
-  function interesting(edition, now, usedMatches=new Set()){
-
-    const chosen=new Set((edition?.recommendations||[]).map(key));
-    const seen=new Set(usedMatches);
-    const observations=unique(edition?.observations||[]).filter(p=>futureKickoff(p,now)&&osloDate(new Date(p.kickoff))===dayOf(edition)&&!chosen.has(key(p))&&!alreadyUsed(seen,p)&&freshBookmaker({price:p.price,books:p.bookmakers,lastUpdated:p.oddsUpdatedAt},now))
-      .filter(p=>{if(alreadyUsed(seen,p))return false;markUsed(seen,p);return true;})
-      .map(p=>({...p,_why:p.reason||'Interessant signal, men ikke kvalifisert som anbefaling.'}));
-    const quotes=(edition?.matches||[]).filter(m=>m?.home&&m?.away&&futureKickoff(m,now)&&osloDate(new Date(m.kickoff))===dayOf(edition)&&Object.keys(m.odds||{}).length)
-      .filter(m=>!alreadyUsed(seen,m))
-      .map(m=>{
-        const prices=Object.entries(m.odds||{}).filter(([code,q])=>['H','B','U','O25','U25'].includes(code)&&freshBookmaker(q,now));
-        const opt=prices.find(([code])=>code==='H')||prices[0];
-        if(!opt)return null;
-        const [code,q]=opt;
-        const labels={H:'Hjemmeseier',B:'Borteseier',U:'Uavgjort',O25:'Over 2,5 mål',U25:'Under 2,5 mål'};
-        return {matchId:m.id,home:m.home,away:m.away,league:m.league,kickoff:m.kickoff,
-          market:code,label:labels[code],price:q.price,bookmakers:q.books,
-          _priority:(m.predictions||[]).length?100:0,_books:Number(q.books)||0,
-          _why:(m.predictions||[]).length?'Ekstern prognose finnes, men kampens statistikk er ikke tilstrekkelig for en anbefaling.':
-            'Bookmakerodds finnes, men datagrunnlaget er ikke godt nok for en anbefaling.'};
-      }).filter(Boolean)
-      .sort((a,b)=>b._priority-a._priority||b._books-a._books||String(a.kickoff).localeCompare(String(b.kickoff)));
-    const merged=observations.slice();
-    for(const p of quotes){if(merged.length>=5)break;if(alreadyUsed(seen,p))continue;merged.push(p);markUsed(seen,p);}
-    return merged.slice(0,5);
-  }
+  // v40: betting candidates are generated by scripts/final_selection_v40.py.
+  // The browser must never calculate, re-rank or backfill tips.
   // Data displayed here comes exclusively from the published match snapshot.
   // An odds quote alone is not a model forecast or a recommended bet.
   const finiteNumber = value => value !== null && value !== undefined && value !== '' && Number.isFinite(Number(value)) ? Number(value) : null;
@@ -380,9 +243,10 @@ function highMarketCandidates(edition,now){
     loading=true;
     try{
       const [today,preview]=await Promise.all([get('today'),get('tomorrow')]);
-      const now=new Date();const useTomorrow=shouldShowTomorrow(today,preview,now);
-      let edition=useTomorrow?preview:today;
-      if(!edition && preview && dayOf(preview)>=osloDate(now)){edition=preview;}
+      const now=new Date();
+      const chosen=window.OddsVisibleV40?.selectEdition(today,preview,now)||null;
+      const useTomorrow=Boolean(chosen?.useTomorrow);
+      const edition=chosen?.edition||null;
       const editionDay=dayOf(edition);
       // Share the actual edition selected by the existing picker with the
       // supplementary market radar. No new odds or tips are calculated here.
@@ -391,16 +255,10 @@ function highMarketCandidates(edition,now){
         marketRoot.dataset.ogEditionDate=editionDay;
         marketRoot.dataset.ogEditionFile=edition===preview?'tomorrow':'today';
       }
-      const todayExpired=edition && editionDay<osloDate(now);
-      const starts=shownKickoffs(edition,now);
-      const expired=!!(todayExpired || (edition&&!useTomorrow&&starts.length&&starts.every(t=>t<=+now)));
-      // Give eligible low-odds candidates their own slot before high-risk
-      // selections consume the same fixture. Quality gates are unchanged.
-      const safe=edition&&!expired?featured(edition,'safe',now):[];
-      const occupied=new Set();for(const p of safe)markUsed(occupied,p);
-      const high=edition&&!expired?featured(edition,'high',now,occupied):[];
-      for(const p of high)markUsed(occupied,p);
-      const watch=edition&&!expired?interesting(edition,now,occupied):[];
+      const expired=Boolean(chosen?.expired);
+      const safe=chosen?.groups.safe||[];
+      const high=chosen?.groups.high||[];
+      const watch=chosen?.groups.watch||[];
       const selectedDay=!expired?editionDay:'';
       $('tf-date').textContent=selectedDay?`Forslag for ${dateText(selectedDay)}${useTomorrow?' · forhåndsanalyse':''}`:
         'Venter på neste dags utvalg';
@@ -420,8 +278,12 @@ function highMarketCandidates(edition,now){
           if(expanded.has(details.getAttribute('data-analysis-key')))details.open=true;
         }
       }
+      const lack=Object.entries({safe:'Safe Bets',high:'High Risk',watch:'Interessante objekter'})
+        .filter(([key])=>(chosen?.groups[key]||[]).length<3)
+        .map(([key,name])=>`${name}: færre enn tre konfliktfrie kandidater med gyldig datagrunnlag.`).join(' ');
       $('tf-status').textContent=expired?'Dagens kamper har startet. Neste utvalg publiseres automatisk når analysen er klar.':
-        'Kvalifiserte spill, modellkandidater og markedsbaserte kandidater er tydelig merket. Odds er fra siste registrerte analyse, ikke sanntidspriser.';
+        !chosen?.authoritative?'Dagsutgaven mangler sentral konfliktkontroll. Ingen gamle frontendforslag vises.':
+        'Alle tips er valgt i backend og kontrollert for kampkonflikter. Odds er ikke sanntidspriser. '+lack;
     }finally{loading=false;}
   }
   document.addEventListener('DOMContentLoaded',()=>{
