@@ -1,1 +1,31 @@
-[]
+[
+  {
+    "date": "2026-11-06",
+    "picks": [
+      {
+        "status": "lost",
+        "matchId": "560634",
+        "market": "B",
+        "price": 5.1
+      },
+      {
+        "status": "lost",
+        "matchId": "565852",
+        "market": "B",
+        "price": 2.95
+      },
+      {
+        "status": "lost",
+        "matchId": "561932",
+        "market": "B",
+        "price": 2.6
+      },
+      {
+        "status": "lost",
+        "matchId": "559638",
+        "market": "B",
+        "price": 3.1
+      }
+    ]
+  }
+]

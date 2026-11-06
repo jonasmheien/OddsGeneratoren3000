@@ -34,10 +34,9 @@
       },
       "selectionId": "v40:5b1cb43a4d836092cd95",
       "result": {
-        "status": "live",
-        "phase": "Live",
+        "status": "lost",
         "score": {
-          "home": 1,
+          "home": 3,
           "away": 1
         }
       }
@@ -73,8 +72,7 @@
       },
       "selectionId": "v40:88592c0874dbde77adf9",
       "result": {
-        "status": "live",
-        "phase": "Live",
+        "status": "lost",
         "score": {
           "home": 3,
           "away": 1
@@ -112,10 +110,9 @@
       },
       "selectionId": "v40:389f4faaecd5ae8e4b24",
       "result": {
-        "status": "live",
-        "phase": "Live",
+        "status": "lost",
         "score": {
-          "home": 2,
+          "home": 3,
           "away": 1
         }
       }
@@ -151,10 +148,9 @@
       },
       "selectionId": "v40:dcc8666a6a025bd13a20",
       "result": {
-        "status": "live",
-        "phase": "Live",
+        "status": "lost",
         "score": {
-          "home": 2,
+          "home": 3,
           "away": 1
         }
       }
@@ -18406,7 +18402,7 @@
     "whyNoPicks": "Ingen tips bestod den usikkerhetsjusterte verdikontrollen. Se rejection-tall for årsaker."
   },
   "editionDate": "2026-11-06",
-  "resultUpdatedAt": "2026-11-06T21:24:50.154560+00:00",
+  "resultUpdatedAt": "2026-11-06T22:06:00.828408+00:00",
   "editionLocked": true,
   "interestingObjects": [],
   "finalSelection": {
