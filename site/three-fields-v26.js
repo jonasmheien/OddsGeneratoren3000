@@ -253,14 +253,48 @@ function highMarketCandidates(edition,now){
 
     // The data provider stores results newest first. Show at most five real
     // results, never pad missing history with invented outcomes.
-    const recentForm=(team,sequence)=>{
-      const results=/^[WDL]{1,20}$/.test(sequence)?sequence.slice(0,5).split(''):[];
-      const meaning={W:'Seier',D:'Uavgjort',L:'Tap'};
-      const short={W:'S',D:'U',L:'T'};
-      const badges=results.length?results.map(v=>
-        `<span class="tf-form-badge tf-form-${v}" title="${meaning[v]}" aria-label="${meaning[v]}">${short[v]}</span>`
-      ).join(''):'<span class="tf-missing">Ingen registrert kampform</span>';
-      return `<div class="tf-form-team"><span class="tf-form-name">${esc(team)}</span><div class="tf-form-badges">${badges}</div></div>`;
+    const recentForm=(team,sequence,records,role)=>{
+      const raw=Array.isArray(records)?records:[];
+      const verdict={'W':'S','D':'U','L':'T'};
+      const valid=r=>{
+        if(!r||r.verified!==true||r.status!=='FINISHED'||!['W','D','L'].includes(r.resultForAnalyzedTeam))return false;
+        if(!Number.isInteger(r.homeGoals)||r.homeGoals<0||!Number.isInteger(r.awayGoals)||r.awayGoals<0)return false;
+        if(!r.homeTeam?.name||!r.awayTeam?.name||!['home','away'].includes(r.analyzedTeamSide))return false;
+        if(!Number.isFinite(+new Date(r.kickoffUtc)))return false;
+        const goals=r.analyzedTeamSide==='home'?[r.homeGoals,r.awayGoals]:[r.awayGoals,r.homeGoals];
+        const expected=goals[0]>goals[1]?'W':goals[0]<goals[1]?'L':'D';
+        return expected===r.resultForAnalyzedTeam;
+      };
+      const rows=raw.filter(valid).slice(0,5);
+      const heading=`<div class="tf-form-side"><strong>${esc(team)}</strong><span>${esc(role)}</span></div>`;
+      const label='<div class="tf-form-scope">Siste 5 kamper, alle arenaer</div>';
+      if(rows.length){
+        const content=rows.map(r=>{
+          const dt=new Intl.DateTimeFormat('nb-NO',{timeZone:'Europe/Oslo',day:'2-digit',month:'2-digit',year:'numeric'}).format(new Date(r.kickoffUtc));
+          const outcome=r.resultForAnalyzedTeam;
+          const venue=r.analyzedTeamSide==='home'?'Hjemme':'Borte';
+          const source=r.source?` · ${esc(r.source)}`:'';
+          return `<div class="tf-form-match"><div class="tf-form-match-info">${esc(dt)} · ${venue}${source}</div>`+
+            `<div class="tf-form-match-result"><span>${esc(r.homeTeam.name)} <b>${r.homeGoals}–${r.awayGoals}</b> ${esc(r.awayTeam.name)}</span>`+
+            `<span class="tf-form-badge tf-form-${outcome}" title="${outcome==='W'?'Seier':outcome==='D'?'Uavgjort':'Tap'}">${verdict[outcome]}</span></div></div>`;
+        }).join('');
+        const caveat=rows.length<5?`<p class="tf-form-limited">${rows.length} verifiserbare kamper er tilgjengelige i denne utgaven.</p>`:'';
+        return `<div class="tf-form-report">${heading}${label}<div class="tf-form-results">${content}</div>${caveat}</div>`;
+      }
+      // New-format records without complete metadata must never fall back to
+      // unverified score badges. Only historical snapshots can show legacy WDL.
+      if(Array.isArray(records)){
+        return `<div class="tf-form-report">${heading}${label}<p class="tf-form-limited">Ingen verifiserbare kampdetaljer tilgjengelig for dette laget i dagens datagrunnlag.</p></div>`;
+      }
+      // Older published editions contain only W/D/L strings, no actual match
+      // details. Label the legacy sequence honestly instead of inventing them.
+      const legacy=/^[WDL]{1,20}$/.test(sequence)?sequence.slice(0,5).split(''):[];
+      if(legacy.length){
+        const badges=legacy.map(v=>`<span class="tf-form-badge tf-form-${v}" title="${v==='W'?'Seier':v==='D'?'Uavgjort':'Tap'}">${verdict[v]}</span>`).join('');
+        return `<div class="tf-form-report">${heading}${label}<div class="tf-form-badges">${badges}</div>`+
+          '<p class="tf-form-limited">Eldre utgave: kampdetaljer kan ikke verifiseres. Kun registrert formrekkefølge.</p></div>';
+      }
+      return `<div class="tf-form-report">${heading}${label}<p class="tf-form-limited">Ingen registrert kampform med verifiserbare kampdetaljer.</p></div>`;
     };
 
     // Do not misrepresent bookmaker-implied percentages as independent models.
@@ -312,9 +346,9 @@ function highMarketCandidates(edition,now){
       <summary><span class="tf-show">Vis analysen</span><span class="tf-hide">Skjul analysen</span></summary>
       <div class="tf-analysis-body tf-analysis-compact">
         <section class="tf-compact-block"><h3>${heading}</h3><p>${reason}</p></section>
-        <section class="tf-compact-block"><h3>Siste fem kamper <span class="tf-form-order">nyeste først</span></h3>
-          ${recentForm(p.home,formHome)}
-          ${recentForm(p.away,formAway)}
+        <section class="tf-compact-block"><h3>Siste fem kamper <span class="tf-form-order">nyeste først · alle arenaer</span></h3>
+          ${recentForm(p.home,formHome,match?.formMatchesHome,'HJEMMELAG')}
+          ${recentForm(p.away,formAway,match?.formMatchesAway,'BORTELAG')}
         </section>
         <section class="tf-compact-block"><h3>Sannsynlighet for spillet</h3>
           <div class="tf-probability">${chanceText===null?'Ikke beregnet':esc(chanceText)}</div>

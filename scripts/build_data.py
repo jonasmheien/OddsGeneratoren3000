@@ -23,6 +23,7 @@ from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
 from recommend import curated_picks, category_picks
 from form_v21 import adjusted_form, effective_form_sample, opponent_indices
+from form_history_v38 import verified_form_records, model_rows, source_identity_confirmed
 from expanded_sources_v23 import discover as discover_extra, odds_remaining
 from form_bridge_v27 import load_free_history, bridge
 from form_bridge_v30 import load_cached_history, attach_additional_form
@@ -195,29 +196,9 @@ def fixed_odds_event(match: dict, odds_events: list) -> dict:
 
 
 def recent_team_form(matches: list, before: datetime, team_id: int, limit: int = 16) -> list:
-    values = []
-    for m in matches:
-        if m.get('status') != 'FINISHED':
-            continue
-        try:
-            kickoff = iso_datetime(m['utcDate'])
-        except (KeyError, ValueError):
-            continue
-        if kickoff >= before:
-            continue
-        home = (m.get('homeTeam') or {}).get('id')
-        away = (m.get('awayTeam') or {}).get('id')
-        if team_id not in (home, away):
-            continue
-        score = (m.get('score') or {}).get('fullTime') or {}
-        hg, ag = score.get('home'), score.get('away')
-        if not isinstance(hg, int) or not isinstance(ag, int):
-            continue
-        ish = home == team_id
-        gf, ga = (hg, ag) if ish else (ag, hg)
-        values.append((kickoff, gf, ga, 'W' if gf > ga else 'D' if gf == ga else 'L', away if ish else home))
-    values.sort(reverse=True)
-    return values[:limit]
+    """Legacy model tuples from the SAME source-verified results as the UI."""
+    records, _issues = verified_form_records(matches, team_id, before, limit=limit)
+    return model_rows(records)
 
 
 def poisson_pmf(lam: float, k: int) -> float:
@@ -519,8 +500,23 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
             continue
         if k <= now and raw.get('status') == 'FINISHED':
             continue
-        hf = recent_team_form(fixtures, k, home['id'])
-        af = recent_team_form(fixtures, k, away['id'])
+        # Match form must not include a score unknown when this snapshot ran.
+        form_before = min(k, now)
+        h_details, h_issues = verified_form_records(fixtures, home['id'], form_before)
+        a_details, a_issues = verified_form_records(fixtures, away['id'], form_before)
+        # Fuzzy provider bridges only apply to bookmaker-created fixtures.
+        # Before publishing their inferred team history, verify the identity
+        # against a historical, source-provided name (not merely similar text).
+        if str(raw.get('id') or '').startswith('odds:'):
+            if h_details and not source_identity_confirmed(
+                    [home.get('name'),home.get('shortName')],h_details):
+                h_details=[]
+                h_issues.append('team_match_uncertain')
+            if a_details and not source_identity_confirmed(
+                    [away.get('name'),away.get('shortName')],a_details):
+                a_details=[]
+                a_issues.append('team_match_uncertain')
+        hf, af = model_rows(h_details), model_rows(a_details)
         m = {'id': str(raw.get('id') or ''), 'league': (raw.get('competition') or {}).get('name') or 'Annen',
              'leagueCode': (raw.get('competition') or {}).get('code') or '',
              'leagueCrest': (raw.get('competition') or {}).get('emblem'),
@@ -531,6 +527,14 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
              'awayAliases': [away.get('name')],
              'kickoff': k.isoformat(), 'status': raw.get('status') or 'SCHEDULED',
              'formHome': ''.join(x[3] for x in hf), 'formAway': ''.join(x[3] for x in af),
+             # Include source-backed evidence; never manufacture opponent names
+             # or results where a provider omitted its metadata.
+             'formMatchesHome': [x for x in h_details[:5] if x['displayComplete']],
+             'formMatchesAway': [x for x in a_details[:5] if x['displayComplete']],
+             'formHistoryDiagnostics': {
+                'home': {'verified': len(h_details), 'displayable': sum(x['displayComplete'] for x in h_details[:5]), 'issues': sorted(set(h_issues))},
+                'away': {'verified': len(a_details), 'displayable': sum(x['displayComplete'] for x in a_details[:5]), 'issues': sorted(set(a_issues))},
+             },
              'model': model_probabilities(adjusted_form(hf, strengths, k), adjusted_form(af, strengths, k)), 'odds': {}, 'predictions': []}
         if m['model'] is not None:
             m['model']['effectiveSample'] = [effective_form_sample(hf, k), effective_form_sample(af, k)]

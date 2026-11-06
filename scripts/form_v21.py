@@ -6,6 +6,7 @@ calibrated probability model. No additional APIs, private keys or guesses.
 from __future__ import annotations
 
 from collections import defaultdict
+from form_history_v38 import regular_time_score
 from datetime import timedelta
 from math import exp
 
@@ -29,8 +30,8 @@ def opponent_indices(fixtures, cutoff, days=180):
         if not oldest <= kickoff < cutoff:
             continue
         h, a = (match.get('homeTeam') or {}).get('id'), (match.get('awayTeam') or {}).get('id')
-        result = (match.get('score') or {}).get('fullTime') or {}
-        hg, ag = result.get('home'), result.get('away')
+        regular = regular_time_score(match)
+        hg, ag = regular if regular is not None else (None, None)
         if h is None or a is None or type(hg) is not int or type(ag) is not int or min(hg, ag) < 0:
             continue
         stats[h][0] += 1

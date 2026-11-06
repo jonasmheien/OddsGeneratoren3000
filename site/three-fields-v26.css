@@ -80,3 +80,21 @@ body.three-v26 .versions-v22 {display:none!important}
 .tf-missing {font-size:10px;color:#829b8b;text-align:right}
 .tf-probability {font-size:25px;font-weight:760;line-height:1.2;color:#edc97d;font-variant-numeric:tabular-nums}
 .tf-probability-source {font-size:10px!important;color:#8fa99a!important;margin-top:4px!important}
+
+/* v38 · verifiable, per-team fixture history. Existing v37 visual layer remains. */
+.tf-form-report{display:block;min-width:0;padding:10px 0 12px}
+.tf-form-report+.tf-form-report{border-top:1px solid rgba(112,140,119,.24)}
+.tf-form-side{display:flex;align-items:baseline;justify-content:space-between;gap:8px;min-width:0}
+.tf-form-side strong{overflow-wrap:anywhere;font-size:13px;color:#f2f5f0}
+.tf-form-side>span{white-space:nowrap;font-weight:750;font-size:10px;letter-spacing:.5px;color:#7adcb4}
+.tf-form-scope{font-size:11px;color:#b0bdb3;margin:4px 0 7px}
+.tf-form-results{display:grid;gap:5px;min-width:0}
+.tf-form-match{border:1px solid rgba(124,146,128,.18);border-radius:9px;padding:9px;min-width:0;background:rgba(12,27,23,.28)}
+.tf-form-match-info{font-size:10px;color:#abc2b2;line-height:1.4;overflow-wrap:anywhere}
+.tf-form-match-result{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:5px}
+.tf-form-match-result>span:first-child{font-size:12px;line-height:1.5;color:#e9f0e9;min-width:0;overflow-wrap:anywhere}
+.tf-form-match-result b{font-variant-numeric:tabular-nums;color:#f4d62c;white-space:nowrap}
+.tf-form-match-result .tf-form-badge{flex:none}
+.tf-form-report>.tf-form-badges{justify-content:flex-start;margin:8px 0}
+.tf-form-limited{font-size:11px;color:#a2b6a8;margin:8px 0 0!important;line-height:1.5}
+@media(max-width:480px){.tf-form-match-result>span:first-child{font-size:11px}}
