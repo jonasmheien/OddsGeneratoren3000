@@ -1,0 +1,395 @@
+{
+  "schemaVersion": 34,
+  "editionDate": "2026-11-07",
+  "revisions": [
+    {
+      "id": "96aa054d2c9108b008223d6d",
+      "editionGeneratedAt": "2026-11-06T20:02:01.039773+00:00",
+      "recordedAt": "2026-11-06T20:03:09.019Z",
+      "summary": {
+        "total": 11,
+        "high": 5,
+        "safe": 5,
+        "watch": 1,
+        "withBothFive": 9,
+        "withFormModel": 9,
+        "marketBased": 5,
+        "expertWritten": 0,
+        "modelMarketConflicts": 0,
+        "unverifiedResults": 11
+      },
+      "groups": {
+        "high": [
+          {
+            "matchId": "561935",
+            "home": "Blackburn",
+            "away": "West Ham",
+            "league": "Championship",
+            "kickoff": "2026-11-07T15:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 4.75,
+            "probability": 0.2351,
+            "probabilitySource": "uncalibrated_conservative_scenario",
+            "quotedAt": "2026-11-06T20:02:13Z",
+            "bookmakerCount": 22,
+            "sourceType": "qualified_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LLWLW",
+              "awayLastFive": "DLLWW",
+              "modelSample": [
+                14,
+                14
+              ],
+              "formModelProbability": 0.3659,
+              "bookmakerImpliedProbability": 0.19665639345421546,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "odds:228a3fca36f1fc8943ab0b7c54f06860",
+            "home": "Blackburn Rovers",
+            "away": "West Ham United",
+            "league": "Championship",
+            "kickoff": "2026-11-07T15:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 4.75,
+            "probability": 0.2351,
+            "probabilitySource": "uncalibrated_conservative_scenario",
+            "quotedAt": "2026-11-06T20:02:13Z",
+            "bookmakerCount": 22,
+            "sourceType": "qualified_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LLWLW",
+              "awayLastFive": "DLLWW",
+              "modelSample": [
+                14,
+                14
+              ],
+              "formModelProbability": 0.3659,
+              "bookmakerImpliedProbability": 0.19665639345421546,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "561934",
+            "home": "Watford",
+            "away": "Middlesbrough",
+            "league": "Championship",
+            "kickoff": "2026-11-07T15:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 5.32,
+            "probability": 0.1987,
+            "probabilitySource": "uncalibrated_conservative_scenario",
+            "quotedAt": "2026-11-06T20:02:13Z",
+            "bookmakerCount": 21,
+            "sourceType": "qualified_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "WLLWL",
+              "awayLastFive": "LWWDW",
+              "modelSample": [
+                14,
+                16
+              ],
+              "formModelProbability": 0.3188,
+              "bookmakerImpliedProbability": 0.1766988497251351,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "565848",
+            "home": "RB Leipzig",
+            "away": "Augsburg",
+            "league": "Bundesliga",
+            "kickoff": "2026-11-07T14:30:00+00:00",
+            "market": "U35",
+            "label": "Under 3,5 mål",
+            "price": 2.23,
+            "probability": 0.607,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-06T20:02:10Z",
+            "bookmakerCount": 10,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "WWLWL",
+              "awayLastFive": "LDLDL",
+              "modelSample": [
+                9,
+                9
+              ],
+              "formModelProbability": 0.607,
+              "bookmakerImpliedProbability": 0.422279792746114,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "565850",
+            "home": "Dortmund",
+            "away": "Elversberg",
+            "league": "Bundesliga",
+            "kickoff": "2026-11-07T14:30:00+00:00",
+            "market": "U25",
+            "label": "Under 2,5 mål",
+            "price": 3,
+            "probability": 0.5053,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-06T20:02:10Z",
+            "bookmakerCount": 3,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "DWDDW",
+              "awayLastFive": "WLWLD",
+              "modelSample": [
+                9,
+                8
+              ],
+              "formModelProbability": 0.5053,
+              "bookmakerImpliedProbability": 0.3135011441647597,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          }
+        ],
+        "safe": [
+          {
+            "matchId": "odds:fe97f5adf397dd6b0a8a9e0a5272f307",
+            "home": "FSV Mainz 05",
+            "away": "Bayern Munich",
+            "league": "Bundesliga",
+            "kickoff": "2026-11-07T14:30:00+00:00",
+            "market": "B",
+            "label": "Borteseier",
+            "price": 1.3,
+            "probability": 0.7257,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-06T20:02:10Z",
+            "bookmakerCount": 23,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "odds_only",
+              "homeLastFive": "",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.7257203923514369,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "565849",
+            "home": "Stuttgart",
+            "away": "Bremen",
+            "league": "Bundesliga",
+            "kickoff": "2026-11-07T17:30:00+00:00",
+            "market": "O25",
+            "label": "Over 2,5 mål",
+            "price": 1.32,
+            "probability": 0.7186,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-06T20:02:11Z",
+            "bookmakerCount": 3,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "WLLWL",
+              "awayLastFive": "WWDDW",
+              "modelSample": [
+                9,
+                9
+              ],
+              "formModelProbability": 0.5773,
+              "bookmakerImpliedProbability": 0.7185501066098081,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "odds:716d6e3f3e91c47a6efaa2e93d570533",
+            "home": "VfB Stuttgart",
+            "away": "Werder Bremen",
+            "league": "Bundesliga",
+            "kickoff": "2026-11-07T17:30:00+00:00",
+            "market": "O25",
+            "label": "Over 2,5 mål",
+            "price": 1.32,
+            "probability": 0.7186,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-06T20:02:11Z",
+            "bookmakerCount": 3,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "partial_form",
+              "homeLastFive": "WLLWL",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.7185501066098081,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "561937",
+            "home": "Preston NE",
+            "away": "Southampton",
+            "league": "Championship",
+            "kickoff": "2026-11-07T15:00:00+00:00",
+            "market": "O25",
+            "label": "Over 2,5 mål",
+            "price": 1.55,
+            "probability": 0.6046,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-06T20:02:13Z",
+            "bookmakerCount": 7,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LLDLL",
+              "awayLastFive": "DWWDW",
+              "modelSample": [
+                14,
+                15
+              ],
+              "formModelProbability": 0.5289,
+              "bookmakerImpliedProbability": 0.6045918367346939,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "odds:4330962b4e3ef6768d90008d6befb10d",
+            "home": "Preston North End",
+            "away": "Southampton",
+            "league": "Championship",
+            "kickoff": "2026-11-07T15:00:00+00:00",
+            "market": "O25",
+            "label": "Over 2,5 mål",
+            "price": 1.55,
+            "probability": 0.6046,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-06T20:02:13Z",
+            "bookmakerCount": 7,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LLDLL",
+              "awayLastFive": "DWWDW",
+              "modelSample": [
+                14,
+                15
+              ],
+              "formModelProbability": 0.5289,
+              "bookmakerImpliedProbability": 0.6045918367346939,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          }
+        ],
+        "watch": [
+          {
+            "matchId": "565853",
+            "home": "SC Paderborn",
+            "away": "Frankfurt",
+            "league": "Bundesliga",
+            "kickoff": "2026-11-07T14:30:00+00:00",
+            "market": "U25",
+            "label": "Under 2,5 mål",
+            "price": 2.52,
+            "probability": 0.5525,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-06T20:02:10Z",
+            "bookmakerCount": 3,
+            "sourceType": "observation",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "DWDLW",
+              "awayLastFive": "WLWLD",
+              "modelSample": [
+                8,
+                9
+              ],
+              "formModelProbability": 0.5525,
+              "bookmakerImpliedProbability": 0.37623762376237624,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
