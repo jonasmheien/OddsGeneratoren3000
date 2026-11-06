@@ -37,8 +37,8 @@
         "status": "live",
         "phase": "Live",
         "score": {
-          "home": 0,
-          "away": 0
+          "home": 1,
+          "away": 1
         }
       }
     },
@@ -76,7 +76,7 @@
         "status": "live",
         "phase": "Live",
         "score": {
-          "home": 1,
+          "home": 3,
           "away": 1
         }
       }
@@ -115,7 +115,7 @@
         "status": "live",
         "phase": "Live",
         "score": {
-          "home": 0,
+          "home": 2,
           "away": 1
         }
       }
@@ -154,8 +154,8 @@
         "status": "live",
         "phase": "Live",
         "score": {
-          "home": 1,
-          "away": 0
+          "home": 2,
+          "away": 1
         }
       }
     }
@@ -18406,7 +18406,7 @@
     "whyNoPicks": "Ingen tips bestod den usikkerhetsjusterte verdikontrollen. Se rejection-tall for årsaker."
   },
   "editionDate": "2026-11-06",
-  "resultUpdatedAt": "2026-11-06T20:49:24.973811+00:00",
+  "resultUpdatedAt": "2026-11-06T21:24:50.154560+00:00",
   "editionLocked": true,
   "interestingObjects": [],
   "finalSelection": {
