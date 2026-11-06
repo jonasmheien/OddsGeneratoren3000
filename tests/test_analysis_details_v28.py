@@ -24,7 +24,7 @@ class AnalysisDetailsV28(unittest.TestCase):
             self.assertIn(item,section)
         for old in ('Datagrunnlag','Forventede mål','Antall bookmakere','Beregnet verdi i scenario','tf-analysis-warning','tf-analysis-sources'):
             self.assertNotIn(old,section)
-        self.assertIn('three-fields-v26.js?v=33',HTML.read_text(encoding='utf-8'))
+        self.assertIn('three-fields-v26.js?v=36',HTML.read_text(encoding='utf-8'))
         self.assertIn('three-fields-v26.css?v=33',HTML.read_text(encoding='utf-8'))
         self.assertIn('tf-form-badge',CSS.read_text(encoding='utf-8'))
 
