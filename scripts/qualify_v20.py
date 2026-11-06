@@ -11,6 +11,7 @@ import json
 import sys
 from collections import Counter
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from quality_v20 import dt, family, fresh_quote, number, overlaps, ranking, screen, rejection_reason, reference_probability
 from recommend import MARKET_LABELS
@@ -61,6 +62,14 @@ def qualify(snapshot):
     when = dt(snapshot.get('generatedAt'))
     if not when:
         raise ValueError('Candidate has no valid generatedAt timestamp')
+    # A daily candidate includes next-day fixtures for context. Only the
+    # edition's Oslo date may create recommendations/observations.
+    edition_day = snapshot.get('localDate')
+    def on_edition(match):
+        if not edition_day:  # preserve compatibility with synthetic legacy tests
+            return True
+        start = dt(match.get('kickoff'))
+        return bool(start and start.astimezone(ZoneInfo('Europe/Oslo')).date().isoformat() == edition_day)
     matches = snapshot.get('matches')
     if not isinstance(matches, list):
         raise ValueError('Candidate has no matches array')
@@ -105,7 +114,7 @@ def qualify(snapshot):
 
     # First consider all priced core markets, not only the previous top five.
     for m in matches:
-        if not isinstance(m,dict):
+        if not isinstance(m,dict) or not on_edition(m):
             continue
         for code,q in (m.get('odds') or {}).items():
             if code not in MARKET_LABELS:
@@ -117,7 +126,7 @@ def qualify(snapshot):
     ext = snapshot.get('additionalMarkets') or {}
     for entry in (ext.get('tips') or []) + (ext.get('watchlist') or []):
         m = by_id.get(str(entry.get('matchId'))) if isinstance(entry,dict) else None
-        if not m:
+        if not m or not on_edition(m):
             continue
         code = str(entry.get('market') or '')
         if family(code) not in {'corners', 'cards', 'scorer', 'first_half', 'team_home','team_away','btts','goals'}:

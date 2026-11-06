@@ -42,6 +42,25 @@
     if(!starts.length)return Number(new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Oslo',hour:'2-digit',hourCycle:'h23'}).format(now))>=18;
     return starts.every(t=>t<=+now);
   }
+  // Identity is per real match, not per provider-specific numeric/odds ID.
+  // Only narrow, known team-name aliases are used. Never guess unrelated teams.
+  const gameToken = p => {
+    const canon = name => {
+      const n=String(name||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'')
+        .toLowerCase().replace(/[^a-z0-9]/g,'');
+      const aliases={boltonwanderers:'bolton',silkeborgif:'silkeborg',
+        fczwolle:'zwolle',peczwolle:'zwolle'};
+      return aliases[n]||n;
+    };
+    const h=canon(p.home),a=canon(p.away),k=new Date(p.kickoff);
+    return h&&a&&Number.isFinite(+k)?`game:${h}|${a}|${osloDate(k)}`:null;
+  };
+  const alreadyUsed = (seen,p) => seen.has(String(p.matchId??p.id)) ||
+    (gameToken(p)!==null && seen.has(gameToken(p)));
+  const markUsed = (seen,p) => {
+    seen.add(String(p.matchId??p.id));
+    const k=gameToken(p);if(k)seen.add(k);
+  };
   const unique = picks => {
     const used=new Set();return picks.filter(p=>{if(!p || !p.home || !p.away || !futureKickoff(p,new Date()))return false;
       const k=key(p);if(used.has(k))return false;used.add(k);return true;});
@@ -170,17 +189,15 @@ function highMarketCandidates(edition,now){
         freshBookmaker({price:p.price,books:p.bookmakers,lastUpdated:p.oddsUpdatedAt},now));
     const out=[], seen=new Set(usedMatches);
     for(const p of strict){
-      const k=String(p.matchId);
-      if(seen.has(k))continue;
-      out.push(p);seen.add(k);
+      if(alreadyUsed(seen,p))continue;
+      out.push(p);markUsed(seen,p);
       if(out.length>=5)return out;
     }
     const candidates=category==='safe'?safeMarketCandidates(edition,now):
       [...highModelCandidates(edition,now),...highMarketCandidates(edition,now)];
     for(const p of candidates){
-      const k=String(p.matchId);
-      if(seen.has(k))continue;
-      out.push(p);seen.add(k);
+      if(alreadyUsed(seen,p))continue;
+      out.push(p);markUsed(seen,p);
       if(out.length>=5)break;
     }
     return out;
@@ -188,11 +205,12 @@ function highMarketCandidates(edition,now){
   function interesting(edition, now, usedMatches=new Set()){
 
     const chosen=new Set((edition?.recommendations||[]).map(key));
-    const observations=unique(edition?.observations||[]).filter(p=>futureKickoff(p,now)&&osloDate(new Date(p.kickoff))===dayOf(edition)&&!chosen.has(key(p))&&!usedMatches.has(String(p.matchId))&&freshBookmaker({price:p.price,books:p.bookmakers,lastUpdated:p.oddsUpdatedAt},now))
+    const seen=new Set(usedMatches);
+    const observations=unique(edition?.observations||[]).filter(p=>futureKickoff(p,now)&&osloDate(new Date(p.kickoff))===dayOf(edition)&&!chosen.has(key(p))&&!alreadyUsed(seen,p)&&freshBookmaker({price:p.price,books:p.bookmakers,lastUpdated:p.oddsUpdatedAt},now))
+      .filter(p=>{if(alreadyUsed(seen,p))return false;markUsed(seen,p);return true;})
       .map(p=>({...p,_why:p.reason||'Interessant signal, men ikke kvalifisert som anbefaling.'}));
-    const seen=new Set(observations.map(p=>String(p.matchId)));
     const quotes=(edition?.matches||[]).filter(m=>m?.home&&m?.away&&futureKickoff(m,now)&&osloDate(new Date(m.kickoff))===dayOf(edition)&&Object.keys(m.odds||{}).length)
-      .filter(m=>!seen.has(String(m.id))&&!usedMatches.has(String(m.id)))
+      .filter(m=>!alreadyUsed(seen,m))
       .map(m=>{
         const prices=Object.entries(m.odds||{}).filter(([code,q])=>['H','B','U','O25','U25'].includes(code)&&freshBookmaker(q,now));
         const opt=prices.find(([code])=>code==='H')||prices[0];
@@ -207,7 +225,7 @@ function highMarketCandidates(edition,now){
       }).filter(Boolean)
       .sort((a,b)=>b._priority-a._priority||b._books-a._books||String(a.kickoff).localeCompare(String(b.kickoff)));
     const merged=observations.slice();
-    for(const p of quotes){if(merged.length>=5)break;if(merged.some(x=>String(x.matchId)===String(p.matchId)))continue;merged.push(p);}
+    for(const p of quotes){if(merged.length>=5)break;if(alreadyUsed(seen,p))continue;merged.push(p);markUsed(seen,p);}
     return merged.slice(0,5);
   }
   // Data displayed here comes exclusively from the published match snapshot.
@@ -335,10 +353,12 @@ function highMarketCandidates(edition,now){
       const todayExpired=edition && editionDay<osloDate(now);
       const starts=shownKickoffs(edition,now);
       const expired=!!(todayExpired || (edition&&!useTomorrow&&starts.length&&starts.every(t=>t<=+now)));
-      const high=edition&&!expired?featured(edition,'high',now):[];
-      const occupied=new Set(high.map(p=>String(p.matchId)));
-      const safe=edition&&!expired?featured(edition,'safe',now,occupied):[];
-      for(const p of safe)occupied.add(String(p.matchId));
+      // Give eligible low-odds candidates their own slot before high-risk
+      // selections consume the same fixture. Quality gates are unchanged.
+      const safe=edition&&!expired?featured(edition,'safe',now):[];
+      const occupied=new Set();for(const p of safe)markUsed(occupied,p);
+      const high=edition&&!expired?featured(edition,'high',now,occupied):[];
+      for(const p of high)markUsed(occupied,p);
       const watch=edition&&!expired?interesting(edition,now,occupied):[];
       const selectedDay=!expired?editionDay:'';
       $('tf-date').textContent=selectedDay?`Forslag for ${dateText(selectedDay)}${useTomorrow?' · forhåndsanalyse':''}`:
@@ -354,7 +374,7 @@ function highMarketCandidates(edition,now){
         const expanded=new Set(Array.from(list.querySelectorAll('details.tf-analysis[open]'),el=>el.getAttribute('data-analysis-key')));
         list.innerHTML=entries.length?entries.map(p=>card(p,id!=='watch',edition)).join(''):
           `<p class="tf-empty">${id==='watch'?'Ingen aktuelle objekter under vurdering.':
-            'Ingen dokumenterte kandidater fra dagens datagrunnlag.'}</p>`;
+            id==='safe'?'Ingen Safe Bets oppfyller dagens krav. Ingen udokumenterte tips legges til.':'Ingen dokumenterte kandidater fra dagens datagrunnlag.'}</p>`;
         for(const details of list.querySelectorAll('details.tf-analysis')){
           if(expanded.has(details.getAttribute('data-analysis-key')))details.open=true;
         }

@@ -18,7 +18,7 @@ function localDay(date) {
 function getPicker(jsPath, at) {
   const source = fs.readFileSync(jsPath, 'utf8');
   if (source.split(ANCHOR).length !== 2) throw new Error('UI selector anchor changed; no tips were archived');
-  const modified = source.replace(ANCHOR, '  globalThis.__capture_v34 = {featured,interesting,shouldShowTomorrow,shownKickoffs,dayOf,osloDate};\n' + ANCHOR);
+  const modified = source.replace(ANCHOR, '  globalThis.__capture_v34 = {featured,interesting,shouldShowTomorrow,shownKickoffs,dayOf,osloDate,gameToken};\n' + ANCHOR);
   class Clock extends Date {
     constructor(...a) {super(...(a.length ? a : [at.getTime()]));}
     static now(){return at.getTime();}
@@ -40,10 +40,12 @@ function selectAsDisplayed(today, tomorrow, picker, now) {
   const expired = day < picker.osloDate(now) ||
     (!useTomorrow && kickoffs.length > 0 && kickoffs.every(t=>t <= +now));
   if (expired) return {edition,groups:{high:[],safe:[],watch:[]},expired:true};
-  const high=picker.featured(edition,'high',now);
-  const occupied=new Set(high.map(p=>String(p.matchId)));
-  const safe=picker.featured(edition,'safe',now,occupied);
-  for (const p of safe) occupied.add(String(p.matchId));
+  const safe=picker.featured(edition,'safe',now);
+  const occupied=new Set();
+  const occupy = p => { occupied.add(String(p.matchId)); const token=picker.gameToken(p); if(token)occupied.add(token); };
+  for(const p of safe)occupy(p);
+  const high=picker.featured(edition,'high',now,occupied);
+  for(const p of high)occupy(p);
   const watch=picker.interesting(edition,now,occupied);
   return {edition,groups:{high,safe,watch},expired:false};
 }
