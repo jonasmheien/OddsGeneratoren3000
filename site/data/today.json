@@ -2,7 +2,132 @@
   "version": 3,
   "recommendations": [],
   "safeBets": [],
-  "highRisk": [],
+  "highRisk": [
+    {
+      "matchId": "560634",
+      "home": "Everton",
+      "away": "Coventry City",
+      "kickoff": "2026-11-06T20:00:00+00:00",
+      "league": "Premier League",
+      "market": "B",
+      "marketType": "match_result",
+      "label": "Borteseier",
+      "price": 5.1,
+      "bookmakers": 25,
+      "oddsUpdatedAt": "2026-11-06T15:54:58Z",
+      "oddsSource": "The Odds API · bookmaker-median",
+      "probability": 0.2822,
+      "category": "high",
+      "qualificationTier": "model",
+      "_candidateType": "model",
+      "rationale": [
+        "Modellkandidat: 28 % formanslag mot 19 % fra bookmakerodds.",
+        "Ikke historisk kalibrert eller godkjent som dokumentert verdiobjekt."
+      ],
+      "fixtureKey": "2026-11-06|everton|coventrycity",
+      "marketIdentity": {
+        "family": "match_result",
+        "period": "full_time",
+        "line": null,
+        "subject": null,
+        "outcome": "away"
+      },
+      "selectionId": "v40:5b1cb43a4d836092cd95"
+    },
+    {
+      "matchId": "565852",
+      "home": "HSV",
+      "away": "M'gladbach",
+      "kickoff": "2026-11-06T19:30:00+00:00",
+      "league": "Bundesliga",
+      "market": "B",
+      "marketType": "match_result",
+      "label": "Borteseier",
+      "price": 2.95,
+      "bookmakers": 23,
+      "oddsUpdatedAt": "2026-11-06T15:54:58Z",
+      "oddsSource": "The Odds API · bookmaker-median",
+      "probability": 0.3566,
+      "category": "high",
+      "qualificationTier": "model",
+      "_candidateType": "model",
+      "rationale": [
+        "Modellkandidat: 36 % formanslag mot 32 % fra bookmakerodds.",
+        "Ikke historisk kalibrert eller godkjent som dokumentert verdiobjekt."
+      ],
+      "fixtureKey": "2026-11-06|hamburgersv|monchengladbach",
+      "marketIdentity": {
+        "family": "match_result",
+        "period": "full_time",
+        "line": null,
+        "subject": null,
+        "outcome": "away"
+      },
+      "selectionId": "v40:88592c0874dbde77adf9"
+    },
+    {
+      "matchId": "561932",
+      "home": "Derby County",
+      "away": "Bolton",
+      "kickoff": "2026-11-06T20:00:00+00:00",
+      "league": "Championship",
+      "market": "B",
+      "marketType": "match_result",
+      "label": "Borteseier",
+      "price": 2.6,
+      "bookmakers": 22,
+      "oddsUpdatedAt": "2026-11-06T15:55:06Z",
+      "oddsSource": "The Odds API · bookmaker-median",
+      "probability": 0.3804,
+      "category": "high",
+      "qualificationTier": "model",
+      "_candidateType": "model",
+      "rationale": [
+        "Modellkandidat: 38 % formanslag mot 36 % fra bookmakerodds.",
+        "Ikke historisk kalibrert eller godkjent som dokumentert verdiobjekt."
+      ],
+      "fixtureKey": "2026-11-06|derbycounty|bolton",
+      "marketIdentity": {
+        "family": "match_result",
+        "period": "full_time",
+        "line": null,
+        "subject": null,
+        "outcome": "away"
+      },
+      "selectionId": "v40:389f4faaecd5ae8e4b24"
+    },
+    {
+      "matchId": "559638",
+      "home": "Toulouse",
+      "away": "Strasbourg",
+      "kickoff": "2026-11-06T19:45:00+00:00",
+      "league": "Ligue 1",
+      "market": "B",
+      "marketType": "match_result",
+      "label": "Borteseier",
+      "price": 3.1,
+      "bookmakers": 22,
+      "oddsUpdatedAt": "2026-11-06T15:55:01Z",
+      "oddsSource": "The Odds API · bookmaker-median",
+      "probability": 0.3258,
+      "category": "high",
+      "qualificationTier": "model",
+      "_candidateType": "model",
+      "rationale": [
+        "Modellkandidat: 33 % formanslag mot 31 % fra bookmakerodds.",
+        "Ikke historisk kalibrert eller godkjent som dokumentert verdiobjekt."
+      ],
+      "fixtureKey": "2026-11-06|toulouse|strasbourg",
+      "marketIdentity": {
+        "family": "match_result",
+        "period": "full_time",
+        "line": null,
+        "subject": null,
+        "outcome": "away"
+      },
+      "selectionId": "v40:dcc8666a6a025bd13a20"
+    }
+  ],
   "coverage": {
     "upcomingMatches": 9,
     "matchedOdds": 5,
@@ -11,7 +136,7 @@
     "manualPredictions": 0,
     "apiPredictions": 0,
     "safeFound": 0,
-    "highFound": 0,
+    "highFound": 4,
     "targetPerCategory": [
       3,
       5
@@ -18250,5 +18375,135 @@
   },
   "editionDate": "2026-11-06",
   "resultUpdatedAt": null,
-  "editionLocked": true
+  "editionLocked": true,
+  "interestingObjects": [],
+  "finalSelection": {
+    "version": 40,
+    "policy": "one_active_selection_per_real_fixture",
+    "categories": {
+      "safe": 0,
+      "high": 4,
+      "watch": 0
+    },
+    "target": [
+      3,
+      5
+    ],
+    "shortfalls": {
+      "safe": "For få konfliktfrie, kildebaserte kandidater.",
+      "high": null,
+      "watch": "For få konfliktfrie, kildebaserte kandidater."
+    },
+    "rejected": {
+      "same_fixture_or_correlated_outcome": 13
+    },
+    "trace": [
+      {
+        "fixture": "2026-11-06|everton|coventrycity",
+        "selectionId": "v40:5b1cb43a4d836092cd95",
+        "market": "B",
+        "group": "high",
+        "reason": "selected"
+      },
+      {
+        "fixture": "2026-11-06|hamburgersv|monchengladbach",
+        "selectionId": "v40:88592c0874dbde77adf9",
+        "market": "B",
+        "group": "high",
+        "reason": "selected"
+      },
+      {
+        "fixture": "2026-11-06|hamburgersv|monchengladbach",
+        "market": "B",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "B"
+      },
+      {
+        "fixture": "2026-11-06|derbycounty|bolton",
+        "selectionId": "v40:389f4faaecd5ae8e4b24",
+        "market": "B",
+        "group": "high",
+        "reason": "selected"
+      },
+      {
+        "fixture": "2026-11-06|toulouse|strasbourg",
+        "selectionId": "v40:dcc8666a6a025bd13a20",
+        "market": "B",
+        "group": "high",
+        "reason": "selected"
+      },
+      {
+        "fixture": "2026-11-06|hamburgersv|monchengladbach",
+        "market": "O15",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "B"
+      },
+      {
+        "fixture": "2026-11-06|hamburgersv|monchengladbach",
+        "market": "O15",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "B"
+      },
+      {
+        "fixture": "2026-11-06|hamburgersv|monchengladbach",
+        "market": "U35",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "B"
+      },
+      {
+        "fixture": "2026-11-06|hamburgersv|monchengladbach",
+        "market": "U35",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "B"
+      },
+      {
+        "fixture": "2026-11-06|hamburgersv|monchengladbach",
+        "market": "H",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "B"
+      },
+      {
+        "fixture": "2026-11-06|hamburgersv|monchengladbach",
+        "market": "H",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "B"
+      },
+      {
+        "fixture": "2026-11-06|toulouse|strasbourg",
+        "market": "U25",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "B"
+      },
+      {
+        "fixture": "2026-11-06|derbycounty|bolton",
+        "market": "H",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "B"
+      },
+      {
+        "fixture": "2026-11-06|everton|coventrycity",
+        "market": "U25",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "B"
+      },
+      {
+        "fixture": "2026-11-06|hamburgersv|monchengladbach",
+        "market": "B",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "B"
+      },
+      {
+        "fixture": "2026-11-06|hamburgersv|monchengladbach",
+        "market": "B",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "B"
+      },
+      {
+        "fixture": "2026-11-06|everton|coventrycity",
+        "market": "B",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "B"
+      }
+    ]
+  }
 }

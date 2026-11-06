@@ -1208,6 +1208,161 @@
         ],
         "watch": []
       }
+    },
+    {
+      "id": "439086bf30400a384106f1cf",
+      "editionGeneratedAt": "2026-11-06T15:54:47.901955+00:00",
+      "recordedAt": "2026-11-06T18:02:48.765Z",
+      "summary": {
+        "total": 4,
+        "high": 4,
+        "safe": 0,
+        "watch": 0,
+        "withBothFive": 4,
+        "withFormModel": 4,
+        "marketBased": 0,
+        "expertWritten": 0,
+        "modelMarketConflicts": 0,
+        "unverifiedResults": 4
+      },
+      "groups": {
+        "high": [
+          {
+            "matchId": "560634",
+            "home": "Everton",
+            "away": "Coventry City",
+            "league": "Premier League",
+            "kickoff": "2026-11-06T20:00:00+00:00",
+            "market": "B",
+            "label": "Borteseier",
+            "price": 5.1,
+            "probability": 0.2822,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-06T15:54:58Z",
+            "bookmakerCount": 25,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "WLLDW",
+              "awayLastFive": "WLLWW",
+              "modelSample": [
+                11,
+                9
+              ],
+              "formModelProbability": 0.2822,
+              "bookmakerImpliedProbability": 0.18708963795964095,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "565852",
+            "home": "HSV",
+            "away": "M'gladbach",
+            "league": "Bundesliga",
+            "kickoff": "2026-11-06T19:30:00+00:00",
+            "market": "B",
+            "label": "Borteseier",
+            "price": 2.95,
+            "probability": 0.3566,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-06T15:54:58Z",
+            "bookmakerCount": 23,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LLWWW",
+              "awayLastFive": "DWLLL",
+              "modelSample": [
+                9,
+                9
+              ],
+              "formModelProbability": 0.3566,
+              "bookmakerImpliedProbability": 0.3207294929864118,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "561932",
+            "home": "Derby County",
+            "away": "Bolton",
+            "league": "Championship",
+            "kickoff": "2026-11-06T20:00:00+00:00",
+            "market": "B",
+            "label": "Borteseier",
+            "price": 2.6,
+            "probability": 0.3804,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-06T15:55:06Z",
+            "bookmakerCount": 22,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LLDLL",
+              "awayLastFive": "WLLDW",
+              "modelSample": [
+                14,
+                14
+              ],
+              "formModelProbability": 0.3804,
+              "bookmakerImpliedProbability": 0.3592139868005359,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "559638",
+            "home": "Toulouse",
+            "away": "Strasbourg",
+            "league": "Ligue 1",
+            "kickoff": "2026-11-06T19:45:00+00:00",
+            "market": "B",
+            "label": "Borteseier",
+            "price": 3.1,
+            "probability": 0.3258,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-06T15:55:01Z",
+            "bookmakerCount": 22,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LDWDW",
+              "awayLastFive": "WLLLL",
+              "modelSample": [
+                10,
+                12
+              ],
+              "formModelProbability": 0.3258,
+              "bookmakerImpliedProbability": 0.30507462686567166,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          }
+        ],
+        "safe": [],
+        "watch": []
+      }
     }
   ]
 }
