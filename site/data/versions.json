@@ -1,6 +1,53 @@
 [
   {
     "date": "2026-11-07",
+    "before": "2026-11-07T13:12:00.113945+00:00",
+    "after": "2026-11-07T15:44:26.090980+00:00",
+    "added": [
+      {
+        "matchId": "558535",
+        "market": "H",
+        "home": "Parma",
+        "away": "Bologna",
+        "label": "Hjemmeseier",
+        "price": 5.04,
+        "category": "high",
+        "kickoff": "2026-11-07T17:00:00+00:00"
+      }
+    ],
+    "removed": [
+      {
+        "matchId": "561934",
+        "market": "H",
+        "home": "Watford",
+        "away": "Middlesbrough",
+        "label": "Hjemmeseier",
+        "price": 6.35,
+        "category": "high",
+        "kickoff": "2026-11-07T15:00:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      },
+      {
+        "matchId": "561935",
+        "market": "H",
+        "home": "Blackburn",
+        "away": "West Ham",
+        "label": "Hjemmeseier",
+        "price": 4.84,
+        "category": "high",
+        "kickoff": "2026-11-07T15:00:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      }
+    ],
+    "repriced": [],
+    "changeCounts": {
+      "removed": 2,
+      "added": 1,
+      "repriced": 0
+    }
+  },
+  {
+    "date": "2026-11-07",
     "before": "2026-11-07T08:49:42.109324+00:00",
     "after": "2026-11-07T13:12:00.113945+00:00",
     "added": [],
