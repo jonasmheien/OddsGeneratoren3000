@@ -1488,6 +1488,131 @@
         ],
         "watch": []
       }
+    },
+    {
+      "id": "da09d88e8948d08f9c2da0c0",
+      "editionGeneratedAt": "2026-11-07T18:57:56.903533+00:00",
+      "recordedAt": "2026-11-07T18:59:08.094Z",
+      "summary": {
+        "total": 3,
+        "high": 2,
+        "safe": 1,
+        "watch": 0,
+        "withBothFive": 2,
+        "withFormModel": 2,
+        "marketBased": 1,
+        "expertWritten": 0,
+        "modelMarketConflicts": 1,
+        "unverifiedResults": 3
+      },
+      "groups": {
+        "high": [
+          {
+            "matchId": "559635",
+            "home": "PSG",
+            "away": "Troyes",
+            "league": "Ligue 1",
+            "kickoff": "2026-11-07T20:05:00+00:00",
+            "market": "U25",
+            "label": "Under 2,5 mål",
+            "price": 3.3,
+            "probability": 0.3166,
+            "probabilitySource": "uncalibrated_conservative_scenario",
+            "quotedAt": "2026-11-07T18:58:09Z",
+            "bookmakerCount": 3,
+            "sourceType": "qualified_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "WWWWW",
+              "awayLastFive": "WDLLL",
+              "modelSample": [
+                11,
+                9
+              ],
+              "formModelProbability": 0.4985,
+              "bookmakerImpliedProbability": 0.28725701943844495,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "form_model_market_gap_over_20_percentage_points"
+              ]
+            }
+          },
+          {
+            "matchId": "558531",
+            "home": "Roma",
+            "away": "Sassuolo",
+            "league": "Serie A",
+            "kickoff": "2026-11-07T19:45:00+00:00",
+            "market": "U25",
+            "label": "Under 2,5 mål",
+            "price": 3.04,
+            "probability": 0.3734,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-07T18:58:07Z",
+            "bookmakerCount": 7,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "WWDWD",
+              "awayLastFive": "LLLLD",
+              "modelSample": [
+                12,
+                12
+              ],
+              "formModelProbability": 0.3734,
+              "bookmakerImpliedProbability": 0.31221719457013575,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          }
+        ],
+        "safe": [
+          {
+            "matchId": "odds:f7b240389fa5ec055c58a48ab153dcdd",
+            "home": "Paris Saint Germain",
+            "away": "Troyes",
+            "league": "Ligue 1",
+            "kickoff": "2026-11-07T20:05:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 1.15,
+            "probability": 0.8291,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-07T18:58:10Z",
+            "bookmakerCount": 22,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "partial_form",
+              "homeLastFive": "WWWWW",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.8291438433255797,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          }
+        ],
+        "watch": []
+      }
     }
   ]
 }
