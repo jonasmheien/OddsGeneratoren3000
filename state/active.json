@@ -277,7 +277,7 @@
         "phase": "Live",
         "score": {
           "home": 0,
-          "away": 0
+          "away": 1
         }
       }
     }
@@ -488,7 +488,7 @@
         "status": "live",
         "phase": "Live",
         "score": {
-          "home": 0,
+          "home": 1,
           "away": 1
         }
       }
@@ -527,7 +527,7 @@
         "status": "live",
         "phase": "Live",
         "score": {
-          "home": 1,
+          "home": 3,
           "away": 1
         }
       }
@@ -31026,6 +31026,6 @@
     ]
   },
   "editionDate": "2026-11-07",
-  "resultUpdatedAt": "2026-11-07T15:10:20.422409+00:00",
+  "resultUpdatedAt": "2026-11-07T15:27:14.074889+00:00",
   "editionLocked": true
 }
