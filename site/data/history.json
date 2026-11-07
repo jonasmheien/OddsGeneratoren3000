@@ -3,6 +3,12 @@
     "date": "2026-11-07",
     "picks": [
       {
+        "status": "won",
+        "matchId": "559635",
+        "market": "U25",
+        "price": 3.3
+      },
+      {
         "status": "lost",
         "matchId": "558531",
         "market": "U25",

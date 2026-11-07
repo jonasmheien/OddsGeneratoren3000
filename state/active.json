@@ -59,8 +59,7 @@
       "qualificationTier": "qualified",
       "selectionId": "v40:87d06f853e5fa59a80a7",
       "result": {
-        "status": "live",
-        "phase": "Live",
+        "status": "won",
         "score": {
           "home": 1,
           "away": 0
@@ -163,8 +162,7 @@
       "qualificationTier": "qualified",
       "selectionId": "v40:87d06f853e5fa59a80a7",
       "result": {
-        "status": "live",
-        "phase": "Live",
+        "status": "won",
         "score": {
           "home": 1,
           "away": 0
@@ -18399,6 +18397,6 @@
     ]
   },
   "editionDate": "2026-11-07",
-  "resultUpdatedAt": "2026-11-07T21:52:48.884308+00:00",
+  "resultUpdatedAt": "2026-11-07T22:26:17.787734+00:00",
   "editionLocked": true
 }
