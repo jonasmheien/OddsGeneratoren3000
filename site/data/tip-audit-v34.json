@@ -1,20 +1,20 @@
 {
   "schemaVersion": 34,
   "editionDate": "2026-11-07",
-  "revisionId": "2f96da33cd43a440845cf07f",
-  "editionGeneratedAt": "2026-11-07T08:49:42.109324+00:00",
-  "recordedAt": "2026-11-07T08:51:34.629Z",
+  "revisionId": "2b328e2738c637583d9d8d30",
+  "editionGeneratedAt": "2026-11-07T13:12:00.113945+00:00",
+  "recordedAt": "2026-11-07T13:13:11.657Z",
   "summary": {
-    "total": 14,
+    "total": 9,
     "high": 5,
-    "safe": 5,
-    "watch": 4,
-    "withBothFive": 12,
-    "withFormModel": 12,
-    "marketBased": 5,
+    "safe": 4,
+    "watch": 0,
+    "withBothFive": 8,
+    "withFormModel": 8,
+    "marketBased": 4,
     "expertWritten": 0,
     "modelMarketConflicts": 0,
-    "unverifiedResults": 14
+    "unverifiedResults": 9
   },
   "notes": [
     "Records are exactly the preselected backend v40 objects visible in the shared frontend projection at capture time.",

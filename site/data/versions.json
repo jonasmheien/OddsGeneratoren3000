@@ -1,5 +1,59 @@
 [
   {
+    "date": "2026-11-07",
+    "before": "2026-11-07T08:49:42.109324+00:00",
+    "after": "2026-11-07T13:12:00.113945+00:00",
+    "added": [],
+    "removed": [
+      {
+        "matchId": "558535",
+        "market": "H",
+        "home": "Parma",
+        "away": "Bologna",
+        "label": "Hjemmeseier",
+        "price": 4.9,
+        "category": "high",
+        "kickoff": "2026-11-07T17:00:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      },
+      {
+        "matchId": "560640",
+        "market": "B",
+        "home": "Arsenal",
+        "away": "Hull City",
+        "label": "Borteseier",
+        "price": 19.0,
+        "category": "high",
+        "kickoff": "2026-11-07T15:00:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      },
+      {
+        "matchId": "564741",
+        "market": "H",
+        "home": "Valencia",
+        "away": "Real Madrid",
+        "label": "Hjemmeseier",
+        "price": 10.5,
+        "category": "high",
+        "kickoff": "2026-11-07T20:00:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      }
+    ],
+    "repriced": [
+      {
+        "matchId": "561934",
+        "market": "H",
+        "oldPrice": 5.96,
+        "newPrice": 6.35
+      }
+    ],
+    "changeCounts": {
+      "removed": 3,
+      "added": 0,
+      "repriced": 1
+    }
+  },
+  {
     "date": "2026-11-06",
     "before": "2026-11-06T12:32:05.331112+00:00",
     "after": "2026-11-06T15:54:47.901955+00:00",
