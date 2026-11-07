@@ -12,7 +12,7 @@ from morning_refresh_v29 import should_refresh
 class MorningRefreshV29Tests(unittest.TestCase):
     def setUp(self):
         self.now = datetime(2026, 11, 5, 9, 17, tzinfo=timezone.utc)  # 10:17 Oslo
-        self.early = {'editionDate':'2026-11-05', 'generatedAt':'2026-11-05T08:08:00Z'}
+        self.early = {'editionDate':'2026-11-05', 'generatedAt':'2026-11-05T07:58:00Z'}
 
     def test_early_same_day_edition_does_not_suppress_morning(self):
         self.assertTrue(should_refresh(self.early, self.now))

@@ -14,6 +14,31 @@
     const all=Object.fromEntries(parts.map(p=>[p.type,p.value]));
     return `${all.year}-${all.month}-${all.day}`;
   };
+  // Defensive fail-closed projection; backend remains the only tip selector.
+  // Covers known fixture-provider aliases in already published preview data.
+  const knownAliases={
+    hsv:'hamburgersv',hamburgsv:'hamburgersv',mgladbach:'monchengladbach',
+    borussiamgladbach:'monchengladbach',borussiamonchengladbach:'monchengladbach',
+    boltonwanderers:'bolton',silkeborgif:'silkeborg',fczwolle:'zwolle',peczwolle:'zwolle',
+    sevillafc:'sevilla',blackburnrovers:'blackburn',westhamunited:'westham',
+    vfbstuttgart:'stuttgart',werderbremen:'bremen',prestonnorthend:'prestonne',
+    fsvmainz05:'mainz',bayernmunich:'bayern',norwichcity:'norwich',stokecity:'stoke',
+    wrexhamafc:'wrexham',wolverhamptonwanderers:'wolverhampton',
+    birminghamcity:'birmingham',cardiffcity:'cardiff',charltonathletic:'charlton',
+    sheffieldunited:'sheffieldutd',queensparkrangers:'qpr',
+    westbromwichalbion:'westbrom',nottinghamforest:'nottingham',
+    manchestercity:'mancity',tottenhamhotspur:'tottenham'
+  };
+  const team=name=>{
+    const norm=String(name||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'')
+      .toLowerCase().replace(/[^a-z0-9]/g,'');
+    return knownAliases[norm]||norm;
+  };
+  const fixtureIdentity=p=>{
+    const home=team(p?.home),away=team(p?.away);
+    const day=osloDay(p?.kickoff);
+    return home&&away&&day?`${day}|${home}|${away}`:null;
+  };
   const kickoff=p=>+new Date(p?.kickoff);
   const upcoming=(p,edition,now)=>Number.isFinite(kickoff(p))&&kickoff(p)>+now&&
     osloDay(p.kickoff)===dayOf(edition)&&!!p.home&&!!p.away&&
@@ -42,10 +67,21 @@
     // v39 files predate backend authority. Never re-create bets in the client.
     const isAuthoritative=edition?.finalSelection?.version===40;
     const original=isAuthoritative?groups(edition):{safe:[],high:[],watch:[]};
-    const selected=Object.fromEntries(Object.entries(original).map(([k,arr])=>[k,
-      (expired?[]:arr.filter(p=>upcoming(p,edition,now))).slice(0,5)]));
+    // Never show the same real match twice, even in older v40 preview JSON.
+    // This only removes invalid duplicates, never creates or promotes bets.
+    const selected={safe:[],high:[],watch:[]},seen=new Set();
+    for(const group of ['safe','high','watch']){
+      for(const p of (expired?[]:original[group])){
+        if(!upcoming(p,edition,now))continue;
+        const identity=fixtureIdentity(p);
+        if(!identity||seen.has(identity))continue;
+        if(selected[group].length>=5)break;
+        seen.add(identity);
+        selected[group].push(p);
+      }
+    }
     return {edition,groups:selected,expired,useTomorrow,day:dayOf(edition),
       authoritative:isAuthoritative,source:edition===tomorrow?'tomorrow':'today'};
   }
-  return {dayOf,osloDay,upcoming,shouldShowTomorrow,selectEdition};
+  return {dayOf,osloDay,upcoming,fixtureIdentity,shouldShowTomorrow,selectEdition};
 });

@@ -5,15 +5,25 @@ on:
     branches: [main]
   schedule:
     # New edition: one analysis and odds request each morning, Norwegian time.
+    - cron: '07 9 * * *'
+      timezone: 'Europe/Oslo'
     - cron: '17 9 * * *'
+      timezone: 'Europe/Oslo'
+    - cron: '37 9 * * *'
       timezone: 'Europe/Oslo'
     # Retry on transient provider errors; skip if today's edition already exists.
     - cron: '17 10 * * *'
       timezone: 'Europe/Oslo'
     - cron: '17 11 * * *'
       timezone: 'Europe/Oslo'
+    # Additional midday analysis (reduced bookmaker coverage).
+    - cron: '17 13 * * *'
+      timezone: 'Europe/Oslo'
     # Second bookmaker snapshot before the evening fixtures (Norwegian local time).
     - cron: '17 16 * * *'
+      timezone: 'Europe/Oslo'
+    # Additional early-evening analysis (reduced bookmaker coverage).
+    - cron: '17 19 * * *'
       timezone: 'Europe/Oslo'
     # Check automatically after kickoffs; standard results updates spend no odds credits.
     - cron: '*/10 11-15 * * *'
@@ -43,6 +53,7 @@ permissions:
 concurrency:
   group: oddsgeneratoren-state-and-pages
   cancel-in-progress: false
+  queue: max
 
 jobs:
   build:
@@ -61,18 +72,20 @@ jobs:
           git fetch --quiet origin main
           git reset --hard origin/main
       - name: Test modeller, resultatkontroll og kvalitet
-        if: github.event_name != 'schedule' || (github.event.schedule == '17 9 * * *' || github.event.schedule == '17 10 * * *' || github.event.schedule == '17 11 * * *' || github.event.schedule == '17 16 * * *')
+        if: github.event_name != 'schedule' || (github.event.schedule == '07 9 * * *' || github.event.schedule == '17 9 * * *' || github.event.schedule == '37 9 * * *' || github.event.schedule == '17 10 * * *' || github.event.schedule == '17 11 * * *' || github.event.schedule == '17 13 * * *' || github.event.schedule == '17 16 * * *' || github.event.schedule == '17 19 * * *')
         run: python -m unittest discover -s tests -v
       - name: Test tipsvisning og datakvalitet
-        if: github.event_name != 'schedule' || (github.event.schedule == '17 9 * * *' || github.event.schedule == '17 10 * * *' || github.event.schedule == '17 11 * * *' || github.event.schedule == '17 16 * * *')
+        if: github.event_name != 'schedule' || (github.event.schedule == '07 9 * * *' || github.event.schedule == '17 9 * * *' || github.event.schedule == '37 9 * * *' || github.event.schedule == '17 10 * * *' || github.event.schedule == '17 11 * * *' || github.event.schedule == '17 13 * * *' || github.event.schedule == '17 16 * * *' || github.event.schedule == '17 19 * * *')
         run: |
           node --check site/three-fields-v26.js
           node tests/test_tip_ui_v32.cjs
           node tests/test_tip_audit_v34.cjs
           node --check site/market-radar-v39.js
           node tests/test_market_radar_v39.cjs
+          node tests/test_market_radar_v41.cjs
           node --check site/visible-selection-v40.js
           node tests/test_visible_selection_v40.cjs
+          node tests/test_visible_selection_v41.cjs
           node tests/test_selection_v36.cjs
           node tests/test_tip_audit_v34.cjs
       - name: Velg riktig oppdatering
@@ -97,7 +110,7 @@ jobs:
               echo "mode=deploy" >> "$GITHUB_OUTPUT"
               echo "refresh_on_push=false" >> "$GITHUB_OUTPUT"
             fi
-          elif [[ "$EVENT" == "schedule" && ( "$SCHEDULE" == "17 9 * * *" || "$SCHEDULE" == "17 10 * * *" || "$SCHEDULE" == "17 11 * * *" ) ]]; then
+          elif [[ "$EVENT" == "schedule" && ( "$SCHEDULE" == "07 9 * * *" || "$SCHEDULE" == "17 9 * * *" || "$SCHEDULE" == "37 9 * * *" || "$SCHEDULE" == "17 10 * * *" || "$SCHEDULE" == "17 11 * * *" ) ]]; then
             # A same-day 08:00 preview must not block the 09:17 fresh morning run.
             if python scripts/morning_refresh_v29.py --due; then
               echo "mode=daily" >> "$GITHUB_OUTPUT"
@@ -105,9 +118,12 @@ jobs:
             else
               echo "mode=deploy" >> "$GITHUB_OUTPUT"
             fi
-          elif [[ "$EVENT" == "schedule" && "$SCHEDULE" == "17 16 * * *" ]]; then
+          elif [[ "$EVENT" == "schedule" && ( "$SCHEDULE" == "17 13 * * *" || "$SCHEDULE" == "17 16 * * *" || "$SCHEDULE" == "17 19 * * *" ) ]]; then
             echo "mode=daily" >> "$GITHUB_OUTPUT"
             echo "refresh_on_schedule=true" >> "$GITHUB_OUTPUT"
+            if [[ "$SCHEDULE" == "17 13 * * *" || "$SCHEDULE" == "17 19 * * *" ]]; then
+              echo 'low_volume=true' >> "$GITHUB_OUTPUT"
+            fi
           elif [[ "$EVENT" == "schedule" ]]; then
             if python scripts/rollover_v26.py --due; then
               echo "mode=tomorrow" >> "$GITHUB_OUTPUT"
@@ -133,7 +149,7 @@ jobs:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           ODDS_OUTPUT_PATH: state/.candidate.json
           # Limit credits (free plan), while keeping multiple leagues.
-          ODDS_SPORTS_PER_RUN: ${{ steps.trigger.outputs.refresh_on_push == 'true' && '9' || (steps.trigger.outputs.mode == 'tomorrow' && '2' || '4') }}
+          ODDS_SPORTS_PER_RUN: ${{ steps.trigger.outputs.low_volume == 'true' && '2' || (steps.trigger.outputs.refresh_on_push == 'true' && '9' || (steps.trigger.outputs.mode == 'tomorrow' && '2' || '4')) }}
           ODDS_EXTRA_EVENTS: ${{ steps.trigger.outputs.mode == 'tomorrow' && '0' || '1' }}
           ODDS_TARGET_DAY_OFFSET: ${{ steps.trigger.outputs.mode == 'tomorrow' && '1' || '0' }}
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}

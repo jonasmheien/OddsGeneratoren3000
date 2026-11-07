@@ -9,7 +9,7 @@ assert.doesNotMatch(code,/function safeMarketCandidates\(/);
 assert.doesNotMatch(code,/function highModelCandidates\(/);
 assert.doesNotMatch(code,/function highMarketCandidates\(/);
 const at=new Date('2026-11-06T12:00:00Z');
-const p=i=>({matchId:'x'+i,home:'Home',away:'Away',market:'H',label:'Hjemmeseier',
+const p=i=>({matchId:'x'+i,home:'Home'+i,away:'Away'+i,market:'H',label:'Hjemmeseier',
   price:1.5,kickoff:'2026-11-06T20:00:00Z'});
 const a={editionDate:'2026-11-06',finalSelection:{version:40},
  safeBets:Array.from({length:5},(_,i)=>p(i)),highRisk:[p(8)],interestingObjects:[]};

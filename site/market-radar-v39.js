@@ -44,7 +44,16 @@
       peczwolle:'zwolle',fczwolle:'zwolle',
       hsv:'hamburgersv',hamburgsv:'hamburgersv',
       mgladbach:'monchengladbach',borussiamgladbach:'monchengladbach',
-      borussiamonchengladbach:'monchengladbach'})[s]||s;
+      borussiamonchengladbach:'monchengladbach',
+      blackburnrovers:'blackburn',westhamunited:'westham',
+      vfbstuttgart:'stuttgart',werderbremen:'bremen',
+      prestonnorthend:'prestonne',fsvmainz05:'mainz',bayernmunich:'bayern',
+      norwichcity:'norwich',stokecity:'stoke',wrexhamafc:'wrexham',
+      wolverhamptonwanderers:'wolverhampton',birminghamcity:'birmingham',
+      cardiffcity:'cardiff',charltonathletic:'charlton',
+      sheffieldunited:'sheffieldutd',queensparkrangers:'qpr',
+      westbromwichalbion:'westbrom',nottinghamforest:'nottingham',
+      manchestercity:'mancity',tottenhamhotspur:'tottenham'})[s]||s;
   };
   // Only explicit, narrow aliases. Uncertain club identities are not merged.
   const sameFixture=(a,b)=>Number.isFinite(+new Date(a.kickoff))&&Number.isFinite(+new Date(b.kickoff))&&

@@ -23,6 +23,19 @@ ALIASES = {
     'bmonchengladbach': 'monchengladbach',
     'boltonwanderers': 'bolton', 'silkeborgif': 'silkeborg',
     'fczwolle': 'zwolle', 'peczwolle': 'zwolle', 'sevillafc': 'sevilla',
+    # Exact, verified alternate names from two independent fixture providers.
+    # Never use substring/fuzzy matching here: different teams must stay distinct.
+    'blackburnrovers': 'blackburn', 'westhamunited': 'westham',
+    'vfbstuttgart': 'stuttgart', 'werderbremen': 'bremen',
+    'prestonnorthend': 'prestonne', 'fsvmainz05': 'mainz',
+    'bayernmunich': 'bayern', 'norwichcity': 'norwich',
+    'stokecity': 'stoke', 'wrexhamafc': 'wrexham',
+    'wolverhamptonwanderers': 'wolverhampton',
+    'birminghamcity': 'birmingham', 'cardiffcity': 'cardiff',
+    'charltonathletic': 'charlton', 'sheffieldunited': 'sheffieldutd',
+    'queensparkrangers': 'qpr', 'westbromwichalbion': 'westbrom',
+    'nottinghamforest': 'nottingham', 'manchestercity': 'mancity',
+    'tottenhamhotspur': 'tottenham',
 }
 LABELS = {
     'H': 'Hjemmeseier', 'U': 'Uavgjort', 'B': 'Borteseier',

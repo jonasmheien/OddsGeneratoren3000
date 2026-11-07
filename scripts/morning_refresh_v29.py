@@ -32,7 +32,7 @@ def should_refresh(edition, now):
         return True
     stamp = generated.astimezone(OSLO)
     # A snapshot created at 08:08 must NOT suppress the scheduled 09:17 edition.
-    return stamp.date().isoformat() != today or (stamp.hour, stamp.minute) < (9, 17)
+    return stamp.date().isoformat() != today or (stamp.hour, stamp.minute) < (9, 0)
 
 
 def main():
