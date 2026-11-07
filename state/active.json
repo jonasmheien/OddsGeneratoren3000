@@ -63,7 +63,7 @@
         "phase": "Live",
         "score": {
           "home": 0,
-          "away": 0
+          "away": 1
         }
       }
     }
@@ -235,7 +235,7 @@
         "phase": "Live",
         "score": {
           "home": 0,
-          "away": 0
+          "away": 1
         }
       }
     },
@@ -304,7 +304,12 @@
       },
       "selectionId": "v40:22658b88b4d3fb1d50fa",
       "result": {
-        "status": "scheduled"
+        "status": "live",
+        "phase": "Live",
+        "score": {
+          "home": 0,
+          "away": 0
+        }
       }
     },
     {
@@ -375,7 +380,7 @@
         "status": "live",
         "phase": "Live",
         "score": {
-          "home": 0,
+          "home": 1,
           "away": 0
         }
       }
@@ -26598,6 +26603,6 @@
     ]
   },
   "editionDate": "2026-11-07",
-  "resultUpdatedAt": "2026-11-07T17:58:27.270158+00:00",
+  "resultUpdatedAt": "2026-11-07T18:36:16.512626+00:00",
   "editionLocked": true
 }
