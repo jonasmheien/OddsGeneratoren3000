@@ -59,7 +59,12 @@
       "qualificationTier": "qualified",
       "selectionId": "v40:8a224ca09215a18fc0c7",
       "result": {
-        "status": "scheduled"
+        "status": "live",
+        "phase": "Live",
+        "score": {
+          "home": 0,
+          "away": 0
+        }
       }
     },
     {
@@ -416,7 +421,12 @@
       "qualificationTier": "qualified",
       "selectionId": "v40:8a224ca09215a18fc0c7",
       "result": {
-        "status": "scheduled"
+        "status": "live",
+        "phase": "Live",
+        "score": {
+          "home": 0,
+          "away": 0
+        }
       }
     },
     {
@@ -606,7 +616,12 @@
       },
       "selectionId": "v40:bf3c27b63946b908ab28",
       "result": {
-        "status": "scheduled"
+        "status": "live",
+        "phase": "Live",
+        "score": {
+          "home": 0,
+          "away": 1
+        }
       }
     }
   ],
@@ -14916,6 +14931,6 @@
     ]
   },
   "editionDate": "2026-11-08",
-  "resultUpdatedAt": null,
+  "resultUpdatedAt": "2026-11-08T16:41:01.263922+00:00",
   "editionLocked": true
 }
