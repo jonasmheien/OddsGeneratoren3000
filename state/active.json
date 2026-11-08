@@ -71,7 +71,7 @@
         "phase": "Live",
         "score": {
           "home": 1,
-          "away": 1
+          "away": 2
         }
       }
     }
@@ -10917,6 +10917,6 @@
     ]
   },
   "editionDate": "2026-11-08",
-  "resultUpdatedAt": "2026-11-08T21:09:53.339060+00:00",
+  "resultUpdatedAt": "2026-11-08T21:42:57.883830+00:00",
   "editionLocked": true
 }
