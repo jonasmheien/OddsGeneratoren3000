@@ -1,5 +1,58 @@
 [
   {
+    "date": "2026-11-08",
+    "before": "2026-11-08T08:47:43.678932+00:00",
+    "after": "2026-11-08T13:11:49.704158+00:00",
+    "added": [
+      {
+        "matchId": "559631",
+        "market": "H",
+        "home": "Le Mans",
+        "away": "Monaco",
+        "label": "Hjemmeseier",
+        "price": 5.23,
+        "category": "high",
+        "kickoff": "2026-11-08T16:15:00+00:00"
+      },
+      {
+        "matchId": "odds:a529e5762f18d97981194ec3668dc3d3",
+        "market": "H",
+        "home": "Le Mans FC",
+        "away": "AS Monaco",
+        "label": "Hjemmeseier",
+        "price": 5.23,
+        "category": "high",
+        "kickoff": "2026-11-08T16:15:00+00:00"
+      }
+    ],
+    "removed": [
+      {
+        "matchId": "558840",
+        "market": "U25",
+        "home": "Heerenveen",
+        "away": "Feyenoord",
+        "label": "Under 2,5 mål",
+        "price": 3.0,
+        "category": "high",
+        "kickoff": "2026-11-08T11:15:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      }
+    ],
+    "repriced": [
+      {
+        "matchId": "560635",
+        "market": "H",
+        "oldPrice": 5.25,
+        "newPrice": 5.7
+      }
+    ],
+    "changeCounts": {
+      "removed": 1,
+      "added": 2,
+      "repriced": 1
+    }
+  },
+  {
     "date": "2026-11-07",
     "before": "2026-11-07T15:44:26.090980+00:00",
     "after": "2026-11-07T18:57:56.903533+00:00",

@@ -489,6 +489,395 @@
           }
         ]
       }
+    },
+    {
+      "id": "581faa0e1b75f69fde6fb1b2",
+      "editionGeneratedAt": "2026-11-08T13:11:49.704158+00:00",
+      "recordedAt": "2026-11-08T13:13:00.269Z",
+      "summary": {
+        "total": 11,
+        "high": 5,
+        "safe": 5,
+        "watch": 1,
+        "withBothFive": 9,
+        "withFormModel": 9,
+        "marketBased": 5,
+        "expertWritten": 0,
+        "modelMarketConflicts": 0,
+        "unverifiedResults": 11
+      },
+      "groups": {
+        "high": [
+          {
+            "matchId": "560635",
+            "home": "Crystal Palace",
+            "away": "Liverpool",
+            "league": "Premier League",
+            "kickoff": "2026-11-08T14:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 5.7,
+            "probability": 0.1899,
+            "probabilitySource": "uncalibrated_conservative_scenario",
+            "quotedAt": "2026-11-08T13:11:52Z",
+            "bookmakerCount": 25,
+            "sourceType": "qualified_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LLLWD",
+              "awayLastFive": "LWWLW",
+              "modelSample": [
+                12,
+                11
+              ],
+              "formModelProbability": 0.3472,
+              "bookmakerImpliedProbability": 0.1677188045143942,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "559631",
+            "home": "Le Mans",
+            "away": "Monaco",
+            "league": "Ligue 1",
+            "kickoff": "2026-11-08T16:15:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 5.23,
+            "probability": 0.2017,
+            "probabilitySource": "uncalibrated_conservative_scenario",
+            "quotedAt": "2026-11-08T13:11:51Z",
+            "bookmakerCount": 22,
+            "sourceType": "qualified_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LDLLW",
+              "awayLastFive": "LDLDW",
+              "modelSample": [
+                9,
+                10
+              ],
+              "formModelProbability": 0.3749,
+              "bookmakerImpliedProbability": 0.18128786678122277,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "odds:a529e5762f18d97981194ec3668dc3d3",
+            "home": "Le Mans FC",
+            "away": "AS Monaco",
+            "league": "Ligue 1",
+            "kickoff": "2026-11-08T16:15:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 5.23,
+            "probability": 0.2017,
+            "probabilitySource": "uncalibrated_conservative_scenario",
+            "quotedAt": "2026-11-08T13:11:51Z",
+            "bookmakerCount": 22,
+            "sourceType": "qualified_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LDLLW",
+              "awayLastFive": "LDLDW",
+              "modelSample": [
+                9,
+                10
+              ],
+              "formModelProbability": 0.3749,
+              "bookmakerImpliedProbability": 0.18128786678122277,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "560637",
+            "home": "Ipswich Town",
+            "away": "Bournemouth",
+            "league": "Premier League",
+            "kickoff": "2026-11-08T14:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 3.6,
+            "probability": 0.384,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-08T13:11:52Z",
+            "bookmakerCount": 25,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "DDLWL",
+              "awayLastFive": "WWWLL",
+              "modelSample": [
+                9,
+                11
+              ],
+              "formModelProbability": 0.384,
+              "bookmakerImpliedProbability": 0.26448544249063133,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "559633",
+            "home": "Le Havre",
+            "away": "Lorient",
+            "league": "Ligue 1",
+            "kickoff": "2026-11-08T16:15:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 2.9,
+            "probability": 0.4153,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-08T13:11:51Z",
+            "bookmakerCount": 21,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LLLLL",
+              "awayLastFive": "LDWWL",
+              "modelSample": [
+                10,
+                10
+              ],
+              "formModelProbability": 0.4153,
+              "bookmakerImpliedProbability": 0.3261156588328492,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          }
+        ],
+        "safe": [
+          {
+            "matchId": "odds:4288fbe018e6e6fb223e389bcf3e57dd",
+            "home": "Rennes",
+            "away": "Lille",
+            "league": "Ligue 1",
+            "kickoff": "2026-11-08T14:00:00+00:00",
+            "market": "O15",
+            "label": "Over 1,5 mål",
+            "price": 1.22,
+            "probability": 0.7663,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-08T13:11:34Z",
+            "bookmakerCount": 3,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "odds_only",
+              "homeLastFive": "",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": null,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "560639",
+            "home": "Man United",
+            "away": "Aston Villa",
+            "league": "Premier League",
+            "kickoff": "2026-11-08T16:30:00+00:00",
+            "market": "O25",
+            "label": "Over 2,5 mål",
+            "price": 1.5,
+            "probability": 0.6324,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-08T13:11:29Z",
+            "bookmakerCount": 7,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LLDDD",
+              "awayLastFive": "DWWDW",
+              "modelSample": [
+                11,
+                11
+              ],
+              "formModelProbability": 0.5447,
+              "bookmakerImpliedProbability": 0.6323529411764707,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "odds:b0a4b5448a7e02d9ad1eaa817599fff0",
+            "home": "Manchester United",
+            "away": "Aston Villa",
+            "league": "Premier League",
+            "kickoff": "2026-11-08T16:30:00+00:00",
+            "market": "O25",
+            "label": "Over 2,5 mål",
+            "price": 1.5,
+            "probability": 0.6324,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-08T13:11:29Z",
+            "bookmakerCount": 7,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LLDDD",
+              "awayLastFive": "DWWDW",
+              "modelSample": [
+                11,
+                11
+              ],
+              "formModelProbability": 0.5447,
+              "bookmakerImpliedProbability": 0.6323529411764707,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "560638",
+            "home": "Brighton Hove",
+            "away": "Brentford",
+            "league": "Premier League",
+            "kickoff": "2026-11-08T14:00:00+00:00",
+            "market": "O25",
+            "label": "Over 2,5 mål",
+            "price": 1.6,
+            "probability": 0.5887,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-08T13:11:29Z",
+            "bookmakerCount": 11,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "WLWWW",
+              "awayLastFive": "WDLDW",
+              "modelSample": [
+                11,
+                11
+              ],
+              "formModelProbability": 0.529,
+              "bookmakerImpliedProbability": 0.5886889460154241,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "odds:8e3ca98e29be84dd4a882ed05f50fa79",
+            "home": "Brighton and Hove Albion",
+            "away": "Brentford",
+            "league": "Premier League",
+            "kickoff": "2026-11-08T14:00:00+00:00",
+            "market": "O25",
+            "label": "Over 2,5 mål",
+            "price": 1.6,
+            "probability": 0.5887,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-08T13:11:29Z",
+            "bookmakerCount": 11,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "partial_form",
+              "homeLastFive": "",
+              "awayLastFive": "WDLDW",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.5886889460154241,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "model_unavailable"
+              ]
+            }
+          }
+        ],
+        "watch": [
+          {
+            "matchId": "560636",
+            "home": "Sunderland",
+            "away": "Chelsea",
+            "league": "Premier League",
+            "kickoff": "2026-11-08T14:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 3.42,
+            "probability": 0.3658,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-08T13:11:52Z",
+            "bookmakerCount": 25,
+            "sourceType": "observation",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LDLLL",
+              "awayLastFive": "WLWWL",
+              "modelSample": [
+                11,
+                11
+              ],
+              "formModelProbability": 0.3658,
+              "bookmakerImpliedProbability": 0.2777975385928719,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          }
+        ]
+      }
     }
   ]
 }
