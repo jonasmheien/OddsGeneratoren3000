@@ -1,6 +1,53 @@
 [
   {
     "date": "2026-11-08",
+    "before": "2026-11-08T15:42:41.433882+00:00",
+    "after": "2026-11-08T18:57:52.040064+00:00",
+    "added": [],
+    "removed": [
+      {
+        "matchId": "559631",
+        "market": "H",
+        "home": "Le Mans",
+        "away": "Monaco",
+        "label": "Hjemmeseier",
+        "price": 5.45,
+        "category": "high",
+        "kickoff": "2026-11-08T16:15:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      },
+      {
+        "matchId": "567354",
+        "market": "H",
+        "home": "Rio Ave",
+        "away": "Braga",
+        "label": "Hjemmeseier",
+        "price": 5.95,
+        "category": "high",
+        "kickoff": "2026-11-08T20:30:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      },
+      {
+        "matchId": "odds:a529e5762f18d97981194ec3668dc3d3",
+        "market": "H",
+        "home": "Le Mans FC",
+        "away": "AS Monaco",
+        "label": "Hjemmeseier",
+        "price": 5.45,
+        "category": "high",
+        "kickoff": "2026-11-08T16:15:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      }
+    ],
+    "repriced": [],
+    "changeCounts": {
+      "removed": 3,
+      "added": 0,
+      "repriced": 0
+    }
+  },
+  {
+    "date": "2026-11-08",
     "before": "2026-11-08T13:11:49.704158+00:00",
     "after": "2026-11-08T15:42:41.433882+00:00",
     "added": [

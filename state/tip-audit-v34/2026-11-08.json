@@ -1308,6 +1308,166 @@
           }
         ]
       }
+    },
+    {
+      "id": "1e3920374b3f3135586a3e64",
+      "editionGeneratedAt": "2026-11-08T18:57:52.040064+00:00",
+      "recordedAt": "2026-11-08T18:59:05.000Z",
+      "summary": {
+        "total": 4,
+        "high": 1,
+        "safe": 2,
+        "watch": 1,
+        "withBothFive": 3,
+        "withFormModel": 2,
+        "marketBased": 2,
+        "expertWritten": 0,
+        "modelMarketConflicts": 0,
+        "unverifiedResults": 4
+      },
+      "groups": {
+        "high": [
+          {
+            "matchId": "567354",
+            "home": "Rio Ave",
+            "away": "Braga",
+            "league": "Primeira Liga",
+            "kickoff": "2026-11-08T20:30:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 5.9,
+            "probability": 0.3246,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-08T18:57:51Z",
+            "bookmakerCount": 20,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LLWLD",
+              "awayLastFive": "WLLLD",
+              "modelSample": [
+                11,
+                11
+              ],
+              "formModelProbability": 0.3246,
+              "bookmakerImpliedProbability": 0.15659994054107623,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          }
+        ],
+        "safe": [
+          {
+            "matchId": "odds:c02a3d0a40d536e48bb60dffe0e3cd1e",
+            "home": "CF Estrela",
+            "away": "Benfica",
+            "league": "Primeira Liga",
+            "kickoff": "2026-11-08T20:30:00+00:00",
+            "market": "B",
+            "label": "Borteseier",
+            "price": 1.17,
+            "probability": 0.7932,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-08T18:57:51Z",
+            "bookmakerCount": 20,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "odds_only",
+              "homeLastFive": "",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.7931831573222137,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "559630",
+            "home": "RC Lens",
+            "away": "Marseille",
+            "league": "Ligue 1",
+            "kickoff": "2026-11-08T19:45:00+00:00",
+            "market": "O15",
+            "label": "Over 1,5 mål",
+            "price": 1.19,
+            "probability": 0.789,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-08T18:57:55Z",
+            "bookmakerCount": 4,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LWWWL",
+              "awayLastFive": "WWWWL",
+              "modelSample": [
+                11,
+                10
+              ],
+              "formModelProbability": 0.7948,
+              "bookmakerImpliedProbability": null,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          }
+        ],
+        "watch": [
+          {
+            "matchId": "564746",
+            "home": "Atleti",
+            "away": "Barça",
+            "league": "Primera Division",
+            "kickoff": "2026-11-08T20:00:00+00:00",
+            "market": "BTTSN",
+            "label": "Begge lag scorer: Nei",
+            "price": 3.17,
+            "probability": null,
+            "probabilitySource": "not_available",
+            "quotedAt": "2026-11-08T18:58:54Z",
+            "bookmakerCount": 4,
+            "sourceType": "observation",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "partial_form",
+              "homeLastFive": "WWWWW",
+              "awayLastFive": "WLWWW",
+              "modelSample": [
+                11,
+                11
+              ],
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": null,
+              "quoteFresh": true,
+              "quoteMatchesListing": false,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "quote_mismatch_or_missing"
+              ]
+            }
+          }
+        ]
+      }
     }
   ]
 }
