@@ -67,8 +67,7 @@
       },
       "selectionId": "v40:b4555bf2bfb25b2094da",
       "result": {
-        "status": "live",
-        "phase": "Live",
+        "status": "won",
         "score": {
           "home": 1,
           "away": 2
@@ -112,7 +111,7 @@
         "phase": "Live",
         "score": {
           "home": 0,
-          "away": 0
+          "away": 1
         }
       }
     }
@@ -10917,6 +10916,6 @@
     ]
   },
   "editionDate": "2026-11-08",
-  "resultUpdatedAt": "2026-11-08T21:42:57.883830+00:00",
+  "resultUpdatedAt": "2026-11-08T22:19:55.809151+00:00",
   "editionLocked": true
 }
