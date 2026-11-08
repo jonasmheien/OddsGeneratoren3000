@@ -1,6 +1,55 @@
 [
   {
     "date": "2026-11-08",
+    "before": "2026-11-08T13:11:49.704158+00:00",
+    "after": "2026-11-08T15:42:41.433882+00:00",
+    "added": [
+      {
+        "matchId": "567354",
+        "market": "H",
+        "home": "Rio Ave",
+        "away": "Braga",
+        "label": "Hjemmeseier",
+        "price": 5.95,
+        "category": "high",
+        "kickoff": "2026-11-08T20:30:00+00:00"
+      }
+    ],
+    "removed": [
+      {
+        "matchId": "560635",
+        "market": "H",
+        "home": "Crystal Palace",
+        "away": "Liverpool",
+        "label": "Hjemmeseier",
+        "price": 5.7,
+        "category": "high",
+        "kickoff": "2026-11-08T14:00:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      }
+    ],
+    "repriced": [
+      {
+        "matchId": "559631",
+        "market": "H",
+        "oldPrice": 5.23,
+        "newPrice": 5.45
+      },
+      {
+        "matchId": "odds:a529e5762f18d97981194ec3668dc3d3",
+        "market": "H",
+        "oldPrice": 5.23,
+        "newPrice": 5.45
+      }
+    ],
+    "changeCounts": {
+      "removed": 1,
+      "added": 1,
+      "repriced": 2
+    }
+  },
+  {
+    "date": "2026-11-08",
     "before": "2026-11-08T08:47:43.678932+00:00",
     "after": "2026-11-08T13:11:49.704158+00:00",
     "added": [

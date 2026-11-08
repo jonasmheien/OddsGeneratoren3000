@@ -878,6 +878,436 @@
           }
         ]
       }
+    },
+    {
+      "id": "b1dd6842d9c5c19a2004aa80",
+      "editionGeneratedAt": "2026-11-08T15:42:41.433882+00:00",
+      "recordedAt": "2026-11-08T15:44:08.332Z",
+      "summary": {
+        "total": 12,
+        "high": 5,
+        "safe": 5,
+        "watch": 2,
+        "withBothFive": 8,
+        "withFormModel": 7,
+        "marketBased": 5,
+        "expertWritten": 0,
+        "modelMarketConflicts": 2,
+        "unverifiedResults": 12
+      },
+      "groups": {
+        "high": [
+          {
+            "matchId": "559631",
+            "home": "Le Mans",
+            "away": "Monaco",
+            "league": "Ligue 1",
+            "kickoff": "2026-11-08T16:15:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 5.45,
+            "probability": 0.1983,
+            "probabilitySource": "uncalibrated_conservative_scenario",
+            "quotedAt": "2026-11-08T15:43:00Z",
+            "bookmakerCount": 22,
+            "sourceType": "qualified_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LDLLW",
+              "awayLastFive": "LDLDW",
+              "modelSample": [
+                9,
+                10
+              ],
+              "formModelProbability": 0.3749,
+              "bookmakerImpliedProbability": 0.17441218797000618,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "form_model_market_gap_over_20_percentage_points"
+              ]
+            }
+          },
+          {
+            "matchId": "odds:a529e5762f18d97981194ec3668dc3d3",
+            "home": "Le Mans FC",
+            "away": "AS Monaco",
+            "league": "Ligue 1",
+            "kickoff": "2026-11-08T16:15:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 5.45,
+            "probability": 0.1983,
+            "probabilitySource": "uncalibrated_conservative_scenario",
+            "quotedAt": "2026-11-08T15:43:00Z",
+            "bookmakerCount": 22,
+            "sourceType": "qualified_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LDLLW",
+              "awayLastFive": "LDLDW",
+              "modelSample": [
+                9,
+                10
+              ],
+              "formModelProbability": 0.3749,
+              "bookmakerImpliedProbability": 0.17441218797000618,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "form_model_market_gap_over_20_percentage_points"
+              ]
+            }
+          },
+          {
+            "matchId": "567354",
+            "home": "Rio Ave",
+            "away": "Braga",
+            "league": "Primeira Liga",
+            "kickoff": "2026-11-08T20:30:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 5.95,
+            "probability": 0.1725,
+            "probabilitySource": "uncalibrated_conservative_scenario",
+            "quotedAt": "2026-11-08T15:43:08Z",
+            "bookmakerCount": 20,
+            "sourceType": "qualified_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LLWLD",
+              "awayLastFive": "WLLLD",
+              "modelSample": [
+                11,
+                11
+              ],
+              "formModelProbability": 0.3246,
+              "bookmakerImpliedProbability": 0.15615261931051402,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "564747",
+            "home": "Villarreal",
+            "away": "Getafe",
+            "league": "Primera Division",
+            "kickoff": "2026-11-08T17:30:00+00:00",
+            "market": "B",
+            "label": "Borteseier",
+            "price": 6.3,
+            "probability": 0.2671,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-08T15:42:59Z",
+            "bookmakerCount": 21,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LWDLW",
+              "awayLastFive": "WLDLW",
+              "modelSample": [
+                14,
+                14
+              ],
+              "formModelProbability": 0.2671,
+              "bookmakerImpliedProbability": 0.15191188694929342,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "559633",
+            "home": "Le Havre",
+            "away": "Lorient",
+            "league": "Ligue 1",
+            "kickoff": "2026-11-08T16:15:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 3.05,
+            "probability": 0.4153,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-08T15:43:00Z",
+            "bookmakerCount": 21,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LLLLL",
+              "awayLastFive": "LDWWL",
+              "modelSample": [
+                10,
+                10
+              ],
+              "formModelProbability": 0.4153,
+              "bookmakerImpliedProbability": 0.3091536431905825,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          }
+        ],
+        "safe": [
+          {
+            "matchId": "odds:c02a3d0a40d536e48bb60dffe0e3cd1e",
+            "home": "CF Estrela",
+            "away": "Benfica",
+            "league": "Primeira Liga",
+            "kickoff": "2026-11-08T20:30:00+00:00",
+            "market": "B",
+            "label": "Borteseier",
+            "price": 1.19,
+            "probability": 0.7761,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-08T15:43:08Z",
+            "bookmakerCount": 20,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "odds_only",
+              "homeLastFive": "",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.7761053621825025,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "odds:547e4e8cf5577a50926272e0e1a7e677",
+            "home": "SC Cambuur",
+            "away": "PSV Eindhoven",
+            "league": "Eredivisie",
+            "kickoff": "2026-11-08T15:45:00+00:00",
+            "market": "O25",
+            "label": "Over 2,5 mål",
+            "price": 1.23,
+            "probability": 0.7583,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-08T15:42:53Z",
+            "bookmakerCount": 3,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "odds_only",
+              "homeLastFive": "",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.7583497053045186,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "odds:0d2e199bfba0db42871696c10037bad3",
+            "home": "Celta Vigo",
+            "away": "Levante",
+            "league": "La Liga",
+            "kickoff": "2026-11-08T17:30:00+00:00",
+            "market": "O15",
+            "label": "Over 1,5 mål",
+            "price": 1.29,
+            "probability": 0.7389,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-08T15:42:55Z",
+            "bookmakerCount": 4,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "odds_only",
+              "homeLastFive": "",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": null,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "odds:c22d673775e6a4dc0810cc88b0ed75ec",
+            "home": "AZ Alkmaar",
+            "away": "Groningen",
+            "league": "Eredivisie",
+            "kickoff": "2026-11-08T15:45:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 1.46,
+            "probability": 0.6422,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-08T15:43:08Z",
+            "bookmakerCount": 22,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "partial_form",
+              "homeLastFive": "",
+              "awayLastFive": "LDLWW",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.6421982680816991,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "564746",
+            "home": "Atleti",
+            "away": "Barça",
+            "league": "Primera Division",
+            "kickoff": "2026-11-08T20:00:00+00:00",
+            "market": "O25",
+            "label": "Over 2,5 mål",
+            "price": 1.34,
+            "probability": 0.7087,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-08T15:42:15Z",
+            "bookmakerCount": 3,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "WWWWW",
+              "awayLastFive": "WLWWW",
+              "modelSample": [
+                14,
+                14
+              ],
+              "formModelProbability": 0.5959,
+              "bookmakerImpliedProbability": 0.7086956521739131,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          }
+        ],
+        "watch": [
+          {
+            "matchId": "567349",
+            "home": "Vitória SC",
+            "away": "Porto",
+            "league": "Primeira Liga",
+            "kickoff": "2026-11-08T18:00:00+00:00",
+            "market": "U25",
+            "label": "Under 2,5 mål",
+            "price": 1.94,
+            "probability": 0.5939,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-08T15:43:08Z",
+            "bookmakerCount": 14,
+            "sourceType": "observation",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "DWLDL",
+              "awayLastFive": "WWWWW",
+              "modelSample": [
+                11,
+                11
+              ],
+              "formModelProbability": 0.5939,
+              "bookmakerImpliedProbability": 0.4840425531914894,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "558530",
+            "home": "Inter",
+            "away": "Como 1907",
+            "league": "Serie A",
+            "kickoff": "2026-11-08T17:00:00+00:00",
+            "market": "BTTSN",
+            "label": "Begge lag scorer: Nei",
+            "price": 2.65,
+            "probability": null,
+            "probabilitySource": "not_available",
+            "quotedAt": "2026-11-08T15:43:52Z",
+            "bookmakerCount": 4,
+            "sourceType": "observation",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "partial_form",
+              "homeLastFive": "LWWWW",
+              "awayLastFive": "WWWWD",
+              "modelSample": [
+                10,
+                10
+              ],
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": null,
+              "quoteFresh": true,
+              "quoteMatchesListing": false,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "quote_mismatch_or_missing"
+              ]
+            }
+          }
+        ]
+      }
     }
   ]
 }
