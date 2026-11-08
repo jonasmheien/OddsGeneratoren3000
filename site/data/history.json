@@ -7,6 +7,12 @@
         "matchId": "559630",
         "market": "O15",
         "price": 1.19
+      },
+      {
+        "status": "lost",
+        "matchId": "567354",
+        "market": "H",
+        "price": 5.9
       }
     ]
   },

@@ -107,8 +107,7 @@
       },
       "selectionId": "v40:0ca2ade8a238a5617460",
       "result": {
-        "status": "live",
-        "phase": "Live",
+        "status": "lost",
         "score": {
           "home": 0,
           "away": 1
@@ -10916,6 +10915,6 @@
     ]
   },
   "editionDate": "2026-11-08",
-  "resultUpdatedAt": "2026-11-08T22:19:55.809151+00:00",
+  "resultUpdatedAt": "2026-11-08T22:55:50.759417+00:00",
   "editionLocked": true
 }
