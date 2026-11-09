@@ -28,6 +28,7 @@ from expanded_sources_v23 import discover as discover_extra, odds_remaining
 from form_bridge_v27 import load_free_history, bridge
 from form_bridge_v30 import load_cached_history, attach_additional_form
 from odds_first_v25 import preview_sports, fixtures_from_quotes
+from international_v43 import discover_international, prioritize_sports
 from market_expansion import extend_goal_probabilities, first_half_probabilities, corner_probabilities
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -710,6 +711,16 @@ def main():
             # football-data.org may omit UEFA's Thursday fixtures on the free tier.
             # Query only two known, active football competitions in next-day mode.
             sports = preview_sports(sports, max_sports=ODDS_SPORTS_PER_RUN)
+        if not explicit:
+            # Discover *real* international matches on the target Oslo day.
+            # Provider /sports and /events endpoints use zero odds credits.
+            # Nations League takes priority when actually scheduled.
+            intl, discovery = discover_international(
+                odds_key, date, now, fetch_json, ODDS_BASE,
+                max_sports=min(2, ODDS_SPORTS_PER_RUN))
+            sports = prioritize_sports(sports, intl, ODDS_SPORTS_PER_RUN)
+            status['internationalDiscovery'] = discovery
+            status['internationalSportsSelected'] = intl
         # The sports endpoint has zero quota cost and reports remaining
         # credits in response headers. Leave room for later daily editions.
         remaining=None

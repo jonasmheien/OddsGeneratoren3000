@@ -17,6 +17,14 @@ PREVIEW_SPORTS = (
     'soccer_uefa_europa_conference_league',
 )
 COMPETITIONS = {
+    # International national-team tournaments. Fixture discovery and market quotes
+    # come only from the real supplier; no model/form is fabricated.
+    'soccer_uefa_nations_league': ('ODDS-UNL', 'UEFA Nations League'),
+    'soccer_fifa_world_cup_qualifiers_europe': ('ODDS-WCQ-EUR', 'VM-kvalifisering Europa'),
+    'soccer_fifa_world_cup_qualifiers_south_america': ('ODDS-WCQ-SAM', 'VM-kvalifisering Sør-Amerika'),
+    'soccer_uefa_euro_qualification': ('ODDS-EUROQ', 'EM-kvalifisering'),
+    'soccer_fifa_world_cup': ('ODDS-WC', 'FIFA World Cup'),
+    'soccer_uefa_european_championship': ('ODDS-EURO', 'UEFA European Championship'),
     'soccer_uefa_europa_league': ('ODDS-EL', 'UEFA Europa League'),
     'soccer_uefa_europa_conference_league': ('ODDS-ECL', 'UEFA Conference League'),
     'soccer_epl': ('ODDS-PL', 'Premier League'),
