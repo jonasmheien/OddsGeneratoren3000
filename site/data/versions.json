@@ -1,5 +1,291 @@
 [
   {
+    "date": "2026-11-08",
+    "before": "2026-11-08T15:42:41.433882+00:00",
+    "after": "2026-11-08T18:57:52.040064+00:00",
+    "added": [],
+    "removed": [
+      {
+        "matchId": "559631",
+        "market": "H",
+        "home": "Le Mans",
+        "away": "Monaco",
+        "label": "Hjemmeseier",
+        "price": 5.45,
+        "category": "high",
+        "kickoff": "2026-11-08T16:15:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      },
+      {
+        "matchId": "567354",
+        "market": "H",
+        "home": "Rio Ave",
+        "away": "Braga",
+        "label": "Hjemmeseier",
+        "price": 5.95,
+        "category": "high",
+        "kickoff": "2026-11-08T20:30:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      },
+      {
+        "matchId": "odds:a529e5762f18d97981194ec3668dc3d3",
+        "market": "H",
+        "home": "Le Mans FC",
+        "away": "AS Monaco",
+        "label": "Hjemmeseier",
+        "price": 5.45,
+        "category": "high",
+        "kickoff": "2026-11-08T16:15:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      }
+    ],
+    "repriced": [],
+    "changeCounts": {
+      "removed": 3,
+      "added": 0,
+      "repriced": 0
+    }
+  },
+  {
+    "date": "2026-11-08",
+    "before": "2026-11-08T13:11:49.704158+00:00",
+    "after": "2026-11-08T15:42:41.433882+00:00",
+    "added": [
+      {
+        "matchId": "567354",
+        "market": "H",
+        "home": "Rio Ave",
+        "away": "Braga",
+        "label": "Hjemmeseier",
+        "price": 5.95,
+        "category": "high",
+        "kickoff": "2026-11-08T20:30:00+00:00"
+      }
+    ],
+    "removed": [
+      {
+        "matchId": "560635",
+        "market": "H",
+        "home": "Crystal Palace",
+        "away": "Liverpool",
+        "label": "Hjemmeseier",
+        "price": 5.7,
+        "category": "high",
+        "kickoff": "2026-11-08T14:00:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      }
+    ],
+    "repriced": [
+      {
+        "matchId": "559631",
+        "market": "H",
+        "oldPrice": 5.23,
+        "newPrice": 5.45
+      },
+      {
+        "matchId": "odds:a529e5762f18d97981194ec3668dc3d3",
+        "market": "H",
+        "oldPrice": 5.23,
+        "newPrice": 5.45
+      }
+    ],
+    "changeCounts": {
+      "removed": 1,
+      "added": 1,
+      "repriced": 2
+    }
+  },
+  {
+    "date": "2026-11-08",
+    "before": "2026-11-08T08:47:43.678932+00:00",
+    "after": "2026-11-08T13:11:49.704158+00:00",
+    "added": [
+      {
+        "matchId": "559631",
+        "market": "H",
+        "home": "Le Mans",
+        "away": "Monaco",
+        "label": "Hjemmeseier",
+        "price": 5.23,
+        "category": "high",
+        "kickoff": "2026-11-08T16:15:00+00:00"
+      },
+      {
+        "matchId": "odds:a529e5762f18d97981194ec3668dc3d3",
+        "market": "H",
+        "home": "Le Mans FC",
+        "away": "AS Monaco",
+        "label": "Hjemmeseier",
+        "price": 5.23,
+        "category": "high",
+        "kickoff": "2026-11-08T16:15:00+00:00"
+      }
+    ],
+    "removed": [
+      {
+        "matchId": "558840",
+        "market": "U25",
+        "home": "Heerenveen",
+        "away": "Feyenoord",
+        "label": "Under 2,5 mål",
+        "price": 3.0,
+        "category": "high",
+        "kickoff": "2026-11-08T11:15:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      }
+    ],
+    "repriced": [
+      {
+        "matchId": "560635",
+        "market": "H",
+        "oldPrice": 5.25,
+        "newPrice": 5.7
+      }
+    ],
+    "changeCounts": {
+      "removed": 1,
+      "added": 2,
+      "repriced": 1
+    }
+  },
+  {
+    "date": "2026-11-07",
+    "before": "2026-11-07T15:44:26.090980+00:00",
+    "after": "2026-11-07T18:57:56.903533+00:00",
+    "added": [
+      {
+        "matchId": "559635",
+        "market": "U25",
+        "home": "PSG",
+        "away": "Troyes",
+        "label": "Under 2,5 mål",
+        "price": 3.3,
+        "category": "high",
+        "kickoff": "2026-11-07T20:05:00+00:00"
+      }
+    ],
+    "removed": [
+      {
+        "matchId": "558535",
+        "market": "H",
+        "home": "Parma",
+        "away": "Bologna",
+        "label": "Hjemmeseier",
+        "price": 5.04,
+        "category": "high",
+        "kickoff": "2026-11-07T17:00:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      }
+    ],
+    "repriced": [],
+    "changeCounts": {
+      "removed": 1,
+      "added": 1,
+      "repriced": 0
+    }
+  },
+  {
+    "date": "2026-11-07",
+    "before": "2026-11-07T13:12:00.113945+00:00",
+    "after": "2026-11-07T15:44:26.090980+00:00",
+    "added": [
+      {
+        "matchId": "558535",
+        "market": "H",
+        "home": "Parma",
+        "away": "Bologna",
+        "label": "Hjemmeseier",
+        "price": 5.04,
+        "category": "high",
+        "kickoff": "2026-11-07T17:00:00+00:00"
+      }
+    ],
+    "removed": [
+      {
+        "matchId": "561934",
+        "market": "H",
+        "home": "Watford",
+        "away": "Middlesbrough",
+        "label": "Hjemmeseier",
+        "price": 6.35,
+        "category": "high",
+        "kickoff": "2026-11-07T15:00:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      },
+      {
+        "matchId": "561935",
+        "market": "H",
+        "home": "Blackburn",
+        "away": "West Ham",
+        "label": "Hjemmeseier",
+        "price": 4.84,
+        "category": "high",
+        "kickoff": "2026-11-07T15:00:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      }
+    ],
+    "repriced": [],
+    "changeCounts": {
+      "removed": 2,
+      "added": 1,
+      "repriced": 0
+    }
+  },
+  {
+    "date": "2026-11-07",
+    "before": "2026-11-07T08:49:42.109324+00:00",
+    "after": "2026-11-07T13:12:00.113945+00:00",
+    "added": [],
+    "removed": [
+      {
+        "matchId": "558535",
+        "market": "H",
+        "home": "Parma",
+        "away": "Bologna",
+        "label": "Hjemmeseier",
+        "price": 4.9,
+        "category": "high",
+        "kickoff": "2026-11-07T17:00:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      },
+      {
+        "matchId": "560640",
+        "market": "B",
+        "home": "Arsenal",
+        "away": "Hull City",
+        "label": "Borteseier",
+        "price": 19.0,
+        "category": "high",
+        "kickoff": "2026-11-07T15:00:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      },
+      {
+        "matchId": "564741",
+        "market": "H",
+        "home": "Valencia",
+        "away": "Real Madrid",
+        "label": "Hjemmeseier",
+        "price": 10.5,
+        "category": "high",
+        "kickoff": "2026-11-07T20:00:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      }
+    ],
+    "repriced": [
+      {
+        "matchId": "561934",
+        "market": "H",
+        "oldPrice": 5.96,
+        "newPrice": 6.35
+      }
+    ],
+    "changeCounts": {
+      "removed": 3,
+      "added": 0,
+      "repriced": 1
+    }
+  },
+  {
     "date": "2026-11-06",
     "before": "2026-11-06T12:32:05.331112+00:00",
     "after": "2026-11-06T15:54:47.901955+00:00",

@@ -1,5 +1,39 @@
 [
   {
+    "date": "2026-11-08",
+    "picks": [
+      {
+        "status": "won",
+        "matchId": "559630",
+        "market": "O15",
+        "price": 1.19
+      },
+      {
+        "status": "lost",
+        "matchId": "567354",
+        "market": "H",
+        "price": 5.9
+      }
+    ]
+  },
+  {
+    "date": "2026-11-07",
+    "picks": [
+      {
+        "status": "won",
+        "matchId": "559635",
+        "market": "U25",
+        "price": 3.3
+      },
+      {
+        "status": "lost",
+        "matchId": "558531",
+        "market": "U25",
+        "price": 3.04
+      }
+    ]
+  },
+  {
     "date": "2026-11-06",
     "picks": [
       {
