@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 42,
+  "generatedAt": "2026-11-09T09:06:15.338635+00:00",
+  "sample": {
+    "settled": 8,
+    "wins": 2,
+    "losses": 6,
+    "voids": 0
+  },
+  "flatStake": {
+    "unit": 1,
+    "totalStaked": 8,
+    "profitUnits": -3.51,
+    "roiPct": -43.9,
+    "winRatePct": 25.0
+  },
+  "insufficientSample": true,
+  "closingLineValue": {
+    "available": false,
+    "reason": "Verifiserte sluttodds lagres ikke i dagens historikk"
+  },
+  "calibration": {
+    "available": false,
+    "reason": "Historikken lagrer ikke konsekvent modellens opprinnelige prognoser"
+  },
+  "note": "Et lite historisk utvalg viser bare faktisk utfall. Avkastning dokumenterer ikke fremtidig verdi."
+}
