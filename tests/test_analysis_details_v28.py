@@ -24,8 +24,8 @@ class AnalysisDetailsV28(unittest.TestCase):
             self.assertIn(item,section)
         for old in ('Datagrunnlag','Forventede mål','Antall bookmakere','Beregnet verdi i scenario','tf-analysis-warning','tf-analysis-sources'):
             self.assertNotIn(old,section)
-        self.assertIn('three-fields-v26.js?v=40',HTML.read_text(encoding='utf-8'))
-        self.assertIn('three-fields-v26.css?v=38',HTML.read_text(encoding='utf-8'))
+        self.assertIn('three-fields-v26.js?v=42',HTML.read_text(encoding='utf-8'))
+        self.assertIn('three-fields-v26.css?v=42',HTML.read_text(encoding='utf-8'))
         self.assertIn('tf-form-badge',CSS.read_text(encoding='utf-8'))
 
     @unittest.skipUnless(shutil.which('node'),'Node.js unavailable')

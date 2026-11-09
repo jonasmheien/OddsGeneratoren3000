@@ -242,7 +242,8 @@
     if(loading)return;
     loading=true;
     try{
-      const [today,preview]=await Promise.all([get('today'),get('tomorrow')]);
+      const [today,preview,quality,performance]=await Promise.all([
+        get('today'),get('tomorrow'),get('quality-v42'),get('performance-v42')]);
       const now=new Date();
       const chosen=window.OddsVisibleV40?.selectEdition(today,preview,now)||null;
       const useTomorrow=Boolean(chosen?.useTomorrow);
@@ -281,6 +282,28 @@
       const lack=Object.entries({safe:'Safe Bets',high:'High Risk',watch:'Interessante objekter'})
         .filter(([key])=>(chosen?.groups[key]||[]).length<3)
         .map(([key,name])=>`${name}: færre enn tre konfliktfrie kandidater med gyldig datagrunnlag.`).join(' ');
+      const monitor=$('tf-monitor');
+      if(monitor){
+        const previewCoverage=useTomorrow && edition?.coverage ? {
+          matchesWithOdds:Number(edition.coverage.matchedOdds||0),
+          upcomingMatches:Number(edition.coverage.upcomingMatches||0),
+          oddsFixturesWithLinkedForm:Number(edition.dataStatus?.officialFormBridge?.oddsFixturesWithBothTeamsMatched||0),
+          externalPredictions:Number(edition.dataStatus?.externalPredictionsCount||0)
+        }:null;
+        const coverage=quality?.editionDate===editionDay?quality?.data:previewCoverage;
+        const issues=quality?.editionDate===editionDay?quality?.issues||[]:[];
+        const source=coverage?`Oddsdekning ${coverage.matchesWithOdds}/${coverage.upcomingMatches} kamper · `+
+          `Formkobling ${coverage.oddsFixturesWithLinkedForm} · Eksterne prognoser ${coverage.externalPredictions}`:
+          'Kildekontroll for denne utgaven er ennå ikke publisert';
+        const stats=performance?.sample;
+        const roi=performance?.flatStake?.roiPct;
+        const results=stats?`Historikk: ${stats.wins} vunnet, ${stats.losses} tapt`+
+          (roi!==null&&roi!==undefined?` · Flat innsats ROI ${Number(roi).toLocaleString('nb-NO')} %`: '')+
+          (performance.insufficientSample?' · For få kamper til å fastslå dokumentert verdi':
+           ' · Historiske resultater er ingen garanti for framtidig verdi'):'Ingen publisert resultatanalyse ennå';
+        monitor.textContent=source+'. '+results+'. '+
+          (issues.length?`Databegrensninger: ${issues.join('; ')}.`:'');
+      }
       $('tf-status').textContent=expired?'Dagens kamper har startet. Neste utvalg publiseres automatisk når analysen er klar.':
         !chosen?.authoritative?'Dagsutgaven mangler sentral konfliktkontroll. Ingen gamle frontendforslag vises.':
         'Alle tips er valgt i backend og kontrollert for kampkonflikter. Odds er ikke sanntidspriser. '+lack;
@@ -293,7 +316,8 @@
     '<section class="tf-section" aria-labelledby="tf-high-title"><header><h2 id="tf-high-title">High Risk</h2><span id="tf-high-count">0</span></header><div id="tf-high-list" class="tf-list"></div></section>'+
     '<section class="tf-section" aria-labelledby="tf-safe-title"><header><h2 id="tf-safe-title">Safe Bets</h2><span id="tf-safe-count">0</span></header><div id="tf-safe-list" class="tf-list"></div></section>'+
     '<section class="tf-section" aria-labelledby="tf-watch-title"><header><h2 id="tf-watch-title">Interessante objekter</h2><span id="tf-watch-count">0</span></header><p class="tf-subtitle">Til vurdering, ikke anbefalt</p><div id="tf-watch-list" class="tf-list"></div></section>'+
-    '</div><p class="tf-status" id="tf-status" role="status"></p>';
+    '</div><p class="tf-status" id="tf-status" role="status"></p>'+
+    '<p class="tf-monitor" id="tf-monitor"></p>';
     const main=document.querySelector('main');if(!main)return;const hero=main.querySelector('.hero');
     if(hero && typeof hero.after==='function')hero.after(parent);else main.prepend(parent);
     document.body.classList.add('three-v26');

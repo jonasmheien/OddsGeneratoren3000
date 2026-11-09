@@ -81,10 +81,12 @@ def is_due(active, preview, now, *, hourly=True):
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('--due', action='store_true', help='Exit 0 only when a new preview should be built')
+    p.add_argument('--broad-window', action='store_true',
+                   help='Allow delayed scheduled preview dispatches without minute filtering')
     args = p.parse_args()
     active = read(ROOT / 'state' / 'active.json') or read(ROOT / 'site' / 'data' / 'today.json')
     preview = read(ROOT / 'site' / 'data' / 'tomorrow.json')
-    due = is_due(active, preview, datetime.now(timezone.utc))
+    due = is_due(active, preview, datetime.now(timezone.utc), hourly=not args.broad_window)
     print('ROLLOVER_TOMORROW_DUE=' + str(due).lower())
     if args.due:
         raise SystemExit(0 if due else 1)

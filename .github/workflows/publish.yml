@@ -25,6 +25,13 @@ on:
     # Additional early-evening analysis (reduced bookmaker coverage).
     - cron: '17 19 * * *'
       timezone: 'Europe/Oslo'
+    # Targeted preview attempts, tolerant of delayed GitHub schedules.
+    - cron: '07 21 * * *'
+      timezone: 'Europe/Oslo'
+    - cron: '07 22 * * *'
+      timezone: 'Europe/Oslo'
+    - cron: '07 23 * * *'
+      timezone: 'Europe/Oslo'
     # Check automatically after kickoffs; standard results updates spend no odds credits.
     - cron: '*/10 11-15 * * *'
       timezone: 'Europe/Oslo'
@@ -86,6 +93,7 @@ jobs:
           node --check site/visible-selection-v40.js
           node tests/test_visible_selection_v40.cjs
           node tests/test_visible_selection_v41.cjs
+          node tests/test_monitor_ui_v42.cjs
           node tests/test_selection_v36.cjs
           node tests/test_tip_audit_v34.cjs
       - name: Velg riktig oppdatering
@@ -123,6 +131,13 @@ jobs:
             echo "refresh_on_schedule=true" >> "$GITHUB_OUTPUT"
             if [[ "$SCHEDULE" == "17 13 * * *" || "$SCHEDULE" == "17 19 * * *" ]]; then
               echo 'low_volume=true' >> "$GITHUB_OUTPUT"
+            fi
+          elif [[ "$EVENT" == "schedule" && ( "$SCHEDULE" == "07 21 * * *" || "$SCHEDULE" == "07 22 * * *" || "$SCHEDULE" == "07 23 * * *" ) ]]; then
+            # Avoid the minute<=08 filter: scheduled jobs may start late.
+            if python scripts/rollover_v26.py --due --broad-window; then
+              echo "mode=tomorrow" >> "$GITHUB_OUTPUT"
+            else
+              echo "mode=results" >> "$GITHUB_OUTPUT"
             fi
           elif [[ "$EVENT" == "schedule" ]]; then
             if python scripts/rollover_v26.py --due; then
@@ -192,6 +207,10 @@ jobs:
               echo 'should_deploy=true' >> "$GITHUB_OUTPUT"
             fi
           fi
+      - name: Publiser datadekning, historiske resultater og fjern gammel forhåndsanalyse
+        # Read-only for pick and score data, zero extra API requests.
+        if: steps.trigger.outputs.mode != 'results' || steps.mode.outputs.should_deploy == 'true'
+        run: python scripts/quality_monitor_v42.py
       - name: Arkiver viste tips og kontroller datagrunnlag v34
         id: tip_audit
         if: steps.trigger.outputs.mode != 'results'
@@ -206,6 +225,10 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A -- state/ site/data/today.json site/data/history.json site/data/versions.json
+          if [[ -f site/data/quality-v42.json ]]; then
+            git add -A -- site/data/quality-v42.json site/data/performance-v42.json
+          fi
+          git add -A -- site/data/tomorrow.json
           if [[ -f site/data/tip-audit-v34.json ]]; then
             git add -A -- site/data/tip-audit-v34.json
           fi

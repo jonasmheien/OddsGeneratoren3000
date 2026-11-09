@@ -1,0 +1,14 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const root=path.resolve(__dirname,'..');
+const s=fs.readFileSync(path.join(root,'site/three-fields-v26.js'),'utf8');
+const html=fs.readFileSync(path.join(root,'site/index.html'),'utf8');
+assert.match(s,/get\('quality-v42'\)/);
+assert.match(s,/get\('performance-v42'\)/);
+assert.match(s,/id="tf-monitor"/);
+assert.match(s,/For få kamper til å fastslå dokumentert verdi/);
+assert.match(html,/three-fields-v26\.js\?v=42/);
+assert.match(html,/three-fields-v26\.css\?v=42/);
+console.log('PASS: monitor is in shared v41 view, no new betting picks created');

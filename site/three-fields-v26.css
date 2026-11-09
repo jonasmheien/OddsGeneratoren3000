@@ -98,3 +98,4 @@ body.three-v26 .versions-v22 {display:none!important}
 .tf-form-report>.tf-form-badges{justify-content:flex-start;margin:8px 0}
 .tf-form-limited{font-size:11px;color:#a2b6a8;margin:8px 0 0!important;line-height:1.5}
 @media(max-width:480px){.tf-form-match-result>span:first-child{font-size:11px}}
+.tf-monitor {font-size:11px;line-height:1.55;color:#a2b5a7;border-top:1px solid #324538;padding-top:11px;margin:12px 0 0;}
