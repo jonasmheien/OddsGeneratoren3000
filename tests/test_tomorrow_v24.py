@@ -51,6 +51,12 @@ class TomorrowPreviewTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Invalid recommended'):
             validate_preview(obj,self.now)
 
+    def test_preview_without_odds_is_not_published(self):
+        obj = copy.deepcopy(self.snapshot)
+        obj["coverage"]["matchedOdds"] = 0
+        with self.assertRaisesRegex(ValueError, "No matching"):
+            validate_preview(obj, self.now)
+
     def test_near_midnight_oslo(self):
         obj=copy.deepcopy(self.snapshot)
         obj['localDate']='2026-11-06'

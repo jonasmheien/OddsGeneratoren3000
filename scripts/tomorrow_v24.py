@@ -63,7 +63,19 @@ def main():
     if not args.candidate.is_file():
         raise SystemExit('No candidate snapshot available')
     snapshot = json.loads(args.candidate.read_text(encoding='utf-8'))
-    published = publish_preview(snapshot, datetime.now(timezone.utc))
+    now = datetime.now(timezone.utc)
+    status = snapshot.get('dataStatus') or {}
+    coverage = snapshot.get('coverage') or {}
+    expected = (now.astimezone(OSLO).date() + timedelta(days=1)).isoformat()
+    if (snapshot.get('localDate') == expected and status.get('fixtures') == 'ok'
+            and status.get('odds') in ('ok', 'empty')
+            and isinstance(snapshot.get('matches'), list)
+            and isinstance(snapshot.get('recommendations'), list)
+            and int(coverage.get('matchedOdds') or 0) == 0):
+        args.candidate.unlink(missing_ok=True)
+        print('TOMORROW_PREVIEW_SKIPPED=no_bookmaker_odds_on_target_day')
+        return
+    published = publish_preview(snapshot, now)
     args.candidate.unlink(missing_ok=True)
     print('TOMORROW_PREVIEW_CREATED=' + str(snapshot.get('localDate')))
     print('QUALIFIED=' + str(len(snapshot.get('recommendations') or [])))

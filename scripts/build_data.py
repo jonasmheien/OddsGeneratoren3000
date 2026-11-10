@@ -27,8 +27,9 @@ from form_history_v38 import verified_form_records, model_rows, source_identity_
 from expanded_sources_v23 import discover as discover_extra, odds_remaining
 from form_bridge_v27 import load_free_history, bridge
 from form_bridge_v30 import load_cached_history, attach_additional_form
-from odds_first_v25 import preview_sports, fixtures_from_quotes
-from international_v43 import discover_international, prioritize_sports
+from odds_first_v25 import fixtures_from_quotes
+from international_v43 import INTERNATIONAL_KEYS
+from matchday_sports_v44 import discover_matchday_sports
 from market_expansion import extend_goal_probabilities, first_half_probabilities, corner_probabilities
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -707,20 +708,14 @@ def main():
         explicit = os.getenv('ODDS_SPORTS', '').strip()
         sports = ([x.strip() for x in explicit.split(',') if x.strip()] if explicit
                   else sports)
-        if not explicit and (preview_offset == 1 or not sports):
-            # football-data.org may omit UEFA's Thursday fixtures on the free tier.
-            # Query only two known, active football competitions in next-day mode.
-            sports = preview_sports(sports, max_sports=ODDS_SPORTS_PER_RUN)
         if not explicit:
-            # Discover *real* international matches on the target Oslo day.
-            # Provider /sports and /events endpoints use zero odds credits.
-            # Nations League takes priority when actually scheduled.
-            intl, discovery = discover_international(
-                odds_key, date, now, fetch_json, ODDS_BASE,
-                max_sports=min(2, ODDS_SPORTS_PER_RUN))
-            sports = prioritize_sports(sports, intl, ODDS_SPORTS_PER_RUN)
-            status['internationalDiscovery'] = discovery
-            status['internationalSportsSelected'] = intl
+            # Check actual matchday listings before spending any odds credits.
+            sports, discovery = discover_matchday_sports(
+                odds_key, date, now, fetch_json, ODDS_BASE, sports,
+                max_sports=ODDS_SPORTS_PER_RUN)
+            status['matchdayDiscovery'] = discovery
+            status['internationalSportsSelected'] = [
+                sport for sport in sports if sport in INTERNATIONAL_KEYS]
         # The sports endpoint has zero quota cost and reports remaining
         # credits in response headers. Leave room for later daily editions.
         remaining=None
@@ -829,7 +824,8 @@ def main():
         'recommended':len(snapshot['recommendations']),
         'safe':len(snapshot['safeBets']),
         'highRisk':len(snapshot['highRisk']),
-        'message': ('ingen kamp med tilgjengelig bookmakerodds' if snapshot['coverage']['upcomingMatches'] and not snapshot['coverage']['matchedOdds'] else
+        'message': ('ingen kommende kamper' if not snapshot['coverage']['upcomingMatches'] else
+                    'ingen kamp med tilgjengelig bookmakerodds' if not snapshot['coverage']['matchedOdds'] else
                     'ingen spill passerte kvalitetsfiltrene' if snapshot['coverage']['matchedOdds'] and not (snapshot['safeBets'] or snapshot['highRisk'] or snapshot['recommendations']) else
                     'analysert')
     }
