@@ -51,7 +51,7 @@
     "minimumConservativeScenarioEdge": 0.02,
     "explanation": "Ukalibrert sannsynlighetsmodell. Kun positiv forventet verdi i et konservativt scenario, ikke påvist langsiktig avkastning."
   },
-  "generatedAt": "2026-11-10T15:28:12.216880+00:00",
+  "generatedAt": "2026-11-10T15:54:56.288378+00:00",
   "localDate": "2026-11-10",
   "dataStatus": {
     "fixtures": "ok",
