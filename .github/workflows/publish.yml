@@ -120,7 +120,7 @@ jobs:
             fi
           elif [[ "$EVENT" == "schedule" && ( "$SCHEDULE" == "07 9 * * *" || "$SCHEDULE" == "17 9 * * *" || "$SCHEDULE" == "37 9 * * *" || "$SCHEDULE" == "17 10 * * *" || "$SCHEDULE" == "17 11 * * *" ) ]]; then
             # A same-day 08:00 preview must not block the 09:17 fresh morning run.
-            if pythonsscripts/morning_refresh_v29.py --due; then
+            if python scripts/morning_refresh_v29.py --due; then
               echo "mode=daily" >> "$GITHUB_OUTPUT"
               echo "refresh_on_schedule=true" >> "$GITHUB_OUTPUT"
             else
@@ -167,19 +167,19 @@ jobs:
           ODDS_SPORTS_PER_RUN: ${{ steps.trigger.outputs.low_volume == 'true' && '2' || (steps.trigger.outputs.refresh_on_push == 'true' && '9' || (steps.trigger.outputs.mode == 'tomorrow' && '2' || '4')) }}
           ODDS_EXTRA_EVENTS: ${{ steps.trigger.outputs.mode == 'tomorrow' && '0' || '1' }}
           ODDS_TARGET_DAY_OFFSET: ${{ steps.trigger.outputs.mode == 'tomorrow' && '1' || '0' }}
-          # API-Sports account suspended; retain code for later reactivation.
+          # API-Sports account suspended; retain source code for later reactivation.
           API_FOOTBALL_KEY: ''
           SPORTMONKS_API_TOKEN: ${{ secrets.SPORTMONKS_API_TOKEN }}
           # Only enable when the rights holder has approved use of club/league crests.
           SHOW_LICENSED_CRESTS: ${{ vars.SHOW_LICENSED_CRESTS }}
-        run: pythonsscripts/build_data.py
+        run: python scripts/build_data.py
       - name: Kontroller hjørnespark, kort og målscorere
         if: steps.trigger.outputs.mode == 'daily'
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
           ODDS_V14_EXTRA_EVENTS: '1'
-        run: pythonsscripts/market_scan_v14.py state/.candidate.json
+        run: python scripts/market_scan_v14.py state/.candidate.json
       - name: Samle kildebaserte resultatprognoser
         if: steps.trigger.outputs.mode == 'daily'
         env:
