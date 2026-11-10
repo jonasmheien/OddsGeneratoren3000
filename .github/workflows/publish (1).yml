@@ -1,0 +1,268 @@
+name: Oppdater OddsGeneratoren
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # New edition: one analysis and odds request each morning, Norwegian time.
+    - cron: '07 9 * * *'
+      timezone: 'Europe/Oslo'
+    - cron: '17 9 * * *'
+      timezone: 'Europe/Oslo'
+    - cron: '37 9 * * *'
+      timezone: 'Europe/Oslo'
+    # Retry on transient provider errors; skip if today's edition already exists.
+    - cron: '17 10 * * *'
+      timezone: 'Europe/Oslo'
+    - cron: '17 11 * * *'
+      timezone: 'Europe/Oslo'
+    # Additional midday analysis (reduced bookmaker coverage).
+    - cron: '17 13 * * *'
+      timezone: 'Europe/Oslo'
+    # Second bookmaker snapshot before the evening fixtures (Norwegian local time).
+    - cron: '17 16 * * *'
+      timezone: 'Europe/Oslo'
+    # Additional early-evening analysis (reduced bookmaker coverage).
+    - cron: '17 19 * * *'
+      timezone: 'Europe/Oslo'
+    # Targeted preview attempts, tolerant of delayed GitHub schedules.
+    - cron: '07 21 * * *'
+      timezone: 'Europe/Oslo'
+    - cron: '07 22 * * *'
+      timezone: 'Europe/Oslo'
+    - cron: '07 23 * * *'
+      timezone: 'Europe/Oslo'
+    # Check automatically after kickoffs; standard results updates spend no odds credits.
+    - cron: '*/10 11-15 * * *'
+      timezone: 'Europe/Oslo'
+    - cron: '*/10 16-23 * * *'
+      timezone: 'Europe/Oslo'
+    - cron: '*/20 0-2 * * *'
+      timezone: 'Europe/Oslo'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'daily = ny utgave, results = oppdater resultater, deploy = vis lagret utgave'
+        type: choice
+        options: [deploy, results, daily, tomorrow]
+        default: deploy
+      force_refresh:
+        description: 'Erstatt dagens utgave med en ny analyse med gjeldende kode'
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: oddsgeneratoren-state-and-pages
+  cancel-in-progress: false
+  queue: max
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      should_deploy: ${{ steps.mode.outputs.should_deploy }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Synkroniser arbeidskopien mot nyeste main
+        run: |
+          git fetch --quiet origin main
+          git reset --hard origin/main
+      - name: Test modeller, resultatkontroll og kvalitet
+        if: github.event_name != 'schedule' || (github.event.schedule == '07 9 * * *' || github.event.schedule == '17 9 * * *' || github.event.schedule == '37 9 * * *' || github.event.schedule == '17 10 * * *' || github.event.schedule == '17 11 * * *' || github.event.schedule == '17 13 * * *' || github.event.schedule == '17 16 * * *' || github.event.schedule == '17 19 * * *')
+        run: python -m unittest discover -s tests -v
+      - name: Test tipsvisning og datakvalitet
+        if: github.event_name != 'schedule' || (github.event.schedule == '07 9 * * *' || github.event.schedule == '17 9 * * *' || github.event.schedule == '37 9 * * *' || github.event.schedule == '17 10 * * *' || github.event.schedule == '17 11 * * *' || github.event.schedule == '17 13 * * *' || github.event.schedule == '17 16 * * *' || github.event.schedule == '17 19 * * *')
+        run: |
+          node --check site/three-fields-v26.js
+          node tests/test_tip_ui_v32.cjs
+          node tests/test_tip_audit_v34.cjs
+          node --check site/market-radar-v39.js
+          node tests/test_market_radar_v39.cjs
+          node tests/test_market_radar_v41.cjs
+          node --check site/visible-selection-v40.js
+          node tests/test_visible_selection_v40.cjs
+          node tests/test_visible_selection_v41.cjs
+          node tests/test_monitor_ui_v42.cjs
+          node tests/test_selection_v36.cjs
+          node tests/test_tip_audit_v34.cjs
+      - name: Velg riktig oppdatering
+        id: trigger
+        shell: bash
+        env:
+          EVENT: ${{ github.event_name }}
+          SCHEDULE: ${{ github.event.schedule }}
+          INPUT_MODE: ${{ inputs.mode }}
+        run: |
+          if [[ "$EVENT" == "push" ]]; then
+            # A release can opt in to exactly one new same-day analysis.
+            # Ordinary code pushes continue to deploy the stored snapshot.
+            if [[ -f .github/preview-once-v24 ]] && grep -qx 'PREVIEW_NEXT_DAY_ON_PUSH' .github/preview-once-v24; then
+              echo 'mode=tomorrow' >> "$GITHUB_OUTPUT"
+              echo 'ONE_TIME_PREVIEW: tomorrow preview requested'
+            elif [[ -f .github/refresh-once-v15 ]] && grep -qx 'REFRESH_ON_NEXT_PUSH' .github/refresh-once-v15; then
+              echo "mode=daily" >> "$GITHUB_OUTPUT"
+              echo "refresh_on_push=true" >> "$GITHUB_OUTPUT"
+              echo 'ONE_TIME_REFRESH: new match and bookmaker analysis requested'
+            else
+              echo "mode=deploy" >> "$GITHUB_OUTPUT"
+              echo "refresh_on_push=false" >> "$GITHUB_OUTPUT"
+            fi
+          elif [[ "$EVENT" == "schedule" && ( "$SCHEDULE" == "07 9 * * *" || "$SCHEDULE" == "17 9 * * *" || "$SCHEDULE" == "37 9 * * *" || "$SCHEDULE" == "17 10 * * *" || "$SCHEDULE" == "17 11 * * *" ) ]]; then
+            # A same-day 08:00 preview must not block the 09:17 fresh morning run.
+            if python scripts/morning_refresh_v29.py --due; then
+              echo "mode=daily" >> "$GITHUB_OUTPUT"
+              echo "refresh_on_schedule=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "mode=deploy" >> "$GITHUB_OUTPUT"
+            fi
+          elif [[ "$EVENT" == "schedule" && ( "$SCHEDULE" == "17 13 * * *" || "$SCHEDULE" == "17 16 * * *" || "$SCHEDULE" == "17 19 * * *" ) ]]; then
+            echo "mode=daily" >> "$GITHUB_OUTPUT"
+            echo "refresh_on_schedule=true" >> "$GITHUB_OUTPUT"
+            if [[ "$SCHEDULE" == "17 13 * * *" || "$SCHEDULE" == "17 19 * * *" ]]; then
+              echo 'low_volume=true' >> "$GITHUB_OUTPUT"
+            fi
+          elif [[ "$EVENT" == "schedule" && ( "$SCHEDULE" == "07 21 * * *" || "$SCHEDULE" == "07 22 * * *" || "$SCHEDULE" == "07 23 * * *" ) ]]; then
+            # Avoid the minute<=08 filter: scheduled jobs may start late.
+            if python scripts/rollover_v26.py --due --broad-window; then
+              echo "mode=tomorrow" >> "$GITHUB_OUTPUT"
+            else
+              echo "mode=results" >> "$GITHUB_OUTPUT"
+            fi
+          elif [[ "$EVENT" == "schedule" ]]; then
+            if python scripts/rollover_v26.py --due; then
+              echo "mode=tomorrow" >> "$GITHUB_OUTPUT"
+            else
+              echo "mode=results" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            echo "mode=${INPUT_MODE:-daily}" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Bruk privat mellomlager for ligahistorikk
+        if: steps.trigger.outputs.mode == 'daily' || steps.trigger.outputs.mode == 'tomorrow'
+        uses: actions/cache@v4
+        with:
+          path: .cache/form-v29.json
+          key: form-v30-${{ github.run_id }}
+          restore-keys: |
+            form-v30-
+            form-v29-
+      - name: Generer nytt dagsutvalg
+        if: steps.trigger.outputs.mode == 'daily' || steps.trigger.outputs.mode == 'tomorrow'
+        env:
+          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          ODDS_OUTPUT_PATH: state/.candidate.json
+          # Limit credits (free plan), while keeping multiple leagues.
+          ODDS_SPORTS_PER_RUN: ${{ steps.trigger.outputs.low_volume == 'true' && '2' || (steps.trigger.outputs.refresh_on_push == 'true' && '9' || (steps.trigger.outputs.mode == 'tomorrow' && '2' || '4')) }}
+          ODDS_EXTRA_EVENTS: ${{ steps.trigger.outputs.mode == 'tomorrow' && '0' || '1' }}
+          ODDS_TARGET_DAY_OFFSET: ${{ steps.trigger.outputs.mode == 'tomorrow' && '1' || '0' }}
+          # API-Sports account suspended; retain source code for later reactivation.
+          API_FOOTBALL_KEY: ''
+          SPORTMONKS_API_TOKEN: ${{ secrets.SPORTMONKS_API_TOKEN }}
+          # Only enable when the rights holder has approved use of club/league crests.
+          SHOW_LICENSED_CRESTS: ${{ vars.SHOW_LICENSED_CRESTS }}
+        run: python scripts/build_data.py
+      - name: Kontroller hjørnespark, kort og målscorere
+        if: steps.trigger.outputs.mode == 'daily'
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
+          ODDS_V14_EXTRA_EVENTS: '1'
+        run: python scripts/market_scan_v14.py state/.candidate.json
+      - name: Samle kildebaserte resultatprognoser
+        if: steps.trigger.outputs.mode == 'daily'
+        env:
+          API_FOOTBALL_KEY: ''
+        run: python scripts/score_consensus_v14.py state/.candidate.json
+      - name: Kvalifiser anbefalinger og observasjoner v2.0
+        if: steps.trigger.outputs.mode == 'daily' || steps.trigger.outputs.mode == 'tomorrow'
+        run: python scripts/qualify_v20.py state/.candidate.json
+      - name: Behold tips og oppdater resultatstatus
+        id: mode
+        shell: bash
+        env:
+          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          MODE: ${{ steps.trigger.outputs.mode }}
+          SPORTMONKS_API_TOKEN: ${{ secrets.SPORTMONKS_API_TOKEN }}
+          ODDS_OUTPUT_PATH: state/.candidate.json
+          FORCE_REPLACE_EDITION: ${{ ((github.event_name == 'workflow_dispatch' && inputs.mode == 'daily' && inputs.force_refresh) || steps.trigger.outputs.refresh_on_push == 'true' || steps.trigger.outputs.refresh_on_schedule == 'true') && '1' || '0' }}
+        run: |
+          if [[ "$MODE" == "tomorrow" ]]; then
+            python scripts/tomorrow_v24.py state/.candidate.json
+            echo 'should_deploy=true' >> "$GITHUB_OUTPUT"
+          else
+            python scripts/lifecycle.py "$MODE" | tee /tmp/odds-lifecycle.txt
+            if [[ "$MODE" == "results" ]] && ! grep -q 'RESULTS_CHANGED=1' /tmp/odds-lifecycle.txt; then
+              echo 'should_deploy=false' >> "$GITHUB_OUTPUT"
+            else
+              echo 'should_deploy=true' >> "$GITHUB_OUTPUT"
+            fi
+          fi
+      - name: Publiser datadekning, historiske resultater og fjern gammel forhåndsanalyse
+        # Read-only for pick and score data, zero extra API requests.
+        if: steps.trigger.outputs.mode != 'results' || steps.mode.outputs.should_deploy == 'true'
+        run: python scripts/quality_monitor_v42.py
+      - name: Arkiver viste tips og kontroller datagrunnlag v34
+        id: tip_audit
+        if: steps.trigger.outputs.mode != 'results'
+        continue-on-error: true
+        run: node scripts/capture_visible_v34.cjs
+      - name: Lagre den valgte utgaven og resultatene
+        if: steps.trigger.outputs.mode != 'deploy' || steps.tip_audit.outputs.changed == 'true'
+        shell: bash
+        env:
+          MODE: ${{ steps.trigger.outputs.mode }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A -- state/ site/data/today.json site/data/history.json site/data/versions.json
+          if [[ -f site/data/quality-v42.json ]]; then
+            git add -A -- site/data/quality-v42.json site/data/performance-v42.json
+          fi
+          git add -A -- site/data
+          if [[ -f site/data/tip-audit-v34.json ]]; then
+            git add -A -- site/data/tip-audit-v34.json
+          fi
+          if [[ -f site/data/tomorrow.json ]]; then
+            git add -A -- site/data
+          fi
+          # The trigger disappears only after a successful new daily edition.
+          # A failed data pull leaves the trigger available for a job re-run.
+          if [[ "${MODE}" == 'daily' ]] && [[ -f .github/refresh-once-v15 ]]; then
+            git rm -f -- .github/refresh-once-v15
+          fi
+          if [[ "${MODE}" == 'tomorrow' ]] && [[ -f .github/preview-once-v24 ]]; then
+            git rm -f -- .github/preview-once-v24
+          fi
+          if ! git diff --cached --quiet; then
+            git commit -m '[snapshot] Keep daily tips and their settled results'
+            git push origin HEAD:main
+          fi
+      - uses: actions/configure-pages@v5
+        if: steps.mode.outputs.should_deploy == 'true'
+      - uses: actions/upload-pages-artifact@v4
+        if: steps.mode.outputs.should_deploy == 'true'
+        with:
+          path: site
+  deploy:
+    needs: build
+    if: needs.build.outputs.should_deploy == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment
