@@ -30,6 +30,7 @@ from form_bridge_v30 import load_cached_history, attach_additional_form
 from odds_first_v25 import fixtures_from_quotes
 from international_v43 import INTERNATIONAL_KEYS
 from matchday_sports_v44 import discover_matchday_sports
+from sportmonks_v45 import discover as discover_sportmonks
 from market_expansion import extend_goal_probabilities, first_half_probabilities, corner_probabilities
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -47,6 +48,7 @@ SPORT_BY_COMPETITION = {
     'APF-NO1':'soccer_norway_eliteserien', 'APF-SE1':'soccer_sweden_allsvenskan',
     'APF-SE2':'soccer_sweden_superettan', 'APF-DK1':'soccer_denmark_superliga',
     'APF-ES2':'soccer_spain_segunda_division', 'APF-FI1':'soccer_finland_veikkausliiga',
+    'SM-DK1':'soccer_denmark_superliga', 'SM-SC1':'soccer_spl',
 }
 # Free plan: 500 credits/month as of project setup. One region × two markets
 # costs about 2 credits per league per run (provider rules may change).
@@ -605,6 +607,8 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
         {'name':'Eksterne prognoser', 'role':'Kildeangitte, manuelt innlagte vurderinger',
          'state':'manual' if coverage['manualPredictions'] else 'not_connected'},
     ]
+    if status.get('sportmonks', {}).get('state') == 'ok':
+        sources.append({'name': 'Sportmonks', 'role': 'Verifisert kampform og oppsett i Danmark og Skottland', 'state': 'connected'})
     if status.get('additionalFormBridge', {}).get('teamsLinked'):
         sources.append({'name':'football-data.co.uk', 'role':'Verifiserte ligakamper til privat formanalyse', 'state':'connected'})
     return {'version': 3, 'recommendations':picks, 'safeBets':safe_bets, 'highRisk':high_risk,
@@ -703,6 +707,18 @@ def main():
             sports=sports_today(fixtures,now,target_date=date)
         status['apiFootballExtraFixtures']=sum(m.get('status')=='SCHEDULED' for m in extra)
         status['apiFootballExtraHistory']=sum(m.get('status')=='FINISHED' for m in extra)
+    # Sportmonks Free Plan: verified Danish/Scottish history + fixture dates.
+    # API token stays in GitHub Secrets. Failed requests never erase other feeds.
+    sm_token = os.getenv('SPORTMONKS_API_TOKEN', '').strip()
+    sm_matches, sm_info = discover_sportmonks(date, now, sm_token)
+    status['sportmonks'] = sm_info
+    if sm_info['state'] == 'unavailable':
+        errors.append('Sportmonks: midlertidig utilgjengelig (' + (sm_info.get('error') or 'unknown') + ')')
+    if sm_matches:
+        unique = {str(m['id']): m for m in fixtures if m.get('id')}
+        unique.update({str(m['id']): m for m in sm_matches if m.get('id')})
+        fixtures = list(unique.values())
+        sports = sports_today(fixtures, now, target_date=date)
     if odds_key:
         odds_events = []
         explicit = os.getenv('ODDS_SPORTS', '').strip()

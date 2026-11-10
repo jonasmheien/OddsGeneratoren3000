@@ -57,7 +57,7 @@ def regular_time_score(row):
 
 def _source_rank(source):
     return {'football-data.org': 3, 'API-Football': 2,
-            'football-data.co.uk': 1}.get(source, 0)
+            'Sportmonks': 2, 'football-data.co.uk': 1}.get(source, 0)
 
 
 def verified_form_records(fixtures, team_id, before, *, limit=16, days=HISTORY_DAYS):

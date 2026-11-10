@@ -16,6 +16,7 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from versions_v22 import record_revision, publish_version_history
 from expanded_sources_v23 import results_for
+from sportmonks_v45 import results_for as sportmonks_results_for
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE = ROOT / 'state' / 'active.json'
@@ -149,7 +150,8 @@ def fetch_results(snapshot: dict, key: str):
                for p in snapshot.get(category, []) if p.get('matchId') is not None}
     ids = {x for x in all_ids if x.isdigit()}
     apf_ids = {x for x in all_ids if x.startswith('apf:') and x[4:].isdigit()}
-    if not ids and not apf_ids:
+    sm_ids = {x for x in all_ids if x.startswith('sm-match:') and x[9:].isdigit()}
+    if not ids and not apf_ids and not sm_ids:
         return []
     found=[]
     if ids:
@@ -170,6 +172,11 @@ def fetch_results(snapshot: dict, key: str):
             found.extend(results_for(apf_ids, os.environ['API_FOOTBALL_KEY']))
         except (OSError, ValueError, TimeoutError) as exc:
             print('WARN: API-Football result feed unavailable:', type(exc).__name__)
+    if sm_ids and os.getenv('SPORTMONKS_API_TOKEN', '').strip():
+        try:
+            found.extend(sportmonks_results_for(sm_ids, os.environ['SPORTMONKS_API_TOKEN']))
+        except (OSError, ValueError, TimeoutError) as exc:
+            print('WARN: Sportmonks results unavailable:', type(exc).__name__)
     return found
 
 
