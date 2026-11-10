@@ -167,7 +167,7 @@ jobs:
           ODDS_SPORTS_PER_RUN: ${{ steps.trigger.outputs.low_volume == 'true' && '2' || (steps.trigger.outputs.refresh_on_push == 'true' && '9' || (steps.trigger.outputs.mode == 'tomorrow' && '2' || '4')) }}
           ODDS_EXTRA_EVENTS: ${{ steps.trigger.outputs.mode == 'tomorrow' && '0' || '1' }}
           ODDS_TARGET_DAY_OFFSET: ${{ steps.trigger.outputs.mode == 'tomorrow' && '1' || '0' }}
-          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+                    # API-Sports account suspended; retain source code for later reactivation.           API_FOOTBALL_KEY: ''           SPORTMONKS_API_TOKEN: ${{ secrets.SPORTMONKS_API_TOKEN }}: ${{ secrets.API_FOOTBALL_KEY }}
           # Only enable when the rights holder has approved use of club/league crests.
           SHOW_LICENSED_CRESTS: ${{ vars.SHOW_LICENSED_CRESTS }}
         run: python scripts/build_data.py
@@ -178,7 +178,7 @@ jobs:
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
           ODDS_V14_EXTRA_EVENTS: '1'
         run: python scripts/market_scan_v14.py state/.candidate.json
-      - name: Samle kildebaserte resultatprognoser
+      - name:           API_FOOTBALL_KEY: ''
         if: steps.trigger.outputs.mode == 'daily'
         env:
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
@@ -186,7 +186,7 @@ jobs:
       - name: Kvalifiser anbefalinger og observasjoner v2.0
         if: steps.trigger.outputs.mode == 'daily' || steps.trigger.outputs.mode == 'tomorrow'
         run: python scripts/qualify_v20.py state/.candidate.json
-      - name: Behold tips og oppdater resultatstatus
+      - name:           SPORTMONKS_API_TOKEN: ${{ secrets.SPORTMONKS_API_TOKEN }}
         id: mode
         shell: bash
         env:
