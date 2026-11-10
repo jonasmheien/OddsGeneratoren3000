@@ -1,0 +1,373 @@
+name: Reparer OddsGeneratoren automatisk
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/reparer-oddsgenerator.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: oddsgeneratoren-repair
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Reparer kode og kjor tester
+        shell: bash
+        run: |
+          python - <<'PY'
+          #!/usr/bin/env python3
+          """Offline GitHub Desktop repair for OddsGeneratoren3000 (2026-11-09).
+
+          Patches only exact, reviewed anchors. Never reads API tokens or calls network.
+          The user must review, commit and push using GitHub Desktop afterwards.
+          """
+          from __future__ import annotations
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          HELPER = '''"""Choose supported bookmaker leagues with real games on the target Oslo day.
+
+          The Odds API sports and event discovery routes do not consume odds credits.
+          No actual bookmaker odds or model probabilities are generated here.
+          """
+          from __future__ import annotations
+          from datetime import date, datetime
+          from urllib.parse import quote, urlencode
+          from international_v43 import INTERNATIONAL_KEYS, available_on_day
+          from odds_first_v25 import COMPETITIONS
+
+          NATIONS_LEAGUE = 'soccer_uefa_nations_league'
+
+
+          def discover_matchday_sports(odds_key: str, target_day: date, now: datetime,
+                                       fetch, base: str, known_sports: list[str] | None = None,
+                                       *, max_sports: int = 4):
+              """Only request paid bookmaker prices for leagues having real fixtures.
+
+              Catalog lookup failure may fall back to separately verified official fixtures.
+              Per-league event errors are not used as evidence unless a separate official
+              fixture feed already verified that league has a game on this day.
+              """
+              known = list(dict.fromkeys(
+                  sport for sport in (known_sports or []) if sport in COMPETITIONS))
+              diagnostic = {'targetDate': target_day.isoformat(), 'catalogAvailable': False,
+                            'matchesBySport': {}, 'selected': [], 'errors': []}
+              if not odds_key or max_sports <= 0:
+                  return [], diagnostic
+
+              try:
+                  catalog = fetch(base + '/sports/?' + urlencode({'apiKey': odds_key}))
+                  if not isinstance(catalog, list):
+                      raise ValueError('Unexpected sports catalog')
+                  active = {row.get('key') for row in catalog if isinstance(row, dict)
+                            and row.get('key') in COMPETITIONS and row.get('active') is not False}
+                  diagnostic['catalogAvailable'] = True
+              except (OSError, TimeoutError, ValueError, TypeError, RuntimeError):
+                  diagnostic['errors'].append('Sports catalog temporarily unavailable')
+                  diagnostic['selected'] = known[:max_sports]
+                  return diagnostic['selected'], diagnostic
+
+              counts = {}
+              failed = set()
+              for sport in COMPETITIONS:
+                  if sport not in active:
+                      continue
+                  try:
+                      url = base + '/sports/' + quote(sport, safe='') + '/events?' + urlencode({'apiKey': odds_key})
+                      events = fetch(url)
+                      if not isinstance(events, list):
+                          raise ValueError('Unexpected event list')
+                      count = available_on_day(events, target_day, now)
+                      if count:
+                          counts[sport] = count
+                  except (OSError, TimeoutError, ValueError, TypeError, RuntimeError):
+                      failed.add(sport)
+                      diagnostic['errors'].append('Events unavailable for ' + sport)
+
+              for sport in known:
+                  if sport in active and sport in failed:
+                      counts.setdefault(sport, 1)
+
+              rank = {sport: index for index, sport in enumerate(known)}
+              def priority(sport):
+                  if sport == NATIONS_LEAGUE:
+                      return (0, 0, -counts[sport], sport)
+                  if sport in known:
+                      return (1, rank[sport], -counts[sport], sport)
+                  if sport in INTERNATIONAL_KEYS:
+                      return (2, 0, -counts[sport], sport)
+                  return (3, 0, -counts[sport], sport)
+
+              selected = sorted(counts, key=priority)[:max_sports]
+              diagnostic['matchesBySport'] = counts
+              diagnostic['selected'] = selected
+              return selected, diagnostic
+          '''
+
+          TEST_HELPER = '''"""Regression tests for quota-safe bookmaker league discovery."""
+          import sys
+          import unittest
+          from datetime import date, datetime, timezone
+          from pathlib import Path
+          from urllib.parse import urlparse
+          sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
+          from matchday_sports_v44 import discover_matchday_sports
+
+          NOW = datetime(2026, 11, 9, 18, tzinfo=timezone.utc)
+          DAY = date(2026, 11, 10)
+          NL = 'soccer_uefa_nations_league'
+          DK = 'soccer_denmark_superliga'
+          EL = 'soccer_uefa_europa_league'
+          PL = 'soccer_epl'
+
+
+          def fixture(event_id, when='2026-11-10T19:00:00Z'):
+              return {'id': event_id, 'commence_time': when,
+                      'home_team': 'Alpha', 'away_team': 'Beta'}
+
+          class MatchdaySportsV44(unittest.TestCase):
+              def setUp(self):
+                  self.events = {}
+                  self.calls = []
+
+              def fetch(self, url):
+                  self.calls.append(url)
+                  path = urlparse(url).path
+                  if path.endswith('/sports/'):
+                      return [{'key': key, 'active': True} for key in (NL, DK, EL, PL)]
+                  for sport in (NL, DK, EL, PL):
+                      if path.endswith('/' + sport + '/events'):
+                          return self.events.get(sport, [])
+                  raise AssertionError(url)
+
+              def choose(self, known=None, max_sports=3):
+                  return discover_matchday_sports('TEST_KEY', DAY, NOW, self.fetch,
+                      'https://api.the-odds-api.com/v4', known, max_sports=max_sports)
+
+              def test_no_paid_requests_for_out_of_date_leagues(self):
+                  self.events = {EL: [fixture('oldmatch001', '2026-11-12T20:00:00Z')]}
+                  selected, detail = self.choose([EL])
+                  self.assertEqual(selected, [])
+                  self.assertEqual(detail['matchesBySport'], {})
+                  self.assertNotIn('TEST_KEY', str(detail))
+
+              def test_prioritize_real_nations_and_verified_leagues(self):
+                  self.events = {NL: [fixture('nations00001')], DK: [fixture('denmark00001')],
+                                 EL: [fixture('europa00001')], PL: [fixture('premier00001')]}
+                  selected, _ = self.choose([DK, PL])
+                  self.assertEqual(selected, [NL, DK, PL])
+                  self.assertTrue(all('/events?' in u or '/sports/?' in u for u in self.calls))
+
+              def test_catalog_failure_safe_fallback(self):
+                  def failed(url):
+                      raise OSError('private_TEST_KEY')
+                  selected, detail = discover_matchday_sports('TEST_KEY', DAY, NOW,
+                      failed, 'https://api.the-odds-api.com/v4', [DK])
+                  self.assertEqual(selected, [DK])
+                  self.assertNotIn('private_TEST_KEY', str(detail))
+
+              def test_no_fixtures_stays_empty(self):
+                  selected, detail = self.choose()
+                  self.assertEqual(selected, [])
+                  self.assertEqual(detail['selected'], [])
+
+          if __name__ == '__main__':
+              unittest.main()
+          '''
+
+          CHANGES = {
+              'scripts/build_data.py': [
+                  (
+                      "from odds_first_v25 import preview_sports, fixtures_from_quotes\n"
+                      "from international_v43 import discover_international, prioritize_sports",
+                      "from odds_first_v25 import fixtures_from_quotes\n"
+                      "from international_v43 import INTERNATIONAL_KEYS\n"
+                      "from matchday_sports_v44 import discover_matchday_sports",
+                  ),
+                  (
+                      "        if not explicit and (preview_offset == 1 or not sports):\n"
+                      "            # football-data.org may omit UEFA's Thursday fixtures on the free tier.\n"
+                      "            # Query only two known, active football competitions in next-day mode.\n"
+                      "            sports = preview_sports(sports, max_sports=ODDS_SPORTS_PER_RUN)\n"
+                      "        if not explicit:\n"
+                      "            # Discover *real* international matches on the target Oslo day.\n"
+                      "            # Provider /sports and /events endpoints use zero odds credits.\n"
+                      "            # Nations League takes priority when actually scheduled.\n"
+                      "            intl, discovery = discover_international(\n"
+                      "                odds_key, date, now, fetch_json, ODDS_BASE,\n"
+                      "                max_sports=min(2, ODDS_SPORTS_PER_RUN))\n"
+                      "            sports = prioritize_sports(sports, intl, ODDS_SPORTS_PER_RUN)\n"
+                      "            status['internationalDiscovery'] = discovery\n"
+                      "            status['internationalSportsSelected'] = intl",
+                      "        if not explicit:\n"
+                      "            # Check actual matchday listings before spending any odds credits.\n"
+                      "            sports, discovery = discover_matchday_sports(\n"
+                      "                odds_key, date, now, fetch_json, ODDS_BASE, sports,\n"
+                      "                max_sports=ODDS_SPORTS_PER_RUN)\n"
+                      "            status['matchdayDiscovery'] = discovery\n"
+                      "            status['internationalSportsSelected'] = [\n"
+                      "                sport for sport in sports if sport in INTERNATIONAL_KEYS]",
+                  ),
+                  (
+                      "'message': ('ingen kamp med tilgjengelig bookmakerodds' if snapshot['coverage']['upcomingMatches'] and not snapshot['coverage']['matchedOdds'] else",
+                      "'message': ('ingen kommende kamper' if not snapshot['coverage']['upcomingMatches'] else\n"
+                      "                    'ingen kamp med tilgjengelig bookmakerodds' if not snapshot['coverage']['matchedOdds'] else",
+                  ),
+              ],
+              'scripts/tomorrow_v24.py': [
+                  (
+                      "    snapshot = json.loads(args.candidate.read_text(encoding='utf-8'))\n"
+                      "    published = publish_preview(snapshot, datetime.now(timezone.utc))",
+                      "    snapshot = json.loads(args.candidate.read_text(encoding='utf-8'))\n"
+                      "    now = datetime.now(timezone.utc)\n"
+                      "    status = snapshot.get('dataStatus') or {}\n"
+                      "    coverage = snapshot.get('coverage') or {}\n"
+                      "    expected = (now.astimezone(OSLO).date() + timedelta(days=1)).isoformat()\n"
+                      "    if (snapshot.get('localDate') == expected and status.get('fixtures') == 'ok'\n"
+                      "            and status.get('odds') in ('ok', 'empty')\n"
+                      "            and isinstance(snapshot.get('matches'), list)\n"
+                      "            and isinstance(snapshot.get('recommendations'), list)\n"
+                      "            and int(coverage.get('matchedOdds') or 0) == 0):\n"
+                      "        args.candidate.unlink(missing_ok=True)\n"
+                      "        print('TOMORROW_PREVIEW_SKIPPED=no_bookmaker_odds_on_target_day')\n"
+                      "        return\n"
+                      "    published = publish_preview(snapshot, now)",
+                  ),
+              ],
+              '.github/workflows/publish.yml': [
+                  (
+                      "          if [[ \"$MODE\" == \"tomorrow\" ]]; then\n"
+                      "            python scripts/tomorrow_v24.py state/.candidate.json\n"
+                      "            echo 'should_deploy=true' >> \"$GITHUB_OUTPUT\"\n"
+                      "          else",
+                      "          if [[ \"$MODE\" == \"tomorrow\" ]]; then\n"
+                      "            python scripts/tomorrow_v24.py state/.candidate.json | tee /tmp/odds-preview.txt\n"
+                      "            if grep -q 'TOMORROW_PREVIEW_CREATED=' /tmp/odds-preview.txt; then\n"
+                      "              echo 'should_deploy=true' >> \"$GITHUB_OUTPUT\"\n"
+                      "            else\n"
+                      "              echo 'should_deploy=false' >> \"$GITHUB_OUTPUT\"\n"
+                      "            fi\n"
+                      "          else",
+                  ),
+              ],
+              'tests/test_tomorrow_v24.py': [
+                  (
+                      "from tomorrow_v24 import publish_preview, validate_preview",
+                      "from tomorrow_v24 import publish_preview, validate_preview",
+                  ),
+              ],
+          }
+
+
+
+          # A removed preview must never crash all daily results / publication runs.
+          CHANGES['.github/workflows/publish.yml'].extend([
+              (
+                  '          git add -A -- site/data/tomorrow.json\n'
+                  '          if [[ -f site/data/tip-audit-v34.json ]]; then',
+                  '          git add -A -- site/data\n'
+                  '          if [[ -f site/data/tip-audit-v34.json ]]; then',
+              ),
+              (
+                  '          if [[ "$MODE" == "tomorrow" ]]; then\n'
+                  '            python scripts/tomorrow_v24.py state/.candidate.json\n'
+                  '            echo \'should_deploy=true\' >> "$GITHUB_OUTPUT"\n'
+                  '          else',
+                  '          if [[ "$MODE" == "tomorrow" ]]; then\n'
+                  '            python scripts/tomorrow_v24.py state/.candidate.json | tee /tmp/odds-preview.txt\n'
+                  '            if grep -q \'TOMORROW_PREVIEW_CREATED=\' /tmp/odds-preview.txt; then\n'
+                  '              echo \'should_deploy=true\' >> "$GITHUB_OUTPUT"\n'
+                  '            else\n'
+                  '              echo \'should_deploy=false\' >> "$GITHUB_OUTPUT"\n'
+                  '            fi\n'
+                  '          else',
+              ),
+          ])
+          CHANGES['tests/test_tomorrow_v24.py'] = [
+            (
+              '    def test_near_midnight_oslo(self):',
+              '    def test_preview_without_odds_is_not_published(self):\n'
+              '        obj = copy.deepcopy(self.snapshot)\n'
+              '        obj["coverage"]["matchedOdds"] = 0\n'
+              '        with self.assertRaisesRegex(ValueError, "No matching"):\n'
+              '            validate_preview(obj, self.now)\n\n'
+              '    def test_near_midnight_oslo(self):',
+            ),
+          ]
+
+
+          def patch_content(text: str, old: str, new: str, path: str) -> str:
+              if old == new or new in text:
+                  return text
+              occurrences = text.count(old)
+              if occurrences != 1:
+                  raise ValueError(f'{path}: Could not safely locate expected code (found {occurrences}, expected 1).')
+              return text.replace(old, new, 1)
+
+
+          CHANGES.pop('.github/workflows/publish.yml', None)
+
+          def perform():
+              import subprocess
+              root = Path.cwd()
+              if not (root / 'scripts' / 'build_data.py').is_file():
+                  raise RuntimeError('Must be run from the OddsGeneratoren3000 checkout.')
+              proposal = {}
+              for relative, operations in CHANGES.items():
+                  p = root / relative
+                  before = p.read_text(encoding='utf-8')
+                  after = before
+                  for old, new in operations:
+                      after = patch_content(after, old, new, relative)
+                  if before != after:
+                      proposal[p] = after
+              for relative, data in (
+                  ('scripts/matchday_sports_v44.py', HELPER),
+                  ('tests/test_matchday_sports_v44.py', TEST_HELPER),
+              ):
+                  p = root / relative
+                  if p.exists():
+                      if p.read_text(encoding='utf-8') != data:
+                          raise ValueError(f'Existing {relative} differs; stop instead of overwriting')
+                  else:
+                      proposal[p] = data
+              for path, data in proposal.items():
+                  path.parent.mkdir(parents=True, exist_ok=True)
+                  path.write_text(data, encoding='utf-8')
+              subprocess.run(['python', '-m', 'compileall', '-q', 'scripts'], check=True)
+              for name in ('test_matchday_sports_v44.py', 'test_tomorrow_v24.py',
+                           'test_preview_dispatch_v42.py', 'test_international_v43.py'):
+                  subprocess.run(['python', '-m', 'unittest', 'discover', '-s', 'tests',
+                                  '-p', name, '-v'], check=True)
+              print('REPAIR_TESTS_PASSED', len(proposal), 'files adjusted')
+
+
+          if __name__ == '__main__':
+              perform()
+          PY
+      - name: Lagre rettelsene i main
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- scripts/build_data.py scripts/tomorrow_v24.py scripts/matchday_sports_v44.py tests/test_tomorrow_v24.py tests/test_matchday_sports_v44.py
+          if ! git diff --cached --quiet; then
+            git commit -m 'fix: reliable matchday discovery, previews and snapshots'
+            git push origin HEAD:main
+          else
+            echo 'Already repaired.'
+          fi
