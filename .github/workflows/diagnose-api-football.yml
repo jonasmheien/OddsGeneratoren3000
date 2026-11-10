@@ -1,0 +1,104 @@
+name: Diagnose API-Football trygt
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/diagnose-api-football.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kontroller API-Football uten aa vise API-nokkel
+        shell: bash
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+        run: |
+          python - <<'PY'
+          """Tests authenticated API-Football status and one daily-fixture request.
+          Prints only controlled classifications and numeric usage, never raw
+          errors, headers, account data or the private API key.
+          """
+          import json
+          import os
+          from datetime import datetime
+          from urllib.error import HTTPError, URLError
+          from urllib.request import Request, urlopen
+          from zoneinfo import ZoneInfo
+
+          key = (os.environ.get('API_FOOTBALL_KEY') or '').strip()
+          if not key:
+              print('ACCOUNT_STATUS=missing_github_secret')
+              print('FIXTURES_STATUS=not_checked')
+              raise SystemExit(0)
+
+          def error_kind(errors):
+              if not errors:
+                  return 'none'
+              # Examine provider errors internally, but NEVER print their text.
+              content = str(errors).casefold()[:6000]
+              if any(x in content for x in ('invalid key', 'invalid token',
+                     'invalid_api_key', 'invalid api key', 'unauthorized',
+                     'authentication', 'token', 'api key')):
+                  return 'invalid_key_or_auth'
+              if any(x in content for x in ('quota', 'rate limit', 'too many',
+                     'requests limit', 'requests', 'limit reached')):
+                  return 'quota_or_rate_limit'
+              if any(x in content for x in ('subscription', 'season', 'upgrade',
+                     'plan', 'access', 'permission', 'allowed', 'forbidden')):
+                  return 'plan_or_coverage_restriction'
+              return 'unknown_provider_error'
+
+          def request(path):
+              req = Request('https://v3.football.api-sports.io/' + path,
+                            headers={'x-apisports-key': key})
+              try:
+                  with urlopen(req, timeout=20) as response:
+                      payload = json.load(response)
+                  if not isinstance(payload, dict):
+                      return 'invalid_json_shape', None
+                  problem = error_kind(payload.get('errors'))
+                  if problem != 'none':
+                      return problem, None
+                  return 'ok', payload.get('response')
+              except HTTPError as exc:
+                  return 'http_' + str(exc.code), None
+              except URLError:
+                  return 'network_error', None
+              except (TimeoutError, ValueError, TypeError):
+                  return 'invalid_json_or_timeout', None
+
+          status, account = request('status')
+          print('ACCOUNT_STATUS=' + status)
+          if status != 'ok':
+              print('FIXTURES_STATUS=not_checked_account_unavailable')
+              raise SystemExit(0)
+          if not isinstance(account, dict):
+              print('FIXTURES_STATUS=not_checked_invalid_account_response')
+              raise SystemExit(0)
+          subscription = account.get('subscription') or {}
+          quotas = account.get('requests') or {}
+          # Whitelist output: never print account profile, e-mail or raw JSON.
+          plan = str(subscription.get('plan', '')).lower()
+          print('SUBSCRIPTION_PLAN=' + (plan if plan in ('free', 'pro', 'ultra', 'mega') else 'other'))
+          print('SUBSCRIPTION_ACTIVE=' + str(subscription.get('active') is True).lower())
+          used, limit = quotas.get('current'), quotas.get('limit_day')
+          print('REQUESTS_USED=' + (str(used) if type(used) is int else 'unknown'))
+          print('REQUESTS_LIMIT=' + (str(limit) if type(limit) is int else 'unknown'))
+          if type(used) is int and type(limit) is int and used >= limit:
+              print('FIXTURES_STATUS=not_checked_daily_quota_exhausted')
+              raise SystemExit(0)
+          target_day = datetime.now(ZoneInfo('Europe/Oslo')).date().isoformat()
+          result, fixtures = request('fixtures?date=' + target_day)
+          print('FIXTURES_DATE=' + target_day)
+          print('FIXTURES_STATUS=' + result)
+          if result == 'ok':
+              print('FIXTURES_COUNT=' + (str(len(fixtures)) if isinstance(fixtures, list)
+                                        else 'invalid_response_shape'))
+          print('PRIVATE_KEY_NOT_LOGGED=true')
+          PY
