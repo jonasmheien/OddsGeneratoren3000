@@ -38,6 +38,11 @@
       "name": "Eksterne prognoser",
       "role": "Kildeangitte, manuelt innlagte vurderinger",
       "state": "not_connected"
+    },
+    {
+      "name": "Sportmonks",
+      "role": "Verifisert kampform og oppsett i Danmark og Skottland",
+      "state": "connected"
     }
   ],
   "visualAssets": {
@@ -51,15 +56,21 @@
     "minimumConservativeScenarioEdge": 0.02,
     "explanation": "Ukalibrert sannsynlighetsmodell. Kun positiv forventet verdi i et konservativt scenario, ikke påvist langsiktig avkastning."
   },
-  "generatedAt": "2026-11-10T15:54:56.288378+00:00",
+  "generatedAt": "2026-11-10T18:36:36.479450+00:00",
   "localDate": "2026-11-10",
   "dataStatus": {
     "fixtures": "ok",
     "odds": "empty",
     "teamFormRequests": 0,
     "fixtureCount": 0,
-    "apiFootballExtraFixtures": 0,
-    "apiFootballExtraHistory": 0,
+    "sportmonks": {
+      "state": "ok",
+      "matches": 140,
+      "finished": 140,
+      "upcoming": 0,
+      "pages": 3,
+      "error": null
+    },
     "matchdayDiscovery": {
       "targetDate": "2026-11-10",
       "catalogAvailable": true,
@@ -88,9 +99,7 @@
       "message": "ingen kommende kamper"
     }
   },
-  "errors": [
-    "API-Football fixture discovery unavailable: ValueError"
-  ],
+  "errors": [],
   "method": "Konservativ ikke-kalibrert Poisson-baseline fra siste inntil 6 registrerte resultater. Screening er en hypotese, ikke dokumentert positiv forventningsverdi.",
   "matches": [],
   "additionalMarkets": {
