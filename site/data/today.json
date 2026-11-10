@@ -27,7 +27,7 @@
     {
       "name": "The Odds API",
       "role": "Bookmakerodds",
-      "state": "connected"
+      "state": "unavailable"
     },
     {
       "name": "API-Football Predictions",
@@ -51,29 +51,32 @@
     "minimumConservativeScenarioEdge": 0.02,
     "explanation": "Ukalibrert sannsynlighetsmodell. Kun positiv forventet verdi i et konservativt scenario, ikke påvist langsiktig avkastning."
   },
-  "generatedAt": "2026-11-09T09:06:12.867732+00:00",
-  "localDate": "2026-11-09",
+  "generatedAt": "2026-11-10T15:28:12.216880+00:00",
+  "localDate": "2026-11-10",
   "dataStatus": {
     "fixtures": "ok",
-    "odds": "ok",
+    "odds": "empty",
     "teamFormRequests": 0,
-    "fixtureCount": 35,
+    "fixtureCount": 0,
     "apiFootballExtraFixtures": 0,
     "apiFootballExtraHistory": 0,
-    "oddsCreditsRemaining": 211,
-    "requestedLeagues": [
-      "soccer_uefa_europa_league",
-      "soccer_uefa_europa_conference_league"
-    ],
+    "matchdayDiscovery": {
+      "targetDate": "2026-11-10",
+      "catalogAvailable": true,
+      "matchesBySport": {},
+      "selected": [],
+      "errors": []
+    },
+    "internationalSportsSelected": [],
+    "oddsCreditsRemaining": 173,
+    "requestedLeagues": [],
     "oddsMarketKeys": [
       "h2h",
       "totals"
     ],
     "extraEventsLoaded": 0,
-    "oddsEventCount": 18,
-    "oddsFirstFixtures": 0,
-    "externalPredictionsStatus": "empty",
-    "externalPredictionsCount": 0,
+    "oddsEventCount": 0,
+    "externalPredictionsStatus": "not_configured",
     "coverageByLeague": {},
     "analysisReadiness": {
       "upcoming": 0,
@@ -82,7 +85,7 @@
       "recommended": 0,
       "safe": 0,
       "highRisk": 0,
-      "message": "analysert"
+      "message": "ingen kommende kamper"
     }
   },
   "errors": [
@@ -185,7 +188,7 @@
     "rejected": {},
     "trace": []
   },
-  "editionDate": "2026-11-09",
+  "editionDate": "2026-11-10",
   "resultUpdatedAt": null,
   "editionLocked": true
 }
