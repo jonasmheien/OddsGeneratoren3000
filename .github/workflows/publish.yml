@@ -228,12 +228,12 @@ jobs:
           if [[ -f site/data/quality-v42.json ]]; then
             git add -A -- site/data/quality-v42.json site/data/performance-v42.json
           fi
-          git add -A -- site/data/tomorrow.json
+          git add -A -- site/data
           if [[ -f site/data/tip-audit-v34.json ]]; then
             git add -A -- site/data/tip-audit-v34.json
           fi
           if [[ -f site/data/tomorrow.json ]]; then
-            git add -A -- site/data/tomorrow.json
+            git add -A -- site/data
           fi
           # The trigger disappears only after a successful new daily edition.
           # A failed data pull leaves the trigger available for a job re-run.
