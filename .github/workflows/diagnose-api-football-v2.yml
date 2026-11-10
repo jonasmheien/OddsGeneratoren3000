@@ -1,0 +1,92 @@
+name: Diagnose API-Football kampdata
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/diagnose-api-football-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sjekk API-Football status og kamper uten aa vise noekkel
+        shell: bash
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from datetime import datetime
+          from urllib.error import HTTPError, URLError
+          from urllib.request import Request, urlopen
+          from zoneinfo import ZoneInfo
+
+          key = (os.getenv('API_FOOTBALL_KEY') or '').strip()
+          if not key:
+              print('API_SECRET=missing')
+              print('STATUS=not_tested')
+              print('FIXTURES=not_tested')
+              raise SystemExit(0)
+          print('API_SECRET=present')
+
+          def categorize(errors):
+              if not errors:
+                  return 'none'
+              # Only print fixed labels, never API responses, URLs or private values.
+              e = str(errors).casefold()[:6000]
+              if any(s in e for s in ('invalid key', 'invalid token', 'unauthorized', 'authentication', 'invalid_api_key', 'invalid api key')):
+                  return 'invalid_auth'
+              if any(s in e for s in ('quota', 'rate limit', 'too many', 'requests limit', 'limit reached', 'max requests')):
+                  return 'quota_or_rate_limit'
+              if any(s in e for s in ('subscription', 'subscribe', 'not subscribed', 'upgrade', 'plan', 'season', 'not allowed', 'forbidden', 'permission', 'access denied')):
+                  return 'subscription_or_coverage'
+              if 'key' in e or 'token' in e:
+                  return 'key_or_auth_unknown'
+              return 'other_provider_error'
+
+          def request(path):
+              url = 'https://v3.football.api-sports.io/' + path
+              try:
+                  with urlopen(Request(url, headers={'x-apisports-key': key}), timeout=20) as response:
+                      payload = json.load(response)
+                  if not isinstance(payload, dict):
+                      return 'invalid_response_shape', None
+                  kind = categorize(payload.get('errors'))
+                  if kind != 'none':
+                      return kind, None
+                  return 'ok', payload.get('response')
+              except HTTPError as exc:
+                  return 'http_' + str(exc.code), None
+              except (TimeoutError, URLError):
+                  return 'network_or_timeout', None
+              except (ValueError, TypeError):
+                  return 'malformed_response', None
+
+          account_state, account = request('status')
+          print('STATUS=' + account_state)
+          if account_state == 'ok' and isinstance(account, dict):
+              sub = account.get('subscription') or {}
+              usage = account.get('requests') or {}
+              plan = str(sub.get('plan') or '').casefold()
+              print('SUBSCRIPTION=' + (plan if plan in ('free','pro','ultra','mega') else 'unknown'))
+              print('ACTIVE=' + ('true' if sub.get('active') is True else 'false'))
+              count, limit = usage.get('current'), usage.get('limit_day')
+              print('QUOTA=' + (str(count)+'/'+str(limit) if type(count) is int and type(limit) is int else 'unknown'))
+              if type(count) is int and type(limit) is int and count >= limit:
+                  print('FIXTURES=not_tested_quota_exhausted')
+                  raise SystemExit(0)
+          # Test fixtures EVEN if /status is unavailable. This is the actual
+          # endpoint used by OddsGeneratoren. One call only.
+          local_day = datetime.now(ZoneInfo('Europe/Oslo')).date().isoformat()
+          fixture_state, fixtures = request('fixtures?date='+local_day)
+          print('FIXTURES=' + fixture_state)
+          if fixture_state == 'ok':
+              print('FIXTURE_COUNT=' + str(len(fixtures)) if isinstance(fixtures, list) else 'FIXTURE_COUNT=invalid_response_shape')
+          print('KEY_EXPOSED=false')
+          PY
