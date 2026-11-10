@@ -1,0 +1,121 @@
+name: Fullfor Sportmonks v46 uten workflow-endringer
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/installer-sportmonks-v46.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: oddsgeneratoren-state-and-pages
+  cancel-in-progress: false
+
+jobs:
+  installer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hent siste versjon av repoet
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Start fra nyeste main
+        run: |
+          git fetch --quiet origin main
+          git reset --hard origin/main
+      - name: Klargjor original Sportmonks-kode uten aa endre GitHub-workflows
+        shell: bash
+        run: |
+          python - <<'PY'
+          import base64
+          import re
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          root = Path.cwd()
+          original = root / '.github/workflows/integrer-sportmonks-v45.yml'
+          published = root / '.github/workflows/publish.yml'
+          if not original.is_file() or not published.is_file():
+              raise SystemExit('MISSING_SOURCE_OR_PUBLISH')
+          workflow = published.read_text(encoding='utf-8')
+          if 'pythonsscripts' in workflow:
+              raise SystemExit('PUBLISH_STILL_BROKEN')
+          if workflow.count('SPORTMONKS_API_TOKEN: ${{ secrets.SPORTMONKS_API_TOKEN }}') != 2:
+              raise SystemExit('PUBLISH_SECRET_WIRING_MISSING')
+          raw = original.read_text(encoding='utf-8')
+          entries = re.findall(r"Path\('([^']+)'\)\.write_bytes\(base64\.b64decode\('([^']+)'\)\)", raw)
+          expected = {
+              'scripts/sportmonks_v45.py',
+              'tests/test_sportmonks_v45.py',
+              'state/.sportmonks_install_v45.py',
+          }
+          if len(entries) != len(expected) or {path for path, _ in entries} != expected:
+              raise SystemExit('INSTALLER_PAYLOAD_MISMATCH')
+          for path, encoded in entries:
+              target = root / path
+              target.parent.mkdir(parents=True, exist_ok=True)
+              target.write_bytes(base64.b64decode(encoded, validate=True))
+          patch_file = root / 'state/.sportmonks_install_v45.py'
+          patch_script = patch_file.read_text(encoding='utf-8')
+          # v45 also patches publish.yml. It is already repaired manually;
+          # GitHub Actions is prohibited from pushing workflow-file changes.
+          marker = "patch('.github/workflows/publish.yml', ["
+          if patch_script.count(marker) != 1:
+              raise SystemExit('WORKFLOW_PATCH_MARKER_MISSING')
+          patch_script = patch_script.split(marker, 1)[0]
+          patch_file.write_text(patch_script, encoding='utf-8')
+          subprocess.run([sys.executable, str(patch_file)], check=True)
+          patch_file.unlink()
+          print('SPORTMONKS_CODE_PREPARED=true')
+          PY
+          git diff --exit-code -- .github/workflows/publish.yml
+          python -m py_compile scripts/sportmonks_v45.py scripts/build_data.py scripts/lifecycle.py
+      - name: Test hele generatoren og ny datakilde
+        run: |
+          python -m unittest discover -s tests -q
+      - name: Bekreft at Sportmonks leverer faktiske resultater
+        shell: bash
+        env:
+          SPORTMONKS_API_TOKEN: ${{ secrets.SPORTMONKS_API_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os
+          from datetime import datetime, timezone
+          from zoneinfo import ZoneInfo
+          from scripts.sportmonks_v45 import discover
+          token=(os.getenv('SPORTMONKS_API_TOKEN') or '').strip()
+          if not token:
+              raise SystemExit('SPORTMONKS_SECRET_MISSING')
+          now=datetime.now(timezone.utc)
+          day=now.astimezone(ZoneInfo('Europe/Oslo')).date()
+          matches, status=discover(day,now,token)
+          print('SPORTMONKS_PROVIDER='+status['state'])
+          print('SPORTMONKS_MATCHES='+str(len(matches)))
+          print('SPORTMONKS_FINISHED='+str(status['finished']))
+          if status['state'] != 'ok' or status['finished'] < 1:
+              raise SystemExit('SPORTMONKS_PROVIDER_VALIDATION_FAILED')
+          PY
+      - name: Lagre kun Python-kode og tester, aldri workflow-filer
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- \
+            scripts/sportmonks_v45.py \
+            tests/test_sportmonks_v45.py \
+            scripts/build_data.py \
+            scripts/odds_first_v25.py \
+            scripts/form_history_v38.py \
+            scripts/lifecycle.py
+          if ! git diff --cached --quiet; then
+            git commit -m 'feat: connect Sportmonks free feed for Denmark and Scotland'
+            git push origin HEAD:main
+          fi
+          echo 'SPORTMONKS_INTEGRATION_COMMITTED=true'
