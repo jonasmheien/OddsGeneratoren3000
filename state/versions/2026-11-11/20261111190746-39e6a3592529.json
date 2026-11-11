@@ -1,0 +1,217 @@
+{
+  "date": "2026-11-11",
+  "before": "2026-11-11T16:09:20.817660+00:00",
+  "after": "2026-11-11T19:07:46.422431+00:00",
+  "changeCounts": {
+    "removed": 0,
+    "added": 0,
+    "repriced": 0
+  },
+  "removed": [],
+  "added": [],
+  "repriced": [],
+  "previousEdition": {
+    "version": 3,
+    "recommendations": [],
+    "safeBets": [],
+    "highRisk": [],
+    "coverage": {
+      "upcomingMatches": 0,
+      "matchedOdds": 0,
+      "withModel": 0,
+      "externalPredictions": 0,
+      "manualPredictions": 0,
+      "apiPredictions": 0,
+      "safeFound": 0,
+      "highFound": 0,
+      "targetPerCategory": [
+        3,
+        5
+      ],
+      "qualified": 0
+    },
+    "sources": [
+      {
+        "name": "football-data.org",
+        "role": "Kampdata og form",
+        "state": "connected"
+      },
+      {
+        "name": "The Odds API",
+        "role": "Bookmakerodds",
+        "state": "unavailable"
+      },
+      {
+        "name": "API-Football Predictions",
+        "role": "Uavhengig modell",
+        "state": "not_connected"
+      },
+      {
+        "name": "Eksterne prognoser",
+        "role": "Kildeangitte, manuelt innlagte vurderinger",
+        "state": "not_connected"
+      },
+      {
+        "name": "Sportmonks",
+        "role": "Verifisert kampform og oppsett i Danmark og Skottland",
+        "state": "connected"
+      }
+    ],
+    "visualAssets": {
+      "licensedCrests": false
+    },
+    "qualityGate": {
+      "minimumFormMatchesPerTeam": 5,
+      "minimumSpecialStatisticsPerTeam": 8,
+      "maximumOddsAgeHours": 6,
+      "oneBookmakerRequiresSamples": 8,
+      "minimumConservativeScenarioEdge": 0.02,
+      "explanation": "Ukalibrert sannsynlighetsmodell. Kun positiv forventet verdi i et konservativt scenario, ikke påvist langsiktig avkastning."
+    },
+    "generatedAt": "2026-11-11T16:09:20.817660+00:00",
+    "localDate": "2026-11-11",
+    "dataStatus": {
+      "fixtures": "ok",
+      "odds": "empty",
+      "teamFormRequests": 0,
+      "fixtureCount": 0,
+      "sportmonks": {
+        "state": "ok",
+        "matches": 138,
+        "finished": 138,
+        "upcoming": 0,
+        "pages": 3,
+        "error": null
+      },
+      "matchdayDiscovery": {
+        "targetDate": "2026-11-11",
+        "catalogAvailable": true,
+        "matchesBySport": {},
+        "selected": [],
+        "errors": []
+      },
+      "internationalSportsSelected": [],
+      "oddsCreditsRemaining": 173,
+      "requestedLeagues": [],
+      "oddsMarketKeys": [
+        "h2h",
+        "totals"
+      ],
+      "extraEventsLoaded": 0,
+      "oddsEventCount": 0,
+      "externalPredictionsStatus": "not_configured",
+      "coverageByLeague": {},
+      "analysisReadiness": {
+        "upcoming": 0,
+        "matchedOdds": 0,
+        "withModel": 0,
+        "recommended": 0,
+        "safe": 0,
+        "highRisk": 0,
+        "message": "ingen kommende kamper"
+      }
+    },
+    "errors": [],
+    "method": "Konservativ ikke-kalibrert Poisson-baseline fra siste inntil 6 registrerte resultater. Screening er en hypotese, ikke dokumentert positiv forventningsverdi.",
+    "matches": [],
+    "additionalMarkets": {
+      "tips": [],
+      "watchlist": [],
+      "coverage": {
+        "Hjørnespark": 0,
+        "Kort": 0,
+        "Målscorer": 0,
+        "Mål": 0,
+        "Lagmål": 0,
+        "1. omgang": 0,
+        "Begge lag scorer": 0
+      },
+      "marketFamilies": [
+        {
+          "key": "corners",
+          "label": "Hjørnespark",
+          "availableQuotes": 0
+        },
+        {
+          "key": "cards",
+          "label": "Kort",
+          "availableQuotes": 0
+        },
+        {
+          "key": "goalscorer",
+          "label": "Målscorer",
+          "availableQuotes": 0
+        },
+        {
+          "key": "goals",
+          "label": "Mål",
+          "availableQuotes": 0
+        },
+        {
+          "key": "team_goals",
+          "label": "Lagmål",
+          "availableQuotes": 0
+        },
+        {
+          "key": "first_half",
+          "label": "1. omgang",
+          "availableQuotes": 0
+        },
+        {
+          "key": "btts",
+          "label": "Begge lag scorer",
+          "availableQuotes": 0
+        }
+      ],
+      "issues": [],
+      "providerRequests": 0,
+      "notes": "Kun verifiserte bookmakerpriser. For kort/hjørnespark kreves historiske data. Målscorer krever bekreftet startoppstilling."
+    },
+    "scorePredictions": {
+      "games": [],
+      "sourceForecasts": 0,
+      "fixturesWithConsensus": 0,
+      "issues": [],
+      "method": "Lik vekt for ulike, kildeangitte resultattips; krever minst to uavhengige kilder for samlet prognose",
+      "coverageNote": "Forebet, Vitibet, PredictZ og WinDrawWin kan inkluderes ved manuelt registrerte, datostemplede resultattips med kildelenker. Kildeinnholdet kontrolleres ikke automatisk. API-Football krever egen API-nøkkel. Egen modell holdes separat."
+    },
+    "observations": [],
+    "modelVersion": "2.0-foundation",
+    "qualityAudit": {
+      "screened": 0,
+      "qualified": 0,
+      "topLimit": 5,
+      "observations": 0,
+      "rejections": {},
+      "calibrated": false,
+      "method": "Eksplisitt sensitivitetsscenario, markedsforankring og usikkerhetstrekk; ikke validert som konfidensintervall",
+      "coverageLimit": "Tilgjengelige kilde-/bookmakerodds, ikke alle globale markeder",
+      "whyNoPicks": "Ingen tips bestod den usikkerhetsjusterte verdikontrollen. Se rejection-tall for årsaker."
+    },
+    "interestingObjects": [],
+    "finalSelection": {
+      "version": 40,
+      "policy": "one_active_selection_per_real_fixture",
+      "categories": {
+        "safe": 0,
+        "high": 0,
+        "watch": 0
+      },
+      "target": [
+        3,
+        5
+      ],
+      "shortfalls": {
+        "safe": "For få konfliktfrie, kildebaserte kandidater.",
+        "high": "For få konfliktfrie, kildebaserte kandidater.",
+        "watch": "For få konfliktfrie, kildebaserte kandidater."
+      },
+      "rejected": {},
+      "trace": []
+    },
+    "editionDate": "2026-11-11",
+    "resultUpdatedAt": null,
+    "editionLocked": true
+  },
+  "note": "Utelatt tips er ikke automatisk dokumentert å ha mistet oddsverdi."
+}
