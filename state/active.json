@@ -56,8 +56,8 @@
     "minimumConservativeScenarioEdge": 0.02,
     "explanation": "Ukalibrert sannsynlighetsmodell. Kun positiv forventet verdi i et konservativt scenario, ikke påvist langsiktig avkastning."
   },
-  "generatedAt": "2026-11-10T19:19:46.810071+00:00",
-  "localDate": "2026-11-10",
+  "generatedAt": "2026-11-11T08:54:14.748595+00:00",
+  "localDate": "2026-11-11",
   "dataStatus": {
     "fixtures": "ok",
     "odds": "empty",
@@ -65,14 +65,14 @@
     "fixtureCount": 0,
     "sportmonks": {
       "state": "ok",
-      "matches": 140,
-      "finished": 140,
+      "matches": 138,
+      "finished": 138,
       "upcoming": 0,
       "pages": 3,
       "error": null
     },
     "matchdayDiscovery": {
-      "targetDate": "2026-11-10",
+      "targetDate": "2026-11-11",
       "catalogAvailable": true,
       "matchesBySport": {},
       "selected": [],
@@ -197,7 +197,7 @@
     "rejected": {},
     "trace": []
   },
-  "editionDate": "2026-11-10",
+  "editionDate": "2026-11-11",
   "resultUpdatedAt": null,
   "editionLocked": true
 }
