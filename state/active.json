@@ -13,9 +13,9 @@
       "label": "Hjemmeseier",
       "price": 1.25,
       "bookmakers": 18,
-      "oddsUpdatedAt": "2026-11-12T19:11:37Z",
+      "oddsUpdatedAt": "2026-11-12T19:14:44Z",
       "oddsSource": "The Odds API · bookmaker-median",
-      "probability": 0.7595,
+      "probability": 0.7581,
       "category": "safe",
       "qualificationTier": "market",
       "_candidateType": "market",
@@ -47,7 +47,7 @@
       "label": "Hjemmeseier",
       "price": 1.27,
       "bookmakers": 16,
-      "oddsUpdatedAt": "2026-11-12T19:11:37Z",
+      "oddsUpdatedAt": "2026-11-12T19:14:44Z",
       "oddsSource": "The Odds API · bookmaker-median",
       "probability": 0.739,
       "category": "safe",
@@ -81,7 +81,7 @@
       "label": "Over 2,5 mål",
       "price": 1.58,
       "bookmakers": 9,
-      "oddsUpdatedAt": "2026-11-12T19:11:37Z",
+      "oddsUpdatedAt": "2026-11-12T19:14:44Z",
       "oddsSource": "The Odds API · bookmaker-median",
       "probability": 0.5875,
       "category": "safe",
@@ -117,7 +117,7 @@
       "label": "Borteseier",
       "price": 3.98,
       "bookmakers": 16,
-      "oddsUpdatedAt": "2026-11-12T19:11:37Z",
+      "oddsUpdatedAt": "2026-11-12T19:14:44Z",
       "oddsSource": "The Odds API · bookmaker-median",
       "probability": 0.3525,
       "category": "high",
@@ -149,16 +149,16 @@
       "market": "U25",
       "marketType": "total_goals",
       "label": "Under 2,5 mål",
-      "price": 2.52,
+      "price": 2.48,
       "bookmakers": 3,
-      "oddsUpdatedAt": "2026-11-12T19:11:37Z",
+      "oddsUpdatedAt": "2026-11-12T19:14:20Z",
       "oddsSource": "The Odds API · bookmaker-median",
       "probability": 0.425,
       "category": "high",
       "qualificationTier": "model",
       "_candidateType": "model",
       "rationale": [
-        "Modellkandidat: 42 % formanslag mot 37 % fra bookmakerodds.",
+        "Modellkandidat: 42 % formanslag mot 38 % fra bookmakerodds.",
         "Ikke historisk kalibrert eller godkjent som dokumentert verdiobjekt."
       ],
       "fixtureKey": "2026-11-12|czechrepublic|spain",
@@ -185,7 +185,7 @@
       "label": "Hjemmeseier",
       "price": 3.77,
       "bookmakers": 18,
-      "oddsUpdatedAt": "2026-11-12T19:11:37Z",
+      "oddsUpdatedAt": "2026-11-12T19:14:44Z",
       "oddsSource": "The Odds API · bookmaker-median",
       "probability": 0.2498,
       "category": "high",
@@ -269,7 +269,7 @@
     "minimumConservativeScenarioEdge": 0.02,
     "explanation": "Ukalibrert sannsynlighetsmodell. Kun positiv forventet verdi i et konservativt scenario, ikke påvist langsiktig avkastning."
   },
-  "generatedAt": "2026-11-12T19:11:43.301355+00:00",
+  "generatedAt": "2026-11-12T19:14:42.487377+00:00",
   "localDate": "2026-11-12",
   "dataStatus": {
     "fixtures": "ok",
@@ -298,7 +298,7 @@
     "internationalSportsSelected": [
       "soccer_uefa_nations_league"
     ],
-    "oddsCreditsRemaining": 124,
+    "oddsCreditsRemaining": 122,
     "requestedLeagues": [
       "soccer_uefa_nations_league"
     ],
@@ -721,49 +721,49 @@
           "price": 2.08,
           "source": "The Odds API · bookmaker-median",
           "books": 16,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "leovegas_se"
         },
         "B": {
           "price": 3.98,
           "source": "The Odds API · bookmaker-median",
           "books": 16,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "leovegas_se"
         },
         "U": {
           "price": 3.01,
           "source": "The Odds API · bookmaker-median",
           "books": 16,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "betanysports"
         },
         "O15": {
           "price": 1.53,
           "source": "The Odds API · bookmaker-median",
           "books": 5,
-          "lastUpdated": "2026-11-12T19:11:19Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "leovegas_se"
         },
         "U15": {
           "price": 2.43,
           "source": "The Odds API · bookmaker-median",
           "books": 5,
-          "lastUpdated": "2026-11-12T19:11:19Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "leovegas_se"
         },
         "O25": {
-          "price": 2.69,
+          "price": 2.66,
           "source": "The Odds API · bookmaker-median",
           "books": 4,
-          "lastUpdated": "2026-11-12T19:11:37Z",
-          "sampleBook": "williamhill"
+          "lastUpdated": "2026-11-12T19:14:20Z",
+          "sampleBook": "betsson"
         },
         "U25": {
-          "price": 1.44,
+          "price": 1.46,
           "source": "The Odds API · bookmaker-median",
           "books": 4,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:20Z",
           "sampleBook": "betsson"
         }
       },
@@ -1155,35 +1155,35 @@
           "price": 1.1,
           "source": "The Odds API · bookmaker-median",
           "books": 16,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "williamhill"
         },
         "H": {
-          "price": 23.5,
+          "price": 24.0,
           "source": "The Odds API · bookmaker-median",
           "books": 16,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "onexbet"
         },
         "U": {
           "price": 8.5,
           "source": "The Odds API · bookmaker-median",
           "books": 16,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "unibet_se"
         },
         "O25": {
           "price": 1.58,
           "source": "The Odds API · bookmaker-median",
           "books": 9,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "mybookieag"
         },
         "U25": {
           "price": 2.25,
           "source": "The Odds API · bookmaker-median",
           "books": 9,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "williamhill"
         }
       },
@@ -1570,52 +1570,52 @@
       },
       "odds": {
         "B": {
-          "price": 10.72,
+          "price": 10.5,
           "source": "The Odds API · bookmaker-median",
           "books": 18,
-          "lastUpdated": "2026-11-12T19:11:37Z",
-          "sampleBook": "onexbet"
+          "lastUpdated": "2026-11-12T19:14:44Z",
+          "sampleBook": "betsson"
         },
         "H": {
           "price": 1.25,
           "source": "The Odds API · bookmaker-median",
           "books": 18,
-          "lastUpdated": "2026-11-12T19:11:37Z",
-          "sampleBook": "williamhill"
+          "lastUpdated": "2026-11-12T19:14:44Z",
+          "sampleBook": "betsson"
         },
         "U": {
           "price": 6.25,
           "source": "The Odds API · bookmaker-median",
           "books": 18,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "winamax_de"
         },
         "O35": {
           "price": 2.08,
           "source": "The Odds API · bookmaker-median",
           "books": 7,
-          "lastUpdated": "2026-11-12T19:11:19Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "betonlineag"
         },
         "U35": {
           "price": 1.69,
           "source": "The Odds API · bookmaker-median",
           "books": 7,
-          "lastUpdated": "2026-11-12T19:11:19Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "mybookieag"
         },
         "O25": {
-          "price": 1.41,
+          "price": 1.39,
           "source": "The Odds API · bookmaker-median",
           "books": 3,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:20Z",
           "sampleBook": "betsson"
         },
         "U25": {
-          "price": 2.85,
+          "price": 2.95,
           "source": "The Odds API · bookmaker-median",
           "books": 3,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:20Z",
           "sampleBook": "betsson"
         }
       },
@@ -2004,49 +2004,49 @@
           "price": 12.0,
           "source": "The Odds API · bookmaker-median",
           "books": 18,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "onexbet"
         },
         "B": {
-          "price": 1.23,
+          "price": 1.22,
           "source": "The Odds API · bookmaker-median",
           "books": 18,
-          "lastUpdated": "2026-11-12T19:11:37Z",
-          "sampleBook": "betsson"
+          "lastUpdated": "2026-11-12T19:14:44Z",
+          "sampleBook": "williamhill"
         },
         "U": {
           "price": 6.75,
           "source": "The Odds API · bookmaker-median",
           "books": 18,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "onexbet"
         },
         "O35": {
           "price": 2.33,
           "source": "The Odds API · bookmaker-median",
           "books": 6,
-          "lastUpdated": "2026-11-12T19:11:19Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "unibet_se"
         },
         "U35": {
           "price": 1.58,
           "source": "The Odds API · bookmaker-median",
           "books": 6,
-          "lastUpdated": "2026-11-12T19:11:19Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "unibet_se"
         },
         "O25": {
           "price": 1.5,
           "source": "The Odds API · bookmaker-median",
           "books": 3,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:20Z",
           "sampleBook": "williamhill"
         },
         "U25": {
-          "price": 2.52,
+          "price": 2.48,
           "source": "The Odds API · bookmaker-median",
           "books": 3,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:20Z",
           "sampleBook": "betsson"
         }
       },
@@ -2435,35 +2435,35 @@
           "price": 1.9,
           "source": "The Odds API · bookmaker-median",
           "books": 18,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "pinnacle"
         },
         "H": {
           "price": 3.77,
           "source": "The Odds API · bookmaker-median",
           "books": 18,
-          "lastUpdated": "2026-11-12T19:11:37Z",
-          "sampleBook": "williamhill"
+          "lastUpdated": "2026-11-12T19:14:44Z",
+          "sampleBook": "winamax_de"
         },
         "U": {
           "price": 3.7,
           "source": "The Odds API · bookmaker-median",
           "books": 18,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "winamax_fr"
         },
         "O25": {
           "price": 1.67,
           "source": "The Odds API · bookmaker-median",
           "books": 9,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "williamhill"
         },
         "U25": {
           "price": 2.14,
           "source": "The Odds API · bookmaker-median",
           "books": 9,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "pmu_fr"
         }
       },
@@ -2851,36 +2851,36 @@
           "price": 10.5,
           "source": "The Odds API · bookmaker-median",
           "books": 16,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "leovegas_se"
         },
         "H": {
           "price": 1.27,
           "source": "The Odds API · bookmaker-median",
           "books": 16,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "unibet_se"
         },
         "U": {
           "price": 5.47,
           "source": "The Odds API · bookmaker-median",
           "books": 16,
-          "lastUpdated": "2026-11-12T19:11:37Z",
+          "lastUpdated": "2026-11-12T19:14:44Z",
           "sampleBook": "leovegas_se"
         },
         "O25": {
-          "price": 1.77,
+          "price": 1.73,
           "source": "The Odds API · bookmaker-median",
           "books": 10,
-          "lastUpdated": "2026-11-12T19:11:37Z",
-          "sampleBook": "mybookieag"
+          "lastUpdated": "2026-11-12T19:14:44Z",
+          "sampleBook": "betsson"
         },
         "U25": {
-          "price": 2.01,
+          "price": 2.02,
           "source": "The Odds API · bookmaker-median",
           "books": 10,
-          "lastUpdated": "2026-11-12T19:11:37Z",
-          "sampleBook": "williamhill"
+          "lastUpdated": "2026-11-12T19:14:44Z",
+          "sampleBook": "betsson"
         }
       },
       "predictions": []
@@ -3044,7 +3044,7 @@
       "label": "Borteseier",
       "price": 3.98,
       "probability": 0.3525,
-      "oddsUpdatedAt": "2026-11-12T19:11:37Z",
+      "oddsUpdatedAt": "2026-11-12T19:14:44Z",
       "bookmakers": 16,
       "status": "observation",
       "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
@@ -3060,7 +3060,7 @@
       "label": "Borteseier",
       "price": 10.5,
       "probability": 0.1305,
-      "oddsUpdatedAt": "2026-11-12T19:11:37Z",
+      "oddsUpdatedAt": "2026-11-12T19:14:44Z",
       "bookmakers": 16,
       "status": "observation",
       "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
@@ -3076,7 +3076,7 @@
       "label": "Over 3,5 mål",
       "price": 2.08,
       "probability": 0.6011,
-      "oddsUpdatedAt": "2026-11-12T19:11:19Z",
+      "oddsUpdatedAt": "2026-11-12T19:14:44Z",
       "bookmakers": 7,
       "status": "observation",
       "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
@@ -3092,7 +3092,7 @@
       "label": "Over 2,5 mål",
       "price": 1.58,
       "probability": 0.7262,
-      "oddsUpdatedAt": "2026-11-12T19:11:37Z",
+      "oddsUpdatedAt": "2026-11-12T19:14:44Z",
       "bookmakers": 9,
       "status": "observation",
       "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
@@ -3108,7 +3108,7 @@
       "label": "Uavgjort",
       "price": 6.75,
       "probability": 0.1595,
-      "oddsUpdatedAt": "2026-11-12T19:11:37Z",
+      "oddsUpdatedAt": "2026-11-12T19:14:44Z",
       "bookmakers": 18,
       "status": "observation",
       "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
@@ -3124,24 +3124,8 @@
       "label": "Under 1,5 mål",
       "price": 2.43,
       "probability": 0.4423,
-      "oddsUpdatedAt": "2026-11-12T19:11:19Z",
+      "oddsUpdatedAt": "2026-11-12T19:14:44Z",
       "bookmakers": 5,
-      "status": "observation",
-      "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
-    },
-    {
-      "matchId": "odds:87441c4ff41ea3d37812826345450408",
-      "home": "Czech Republic",
-      "away": "Spain",
-      "league": "UEFA Nations League",
-      "kickoff": "2026-11-12T19:45:00+00:00",
-      "market": "U25",
-      "marketType": "goals",
-      "label": "Under 2,5 mål",
-      "price": 2.52,
-      "probability": 0.425,
-      "oddsUpdatedAt": "2026-11-12T19:11:37Z",
-      "bookmakers": 3,
       "status": "observation",
       "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
     },
@@ -3156,8 +3140,24 @@
       "label": "Hjemmeseier",
       "price": 1.25,
       "probability": 0.8531,
-      "oddsUpdatedAt": "2026-11-12T19:11:37Z",
+      "oddsUpdatedAt": "2026-11-12T19:14:44Z",
       "bookmakers": 18,
+      "status": "observation",
+      "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+    },
+    {
+      "matchId": "odds:87441c4ff41ea3d37812826345450408",
+      "home": "Czech Republic",
+      "away": "Spain",
+      "league": "UEFA Nations League",
+      "kickoff": "2026-11-12T19:45:00+00:00",
+      "market": "U25",
+      "marketType": "goals",
+      "label": "Under 2,5 mål",
+      "price": 2.48,
+      "probability": 0.425,
+      "oddsUpdatedAt": "2026-11-12T19:14:20Z",
+      "bookmakers": 3,
       "status": "observation",
       "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
     }
@@ -3266,13 +3266,13 @@
       },
       {
         "fixture": "2026-11-12|czechrepublic|spain",
-        "market": "O25",
+        "market": "U35",
         "reason": "same_fixture_or_correlated_outcome",
         "selectedMarket": "U25"
       },
       {
         "fixture": "2026-11-12|czechrepublic|spain",
-        "market": "U35",
+        "market": "O25",
         "reason": "same_fixture_or_correlated_outcome",
         "selectedMarket": "U25"
       },
