@@ -27,7 +27,8 @@
     birminghamcity:'birmingham',cardiffcity:'cardiff',charltonathletic:'charlton',
     sheffieldunited:'sheffieldutd',queensparkrangers:'qpr',
     westbromwichalbion:'westbrom',nottinghamforest:'nottingham',
-    manchestercity:'mancity',tottenhamhotspur:'tottenham'
+    manchestercity:'mancity',tottenhamhotspur:'tottenham',
+    czechia:'czechrepublic',turkiye:'turkey',republicofireland:'ireland'
   };
   const team=name=>{
     const norm=String(name||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'')
@@ -43,7 +44,10 @@
   const upcoming=(p,edition,now)=>Number.isFinite(kickoff(p))&&kickoff(p)>+now&&
     osloDay(p.kickoff)===dayOf(edition)&&!!p.home&&!!p.away&&
     !!p.matchId&&!!p.market&&!!p.label&&Number.isFinite(Number(p.price))&&Number(p.price)>1;
-  const groups=edition=>({safe:Array.isArray(edition?.safeBets)?edition.safeBets:[],
+  const groups=edition=>({
+    qualified:edition?.finalSelection?.rankedRecommendations===true&&Array.isArray(edition?.recommendations)
+      ?edition.recommendations.filter(p=>p?.qualificationTier==='qualified'):[],
+    safe:Array.isArray(edition?.safeBets)?edition.safeBets:[],
     high:Array.isArray(edition?.highRisk)?edition.highRisk:[],
     watch:Array.isArray(edition?.interestingObjects)?edition.interestingObjects:[]});
   const starts=edition=>Object.values(groups(edition)).flat().map(kickoff).filter(Number.isFinite);
@@ -66,16 +70,16 @@
     const expired=dayOf(edition)<osloDay(now)||(!useTomorrow&&future.length>0&&future.every(x=>x<=+now));
     // v39 files predate backend authority. Never re-create bets in the client.
     const isAuthoritative=edition?.finalSelection?.version===40;
-    const original=isAuthoritative?groups(edition):{safe:[],high:[],watch:[]};
+    const original=isAuthoritative?groups(edition):{qualified:[],safe:[],high:[],watch:[]};
     // Never show the same real match twice, even in older v40 preview JSON.
     // This only removes invalid duplicates, never creates or promotes bets.
-    const selected={safe:[],high:[],watch:[]},seen=new Set();
-    for(const group of ['safe','high','watch']){
+    const selected={qualified:[],safe:[],high:[],watch:[]},seen=new Set();
+    for(const group of ['qualified','safe','high','watch']){
       for(const p of (expired?[]:original[group])){
         if(!upcoming(p,edition,now))continue;
         const identity=fixtureIdentity(p);
         if(!identity||seen.has(identity))continue;
-        if(selected[group].length>=5)break;
+        if(group!=='qualified'&&selected[group].length>=5)break;
         seen.add(identity);
         selected[group].push(p);
       }

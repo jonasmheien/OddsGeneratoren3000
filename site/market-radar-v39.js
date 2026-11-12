@@ -152,7 +152,8 @@
     if(count)count.textContent=String(visible);
     const summary=document.getElementById('og-search-summary');
     if(query && summary){
-      const original=Array.from(document.querySelectorAll('.og-category .tf-card')).filter(c=>!c.hidden).length;
+      const original=Array.from(document.querySelectorAll('.og-category .tf-card, #tf-qualified:not([hidden]) .tf-card'))
+        .filter(c=>!c.hidden).length;
       summary.textContent=`${original+visible} treff på «${document.getElementById('og-search')?.value.trim()||''}»`;
     }
   }

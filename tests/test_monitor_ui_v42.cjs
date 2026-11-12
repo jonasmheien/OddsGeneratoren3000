@@ -9,6 +9,6 @@ assert.match(s,/get\('quality-v42'\)/);
 assert.match(s,/get\('performance-v42'\)/);
 assert.match(s,/id="tf-monitor"/);
 assert.match(s,/For få kamper til å fastslå dokumentert verdi/);
-assert.match(html,/three-fields-v26\.js\?v=42/);
-assert.match(html,/three-fields-v26\.css\?v=42/);
+assert.match(html,/three-fields-v26\.js\?v=\d+/);
+assert.match(html,/three-fields-v26\.css\?v=\d+/);
 console.log('PASS: monitor is in shared v41 view, no new betting picks created');

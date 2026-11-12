@@ -17,6 +17,7 @@ from urllib.request import Request, urlopen
 from versions_v22 import record_revision, publish_version_history
 from expanded_sources_v23 import results_for
 from sportmonks_v45 import results_for as sportmonks_results_for
+from market_expansion import TEAM_TOTAL_LINES
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE = ROOT / 'state' / 'active.json'
@@ -46,12 +47,15 @@ def pick_outcome(market: str, home: int, away: int):
     if market=='U':return home==away
     if market=='B':return home<away
     if market=='BTTS':return home>0 and away>0
+    if market=='BTTSN':return home==0 or away==0
     if market.startswith(('O','U')) and market[1:] in ('15','25','35'):
         line=int(market[1:])/10
         return (home+away>line) if market.startswith('O') else (home+away<line)
-    if market.startswith(('THO','TAO')) and market[3:] in ('05','15'):
-        side=home if market.startswith('THO') else away
-        return side>int(market[3:])/10
+    if market.startswith(('THO','THU','TAO','TAU')) and market[3:] in {
+            f'{int(line * 10):02d}' for line in TEAM_TOTAL_LINES}:
+        goals = home if market.startswith('TH') else away
+        line = int(market[3:]) / 10
+        return goals > line if market[2] == 'O' else goals < line
     if market.startswith('H1') and market[2:] in ('O05','O15','U15'):
         code=market[2:]
         return (home+away>int(code[1:])/10) if code[0]=='O' else (home+away<int(code[1:])/10)

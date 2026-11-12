@@ -22,6 +22,7 @@
     {key:'high', target:'og-high', title:'High Risk', desc:'Høyere odds og risiko', icon:'zap'},
     {key:'watch', target:'og-watch', title:'Interessante objekter', desc:'Kamper og markeder til vurdering', icon:'eye'}
   ];
+  const cardSections = [{key:'qualified', target:'tf-qualified'}, ...config];
   const tokens = Object.freeze({qualified:'Kvalifisert',model:'Modellkandidat',market:'Markedskandidat',observation:'Observasjon'});
   const trustFromCard = (card, key) => {
     if (key === 'watch') return 'observation';
@@ -120,8 +121,8 @@
   }
   function decorateCards() {
     let total=0;
-    for(const c of config){
-      const section=$(c.target);if(!section)continue;
+    for(const c of cardSections){
+      const section=$(c.target);if(!section||section.hidden)continue;
       for(const card of section.querySelectorAll('.tf-card')){
         total++;
         // The legacy renderer has two text nodes around an en dash. Wrap the
@@ -152,7 +153,11 @@
     return total;
   }
   function allCards() {
-    return config.flatMap(c=>Array.from($(c.target)?.querySelectorAll('.tf-card')||[]).map(card=>({card,category:c.key})));
+    return cardSections.flatMap(c=>{
+      const section=$(c.target);
+      return !section||section.hidden?[]:Array.from(section.querySelectorAll('.tf-card'))
+        .map(card=>({card,category:c.key}));
+    });
   }
   function applySearch() {
     let found=0;
@@ -161,8 +166,8 @@
       const matches=!query||query.split(/\s+/).every(part=>text.includes(part));
       card.hidden=!matches;if(matches)found++;
     }
-    for(const c of config){
-      const section=$(c.target);if(!section)continue;
+    for(const c of cardSections){
+      const section=$(c.target);if(!section||section.hidden)continue;
       const list=section.querySelector('.tf-list');
       if(!list)continue;
       let empty=list.querySelector('.og-filter-empty');
@@ -170,6 +175,8 @@
       if(orig)orig.hidden=!!query;
       const cards=Array.from(list.querySelectorAll('.tf-card'));
       const visibleCount=cards.filter(card=>!card.hidden).length;
+      const more=section.querySelector('details.tf-more');
+      if(query&&more&&Array.from(more.querySelectorAll('.tf-card')).some(card=>!card.hidden))more.open=true;
       const counter=section.querySelector('header > span:not(.og-section-icon)');
       if(counter)counter.textContent=String(query?visibleCount:cards.length);
       if(query && visibleCount===0){
@@ -210,6 +217,8 @@
   }
   function updateFeatured() {
     const list=$('og-featured-list');if(!list)return;
+    const ranked=$('tf-qualified');
+    if(ranked&&!ranked.hidden){featured.hidden=true;return;}
     const choices=[...Array.from($('og-safe')?.querySelectorAll('.tf-card')||[]).map(card=>({card,category:'safe'})),
       ...Array.from($('og-high')?.querySelectorAll('.tf-card')||[]).map(card=>({card,category:'high'}))];
     list.replaceChildren();

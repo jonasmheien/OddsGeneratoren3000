@@ -11,7 +11,7 @@ const vm = require('node:vm');
 const visibleV40=require('../site/visible-selection-v40.js');
 
 const ANCHOR = "  document.addEventListener('DOMContentLoaded',()=>{";
-const GROUPS = ['high', 'safe', 'watch'];
+const GROUPS = ['qualified', 'high', 'safe', 'watch'];
 const stableHash = obj => crypto.createHash('sha256').update(JSON.stringify(obj)).digest('hex').slice(0,24);
 function localDay(date) {
   return new Intl.DateTimeFormat('en-CA', {timeZone:'Europe/Oslo',year:'numeric',month:'2-digit',day:'2-digit'}).format(date);
@@ -131,7 +131,8 @@ function archiveSnapshot(root,{now=new Date()}={}) {
   const old=fs.existsSync(location)?JSON.parse(fs.readFileSync(location,'utf8')):null;
   if(old && (old.schemaVersion!==34||old.editionDate!==day||!Array.isArray(old.revisions)))throw new Error('Existing journal has unknown schema');
   if(old?.revisions.some(r=>r.id===id))return {changed:false,reason:'already_archived',day,id};
-  const summary={total:n,high:records.high.length,safe:records.safe.length,watch:records.watch.length,
+  const summary={total:n,qualified:records.qualified.length,high:records.high.length,
+    safe:records.safe.length,watch:records.watch.length,
     withBothFive:all.filter(p=>p.quality.homeLastFive.length===5&&p.quality.awayLastFive.length===5).length,
     withFormModel:all.filter(p=>p.quality.evidenceTier==='form_and_model').length,
     marketBased:all.filter(p=>p.sourceType==='bookmaker_market').length,

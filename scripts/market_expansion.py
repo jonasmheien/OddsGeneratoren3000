@@ -10,12 +10,18 @@ from datetime import datetime
 
 EXTRA_LABELS = {
     'O15':'Over 1,5 mål', 'U15':'Under 1,5 mål', 'U35':'Under 3,5 mål',
-    'THO05':'Hjemmelaget over 0,5 mål','THO15':'Hjemmelaget over 1,5 mål',
-    'TAO05':'Bortelaget over 0,5 mål','TAO15':'Bortelaget over 1,5 mål',
+    'BTTSN':'Begge lag scorer: Nei',
     'H1O05':'1. omgang over 0,5 mål','H1O15':'1. omgang over 1,5 mål',
     'H1U15':'1. omgang under 1,5 mål',
     'CO85':'Over 8,5 hjørnespark', 'CO95':'Over 9,5 hjørnespark',
 }
+TEAM_TOTAL_LINES = (0.5, 1.5, 2.5)
+for prefix, side in (('TH', 'Hjemmelaget'), ('TA', 'Bortelaget')):
+    for line in TEAM_TOTAL_LINES:
+        suffix = f'{int(line * 10):02d}'
+        label = str(line).replace('.', ',')
+        EXTRA_LABELS[f'{prefix}O{suffix}'] = f'{side} over {label} mål'
+        EXTRA_LABELS[f'{prefix}U{suffix}'] = f'{side} under {label} mål'
 
 
 def poisson_over(lam: float, threshold: float) -> float:
@@ -29,13 +35,18 @@ def extend_goal_probabilities(model: dict) -> None:
         return
     lh,la=[float(v) for v in model['expectedGoals']]
     p=model.setdefault('probabilities',{})
-    for code,lam,threshold in [('O15',lh+la,1.5),('U15',lh+la,1.5),
-                               ('U35',lh+la,3.5),
-                               ('THO05',lh,.5),('THO15',lh,1.5),
-                               ('TAO05',la,.5),('TAO15',la,1.5)]:
+    for code,lam,threshold in [('O15',lh+la,1.5),('U15',lh+la,1.5),('U35',lh+la,3.5)]:
         v=poisson_over(lam,threshold)
         if code.startswith('U'): v=1-v
         p[code]=round(v,4)
+    if 'BTTS' in p:
+        p['BTTSN'] = round(1 - p['BTTS'], 4)
+    for prefix, rate in (('TH', lh), ('TA', la)):
+        for line in TEAM_TOTAL_LINES:
+            suffix = f'{int(line * 10):02d}'
+            above = poisson_over(rate, line)
+            p[f'{prefix}O{suffix}'] = round(above, 4)
+            p[f'{prefix}U{suffix}'] = round(1 - above, 4)
 
 
 def recent_half_form(fixtures: list, before: datetime, team_id: int, limit:int=6) -> list[tuple]:

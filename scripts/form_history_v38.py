@@ -125,6 +125,11 @@ def verified_form_records(fixtures, team_id, before, *, limit=16, days=HISTORY_D
             # Names are retained only if actually provided by the original source.
             'displayComplete': bool(home_name and away_name),
         }
+        if row.get('dateOnly') is True:
+            rec['dateOnly'] = True
+        if row.get('neutralVenue') is True:
+            rec['neutralVenue'] = True
+            rec['venueLabel'] = 'Nøytral bane'
         candidates.append(rec)
 
     # Same provider event ID in multiple downloads is a single event.

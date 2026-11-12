@@ -9,6 +9,7 @@ from __future__ import annotations
 import math
 from datetime import datetime, timedelta, timezone
 from collections import Counter
+from market_expansion import TEAM_TOTAL_LINES
 
 MIN_EDGE = 0.02  # Margin after a deliberately pessimistic probability scenario.
 MAX_AGE_HOURS = 6
@@ -17,6 +18,11 @@ COMPANIONS = {
     'O35':'U35','U35':'O35','BTTS':'BTTSN','BTTSN':'BTTS',
     'H1O15':'H1U15','H1U15':'H1O15',
 }
+for _prefix in ('TH', 'TA'):
+    for _line in TEAM_TOTAL_LINES:
+        _suffix = f'{int(_line * 10):02d}'
+        COMPANIONS[f'{_prefix}O{_suffix}'] = f'{_prefix}U{_suffix}'
+        COMPANIONS[f'{_prefix}U{_suffix}'] = f'{_prefix}O{_suffix}'
 
 
 def dt(value):

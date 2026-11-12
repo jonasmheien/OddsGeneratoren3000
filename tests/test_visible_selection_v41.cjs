@@ -28,4 +28,14 @@ const current={...edition,previewEdition:false,highRisk:[],safeBets:[],interesti
 chosen=vis.selectEdition(current,edition,now);
 assert.equal(chosen.groups.safe.length,0);
 assert.equal(chosen.groups.high.length,0);
+const ranked=Array.from({length:6},(_,i)=>({
+  ...p('ranked'+i,i===0?'Czech Republic':'Home '+i,'Spain'),
+  category:i===0?'standard':'safe',qualificationTier:'qualified'
+}));
+const rankedEdition={...current,finalSelection:{version:40,rankedRecommendations:true},
+  recommendations:ranked,safeBets:[ranked[1],p('alternate','Czechia','Spain'),
+    p('remaining','Germany','Netherlands')]};
+chosen=vis.selectEdition(rankedEdition,null,now);
+assert.deepEqual(chosen.groups.qualified,ranked,'All ranked picks, including the sixth, are available');
+assert.deepEqual(chosen.groups.safe.map(x=>x.matchId),['remaining']);
 console.log('PASS: provider aliases, no duplicate fixtures, same-day preview, immutable odds');

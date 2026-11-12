@@ -37,6 +37,7 @@ ALIASES = {
     'nottinghamforest': 'nottingham', 'manchestercity': 'mancity',
     'tottenhamhotspur': 'tottenham',
 }
+NATIONAL_ALIASES = {'czechia': 'czechrepublic', 'turkiye': 'turkey', 'republicofireland': 'ireland'}
 LABELS = {
     'H': 'Hjemmeseier', 'U': 'Uavgjort', 'B': 'Borteseier',
     'BTTS': 'Begge lag scorer: Ja', 'BTTSN': 'Begge lag scorer: Nei',
@@ -49,15 +50,17 @@ def dt(value):
     except (TypeError, ValueError, OverflowError):
         return None
 
-def club(name):
+def club(name, *, national_aliases=True):
     s = unicodedata.normalize('NFKD', str(name or '')).lower()
     s = ''.join(c for c in s if not unicodedata.combining(c))
     s = ''.join(c for c in s if c.isascii() and c.isalnum())
-    return ALIASES.get(s, s)
+    s = ALIASES.get(s, s)
+    return NATIONAL_ALIASES.get(s, s) if national_aliases else s
 
-def fixture_key(p):
+def fixture_key(p, *, national_aliases=True):
     kickoff = dt(p.get('kickoff'))
-    home, away = club(p.get('home')), club(p.get('away'))
+    home = club(p.get('home'), national_aliases=national_aliases)
+    away = club(p.get('away'), national_aliases=national_aliases)
     if not kickoff or not home or not away:
         return None
     # The local day + ordered team identities bridge independent provider IDs.
@@ -162,7 +165,6 @@ def _candidates(snapshot, now):
              dt(m.get('kickoff')).astimezone(OSLO).date().isoformat()==day and
              dt(m.get('kickoff'))>now and m.get('status') in ('SCHEDULED','TIMED',None)]
     by_id={str(m.get('id')):m for m in matches}
-    trace=[]
     for p in snapshot.get('recommendations') or []:
         if not isinstance(p,dict):continue
         m=by_id.get(str(p.get('matchId')))
@@ -171,14 +173,11 @@ def _candidates(snapshot, now):
         if not quote({'price':p.get('price'),'books':p.get('bookmakers'),
                       'lastUpdated':p.get('oddsUpdatedAt')},now,min_books=1,max_age=6):continue
         cat=p.get('category')
-        if cat not in ('safe','high'):
-            # Standard outcomes have neither the Safe nor the High Risk criteria.
-            trace.append({'market':p.get('market'),'fixture':fixture_key(m),'reason':'outside_category'})
+        if cat not in ('safe','high','standard'):
             continue
         ident=market_identity(p['market'])
         obj={**p,'marketIdentity':ident,'fixtureKey':fixture_key(m),
-             'qualificationTier':'qualified','_selectionStrength':100+
-             min(15,float(p['conservativeEdge'])*30)+min(10,int(p.get('bookmakers') or 0))*.1}
+             'qualificationTier':'qualified'}
         out.append((cat,obj))
     for m in matches:
         model=m.get('model') or {}
@@ -228,21 +227,26 @@ def _candidates(snapshot, now):
              'fixtureKey':fixture_key(m),'qualificationTier':'observation',
              '_selectionStrength':5+max(0,(_number(p.get('probability')) or 0)*10)}
         out.append(('watch',obj))
-    return out,trace
+    return out
 
 def finalize(snapshot, now=None):
-    """Create the sole three-section output. Never overwrite original raw evidence."""
+    """Rank every qualified match and fill remaining places with candidates."""
     at=now or dt(snapshot.get('generatedAt'))
     if not at:raise ValueError('Missing generatedAt')
     if not isinstance(snapshot.get('matches'),list):raise ValueError('Missing matches')
-    candidates,trace=_candidates(snapshot,at)
+    candidates=_candidates(snapshot,at)
+    trace=[]
     # Qualified > supported model > bookmaker-only > statistical observation.
     # Within equal tiers, prefer documented strength and stable IDs.
     tier={'qualified':0,'model':1,'market':2,'observation':3}
-    candidates.sort(key=lambda cp:(tier[cp[1]['qualificationTier']],
-                -float(cp[1].get('_selectionStrength') or 0),
-                str(cp[1].get('kickoff')),str(cp[1].get('matchId')),str(cp[1].get('market'))))
+    def order(candidate):
+        pick = candidate[1]
+        level = pick['qualificationTier']
+        merit = pick['conservativeEdge'] if level == 'qualified' else pick['_selectionStrength']
+        return (tier[level], -float(merit), str(pick['kickoff']), str(pick['matchId']), str(pick['market']))
+    candidates.sort(key=order)
     groups={'safe':[],'high':[],'watch':[]}
+    qualified = []
     occupied={}
     blocked=Counter()
     for category,p in candidates:
@@ -252,32 +256,36 @@ def finalize(snapshot, now=None):
             trace.append({'fixture':identity,'market':p['market'],'reason':'same_fixture_or_correlated_outcome',
                           'selectedMarket':occupied[identity]['market']})
             continue
-        if len(groups[category])>=5:
+        is_qualified = p['qualificationTier'] == 'qualified'
+        if not is_qualified and len(groups[category]) >= 5:
             blocked['category_full']+=1
             continue
         # Strip sorting/internal fields. Preserve identity and original quote.
         selection={k:v for k,v in p.items() if k!='_selectionStrength'}
         token=f'{identity}|{p["marketIdentity"]}'
         selection['selectionId']='v40:'+hashlib.sha256(token.encode()).hexdigest()[:20]
-        groups[category].append(selection)
+        if is_qualified:
+            qualified.append(selection)
+        if category in groups and len(groups[category]) < 5:
+            groups[category].append(selection)
         occupied[identity]=selection
         trace.append({'fixture':identity,'selectionId':selection['selectionId'],
-                      'market':selection['market'],'group':category,'reason':'selected'})
+                      'market':selection['market'],'group':'qualified' if is_qualified else category,
+                      'reason':'selected'})
     snapshot['safeBets']=groups['safe']
     snapshot['highRisk']=groups['high']
     snapshot['interestingObjects']=groups['watch']
-    # Other UI sections and results processing may show recommendations. Only
-    # the qualified picks in the final selected categories belong there.
-    snapshot['recommendations']=[p for g in ('safe','high') for p in groups[g]
-                                 if p['qualificationTier']=='qualified']
+    snapshot['recommendations'] = qualified
     snapshot['finalSelection']={'version':40,'policy':'one_active_selection_per_real_fixture',
+        'rankedRecommendations':True,
         'categories':{'safe':len(groups['safe']),'high':len(groups['high']),
                       'watch':len(groups['watch'])},
         'target':[3,5],'shortfalls':{g:('For få konfliktfrie, kildebaserte kandidater.' if len(v)<3 else None)
                                    for g,v in groups.items()},
         'rejected':dict(blocked),'trace':trace}
     if isinstance(snapshot.get('coverage'),dict):
-        snapshot['coverage'].update(safeFound=len(groups['safe']),highFound=len(groups['high']))
+        snapshot['coverage'].update(safeFound=len(groups['safe']),highFound=len(groups['high']),
+                                    qualified=len(qualified))
     validate(snapshot)
     return snapshot
 
@@ -285,23 +293,42 @@ def validate(snapshot):
     """Fail closed if backend JSON contains conflicting final selections."""
     if not isinstance(snapshot.get('finalSelection'),dict) or snapshot['finalSelection'].get('version')!=40:
         raise ValueError('Missing authoritative v40 finalSelection')
-    seen=set();ids=set()
+    ranked = snapshot['finalSelection'].get('rankedRecommendations') is True
+    seen={};ids=set()
+    def selection_identity(p):
+        k = fixture_key(p, national_aliases=ranked)
+        m = market_identity(p.get('market'))
+        ident = p.get('selectionId')
+        if not k or not m or p.get('fixtureKey') != k or p.get('marketIdentity') != m or not ident:
+            raise ValueError('Malformed fixture/market identity')
+        if not isinstance(p.get('price'), (int, float)) or p['price'] <= 1:
+            raise ValueError('Invalid selection price')
+        return k, ident
     for name in ('safeBets','highRisk','interestingObjects'):
         picks=snapshot.get(name)
         if not isinstance(picks,list) or len(picks)>5:
             raise ValueError('Invalid final selection list: '+name)
         for p in picks:
-            k=fixture_key(p)
-            m=market_identity(p.get('market'))
-            if not k or not m or p.get('fixtureKey')!=k or p.get('marketIdentity')!=m:
-                raise ValueError('Malformed fixture/market identity')
+            k, ident = selection_identity(p)
             if k in seen:raise ValueError('Conflicting or correlated selections for fixture '+k)
-            if p.get('selectionId') in ids:raise ValueError('Repeated selectionId')
-            if not isinstance(p.get('price'),(int,float)) or p['price']<=1:
-                raise ValueError('Invalid selection price')
-            seen.add(k);ids.add(p.get('selectionId'))
+            if ident in ids:raise ValueError('Repeated selectionId')
+            seen[k] = ident
+            ids.add(ident)
     qualified={p['selectionId'] for g in ('safeBets','highRisk') for p in snapshot[g]
                if p.get('qualificationTier')=='qualified'}
-    if {p.get('selectionId') for p in snapshot.get('recommendations',[])}!=qualified:
+    recommendations = snapshot.get('recommendations', [])
+    if not ranked:
+        if {p.get('selectionId') for p in recommendations} != qualified:
+            raise ValueError('Recommendations disagree with final selection')
+        return True
+    ranked_ids, ranked_matches = set(), set()
+    for p in recommendations:
+        k, ident = selection_identity(p)
+        if (p.get('qualificationTier') != 'qualified' or k in ranked_matches or ident in ranked_ids
+                or (k in seen and (seen[k] != ident or ident not in qualified))):
+            raise ValueError('Conflicting ranked recommendation for fixture ' + k)
+        ranked_matches.add(k)
+        ranked_ids.add(ident)
+    if not qualified.issubset(ranked_ids):
         raise ValueError('Recommendations disagree with final selection')
     return True

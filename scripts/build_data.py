@@ -31,7 +31,9 @@ from odds_first_v25 import fixtures_from_quotes
 from international_v43 import INTERNATIONAL_KEYS
 from matchday_sports_v44 import discover_matchday_sports
 from sportmonks_v45 import discover as discover_sportmonks
-from market_expansion import extend_goal_probabilities, first_half_probabilities, corner_probabilities
+from market_expansion import (TEAM_TOTAL_LINES, extend_goal_probabilities,
+                              first_half_probabilities, corner_probabilities)
+import national_form_v48 as national_form
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = Path(os.environ['ODDS_OUTPUT_PATH']) if os.environ.get('ODDS_OUTPUT_PATH') else ROOT / 'site' / 'data' / 'today.json'
@@ -131,6 +133,9 @@ TEAM_NAME_ALIASES = {
     'paris saint germain': 'paris saint germain',
     'bodo glimt': 'bodo glimt',
     'bodo glimt fk': 'bodo glimt',
+    'czechia': 'czech republic',
+    'turkiye': 'turkey',
+    'republic of ireland': 'ireland',
 }
 
 
@@ -209,20 +214,22 @@ def poisson_pmf(lam: float, k: int) -> float:
     return math.exp(-lam) * lam ** k / math.factorial(k)
 
 
-def model_probabilities(home_form: list, away_form: list) -> dict | None:
+def model_probabilities(home_form: list, away_form: list, *, weights=None, neutral=False) -> dict | None:
     if min(len(home_form), len(away_form)) < 3:
         return None
     # Conservative shrinkage towards baseline; not a calibrated predictive model.
     n_h, n_a = len(home_form), len(away_form)
-    def rate(form, idx, prior):
-        n = len(form)
-        return (sum(x[idx] for x in form) + 6 * prior) / (n + 6)
-    home_attack = rate(home_form, 1, 1.45)
-    away_def = rate(away_form, 2, 1.45)
-    away_attack = rate(away_form, 1, 1.15)
-    home_def = rate(home_form, 2, 1.15)
-    lh = max(.35, min(3.4, (home_attack * away_def) ** .5 * 1.06))
-    la = max(.30, min(3.2, (away_attack * home_def) ** .5 * .95))
+    home_weights, away_weights = weights if weights is not None else ([1] * n_h, [1] * n_a)
+    def rate(form, row_weights, idx, prior):
+        weighted_goals = sum(row[idx] * weight for row, weight in zip(form, row_weights, strict=True))
+        return (weighted_goals + 6 * prior) / (sum(row_weights) + 6)
+    home_prior, away_prior = (1.30, 1.30) if neutral else (1.45, 1.15)
+    home_attack = rate(home_form, home_weights, 1, home_prior)
+    away_def = rate(away_form, away_weights, 2, home_prior)
+    away_attack = rate(away_form, away_weights, 1, away_prior)
+    home_def = rate(home_form, home_weights, 2, away_prior)
+    lh = max(.35, min(3.4, (home_attack * away_def) ** .5 * (1 if neutral else 1.06)))
+    la = max(.30, min(3.2, (away_attack * home_def) ** .5 * (1 if neutral else .95)))
     hp = [poisson_pmf(lh, x) for x in range(13)]
     ap = [poisson_pmf(la, x) for x in range(13)]
     norm = sum(hp) * sum(ap)
@@ -276,17 +283,17 @@ def extract_market_odds(event: dict, match: dict, asof: datetime | None = None) 
                 elif key in ('totals','alternate_totals'):
                     if point in (1.5,2.5,3.5) and low in ('over','under'):
                         selection= ('O' if low=='over' else 'U')+f'{int(point*10):02d}'
-                elif key=='btts' and low=='yes':
-                    selection='BTTS'
+                elif key=='btts' and low in ('yes', 'no'):
+                    selection = 'BTTS' if low == 'yes' else 'BTTSN'
                 elif key in ('team_totals','alternate_team_totals'):
                     # The Odds API records the target team in 'description';
                     # an unlabeled line must never be assigned to a side.
-                    desc=str(item.get('description') or '')
-                    if low=='over' and point in (.5,1.5):
-                        if name_score(desc,event.get('home_team',''))>=.77:
-                            selection='THO'+f'{int(point*10):02d}'
-                        elif name_score(desc,event.get('away_team',''))>=.77:
-                            selection='TAO'+f'{int(point*10):02d}'
+                    description = club_identity(str(item.get('description') or ''))
+                    if description and low in ('over', 'under') and point in TEAM_TOTAL_LINES:
+                        sides = [prefix for prefix, team in (('TH', 'home_team'), ('TA', 'away_team'))
+                                 if description == club_identity(event.get(team, ''))]
+                        if len(sides) == 1:
+                            selection = f'{sides[0]}{low[0].upper()}{int(point*10):02d}'
                 elif key in ('totals_h1','alternate_totals_h1'):
                     if point in (.5,1.5) and low in ('over','under'):
                         selection='H1'+('O' if low=='over' else 'U')+f'{int(point*10):02d}'
@@ -483,11 +490,13 @@ def independent_api_predictions(fixtures: list, now: datetime, api_key: str,
     return predictions,issues
 
 
-def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manual_models: list, errors: list, status: dict, external_predictions: dict | None = None, target_date=None) -> dict:
+def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manual_models: list, errors: list, status: dict, external_predictions: dict | None = None, target_date=None, *, national_history=None) -> dict:
     today = target_date or now.astimezone(OSLO).date()
     cutoff = today + timedelta(days=1)
     output = []
     strengths = opponent_indices(fixtures, now)
+    national_history = national_history or []
+    national_strengths = opponent_indices(national_history, now, days=national_form.HISTORY_DAYS)
     for raw in fixtures:
         if raw.get('status') in ('CANCELLED','POSTPONED'):
             continue
@@ -508,10 +517,21 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
         form_before = min(k, now)
         h_details, h_issues = verified_form_records(fixtures, home['id'], form_before)
         a_details, a_issues = verified_form_records(fixtures, away['id'], form_before)
+        national_weights = None
+        if national_history and national_form.is_national_fixture(raw):
+            h_national, h_national_issues = national_form.form_records(national_history, home, form_before)
+            a_national, a_national_issues = national_form.form_records(national_history, away, form_before)
+            if h_national and a_national:
+                h_details, h_issues = h_national, h_national_issues
+                a_details, a_issues = a_national, a_national_issues
+                national_weights = (
+                    national_form.form_weights(h_details, form_before),
+                    national_form.form_weights(a_details, form_before),
+                )
         # Fuzzy provider bridges only apply to bookmaker-created fixtures.
         # Before publishing their inferred team history, verify the identity
         # against a historical, source-provided name (not merely similar text).
-        if str(raw.get('id') or '').startswith('odds:'):
+        if national_weights is None and str(raw.get('id') or '').startswith('odds:'):
             if h_details and not source_identity_confirmed(
                     [home.get('name'),home.get('shortName')],h_details):
                 h_details=[]
@@ -521,6 +541,10 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
                 a_details=[]
                 a_issues.append('team_match_uncertain')
         hf, af = model_rows(h_details), model_rows(a_details)
+        opponent_strength = national_strengths if national_weights is not None else strengths
+        model = model_probabilities(adjusted_form(hf, opponent_strength, k),
+                                    adjusted_form(af, opponent_strength, k),
+                                    weights=national_weights, neutral=raw.get('neutralVenue') is True)
         m = {'id': str(raw.get('id') or ''), 'league': (raw.get('competition') or {}).get('name') or 'Annen',
              'leagueCode': (raw.get('competition') or {}).get('code') or '',
              'leagueCrest': (raw.get('competition') or {}).get('emblem'),
@@ -539,11 +563,16 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
                 'home': {'verified': len(h_details), 'displayable': sum(x['displayComplete'] for x in h_details[:5]), 'issues': sorted(set(h_issues))},
                 'away': {'verified': len(a_details), 'displayable': sum(x['displayComplete'] for x in a_details[:5]), 'issues': sorted(set(a_issues))},
              },
-             'model': model_probabilities(adjusted_form(hf, strengths, k), adjusted_form(af, strengths, k)), 'odds': {}, 'predictions': []}
-        if m['model'] is not None:
-            m['model']['effectiveSample'] = [effective_form_sample(hf, k), effective_form_sample(af, k)]
-            m['model']['modelMethod'] = 'strength_adjusted_v21'
-            m['model']['historyWindowDays'] = 180
+              'model': model, 'odds': {}, 'predictions': []}
+        if model is not None:
+            if national_weights is not None:
+                model['effectiveSample'] = [round(sum(weights), 2) for weights in national_weights]
+                model['modelMethod'] = 'national_form_v48'
+                model['historyWindowDays'] = national_form.HISTORY_DAYS
+            else:
+                model['effectiveSample'] = [effective_form_sample(hf, k), effective_form_sample(af, k)]
+                model['modelMethod'] = 'strength_adjusted_v21'
+                model['historyWindowDays'] = 180
         if m['model'] is not None:
             m['model']['probabilities'].update(first_half_probabilities(fixtures,k,home['id'],away['id']))
             m['model']['probabilities'].update(corner_probabilities(fixtures,k,home['id'],away['id']))
@@ -593,6 +622,10 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
         'upcomingMatches': len(active_today),
         'matchedOdds': sum(bool(m.get('odds')) for m in active_today),
         'withModel': sum(bool(m.get('model')) for m in active_today),
+        'oddsWithVerifiedForm': sum(bool(m['odds'] and m['formMatchesHome'] and m['formMatchesAway'])
+                                    for m in active_today),
+        'nationalWithModel': sum((m['model'] or {}).get('modelMethod') == 'national_form_v48'
+                                 for m in active_today),
         'externalPredictions': sum(len(m.get('predictions') or []) for m in active_today),
         'manualPredictions': sum(1 for m in active_today for pred in (m.get('predictions') or []) if pred.get('entry')=='manual'),
         'apiPredictions': sum(1 for m in active_today for pred in (m.get('predictions') or []) if pred.get('entry')=='api'),
@@ -611,6 +644,9 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
         sources.append({'name': 'Sportmonks', 'role': 'Verifisert kampform og oppsett i Danmark og Skottland', 'state': 'connected'})
     if status.get('additionalFormBridge', {}).get('teamsLinked'):
         sources.append({'name':'football-data.co.uk', 'role':'Verifiserte ligakamper til privat formanalyse', 'state':'connected'})
+    if 'nationalForm' in status:
+        sources.append({'name': national_form.SOURCE, 'role': 'Landslagsresultater',
+                        'state': 'connected' if status['nationalForm']['state'] == 'ok' else 'unavailable'})
     return {'version': 3, 'recommendations':picks, 'safeBets':safe_bets, 'highRisk':high_risk,
             'coverage':coverage,'sources':sources,
             'visualAssets':{'licensedCrests':os.getenv('SHOW_LICENSED_CRESTS','').strip()=='1'},
@@ -779,14 +815,15 @@ def main():
             # football-data.org's free UEFA fixture feed. Reuse VERIFIED domestic
             # results from competitions already included in the free plan.
             # The identity bridge rejects uncertain clubs and never invents form.
-            if recovered and key:
+            domestic_recovered = [match for match in recovered if not national_form.is_national_fixture(match)]
+            if domestic_recovered and key:
                 domestic_history, history_errors = load_free_history(fetch_football, BASE, date)
                 errors.extend(history_errors)
                 fixtures, diagnostics = bridge(fixtures, domestic_history, now, identity_score)
                 status['officialFormBridge'] = diagnostics
                 status['fixtureCount'] = len(fixtures)
                 print('FORM_BRIDGE', diagnostics)
-            if recovered:
+            if domestic_recovered:
                 # A small, cached, personal-use history supplement. At most once per
                 # 96 hours; does not replace any verified football-data.org team IDs.
                 try:
@@ -809,9 +846,15 @@ def main():
         status['externalPredictionsCount']=len(external)
     else:
         status['externalPredictionsStatus']='not_configured'
+    national_history = []
+    if any(national_form.is_national_fixture(match) and match.get('status') in ('TIMED', 'SCHEDULED')
+           for match in fixtures):
+        national_history, status['nationalForm'] = national_form.load_history(now)
+        print('NATIONAL_FORM', status['nationalForm'])
     snapshot = build_snapshot(now, fixtures, odds_events,
                               read_manual_models(ROOT / 'data' / 'manual_predictions.csv'),
-                              errors, status, external_predictions=external, target_date=date)
+                              errors, status, external_predictions=external, target_date=date,
+                              national_history=national_history)
     # Visibility into the reason a full match programme produces few picks.
     current_matches = [m for m in snapshot['matches']
                        if iso_datetime(m['kickoff']).astimezone(OSLO).date() == date

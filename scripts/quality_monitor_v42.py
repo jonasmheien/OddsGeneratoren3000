@@ -62,7 +62,7 @@ def quality_report(edition, now):
     today = now.astimezone(OSLO).date().isoformat()
     upcoming = int(coverage.get('upcomingMatches') or 0)
     matched = int(coverage.get('matchedOdds') or 0)
-    linked = int(bridge.get('oddsFixturesWithBothTeamsMatched') or 0)
+    linked = int(coverage.get('oddsWithVerifiedForm', bridge.get('oddsFixturesWithBothTeamsMatched')) or 0)
     external = int(status.get('externalPredictionsCount') or coverage.get('externalPredictions') or 0)
     age_hours = round(max(0, (now - generated).total_seconds()) / 3600, 2) if generated else None
     freshness = 'current' if day == today else ('not_published' if not day or day < today else 'future')

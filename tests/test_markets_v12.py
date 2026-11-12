@@ -33,6 +33,23 @@ class ExpandedMarketsTests(unittest.TestCase):
   data=self.raw();data['bookmakers'].append(data['bookmakers'][0])
   result=extract_market_odds(data,{},self.now)
   self.assertEqual(result['BTTS']['books'],3)
+ def test_complementary_goal_markets_have_model_odds_and_settlement(self):
+  data=self.raw()
+  for book in data['bookmakers']:
+   for market in book['markets']:
+    if market['key']=='btts':
+     market['outcomes'].append({'name':'No','price':2.25})
+    if market['key']=='team_totals':
+     market['outcomes'].append({'name':'Under','description':'Home Athletic','point':1.5,'price':2.14})
+  odds=extract_market_odds(data,{},self.now)
+  self.assertEqual(odds['THU15']['price'],2.14)
+  self.assertEqual(odds['BTTSN']['books'],3)
+  model=model_probabilities([(self.now,2,1,'W')]*6,[(self.now,1,1,'D')]*6)
+  p=model['probabilities']
+  self.assertAlmostEqual(p['THO15']+p['THU15'],1)
+  self.assertAlmostEqual(p['BTTS']+p['BTTSN'],1)
+  self.assertTrue(pick_outcome('THU15',1,3))
+  self.assertFalse(pick_outcome('BTTSN',1,3))
  def test_goal_probs_from_observed_fulltime_scores(self):
   now=self.now
   model=model_probabilities([(now,2,1,'W')]*6,[(now,1,1,'D')]*6)

@@ -13,7 +13,8 @@ from collections import Counter
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from quality_v20 import dt, family, fresh_quote, number, overlaps, ranking, screen, rejection_reason, reference_probability
+from quality_v20 import (dt, family, fresh_quote, number, overlaps, ranking, screen,
+                         rejection_reason, reference_probability)
 from recommend import MARKET_LABELS
 from final_selection_v40 import finalize as finalize_v40
 
@@ -145,6 +146,7 @@ def qualify(snapshot):
 
     # Each match may feature up to two meaningfully different markets.
     # Do not add opposite totals, redundant lines or highly overlapping legs.
+    screened = len(options) + sum(failures.values())
     options.sort(key=ranking)
     chosen = []
     by_match = {}
@@ -185,13 +187,12 @@ def qualify(snapshot):
     snapshot['observations'] = notes
     snapshot['modelVersion'] = '2.0-foundation'
     snapshot['qualityAudit'] = {
-        'screened':len(options)+sum(failures.values()),
+        'screened':screened,
         'qualified':len(chosen), 'topLimit':5,
         'observations':len(notes), 'rejections':dict(failures),
         'calibrated':False,
         'method':'Eksplisitt sensitivitetsscenario, markedsforankring og usikkerhetstrekk; ikke validert som konfidensintervall',
         'coverageLimit':'Tilgjengelige kilde-/bookmakerodds, ikke alle globale markeder',
-        'whyNoPicks':'Ingen tips bestod den usikkerhetsjusterte verdikontrollen. Se rejection-tall for årsaker.' if not chosen else None,
     }
     snapshot['qualityGate'] = {
         'minimumFormMatchesPerTeam':5, 'minimumSpecialStatisticsPerTeam':8,
@@ -199,15 +200,41 @@ def qualify(snapshot):
         'minimumConservativeScenarioEdge':0.02,
         'explanation':'Ukalibrert sannsynlighetsmodell. Kun positiv forventet verdi i et konservativt scenario, ikke påvist langsiktig avkastning.'
     }
-    if isinstance(snapshot.get('coverage'),dict):
-        snapshot['coverage']['safeFound'] = sum(p['category']=='safe' for p in chosen)
-        snapshot['coverage']['highFound'] = sum(p['category']=='high' for p in chosen)
-        snapshot['coverage']['qualified'] = len(chosen)
-    if isinstance(snapshot.get('dataStatus'),dict) and isinstance(snapshot['dataStatus'].get('analysisReadiness'),dict):
-        snapshot['dataStatus']['analysisReadiness']['recommended'] = len(chosen)
     # Final candidate selection is authoritative: no browser fallback.
     snapshot = finalize_v40(snapshot,when)
+    count = len(snapshot['recommendations'])
+    audit = snapshot['qualityAudit']
+    audit['qualified'] = count
+    audit['whyNoPicks'] = None if count else empty_reason(snapshot, failures)
+    status = snapshot.get('dataStatus') or {}
+    readiness = status.get('analysisReadiness')
+    if isinstance(readiness, dict):
+        readiness.update(recommended=count, safe=len(snapshot['safeBets']),
+                         highRisk=len(snapshot['highRisk']), message=audit['whyNoPicks'] or 'analysert')
+    for code, group in (status.get('coverageByLeague') or {}).items():
+        group['eligible'] = sum((by_id.get(str(p['matchId'])) or {}).get('leagueCode') == code
+                                for p in snapshot['recommendations'])
     return snapshot
+
+
+def empty_reason(snapshot, failures):
+    coverage = snapshot.get('coverage') or {}
+    if coverage.get('upcomingMatches') == 0:
+        return 'Ingen kommende kamper tilgjengelige for analyse.'
+    if coverage.get('matchedOdds') == 0:
+        return 'Ingen kommende kamper med tilgjengelige bookmakerodds.'
+    reasons = {
+        'manglende_kamphistorikk': 'manglende verifisert kamphistorikk',
+        'for_lite_historikk': 'for lite vektet kamphistorikk',
+        'manglende_eller_gamle_odds': 'manglende eller gamle bookmakerodds',
+        'for_lav_konservativ_verdi': 'for lav beregnet spillverdi',
+        'stort_modell_marked_avvik': 'for stort avvik mellom modellen og oddsmarkedet',
+        'svak_bookmakerdekning': 'for få bookmakere med odds',
+    }
+    for code, _ in failures.most_common():
+        if code in reasons:
+            return f'Vanligste avvisning skyldtes {reasons[code]}.'
+    return 'Ingen spill bestod kvalitetskontrollen i denne analysen.'
 
 
 def main(path):

@@ -1,6 +1,5 @@
 'use strict';
-/* Exactly three sections: High Risk, Safe Bets, Interesting but not recommended.
-   Never promote an unqualified bookmaker quote to a recommended wager. */
+/* Render the backend's qualified list and candidate sections. */
 (() => {
   const $ = id => document.getElementById(id);
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -135,7 +134,7 @@
         const content=rows.map(r=>{
           const dt=new Intl.DateTimeFormat('nb-NO',{timeZone:'Europe/Oslo',day:'2-digit',month:'2-digit',year:'numeric'}).format(new Date(r.kickoffUtc));
           const outcome=r.resultForAnalyzedTeam;
-          const venue=r.analyzedTeamSide==='home'?'Hjemme':'Borte';
+          const venue=r.neutralVenue?'Nøytral bane':r.analyzedTeamSide==='home'?'Hjemme':'Borte';
           const source=r.source?` · ${esc(r.source)}`:'';
           return `<div class="tf-form-match"><div class="tf-form-match-info">${esc(dt)} · ${venue}${source}</div>`+
             `<div class="tf-form-match-result"><span>${esc(r.homeTeam.name)} <b>${r.homeGoals}–${r.awayGoals}</b> ${esc(r.awayTeam.name)}</span>`+
@@ -220,11 +219,12 @@
       </div>
     </details>`;
   }
-  function card(p,recommended,edition){
+  function card(p,recommended,edition,ranked=false){
     const validPrice=Number.isFinite(Number(p.price))&&Number(p.price)>1;
     const rationale=Array.isArray(p.rationale)?p.rationale.find(s=>typeof s==='string'):null;
+    const risk=ranked?({safe:'Safe',high:'High Risk'}[p.category]||''):'';
     return `<article class="tf-card">
-      <div class="tf-meta">${esc(p.league||'Fotball')} <span>· ${esc(kickoff(p.kickoff))}</span></div>
+      <div class="tf-meta">${esc(p.league||'Fotball')} <span>· ${esc(kickoff(p.kickoff))}${risk?' · '+risk:''}</span></div>
       <div class="tf-teams">${esc(p.home)} <span>–</span> ${esc(p.away)}</div>
       <div class="tf-market"><span>${esc(p.label||'Marked under vurdering')}</span>${validPrice?`<strong>${esc(price(p.price))}</strong>`:''}</div>
       <div class="tf-reason">${esc(recommended?(rationale||'Kvalifisert av analysemodellen.'):(p._why||p.reason||'Ikke anbefalt.'))}</div>
@@ -237,6 +237,15 @@
   async function get(path){
     try{const response=await fetch(`data/${path}.json?t=${Date.now()}`,{cache:'no-store'});
       return response.ok?await response.json():null;}catch{return null;}
+  }
+  function renderList(list, html){
+    const expanded=new Set(Array.from(list.querySelectorAll('details.tf-analysis[open]'),
+      el=>el.getAttribute('data-analysis-key')));
+    const moreOpen=Boolean(list.querySelector('details.tf-more[open]'));
+    list.innerHTML=html(moreOpen);
+    for(const details of list.querySelectorAll('details.tf-analysis')){
+      if(expanded.has(details.getAttribute('data-analysis-key')))details.open=true;
+    }
   }
   async function load(){
     if(loading)return;
@@ -257,6 +266,7 @@
         marketRoot.dataset.ogEditionFile=edition===preview?'tomorrow':'today';
       }
       const expired=Boolean(chosen?.expired);
+      const qualified=chosen?.groups.qualified||[];
       const safe=chosen?.groups.safe||[];
       const high=chosen?.groups.high||[];
       const watch=chosen?.groups.watch||[];
@@ -266,18 +276,27 @@
       const heroDate=$('today-date');if(heroDate)heroDate.textContent=selectedDay?dateText(selectedDay):'Neste dags utvalg kommer';
       const editionIndicator=$('edition-indicator');if(editionIndicator)editionIndicator.textContent=useTomorrow?'MORGENDAGENS UTGAVE':'DAGENS UTGAVE';
       const lastUpdated=$('last-updated');if(lastUpdated)lastUpdated.textContent=edition?.generatedAt?`Analyse ${kickoff(edition.generatedAt)}`:'Oppdatering ikke klar';
+      const showRanked=chosen?.authoritative&&edition.finalSelection.rankedRecommendations===true&&!expired;
+      $('tf-qualified').hidden=!showRanked;
+      $('tf-qualified-count').textContent=String(qualified.length);
+      if(showRanked){
+        const reason=edition.qualityAudit?.whyNoPicks||'Ingen aktive kvalifiserte spill.';
+        renderList($('tf-qualified-list'),moreOpen=>{
+          if(!qualified.length)return `<p class="tf-empty">${esc(reason)}</p>`;
+          const top=qualified.slice(0,5).map(p=>card(p,true,edition,true)).join('');
+          const remaining=qualified.slice(5);
+          return `<div class="tf-ranked-grid">${top}</div>`+
+            (remaining.length?`<details class="tf-more"${moreOpen?' open':''}><summary>Vis ${remaining.length} flere</summary>
+              <div class="tf-ranked-grid">${remaining.map(p=>card(p,true,edition,true)).join('')}</div></details>`:'');
+        });
+      }
       const sections=[['high',high],['safe',safe],['watch',watch]];
       for(const [id,entries] of sections){
         $('tf-'+id+'-count').textContent=String(entries.length);
         const list=$('tf-'+id+'-list');
-        // Keep expanded analyses open across automatic data refreshes.
-        const expanded=new Set(Array.from(list.querySelectorAll('details.tf-analysis[open]'),el=>el.getAttribute('data-analysis-key')));
-        list.innerHTML=entries.length?entries.map(p=>card(p,id!=='watch',edition)).join(''):
+        renderList(list,()=>entries.length?entries.map(p=>card(p,id!=='watch',edition)).join(''):
           `<p class="tf-empty">${id==='watch'?'Ingen aktuelle objekter under vurdering.':
-            id==='safe'?'Ingen Safe Bets oppfyller dagens krav. Ingen udokumenterte tips legges til.':'Ingen dokumenterte kandidater fra dagens datagrunnlag.'}</p>`;
-        for(const details of list.querySelectorAll('details.tf-analysis')){
-          if(expanded.has(details.getAttribute('data-analysis-key')))details.open=true;
-        }
+            'Ingen kandidater fra dagens datagrunnlag.'}</p>`);
       }
       const lack=Object.entries({safe:'Safe Bets',high:'High Risk',watch:'Interessante objekter'})
         .filter(([key])=>(chosen?.groups[key]||[]).length<3)
@@ -287,7 +306,8 @@
         const previewCoverage=useTomorrow && edition?.coverage ? {
           matchesWithOdds:Number(edition.coverage.matchedOdds||0),
           upcomingMatches:Number(edition.coverage.upcomingMatches||0),
-          oddsFixturesWithLinkedForm:Number(edition.dataStatus?.officialFormBridge?.oddsFixturesWithBothTeamsMatched||0),
+          oddsFixturesWithLinkedForm:Number(edition.coverage.oddsWithVerifiedForm??
+            edition.dataStatus?.officialFormBridge?.oddsFixturesWithBothTeamsMatched??0),
           externalPredictions:Number(edition.dataStatus?.externalPredictionsCount||0)
         }:null;
         const coverage=quality?.editionDate===editionDay?quality?.data:previewCoverage;
@@ -312,6 +332,7 @@
   document.addEventListener('DOMContentLoaded',()=>{
     parent=document.createElement('section');parent.className='tf-root';parent.id='tf-root';
     parent.innerHTML='<div class="tf-date" id="tf-date">Henter siste utvalg …</div>'+
+    '<section class="tf-section tf-ranked" id="tf-qualified" aria-labelledby="tf-qualified-title" hidden><header><h2 id="tf-qualified-title">Kvalifiserte spill</h2><span id="tf-qualified-count">0</span></header><div id="tf-qualified-list" class="tf-list"></div></section>'+
     '<div class="tf-columns">'+
     '<section class="tf-section" aria-labelledby="tf-high-title"><header><h2 id="tf-high-title">High Risk</h2><span id="tf-high-count">0</span></header><div id="tf-high-list" class="tf-list"></div></section>'+
     '<section class="tf-section" aria-labelledby="tf-safe-title"><header><h2 id="tf-safe-title">Safe Bets</h2><span id="tf-safe-count">0</span></header><div id="tf-safe-list" class="tf-list"></div></section>'+
