@@ -1,0 +1,407 @@
+# Legg denne filen i .github/workflows/ på main for å installere v49.
+# Denne kjøringen sjekker og tester endringen før den kan publiseres.
+name: Installer motstanderjustert landslagsmodell v49
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/installer-landslag-v49.yml']
+  workflow_dispatch:
+
+concurrency:
+  group: oddsgeneratoren-state-and-pages
+  cancel-in-progress: false
+  queue: max
+
+jobs:
+  installer:
+    if: github.repository == 'jonasmheien/OddsGeneratoren3000' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Klargjør den testede endringen
+        id: apply
+        shell: bash
+        run: |
+          patch_file="$(mktemp "$RUNNER_TEMP/oddsgeneratoren-v49.XXXXXX")"
+          trap 'rm -f "$patch_file"' EXIT
+          cat > "$patch_file" <<'ODDS_V49_PATCH'
+          diff --git a/docs/INTERNATIONAL_V43.md b/docs/INTERNATIONAL_V43.md
+          index 6c0d918d2d21267b1867f90734f1aab535f3100c..5f5c937cebfdabf76c5f7c87c9fbe7f17a1c0cf0 100644
+          --- a/docs/INTERNATIONAL_V43.md
+          +++ b/docs/INTERNATIONAL_V43.md
+          @@ -31,3 +31,9 @@ I en datoordnet prøve ga 548 dager noe bedre treffsikkerhet på kampresultat en
+           Kvalifiserte spill rangeres på beregnet verdi i det konservative scenarioet, med ett spill per kamp. De fem øverste vises først. Begge lag scorer og lagmål kan kvalifiseres når modellen har grunnlag og relevante, ferske priser finnes i den ordinære oddshentingen.
+           
+           Kjør **Oppdater OddsGeneratoren** på **main** med **daily** og **force_refresh** for å beregne dagens utgave på nytt etter installasjon. Bruk **tomorrow** for en separat forhåndsanalyse.
+          +
+          +### Motstanderjustert landslagsmodell i v49
+          +
+          +Landslagsanalysen estimerer nå hvert lags angrep og forsvar samlet på tvers av motstanderne i de 548 dagene med historikk. Den bruker de samme vektene for alder og treningskamper som før. Modellen estimerer hjemmefordel fra kampene og tar hensyn til kjent nøytral bane. Sannsynlighetene for kampresultat og mål bygger på hvor mange mål modellen forventer per lag.
+          +
+          +I den datoordnede kontrollen av 104 Nations League-kamper falt Brier-feilen på kampresultat fra 0,606 til 0,545. I en ny kjøring med de 54 lagrede prisene for 12. november 2026 passerte ingen spill det eksisterende verdifilteret. Sammenligningen på historiske kamper målte prognosefeil mot utfall.
+          diff --git a/scripts/build_data.py b/scripts/build_data.py
+          index 8442ad8210d09730350d10b7bdbcdf6413e9bffb..6932647e50846c72f37df52a6cff4c153b0dfa90 100644
+          --- a/scripts/build_data.py
+          +++ b/scripts/build_data.py
+          @@ -34,6 +34,7 @@ from sportmonks_v45 import discover as discover_sportmonks
+           from market_expansion import (TEAM_TOTAL_LINES, extend_goal_probabilities,
+                                         first_half_probabilities, corner_probabilities)
+           import national_form_v48 as national_form
+          +from national_strength_v49 import METHOD as NATIONAL_METHOD, fit_national_strength
+           
+           ROOT = Path(__file__).resolve().parent.parent
+           OUT = Path(os.environ['ODDS_OUTPUT_PATH']) if os.environ.get('ODDS_OUTPUT_PATH') else ROOT / 'site' / 'data' / 'today.json'
+          @@ -230,13 +231,17 @@ def model_probabilities(home_form: list, away_form: list, *, weights=None, neutr
+               home_def = rate(home_form, home_weights, 2, away_prior)
+               lh = max(.35, min(3.4, (home_attack * away_def) ** .5 * (1 if neutral else 1.06)))
+               la = max(.30, min(3.2, (away_attack * home_def) ** .5 * (1 if neutral else .95)))
+          -    hp = [poisson_pmf(lh, x) for x in range(13)]
+          -    ap = [poisson_pmf(la, x) for x in range(13)]
+          +    return score_probabilities(lh, la, (n_h, n_a))
+          +
+          +
+          +def score_probabilities(lh, la, samples, *, max_goals=12):
+          +    hp = [poisson_pmf(lh, goals) for goals in range(max_goals + 1)]
+          +    ap = [poisson_pmf(la, goals) for goals in range(max_goals + 1)]
+               norm = sum(hp) * sum(ap)
+               prob = {k: 0.0 for k in MARKETS}
+          -    for h in range(13):
+          -        for a in range(13):
+          -            p = hp[h] * ap[a] / norm
+          +    for h, home_probability in enumerate(hp):
+          +        for a, away_probability in enumerate(ap):
+          +            p = home_probability * away_probability / norm
+                       prob['H' if h > a else 'U' if h == a else 'B'] += p
+                       prob['O25' if h + a >= 3 else 'U25'] += p
+                       if h + a >= 4:
+          @@ -245,7 +250,7 @@ def model_probabilities(home_form: list, away_form: list, *, weights=None, neutr
+                           prob['BTTS'] += p
+               model={'probabilities': {k: round(v, 4) for k,v in prob.items()},
+                      'expectedGoals': [round(lh,2), round(la,2)],
+          -           'sample': [n_h, n_a], 'quality': 'exploratory' if min(n_h,n_a) < 5 else 'basic'}
+          +           'sample': list(samples), 'quality': 'exploratory' if min(samples) < 5 else 'basic'}
+               extend_goal_probabilities(model)
+               return model
+           
+          @@ -496,7 +501,7 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
+               output = []
+               strengths = opponent_indices(fixtures, now)
+               national_history = national_history or []
+          -    national_strengths = opponent_indices(national_history, now, days=national_form.HISTORY_DAYS)
+          +    national_strength = fit_national_strength(national_history, now) if national_history else None
+               for raw in fixtures:
+                   if raw.get('status') in ('CANCELLED','POSTPONED'):
+                       continue
+          @@ -517,8 +522,9 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
+                   form_before = min(k, now)
+                   h_details, h_issues = verified_form_records(fixtures, home['id'], form_before)
+                   a_details, a_issues = verified_form_records(fixtures, away['id'], form_before)
+          +        is_national = national_form.is_national_fixture(raw)
+                   national_weights = None
+          -        if national_history and national_form.is_national_fixture(raw):
+          +        if national_history and is_national:
+                       h_national, h_national_issues = national_form.form_records(national_history, home, form_before)
+                       a_national, a_national_issues = national_form.form_records(national_history, away, form_before)
+                       if h_national and a_national:
+          @@ -541,10 +547,18 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
+                           a_details=[]
+                           a_issues.append('team_match_uncertain')
+                   hf, af = model_rows(h_details), model_rows(a_details)
+          -        opponent_strength = national_strengths if national_weights is not None else strengths
+          -        model = model_probabilities(adjusted_form(hf, opponent_strength, k),
+          -                                    adjusted_form(af, opponent_strength, k),
+          -                                    weights=national_weights, neutral=raw.get('neutralVenue') is True)
+          +        neutral = raw.get('neutralVenue') is True
+          +        model = None
+          +        if is_national:
+          +            if national_strength and national_weights is not None and min(len(hf), len(af)) >= 3:
+          +                h_id = national_form.team_identity(home.get('name') or home.get('shortName'))
+          +                a_id = national_form.team_identity(away.get('name') or away.get('shortName'))
+          +                rates = national_strength.scoring_rates(h_id, a_id, neutral=neutral)
+          +                if rates is not None:
+          +                    model = score_probabilities(*rates, samples=(len(hf), len(af)), max_goals=30)
+          +        else:
+          +            model = model_probabilities(adjusted_form(hf, strengths, k),
+          +                                        adjusted_form(af, strengths, k), neutral=neutral)
+                   m = {'id': str(raw.get('id') or ''), 'league': (raw.get('competition') or {}).get('name') or 'Annen',
+                        'leagueCode': (raw.get('competition') or {}).get('code') or '',
+                        'leagueCrest': (raw.get('competition') or {}).get('emblem'),
+          @@ -567,7 +581,7 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
+                   if model is not None:
+                       if national_weights is not None:
+                           model['effectiveSample'] = [round(sum(weights), 2) for weights in national_weights]
+          -                model['modelMethod'] = 'national_form_v48'
+          +                model['modelMethod'] = NATIONAL_METHOD
+                           model['historyWindowDays'] = national_form.HISTORY_DAYS
+                       else:
+                           model['effectiveSample'] = [effective_form_sample(hf, k), effective_form_sample(af, k)]
+          @@ -624,7 +638,7 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
+                   'withModel': sum(bool(m.get('model')) for m in active_today),
+                   'oddsWithVerifiedForm': sum(bool(m['odds'] and m['formMatchesHome'] and m['formMatchesAway'])
+                                               for m in active_today),
+          -        'nationalWithModel': sum((m['model'] or {}).get('modelMethod') == 'national_form_v48'
+          +        'nationalWithModel': sum((m['model'] or {}).get('modelMethod') == NATIONAL_METHOD
+                                            for m in active_today),
+                   'externalPredictions': sum(len(m.get('predictions') or []) for m in active_today),
+                   'manualPredictions': sum(1 for m in active_today for pred in (m.get('predictions') or []) if pred.get('entry')=='manual'),
+          diff --git a/scripts/national_form_v48.py b/scripts/national_form_v48.py
+          index ec9ca095b9c09d4e468e1eeda4b94f722bc71c4f..42ae8dea9ad940a0c324580a5fc2f070ddef486a 100644
+          --- a/scripts/national_form_v48.py
+          +++ b/scripts/national_form_v48.py
+          @@ -175,10 +175,15 @@ def form_records(history, team, before, *, days=HISTORY_DAYS):
+               return verified_form_records(history, identity, cutoff, days=days, limit=24)
+           
+           
+          +def result_weight(result_date, competition, before_date, *, half_life=HALF_LIFE_DAYS):
+          +    days = max(0, (before_date - result_date).days)
+          +    return 0.5 ** (days / half_life) * (FRIENDLY_WEIGHT if competition == 'Friendly' else 1)
+          +
+          +
+           def form_weights(records, before, *, half_life=HALF_LIFE_DAYS):
+               day = before.astimezone(OSLO).date()
+               return [
+          -        0.5 ** (max(0, (day - date.fromisoformat(record['localDate'])).days) / half_life)
+          -        * (FRIENDLY_WEIGHT if record['competition'] == 'Friendly' else 1)
+          +        result_weight(date.fromisoformat(record['localDate']), record['competition'], day,
+          +                      half_life=half_life)
+                   for record in records
+               ]
+          diff --git a/scripts/national_strength_v49.py b/scripts/national_strength_v49.py
+          new file mode 100644
+          index 0000000000000000000000000000000000000000..cb6092a7b4983f1c435990bd56482341307ad033
+          --- /dev/null
+          +++ b/scripts/national_strength_v49.py
+          @@ -0,0 +1,119 @@
+          +"""Estimate national-team scoring rates on a shared opponent network."""
+          +from __future__ import annotations
+          +
+          +from dataclasses import dataclass
+          +from datetime import datetime, timedelta
+          +from math import exp, expm1, log
+          +
+          +from form_history_v38 import regular_time_score, utc
+          +from national_form_v48 import HISTORY_DAYS, OSLO, result_weight
+          +
+          +METHOD = 'national_strength_v49'
+          +
+          +
+          +@dataclass(frozen=True)
+          +class NationalStrength:
+          +    baseline: float
+          +    home_advantage: float
+          +    attack: dict[str, float]
+          +    goals_allowed: dict[str, float]
+          +
+          +    def scoring_rates(self, home: str, away: str, *, neutral: bool = False):
+          +        if home == away or home not in self.attack or away not in self.attack:
+          +            return None
+          +        venue = 0.0 if neutral else self.home_advantage / 2
+          +        home_rate = exp(self.baseline + venue + self.attack[home] + self.goals_allowed[away])
+          +        away_rate = exp(self.baseline - venue + self.attack[away] + self.goals_allowed[home])
+          +        # Beyond this range a 30-goal grid does not reliably capture the tails.
+          +        if max(home_rate, away_rate) > 12:
+          +            return None
+          +        return home_rate, away_rate
+          +
+          +
+          +def _fit_poisson(columns, weights, targets):
+          +    """Minimize weighted Poisson loss plus a ridge penalty on team effects.
+          +
+          +    Each coordinate has a convex, one-dimensional objective. Backtracking
+          +    accepts a Newton step only if it decreases that objective.
+          +    """
+          +    parameters = [log(1.3)] + [0.0] * (len(columns) - 1)
+          +    penalties = [0.0, 0.1] + [1.0] * (len(columns) - 2)
+          +    fitted = [1.3 * weight for weight in weights]
+          +    observed = [weight * goals for weight, goals in zip(weights, targets, strict=True)]
+          +    tolerance = 1e-6
+          +    for _ in range(1200):
+          +        biggest_step = 0.0
+          +        for i, (column, penalty) in enumerate(zip(columns, penalties, strict=True)):
+          +            value = parameters[i]
+          +            gradient = penalty * value
+          +            curvature = penalty
+          +            for row, coefficient in column:
+          +                gradient += coefficient * (fitted[row] - observed[row])
+          +                curvature += coefficient**2 * fitted[row]
+          +            step = max(-1.0, min(1.0, -gradient / curvature))
+          +            step = max(-3.0 - value, min(3.0 - value, step))
+          +            while abs(step) >= tolerance:
+          +                change = penalty * step * (value + step / 2)
+          +                for row, coefficient in column:
+          +                    offset = coefficient * step
+          +                    change += fitted[row] * expm1(offset) - observed[row] * offset
+          +                if change <= 0:
+          +                    parameters[i] += step
+          +                    for row, coefficient in column:
+          +                        fitted[row] *= exp(coefficient * step)
+          +                    biggest_step = max(biggest_step, abs(step))
+          +                    break
+          +                step /= 2
+          +        if biggest_step < tolerance:
+          +            return parameters
+          +    return None
+          +
+          +
+          +def fit_national_strength(fixtures: list[dict], before: datetime) -> NationalStrength | None:
+          +    if before.tzinfo is None:
+          +        raise ValueError('National model requires an analysis time with a timezone')
+          +    cutoff = before.astimezone(OSLO).date()
+          +    start = cutoff - timedelta(days=HISTORY_DAYS)
+          +    matches = []
+          +    for match in fixtures:
+          +        if match.get('status') != 'FINISHED':
+          +            continue
+          +        kickoff = utc(match.get('utcDate'))
+          +        if kickoff is None:
+          +            continue
+          +        day = kickoff.astimezone(OSLO).date()
+          +        if not start <= day < cutoff:
+          +            continue
+          +        home = (match.get('homeTeam') or {}).get('id')
+          +        away = (match.get('awayTeam') or {}).get('id')
+          +        score = regular_time_score(match)
+          +        if not isinstance(home, str) or not isinstance(away, str) or home == away or score is None:
+          +            continue
+          +        venue = 0 if match.get('neutralVenue') is True else 0.5
+          +        weight = result_weight(day, (match.get('competition') or {}).get('name'), cutoff)
+          +        matches.append((home, away, score, venue, weight))
+          +    if not matches:
+          +        return None
+          +
+          +    teams = {team: i for i, team in enumerate(sorted({t for h, a, *_ in matches for t in (h, a)}))}
+          +    size = len(teams)
+          +    columns = [[] for _ in range(2 + 2 * size)]
+          +    weights, targets = [], []
+          +    for home, away, (hg, ag), venue, weight in matches:
+          +        for attack, defence, goals, advantage in ((home, away, hg, venue), (away, home, ag, -venue)):
+          +            row = len(targets)
+          +            weights.append(weight)
+          +            targets.append(goals)
+          +            columns[0].append((row, 1))
+          +            if advantage:
+          +                columns[1].append((row, advantage))
+          +            columns[2 + teams[attack]].append((row, 1))
+          +            columns[2 + size + teams[defence]].append((row, 1))
+          +    parameters = _fit_poisson(columns, weights, targets)
+          +    if parameters is None:
+          +        return None
+          +    return NationalStrength(
+          +        baseline=parameters[0], home_advantage=parameters[1],
+          +        attack={team: parameters[2 + i] for team, i in teams.items()},
+          +        goals_allowed={team: parameters[2 + size + i] for team, i in teams.items()},
+          +    )
+          diff --git a/tests/test_national_form_v48.py b/tests/test_national_form_v48.py
+          index ca89dcd095f973d5d5ea6e050c6f04943d778887..b01410de0a733c46c1a803c560b715e432261e93 100644
+          --- a/tests/test_national_form_v48.py
+          +++ b/tests/test_national_form_v48.py
+          @@ -7,6 +7,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
+           
+           from build_data import build_snapshot
+           from national_form_v48 import load_history, parse_results, team_identity
+          +from national_strength_v49 import METHOD, fit_national_strength
+           from odds_first_v25 import fixtures_from_quotes
+           from qualify_v20 import qualify
+           
+          @@ -68,10 +69,43 @@ class NationalFormTests(unittest.TestCase):
+                                                 national_history=history)
+                           match = data['matches'][0]
+                           self.assertEqual(match['model']['sample'], [10, 10])
+          -                self.assertEqual(match['model']['modelMethod'], 'national_form_v48')
+          +                self.assertEqual(match['model']['modelMethod'], METHOD)
+                           self.assertLess(match['model']['effectiveSample'][0], 10)
+                           self.assertEqual(data['coverage']['oddsWithVerifiedForm'], 1)
+                           self.assertEqual(len(match['formMatchesHome']), 5)
+                           self.assertTrue(match['formMatchesHome'][0]['neutralVenue'])
+                           self.assertEqual(match['odds']['B']['books'], 3)
+                           self.assertNotIn('manglende_kamphistorikk', qualify(data)['qualityAudit']['rejections'])
+          +
+          +    def test_strength_gap_is_retained_and_analysis_day_is_excluded(self):
+          +        rows = [HEADER]
+          +        for age in (14, 30, 63, 95, 128, 190, 220, 250, 280, 312):
+          +            rows.append(f'{DAY - timedelta(days=age)},San Marino,Belarus,0,4,Friendly,FALSE')
+          +        rows.append(f'{DAY},San Marino,Belarus,9,0,Friendly,FALSE')
+          +        history = parse_results('\n'.join(rows), DAY - timedelta(days=548), DAY + timedelta(days=1))
+          +        at = KICKOFF - timedelta(hours=10)
+          +        home, away = team_identity('San Marino'), team_identity('Belarus')
+          +        with_same_day_row = fit_national_strength(history, at).scoring_rates(home, away)
+          +        before_day_only = [m for m in history if m['utcDate'][:10] != str(DAY)]
+          +        rates = fit_national_strength(before_day_only, at).scoring_rates(home, away)
+          +        self.assertEqual(with_same_day_row, rates)
+          +        self.assertLess(rates[0], 0.5)
+          +        self.assertGreater(rates[1], 3.0)
+          +
+          +    def test_unavailable_strength_fit_does_not_use_club_model_for_national_match(self):
+          +        rows = [HEADER]
+          +        for age in (12, 27, 61, 91, 117, 151):
+          +            rows.append(f'{DAY - timedelta(days=age)},Czech Republic,England,1,2,Friendly,FALSE')
+          +        history = parse_results('\n'.join(rows), DAY - timedelta(days=548), DAY)
+          +        fixture = {
+          +            'id': 'official-national', 'utcDate': KICKOFF.isoformat(), 'status': 'SCHEDULED',
+          +            'competition': {'code': 'UNL', 'name': 'Nations League'},
+          +            'homeTeam': {'id': team_identity('Czechia'), 'name': 'Czechia'},
+          +            'awayTeam': {'id': team_identity('England'), 'name': 'England'},
+          +        }
+          +        at = KICKOFF - timedelta(hours=10)
+          +        snapshot = build_snapshot(at, [fixture, *history], None, [], [], {})
+          +        match = snapshot['matches'][0]
+          +        self.assertEqual(len(match['formMatchesHome']), 5)
+          +        self.assertEqual(len(match['formMatchesAway']), 5)
+          +        self.assertIsNone(match['model'])
+          ODDS_V49_PATCH
+          if git apply --reverse --check --index "$patch_file" 2>/dev/null; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+            echo 'Landslagsanalysen er allerede installert.'
+          else
+            git apply --check --index "$patch_file"
+            git apply --index "$patch_file"
+            git diff --cached --check
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Test generatoren og visningen
+        if: steps.apply.outputs.changed == 'true'
+        shell: bash
+        run: |
+          python -m unittest discover -s tests -q
+          for test in tests/*.cjs; do node "$test"; done
+      - name: Kontroller den offentlige resultatkilden
+        if: steps.apply.outputs.changed == 'true'
+        shell: bash
+        run: |
+          PYTHONPATH=scripts python - <<'PY'
+          from datetime import datetime, timezone
+          from national_form_v48 import load_history
+          from national_strength_v49 import fit_national_strength
+
+          now = datetime.now(timezone.utc)
+          history, status = load_history(now)
+          if status.get('state') != 'ok':
+              raise SystemExit(f"Resultatkilden er utilgjengelig: {status.get('state')}")
+          if fit_national_strength(history, now) is None:
+              raise SystemExit('Kunne ikke beregne styrke fra landslagshistorikken')
+          print(f"Hentet {status['matches']} landslagsresultater. Siste dato: {status['latestResultDate']}")
+          PY
+      - name: Installer på main
+        if: steps.apply.outputs.changed == 'true'
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Korriger lagstyrke i landslagsmodellen'
+          git push origin HEAD:main
+      - name: Start ny dagsanalyse
+        if: steps.apply.outputs.changed == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run publish.yml --repo "$GITHUB_REPOSITORY" --ref main -f mode=daily -f force_refresh=true
