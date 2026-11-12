@@ -1,0 +1,1431 @@
+# Legg denne filen i .github/workflows/ på main for å installere v48.
+# Denne kjøringen sjekker og tester endringen før den kan publiseres.
+name: Installer landslagsanalyse v48
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/installer-landslag-v48.yml']
+  workflow_dispatch:
+
+concurrency:
+  group: oddsgeneratoren-state-and-pages
+  cancel-in-progress: false
+  queue: max
+
+jobs:
+  installer:
+    if: github.repository == 'jonasmheien/OddsGeneratoren3000' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Klargjør den testede endringen
+        id: apply
+        shell: bash
+        run: |
+          patch_file="$(mktemp "$RUNNER_TEMP/oddsgeneratoren-v48.XXXXXX")"
+          trap 'rm -f "$patch_file"' EXIT
+          cat > "$patch_file" <<'ODDS_V48_PATCH'
+          diff --git a/docs/INTERNATIONAL_V43.md b/docs/INTERNATIONAL_V43.md
+          index cd708542474a45be05777fa75ab37c97b23e6f08..6c0d918d2d21267b1867f90734f1aab535f3100c 100644
+          --- a/docs/INTERNATIONAL_V43.md
+          +++ b/docs/INTERNATIONAL_V43.md
+          @@ -19,3 +19,15 @@ VIKTIG: For kamper som bare har `odds:`-kamp-ID, støtter ikke dagens automatisk
+           `python3 -m unittest discover -s tests -q` kjører alle eksisterende og nye Python-tester. JavaScript-testene kjøres også av installasjonsprogrammet. Testene bruker syntetiske sports-/arrangementssvar og **ingen** ekte API-kreditter. Programmet tilbakestiller alle endrede filer om en test mislykkes. V43 endrer ikke GitHub Actions-tidsplan, hemmeligheter eller dagens publiserte datagrunnlag ved installasjon; nye kamper dukker opp først etter neste vellykkede analyse.
+           
+           Offisielle kilder: <https://the-odds-api.com/liveapi/guides/v4/> og <https://the-odds-api.com/sports-odds-data/sports-apis.html>.
+          +
+          +## Landslagsform og kvalifisering fra v48
+          +
+          +Dagsanalysen og forhåndsanalysen henter én offentlig [resultatfil](https://github.com/martj42/international_results) når det er landskamper i utvalget. Filen publiseres av Mart Jürisoo, som oppgir CC0 for datasettet. UEFA-lag kobles med forbundskoder og eksplisitte navnevarianter. Resultater fra de fem siste verifiserte kampene vises per lag. Kilde og siste tilgjengelige resultatdato står i analysens diagnostikk.
+          +
+          +Landslagsmodellen bruker inntil 548 dagers historikk. En kamps vekt halveres etter 270 dager, og treningskamper får 70 prosent av vekten til en tellende kamp av samme alder. Vektene brukes både i målanslag og i kvalitetskontrollens utvalgsstørrelse. CSV-filen inneholder sluttresultat med eventuelle ekstraomganger, så inntaket avgrenser turneringene til kjente liga- og gruppespill. Dato uten avsparkstid behandles som dato; resultater fra analysedagen brukes ikke. Ved feil i CSV-kilden fortsetter analysen med tilgjengelig form fra de andre kildene.
+          +
+          +I en datoordnet prøve ga 548 dager noe bedre treffsikkerhet på kampresultat enn 365 dager ved samme vekting, både på 70 felles VM-gruppekamper og på 104 Nations League-kamper. Dette var en kontroll av sannsynlighetsanslag mot faktiske resultater. Historiske odds manglet for den sammenligningen.
+          +
+          +Kvalifiserte spill rangeres på beregnet verdi i det konservative scenarioet, med ett spill per kamp. De fem øverste vises først. Begge lag scorer og lagmål kan kvalifiseres når modellen har grunnlag og relevante, ferske priser finnes i den ordinære oddshentingen.
+          +
+          +Kjør **Oppdater OddsGeneratoren** på **main** med **daily** og **force_refresh** for å beregne dagens utgave på nytt etter installasjon. Bruk **tomorrow** for en separat forhåndsanalyse.
+          diff --git a/scripts/build_data.py b/scripts/build_data.py
+          index bf8cd9a94fa29a1af33882664aae8a74589b45a1..8442ad8210d09730350d10b7bdbcdf6413e9bffb 100644
+          --- a/scripts/build_data.py
+          +++ b/scripts/build_data.py
+          @@ -31,7 +31,9 @@ from odds_first_v25 import fixtures_from_quotes
+           from international_v43 import INTERNATIONAL_KEYS
+           from matchday_sports_v44 import discover_matchday_sports
+           from sportmonks_v45 import discover as discover_sportmonks
+          -from market_expansion import extend_goal_probabilities, first_half_probabilities, corner_probabilities
+          +from market_expansion import (TEAM_TOTAL_LINES, extend_goal_probabilities,
+          +                              first_half_probabilities, corner_probabilities)
+          +import national_form_v48 as national_form
+           
+           ROOT = Path(__file__).resolve().parent.parent
+           OUT = Path(os.environ['ODDS_OUTPUT_PATH']) if os.environ.get('ODDS_OUTPUT_PATH') else ROOT / 'site' / 'data' / 'today.json'
+          @@ -131,6 +133,9 @@ TEAM_NAME_ALIASES = {
+               'paris saint germain': 'paris saint germain',
+               'bodo glimt': 'bodo glimt',
+               'bodo glimt fk': 'bodo glimt',
+          +    'czechia': 'czech republic',
+          +    'turkiye': 'turkey',
+          +    'republic of ireland': 'ireland',
+           }
+           
+           
+          @@ -209,20 +214,22 @@ def poisson_pmf(lam: float, k: int) -> float:
+               return math.exp(-lam) * lam ** k / math.factorial(k)
+           
+           
+          -def model_probabilities(home_form: list, away_form: list) -> dict | None:
+          +def model_probabilities(home_form: list, away_form: list, *, weights=None, neutral=False) -> dict | None:
+               if min(len(home_form), len(away_form)) < 3:
+                   return None
+               # Conservative shrinkage towards baseline; not a calibrated predictive model.
+               n_h, n_a = len(home_form), len(away_form)
+          -    def rate(form, idx, prior):
+          -        n = len(form)
+          -        return (sum(x[idx] for x in form) + 6 * prior) / (n + 6)
+          -    home_attack = rate(home_form, 1, 1.45)
+          -    away_def = rate(away_form, 2, 1.45)
+          -    away_attack = rate(away_form, 1, 1.15)
+          -    home_def = rate(home_form, 2, 1.15)
+          -    lh = max(.35, min(3.4, (home_attack * away_def) ** .5 * 1.06))
+          -    la = max(.30, min(3.2, (away_attack * home_def) ** .5 * .95))
+          +    home_weights, away_weights = weights if weights is not None else ([1] * n_h, [1] * n_a)
+          +    def rate(form, row_weights, idx, prior):
+          +        weighted_goals = sum(row[idx] * weight for row, weight in zip(form, row_weights, strict=True))
+          +        return (weighted_goals + 6 * prior) / (sum(row_weights) + 6)
+          +    home_prior, away_prior = (1.30, 1.30) if neutral else (1.45, 1.15)
+          +    home_attack = rate(home_form, home_weights, 1, home_prior)
+          +    away_def = rate(away_form, away_weights, 2, home_prior)
+          +    away_attack = rate(away_form, away_weights, 1, away_prior)
+          +    home_def = rate(home_form, home_weights, 2, away_prior)
+          +    lh = max(.35, min(3.4, (home_attack * away_def) ** .5 * (1 if neutral else 1.06)))
+          +    la = max(.30, min(3.2, (away_attack * home_def) ** .5 * (1 if neutral else .95)))
+               hp = [poisson_pmf(lh, x) for x in range(13)]
+               ap = [poisson_pmf(la, x) for x in range(13)]
+               norm = sum(hp) * sum(ap)
+          @@ -276,17 +283,17 @@ def extract_market_odds(event: dict, match: dict, asof: datetime | None = None)
+                           elif key in ('totals','alternate_totals'):
+                               if point in (1.5,2.5,3.5) and low in ('over','under'):
+                                   selection= ('O' if low=='over' else 'U')+f'{int(point*10):02d}'
+          -                elif key=='btts' and low=='yes':
+          -                    selection='BTTS'
+          +                elif key=='btts' and low in ('yes', 'no'):
+          +                    selection = 'BTTS' if low == 'yes' else 'BTTSN'
+                           elif key in ('team_totals','alternate_team_totals'):
+                               # The Odds API records the target team in 'description';
+                               # an unlabeled line must never be assigned to a side.
+          -                    desc=str(item.get('description') or '')
+          -                    if low=='over' and point in (.5,1.5):
+          -                        if name_score(desc,event.get('home_team',''))>=.77:
+          -                            selection='THO'+f'{int(point*10):02d}'
+          -                        elif name_score(desc,event.get('away_team',''))>=.77:
+          -                            selection='TAO'+f'{int(point*10):02d}'
+          +                    description = club_identity(str(item.get('description') or ''))
+          +                    if description and low in ('over', 'under') and point in TEAM_TOTAL_LINES:
+          +                        sides = [prefix for prefix, team in (('TH', 'home_team'), ('TA', 'away_team'))
+          +                                 if description == club_identity(event.get(team, ''))]
+          +                        if len(sides) == 1:
+          +                            selection = f'{sides[0]}{low[0].upper()}{int(point*10):02d}'
+                           elif key in ('totals_h1','alternate_totals_h1'):
+                               if point in (.5,1.5) and low in ('over','under'):
+                                   selection='H1'+('O' if low=='over' else 'U')+f'{int(point*10):02d}'
+          @@ -483,11 +490,13 @@ def independent_api_predictions(fixtures: list, now: datetime, api_key: str,
+               return predictions,issues
+           
+           
+          -def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manual_models: list, errors: list, status: dict, external_predictions: dict | None = None, target_date=None) -> dict:
+          +def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manual_models: list, errors: list, status: dict, external_predictions: dict | None = None, target_date=None, *, national_history=None) -> dict:
+               today = target_date or now.astimezone(OSLO).date()
+               cutoff = today + timedelta(days=1)
+               output = []
+               strengths = opponent_indices(fixtures, now)
+          +    national_history = national_history or []
+          +    national_strengths = opponent_indices(national_history, now, days=national_form.HISTORY_DAYS)
+               for raw in fixtures:
+                   if raw.get('status') in ('CANCELLED','POSTPONED'):
+                       continue
+          @@ -508,10 +517,21 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
+                   form_before = min(k, now)
+                   h_details, h_issues = verified_form_records(fixtures, home['id'], form_before)
+                   a_details, a_issues = verified_form_records(fixtures, away['id'], form_before)
+          +        national_weights = None
+          +        if national_history and national_form.is_national_fixture(raw):
+          +            h_national, h_national_issues = national_form.form_records(national_history, home, form_before)
+          +            a_national, a_national_issues = national_form.form_records(national_history, away, form_before)
+          +            if h_national and a_national:
+          +                h_details, h_issues = h_national, h_national_issues
+          +                a_details, a_issues = a_national, a_national_issues
+          +                national_weights = (
+          +                    national_form.form_weights(h_details, form_before),
+          +                    national_form.form_weights(a_details, form_before),
+          +                )
+                   # Fuzzy provider bridges only apply to bookmaker-created fixtures.
+                   # Before publishing their inferred team history, verify the identity
+                   # against a historical, source-provided name (not merely similar text).
+          -        if str(raw.get('id') or '').startswith('odds:'):
+          +        if national_weights is None and str(raw.get('id') or '').startswith('odds:'):
+                       if h_details and not source_identity_confirmed(
+                               [home.get('name'),home.get('shortName')],h_details):
+                           h_details=[]
+          @@ -521,6 +541,10 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
+                           a_details=[]
+                           a_issues.append('team_match_uncertain')
+                   hf, af = model_rows(h_details), model_rows(a_details)
+          +        opponent_strength = national_strengths if national_weights is not None else strengths
+          +        model = model_probabilities(adjusted_form(hf, opponent_strength, k),
+          +                                    adjusted_form(af, opponent_strength, k),
+          +                                    weights=national_weights, neutral=raw.get('neutralVenue') is True)
+                   m = {'id': str(raw.get('id') or ''), 'league': (raw.get('competition') or {}).get('name') or 'Annen',
+                        'leagueCode': (raw.get('competition') or {}).get('code') or '',
+                        'leagueCrest': (raw.get('competition') or {}).get('emblem'),
+          @@ -539,11 +563,16 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
+                           'home': {'verified': len(h_details), 'displayable': sum(x['displayComplete'] for x in h_details[:5]), 'issues': sorted(set(h_issues))},
+                           'away': {'verified': len(a_details), 'displayable': sum(x['displayComplete'] for x in a_details[:5]), 'issues': sorted(set(a_issues))},
+                        },
+          -             'model': model_probabilities(adjusted_form(hf, strengths, k), adjusted_form(af, strengths, k)), 'odds': {}, 'predictions': []}
+          -        if m['model'] is not None:
+          -            m['model']['effectiveSample'] = [effective_form_sample(hf, k), effective_form_sample(af, k)]
+          -            m['model']['modelMethod'] = 'strength_adjusted_v21'
+          -            m['model']['historyWindowDays'] = 180
+          +              'model': model, 'odds': {}, 'predictions': []}
+          +        if model is not None:
+          +            if national_weights is not None:
+          +                model['effectiveSample'] = [round(sum(weights), 2) for weights in national_weights]
+          +                model['modelMethod'] = 'national_form_v48'
+          +                model['historyWindowDays'] = national_form.HISTORY_DAYS
+          +            else:
+          +                model['effectiveSample'] = [effective_form_sample(hf, k), effective_form_sample(af, k)]
+          +                model['modelMethod'] = 'strength_adjusted_v21'
+          +                model['historyWindowDays'] = 180
+                   if m['model'] is not None:
+                       m['model']['probabilities'].update(first_half_probabilities(fixtures,k,home['id'],away['id']))
+                       m['model']['probabilities'].update(corner_probabilities(fixtures,k,home['id'],away['id']))
+          @@ -593,6 +622,10 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
+                   'upcomingMatches': len(active_today),
+                   'matchedOdds': sum(bool(m.get('odds')) for m in active_today),
+                   'withModel': sum(bool(m.get('model')) for m in active_today),
+          +        'oddsWithVerifiedForm': sum(bool(m['odds'] and m['formMatchesHome'] and m['formMatchesAway'])
+          +                                    for m in active_today),
+          +        'nationalWithModel': sum((m['model'] or {}).get('modelMethod') == 'national_form_v48'
+          +                                 for m in active_today),
+                   'externalPredictions': sum(len(m.get('predictions') or []) for m in active_today),
+                   'manualPredictions': sum(1 for m in active_today for pred in (m.get('predictions') or []) if pred.get('entry')=='manual'),
+                   'apiPredictions': sum(1 for m in active_today for pred in (m.get('predictions') or []) if pred.get('entry')=='api'),
+          @@ -611,6 +644,9 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
+                   sources.append({'name': 'Sportmonks', 'role': 'Verifisert kampform og oppsett i Danmark og Skottland', 'state': 'connected'})
+               if status.get('additionalFormBridge', {}).get('teamsLinked'):
+                   sources.append({'name':'football-data.co.uk', 'role':'Verifiserte ligakamper til privat formanalyse', 'state':'connected'})
+          +    if 'nationalForm' in status:
+          +        sources.append({'name': national_form.SOURCE, 'role': 'Landslagsresultater',
+          +                        'state': 'connected' if status['nationalForm']['state'] == 'ok' else 'unavailable'})
+               return {'version': 3, 'recommendations':picks, 'safeBets':safe_bets, 'highRisk':high_risk,
+                       'coverage':coverage,'sources':sources,
+                       'visualAssets':{'licensedCrests':os.getenv('SHOW_LICENSED_CRESTS','').strip()=='1'},
+          @@ -779,14 +815,15 @@ def main():
+                       # football-data.org's free UEFA fixture feed. Reuse VERIFIED domestic
+                       # results from competitions already included in the free plan.
+                       # The identity bridge rejects uncertain clubs and never invents form.
+          -            if recovered and key:
+          +            domestic_recovered = [match for match in recovered if not national_form.is_national_fixture(match)]
+          +            if domestic_recovered and key:
+                           domestic_history, history_errors = load_free_history(fetch_football, BASE, date)
+                           errors.extend(history_errors)
+                           fixtures, diagnostics = bridge(fixtures, domestic_history, now, identity_score)
+                           status['officialFormBridge'] = diagnostics
+                           status['fixtureCount'] = len(fixtures)
+                           print('FORM_BRIDGE', diagnostics)
+          -            if recovered:
+          +            if domestic_recovered:
+                           # A small, cached, personal-use history supplement. At most once per
+                           # 96 hours; does not replace any verified football-data.org team IDs.
+                           try:
+          @@ -809,9 +846,15 @@ def main():
+                   status['externalPredictionsCount']=len(external)
+               else:
+                   status['externalPredictionsStatus']='not_configured'
+          +    national_history = []
+          +    if any(national_form.is_national_fixture(match) and match.get('status') in ('TIMED', 'SCHEDULED')
+          +           for match in fixtures):
+          +        national_history, status['nationalForm'] = national_form.load_history(now)
+          +        print('NATIONAL_FORM', status['nationalForm'])
+               snapshot = build_snapshot(now, fixtures, odds_events,
+                                         read_manual_models(ROOT / 'data' / 'manual_predictions.csv'),
+          -                              errors, status, external_predictions=external, target_date=date)
+          +                              errors, status, external_predictions=external, target_date=date,
+          +                              national_history=national_history)
+               # Visibility into the reason a full match programme produces few picks.
+               current_matches = [m for m in snapshot['matches']
+                                  if iso_datetime(m['kickoff']).astimezone(OSLO).date() == date
+          diff --git a/scripts/capture_visible_v34.cjs b/scripts/capture_visible_v34.cjs
+          index 4618059cdc9fb23ffd10269746a0672557c0beae..7b984555861b141f14ea67d29eb31308aa187a83 100644
+          --- a/scripts/capture_visible_v34.cjs
+          +++ b/scripts/capture_visible_v34.cjs
+          @@ -11,7 +11,7 @@ const vm = require('node:vm');
+           const visibleV40=require('../site/visible-selection-v40.js');
+           
+           const ANCHOR = "  document.addEventListener('DOMContentLoaded',()=>{";
+          -const GROUPS = ['high', 'safe', 'watch'];
+          +const GROUPS = ['qualified', 'high', 'safe', 'watch'];
+           const stableHash = obj => crypto.createHash('sha256').update(JSON.stringify(obj)).digest('hex').slice(0,24);
+           function localDay(date) {
+             return new Intl.DateTimeFormat('en-CA', {timeZone:'Europe/Oslo',year:'numeric',month:'2-digit',day:'2-digit'}).format(date);
+          @@ -131,7 +131,8 @@ function archiveSnapshot(root,{now=new Date()}={}) {
+             const old=fs.existsSync(location)?JSON.parse(fs.readFileSync(location,'utf8')):null;
+             if(old && (old.schemaVersion!==34||old.editionDate!==day||!Array.isArray(old.revisions)))throw new Error('Existing journal has unknown schema');
+             if(old?.revisions.some(r=>r.id===id))return {changed:false,reason:'already_archived',day,id};
+          -  const summary={total:n,high:records.high.length,safe:records.safe.length,watch:records.watch.length,
+          +  const summary={total:n,qualified:records.qualified.length,high:records.high.length,
+          +    safe:records.safe.length,watch:records.watch.length,
+               withBothFive:all.filter(p=>p.quality.homeLastFive.length===5&&p.quality.awayLastFive.length===5).length,
+               withFormModel:all.filter(p=>p.quality.evidenceTier==='form_and_model').length,
+               marketBased:all.filter(p=>p.sourceType==='bookmaker_market').length,
+          diff --git a/scripts/final_selection_v40.py b/scripts/final_selection_v40.py
+          index 957f7b7a708667b4d1ca4dae68aec76d01f95298..e52f3aa2f1ef26fe88d0233e24ee1da02dd9d20a 100644
+          --- a/scripts/final_selection_v40.py
+          +++ b/scripts/final_selection_v40.py
+          @@ -37,6 +37,7 @@ ALIASES = {
+               'nottinghamforest': 'nottingham', 'manchestercity': 'mancity',
+               'tottenhamhotspur': 'tottenham',
+           }
+          +NATIONAL_ALIASES = {'czechia': 'czechrepublic', 'turkiye': 'turkey', 'republicofireland': 'ireland'}
+           LABELS = {
+               'H': 'Hjemmeseier', 'U': 'Uavgjort', 'B': 'Borteseier',
+               'BTTS': 'Begge lag scorer: Ja', 'BTTSN': 'Begge lag scorer: Nei',
+          @@ -49,15 +50,17 @@ def dt(value):
+               except (TypeError, ValueError, OverflowError):
+                   return None
+           
+          -def club(name):
+          +def club(name, *, national_aliases=True):
+               s = unicodedata.normalize('NFKD', str(name or '')).lower()
+               s = ''.join(c for c in s if not unicodedata.combining(c))
+               s = ''.join(c for c in s if c.isascii() and c.isalnum())
+          -    return ALIASES.get(s, s)
+          +    s = ALIASES.get(s, s)
+          +    return NATIONAL_ALIASES.get(s, s) if national_aliases else s
+           
+          -def fixture_key(p):
+          +def fixture_key(p, *, national_aliases=True):
+               kickoff = dt(p.get('kickoff'))
+          -    home, away = club(p.get('home')), club(p.get('away'))
+          +    home = club(p.get('home'), national_aliases=national_aliases)
+          +    away = club(p.get('away'), national_aliases=national_aliases)
+               if not kickoff or not home or not away:
+                   return None
+               # The local day + ordered team identities bridge independent provider IDs.
+          @@ -162,7 +165,6 @@ def _candidates(snapshot, now):
+                        dt(m.get('kickoff')).astimezone(OSLO).date().isoformat()==day and
+                        dt(m.get('kickoff'))>now and m.get('status') in ('SCHEDULED','TIMED',None)]
+               by_id={str(m.get('id')):m for m in matches}
+          -    trace=[]
+               for p in snapshot.get('recommendations') or []:
+                   if not isinstance(p,dict):continue
+                   m=by_id.get(str(p.get('matchId')))
+          @@ -171,14 +173,11 @@ def _candidates(snapshot, now):
+                   if not quote({'price':p.get('price'),'books':p.get('bookmakers'),
+                                 'lastUpdated':p.get('oddsUpdatedAt')},now,min_books=1,max_age=6):continue
+                   cat=p.get('category')
+          -        if cat not in ('safe','high'):
+          -            # Standard outcomes have neither the Safe nor the High Risk criteria.
+          -            trace.append({'market':p.get('market'),'fixture':fixture_key(m),'reason':'outside_category'})
+          +        if cat not in ('safe','high','standard'):
+                       continue
+                   ident=market_identity(p['market'])
+                   obj={**p,'marketIdentity':ident,'fixtureKey':fixture_key(m),
+          -             'qualificationTier':'qualified','_selectionStrength':100+
+          -             min(15,float(p['conservativeEdge'])*30)+min(10,int(p.get('bookmakers') or 0))*.1}
+          +             'qualificationTier':'qualified'}
+                   out.append((cat,obj))
+               for m in matches:
+                   model=m.get('model') or {}
+          @@ -228,21 +227,26 @@ def _candidates(snapshot, now):
+                        'fixtureKey':fixture_key(m),'qualificationTier':'observation',
+                        '_selectionStrength':5+max(0,(_number(p.get('probability')) or 0)*10)}
+                   out.append(('watch',obj))
+          -    return out,trace
+          +    return out
+           
+           def finalize(snapshot, now=None):
+          -    """Create the sole three-section output. Never overwrite original raw evidence."""
+          +    """Rank every qualified match and fill remaining places with candidates."""
+               at=now or dt(snapshot.get('generatedAt'))
+               if not at:raise ValueError('Missing generatedAt')
+               if not isinstance(snapshot.get('matches'),list):raise ValueError('Missing matches')
+          -    candidates,trace=_candidates(snapshot,at)
+          +    candidates=_candidates(snapshot,at)
+          +    trace=[]
+               # Qualified > supported model > bookmaker-only > statistical observation.
+               # Within equal tiers, prefer documented strength and stable IDs.
+               tier={'qualified':0,'model':1,'market':2,'observation':3}
+          -    candidates.sort(key=lambda cp:(tier[cp[1]['qualificationTier']],
+          -                -float(cp[1].get('_selectionStrength') or 0),
+          -                str(cp[1].get('kickoff')),str(cp[1].get('matchId')),str(cp[1].get('market'))))
+          +    def order(candidate):
+          +        pick = candidate[1]
+          +        level = pick['qualificationTier']
+          +        merit = pick['conservativeEdge'] if level == 'qualified' else pick['_selectionStrength']
+          +        return (tier[level], -float(merit), str(pick['kickoff']), str(pick['matchId']), str(pick['market']))
+          +    candidates.sort(key=order)
+               groups={'safe':[],'high':[],'watch':[]}
+          +    qualified = []
+               occupied={}
+               blocked=Counter()
+               for category,p in candidates:
+          @@ -252,32 +256,36 @@ def finalize(snapshot, now=None):
+                       trace.append({'fixture':identity,'market':p['market'],'reason':'same_fixture_or_correlated_outcome',
+                                     'selectedMarket':occupied[identity]['market']})
+                       continue
+          -        if len(groups[category])>=5:
+          +        is_qualified = p['qualificationTier'] == 'qualified'
+          +        if not is_qualified and len(groups[category]) >= 5:
+                       blocked['category_full']+=1
+                       continue
+                   # Strip sorting/internal fields. Preserve identity and original quote.
+                   selection={k:v for k,v in p.items() if k!='_selectionStrength'}
+                   token=f'{identity}|{p["marketIdentity"]}'
+                   selection['selectionId']='v40:'+hashlib.sha256(token.encode()).hexdigest()[:20]
+          -        groups[category].append(selection)
+          +        if is_qualified:
+          +            qualified.append(selection)
+          +        if category in groups and len(groups[category]) < 5:
+          +            groups[category].append(selection)
+                   occupied[identity]=selection
+                   trace.append({'fixture':identity,'selectionId':selection['selectionId'],
+          -                      'market':selection['market'],'group':category,'reason':'selected'})
+          +                      'market':selection['market'],'group':'qualified' if is_qualified else category,
+          +                      'reason':'selected'})
+               snapshot['safeBets']=groups['safe']
+               snapshot['highRisk']=groups['high']
+               snapshot['interestingObjects']=groups['watch']
+          -    # Other UI sections and results processing may show recommendations. Only
+          -    # the qualified picks in the final selected categories belong there.
+          -    snapshot['recommendations']=[p for g in ('safe','high') for p in groups[g]
+          -                                 if p['qualificationTier']=='qualified']
+          +    snapshot['recommendations'] = qualified
+               snapshot['finalSelection']={'version':40,'policy':'one_active_selection_per_real_fixture',
+          +        'rankedRecommendations':True,
+                   'categories':{'safe':len(groups['safe']),'high':len(groups['high']),
+                                 'watch':len(groups['watch'])},
+                   'target':[3,5],'shortfalls':{g:('For få konfliktfrie, kildebaserte kandidater.' if len(v)<3 else None)
+                                              for g,v in groups.items()},
+                   'rejected':dict(blocked),'trace':trace}
+               if isinstance(snapshot.get('coverage'),dict):
+          -        snapshot['coverage'].update(safeFound=len(groups['safe']),highFound=len(groups['high']))
+          +        snapshot['coverage'].update(safeFound=len(groups['safe']),highFound=len(groups['high']),
+          +                                    qualified=len(qualified))
+               validate(snapshot)
+               return snapshot
+           
+          @@ -285,23 +293,42 @@ def validate(snapshot):
+               """Fail closed if backend JSON contains conflicting final selections."""
+               if not isinstance(snapshot.get('finalSelection'),dict) or snapshot['finalSelection'].get('version')!=40:
+                   raise ValueError('Missing authoritative v40 finalSelection')
+          -    seen=set();ids=set()
+          +    ranked = snapshot['finalSelection'].get('rankedRecommendations') is True
+          +    seen={};ids=set()
+          +    def selection_identity(p):
+          +        k = fixture_key(p, national_aliases=ranked)
+          +        m = market_identity(p.get('market'))
+          +        ident = p.get('selectionId')
+          +        if not k or not m or p.get('fixtureKey') != k or p.get('marketIdentity') != m or not ident:
+          +            raise ValueError('Malformed fixture/market identity')
+          +        if not isinstance(p.get('price'), (int, float)) or p['price'] <= 1:
+          +            raise ValueError('Invalid selection price')
+          +        return k, ident
+               for name in ('safeBets','highRisk','interestingObjects'):
+                   picks=snapshot.get(name)
+                   if not isinstance(picks,list) or len(picks)>5:
+                       raise ValueError('Invalid final selection list: '+name)
+                   for p in picks:
+          -            k=fixture_key(p)
+          -            m=market_identity(p.get('market'))
+          -            if not k or not m or p.get('fixtureKey')!=k or p.get('marketIdentity')!=m:
+          -                raise ValueError('Malformed fixture/market identity')
+          +            k, ident = selection_identity(p)
+                       if k in seen:raise ValueError('Conflicting or correlated selections for fixture '+k)
+          -            if p.get('selectionId') in ids:raise ValueError('Repeated selectionId')
+          -            if not isinstance(p.get('price'),(int,float)) or p['price']<=1:
+          -                raise ValueError('Invalid selection price')
+          -            seen.add(k);ids.add(p.get('selectionId'))
+          +            if ident in ids:raise ValueError('Repeated selectionId')
+          +            seen[k] = ident
+          +            ids.add(ident)
+               qualified={p['selectionId'] for g in ('safeBets','highRisk') for p in snapshot[g]
+                          if p.get('qualificationTier')=='qualified'}
+          -    if {p.get('selectionId') for p in snapshot.get('recommendations',[])}!=qualified:
+          +    recommendations = snapshot.get('recommendations', [])
+          +    if not ranked:
+          +        if {p.get('selectionId') for p in recommendations} != qualified:
+          +            raise ValueError('Recommendations disagree with final selection')
+          +        return True
+          +    ranked_ids, ranked_matches = set(), set()
+          +    for p in recommendations:
+          +        k, ident = selection_identity(p)
+          +        if (p.get('qualificationTier') != 'qualified' or k in ranked_matches or ident in ranked_ids
+          +                or (k in seen and (seen[k] != ident or ident not in qualified))):
+          +            raise ValueError('Conflicting ranked recommendation for fixture ' + k)
+          +        ranked_matches.add(k)
+          +        ranked_ids.add(ident)
+          +    if not qualified.issubset(ranked_ids):
+                   raise ValueError('Recommendations disagree with final selection')
+               return True
+          diff --git a/scripts/form_history_v38.py b/scripts/form_history_v38.py
+          index 6ac9c92e6d2b1e39a90dc6f35929524d5eb4f615..48b6101dea7cae06d35bb9f92630773aa7d727db 100644
+          --- a/scripts/form_history_v38.py
+          +++ b/scripts/form_history_v38.py
+          @@ -125,6 +125,11 @@ def verified_form_records(fixtures, team_id, before, *, limit=16, days=HISTORY_D
+                       # Names are retained only if actually provided by the original source.
+                       'displayComplete': bool(home_name and away_name),
+                   }
+          +        if row.get('dateOnly') is True:
+          +            rec['dateOnly'] = True
+          +        if row.get('neutralVenue') is True:
+          +            rec['neutralVenue'] = True
+          +            rec['venueLabel'] = 'Nøytral bane'
+                   candidates.append(rec)
+           
+               # Same provider event ID in multiple downloads is a single event.
+          diff --git a/scripts/lifecycle.py b/scripts/lifecycle.py
+          index 7bebc2054bcccdb201e751faef91690f4f405580..ead7f1f4616ed9007cf5966297c6d0078e277454 100644
+          --- a/scripts/lifecycle.py
+          +++ b/scripts/lifecycle.py
+          @@ -17,6 +17,7 @@ from urllib.request import Request, urlopen
+           from versions_v22 import record_revision, publish_version_history
+           from expanded_sources_v23 import results_for
+           from sportmonks_v45 import results_for as sportmonks_results_for
+          +from market_expansion import TEAM_TOTAL_LINES
+           
+           ROOT = Path(__file__).resolve().parents[1]
+           STATE = ROOT / 'state' / 'active.json'
+          @@ -46,12 +47,15 @@ def pick_outcome(market: str, home: int, away: int):
+               if market=='U':return home==away
+               if market=='B':return home<away
+               if market=='BTTS':return home>0 and away>0
+          +    if market=='BTTSN':return home==0 or away==0
+               if market.startswith(('O','U')) and market[1:] in ('15','25','35'):
+                   line=int(market[1:])/10
+                   return (home+away>line) if market.startswith('O') else (home+away<line)
+          -    if market.startswith(('THO','TAO')) and market[3:] in ('05','15'):
+          -        side=home if market.startswith('THO') else away
+          -        return side>int(market[3:])/10
+          +    if market.startswith(('THO','THU','TAO','TAU')) and market[3:] in {
+          +            f'{int(line * 10):02d}' for line in TEAM_TOTAL_LINES}:
+          +        goals = home if market.startswith('TH') else away
+          +        line = int(market[3:]) / 10
+          +        return goals > line if market[2] == 'O' else goals < line
+               if market.startswith('H1') and market[2:] in ('O05','O15','U15'):
+                   code=market[2:]
+                   return (home+away>int(code[1:])/10) if code[0]=='O' else (home+away<int(code[1:])/10)
+          diff --git a/scripts/market_expansion.py b/scripts/market_expansion.py
+          index edbb6b1f14db4235ef165aad246e6c60081f7bd5..2cb3a9e62908a74cbedac12a20d531497f6b1bb6 100644
+          --- a/scripts/market_expansion.py
+          +++ b/scripts/market_expansion.py
+          @@ -10,12 +10,18 @@ from datetime import datetime
+           
+           EXTRA_LABELS = {
+               'O15':'Over 1,5 mål', 'U15':'Under 1,5 mål', 'U35':'Under 3,5 mål',
+          -    'THO05':'Hjemmelaget over 0,5 mål','THO15':'Hjemmelaget over 1,5 mål',
+          -    'TAO05':'Bortelaget over 0,5 mål','TAO15':'Bortelaget over 1,5 mål',
+          +    'BTTSN':'Begge lag scorer: Nei',
+               'H1O05':'1. omgang over 0,5 mål','H1O15':'1. omgang over 1,5 mål',
+               'H1U15':'1. omgang under 1,5 mål',
+               'CO85':'Over 8,5 hjørnespark', 'CO95':'Over 9,5 hjørnespark',
+           }
+          +TEAM_TOTAL_LINES = (0.5, 1.5, 2.5)
+          +for prefix, side in (('TH', 'Hjemmelaget'), ('TA', 'Bortelaget')):
+          +    for line in TEAM_TOTAL_LINES:
+          +        suffix = f'{int(line * 10):02d}'
+          +        label = str(line).replace('.', ',')
+          +        EXTRA_LABELS[f'{prefix}O{suffix}'] = f'{side} over {label} mål'
+          +        EXTRA_LABELS[f'{prefix}U{suffix}'] = f'{side} under {label} mål'
+           
+           
+           def poisson_over(lam: float, threshold: float) -> float:
+          @@ -29,13 +35,18 @@ def extend_goal_probabilities(model: dict) -> None:
+                   return
+               lh,la=[float(v) for v in model['expectedGoals']]
+               p=model.setdefault('probabilities',{})
+          -    for code,lam,threshold in [('O15',lh+la,1.5),('U15',lh+la,1.5),
+          -                               ('U35',lh+la,3.5),
+          -                               ('THO05',lh,.5),('THO15',lh,1.5),
+          -                               ('TAO05',la,.5),('TAO15',la,1.5)]:
+          +    for code,lam,threshold in [('O15',lh+la,1.5),('U15',lh+la,1.5),('U35',lh+la,3.5)]:
+                   v=poisson_over(lam,threshold)
+                   if code.startswith('U'): v=1-v
+                   p[code]=round(v,4)
+          +    if 'BTTS' in p:
+          +        p['BTTSN'] = round(1 - p['BTTS'], 4)
+          +    for prefix, rate in (('TH', lh), ('TA', la)):
+          +        for line in TEAM_TOTAL_LINES:
+          +            suffix = f'{int(line * 10):02d}'
+          +            above = poisson_over(rate, line)
+          +            p[f'{prefix}O{suffix}'] = round(above, 4)
+          +            p[f'{prefix}U{suffix}'] = round(1 - above, 4)
+           
+           
+           def recent_half_form(fixtures: list, before: datetime, team_id: int, limit:int=6) -> list[tuple]:
+          diff --git a/scripts/national_form_v48.py b/scripts/national_form_v48.py
+          new file mode 100644
+          index 0000000000000000000000000000000000000000..ec9ca095b9c09d4e468e1eeda4b94f722bc71c4f
+          --- /dev/null
+          +++ b/scripts/national_form_v48.py
+          @@ -0,0 +1,184 @@
+          +"""Independent history for senior national-team fixtures.
+          +
+          +The CC0 international_results CSV has dates but no kickoff times or
+          +regulation-time scores for games with extra time. Import only known
+          +regulation-time competitions and use completed dates before the analysis.
+          +"""
+          +from __future__ import annotations
+          +
+          +import csv
+          +import io
+          +import re
+          +import unicodedata
+          +from datetime import date, datetime, time, timedelta
+          +from urllib.request import Request, urlopen
+          +from zoneinfo import ZoneInfo
+          +
+          +from form_history_v38 import verified_form_records
+          +from international_v43 import INTERNATIONAL_KEYS
+          +from odds_first_v25 import COMPETITIONS
+          +
+          +OSLO = ZoneInfo('Europe/Oslo')
+          +SOURCE = 'International football results (Mart Jürisoo)'
+          +RESULTS_URL = 'https://raw.githubusercontent.com/martj42/international_results/master/results.csv'
+          +HISTORY_DAYS = 548
+          +HALF_LIFE_DAYS = 270
+          +FRIENDLY_WEIGHT = 0.70
+          +MAX_BYTES = 8_000_000
+          +COMPETITION_CODES = {COMPETITIONS[sport][0] for sport in INTERNATIONAL_KEYS} | {
+          +    'UNL', 'WC', 'EC', 'ECQ', 'WCQ',
+          +}
+          +REQUIRED_COLUMNS = {'date', 'home_team', 'away_team', 'home_score', 'away_score', 'tournament', 'neutral'}
+          +
+          +# UEFA association codes and exact provider aliases. All other senior teams
+          +# are joined only by an exact, accent-normalized name in the CSV.
+          +UEFA = {
+          +    'ALB': ('Albania',), 'AND': ('Andorra',), 'ARM': ('Armenia',),
+          +    'AUT': ('Austria',), 'AZE': ('Azerbaijan',), 'BLR': ('Belarus',),
+          +    'BEL': ('Belgium',), 'BIH': ('Bosnia and Herzegovina', 'Bosnia-Herzegovina'),
+          +    'BUL': ('Bulgaria',), 'CRO': ('Croatia',), 'CYP': ('Cyprus',),
+          +    'CZE': ('Czechia', 'Czech Republic'), 'DEN': ('Denmark',), 'ENG': ('England',),
+          +    'EST': ('Estonia',), 'FRO': ('Faroe Islands',), 'FIN': ('Finland',),
+          +    'FRA': ('France',), 'GEO': ('Georgia',), 'GER': ('Germany',), 'GIB': ('Gibraltar',),
+          +    'GRE': ('Greece',), 'HUN': ('Hungary',), 'ISL': ('Iceland',),
+          +    'IRL': ('Republic of Ireland', 'Ireland'), 'ISR': ('Israel',), 'ITA': ('Italy',),
+          +    'KAZ': ('Kazakhstan',), 'KOS': ('Kosovo',), 'LVA': ('Latvia',),
+          +    'LIE': ('Liechtenstein',), 'LTU': ('Lithuania',), 'LUX': ('Luxembourg',),
+          +    'MLT': ('Malta',), 'MDA': ('Moldova',), 'MNE': ('Montenegro',),
+          +    'NED': ('Netherlands',), 'MKD': ('North Macedonia',),
+          +    'NIR': ('Northern Ireland',), 'NOR': ('Norway',), 'POL': ('Poland',),
+          +    'POR': ('Portugal',), 'ROU': ('Romania',), 'RUS': ('Russia',),
+          +    'SMR': ('San Marino',), 'SCO': ('Scotland',), 'SRB': ('Serbia',),
+          +    'SVK': ('Slovakia',), 'SVN': ('Slovenia',), 'ESP': ('Spain',),
+          +    'SWE': ('Sweden',), 'SUI': ('Switzerland',), 'TUR': ('Türkiye', 'Turkey'),
+          +    'UKR': ('Ukraine',), 'WAL': ('Wales',),
+          +}
+          +
+          +
+          +def _name_key(name):
+          +    normalized = unicodedata.normalize('NFKD', str(name or '').casefold())
+          +    return re.sub(r'[^a-z0-9]+', '', normalized)
+          +
+          +
+          +_UEFA_CODES = {_name_key(name): code for code, names in UEFA.items() for name in (*names, code)}
+          +_NAME_ALIASES = {
+          +    'korearepublic': 'southkorea', 'republicofkorea': 'southkorea',
+          +    'iriran': 'iran', 'unitedstatesofamerica': 'unitedstates', 'usa': 'unitedstates',
+          +    'caboverde': 'capeverde', 'ivorycoast': 'cotedivoire',
+          +    'congodr': 'drcongo', 'democraticrepublicofthecongo': 'drcongo',
+          +}
+          +
+          +
+          +def team_identity(name):
+          +    key = _name_key(name)
+          +    if not key:
+          +        return None
+          +    if key in _UEFA_CODES:
+          +        return 'national:' + _UEFA_CODES[key]
+          +    return 'national-name:' + _NAME_ALIASES.get(key, key)
+          +
+          +
+          +def is_national_fixture(fixture):
+          +    return (fixture.get('competition') or {}).get('code') in COMPETITION_CODES
+          +
+          +
+          +def regular_time_competition(day, competition, home, away):
+          +    """A positive result requires a competition phase with no extra time."""
+          +    both_uefa = all(team.startswith('national:') for team in (home, away))
+          +    if competition == 'Friendly':
+          +        return True
+          +    if competition == 'UEFA Nations League':
+          +        return both_uefa and (
+          +            day.year % 2 == 0 and day.month in (9, 10, 11)
+          +            or day.year == 2022 and day.month == 6
+          +        )
+          +    if competition == 'FIFA World Cup qualification':
+          +        # UEFA's 2026 group matches ran Mar–Nov 2025. The March 2026
+          +        # single-leg play-offs could include extra time.
+          +        return both_uefa and date(2025, 3, 21) <= day <= date(2025, 11, 18)
+          +    if competition == 'FIFA World Cup':
+          +        return date(2026, 6, 11) <= day <= date(2026, 6, 27)
+          +    return False
+          +
+          +
+          +def parse_results(csv_text, first_day, before_day):
+          +    reader = csv.DictReader(io.StringIO(csv_text))
+          +    if not REQUIRED_COLUMNS.issubset(reader.fieldnames or []):
+          +        raise ValueError('Unexpected international results columns')
+          +    results, conflicts = {}, set()
+          +    for row in reader:
+          +        try:
+          +            day = date.fromisoformat(row['date'])
+          +            if not first_day <= day < before_day:
+          +                continue
+          +            home_name = row['home_team'].strip()
+          +            away_name = row['away_team'].strip()
+          +            if not (2 <= len(home_name) <= 100 and 2 <= len(away_name) <= 100):
+          +                continue
+          +            home, away = team_identity(home_name), team_identity(away_name)
+          +            if not home or not away or home == away:
+          +                continue
+          +            competition = row['tournament']
+          +            if not regular_time_competition(day, competition, home, away):
+          +                continue
+          +            hg, ag = int(row['home_score']), int(row['away_score'])
+          +            neutral = row['neutral'].strip().upper()
+          +            if not (0 <= hg <= 30 and 0 <= ag <= 30 and neutral in ('TRUE', 'FALSE')):
+          +                continue
+          +        except (AttributeError, TypeError, ValueError):
+          +            continue
+          +        key = (day, *sorted((home, away)))
+          +        match = {
+          +            'id': f'national-match:{day}:{home}:{away}',
+          +            # A date anchor for the existing form reader. The actual time is unknown.
+          +            'utcDate': datetime.combine(day, time.min, OSLO).isoformat(),
+          +            'status': 'FINISHED', 'formSource': SOURCE, 'dateOnly': True,
+          +            'neutralVenue': neutral == 'TRUE',
+          +            'homeTeam': {'id': home, 'name': home_name},
+          +            'awayTeam': {'id': away, 'name': away_name},
+          +            'competition': {'name': competition},
+          +            'score': {'fullTime': {'home': hg, 'away': ag}, 'duration': 'REGULAR'},
+          +        }
+          +        previous = results.setdefault(key, match)
+          +        if any(previous[field] != match[field] for field in ('id', 'score', 'neutralVenue')):
+          +            conflicts.add(key)
+          +    return [match for key, match in results.items() if key not in conflicts]
+          +
+          +
+          +def fetch_results_csv():
+          +    request = Request(RESULTS_URL, headers={'User-Agent': 'OddsGeneratoren3000/4.8'})
+          +    with urlopen(request, timeout=20) as response:
+          +        raw = response.read(MAX_BYTES + 1)
+          +    if len(raw) > MAX_BYTES:
+          +        raise ValueError('International results file is too large')
+          +    return raw.decode('utf-8-sig')
+          +
+          +
+          +def load_history(now, *, fetch=fetch_results_csv):
+          +    cutoff = now.astimezone(OSLO).date()
+          +    try:
+          +        rows = parse_results(fetch(), cutoff - timedelta(days=HISTORY_DAYS), cutoff)
+          +    except (OSError, ValueError) as exc:
+          +        return [], {'state': 'unavailable', 'error': type(exc).__name__}
+          +    return rows, {
+          +        'state': 'ok' if rows else 'empty',
+          +        'source': SOURCE,
+          +        'matches': len(rows),
+          +        'latestResultDate': max((row['utcDate'][:10] for row in rows), default=None),
+          +    }
+          +
+          +
+          +def form_records(history, team, before, *, days=HISTORY_DAYS):
+          +    # Do not use same-day records when the source provides no kickoff time.
+          +    cutoff = before.astimezone(OSLO).replace(hour=0, minute=0, second=0, microsecond=0)
+          +    identity = team_identity(team.get('name') or team.get('shortName'))
+          +    return verified_form_records(history, identity, cutoff, days=days, limit=24)
+          +
+          +
+          +def form_weights(records, before, *, half_life=HALF_LIFE_DAYS):
+          +    day = before.astimezone(OSLO).date()
+          +    return [
+          +        0.5 ** (max(0, (day - date.fromisoformat(record['localDate'])).days) / half_life)
+          +        * (FRIENDLY_WEIGHT if record['competition'] == 'Friendly' else 1)
+          +        for record in records
+          +    ]
+          diff --git a/scripts/qualify_v20.py b/scripts/qualify_v20.py
+          index 28578e1976de6314846ef228a85facaf01dafcfa..091567bcd30962db777d4dea7bbb2210e2148033 100644
+          --- a/scripts/qualify_v20.py
+          +++ b/scripts/qualify_v20.py
+          @@ -13,7 +13,8 @@ from collections import Counter
+           from pathlib import Path
+           from zoneinfo import ZoneInfo
+           
+          -from quality_v20 import dt, family, fresh_quote, number, overlaps, ranking, screen, rejection_reason, reference_probability
+          +from quality_v20 import (dt, family, fresh_quote, number, overlaps, ranking, screen,
+          +                         rejection_reason, reference_probability)
+           from recommend import MARKET_LABELS
+           from final_selection_v40 import finalize as finalize_v40
+           
+          @@ -145,6 +146,7 @@ def qualify(snapshot):
+           
+               # Each match may feature up to two meaningfully different markets.
+               # Do not add opposite totals, redundant lines or highly overlapping legs.
+          +    screened = len(options) + sum(failures.values())
+               options.sort(key=ranking)
+               chosen = []
+               by_match = {}
+          @@ -185,13 +187,12 @@ def qualify(snapshot):
+               snapshot['observations'] = notes
+               snapshot['modelVersion'] = '2.0-foundation'
+               snapshot['qualityAudit'] = {
+          -        'screened':len(options)+sum(failures.values()),
+          +        'screened':screened,
+                   'qualified':len(chosen), 'topLimit':5,
+                   'observations':len(notes), 'rejections':dict(failures),
+                   'calibrated':False,
+                   'method':'Eksplisitt sensitivitetsscenario, markedsforankring og usikkerhetstrekk; ikke validert som konfidensintervall',
+                   'coverageLimit':'Tilgjengelige kilde-/bookmakerodds, ikke alle globale markeder',
+          -        'whyNoPicks':'Ingen tips bestod den usikkerhetsjusterte verdikontrollen. Se rejection-tall for årsaker.' if not chosen else None,
+               }
+               snapshot['qualityGate'] = {
+                   'minimumFormMatchesPerTeam':5, 'minimumSpecialStatisticsPerTeam':8,
+          @@ -199,17 +200,43 @@ def qualify(snapshot):
+                   'minimumConservativeScenarioEdge':0.02,
+                   'explanation':'Ukalibrert sannsynlighetsmodell. Kun positiv forventet verdi i et konservativt scenario, ikke påvist langsiktig avkastning.'
+               }
+          -    if isinstance(snapshot.get('coverage'),dict):
+          -        snapshot['coverage']['safeFound'] = sum(p['category']=='safe' for p in chosen)
+          -        snapshot['coverage']['highFound'] = sum(p['category']=='high' for p in chosen)
+          -        snapshot['coverage']['qualified'] = len(chosen)
+          -    if isinstance(snapshot.get('dataStatus'),dict) and isinstance(snapshot['dataStatus'].get('analysisReadiness'),dict):
+          -        snapshot['dataStatus']['analysisReadiness']['recommended'] = len(chosen)
+               # Final candidate selection is authoritative: no browser fallback.
+               snapshot = finalize_v40(snapshot,when)
+          +    count = len(snapshot['recommendations'])
+          +    audit = snapshot['qualityAudit']
+          +    audit['qualified'] = count
+          +    audit['whyNoPicks'] = None if count else empty_reason(snapshot, failures)
+          +    status = snapshot.get('dataStatus') or {}
+          +    readiness = status.get('analysisReadiness')
+          +    if isinstance(readiness, dict):
+          +        readiness.update(recommended=count, safe=len(snapshot['safeBets']),
+          +                         highRisk=len(snapshot['highRisk']), message=audit['whyNoPicks'] or 'analysert')
+          +    for code, group in (status.get('coverageByLeague') or {}).items():
+          +        group['eligible'] = sum((by_id.get(str(p['matchId'])) or {}).get('leagueCode') == code
+          +                                for p in snapshot['recommendations'])
+               return snapshot
+           
+           
+          +def empty_reason(snapshot, failures):
+          +    coverage = snapshot.get('coverage') or {}
+          +    if coverage.get('upcomingMatches') == 0:
+          +        return 'Ingen kommende kamper tilgjengelige for analyse.'
+          +    if coverage.get('matchedOdds') == 0:
+          +        return 'Ingen kommende kamper med tilgjengelige bookmakerodds.'
+          +    reasons = {
+          +        'manglende_kamphistorikk': 'manglende verifisert kamphistorikk',
+          +        'for_lite_historikk': 'for lite vektet kamphistorikk',
+          +        'manglende_eller_gamle_odds': 'manglende eller gamle bookmakerodds',
+          +        'for_lav_konservativ_verdi': 'for lav beregnet spillverdi',
+          +        'stort_modell_marked_avvik': 'for stort avvik mellom modellen og oddsmarkedet',
+          +        'svak_bookmakerdekning': 'for få bookmakere med odds',
+          +    }
+          +    for code, _ in failures.most_common():
+          +        if code in reasons:
+          +            return f'Vanligste avvisning skyldtes {reasons[code]}.'
+          +    return 'Ingen spill bestod kvalitetskontrollen i denne analysen.'
+          +
+          +
+           def main(path):
+               target = Path(path)
+               if not target.is_file() or target.name == 'active.json' or target.parent.name == 'data':
+          diff --git a/scripts/quality_monitor_v42.py b/scripts/quality_monitor_v42.py
+          index cc3be6e91f3f57971e363c664c69c75c7bc9dda5..6c1bc80c8e4f57e05d612c4ddc59ac8fd8b05b01 100644
+          --- a/scripts/quality_monitor_v42.py
+          +++ b/scripts/quality_monitor_v42.py
+          @@ -62,7 +62,7 @@ def quality_report(edition, now):
+               today = now.astimezone(OSLO).date().isoformat()
+               upcoming = int(coverage.get('upcomingMatches') or 0)
+               matched = int(coverage.get('matchedOdds') or 0)
+          -    linked = int(bridge.get('oddsFixturesWithBothTeamsMatched') or 0)
+          +    linked = int(coverage.get('oddsWithVerifiedForm', bridge.get('oddsFixturesWithBothTeamsMatched')) or 0)
+               external = int(status.get('externalPredictionsCount') or coverage.get('externalPredictions') or 0)
+               age_hours = round(max(0, (now - generated).total_seconds()) / 3600, 2) if generated else None
+               freshness = 'current' if day == today else ('not_published' if not day or day < today else 'future')
+          diff --git a/scripts/quality_v20.py b/scripts/quality_v20.py
+          index 337b5e52353e19cce083a227aaf642cb26fffce0..6991906147cc88c9336260f9176084b16ba95126 100644
+          --- a/scripts/quality_v20.py
+          +++ b/scripts/quality_v20.py
+          @@ -9,6 +9,7 @@ from __future__ import annotations
+           import math
+           from datetime import datetime, timedelta, timezone
+           from collections import Counter
+          +from market_expansion import TEAM_TOTAL_LINES
+           
+           MIN_EDGE = 0.02  # Margin after a deliberately pessimistic probability scenario.
+           MAX_AGE_HOURS = 6
+          @@ -17,6 +18,11 @@ COMPANIONS = {
+               'O35':'U35','U35':'O35','BTTS':'BTTSN','BTTSN':'BTTS',
+               'H1O15':'H1U15','H1U15':'H1O15',
+           }
+          +for _prefix in ('TH', 'TA'):
+          +    for _line in TEAM_TOTAL_LINES:
+          +        _suffix = f'{int(_line * 10):02d}'
+          +        COMPANIONS[f'{_prefix}O{_suffix}'] = f'{_prefix}U{_suffix}'
+          +        COMPANIONS[f'{_prefix}U{_suffix}'] = f'{_prefix}O{_suffix}'
+           
+           
+           def dt(value):
+          diff --git a/site/index.html b/site/index.html
+          index e52c69352514d3816a64b98169d0ba24ffad2b54..e2be59434c1c49cf9fe11fabc7f3d181431422ca 100644
+          --- a/site/index.html
+          +++ b/site/index.html
+          @@ -13,19 +13,19 @@
+             <script src="market-board-v14.js?v=16" defer></script>
+             <script src="score-consensus-v14.js?v=16" defer></script>
+             <script src="quality-v20.js?v=20" defer></script>
+          -  <script src="visible-selection-v40.js?v=41" defer></script>
+          -  <script src="three-fields-v26.js?v=42" defer></script>
+          +  <script src="visible-selection-v40.js?v=48" defer></script>
+          +  <script src="three-fields-v26.js?v=48" defer></script>
+             <script src="tomorrow-v24.js?v=41" defer></script>
+             <link rel="stylesheet" href="tomorrow-v24.css?v=24">
+             <script src="versions-v22.js?v=22" defer></script>
+             <link rel="stylesheet" href="quality-v20.css?v=20">
+          -  <link rel="stylesheet" href="three-fields-v26.css?v=42">
+          +  <link rel="stylesheet" href="three-fields-v26.css?v=48">
+             <link rel="stylesheet" href="market-board-v14.css?v=15">
+             <link rel="stylesheet" href="score-consensus-v14.css?v=15">
+             <link rel="stylesheet" href="sportsbook-v37.css?v=37">
+          -  <script src="sportsbook-v37.js?v=37" defer></script>
+          +  <script src="sportsbook-v37.js?v=48" defer></script>
+             <link rel="stylesheet" href="market-radar-v39.css?v=39">
+          -  <script src="market-radar-v39.js?v=41" defer></script>
+          +  <script src="market-radar-v39.js?v=48" defer></script>
+           </head>
+           <body>
+             <div class="ambient ambient-a" aria-hidden="true"></div><div class="ambient ambient-b" aria-hidden="true"></div>
+          diff --git a/site/market-radar-v39.js b/site/market-radar-v39.js
+          index f94afbd9021998a2fa730563dae5e32d91b1cdf3..1364f143e84ab77ee1c22bf47563bc9598066715 100644
+          --- a/site/market-radar-v39.js
+          +++ b/site/market-radar-v39.js
+          @@ -152,7 +152,8 @@
+               if(count)count.textContent=String(visible);
+               const summary=document.getElementById('og-search-summary');
+               if(query && summary){
+          -      const original=Array.from(document.querySelectorAll('.og-category .tf-card')).filter(c=>!c.hidden).length;
+          +      const original=Array.from(document.querySelectorAll('.og-category .tf-card, #tf-qualified:not([hidden]) .tf-card'))
+          +        .filter(c=>!c.hidden).length;
+                 summary.textContent=`${original+visible} treff på «${document.getElementById('og-search')?.value.trim()||''}»`;
+               }
+             }
+          diff --git a/site/sportsbook-v37.js b/site/sportsbook-v37.js
+          index d1355bb52328bbf3265e2be877e2a3aa3951a732..8ab7c606b7ddeea60f5be2e829a60340f6793431 100644
+          --- a/site/sportsbook-v37.js
+          +++ b/site/sportsbook-v37.js
+          @@ -22,6 +22,7 @@
+               {key:'high', target:'og-high', title:'High Risk', desc:'Høyere odds og risiko', icon:'zap'},
+               {key:'watch', target:'og-watch', title:'Interessante objekter', desc:'Kamper og markeder til vurdering', icon:'eye'}
+             ];
+          +  const cardSections = [{key:'qualified', target:'tf-qualified'}, ...config];
+             const tokens = Object.freeze({qualified:'Kvalifisert',model:'Modellkandidat',market:'Markedskandidat',observation:'Observasjon'});
+             const trustFromCard = (card, key) => {
+               if (key === 'watch') return 'observation';
+          @@ -120,8 +121,8 @@
+             }
+             function decorateCards() {
+               let total=0;
+          -    for(const c of config){
+          -      const section=$(c.target);if(!section)continue;
+          +    for(const c of cardSections){
+          +      const section=$(c.target);if(!section||section.hidden)continue;
+                 for(const card of section.querySelectorAll('.tf-card')){
+                   total++;
+                   // The legacy renderer has two text nodes around an en dash. Wrap the
+          @@ -152,7 +153,11 @@
+               return total;
+             }
+             function allCards() {
+          -    return config.flatMap(c=>Array.from($(c.target)?.querySelectorAll('.tf-card')||[]).map(card=>({card,category:c.key})));
+          +    return cardSections.flatMap(c=>{
+          +      const section=$(c.target);
+          +      return !section||section.hidden?[]:Array.from(section.querySelectorAll('.tf-card'))
+          +        .map(card=>({card,category:c.key}));
+          +    });
+             }
+             function applySearch() {
+               let found=0;
+          @@ -161,8 +166,8 @@
+                 const matches=!query||query.split(/\s+/).every(part=>text.includes(part));
+                 card.hidden=!matches;if(matches)found++;
+               }
+          -    for(const c of config){
+          -      const section=$(c.target);if(!section)continue;
+          +    for(const c of cardSections){
+          +      const section=$(c.target);if(!section||section.hidden)continue;
+                 const list=section.querySelector('.tf-list');
+                 if(!list)continue;
+                 let empty=list.querySelector('.og-filter-empty');
+          @@ -170,6 +175,8 @@
+                 if(orig)orig.hidden=!!query;
+                 const cards=Array.from(list.querySelectorAll('.tf-card'));
+                 const visibleCount=cards.filter(card=>!card.hidden).length;
+          +      const more=section.querySelector('details.tf-more');
+          +      if(query&&more&&Array.from(more.querySelectorAll('.tf-card')).some(card=>!card.hidden))more.open=true;
+                 const counter=section.querySelector('header > span:not(.og-section-icon)');
+                 if(counter)counter.textContent=String(query?visibleCount:cards.length);
+                 if(query && visibleCount===0){
+          @@ -210,6 +217,8 @@
+             }
+             function updateFeatured() {
+               const list=$('og-featured-list');if(!list)return;
+          +    const ranked=$('tf-qualified');
+          +    if(ranked&&!ranked.hidden){featured.hidden=true;return;}
+               const choices=[...Array.from($('og-safe')?.querySelectorAll('.tf-card')||[]).map(card=>({card,category:'safe'})),
+                 ...Array.from($('og-high')?.querySelectorAll('.tf-card')||[]).map(card=>({card,category:'high'}))];
+               list.replaceChildren();
+          diff --git a/site/three-fields-v26.css b/site/three-fields-v26.css
+          index b1074753b9f031c14cc9eb3480b7620abb686eae..1c8bae81f19acfd3842f749fc941de3e1b10b85a 100644
+          --- a/site/three-fields-v26.css
+          +++ b/site/three-fields-v26.css
+          @@ -1,4 +1,4 @@
+          -/* The old dashboards still operate as data readers; only three sections appear. */
+          +/* The legacy dashboards remain available to the data readers. */
+           body.three-v26 main > :not(.hero):not(.tf-root),
+           body.three-v26 #dagens,
+           body.three-v26 #safe,
+          @@ -35,6 +35,10 @@ body.three-v26 .versions-v22 {display:none!important}
+           .tf-note {font-size:10px;color:#81978a;line-height:1.4;margin-top:8px}
+           .tf-empty {font-size:12px;color:#99b1a1;line-height:1.5;margin:10px 0}
+           .tf-status {font-size:11px;color:#90aa98;line-height:1.5;margin:15px 2px 0}
+          +.tf-section.tf-ranked {margin-bottom:14px;min-height:0}
+          +.tf-ranked-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:10px;align-items:start}
+          +.tf-more>summary {color:#edc97d;cursor:pointer;font-size:12px;margin:4px 0 10px}
+          +.tf-more>summary:focus-visible {outline:2px solid #edc97d;outline-offset:3px}
+           @media(max-width:980px){.tf-columns {grid-template-columns:repeat(2,minmax(0,1fr))}.tf-section:last-child{grid-column:1/-1}}
+           @media(max-width:620px){.tf-root{margin-top:20px}.tf-columns{grid-template-columns:1fr;gap:12px}.tf-section:last-child{grid-column:auto}.tf-section{min-height:unset;padding:15px 13px}.tf-section h2{font-size:18px}}
+           
+          diff --git a/site/three-fields-v26.js b/site/three-fields-v26.js
+          index 9580160dd0dfc9d9d98fb1fd58cd10aa039c9166..d278eb3c8e053bb5feabb0954de24bd75acc98fe 100644
+          --- a/site/three-fields-v26.js
+          +++ b/site/three-fields-v26.js
+          @@ -1,6 +1,5 @@
+           'use strict';
+          -/* Exactly three sections: High Risk, Safe Bets, Interesting but not recommended.
+          -   Never promote an unqualified bookmaker quote to a recommended wager. */
+          +/* Render the backend's qualified list and candidate sections. */
+           (() => {
+             const $ = id => document.getElementById(id);
+             const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+          @@ -135,7 +134,7 @@
+                   const content=rows.map(r=>{
+                     const dt=new Intl.DateTimeFormat('nb-NO',{timeZone:'Europe/Oslo',day:'2-digit',month:'2-digit',year:'numeric'}).format(new Date(r.kickoffUtc));
+                     const outcome=r.resultForAnalyzedTeam;
+          -          const venue=r.analyzedTeamSide==='home'?'Hjemme':'Borte';
+          +          const venue=r.neutralVenue?'Nøytral bane':r.analyzedTeamSide==='home'?'Hjemme':'Borte';
+                     const source=r.source?` · ${esc(r.source)}`:'';
+                     return `<div class="tf-form-match"><div class="tf-form-match-info">${esc(dt)} · ${venue}${source}</div>`+
+                       `<div class="tf-form-match-result"><span>${esc(r.homeTeam.name)} <b>${r.homeGoals}–${r.awayGoals}</b> ${esc(r.awayTeam.name)}</span>`+
+          @@ -220,11 +219,12 @@
+                 </div>
+               </details>`;
+             }
+          -  function card(p,recommended,edition){
+          +  function card(p,recommended,edition,ranked=false){
+               const validPrice=Number.isFinite(Number(p.price))&&Number(p.price)>1;
+               const rationale=Array.isArray(p.rationale)?p.rationale.find(s=>typeof s==='string'):null;
+          +    const risk=ranked?({safe:'Safe',high:'High Risk'}[p.category]||''):'';
+               return `<article class="tf-card">
+          -      <div class="tf-meta">${esc(p.league||'Fotball')} <span>· ${esc(kickoff(p.kickoff))}</span></div>
+          +      <div class="tf-meta">${esc(p.league||'Fotball')} <span>· ${esc(kickoff(p.kickoff))}${risk?' · '+risk:''}</span></div>
+                 <div class="tf-teams">${esc(p.home)} <span>–</span> ${esc(p.away)}</div>
+                 <div class="tf-market"><span>${esc(p.label||'Marked under vurdering')}</span>${validPrice?`<strong>${esc(price(p.price))}</strong>`:''}</div>
+                 <div class="tf-reason">${esc(recommended?(rationale||'Kvalifisert av analysemodellen.'):(p._why||p.reason||'Ikke anbefalt.'))}</div>
+          @@ -238,6 +238,15 @@
+               try{const response=await fetch(`data/${path}.json?t=${Date.now()}`,{cache:'no-store'});
+                 return response.ok?await response.json():null;}catch{return null;}
+             }
+          +  function renderList(list, html){
+          +    const expanded=new Set(Array.from(list.querySelectorAll('details.tf-analysis[open]'),
+          +      el=>el.getAttribute('data-analysis-key')));
+          +    const moreOpen=Boolean(list.querySelector('details.tf-more[open]'));
+          +    list.innerHTML=html(moreOpen);
+          +    for(const details of list.querySelectorAll('details.tf-analysis')){
+          +      if(expanded.has(details.getAttribute('data-analysis-key')))details.open=true;
+          +    }
+          +  }
+             async function load(){
+               if(loading)return;
+               loading=true;
+          @@ -257,6 +266,7 @@
+                   marketRoot.dataset.ogEditionFile=edition===preview?'tomorrow':'today';
+                 }
+                 const expired=Boolean(chosen?.expired);
+          +      const qualified=chosen?.groups.qualified||[];
+                 const safe=chosen?.groups.safe||[];
+                 const high=chosen?.groups.high||[];
+                 const watch=chosen?.groups.watch||[];
+          @@ -266,18 +276,27 @@
+                 const heroDate=$('today-date');if(heroDate)heroDate.textContent=selectedDay?dateText(selectedDay):'Neste dags utvalg kommer';
+                 const editionIndicator=$('edition-indicator');if(editionIndicator)editionIndicator.textContent=useTomorrow?'MORGENDAGENS UTGAVE':'DAGENS UTGAVE';
+                 const lastUpdated=$('last-updated');if(lastUpdated)lastUpdated.textContent=edition?.generatedAt?`Analyse ${kickoff(edition.generatedAt)}`:'Oppdatering ikke klar';
+          +      const showRanked=chosen?.authoritative&&edition.finalSelection.rankedRecommendations===true&&!expired;
+          +      $('tf-qualified').hidden=!showRanked;
+          +      $('tf-qualified-count').textContent=String(qualified.length);
+          +      if(showRanked){
+          +        const reason=edition.qualityAudit?.whyNoPicks||'Ingen aktive kvalifiserte spill.';
+          +        renderList($('tf-qualified-list'),moreOpen=>{
+          +          if(!qualified.length)return `<p class="tf-empty">${esc(reason)}</p>`;
+          +          const top=qualified.slice(0,5).map(p=>card(p,true,edition,true)).join('');
+          +          const remaining=qualified.slice(5);
+          +          return `<div class="tf-ranked-grid">${top}</div>`+
+          +            (remaining.length?`<details class="tf-more"${moreOpen?' open':''}><summary>Vis ${remaining.length} flere</summary>
+          +              <div class="tf-ranked-grid">${remaining.map(p=>card(p,true,edition,true)).join('')}</div></details>`:'');
+          +        });
+          +      }
+                 const sections=[['high',high],['safe',safe],['watch',watch]];
+                 for(const [id,entries] of sections){
+                   $('tf-'+id+'-count').textContent=String(entries.length);
+                   const list=$('tf-'+id+'-list');
+          -        // Keep expanded analyses open across automatic data refreshes.
+          -        const expanded=new Set(Array.from(list.querySelectorAll('details.tf-analysis[open]'),el=>el.getAttribute('data-analysis-key')));
+          -        list.innerHTML=entries.length?entries.map(p=>card(p,id!=='watch',edition)).join(''):
+          +        renderList(list,()=>entries.length?entries.map(p=>card(p,id!=='watch',edition)).join(''):
+                     `<p class="tf-empty">${id==='watch'?'Ingen aktuelle objekter under vurdering.':
+          -            id==='safe'?'Ingen Safe Bets oppfyller dagens krav. Ingen udokumenterte tips legges til.':'Ingen dokumenterte kandidater fra dagens datagrunnlag.'}</p>`;
+          -        for(const details of list.querySelectorAll('details.tf-analysis')){
+          -          if(expanded.has(details.getAttribute('data-analysis-key')))details.open=true;
+          -        }
+          +            'Ingen kandidater fra dagens datagrunnlag.'}</p>`);
+                 }
+                 const lack=Object.entries({safe:'Safe Bets',high:'High Risk',watch:'Interessante objekter'})
+                   .filter(([key])=>(chosen?.groups[key]||[]).length<3)
+          @@ -287,7 +306,8 @@
+                   const previewCoverage=useTomorrow && edition?.coverage ? {
+                     matchesWithOdds:Number(edition.coverage.matchedOdds||0),
+                     upcomingMatches:Number(edition.coverage.upcomingMatches||0),
+          -          oddsFixturesWithLinkedForm:Number(edition.dataStatus?.officialFormBridge?.oddsFixturesWithBothTeamsMatched||0),
+          +          oddsFixturesWithLinkedForm:Number(edition.coverage.oddsWithVerifiedForm??
+          +            edition.dataStatus?.officialFormBridge?.oddsFixturesWithBothTeamsMatched??0),
+                     externalPredictions:Number(edition.dataStatus?.externalPredictionsCount||0)
+                   }:null;
+                   const coverage=quality?.editionDate===editionDay?quality?.data:previewCoverage;
+          @@ -312,6 +332,7 @@
+             document.addEventListener('DOMContentLoaded',()=>{
+               parent=document.createElement('section');parent.className='tf-root';parent.id='tf-root';
+               parent.innerHTML='<div class="tf-date" id="tf-date">Henter siste utvalg …</div>'+
+          +    '<section class="tf-section tf-ranked" id="tf-qualified" aria-labelledby="tf-qualified-title" hidden><header><h2 id="tf-qualified-title">Kvalifiserte spill</h2><span id="tf-qualified-count">0</span></header><div id="tf-qualified-list" class="tf-list"></div></section>'+
+               '<div class="tf-columns">'+
+               '<section class="tf-section" aria-labelledby="tf-high-title"><header><h2 id="tf-high-title">High Risk</h2><span id="tf-high-count">0</span></header><div id="tf-high-list" class="tf-list"></div></section>'+
+               '<section class="tf-section" aria-labelledby="tf-safe-title"><header><h2 id="tf-safe-title">Safe Bets</h2><span id="tf-safe-count">0</span></header><div id="tf-safe-list" class="tf-list"></div></section>'+
+          diff --git a/site/visible-selection-v40.js b/site/visible-selection-v40.js
+          index 7435136c9132e34cf5b39a7161a9be6b2e1cb6d5..bef35fd12f052d57633ba049c461e6c7fbf15ef4 100644
+          --- a/site/visible-selection-v40.js
+          +++ b/site/visible-selection-v40.js
+          @@ -27,7 +27,8 @@
+               birminghamcity:'birmingham',cardiffcity:'cardiff',charltonathletic:'charlton',
+               sheffieldunited:'sheffieldutd',queensparkrangers:'qpr',
+               westbromwichalbion:'westbrom',nottinghamforest:'nottingham',
+          -    manchestercity:'mancity',tottenhamhotspur:'tottenham'
+          +    manchestercity:'mancity',tottenhamhotspur:'tottenham',
+          +    czechia:'czechrepublic',turkiye:'turkey',republicofireland:'ireland'
+             };
+             const team=name=>{
+               const norm=String(name||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'')
+          @@ -43,7 +44,10 @@
+             const upcoming=(p,edition,now)=>Number.isFinite(kickoff(p))&&kickoff(p)>+now&&
+               osloDay(p.kickoff)===dayOf(edition)&&!!p.home&&!!p.away&&
+               !!p.matchId&&!!p.market&&!!p.label&&Number.isFinite(Number(p.price))&&Number(p.price)>1;
+          -  const groups=edition=>({safe:Array.isArray(edition?.safeBets)?edition.safeBets:[],
+          +  const groups=edition=>({
+          +    qualified:edition?.finalSelection?.rankedRecommendations===true&&Array.isArray(edition?.recommendations)
+          +      ?edition.recommendations.filter(p=>p?.qualificationTier==='qualified'):[],
+          +    safe:Array.isArray(edition?.safeBets)?edition.safeBets:[],
+               high:Array.isArray(edition?.highRisk)?edition.highRisk:[],
+               watch:Array.isArray(edition?.interestingObjects)?edition.interestingObjects:[]});
+             const starts=edition=>Object.values(groups(edition)).flat().map(kickoff).filter(Number.isFinite);
+          @@ -66,16 +70,16 @@
+               const expired=dayOf(edition)<osloDay(now)||(!useTomorrow&&future.length>0&&future.every(x=>x<=+now));
+               // v39 files predate backend authority. Never re-create bets in the client.
+               const isAuthoritative=edition?.finalSelection?.version===40;
+          -    const original=isAuthoritative?groups(edition):{safe:[],high:[],watch:[]};
+          +    const original=isAuthoritative?groups(edition):{qualified:[],safe:[],high:[],watch:[]};
+               // Never show the same real match twice, even in older v40 preview JSON.
+               // This only removes invalid duplicates, never creates or promotes bets.
+          -    const selected={safe:[],high:[],watch:[]},seen=new Set();
+          -    for(const group of ['safe','high','watch']){
+          +    const selected={qualified:[],safe:[],high:[],watch:[]},seen=new Set();
+          +    for(const group of ['qualified','safe','high','watch']){
+                 for(const p of (expired?[]:original[group])){
+                   if(!upcoming(p,edition,now))continue;
+                   const identity=fixtureIdentity(p);
+                   if(!identity||seen.has(identity))continue;
+          -        if(selected[group].length>=5)break;
+          +        if(group!=='qualified'&&selected[group].length>=5)break;
+                   seen.add(identity);
+                   selected[group].push(p);
+                 }
+          diff --git a/tests/test_analysis_details_v28.py b/tests/test_analysis_details_v28.py
+          index 05d65d7e1a65da10ac96379ed70327159b9a97df..1d1881ad58f5bc88a3c92cb75278addc43e473fd 100644
+          --- a/tests/test_analysis_details_v28.py
+          +++ b/tests/test_analysis_details_v28.py
+          @@ -24,8 +24,8 @@ class AnalysisDetailsV28(unittest.TestCase):
+                       self.assertIn(item,section)
+                   for old in ('Datagrunnlag','Forventede mål','Antall bookmakere','Beregnet verdi i scenario','tf-analysis-warning','tf-analysis-sources'):
+                       self.assertNotIn(old,section)
+          -        self.assertIn('three-fields-v26.js?v=42',HTML.read_text(encoding='utf-8'))
+          -        self.assertIn('three-fields-v26.css?v=42',HTML.read_text(encoding='utf-8'))
+          +        self.assertRegex(HTML.read_text(encoding='utf-8'), r'three-fields-v26\.js\?v=\d+')
+          +        self.assertRegex(HTML.read_text(encoding='utf-8'), r'three-fields-v26\.css\?v=\d+')
+                   self.assertIn('tf-form-badge',CSS.read_text(encoding='utf-8'))
+           
+               @unittest.skipUnless(shutil.which('node'),'Node.js unavailable')
+          diff --git a/tests/test_final_selection_v40.py b/tests/test_final_selection_v40.py
+          index 640c263e20422542bea603dfd177e31eaa553877..a21c3ea203c5c3e23f0969b00e0f0a477c8bdc11 100644
+          --- a/tests/test_final_selection_v40.py
+          +++ b/tests/test_final_selection_v40.py
+          @@ -87,4 +87,22 @@ class FinalSelectionTests(unittest.TestCase):
+                   a=finalize(snap([m]),NOW)
+                   self.assertEqual(a['safeBets'],[])
+           
+          +    def test_standard_and_sixth_qualifier_survive_category_limits(self):
+          +        fixtures = [game(f'm{i}', f'Home {i}', 'Away') for i in range(7)]
+          +        picks = [
+          +            {'matchId': m['id'], 'home': m['home'], 'away': m['away'], 'kickoff': KO,
+          +             'market': 'O25', 'label': 'Over 2,5 mål', 'price': 1.8, 'bookmakers': 5,
+          +             'oddsUpdatedAt': AT, 'category': 'standard' if i == 6 else 'safe',
+          +             'conservativeEdge': (i + 2) / 100}
+          +            for i, m in enumerate(fixtures)
+          +        ]
+          +        conflicting = {**picks[-1], 'market': 'U25', 'category': 'high', 'conservativeEdge': .025}
+          +        result = finalize(snap(fixtures, recommendations=[*picks, conflicting]), NOW)
+          +        self.assertEqual([p['matchId'] for p in result['recommendations']],
+          +                         [m['id'] for m in reversed(fixtures)])
+          +        self.assertEqual(result['recommendations'][0]['category'], 'standard')
+          +        self.assertEqual(len(result['safeBets']), 5)
+          +        self.assertEqual(result['highRisk'], [])
+          +        self.assertEqual(result['coverage']['qualified'], 7)
+          +
+           if __name__=='__main__':unittest.main()
+          diff --git a/tests/test_market_radar_v39.cjs b/tests/test_market_radar_v39.cjs
+          index 57d980cf26bb35ec676ff47ebab221a31a5b54c3..ba451a378c792c80100b07fc22c7e9894cd3f2ea 100644
+          --- a/tests/test_market_radar_v39.cjs
+          +++ b/tests/test_market_radar_v39.cjs
+          @@ -51,5 +51,5 @@ const js=fs.readFileSync(path.join(root,'site/three-fields-v26.js'),'utf8');
+           assert.doesNotMatch(js,/function safeMarketCandidates\(/);
+           assert.match(js,/OddsVisibleV40\?\.selectEdition/);
+           const html=fs.readFileSync(path.join(root,'site/index.html'),'utf8');
+          -assert.match(html,/market-radar-v39\.js\?v=41/);assert.match(html,/market-radar-v39\.css\?v=39/);
+          +assert.match(html,/market-radar-v39\.js\?v=\d+/);assert.match(html,/market-radar-v39\.css\?v=39/);
+           console.log('PASS v39: safe totals, source-only radar, 7 families, time+odds+date checks, dedup, no invented tips');
+          diff --git a/tests/test_markets_v12.py b/tests/test_markets_v12.py
+          index 0637b88c8483eae2fb1e03f4a91e9eb5ffdeb68c..6a6de6f0e062782cb2ce83ba6c3467a11d00d0a4 100644
+          --- a/tests/test_markets_v12.py
+          +++ b/tests/test_markets_v12.py
+          @@ -33,6 +33,23 @@ class ExpandedMarketsTests(unittest.TestCase):
+             data=self.raw();data['bookmakers'].append(data['bookmakers'][0])
+             result=extract_market_odds(data,{},self.now)
+             self.assertEqual(result['BTTS']['books'],3)
+          + def test_complementary_goal_markets_have_model_odds_and_settlement(self):
+          +  data=self.raw()
+          +  for book in data['bookmakers']:
+          +   for market in book['markets']:
+          +    if market['key']=='btts':
+          +     market['outcomes'].append({'name':'No','price':2.25})
+          +    if market['key']=='team_totals':
+          +     market['outcomes'].append({'name':'Under','description':'Home Athletic','point':1.5,'price':2.14})
+          +  odds=extract_market_odds(data,{},self.now)
+          +  self.assertEqual(odds['THU15']['price'],2.14)
+          +  self.assertEqual(odds['BTTSN']['books'],3)
+          +  model=model_probabilities([(self.now,2,1,'W')]*6,[(self.now,1,1,'D')]*6)
+          +  p=model['probabilities']
+          +  self.assertAlmostEqual(p['THO15']+p['THU15'],1)
+          +  self.assertAlmostEqual(p['BTTS']+p['BTTSN'],1)
+          +  self.assertTrue(pick_outcome('THU15',1,3))
+          +  self.assertFalse(pick_outcome('BTTSN',1,3))
+            def test_goal_probs_from_observed_fulltime_scores(self):
+             now=self.now
+             model=model_probabilities([(now,2,1,'W')]*6,[(now,1,1,'D')]*6)
+          diff --git a/tests/test_monitor_ui_v42.cjs b/tests/test_monitor_ui_v42.cjs
+          index ce7c0f6e4777c7cba2ce36801dc1c73c751a37b5..1c557180e50b41974247d1044a778baaceb977e5 100644
+          --- a/tests/test_monitor_ui_v42.cjs
+          +++ b/tests/test_monitor_ui_v42.cjs
+          @@ -9,6 +9,6 @@ assert.match(s,/get\('quality-v42'\)/);
+           assert.match(s,/get\('performance-v42'\)/);
+           assert.match(s,/id="tf-monitor"/);
+           assert.match(s,/For få kamper til å fastslå dokumentert verdi/);
+          -assert.match(html,/three-fields-v26\.js\?v=42/);
+          -assert.match(html,/three-fields-v26\.css\?v=42/);
+          +assert.match(html,/three-fields-v26\.js\?v=\d+/);
+          +assert.match(html,/three-fields-v26\.css\?v=\d+/);
+           console.log('PASS: monitor is in shared v41 view, no new betting picks created');
+          diff --git a/tests/test_national_form_v48.py b/tests/test_national_form_v48.py
+          new file mode 100644
+          index 0000000000000000000000000000000000000000..ca89dcd095f973d5d5ea6e050c6f04943d778887
+          --- /dev/null
+          +++ b/tests/test_national_form_v48.py
+          @@ -0,0 +1,77 @@
+          +import sys
+          +import unittest
+          +from datetime import date, datetime, timedelta, timezone
+          +from pathlib import Path
+          +
+          +sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
+          +
+          +from build_data import build_snapshot
+          +from national_form_v48 import load_history, parse_results, team_identity
+          +from odds_first_v25 import fixtures_from_quotes
+          +from qualify_v20 import qualify
+          +
+          +HEADER = 'date,home_team,away_team,home_score,away_score,tournament,neutral'
+          +DAY = date(2026, 11, 12)
+          +KICKOFF = datetime(2026, 11, 12, 19, 45, tzinfo=timezone.utc)
+          +
+          +
+          +class NationalFormTests(unittest.TestCase):
+          +    def test_ambiguous_scores_and_same_day_rows_do_not_enter_history(self):
+          +        content = '\n'.join([
+          +            HEADER,
+          +            '2026-10-06,Czech Republic,England,1,2,UEFA Nations League,FALSE',
+          +            '2026-10-06,Czechia,England,1,2,UEFA Nations League,FALSE',
+          +            '2026-10-04,Cyprus,Finland,1,1,Friendly,TRUE',
+          +            '2026-10-04,Cyprus,Finland,2,1,Friendly,TRUE',
+          +            '2026-03-31,Czech Republic,Denmark,2,2,FIFA World Cup qualification,FALSE',
+          +            '2026-07-19,Spain,Argentina,1,0,FIFA World Cup,TRUE',
+          +            '2026-11-12,England,Czech Republic,2,0,UEFA Nations League,FALSE',
+          +        ])
+          +        rows = parse_results(content, date(2025, 5, 1), DAY)
+          +        self.assertEqual(len(rows), 1)
+          +        self.assertEqual(rows[0]['homeTeam']['id'], team_identity('Czechia'))
+          +        self.assertEqual(team_identity('Türkiye'), team_identity('Turkey'))
+          +        self.assertNotEqual(team_identity('Northern Ireland'), team_identity('Ireland'))
+          +
+          +    def test_download_error_keeps_analysis_available(self):
+          +        def unavailable():
+          +            raise OSError('connection failed')
+          +
+          +        rows, status = load_history(KICKOFF, fetch=unavailable)
+          +        self.assertEqual(rows, [])
+          +        self.assertEqual(status, {'state': 'unavailable', 'error': 'OSError'})
+          +
+          +    def test_bookmaker_fixture_gets_verified_form_in_daily_and_preview_modes(self):
+          +        rows = [HEADER]
+          +        for age in (7, 28, 58, 88, 118, 148, 235, 305, 375, 420):
+          +            day = DAY - timedelta(days=age)
+          +            rows += [f'{day},Czech Republic,France,2,1,Friendly,TRUE',
+          +                     f'{day},England,Belgium,1,1,Friendly,FALSE']
+          +        for at in (KICKOFF - timedelta(hours=25), KICKOFF - timedelta(hours=10)):
+          +            with self.subTest(at=at):
+          +                bookmakers = [
+          +                    {'key': f'book{i}', 'last_update': at.isoformat(), 'markets': [
+          +                        {'key': 'h2h', 'outcomes': [
+          +                            {'name': 'Czechia', 'price': 2.8}, {'name': 'England', 'price': 2.5},
+          +                            {'name': 'Draw', 'price': 3.1},
+          +                        ]},
+          +                    ]}
+          +                    for i in range(3)
+          +                ]
+          +                event = {'id': 'national01', 'sport_key': 'soccer_uefa_nations_league',
+          +                         'home_team': 'Czechia', 'away_team': 'England',
+          +                         'commence_time': KICKOFF.isoformat(), 'bookmakers': bookmakers}
+          +                fixtures = fixtures_from_quotes([event], at, DAY)
+          +                history, status = load_history(at, fetch=lambda: '\n'.join(rows))
+          +                data = build_snapshot(at, fixtures, [event], [], [],
+          +                                      {'nationalForm': status}, target_date=DAY,
+          +                                      national_history=history)
+          +                match = data['matches'][0]
+          +                self.assertEqual(match['model']['sample'], [10, 10])
+          +                self.assertEqual(match['model']['modelMethod'], 'national_form_v48')
+          +                self.assertLess(match['model']['effectiveSample'][0], 10)
+          +                self.assertEqual(data['coverage']['oddsWithVerifiedForm'], 1)
+          +                self.assertEqual(len(match['formMatchesHome']), 5)
+          +                self.assertTrue(match['formMatchesHome'][0]['neutralVenue'])
+          +                self.assertEqual(match['odds']['B']['books'], 3)
+          +                self.assertNotIn('manglende_kamphistorikk', qualify(data)['qualityAudit']['rejections'])
+          diff --git a/tests/test_sportsbook_v37.cjs b/tests/test_sportsbook_v37.cjs
+          index ae44c6c4ef568beae67c0550406cbabfa41f3776..cfa3ada9b8927d55580ce6765b844d8f7d9f6ccf 100644
+          --- a/tests/test_sportsbook_v37.cjs
+          +++ b/tests/test_sportsbook_v37.cjs
+          @@ -24,7 +24,7 @@ assert.equal(trustFromCard(stub(''),'watch'),'observation');
+           assert.equal(trustFromCard(stub(''),'high'),null);
+           assert.equal(tokens.market,'Markedskandidat');
+           assert.match(html,/sportsbook-v37\.css\?v=37/);
+          -assert.match(html,/sportsbook-v37\.js\?v=37/);
+          +assert.match(html,/sportsbook-v37\.js\?v=\d+/);
+           assert.match(css,/safe-area-inset-bottom/);
+           assert.match(css,/@media\(max-width:760px\)/);
+           assert.match(css,/\.tf-list\{display:grid;grid-template-columns:1fr/);
+          diff --git a/tests/test_visible_selection_v41.cjs b/tests/test_visible_selection_v41.cjs
+          index 89f114f6d669c1e6d6466b6c9d8adaff92e1a65b..64d245224a9a95a8e2b0a8f476fd50db9865bade 100644
+          --- a/tests/test_visible_selection_v41.cjs
+          +++ b/tests/test_visible_selection_v41.cjs
+          @@ -28,4 +28,14 @@ const current={...edition,previewEdition:false,highRisk:[],safeBets:[],interesti
+           chosen=vis.selectEdition(current,edition,now);
+           assert.equal(chosen.groups.safe.length,0);
+           assert.equal(chosen.groups.high.length,0);
+          +const ranked=Array.from({length:6},(_,i)=>({
+          +  ...p('ranked'+i,i===0?'Czech Republic':'Home '+i,'Spain'),
+          +  category:i===0?'standard':'safe',qualificationTier:'qualified'
+          +}));
+          +const rankedEdition={...current,finalSelection:{version:40,rankedRecommendations:true},
+          +  recommendations:ranked,safeBets:[ranked[1],p('alternate','Czechia','Spain'),
+          +    p('remaining','Germany','Netherlands')]};
+          +chosen=vis.selectEdition(rankedEdition,null,now);
+          +assert.deepEqual(chosen.groups.qualified,ranked,'All ranked picks, including the sixth, are available');
+          +assert.deepEqual(chosen.groups.safe.map(x=>x.matchId),['remaining']);
+           console.log('PASS: provider aliases, no duplicate fixtures, same-day preview, immutable odds');
+          ODDS_V48_PATCH
+          if git apply --reverse --check --index "$patch_file" 2>/dev/null; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+            echo 'Landslagsanalysen er allerede installert.'
+          else
+            git apply --check --index "$patch_file"
+            git apply --index "$patch_file"
+            git diff --cached --check
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Test generatoren og visningen
+        if: steps.apply.outputs.changed == 'true'
+        shell: bash
+        run: |
+          python -m unittest discover -s tests -q
+          for test in tests/*.cjs; do node "$test"; done
+      - name: Kontroller den offentlige resultatkilden
+        if: steps.apply.outputs.changed == 'true'
+        shell: bash
+        run: |
+          PYTHONPATH=scripts python - <<'PY'
+          from datetime import datetime, timezone
+          from national_form_v48 import load_history
+
+          _, status = load_history(datetime.now(timezone.utc))
+          if status.get('state') != 'ok':
+              raise SystemExit(f"Resultatkilden er utilgjengelig: {status.get('state')}")
+          print(f"Hentet {status['matches']} landslagsresultater. Siste dato: {status['latestResultDate']}")
+          PY
+      - name: Installer på main
+        if: steps.apply.outputs.changed == 'true'
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Integrer landslagsform og ranger kvalifiserte spill'
+          git push origin HEAD:main
+      - name: Start ny dagsanalyse
+        if: steps.apply.outputs.changed == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run publish.yml --repo "$GITHUB_REPOSITORY" --ref main -f mode=daily -f force_refresh=true
