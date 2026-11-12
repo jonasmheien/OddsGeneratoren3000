@@ -1,0 +1,4459 @@
+{
+  "date": "2026-11-12",
+  "before": "2026-11-12T16:17:33.885645+00:00",
+  "after": "2026-11-12T16:19:27.691311+00:00",
+  "changeCounts": {
+    "removed": 0,
+    "added": 0,
+    "repriced": 0
+  },
+  "removed": [],
+  "added": [],
+  "repriced": [],
+  "previousEdition": {
+    "version": 3,
+    "recommendations": [],
+    "safeBets": [
+      {
+        "matchId": "odds:8a1174de9079b530bd6612e3fde6e2fa",
+        "home": "England",
+        "away": "Croatia",
+        "kickoff": "2026-11-12T19:45:00+00:00",
+        "league": "UEFA Nations League",
+        "market": "H",
+        "marketType": "match_result",
+        "label": "Hjemmeseier",
+        "price": 1.27,
+        "bookmakers": 18,
+        "oddsUpdatedAt": "2026-11-12T16:17:38Z",
+        "oddsSource": "The Odds API · bookmaker-median",
+        "probability": 0.7442,
+        "category": "safe",
+        "qualificationTier": "market",
+        "_candidateType": "market",
+        "rationale": [
+          "Markedsbasert kandidat: omtrent 74 % etter bookmaker-marginkorreksjon.",
+          "Pris fra 18 bookmakere. Ikke dokumentert spillverdi."
+        ],
+        "fixtureKey": "2026-11-12|england|croatia",
+        "marketIdentity": {
+          "family": "match_result",
+          "period": "full_time",
+          "line": null,
+          "subject": null,
+          "outcome": "home"
+        },
+        "selectionId": "v40:5dfc64797a4d7a00394d",
+        "result": {
+          "status": "scheduled"
+        }
+      },
+      {
+        "matchId": "odds:030f628eb3a7ad16c3bca6884c18c56e",
+        "home": "Montenegro",
+        "away": "Latvia",
+        "kickoff": "2026-11-12T19:45:00+00:00",
+        "league": "UEFA Nations League",
+        "market": "H",
+        "marketType": "match_result",
+        "label": "Hjemmeseier",
+        "price": 1.25,
+        "bookmakers": 16,
+        "oddsUpdatedAt": "2026-11-12T16:17:38Z",
+        "oddsSource": "The Odds API · bookmaker-median",
+        "probability": 0.744,
+        "category": "safe",
+        "qualificationTier": "market",
+        "_candidateType": "market",
+        "rationale": [
+          "Markedsbasert kandidat: omtrent 74 % etter bookmaker-marginkorreksjon.",
+          "Pris fra 16 bookmakere. Ikke dokumentert spillverdi."
+        ],
+        "fixtureKey": "2026-11-12|montenegro|latvia",
+        "marketIdentity": {
+          "family": "match_result",
+          "period": "full_time",
+          "line": null,
+          "subject": null,
+          "outcome": "home"
+        },
+        "selectionId": "v40:eb32f564e0f29469ab78",
+        "result": {
+          "status": "scheduled"
+        }
+      },
+      {
+        "matchId": "odds:d598d5e914a905ef70b01fd1b444aecb",
+        "home": "Turkey",
+        "away": "Belgium",
+        "kickoff": "2026-11-12T17:00:00+00:00",
+        "league": "UEFA Nations League",
+        "market": "O25",
+        "marketType": "total_goals",
+        "label": "Over 2,5 mål",
+        "price": 1.46,
+        "bookmakers": 3,
+        "oddsUpdatedAt": "2026-11-12T16:17:16Z",
+        "oddsSource": "The Odds API · bookmaker-median",
+        "probability": 0.6473,
+        "category": "safe",
+        "qualificationTier": "market",
+        "_candidateType": "market",
+        "rationale": [
+          "Markedsbasert kandidat: omtrent 65 % etter bookmaker-marginkorreksjon.",
+          "Pris fra 3 bookmakere. Ikke dokumentert spillverdi."
+        ],
+        "fixtureKey": "2026-11-12|turkey|belgium",
+        "marketIdentity": {
+          "family": "total_goals",
+          "period": "full_time",
+          "line": 2.5,
+          "subject": null,
+          "outcome": "over"
+        },
+        "selectionId": "v40:0fa1112803f5e54b7f5e",
+        "result": {
+          "status": "scheduled"
+        }
+      }
+    ],
+    "highRisk": [
+      {
+        "matchId": "odds:21f1d732a768ec97ab405050ec9be408",
+        "home": "Albania",
+        "away": "Finland",
+        "kickoff": "2026-11-12T19:45:00+00:00",
+        "league": "UEFA Nations League",
+        "market": "B",
+        "marketType": "match_result",
+        "label": "Borteseier",
+        "price": 3.8,
+        "bookmakers": 16,
+        "oddsUpdatedAt": "2026-11-12T16:17:38Z",
+        "oddsSource": "The Odds API · bookmaker-median",
+        "probability": 0.3525,
+        "category": "high",
+        "qualificationTier": "model",
+        "_candidateType": "model",
+        "rationale": [
+          "Modellkandidat: 35 % formanslag mot 25 % fra bookmakerodds.",
+          "Ikke historisk kalibrert eller godkjent som dokumentert verdiobjekt."
+        ],
+        "fixtureKey": "2026-11-12|albania|finland",
+        "marketIdentity": {
+          "family": "match_result",
+          "period": "full_time",
+          "line": null,
+          "subject": null,
+          "outcome": "away"
+        },
+        "selectionId": "v40:bd9c5ce714131d845176",
+        "result": {
+          "status": "scheduled"
+        }
+      },
+      {
+        "matchId": "odds:c25477408b57267248b491fa5eab2572",
+        "home": "Armenia",
+        "away": "Cyprus",
+        "kickoff": "2026-11-12T17:00:00+00:00",
+        "league": "UEFA Nations League",
+        "market": "B",
+        "marketType": "match_result",
+        "label": "Borteseier",
+        "price": 2.42,
+        "bookmakers": 16,
+        "oddsUpdatedAt": "2026-11-12T16:17:38Z",
+        "oddsSource": "The Odds API · bookmaker-median",
+        "probability": 0.4312,
+        "category": "high",
+        "qualificationTier": "model",
+        "_candidateType": "model",
+        "rationale": [
+          "Modellkandidat: 43 % formanslag mot 38 % fra bookmakerodds.",
+          "Ikke historisk kalibrert eller godkjent som dokumentert verdiobjekt."
+        ],
+        "fixtureKey": "2026-11-12|armenia|cyprus",
+        "marketIdentity": {
+          "family": "match_result",
+          "period": "full_time",
+          "line": null,
+          "subject": null,
+          "outcome": "away"
+        },
+        "selectionId": "v40:6b3d53bbfc1ff59e6c2f",
+        "result": {
+          "status": "scheduled"
+        }
+      },
+      {
+        "matchId": "odds:87441c4ff41ea3d37812826345450408",
+        "home": "Czech Republic",
+        "away": "Spain",
+        "kickoff": "2026-11-12T19:45:00+00:00",
+        "league": "UEFA Nations League",
+        "market": "U25",
+        "marketType": "total_goals",
+        "label": "Under 2,5 mål",
+        "price": 2.48,
+        "bookmakers": 3,
+        "oddsUpdatedAt": "2026-11-12T16:17:16Z",
+        "oddsSource": "The Odds API · bookmaker-median",
+        "probability": 0.425,
+        "category": "high",
+        "qualificationTier": "model",
+        "_candidateType": "model",
+        "rationale": [
+          "Modellkandidat: 42 % formanslag mot 38 % fra bookmakerodds.",
+          "Ikke historisk kalibrert eller godkjent som dokumentert verdiobjekt."
+        ],
+        "fixtureKey": "2026-11-12|czechrepublic|spain",
+        "marketIdentity": {
+          "family": "total_goals",
+          "period": "full_time",
+          "line": 2.5,
+          "subject": null,
+          "outcome": "under"
+        },
+        "selectionId": "v40:6d75a248831c2465307e",
+        "result": {
+          "status": "scheduled"
+        }
+      },
+      {
+        "matchId": "odds:c096e9bfabbbb93326413433b7c63511",
+        "home": "Italy",
+        "away": "France",
+        "kickoff": "2026-11-12T19:45:00+00:00",
+        "league": "UEFA Nations League",
+        "market": "H",
+        "marketType": "match_result",
+        "label": "Hjemmeseier",
+        "price": 3.58,
+        "bookmakers": 18,
+        "oddsUpdatedAt": "2026-11-12T16:17:38Z",
+        "oddsSource": "The Odds API · bookmaker-median",
+        "probability": 0.2664,
+        "category": "high",
+        "qualificationTier": "market",
+        "_candidateType": "market",
+        "rationale": [
+          "Bookmakerbasert risikokandidat: markedsanslag rundt 27 %.",
+          "Ingen dokumentert positiv spillverdi."
+        ],
+        "fixtureKey": "2026-11-12|italy|france",
+        "marketIdentity": {
+          "family": "match_result",
+          "period": "full_time",
+          "line": null,
+          "subject": null,
+          "outcome": "home"
+        },
+        "selectionId": "v40:63f40eb2ded3856e485d",
+        "result": {
+          "status": "scheduled"
+        }
+      }
+    ],
+    "coverage": {
+      "upcomingMatches": 8,
+      "matchedOdds": 8,
+      "withModel": 8,
+      "oddsWithVerifiedForm": 8,
+      "nationalWithModel": 8,
+      "externalPredictions": 0,
+      "manualPredictions": 0,
+      "apiPredictions": 0,
+      "safeFound": 3,
+      "highFound": 4,
+      "targetPerCategory": [
+        3,
+        5
+      ],
+      "qualified": 0
+    },
+    "sources": [
+      {
+        "name": "football-data.org",
+        "role": "Kampdata og form",
+        "state": "connected"
+      },
+      {
+        "name": "The Odds API",
+        "role": "Bookmakerodds",
+        "state": "connected"
+      },
+      {
+        "name": "API-Football Predictions",
+        "role": "Uavhengig modell",
+        "state": "not_connected"
+      },
+      {
+        "name": "Eksterne prognoser",
+        "role": "Kildeangitte, manuelt innlagte vurderinger",
+        "state": "not_connected"
+      },
+      {
+        "name": "Sportmonks",
+        "role": "Verifisert kampform og oppsett i Danmark og Skottland",
+        "state": "connected"
+      },
+      {
+        "name": "International football results (Mart Jürisoo)",
+        "role": "Landslagsresultater",
+        "state": "connected"
+      }
+    ],
+    "visualAssets": {
+      "licensedCrests": false
+    },
+    "qualityGate": {
+      "minimumFormMatchesPerTeam": 5,
+      "minimumSpecialStatisticsPerTeam": 8,
+      "maximumOddsAgeHours": 6,
+      "oneBookmakerRequiresSamples": 8,
+      "minimumConservativeScenarioEdge": 0.02,
+      "explanation": "Ukalibrert sannsynlighetsmodell. Kun positiv forventet verdi i et konservativt scenario, ikke påvist langsiktig avkastning."
+    },
+    "generatedAt": "2026-11-12T16:17:33.885645+00:00",
+    "localDate": "2026-11-12",
+    "dataStatus": {
+      "fixtures": "ok",
+      "odds": "ok",
+      "teamFormRequests": 0,
+      "fixtureCount": 0,
+      "sportmonks": {
+        "state": "ok",
+        "matches": 132,
+        "finished": 132,
+        "upcoming": 0,
+        "pages": 3,
+        "error": null
+      },
+      "matchdayDiscovery": {
+        "targetDate": "2026-11-12",
+        "catalogAvailable": true,
+        "matchesBySport": {
+          "soccer_uefa_nations_league": 8
+        },
+        "selected": [
+          "soccer_uefa_nations_league"
+        ],
+        "errors": []
+      },
+      "internationalSportsSelected": [
+        "soccer_uefa_nations_league"
+      ],
+      "oddsCreditsRemaining": 136,
+      "requestedLeagues": [
+        "soccer_uefa_nations_league"
+      ],
+      "oddsMarketKeys": [
+        "h2h",
+        "totals"
+      ],
+      "extraEventsLoaded": 1,
+      "oddsEventCount": 35,
+      "oddsFixtureSource": "The Odds API (bookmaker listings)",
+      "oddsFirstFixtures": 8,
+      "externalPredictionsStatus": "not_configured",
+      "nationalForm": {
+        "state": "ok",
+        "source": "International football results (Mart Jürisoo)",
+        "matches": 798,
+        "latestResultDate": "2026-10-06"
+      },
+      "coverageByLeague": {
+        "ODDS-UNL": {
+          "upcoming": 8,
+          "withOdds": 8,
+          "withModel": 8,
+          "eligible": 0
+        }
+      },
+      "analysisReadiness": {
+        "upcoming": 8,
+        "matchedOdds": 8,
+        "withModel": 8,
+        "recommended": 0,
+        "safe": 3,
+        "highRisk": 4,
+        "message": "Vanligste avvisning skyldtes for lav beregnet spillverdi."
+      }
+    },
+    "errors": [],
+    "method": "Konservativ ikke-kalibrert Poisson-baseline fra siste inntil 6 registrerte resultater. Screening er en hypotese, ikke dokumentert positiv forventningsverdi.",
+    "matches": [
+      {
+        "id": "odds:c25477408b57267248b491fa5eab2572",
+        "league": "UEFA Nations League",
+        "leagueCode": "ODDS-UNL",
+        "leagueCrest": null,
+        "homeCrest": null,
+        "awayCrest": null,
+        "home": "Armenia",
+        "away": "Cyprus",
+        "homeAliases": [
+          "Armenia"
+        ],
+        "awayAliases": [
+          "Cyprus"
+        ],
+        "kickoff": "2026-11-12T17:00:00+00:00",
+        "status": "SCHEDULED",
+        "formHome": "DLLWDDLLLLLWLDL",
+        "formAway": "WWDLWDWLLLWDDLLD",
+        "formMatchesHome": [
+          {
+            "matchId": "national-match:2026-10-05:national:MNE:national:ARM",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-05:national:MNE:national:ARM",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-04T22:00:00Z",
+            "localDate": "2026-10-05",
+            "homeTeam": {
+              "id": "national:MNE",
+              "name": "Montenegro"
+            },
+            "awayTeam": {
+              "id": "national:ARM",
+              "name": "Armenia"
+            },
+            "homeGoals": 0,
+            "awayGoals": 0,
+            "analyzedTeamId": "national:ARM",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 0,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "D",
+            "venueLabel": "Borte",
+            "opponent": "Montenegro",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-10-02:national:CYP:national:ARM",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-02:national:CYP:national:ARM",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-01T22:00:00Z",
+            "localDate": "2026-10-02",
+            "homeTeam": {
+              "id": "national:CYP",
+              "name": "Cyprus"
+            },
+            "awayTeam": {
+              "id": "national:ARM",
+              "name": "Armenia"
+            },
+            "homeGoals": 2,
+            "awayGoals": 0,
+            "analyzedTeamId": "national:ARM",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 0,
+            "opponentGoals": 2,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Borte",
+            "opponent": "Cyprus",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-28:national:ARM:national:MNE",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-28:national:ARM:national:MNE",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-27T22:00:00Z",
+            "localDate": "2026-09-28",
+            "homeTeam": {
+              "id": "national:ARM",
+              "name": "Armenia"
+            },
+            "awayTeam": {
+              "id": "national:MNE",
+              "name": "Montenegro"
+            },
+            "homeGoals": 2,
+            "awayGoals": 3,
+            "analyzedTeamId": "national:ARM",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 2,
+            "opponentGoals": 3,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Hjemme",
+            "opponent": "Montenegro",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-25:national:ARM:national:LVA",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-25:national:ARM:national:LVA",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-24T22:00:00Z",
+            "localDate": "2026-09-25",
+            "homeTeam": {
+              "id": "national:ARM",
+              "name": "Armenia"
+            },
+            "awayTeam": {
+              "id": "national:LVA",
+              "name": "Latvia"
+            },
+            "homeGoals": 2,
+            "awayGoals": 0,
+            "analyzedTeamId": "national:ARM",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 2,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Hjemme",
+            "opponent": "Latvia",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-06-09:national:ARM:national:MDA",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-06-09:national:ARM:national:MDA",
+            "competition": "Friendly",
+            "competitionCode": "",
+            "kickoffUtc": "2026-06-08T22:00:00Z",
+            "localDate": "2026-06-09",
+            "homeTeam": {
+              "id": "national:ARM",
+              "name": "Armenia"
+            },
+            "awayTeam": {
+              "id": "national:MDA",
+              "name": "Moldova"
+            },
+            "homeGoals": 1,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:ARM",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 1,
+            "resultForAnalyzedTeam": "D",
+            "venueLabel": "Hjemme",
+            "opponent": "Moldova",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          }
+        ],
+        "formMatchesAway": [
+          {
+            "matchId": "national-match:2026-10-05:national:CYP:national:LVA",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-05:national:CYP:national:LVA",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-04T22:00:00Z",
+            "localDate": "2026-10-05",
+            "homeTeam": {
+              "id": "national:CYP",
+              "name": "Cyprus"
+            },
+            "awayTeam": {
+              "id": "national:LVA",
+              "name": "Latvia"
+            },
+            "homeGoals": 2,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:CYP",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 2,
+            "opponentGoals": 1,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Hjemme",
+            "opponent": "Latvia",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-10-02:national:CYP:national:ARM",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-02:national:CYP:national:ARM",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-01T22:00:00Z",
+            "localDate": "2026-10-02",
+            "homeTeam": {
+              "id": "national:CYP",
+              "name": "Cyprus"
+            },
+            "awayTeam": {
+              "id": "national:ARM",
+              "name": "Armenia"
+            },
+            "homeGoals": 2,
+            "awayGoals": 0,
+            "analyzedTeamId": "national:CYP",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 2,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Hjemme",
+            "opponent": "Armenia",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-28:national:LVA:national:CYP",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-28:national:LVA:national:CYP",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-27T22:00:00Z",
+            "localDate": "2026-09-28",
+            "homeTeam": {
+              "id": "national:LVA",
+              "name": "Latvia"
+            },
+            "awayTeam": {
+              "id": "national:CYP",
+              "name": "Cyprus"
+            },
+            "homeGoals": 0,
+            "awayGoals": 0,
+            "analyzedTeamId": "national:CYP",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 0,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "D",
+            "venueLabel": "Borte",
+            "opponent": "Latvia",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-25:national:MNE:national:CYP",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-25:national:MNE:national:CYP",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-24T22:00:00Z",
+            "localDate": "2026-09-25",
+            "homeTeam": {
+              "id": "national:MNE",
+              "name": "Montenegro"
+            },
+            "awayTeam": {
+              "id": "national:CYP",
+              "name": "Cyprus"
+            },
+            "homeGoals": 2,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:CYP",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 2,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Borte",
+            "opponent": "Montenegro",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-06-07:national:LIE:national:CYP",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-06-07:national:LIE:national:CYP",
+            "competition": "Friendly",
+            "competitionCode": "",
+            "kickoffUtc": "2026-06-06T22:00:00Z",
+            "localDate": "2026-06-07",
+            "homeTeam": {
+              "id": "national:LIE",
+              "name": "Liechtenstein"
+            },
+            "awayTeam": {
+              "id": "national:CYP",
+              "name": "Cyprus"
+            },
+            "homeGoals": 0,
+            "awayGoals": 2,
+            "analyzedTeamId": "national:CYP",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 2,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Borte",
+            "opponent": "Liechtenstein",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          }
+        ],
+        "formHistoryDiagnostics": {
+          "home": {
+            "verified": 15,
+            "displayable": 5,
+            "issues": []
+          },
+          "away": {
+            "verified": 16,
+            "displayable": 5,
+            "issues": []
+          }
+        },
+        "model": {
+          "probabilities": {
+            "H": 0.2913,
+            "U": 0.2775,
+            "B": 0.4312,
+            "O25": 0.4133,
+            "U25": 0.5867,
+            "O35": 0.2079,
+            "BTTS": 0.4682,
+            "O15": 0.676,
+            "U15": 0.324,
+            "U35": 0.7932,
+            "BTTSN": 0.5318,
+            "THO05": 0.6394,
+            "THU05": 0.3606,
+            "THO15": 0.2716,
+            "THU15": 0.7284,
+            "THO25": 0.084,
+            "THU25": 0.916,
+            "TAO05": 0.7302,
+            "TAU05": 0.2698,
+            "TAO15": 0.3767,
+            "TAU15": 0.6233,
+            "TAO25": 0.1452,
+            "TAU25": 0.8548
+          },
+          "expectedGoals": [
+            1.02,
+            1.31
+          ],
+          "sample": [
+            15,
+            16
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            7.45,
+            7.79
+          ],
+          "modelMethod": "national_strength_v49",
+          "historyWindowDays": 548
+        },
+        "odds": {
+          "H": {
+            "price": 3.0,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "winamax_de"
+          },
+          "B": {
+            "price": 2.42,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "winamax_de"
+          },
+          "U": {
+            "price": 3.02,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "betclic_fr"
+          },
+          "O25": {
+            "price": 2.25,
+            "source": "The Odds API · bookmaker-median",
+            "books": 10,
+            "lastUpdated": "2026-11-12T16:17:36Z",
+            "sampleBook": "williamhill"
+          },
+          "U25": {
+            "price": 1.6,
+            "source": "The Odds API · bookmaker-median",
+            "books": 10,
+            "lastUpdated": "2026-11-12T16:17:36Z",
+            "sampleBook": "nordicbet"
+          },
+          "BTTS": {
+            "price": 1.86,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-12T16:17:35Z",
+            "sampleBook": "onexbet"
+          },
+          "BTTSN": {
+            "price": 1.86,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-12T16:17:35Z",
+            "sampleBook": "onexbet"
+          },
+          "O15": {
+            "price": 1.4,
+            "source": "The Odds API · bookmaker-median",
+            "books": 2,
+            "lastUpdated": "2026-11-12T16:17:35Z",
+            "sampleBook": "williamhill"
+          },
+          "U15": {
+            "price": 2.89,
+            "source": "The Odds API · bookmaker-median",
+            "books": 2,
+            "lastUpdated": "2026-11-12T16:17:35Z",
+            "sampleBook": "williamhill"
+          },
+          "O35": {
+            "price": 4.13,
+            "source": "The Odds API · bookmaker-median",
+            "books": 1,
+            "lastUpdated": "2026-11-12T16:17:35Z",
+            "sampleBook": "pinnacle"
+          },
+          "U35": {
+            "price": 1.23,
+            "source": "The Odds API · bookmaker-median",
+            "books": 1,
+            "lastUpdated": "2026-11-12T16:17:35Z",
+            "sampleBook": "pinnacle"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "odds:d598d5e914a905ef70b01fd1b444aecb",
+        "league": "UEFA Nations League",
+        "leagueCode": "ODDS-UNL",
+        "leagueCrest": null,
+        "homeCrest": null,
+        "awayCrest": null,
+        "home": "Turkey",
+        "away": "Belgium",
+        "homeAliases": [
+          "Turkey"
+        ],
+        "awayAliases": [
+          "Belgium"
+        ],
+        "kickoff": "2026-11-12T17:00:00+00:00",
+        "status": "SCHEDULED",
+        "formHome": "LLLLWLLWWDWWWLWLW",
+        "formAway": "LWLWWDDWWDWWDWDWWWD",
+        "formMatchesHome": [
+          {
+            "matchId": "national-match:2026-10-05:national:ITA:national:TUR",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-05:national:ITA:national:TUR",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-04T22:00:00Z",
+            "localDate": "2026-10-05",
+            "homeTeam": {
+              "id": "national:ITA",
+              "name": "Italy"
+            },
+            "awayTeam": {
+              "id": "national:TUR",
+              "name": "Turkey"
+            },
+            "homeGoals": 3,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:TUR",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 3,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Borte",
+            "opponent": "Italy",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-10-02:national:BEL:national:TUR",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-02:national:BEL:national:TUR",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-01T22:00:00Z",
+            "localDate": "2026-10-02",
+            "homeTeam": {
+              "id": "national:BEL",
+              "name": "Belgium"
+            },
+            "awayTeam": {
+              "id": "national:TUR",
+              "name": "Turkey"
+            },
+            "homeGoals": 3,
+            "awayGoals": 0,
+            "analyzedTeamId": "national:TUR",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 0,
+            "opponentGoals": 3,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Borte",
+            "opponent": "Belgium",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-28:national:TUR:national:ITA",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-28:national:TUR:national:ITA",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-27T22:00:00Z",
+            "localDate": "2026-09-28",
+            "homeTeam": {
+              "id": "national:TUR",
+              "name": "Turkey"
+            },
+            "awayTeam": {
+              "id": "national:ITA",
+              "name": "Italy"
+            },
+            "homeGoals": 1,
+            "awayGoals": 4,
+            "analyzedTeamId": "national:TUR",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 4,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Hjemme",
+            "opponent": "Italy",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-25:national:TUR:national:FRA",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-25:national:TUR:national:FRA",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-24T22:00:00Z",
+            "localDate": "2026-09-25",
+            "homeTeam": {
+              "id": "national:TUR",
+              "name": "Turkey"
+            },
+            "awayTeam": {
+              "id": "national:FRA",
+              "name": "France"
+            },
+            "homeGoals": 0,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:TUR",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 0,
+            "opponentGoals": 1,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Hjemme",
+            "opponent": "France",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-06-25:national-name:unitedstates:national:TUR",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-06-25:national-name:unitedstates:national:TUR",
+            "competition": "FIFA World Cup",
+            "competitionCode": "",
+            "kickoffUtc": "2026-06-24T22:00:00Z",
+            "localDate": "2026-06-25",
+            "homeTeam": {
+              "id": "national-name:unitedstates",
+              "name": "United States"
+            },
+            "awayTeam": {
+              "id": "national:TUR",
+              "name": "Turkey"
+            },
+            "homeGoals": 2,
+            "awayGoals": 3,
+            "analyzedTeamId": "national:TUR",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 3,
+            "opponentGoals": 2,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Borte",
+            "opponent": "United States",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          }
+        ],
+        "formMatchesAway": [
+          {
+            "matchId": "national-match:2026-10-05:national:FRA:national:BEL",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-05:national:FRA:national:BEL",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-04T22:00:00Z",
+            "localDate": "2026-10-05",
+            "homeTeam": {
+              "id": "national:FRA",
+              "name": "France"
+            },
+            "awayTeam": {
+              "id": "national:BEL",
+              "name": "Belgium"
+            },
+            "homeGoals": 4,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:BEL",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 4,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Borte",
+            "opponent": "France",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-10-02:national:BEL:national:TUR",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-02:national:BEL:national:TUR",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-01T22:00:00Z",
+            "localDate": "2026-10-02",
+            "homeTeam": {
+              "id": "national:BEL",
+              "name": "Belgium"
+            },
+            "awayTeam": {
+              "id": "national:TUR",
+              "name": "Turkey"
+            },
+            "homeGoals": 3,
+            "awayGoals": 0,
+            "analyzedTeamId": "national:BEL",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 3,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Hjemme",
+            "opponent": "Turkey",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-28:national:BEL:national:FRA",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-28:national:BEL:national:FRA",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-27T22:00:00Z",
+            "localDate": "2026-09-28",
+            "homeTeam": {
+              "id": "national:BEL",
+              "name": "Belgium"
+            },
+            "awayTeam": {
+              "id": "national:FRA",
+              "name": "France"
+            },
+            "homeGoals": 0,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:BEL",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 0,
+            "opponentGoals": 1,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Hjemme",
+            "opponent": "France",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-25:national:ITA:national:BEL",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-25:national:ITA:national:BEL",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-24T22:00:00Z",
+            "localDate": "2026-09-25",
+            "homeTeam": {
+              "id": "national:ITA",
+              "name": "Italy"
+            },
+            "awayTeam": {
+              "id": "national:BEL",
+              "name": "Belgium"
+            },
+            "homeGoals": 0,
+            "awayGoals": 2,
+            "analyzedTeamId": "national:BEL",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 2,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Borte",
+            "opponent": "Italy",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-06-26:national-name:newzealand:national:BEL",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-06-26:national-name:newzealand:national:BEL",
+            "competition": "FIFA World Cup",
+            "competitionCode": "",
+            "kickoffUtc": "2026-06-25T22:00:00Z",
+            "localDate": "2026-06-26",
+            "homeTeam": {
+              "id": "national-name:newzealand",
+              "name": "New Zealand"
+            },
+            "awayTeam": {
+              "id": "national:BEL",
+              "name": "Belgium"
+            },
+            "homeGoals": 1,
+            "awayGoals": 5,
+            "analyzedTeamId": "national:BEL",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 5,
+            "opponentGoals": 1,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Nøytral bane",
+            "opponent": "New Zealand",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true,
+            "neutralVenue": true
+          }
+        ],
+        "formHistoryDiagnostics": {
+          "home": {
+            "verified": 17,
+            "displayable": 5,
+            "issues": []
+          },
+          "away": {
+            "verified": 19,
+            "displayable": 5,
+            "issues": []
+          }
+        },
+        "model": {
+          "probabilities": {
+            "H": 0.1865,
+            "U": 0.1922,
+            "B": 0.6213,
+            "O25": 0.6764,
+            "U25": 0.3236,
+            "O35": 0.4602,
+            "BTTS": 0.6258,
+            "O15": 0.862,
+            "U15": 0.138,
+            "U35": 0.541,
+            "BTTSN": 0.3742,
+            "THO05": 0.6958,
+            "THU05": 0.3042,
+            "THO15": 0.3338,
+            "THU15": 0.6662,
+            "THO25": 0.1184,
+            "THU25": 0.8816,
+            "TAO05": 0.8987,
+            "TAU05": 0.1013,
+            "TAO15": 0.6668,
+            "TAU15": 0.3332,
+            "TAO25": 0.4013,
+            "TAU25": 0.5987
+          },
+          "expectedGoals": [
+            1.19,
+            2.29
+          ],
+          "sample": [
+            17,
+            19
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            9.11,
+            10.06
+          ],
+          "modelMethod": "national_strength_v49",
+          "historyWindowDays": 548
+        },
+        "odds": {
+          "B": {
+            "price": 1.92,
+            "source": "The Odds API · bookmaker-median",
+            "books": 18,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "betsson"
+          },
+          "H": {
+            "price": 3.51,
+            "source": "The Odds API · bookmaker-median",
+            "books": 18,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "leovegas_se"
+          },
+          "U": {
+            "price": 4.0,
+            "source": "The Odds API · bookmaker-median",
+            "books": 18,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "winamax_fr"
+          },
+          "O35": {
+            "price": 2.18,
+            "source": "The Odds API · bookmaker-median",
+            "books": 7,
+            "lastUpdated": "2026-11-12T16:17:36Z",
+            "sampleBook": "onexbet"
+          },
+          "U35": {
+            "price": 1.66,
+            "source": "The Odds API · bookmaker-median",
+            "books": 7,
+            "lastUpdated": "2026-11-12T16:17:36Z",
+            "sampleBook": "mybookieag"
+          },
+          "O25": {
+            "price": 1.46,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-12T16:17:16Z",
+            "sampleBook": "nordicbet"
+          },
+          "U25": {
+            "price": 2.68,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-12T16:17:16Z",
+            "sampleBook": "nordicbet"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "odds:21f1d732a768ec97ab405050ec9be408",
+        "league": "UEFA Nations League",
+        "leagueCode": "ODDS-UNL",
+        "leagueCrest": null,
+        "homeCrest": null,
+        "awayCrest": null,
+        "home": "Albania",
+        "away": "Finland",
+        "homeAliases": [
+          "Albania"
+        ],
+        "awayAliases": [
+          "Finland"
+        ],
+        "kickoff": "2026-11-12T19:45:00+00:00",
+        "status": "SCHEDULED",
+        "formHome": "WLWWLLLLWWWWWDD",
+        "formAway": "LWDWLLWLLWLLWL",
+        "formMatchesHome": [
+          {
+            "matchId": "national-match:2026-10-06:national:ALB:national:SMR",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-06:national:ALB:national:SMR",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-05T22:00:00Z",
+            "localDate": "2026-10-06",
+            "homeTeam": {
+              "id": "national:ALB",
+              "name": "Albania"
+            },
+            "awayTeam": {
+              "id": "national:SMR",
+              "name": "San Marino"
+            },
+            "homeGoals": 2,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:ALB",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 2,
+            "opponentGoals": 1,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Hjemme",
+            "opponent": "San Marino",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-10-03:national:FIN:national:ALB",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-03:national:FIN:national:ALB",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-02T22:00:00Z",
+            "localDate": "2026-10-03",
+            "homeTeam": {
+              "id": "national:FIN",
+              "name": "Finland"
+            },
+            "awayTeam": {
+              "id": "national:ALB",
+              "name": "Albania"
+            },
+            "homeGoals": 2,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:ALB",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 2,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Borte",
+            "opponent": "Finland",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-29:national:SMR:national:ALB",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-29:national:SMR:national:ALB",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-28T22:00:00Z",
+            "localDate": "2026-09-29",
+            "homeTeam": {
+              "id": "national:SMR",
+              "name": "San Marino"
+            },
+            "awayTeam": {
+              "id": "national:ALB",
+              "name": "Albania"
+            },
+            "homeGoals": 0,
+            "awayGoals": 3,
+            "analyzedTeamId": "national:ALB",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 3,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Borte",
+            "opponent": "San Marino",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-26:national:ALB:national:BLR",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-26:national:ALB:national:BLR",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-25T22:00:00Z",
+            "localDate": "2026-09-26",
+            "homeTeam": {
+              "id": "national:ALB",
+              "name": "Albania"
+            },
+            "awayTeam": {
+              "id": "national:BLR",
+              "name": "Belarus"
+            },
+            "homeGoals": 2,
+            "awayGoals": 0,
+            "analyzedTeamId": "national:ALB",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 2,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Hjemme",
+            "opponent": "Belarus",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-06-06:national:ALB:national:LUX",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-06-06:national:ALB:national:LUX",
+            "competition": "Friendly",
+            "competitionCode": "",
+            "kickoffUtc": "2026-06-05T22:00:00Z",
+            "localDate": "2026-06-06",
+            "homeTeam": {
+              "id": "national:ALB",
+              "name": "Albania"
+            },
+            "awayTeam": {
+              "id": "national:LUX",
+              "name": "Luxembourg"
+            },
+            "homeGoals": 0,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:ALB",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 0,
+            "opponentGoals": 1,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Hjemme",
+            "opponent": "Luxembourg",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          }
+        ],
+        "formMatchesAway": [
+          {
+            "matchId": "national-match:2026-10-06:national:BLR:national:FIN",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-06:national:BLR:national:FIN",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-05T22:00:00Z",
+            "localDate": "2026-10-06",
+            "homeTeam": {
+              "id": "national:BLR",
+              "name": "Belarus"
+            },
+            "awayTeam": {
+              "id": "national:FIN",
+              "name": "Finland"
+            },
+            "homeGoals": 1,
+            "awayGoals": 0,
+            "analyzedTeamId": "national:FIN",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 0,
+            "opponentGoals": 1,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Nøytral bane",
+            "opponent": "Belarus",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true,
+            "neutralVenue": true
+          },
+          {
+            "matchId": "national-match:2026-10-03:national:FIN:national:ALB",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-03:national:FIN:national:ALB",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-02T22:00:00Z",
+            "localDate": "2026-10-03",
+            "homeTeam": {
+              "id": "national:FIN",
+              "name": "Finland"
+            },
+            "awayTeam": {
+              "id": "national:ALB",
+              "name": "Albania"
+            },
+            "homeGoals": 2,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:FIN",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 2,
+            "opponentGoals": 1,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Hjemme",
+            "opponent": "Albania",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-29:national:FIN:national:BLR",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-29:national:FIN:national:BLR",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-28T22:00:00Z",
+            "localDate": "2026-09-29",
+            "homeTeam": {
+              "id": "national:FIN",
+              "name": "Finland"
+            },
+            "awayTeam": {
+              "id": "national:BLR",
+              "name": "Belarus"
+            },
+            "homeGoals": 0,
+            "awayGoals": 0,
+            "analyzedTeamId": "national:FIN",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 0,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "D",
+            "venueLabel": "Hjemme",
+            "opponent": "Belarus",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-26:national:SMR:national:FIN",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-26:national:SMR:national:FIN",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-25T22:00:00Z",
+            "localDate": "2026-09-26",
+            "homeTeam": {
+              "id": "national:SMR",
+              "name": "San Marino"
+            },
+            "awayTeam": {
+              "id": "national:FIN",
+              "name": "Finland"
+            },
+            "homeGoals": 0,
+            "awayGoals": 7,
+            "analyzedTeamId": "national:FIN",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 7,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Borte",
+            "opponent": "San Marino",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-06-05:national:HUN:national:FIN",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-06-05:national:HUN:national:FIN",
+            "competition": "Friendly",
+            "competitionCode": "",
+            "kickoffUtc": "2026-06-04T22:00:00Z",
+            "localDate": "2026-06-05",
+            "homeTeam": {
+              "id": "national:HUN",
+              "name": "Hungary"
+            },
+            "awayTeam": {
+              "id": "national:FIN",
+              "name": "Finland"
+            },
+            "homeGoals": 2,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:FIN",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 2,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Borte",
+            "opponent": "Hungary",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          }
+        ],
+        "formHistoryDiagnostics": {
+          "home": {
+            "verified": 15,
+            "displayable": 5,
+            "issues": []
+          },
+          "away": {
+            "verified": 14,
+            "displayable": 5,
+            "issues": []
+          }
+        },
+        "model": {
+          "probabilities": {
+            "H": 0.3263,
+            "U": 0.3212,
+            "B": 0.3525,
+            "O25": 0.2882,
+            "U25": 0.7118,
+            "O35": 0.1202,
+            "BTTS": 0.3687,
+            "O15": 0.5577,
+            "U15": 0.4423,
+            "U35": 0.8798,
+            "BTTSN": 0.6313,
+            "THO05": 0.5975,
+            "THU05": 0.4025,
+            "THO15": 0.2312,
+            "THU15": 0.7688,
+            "THO25": 0.0645,
+            "THU25": 0.9355,
+            "TAO05": 0.6171,
+            "TAU05": 0.3829,
+            "TAO15": 0.2495,
+            "TAU15": 0.7505,
+            "TAO25": 0.0731,
+            "TAU25": 0.9269
+          },
+          "expectedGoals": [
+            0.91,
+            0.96
+          ],
+          "sample": [
+            15,
+            14
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            7.4,
+            6.99
+          ],
+          "modelMethod": "national_strength_v49",
+          "historyWindowDays": 548
+        },
+        "odds": {
+          "H": {
+            "price": 2.12,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "williamhill"
+          },
+          "B": {
+            "price": 3.8,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "sport888"
+          },
+          "U": {
+            "price": 2.95,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "betanysports"
+          },
+          "O15": {
+            "price": 1.5,
+            "source": "The Odds API · bookmaker-median",
+            "books": 5,
+            "lastUpdated": "2026-11-12T16:17:36Z",
+            "sampleBook": "leovegas_se"
+          },
+          "U15": {
+            "price": 2.38,
+            "source": "The Odds API · bookmaker-median",
+            "books": 5,
+            "lastUpdated": "2026-11-12T16:17:36Z",
+            "sampleBook": "onexbet"
+          },
+          "O25": {
+            "price": 2.77,
+            "source": "The Odds API · bookmaker-median",
+            "books": 4,
+            "lastUpdated": "2026-11-12T16:17:20Z",
+            "sampleBook": "nordicbet"
+          },
+          "U25": {
+            "price": 1.43,
+            "source": "The Odds API · bookmaker-median",
+            "books": 4,
+            "lastUpdated": "2026-11-12T16:17:20Z",
+            "sampleBook": "betsson"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "odds:3caa30ea2ac5a1be30724132ba10d82b",
+        "league": "UEFA Nations League",
+        "leagueCode": "ODDS-UNL",
+        "leagueCrest": null,
+        "homeCrest": null,
+        "awayCrest": null,
+        "home": "San Marino",
+        "away": "Belarus",
+        "homeAliases": [
+          "San Marino"
+        ],
+        "awayAliases": [
+          "Belarus"
+        ],
+        "kickoff": "2026-11-12T19:45:00+00:00",
+        "status": "SCHEDULED",
+        "formHome": "LLLLLLDLLLLLLLLL",
+        "formAway": "WWDLDWWWDDLLLLLW",
+        "formMatchesHome": [
+          {
+            "matchId": "national-match:2026-10-06:national:ALB:national:SMR",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-06:national:ALB:national:SMR",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-05T22:00:00Z",
+            "localDate": "2026-10-06",
+            "homeTeam": {
+              "id": "national:ALB",
+              "name": "Albania"
+            },
+            "awayTeam": {
+              "id": "national:SMR",
+              "name": "San Marino"
+            },
+            "homeGoals": 2,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:SMR",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 2,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Borte",
+            "opponent": "Albania",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-10-03:national:BLR:national:SMR",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-03:national:BLR:national:SMR",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-02T22:00:00Z",
+            "localDate": "2026-10-03",
+            "homeTeam": {
+              "id": "national:BLR",
+              "name": "Belarus"
+            },
+            "awayTeam": {
+              "id": "national:SMR",
+              "name": "San Marino"
+            },
+            "homeGoals": 4,
+            "awayGoals": 0,
+            "analyzedTeamId": "national:SMR",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 0,
+            "opponentGoals": 4,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Nøytral bane",
+            "opponent": "Belarus",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true,
+            "neutralVenue": true
+          },
+          {
+            "matchId": "national-match:2026-09-29:national:SMR:national:ALB",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-29:national:SMR:national:ALB",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-28T22:00:00Z",
+            "localDate": "2026-09-29",
+            "homeTeam": {
+              "id": "national:SMR",
+              "name": "San Marino"
+            },
+            "awayTeam": {
+              "id": "national:ALB",
+              "name": "Albania"
+            },
+            "homeGoals": 0,
+            "awayGoals": 3,
+            "analyzedTeamId": "national:SMR",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 0,
+            "opponentGoals": 3,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Hjemme",
+            "opponent": "Albania",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-26:national:SMR:national:FIN",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-26:national:SMR:national:FIN",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-25T22:00:00Z",
+            "localDate": "2026-09-26",
+            "homeTeam": {
+              "id": "national:SMR",
+              "name": "San Marino"
+            },
+            "awayTeam": {
+              "id": "national:FIN",
+              "name": "Finland"
+            },
+            "homeGoals": 0,
+            "awayGoals": 7,
+            "analyzedTeamId": "national:SMR",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 0,
+            "opponentGoals": 7,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Hjemme",
+            "opponent": "Finland",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-06-09:national:AZE:national:SMR",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-06-09:national:AZE:national:SMR",
+            "competition": "Friendly",
+            "competitionCode": "",
+            "kickoffUtc": "2026-06-08T22:00:00Z",
+            "localDate": "2026-06-09",
+            "homeTeam": {
+              "id": "national:AZE",
+              "name": "Azerbaijan"
+            },
+            "awayTeam": {
+              "id": "national:SMR",
+              "name": "San Marino"
+            },
+            "homeGoals": 2,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:SMR",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 2,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Nøytral bane",
+            "opponent": "Azerbaijan",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true,
+            "neutralVenue": true
+          }
+        ],
+        "formMatchesAway": [
+          {
+            "matchId": "national-match:2026-10-06:national:BLR:national:FIN",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-06:national:BLR:national:FIN",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-05T22:00:00Z",
+            "localDate": "2026-10-06",
+            "homeTeam": {
+              "id": "national:BLR",
+              "name": "Belarus"
+            },
+            "awayTeam": {
+              "id": "national:FIN",
+              "name": "Finland"
+            },
+            "homeGoals": 1,
+            "awayGoals": 0,
+            "analyzedTeamId": "national:BLR",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Nøytral bane",
+            "opponent": "Finland",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true,
+            "neutralVenue": true
+          },
+          {
+            "matchId": "national-match:2026-10-03:national:BLR:national:SMR",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-03:national:BLR:national:SMR",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-02T22:00:00Z",
+            "localDate": "2026-10-03",
+            "homeTeam": {
+              "id": "national:BLR",
+              "name": "Belarus"
+            },
+            "awayTeam": {
+              "id": "national:SMR",
+              "name": "San Marino"
+            },
+            "homeGoals": 4,
+            "awayGoals": 0,
+            "analyzedTeamId": "national:BLR",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 4,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Nøytral bane",
+            "opponent": "San Marino",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true,
+            "neutralVenue": true
+          },
+          {
+            "matchId": "national-match:2026-09-29:national:FIN:national:BLR",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-29:national:FIN:national:BLR",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-28T22:00:00Z",
+            "localDate": "2026-09-29",
+            "homeTeam": {
+              "id": "national:FIN",
+              "name": "Finland"
+            },
+            "awayTeam": {
+              "id": "national:BLR",
+              "name": "Belarus"
+            },
+            "homeGoals": 0,
+            "awayGoals": 0,
+            "analyzedTeamId": "national:BLR",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 0,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "D",
+            "venueLabel": "Borte",
+            "opponent": "Finland",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-26:national:ALB:national:BLR",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-26:national:ALB:national:BLR",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-25T22:00:00Z",
+            "localDate": "2026-09-26",
+            "homeTeam": {
+              "id": "national:ALB",
+              "name": "Albania"
+            },
+            "awayTeam": {
+              "id": "national:BLR",
+              "name": "Belarus"
+            },
+            "homeGoals": 2,
+            "awayGoals": 0,
+            "analyzedTeamId": "national:BLR",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 0,
+            "opponentGoals": 2,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Borte",
+            "opponent": "Albania",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-06-09:national:BLR:national-name:burkinafaso",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-06-09:national:BLR:national-name:burkinafaso",
+            "competition": "Friendly",
+            "competitionCode": "",
+            "kickoffUtc": "2026-06-08T22:00:00Z",
+            "localDate": "2026-06-09",
+            "homeTeam": {
+              "id": "national:BLR",
+              "name": "Belarus"
+            },
+            "awayTeam": {
+              "id": "national-name:burkinafaso",
+              "name": "Burkina Faso"
+            },
+            "homeGoals": 2,
+            "awayGoals": 2,
+            "analyzedTeamId": "national:BLR",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 2,
+            "opponentGoals": 2,
+            "resultForAnalyzedTeam": "D",
+            "venueLabel": "Hjemme",
+            "opponent": "Burkina Faso",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          }
+        ],
+        "formHistoryDiagnostics": {
+          "home": {
+            "verified": 16,
+            "displayable": 5,
+            "issues": []
+          },
+          "away": {
+            "verified": 16,
+            "displayable": 5,
+            "issues": []
+          }
+        },
+        "model": {
+          "probabilities": {
+            "H": 0.0325,
+            "U": 0.083,
+            "B": 0.8845,
+            "O25": 0.7262,
+            "U25": 0.2738,
+            "O35": 0.5204,
+            "BTTS": 0.3944,
+            "O15": 0.89,
+            "U15": 0.11,
+            "U35": 0.4796,
+            "BTTSN": 0.6056,
+            "THO05": 0.4114,
+            "THU05": 0.5886,
+            "THO15": 0.0994,
+            "THU15": 0.9006,
+            "THO25": 0.0168,
+            "THU25": 0.9832,
+            "TAO05": 0.9608,
+            "TAU05": 0.0392,
+            "TAO15": 0.8339,
+            "TAU15": 0.1661,
+            "TAO25": 0.6284,
+            "TAU25": 0.3716
+          },
+          "expectedGoals": [
+            0.53,
+            3.24
+          ],
+          "sample": [
+            16,
+            16
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            7.79,
+            7.84
+          ],
+          "modelMethod": "national_strength_v49",
+          "historyWindowDays": 548
+        },
+        "odds": {
+          "B": {
+            "price": 1.12,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "unibet_se"
+          },
+          "H": {
+            "price": 19.12,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "onexbet"
+          },
+          "U": {
+            "price": 8.45,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "marathonbet"
+          },
+          "O25": {
+            "price": 1.63,
+            "source": "The Odds API · bookmaker-median",
+            "books": 9,
+            "lastUpdated": "2026-11-12T16:17:36Z",
+            "sampleBook": "mybookieag"
+          },
+          "U25": {
+            "price": 2.18,
+            "source": "The Odds API · bookmaker-median",
+            "books": 9,
+            "lastUpdated": "2026-11-12T16:17:36Z",
+            "sampleBook": "nordicbet"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "odds:8a1174de9079b530bd6612e3fde6e2fa",
+        "league": "UEFA Nations League",
+        "leagueCode": "ODDS-UNL",
+        "leagueCrest": null,
+        "homeCrest": null,
+        "awayCrest": null,
+        "home": "England",
+        "away": "Croatia",
+        "homeAliases": [
+          "England"
+        ],
+        "awayAliases": [
+          "Croatia"
+        ],
+        "kickoff": "2026-11-12T19:45:00+00:00",
+        "status": "SCHEDULED",
+        "formHome": "WWWLWDWWWLDWWWWWWLW",
+        "formAway": "LLLWWWLWLLWWWWDWWWW",
+        "formMatchesHome": [
+          {
+            "matchId": "national-match:2026-10-06:national:ENG:national:CZE",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-06:national:ENG:national:CZE",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-05T22:00:00Z",
+            "localDate": "2026-10-06",
+            "homeTeam": {
+              "id": "national:ENG",
+              "name": "England"
+            },
+            "awayTeam": {
+              "id": "national:CZE",
+              "name": "Czech Republic"
+            },
+            "homeGoals": 3,
+            "awayGoals": 0,
+            "analyzedTeamId": "national:ENG",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 3,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Hjemme",
+            "opponent": "Czech Republic",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-10-03:national:CRO:national:ENG",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-03:national:CRO:national:ENG",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-02T22:00:00Z",
+            "localDate": "2026-10-03",
+            "homeTeam": {
+              "id": "national:CRO",
+              "name": "Croatia"
+            },
+            "awayTeam": {
+              "id": "national:ENG",
+              "name": "England"
+            },
+            "homeGoals": 0,
+            "awayGoals": 7,
+            "analyzedTeamId": "national:ENG",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 7,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Borte",
+            "opponent": "Croatia",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-29:national:CZE:national:ENG",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-29:national:CZE:national:ENG",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-28T22:00:00Z",
+            "localDate": "2026-09-29",
+            "homeTeam": {
+              "id": "national:CZE",
+              "name": "Czech Republic"
+            },
+            "awayTeam": {
+              "id": "national:ENG",
+              "name": "England"
+            },
+            "homeGoals": 0,
+            "awayGoals": 2,
+            "analyzedTeamId": "national:ENG",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 2,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Borte",
+            "opponent": "Czech Republic",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-26:national:ENG:national:ESP",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-26:national:ENG:national:ESP",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-25T22:00:00Z",
+            "localDate": "2026-09-26",
+            "homeTeam": {
+              "id": "national:ENG",
+              "name": "England"
+            },
+            "awayTeam": {
+              "id": "national:ESP",
+              "name": "Spain"
+            },
+            "homeGoals": 2,
+            "awayGoals": 3,
+            "analyzedTeamId": "national:ENG",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 2,
+            "opponentGoals": 3,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Hjemme",
+            "opponent": "Spain",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-06-27:national-name:panama:national:ENG",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-06-27:national-name:panama:national:ENG",
+            "competition": "FIFA World Cup",
+            "competitionCode": "",
+            "kickoffUtc": "2026-06-26T22:00:00Z",
+            "localDate": "2026-06-27",
+            "homeTeam": {
+              "id": "national-name:panama",
+              "name": "Panama"
+            },
+            "awayTeam": {
+              "id": "national:ENG",
+              "name": "England"
+            },
+            "homeGoals": 0,
+            "awayGoals": 2,
+            "analyzedTeamId": "national:ENG",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 2,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Nøytral bane",
+            "opponent": "Panama",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true,
+            "neutralVenue": true
+          }
+        ],
+        "formMatchesAway": [
+          {
+            "matchId": "national-match:2026-10-06:national:CRO:national:ESP",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-06:national:CRO:national:ESP",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-05T22:00:00Z",
+            "localDate": "2026-10-06",
+            "homeTeam": {
+              "id": "national:CRO",
+              "name": "Croatia"
+            },
+            "awayTeam": {
+              "id": "national:ESP",
+              "name": "Spain"
+            },
+            "homeGoals": 1,
+            "awayGoals": 2,
+            "analyzedTeamId": "national:CRO",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 2,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Hjemme",
+            "opponent": "Spain",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-10-03:national:CRO:national:ENG",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-03:national:CRO:national:ENG",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-02T22:00:00Z",
+            "localDate": "2026-10-03",
+            "homeTeam": {
+              "id": "national:CRO",
+              "name": "Croatia"
+            },
+            "awayTeam": {
+              "id": "national:ENG",
+              "name": "England"
+            },
+            "homeGoals": 0,
+            "awayGoals": 7,
+            "analyzedTeamId": "national:CRO",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 0,
+            "opponentGoals": 7,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Hjemme",
+            "opponent": "England",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-29:national:ESP:national:CRO",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-29:national:ESP:national:CRO",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-28T22:00:00Z",
+            "localDate": "2026-09-29",
+            "homeTeam": {
+              "id": "national:ESP",
+              "name": "Spain"
+            },
+            "awayTeam": {
+              "id": "national:CRO",
+              "name": "Croatia"
+            },
+            "homeGoals": 4,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:CRO",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 4,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Borte",
+            "opponent": "Spain",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-26:national:CZE:national:CRO",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-26:national:CZE:national:CRO",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-25T22:00:00Z",
+            "localDate": "2026-09-26",
+            "homeTeam": {
+              "id": "national:CZE",
+              "name": "Czech Republic"
+            },
+            "awayTeam": {
+              "id": "national:CRO",
+              "name": "Croatia"
+            },
+            "homeGoals": 1,
+            "awayGoals": 2,
+            "analyzedTeamId": "national:CRO",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 2,
+            "opponentGoals": 1,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Borte",
+            "opponent": "Czech Republic",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-06-27:national:CRO:national-name:ghana",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-06-27:national:CRO:national-name:ghana",
+            "competition": "FIFA World Cup",
+            "competitionCode": "",
+            "kickoffUtc": "2026-06-26T22:00:00Z",
+            "localDate": "2026-06-27",
+            "homeTeam": {
+              "id": "national:CRO",
+              "name": "Croatia"
+            },
+            "awayTeam": {
+              "id": "national-name:ghana",
+              "name": "Ghana"
+            },
+            "homeGoals": 2,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:CRO",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 2,
+            "opponentGoals": 1,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Nøytral bane",
+            "opponent": "Ghana",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true,
+            "neutralVenue": true
+          }
+        ],
+        "formHistoryDiagnostics": {
+          "home": {
+            "verified": 19,
+            "displayable": 5,
+            "issues": []
+          },
+          "away": {
+            "verified": 19,
+            "displayable": 5,
+            "issues": []
+          }
+        },
+        "model": {
+          "probabilities": {
+            "H": 0.8531,
+            "U": 0.0946,
+            "B": 0.0523,
+            "O25": 0.7873,
+            "U25": 0.2127,
+            "O35": 0.6011,
+            "BTTS": 0.5322,
+            "O15": 0.9208,
+            "U15": 0.0792,
+            "U35": 0.3991,
+            "BTTSN": 0.4678,
+            "THO05": 0.966,
+            "THU05": 0.034,
+            "THO15": 0.8509,
+            "THU15": 0.1491,
+            "THO25": 0.6564,
+            "THU25": 0.3436,
+            "TAO05": 0.5507,
+            "TAU05": 0.4493,
+            "TAO15": 0.1912,
+            "TAU15": 0.8088,
+            "TAO25": 0.0474,
+            "TAU25": 0.9526
+          },
+          "expectedGoals": [
+            3.38,
+            0.8
+          ],
+          "sample": [
+            19,
+            19
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            9.9,
+            10.07
+          ],
+          "modelMethod": "national_strength_v49",
+          "historyWindowDays": 548
+        },
+        "odds": {
+          "B": {
+            "price": 9.57,
+            "source": "The Odds API · bookmaker-median",
+            "books": 18,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "leovegas_se"
+          },
+          "H": {
+            "price": 1.27,
+            "source": "The Odds API · bookmaker-median",
+            "books": 18,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "unibet_se"
+          },
+          "U": {
+            "price": 6.02,
+            "source": "The Odds API · bookmaker-median",
+            "books": 18,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "betclic_fr"
+          },
+          "O35": {
+            "price": 2.12,
+            "source": "The Odds API · bookmaker-median",
+            "books": 6,
+            "lastUpdated": "2026-11-12T16:17:36Z",
+            "sampleBook": "unibet_se"
+          },
+          "U35": {
+            "price": 1.69,
+            "source": "The Odds API · bookmaker-median",
+            "books": 6,
+            "lastUpdated": "2026-11-12T16:17:36Z",
+            "sampleBook": "marathonbet"
+          },
+          "O25": {
+            "price": 1.44,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-12T16:17:16Z",
+            "sampleBook": "betsson"
+          },
+          "U25": {
+            "price": 2.72,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-12T16:17:16Z",
+            "sampleBook": "betsson"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "odds:87441c4ff41ea3d37812826345450408",
+        "league": "UEFA Nations League",
+        "leagueCode": "ODDS-UNL",
+        "leagueCrest": null,
+        "homeCrest": null,
+        "awayCrest": null,
+        "home": "Czech Republic",
+        "away": "Spain",
+        "homeAliases": [
+          "Czech Republic"
+        ],
+        "awayAliases": [
+          "Spain"
+        ],
+        "kickoff": "2026-11-12T19:45:00+00:00",
+        "status": "SCHEDULED",
+        "formHome": "LLLLLDLWWWWLDDWLW",
+        "formAway": "WWWWWWDWDDWDWWWWW",
+        "formMatchesHome": [
+          {
+            "matchId": "national-match:2026-10-06:national:ENG:national:CZE",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-06:national:ENG:national:CZE",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-05T22:00:00Z",
+            "localDate": "2026-10-06",
+            "homeTeam": {
+              "id": "national:ENG",
+              "name": "England"
+            },
+            "awayTeam": {
+              "id": "national:CZE",
+              "name": "Czech Republic"
+            },
+            "homeGoals": 3,
+            "awayGoals": 0,
+            "analyzedTeamId": "national:CZE",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 0,
+            "opponentGoals": 3,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Borte",
+            "opponent": "England",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-10-03:national:ESP:national:CZE",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-03:national:ESP:national:CZE",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-02T22:00:00Z",
+            "localDate": "2026-10-03",
+            "homeTeam": {
+              "id": "national:ESP",
+              "name": "Spain"
+            },
+            "awayTeam": {
+              "id": "national:CZE",
+              "name": "Czech Republic"
+            },
+            "homeGoals": 3,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:CZE",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 3,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Borte",
+            "opponent": "Spain",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-29:national:CZE:national:ENG",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-29:national:CZE:national:ENG",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-28T22:00:00Z",
+            "localDate": "2026-09-29",
+            "homeTeam": {
+              "id": "national:CZE",
+              "name": "Czech Republic"
+            },
+            "awayTeam": {
+              "id": "national:ENG",
+              "name": "England"
+            },
+            "homeGoals": 0,
+            "awayGoals": 2,
+            "analyzedTeamId": "national:CZE",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 0,
+            "opponentGoals": 2,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Hjemme",
+            "opponent": "England",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-26:national:CZE:national:CRO",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-26:national:CZE:national:CRO",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-25T22:00:00Z",
+            "localDate": "2026-09-26",
+            "homeTeam": {
+              "id": "national:CZE",
+              "name": "Czech Republic"
+            },
+            "awayTeam": {
+              "id": "national:CRO",
+              "name": "Croatia"
+            },
+            "homeGoals": 1,
+            "awayGoals": 2,
+            "analyzedTeamId": "national:CZE",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 2,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Hjemme",
+            "opponent": "Croatia",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-06-24:national-name:mexico:national:CZE",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-06-24:national-name:mexico:national:CZE",
+            "competition": "FIFA World Cup",
+            "competitionCode": "",
+            "kickoffUtc": "2026-06-23T22:00:00Z",
+            "localDate": "2026-06-24",
+            "homeTeam": {
+              "id": "national-name:mexico",
+              "name": "Mexico"
+            },
+            "awayTeam": {
+              "id": "national:CZE",
+              "name": "Czech Republic"
+            },
+            "homeGoals": 3,
+            "awayGoals": 0,
+            "analyzedTeamId": "national:CZE",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 0,
+            "opponentGoals": 3,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Borte",
+            "opponent": "Mexico",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          }
+        ],
+        "formMatchesAway": [
+          {
+            "matchId": "national-match:2026-10-06:national:CRO:national:ESP",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-06:national:CRO:national:ESP",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-05T22:00:00Z",
+            "localDate": "2026-10-06",
+            "homeTeam": {
+              "id": "national:CRO",
+              "name": "Croatia"
+            },
+            "awayTeam": {
+              "id": "national:ESP",
+              "name": "Spain"
+            },
+            "homeGoals": 1,
+            "awayGoals": 2,
+            "analyzedTeamId": "national:ESP",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 2,
+            "opponentGoals": 1,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Borte",
+            "opponent": "Croatia",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-10-03:national:ESP:national:CZE",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-03:national:ESP:national:CZE",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-02T22:00:00Z",
+            "localDate": "2026-10-03",
+            "homeTeam": {
+              "id": "national:ESP",
+              "name": "Spain"
+            },
+            "awayTeam": {
+              "id": "national:CZE",
+              "name": "Czech Republic"
+            },
+            "homeGoals": 3,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:ESP",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 3,
+            "opponentGoals": 1,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Hjemme",
+            "opponent": "Czech Republic",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-29:national:ESP:national:CRO",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-29:national:ESP:national:CRO",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-28T22:00:00Z",
+            "localDate": "2026-09-29",
+            "homeTeam": {
+              "id": "national:ESP",
+              "name": "Spain"
+            },
+            "awayTeam": {
+              "id": "national:CRO",
+              "name": "Croatia"
+            },
+            "homeGoals": 4,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:ESP",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 4,
+            "opponentGoals": 1,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Hjemme",
+            "opponent": "Croatia",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-26:national:ENG:national:ESP",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-26:national:ENG:national:ESP",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-25T22:00:00Z",
+            "localDate": "2026-09-26",
+            "homeTeam": {
+              "id": "national:ENG",
+              "name": "England"
+            },
+            "awayTeam": {
+              "id": "national:ESP",
+              "name": "Spain"
+            },
+            "homeGoals": 2,
+            "awayGoals": 3,
+            "analyzedTeamId": "national:ESP",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 3,
+            "opponentGoals": 2,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Borte",
+            "opponent": "England",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-06-26:national-name:uruguay:national:ESP",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-06-26:national-name:uruguay:national:ESP",
+            "competition": "FIFA World Cup",
+            "competitionCode": "",
+            "kickoffUtc": "2026-06-25T22:00:00Z",
+            "localDate": "2026-06-26",
+            "homeTeam": {
+              "id": "national-name:uruguay",
+              "name": "Uruguay"
+            },
+            "awayTeam": {
+              "id": "national:ESP",
+              "name": "Spain"
+            },
+            "homeGoals": 0,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:ESP",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Nøytral bane",
+            "opponent": "Uruguay",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true,
+            "neutralVenue": true
+          }
+        ],
+        "formHistoryDiagnostics": {
+          "home": {
+            "verified": 17,
+            "displayable": 5,
+            "issues": []
+          },
+          "away": {
+            "verified": 17,
+            "displayable": 5,
+            "issues": []
+          }
+        },
+        "model": {
+          "probabilities": {
+            "H": 0.0835,
+            "U": 0.1595,
+            "B": 0.7571,
+            "O25": 0.575,
+            "U25": 0.425,
+            "O35": 0.351,
+            "BTTS": 0.4279,
+            "O15": 0.7994,
+            "U15": 0.2006,
+            "U35": 0.6495,
+            "BTTSN": 0.5721,
+            "THO05": 0.4727,
+            "THU05": 0.5273,
+            "THO15": 0.1352,
+            "THU15": 0.8648,
+            "THO25": 0.0273,
+            "THU25": 0.9727,
+            "TAO05": 0.9046,
+            "TAU05": 0.0954,
+            "TAO15": 0.6805,
+            "TAU15": 0.3195,
+            "TAO25": 0.4172,
+            "TAU25": 0.5828
+          },
+          "expectedGoals": [
+            0.64,
+            2.35
+          ],
+          "sample": [
+            17,
+            17
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            9.04,
+            9.55
+          ],
+          "modelMethod": "national_strength_v49",
+          "historyWindowDays": 548
+        },
+        "odds": {
+          "H": {
+            "price": 11.43,
+            "source": "The Odds API · bookmaker-median",
+            "books": 18,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "pinnacle"
+          },
+          "B": {
+            "price": 1.23,
+            "source": "The Odds API · bookmaker-median",
+            "books": 18,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "betsson"
+          },
+          "U": {
+            "price": 6.75,
+            "source": "The Odds API · bookmaker-median",
+            "books": 18,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "onexbet"
+          },
+          "O35": {
+            "price": 2.23,
+            "source": "The Odds API · bookmaker-median",
+            "books": 6,
+            "lastUpdated": "2026-11-12T16:17:36Z",
+            "sampleBook": "unibet_se"
+          },
+          "U35": {
+            "price": 1.61,
+            "source": "The Odds API · bookmaker-median",
+            "books": 6,
+            "lastUpdated": "2026-11-12T16:17:36Z",
+            "sampleBook": "onexbet"
+          },
+          "O25": {
+            "price": 1.52,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-12T16:17:16Z",
+            "sampleBook": "betsson"
+          },
+          "U25": {
+            "price": 2.48,
+            "source": "The Odds API · bookmaker-median",
+            "books": 3,
+            "lastUpdated": "2026-11-12T16:17:16Z",
+            "sampleBook": "betsson"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "odds:c096e9bfabbbb93326413433b7c63511",
+        "league": "UEFA Nations League",
+        "leagueCode": "ODDS-UNL",
+        "leagueCrest": null,
+        "homeCrest": null,
+        "awayCrest": null,
+        "home": "Italy",
+        "away": "France",
+        "homeAliases": [
+          "Italy"
+        ],
+        "awayAliases": [
+          "France"
+        ],
+        "kickoff": "2026-11-12T19:45:00+00:00",
+        "status": "SCHEDULED",
+        "formHome": "WDWLWWLWWWWWWL",
+        "formAway": "WDWWWWWWLWWWWDWWW",
+        "formMatchesHome": [
+          {
+            "matchId": "national-match:2026-10-05:national:ITA:national:TUR",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-05:national:ITA:national:TUR",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-04T22:00:00Z",
+            "localDate": "2026-10-05",
+            "homeTeam": {
+              "id": "national:ITA",
+              "name": "Italy"
+            },
+            "awayTeam": {
+              "id": "national:TUR",
+              "name": "Turkey"
+            },
+            "homeGoals": 3,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:ITA",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 3,
+            "opponentGoals": 1,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Hjemme",
+            "opponent": "Turkey",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-10-02:national:FRA:national:ITA",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-02:national:FRA:national:ITA",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-01T22:00:00Z",
+            "localDate": "2026-10-02",
+            "homeTeam": {
+              "id": "national:FRA",
+              "name": "France"
+            },
+            "awayTeam": {
+              "id": "national:ITA",
+              "name": "Italy"
+            },
+            "homeGoals": 1,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:ITA",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 1,
+            "resultForAnalyzedTeam": "D",
+            "venueLabel": "Borte",
+            "opponent": "France",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-28:national:TUR:national:ITA",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-28:national:TUR:national:ITA",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-27T22:00:00Z",
+            "localDate": "2026-09-28",
+            "homeTeam": {
+              "id": "national:TUR",
+              "name": "Turkey"
+            },
+            "awayTeam": {
+              "id": "national:ITA",
+              "name": "Italy"
+            },
+            "homeGoals": 1,
+            "awayGoals": 4,
+            "analyzedTeamId": "national:ITA",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 4,
+            "opponentGoals": 1,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Borte",
+            "opponent": "Turkey",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-25:national:ITA:national:BEL",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-25:national:ITA:national:BEL",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-24T22:00:00Z",
+            "localDate": "2026-09-25",
+            "homeTeam": {
+              "id": "national:ITA",
+              "name": "Italy"
+            },
+            "awayTeam": {
+              "id": "national:BEL",
+              "name": "Belgium"
+            },
+            "homeGoals": 0,
+            "awayGoals": 2,
+            "analyzedTeamId": "national:ITA",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 0,
+            "opponentGoals": 2,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Hjemme",
+            "opponent": "Belgium",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-06-07:national:GRE:national:ITA",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-06-07:national:GRE:national:ITA",
+            "competition": "Friendly",
+            "competitionCode": "",
+            "kickoffUtc": "2026-06-06T22:00:00Z",
+            "localDate": "2026-06-07",
+            "homeTeam": {
+              "id": "national:GRE",
+              "name": "Greece"
+            },
+            "awayTeam": {
+              "id": "national:ITA",
+              "name": "Italy"
+            },
+            "homeGoals": 0,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:ITA",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Borte",
+            "opponent": "Greece",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          }
+        ],
+        "formMatchesAway": [
+          {
+            "matchId": "national-match:2026-10-05:national:FRA:national:BEL",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-05:national:FRA:national:BEL",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-04T22:00:00Z",
+            "localDate": "2026-10-05",
+            "homeTeam": {
+              "id": "national:FRA",
+              "name": "France"
+            },
+            "awayTeam": {
+              "id": "national:BEL",
+              "name": "Belgium"
+            },
+            "homeGoals": 4,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:FRA",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 4,
+            "opponentGoals": 1,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Hjemme",
+            "opponent": "Belgium",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-10-02:national:FRA:national:ITA",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-02:national:FRA:national:ITA",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-01T22:00:00Z",
+            "localDate": "2026-10-02",
+            "homeTeam": {
+              "id": "national:FRA",
+              "name": "France"
+            },
+            "awayTeam": {
+              "id": "national:ITA",
+              "name": "Italy"
+            },
+            "homeGoals": 1,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:FRA",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 1,
+            "resultForAnalyzedTeam": "D",
+            "venueLabel": "Hjemme",
+            "opponent": "Italy",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-28:national:BEL:national:FRA",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-28:national:BEL:national:FRA",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-27T22:00:00Z",
+            "localDate": "2026-09-28",
+            "homeTeam": {
+              "id": "national:BEL",
+              "name": "Belgium"
+            },
+            "awayTeam": {
+              "id": "national:FRA",
+              "name": "France"
+            },
+            "homeGoals": 0,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:FRA",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Borte",
+            "opponent": "Belgium",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-25:national:TUR:national:FRA",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-25:national:TUR:national:FRA",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-24T22:00:00Z",
+            "localDate": "2026-09-25",
+            "homeTeam": {
+              "id": "national:TUR",
+              "name": "Turkey"
+            },
+            "awayTeam": {
+              "id": "national:FRA",
+              "name": "France"
+            },
+            "homeGoals": 0,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:FRA",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Borte",
+            "opponent": "Turkey",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-06-26:national:NOR:national:FRA",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-06-26:national:NOR:national:FRA",
+            "competition": "FIFA World Cup",
+            "competitionCode": "",
+            "kickoffUtc": "2026-06-25T22:00:00Z",
+            "localDate": "2026-06-26",
+            "homeTeam": {
+              "id": "national:NOR",
+              "name": "Norway"
+            },
+            "awayTeam": {
+              "id": "national:FRA",
+              "name": "France"
+            },
+            "homeGoals": 1,
+            "awayGoals": 4,
+            "analyzedTeamId": "national:FRA",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 4,
+            "opponentGoals": 1,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Nøytral bane",
+            "opponent": "Norway",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true,
+            "neutralVenue": true
+          }
+        ],
+        "formHistoryDiagnostics": {
+          "home": {
+            "verified": 14,
+            "displayable": 5,
+            "issues": []
+          },
+          "away": {
+            "verified": 17,
+            "displayable": 5,
+            "issues": []
+          }
+        },
+        "model": {
+          "probabilities": {
+            "H": 0.2236,
+            "U": 0.2349,
+            "B": 0.5415,
+            "O25": 0.5306,
+            "U25": 0.4694,
+            "O35": 0.3081,
+            "BTTS": 0.5358,
+            "O15": 0.7689,
+            "U15": 0.2311,
+            "U35": 0.6919,
+            "BTTSN": 0.4642,
+            "THO05": 0.6465,
+            "THU05": 0.3535,
+            "THO15": 0.279,
+            "THU15": 0.721,
+            "THO25": 0.0878,
+            "THU25": 0.9122,
+            "TAO05": 0.828,
+            "TAU05": 0.172,
+            "TAO15": 0.5252,
+            "TAU15": 0.4748,
+            "TAO25": 0.2587,
+            "TAU25": 0.7413
+          },
+          "expectedGoals": [
+            1.04,
+            1.76
+          ],
+          "sample": [
+            14,
+            17
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            7.21,
+            9.54
+          ],
+          "modelMethod": "national_strength_v49",
+          "historyWindowDays": 548
+        },
+        "odds": {
+          "B": {
+            "price": 2.02,
+            "source": "The Odds API · bookmaker-median",
+            "books": 18,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "nordicbet"
+          },
+          "H": {
+            "price": 3.58,
+            "source": "The Odds API · bookmaker-median",
+            "books": 18,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "betclic_fr"
+          },
+          "U": {
+            "price": 3.65,
+            "source": "The Odds API · bookmaker-median",
+            "books": 18,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "betclic_fr"
+          },
+          "O25": {
+            "price": 1.67,
+            "source": "The Odds API · bookmaker-median",
+            "books": 9,
+            "lastUpdated": "2026-11-12T16:17:36Z",
+            "sampleBook": "williamhill"
+          },
+          "U25": {
+            "price": 2.17,
+            "source": "The Odds API · bookmaker-median",
+            "books": 9,
+            "lastUpdated": "2026-11-12T16:17:36Z",
+            "sampleBook": "mybookieag"
+          }
+        },
+        "predictions": []
+      },
+      {
+        "id": "odds:030f628eb3a7ad16c3bca6884c18c56e",
+        "league": "UEFA Nations League",
+        "leagueCode": "ODDS-UNL",
+        "leagueCrest": null,
+        "homeCrest": null,
+        "awayCrest": null,
+        "home": "Montenegro",
+        "away": "Latvia",
+        "homeAliases": [
+          "Montenegro"
+        ],
+        "awayAliases": [
+          "Latvia"
+        ],
+        "kickoff": "2026-11-12T19:45:00+00:00",
+        "status": "SCHEDULED",
+        "formHome": "DWWWDWLWLWWLLLDL",
+        "formAway": "LLDLLDLDLLDD",
+        "formMatchesHome": [
+          {
+            "matchId": "national-match:2026-10-05:national:MNE:national:ARM",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-05:national:MNE:national:ARM",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-04T22:00:00Z",
+            "localDate": "2026-10-05",
+            "homeTeam": {
+              "id": "national:MNE",
+              "name": "Montenegro"
+            },
+            "awayTeam": {
+              "id": "national:ARM",
+              "name": "Armenia"
+            },
+            "homeGoals": 0,
+            "awayGoals": 0,
+            "analyzedTeamId": "national:MNE",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 0,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "D",
+            "venueLabel": "Hjemme",
+            "opponent": "Armenia",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-10-02:national:LVA:national:MNE",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-02:national:LVA:national:MNE",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-01T22:00:00Z",
+            "localDate": "2026-10-02",
+            "homeTeam": {
+              "id": "national:LVA",
+              "name": "Latvia"
+            },
+            "awayTeam": {
+              "id": "national:MNE",
+              "name": "Montenegro"
+            },
+            "homeGoals": 1,
+            "awayGoals": 2,
+            "analyzedTeamId": "national:MNE",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 2,
+            "opponentGoals": 1,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Borte",
+            "opponent": "Latvia",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-28:national:ARM:national:MNE",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-28:national:ARM:national:MNE",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-27T22:00:00Z",
+            "localDate": "2026-09-28",
+            "homeTeam": {
+              "id": "national:ARM",
+              "name": "Armenia"
+            },
+            "awayTeam": {
+              "id": "national:MNE",
+              "name": "Montenegro"
+            },
+            "homeGoals": 2,
+            "awayGoals": 3,
+            "analyzedTeamId": "national:MNE",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 3,
+            "opponentGoals": 2,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Borte",
+            "opponent": "Armenia",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-25:national:MNE:national:CYP",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-25:national:MNE:national:CYP",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-24T22:00:00Z",
+            "localDate": "2026-09-25",
+            "homeTeam": {
+              "id": "national:MNE",
+              "name": "Montenegro"
+            },
+            "awayTeam": {
+              "id": "national:CYP",
+              "name": "Cyprus"
+            },
+            "homeGoals": 2,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:MNE",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 2,
+            "opponentGoals": 1,
+            "resultForAnalyzedTeam": "W",
+            "venueLabel": "Hjemme",
+            "opponent": "Cyprus",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-06-05:national:SVK:national:MNE",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-06-05:national:SVK:national:MNE",
+            "competition": "Friendly",
+            "competitionCode": "",
+            "kickoffUtc": "2026-06-04T22:00:00Z",
+            "localDate": "2026-06-05",
+            "homeTeam": {
+              "id": "national:SVK",
+              "name": "Slovakia"
+            },
+            "awayTeam": {
+              "id": "national:MNE",
+              "name": "Montenegro"
+            },
+            "homeGoals": 2,
+            "awayGoals": 2,
+            "analyzedTeamId": "national:MNE",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 2,
+            "opponentGoals": 2,
+            "resultForAnalyzedTeam": "D",
+            "venueLabel": "Borte",
+            "opponent": "Slovakia",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          }
+        ],
+        "formMatchesAway": [
+          {
+            "matchId": "national-match:2026-10-05:national:CYP:national:LVA",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-05:national:CYP:national:LVA",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-04T22:00:00Z",
+            "localDate": "2026-10-05",
+            "homeTeam": {
+              "id": "national:CYP",
+              "name": "Cyprus"
+            },
+            "awayTeam": {
+              "id": "national:LVA",
+              "name": "Latvia"
+            },
+            "homeGoals": 2,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:LVA",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 2,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Borte",
+            "opponent": "Cyprus",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-10-02:national:LVA:national:MNE",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-10-02:national:LVA:national:MNE",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-10-01T22:00:00Z",
+            "localDate": "2026-10-02",
+            "homeTeam": {
+              "id": "national:LVA",
+              "name": "Latvia"
+            },
+            "awayTeam": {
+              "id": "national:MNE",
+              "name": "Montenegro"
+            },
+            "homeGoals": 1,
+            "awayGoals": 2,
+            "analyzedTeamId": "national:LVA",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 2,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Hjemme",
+            "opponent": "Montenegro",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-28:national:LVA:national:CYP",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-28:national:LVA:national:CYP",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-27T22:00:00Z",
+            "localDate": "2026-09-28",
+            "homeTeam": {
+              "id": "national:LVA",
+              "name": "Latvia"
+            },
+            "awayTeam": {
+              "id": "national:CYP",
+              "name": "Cyprus"
+            },
+            "homeGoals": 0,
+            "awayGoals": 0,
+            "analyzedTeamId": "national:LVA",
+            "analyzedTeamSide": "home",
+            "analyzedTeamGoals": 0,
+            "opponentGoals": 0,
+            "resultForAnalyzedTeam": "D",
+            "venueLabel": "Hjemme",
+            "opponent": "Cyprus",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2026-09-25:national:ARM:national:LVA",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2026-09-25:national:ARM:national:LVA",
+            "competition": "UEFA Nations League",
+            "competitionCode": "",
+            "kickoffUtc": "2026-09-24T22:00:00Z",
+            "localDate": "2026-09-25",
+            "homeTeam": {
+              "id": "national:ARM",
+              "name": "Armenia"
+            },
+            "awayTeam": {
+              "id": "national:LVA",
+              "name": "Latvia"
+            },
+            "homeGoals": 2,
+            "awayGoals": 0,
+            "analyzedTeamId": "national:LVA",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 0,
+            "opponentGoals": 2,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Borte",
+            "opponent": "Armenia",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          },
+          {
+            "matchId": "national-match:2025-11-16:national:SRB:national:LVA",
+            "source": "International football results (Mart Jürisoo)",
+            "sourceMatchId": "national-match:2025-11-16:national:SRB:national:LVA",
+            "competition": "FIFA World Cup qualification",
+            "competitionCode": "",
+            "kickoffUtc": "2025-11-15T23:00:00Z",
+            "localDate": "2025-11-16",
+            "homeTeam": {
+              "id": "national:SRB",
+              "name": "Serbia"
+            },
+            "awayTeam": {
+              "id": "national:LVA",
+              "name": "Latvia"
+            },
+            "homeGoals": 2,
+            "awayGoals": 1,
+            "analyzedTeamId": "national:LVA",
+            "analyzedTeamSide": "away",
+            "analyzedTeamGoals": 1,
+            "opponentGoals": 2,
+            "resultForAnalyzedTeam": "L",
+            "venueLabel": "Borte",
+            "opponent": "Serbia",
+            "status": "FINISHED",
+            "verified": true,
+            "displayComplete": true,
+            "dateOnly": true
+          }
+        ],
+        "formHistoryDiagnostics": {
+          "home": {
+            "verified": 16,
+            "displayable": 5,
+            "issues": []
+          },
+          "away": {
+            "verified": 12,
+            "displayable": 5,
+            "issues": []
+          }
+        },
+        "model": {
+          "probabilities": {
+            "H": 0.6635,
+            "U": 0.206,
+            "B": 0.1305,
+            "O25": 0.5032,
+            "U25": 0.4968,
+            "O35": 0.2831,
+            "BTTS": 0.4447,
+            "O15": 0.7495,
+            "U15": 0.2505,
+            "U35": 0.7163,
+            "BTTSN": 0.5553,
+            "THO05": 0.8591,
+            "THU05": 0.1409,
+            "THO15": 0.5831,
+            "THU15": 0.4169,
+            "THO25": 0.3125,
+            "THU25": 0.6875,
+            "TAO05": 0.5181,
+            "TAU05": 0.4819,
+            "TAO15": 0.1663,
+            "TAU15": 0.8337,
+            "TAO25": 0.0379,
+            "TAU25": 0.9621
+          },
+          "expectedGoals": [
+            1.96,
+            0.73
+          ],
+          "sample": [
+            16,
+            12
+          ],
+          "quality": "basic",
+          "effectiveSample": [
+            7.79,
+            6.09
+          ],
+          "modelMethod": "national_strength_v49",
+          "historyWindowDays": 548
+        },
+        "odds": {
+          "B": {
+            "price": 10.9,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "betclic_fr"
+          },
+          "H": {
+            "price": 1.25,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "sport888"
+          },
+          "U": {
+            "price": 5.45,
+            "source": "The Odds API · bookmaker-median",
+            "books": 16,
+            "lastUpdated": "2026-11-12T16:17:38Z",
+            "sampleBook": "betclic_fr"
+          },
+          "O25": {
+            "price": 1.78,
+            "source": "The Odds API · bookmaker-median",
+            "books": 11,
+            "lastUpdated": "2026-11-12T16:17:37Z",
+            "sampleBook": "betsson"
+          },
+          "U25": {
+            "price": 2.02,
+            "source": "The Odds API · bookmaker-median",
+            "books": 11,
+            "lastUpdated": "2026-11-12T16:17:37Z",
+            "sampleBook": "unibet_se"
+          }
+        },
+        "predictions": []
+      }
+    ],
+    "additionalMarkets": {
+      "tips": [],
+      "watchlist": [
+        {
+          "matchId": "odds:030f628eb3a7ad16c3bca6884c18c56e",
+          "home": "Montenegro",
+          "away": "Latvia",
+          "league": "UEFA Nations League",
+          "kickoff": "2026-11-12T19:45:00+00:00",
+          "market": "O25",
+          "label": "Over 2,5 mål",
+          "marketType": "goals",
+          "price": 1.78,
+          "bookmakers": 11,
+          "oddsUpdatedAt": "2026-11-12T16:17:37Z",
+          "probability": 0.5032,
+          "verified": false,
+          "rationale": [
+            "Verifisert bookmakerpris, men ikke kvalifisert som et hovedtips",
+            "Pris fra 11 bookmakere",
+            "Eget, ikke-kalibrert modellanslag: 50 %"
+          ],
+          "source": "The Odds API",
+          "sampleSize": 12
+        },
+        {
+          "matchId": "odds:030f628eb3a7ad16c3bca6884c18c56e",
+          "home": "Montenegro",
+          "away": "Latvia",
+          "league": "UEFA Nations League",
+          "kickoff": "2026-11-12T19:45:00+00:00",
+          "market": "U25",
+          "label": "Under 2,5 mål",
+          "marketType": "goals",
+          "price": 2.02,
+          "bookmakers": 11,
+          "oddsUpdatedAt": "2026-11-12T16:17:37Z",
+          "probability": 0.4968,
+          "verified": false,
+          "rationale": [
+            "Verifisert bookmakerpris, men ikke kvalifisert som et hovedtips",
+            "Pris fra 11 bookmakere",
+            "Eget, ikke-kalibrert modellanslag: 50 %"
+          ],
+          "source": "The Odds API",
+          "sampleSize": 12
+        },
+        {
+          "matchId": "odds:c25477408b57267248b491fa5eab2572",
+          "home": "Armenia",
+          "away": "Cyprus",
+          "league": "UEFA Nations League",
+          "kickoff": "2026-11-12T17:00:00+00:00",
+          "market": "O25",
+          "label": "Over 2,5 mål",
+          "marketType": "goals",
+          "price": 2.25,
+          "bookmakers": 10,
+          "oddsUpdatedAt": "2026-11-12T16:17:36Z",
+          "probability": 0.4133,
+          "verified": false,
+          "rationale": [
+            "Verifisert bookmakerpris, men ikke kvalifisert som et hovedtips",
+            "Pris fra 10 bookmakere",
+            "Eget, ikke-kalibrert modellanslag: 41 %"
+          ],
+          "source": "The Odds API",
+          "sampleSize": 15
+        },
+        {
+          "matchId": "odds:c25477408b57267248b491fa5eab2572",
+          "home": "Armenia",
+          "away": "Cyprus",
+          "league": "UEFA Nations League",
+          "kickoff": "2026-11-12T17:00:00+00:00",
+          "market": "BTTS",
+          "label": "Begge lag scorer",
+          "marketType": "btts",
+          "price": 1.86,
+          "bookmakers": 3,
+          "oddsUpdatedAt": "2026-11-12T16:17:35Z",
+          "probability": 0.4682,
+          "verified": false,
+          "rationale": [
+            "Verifisert bookmakerpris, men ikke kvalifisert som et hovedtips",
+            "Pris fra 3 bookmakere",
+            "Eget, ikke-kalibrert modellanslag: 47 %"
+          ],
+          "source": "The Odds API",
+          "sampleSize": 15
+        }
+      ],
+      "coverage": {
+        "Hjørnespark": 0,
+        "Kort": 0,
+        "Målscorer": 0,
+        "Mål": 36,
+        "Lagmål": 0,
+        "1. omgang": 0,
+        "Begge lag scorer": 2
+      },
+      "marketFamilies": [
+        {
+          "key": "corners",
+          "label": "Hjørnespark",
+          "availableQuotes": 0
+        },
+        {
+          "key": "cards",
+          "label": "Kort",
+          "availableQuotes": 0
+        },
+        {
+          "key": "goalscorer",
+          "label": "Målscorer",
+          "availableQuotes": 0
+        },
+        {
+          "key": "goals",
+          "label": "Mål",
+          "availableQuotes": 36
+        },
+        {
+          "key": "team_goals",
+          "label": "Lagmål",
+          "availableQuotes": 0
+        },
+        {
+          "key": "first_half",
+          "label": "1. omgang",
+          "availableQuotes": 0
+        },
+        {
+          "key": "btts",
+          "label": "Begge lag scorer",
+          "availableQuotes": 2
+        }
+      ],
+      "issues": [],
+      "providerRequests": 0,
+      "notes": "Kun verifiserte bookmakerpriser. For kort/hjørnespark kreves historiske data. Målscorer krever bekreftet startoppstilling."
+    },
+    "scorePredictions": {
+      "games": [
+        {
+          "matchId": "odds:3caa30ea2ac5a1be30724132ba10d82b",
+          "home": "San Marino",
+          "away": "Belarus",
+          "kickoff": "2026-11-12T19:45:00+00:00",
+          "league": "UEFA Nations League",
+          "sources": [],
+          "consensus": null,
+          "ownModel": {
+            "homeGoals": 0,
+            "awayGoals": 3,
+            "method": "Uavhengig Poisson-modell fra registrerte kampresultater"
+          }
+        },
+        {
+          "matchId": "odds:87441c4ff41ea3d37812826345450408",
+          "home": "Czech Republic",
+          "away": "Spain",
+          "kickoff": "2026-11-12T19:45:00+00:00",
+          "league": "UEFA Nations League",
+          "sources": [],
+          "consensus": null,
+          "ownModel": {
+            "homeGoals": 0,
+            "awayGoals": 2,
+            "method": "Uavhengig Poisson-modell fra registrerte kampresultater"
+          }
+        },
+        {
+          "matchId": "odds:030f628eb3a7ad16c3bca6884c18c56e",
+          "home": "Montenegro",
+          "away": "Latvia",
+          "kickoff": "2026-11-12T19:45:00+00:00",
+          "league": "UEFA Nations League",
+          "sources": [],
+          "consensus": null,
+          "ownModel": {
+            "homeGoals": 1,
+            "awayGoals": 0,
+            "method": "Uavhengig Poisson-modell fra registrerte kampresultater"
+          }
+        },
+        {
+          "matchId": "odds:21f1d732a768ec97ab405050ec9be408",
+          "home": "Albania",
+          "away": "Finland",
+          "kickoff": "2026-11-12T19:45:00+00:00",
+          "league": "UEFA Nations League",
+          "sources": [],
+          "consensus": null,
+          "ownModel": {
+            "homeGoals": 0,
+            "awayGoals": 0,
+            "method": "Uavhengig Poisson-modell fra registrerte kampresultater"
+          }
+        },
+        {
+          "matchId": "odds:8a1174de9079b530bd6612e3fde6e2fa",
+          "home": "England",
+          "away": "Croatia",
+          "kickoff": "2026-11-12T19:45:00+00:00",
+          "league": "UEFA Nations League",
+          "sources": [],
+          "consensus": null,
+          "ownModel": {
+            "homeGoals": 3,
+            "awayGoals": 0,
+            "method": "Uavhengig Poisson-modell fra registrerte kampresultater"
+          }
+        },
+        {
+          "matchId": "odds:d598d5e914a905ef70b01fd1b444aecb",
+          "home": "Turkey",
+          "away": "Belgium",
+          "kickoff": "2026-11-12T17:00:00+00:00",
+          "league": "UEFA Nations League",
+          "sources": [],
+          "consensus": null,
+          "ownModel": {
+            "homeGoals": 1,
+            "awayGoals": 2,
+            "method": "Uavhengig Poisson-modell fra registrerte kampresultater"
+          }
+        },
+        {
+          "matchId": "odds:c096e9bfabbbb93326413433b7c63511",
+          "home": "Italy",
+          "away": "France",
+          "kickoff": "2026-11-12T19:45:00+00:00",
+          "league": "UEFA Nations League",
+          "sources": [],
+          "consensus": null,
+          "ownModel": {
+            "homeGoals": 1,
+            "awayGoals": 1,
+            "method": "Uavhengig Poisson-modell fra registrerte kampresultater"
+          }
+        },
+        {
+          "matchId": "odds:c25477408b57267248b491fa5eab2572",
+          "home": "Armenia",
+          "away": "Cyprus",
+          "kickoff": "2026-11-12T17:00:00+00:00",
+          "league": "UEFA Nations League",
+          "sources": [],
+          "consensus": null,
+          "ownModel": {
+            "homeGoals": 1,
+            "awayGoals": 1,
+            "method": "Uavhengig Poisson-modell fra registrerte kampresultater"
+          }
+        }
+      ],
+      "sourceForecasts": 0,
+      "fixturesWithConsensus": 0,
+      "issues": [],
+      "method": "Lik vekt for ulike, kildeangitte resultattips; krever minst to uavhengige kilder for samlet prognose",
+      "coverageNote": "Forebet, Vitibet, PredictZ og WinDrawWin kan inkluderes ved manuelt registrerte, datostemplede resultattips med kildelenker. Kildeinnholdet kontrolleres ikke automatisk. API-Football krever egen API-nøkkel. Egen modell holdes separat."
+    },
+    "observations": [
+      {
+        "matchId": "odds:030f628eb3a7ad16c3bca6884c18c56e",
+        "home": "Montenegro",
+        "away": "Latvia",
+        "league": "UEFA Nations League",
+        "kickoff": "2026-11-12T19:45:00+00:00",
+        "market": "B",
+        "marketType": "winner",
+        "label": "Borteseier",
+        "price": 10.9,
+        "probability": 0.1305,
+        "oddsUpdatedAt": "2026-11-12T16:17:38Z",
+        "bookmakers": 16,
+        "status": "observation",
+        "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+      },
+      {
+        "matchId": "odds:21f1d732a768ec97ab405050ec9be408",
+        "home": "Albania",
+        "away": "Finland",
+        "league": "UEFA Nations League",
+        "kickoff": "2026-11-12T19:45:00+00:00",
+        "market": "B",
+        "marketType": "winner",
+        "label": "Borteseier",
+        "price": 3.8,
+        "probability": 0.3525,
+        "oddsUpdatedAt": "2026-11-12T16:17:38Z",
+        "bookmakers": 16,
+        "status": "observation",
+        "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+      },
+      {
+        "matchId": "odds:8a1174de9079b530bd6612e3fde6e2fa",
+        "home": "England",
+        "away": "Croatia",
+        "league": "UEFA Nations League",
+        "kickoff": "2026-11-12T19:45:00+00:00",
+        "market": "O35",
+        "marketType": "goals",
+        "label": "Over 3,5 mål",
+        "price": 2.12,
+        "probability": 0.6011,
+        "oddsUpdatedAt": "2026-11-12T16:17:36Z",
+        "bookmakers": 6,
+        "status": "observation",
+        "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+      },
+      {
+        "matchId": "odds:d598d5e914a905ef70b01fd1b444aecb",
+        "home": "Turkey",
+        "away": "Belgium",
+        "league": "UEFA Nations League",
+        "kickoff": "2026-11-12T17:00:00+00:00",
+        "market": "B",
+        "marketType": "winner",
+        "label": "Borteseier",
+        "price": 1.92,
+        "probability": 0.6213,
+        "oddsUpdatedAt": "2026-11-12T16:17:38Z",
+        "bookmakers": 18,
+        "status": "observation",
+        "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+      },
+      {
+        "matchId": "odds:3caa30ea2ac5a1be30724132ba10d82b",
+        "home": "San Marino",
+        "away": "Belarus",
+        "league": "UEFA Nations League",
+        "kickoff": "2026-11-12T19:45:00+00:00",
+        "market": "O25",
+        "marketType": "goals",
+        "label": "Over 2,5 mål",
+        "price": 1.63,
+        "probability": 0.7262,
+        "oddsUpdatedAt": "2026-11-12T16:17:36Z",
+        "bookmakers": 9,
+        "status": "observation",
+        "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+      },
+      {
+        "matchId": "odds:c096e9bfabbbb93326413433b7c63511",
+        "home": "Italy",
+        "away": "France",
+        "league": "UEFA Nations League",
+        "kickoff": "2026-11-12T19:45:00+00:00",
+        "market": "B",
+        "marketType": "winner",
+        "label": "Borteseier",
+        "price": 2.02,
+        "probability": 0.5415,
+        "oddsUpdatedAt": "2026-11-12T16:17:38Z",
+        "bookmakers": 18,
+        "status": "observation",
+        "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+      },
+      {
+        "matchId": "odds:8a1174de9079b530bd6612e3fde6e2fa",
+        "home": "England",
+        "away": "Croatia",
+        "league": "UEFA Nations League",
+        "kickoff": "2026-11-12T19:45:00+00:00",
+        "market": "H",
+        "marketType": "winner",
+        "label": "Hjemmeseier",
+        "price": 1.27,
+        "probability": 0.8531,
+        "oddsUpdatedAt": "2026-11-12T16:17:38Z",
+        "bookmakers": 18,
+        "status": "observation",
+        "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+      },
+      {
+        "matchId": "odds:87441c4ff41ea3d37812826345450408",
+        "home": "Czech Republic",
+        "away": "Spain",
+        "league": "UEFA Nations League",
+        "kickoff": "2026-11-12T19:45:00+00:00",
+        "market": "U",
+        "marketType": "winner",
+        "label": "Uavgjort",
+        "price": 6.75,
+        "probability": 0.1595,
+        "oddsUpdatedAt": "2026-11-12T16:17:38Z",
+        "bookmakers": 18,
+        "status": "observation",
+        "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+      }
+    ],
+    "modelVersion": "2.0-foundation",
+    "qualityAudit": {
+      "screened": 54,
+      "qualified": 0,
+      "topLimit": 5,
+      "observations": 8,
+      "rejections": {
+        "for_lav_konservativ_verdi": 52,
+        "svak_bookmakerdekning": 2
+      },
+      "calibrated": false,
+      "method": "Eksplisitt sensitivitetsscenario, markedsforankring og usikkerhetstrekk; ikke validert som konfidensintervall",
+      "coverageLimit": "Tilgjengelige kilde-/bookmakerodds, ikke alle globale markeder",
+      "whyNoPicks": "Vanligste avvisning skyldtes for lav beregnet spillverdi."
+    },
+    "interestingObjects": [
+      {
+        "matchId": "odds:3caa30ea2ac5a1be30724132ba10d82b",
+        "home": "San Marino",
+        "away": "Belarus",
+        "league": "UEFA Nations League",
+        "kickoff": "2026-11-12T19:45:00+00:00",
+        "market": "O25",
+        "marketType": "goals",
+        "label": "Over 2,5 mål",
+        "price": 1.63,
+        "probability": 0.7262,
+        "oddsUpdatedAt": "2026-11-12T16:17:36Z",
+        "bookmakers": 9,
+        "status": "observation",
+        "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene",
+        "marketIdentity": {
+          "family": "total_goals",
+          "period": "full_time",
+          "line": 2.5,
+          "subject": null,
+          "outcome": "over"
+        },
+        "fixtureKey": "2026-11-12|sanmarino|belarus",
+        "qualificationTier": "observation",
+        "selectionId": "v40:7da0551aa75d9db60cde"
+      }
+    ],
+    "finalSelection": {
+      "version": 40,
+      "policy": "one_active_selection_per_real_fixture",
+      "rankedRecommendations": true,
+      "categories": {
+        "safe": 3,
+        "high": 4,
+        "watch": 1
+      },
+      "target": [
+        3,
+        5
+      ],
+      "shortfalls": {
+        "safe": null,
+        "high": null,
+        "watch": "For få konfliktfrie, kildebaserte kandidater."
+      },
+      "rejected": {
+        "same_fixture_or_correlated_outcome": 19
+      },
+      "trace": [
+        {
+          "fixture": "2026-11-12|albania|finland",
+          "selectionId": "v40:bd9c5ce714131d845176",
+          "market": "B",
+          "group": "high",
+          "reason": "selected"
+        },
+        {
+          "fixture": "2026-11-12|armenia|cyprus",
+          "selectionId": "v40:6b3d53bbfc1ff59e6c2f",
+          "market": "B",
+          "group": "high",
+          "reason": "selected"
+        },
+        {
+          "fixture": "2026-11-12|albania|finland",
+          "market": "U15",
+          "reason": "same_fixture_or_correlated_outcome",
+          "selectedMarket": "B"
+        },
+        {
+          "fixture": "2026-11-12|czechrepublic|spain",
+          "selectionId": "v40:6d75a248831c2465307e",
+          "market": "U25",
+          "group": "high",
+          "reason": "selected"
+        },
+        {
+          "fixture": "2026-11-12|czechrepublic|spain",
+          "market": "B",
+          "reason": "same_fixture_or_correlated_outcome",
+          "selectedMarket": "U25"
+        },
+        {
+          "fixture": "2026-11-12|england|croatia",
+          "selectionId": "v40:5dfc64797a4d7a00394d",
+          "market": "H",
+          "group": "safe",
+          "reason": "selected"
+        },
+        {
+          "fixture": "2026-11-12|montenegro|latvia",
+          "selectionId": "v40:eb32f564e0f29469ab78",
+          "market": "H",
+          "group": "safe",
+          "reason": "selected"
+        },
+        {
+          "fixture": "2026-11-12|albania|finland",
+          "market": "U25",
+          "reason": "same_fixture_or_correlated_outcome",
+          "selectedMarket": "B"
+        },
+        {
+          "fixture": "2026-11-12|armenia|cyprus",
+          "market": "U25",
+          "reason": "same_fixture_or_correlated_outcome",
+          "selectedMarket": "B"
+        },
+        {
+          "fixture": "2026-11-12|england|croatia",
+          "market": "O25",
+          "reason": "same_fixture_or_correlated_outcome",
+          "selectedMarket": "H"
+        },
+        {
+          "fixture": "2026-11-12|turkey|belgium",
+          "selectionId": "v40:0fa1112803f5e54b7f5e",
+          "market": "O25",
+          "group": "safe",
+          "reason": "selected"
+        },
+        {
+          "fixture": "2026-11-12|albania|finland",
+          "market": "O15",
+          "reason": "same_fixture_or_correlated_outcome",
+          "selectedMarket": "B"
+        },
+        {
+          "fixture": "2026-11-12|czechrepublic|spain",
+          "market": "O25",
+          "reason": "same_fixture_or_correlated_outcome",
+          "selectedMarket": "U25"
+        },
+        {
+          "fixture": "2026-11-12|czechrepublic|spain",
+          "market": "U35",
+          "reason": "same_fixture_or_correlated_outcome",
+          "selectedMarket": "U25"
+        },
+        {
+          "fixture": "2026-11-12|armenia|cyprus",
+          "market": "O25",
+          "reason": "same_fixture_or_correlated_outcome",
+          "selectedMarket": "B"
+        },
+        {
+          "fixture": "2026-11-12|czechrepublic|spain",
+          "market": "O35",
+          "reason": "same_fixture_or_correlated_outcome",
+          "selectedMarket": "U25"
+        },
+        {
+          "fixture": "2026-11-12|armenia|cyprus",
+          "market": "H",
+          "reason": "same_fixture_or_correlated_outcome",
+          "selectedMarket": "B"
+        },
+        {
+          "fixture": "2026-11-12|turkey|belgium",
+          "market": "H",
+          "reason": "same_fixture_or_correlated_outcome",
+          "selectedMarket": "O25"
+        },
+        {
+          "fixture": "2026-11-12|italy|france",
+          "selectionId": "v40:63f40eb2ded3856e485d",
+          "market": "H",
+          "group": "high",
+          "reason": "selected"
+        },
+        {
+          "fixture": "2026-11-12|england|croatia",
+          "market": "H",
+          "reason": "same_fixture_or_correlated_outcome",
+          "selectedMarket": "H"
+        },
+        {
+          "fixture": "2026-11-12|sanmarino|belarus",
+          "selectionId": "v40:7da0551aa75d9db60cde",
+          "market": "O25",
+          "group": "watch",
+          "reason": "selected"
+        },
+        {
+          "fixture": "2026-11-12|turkey|belgium",
+          "market": "B",
+          "reason": "same_fixture_or_correlated_outcome",
+          "selectedMarket": "O25"
+        },
+        {
+          "fixture": "2026-11-12|england|croatia",
+          "market": "O35",
+          "reason": "same_fixture_or_correlated_outcome",
+          "selectedMarket": "H"
+        },
+        {
+          "fixture": "2026-11-12|italy|france",
+          "market": "B",
+          "reason": "same_fixture_or_correlated_outcome",
+          "selectedMarket": "H"
+        },
+        {
+          "fixture": "2026-11-12|albania|finland",
+          "market": "B",
+          "reason": "same_fixture_or_correlated_outcome",
+          "selectedMarket": "B"
+        },
+        {
+          "fixture": "2026-11-12|czechrepublic|spain",
+          "market": "U",
+          "reason": "same_fixture_or_correlated_outcome",
+          "selectedMarket": "U25"
+        },
+        {
+          "fixture": "2026-11-12|montenegro|latvia",
+          "market": "B",
+          "reason": "same_fixture_or_correlated_outcome",
+          "selectedMarket": "H"
+        }
+      ]
+    },
+    "editionDate": "2026-11-12",
+    "resultUpdatedAt": null,
+    "editionLocked": true
+  },
+  "note": "Utelatt tips er ikke automatisk dokumentert å ha mistet oddsverdi."
+}
