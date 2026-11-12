@@ -1,9 +1,9 @@
 {
   "schemaVersion": 34,
   "editionDate": "2026-11-12",
-  "revisionId": "c2a5792627072116a36e9bb3",
-  "editionGeneratedAt": "2026-11-12T19:05:58.178352+00:00",
-  "recordedAt": "2026-11-12T19:06:05.353Z",
+  "revisionId": "6031b59064516c3a733f2226",
+  "editionGeneratedAt": "2026-11-12T19:11:43.301355+00:00",
+  "recordedAt": "2026-11-12T19:11:50.035Z",
   "summary": {
     "total": 6,
     "qualified": 0,
@@ -12,7 +12,7 @@
     "watch": 0,
     "withBothFive": 6,
     "withFormModel": 6,
-    "marketBased": 3,
+    "marketBased": 4,
     "expertWritten": 0,
     "modelMarketConflicts": 0,
     "unverifiedResults": 6

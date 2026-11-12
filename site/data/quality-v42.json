@@ -1,8 +1,8 @@
 {
   "schemaVersion": 42,
   "editionDate": "2026-11-12",
-  "editionGeneratedAt": "2026-11-12T19:05:58.178352+00:00",
-  "checkedAt": "2026-11-12T19:06:05.319483+00:00",
+  "editionGeneratedAt": "2026-11-12T19:11:43.301355+00:00",
+  "checkedAt": "2026-11-12T19:11:49.992765+00:00",
   "freshness": "current",
   "analysisAgeHours": 0.0,
   "data": {
@@ -16,7 +16,7 @@
     "safeBets": 3,
     "highRisk": 3,
     "interestingObjects": 0,
-    "oddsCreditsRemaining": 126
+    "oddsCreditsRemaining": 124
   },
   "issues": [
     "Ingen eksterne prognoser er koblet til analysen"
