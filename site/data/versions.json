@@ -1,6 +1,42 @@
 [
   {
     "date": "2026-11-12",
+    "before": "2026-11-12T08:57:40.440983+00:00",
+    "after": "2026-11-12T09:59:38.674119+00:00",
+    "added": [],
+    "removed": [
+      {
+        "matchId": "odds:3caa30ea2ac5a1be30724132ba10d82b",
+        "market": "H",
+        "home": "San Marino",
+        "away": "Belarus",
+        "label": "Hjemmeseier",
+        "price": 18.75,
+        "category": "high",
+        "kickoff": "2026-11-12T19:45:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      },
+      {
+        "matchId": "odds:87441c4ff41ea3d37812826345450408",
+        "market": "H",
+        "home": "Czech Republic",
+        "away": "Spain",
+        "label": "Hjemmeseier",
+        "price": 11.31,
+        "category": "high",
+        "kickoff": "2026-11-12T19:45:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      }
+    ],
+    "repriced": [],
+    "changeCounts": {
+      "removed": 2,
+      "added": 0,
+      "repriced": 0
+    }
+  },
+  {
+    "date": "2026-11-12",
     "before": "2026-11-12T07:58:51.301908+00:00",
     "after": "2026-11-12T08:57:40.440983+00:00",
     "added": [],
