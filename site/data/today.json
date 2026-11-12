@@ -11,16 +11,16 @@
       "market": "H",
       "marketType": "match_result",
       "label": "Hjemmeseier",
-      "price": 1.27,
+      "price": 1.25,
       "bookmakers": 18,
-      "oddsUpdatedAt": "2026-11-12T16:19:30Z",
+      "oddsUpdatedAt": "2026-11-12T19:05:57Z",
       "oddsSource": "The Odds API · bookmaker-median",
-      "probability": 0.7442,
+      "probability": 0.7595,
       "category": "safe",
       "qualificationTier": "market",
       "_candidateType": "market",
       "rationale": [
-        "Markedsbasert kandidat: omtrent 74 % etter bookmaker-marginkorreksjon.",
+        "Markedsbasert kandidat: omtrent 76 % etter bookmaker-marginkorreksjon.",
         "Pris fra 18 bookmakere. Ikke dokumentert spillverdi."
       ],
       "fixtureKey": "2026-11-12|england|croatia",
@@ -45,11 +45,11 @@
       "market": "H",
       "marketType": "match_result",
       "label": "Hjemmeseier",
-      "price": 1.25,
+      "price": 1.26,
       "bookmakers": 16,
-      "oddsUpdatedAt": "2026-11-12T16:19:30Z",
+      "oddsUpdatedAt": "2026-11-12T19:05:57Z",
       "oddsSource": "The Odds API · bookmaker-median",
-      "probability": 0.744,
+      "probability": 0.7436,
       "category": "safe",
       "qualificationTier": "market",
       "_candidateType": "market",
@@ -71,27 +71,27 @@
       }
     },
     {
-      "matchId": "odds:d598d5e914a905ef70b01fd1b444aecb",
-      "home": "Turkey",
-      "away": "Belgium",
-      "kickoff": "2026-11-12T17:00:00+00:00",
+      "matchId": "odds:3caa30ea2ac5a1be30724132ba10d82b",
+      "home": "San Marino",
+      "away": "Belarus",
+      "kickoff": "2026-11-12T19:45:00+00:00",
       "league": "UEFA Nations League",
       "market": "O25",
       "marketType": "total_goals",
       "label": "Over 2,5 mål",
-      "price": 1.46,
-      "bookmakers": 3,
-      "oddsUpdatedAt": "2026-11-12T16:19:10Z",
+      "price": 1.58,
+      "bookmakers": 9,
+      "oddsUpdatedAt": "2026-11-12T19:05:57Z",
       "oddsSource": "The Odds API · bookmaker-median",
-      "probability": 0.6473,
+      "probability": 0.5907,
       "category": "safe",
       "qualificationTier": "market",
       "_candidateType": "market",
       "rationale": [
-        "Markedsbasert kandidat: omtrent 65 % etter bookmaker-marginkorreksjon.",
-        "Pris fra 3 bookmakere. Ikke dokumentert spillverdi."
+        "Markedsbasert kandidat: omtrent 59 % etter bookmaker-marginkorreksjon.",
+        "Pris fra 9 bookmakere. Ikke dokumentert spillverdi."
       ],
-      "fixtureKey": "2026-11-12|turkey|belgium",
+      "fixtureKey": "2026-11-12|sanmarino|belarus",
       "marketIdentity": {
         "family": "total_goals",
         "period": "full_time",
@@ -99,7 +99,7 @@
         "subject": null,
         "outcome": "over"
       },
-      "selectionId": "v40:0fa1112803f5e54b7f5e",
+      "selectionId": "v40:7da0551aa75d9db60cde",
       "result": {
         "status": "scheduled"
       }
@@ -115,16 +115,16 @@
       "market": "B",
       "marketType": "match_result",
       "label": "Borteseier",
-      "price": 3.83,
+      "price": 4.0,
       "bookmakers": 16,
-      "oddsUpdatedAt": "2026-11-12T16:19:30Z",
+      "oddsUpdatedAt": "2026-11-12T19:05:57Z",
       "oddsSource": "The Odds API · bookmaker-median",
       "probability": 0.3525,
       "category": "high",
       "qualificationTier": "model",
       "_candidateType": "model",
       "rationale": [
-        "Modellkandidat: 35 % formanslag mot 24 % fra bookmakerodds.",
+        "Modellkandidat: 35 % formanslag mot 23 % fra bookmakerodds.",
         "Ikke historisk kalibrert eller godkjent som dokumentert verdiobjekt."
       ],
       "fixtureKey": "2026-11-12|albania|finland",
@@ -141,35 +141,35 @@
       }
     },
     {
-      "matchId": "odds:c25477408b57267248b491fa5eab2572",
-      "home": "Armenia",
-      "away": "Cyprus",
-      "kickoff": "2026-11-12T17:00:00+00:00",
+      "matchId": "odds:c096e9bfabbbb93326413433b7c63511",
+      "home": "Italy",
+      "away": "France",
+      "kickoff": "2026-11-12T19:45:00+00:00",
       "league": "UEFA Nations League",
-      "market": "B",
-      "marketType": "match_result",
-      "label": "Borteseier",
-      "price": 2.42,
-      "bookmakers": 16,
-      "oddsUpdatedAt": "2026-11-12T16:19:30Z",
+      "market": "U25",
+      "marketType": "total_goals",
+      "label": "Under 2,5 mål",
+      "price": 2.21,
+      "bookmakers": 9,
+      "oddsUpdatedAt": "2026-11-12T19:05:57Z",
       "oddsSource": "The Odds API · bookmaker-median",
-      "probability": 0.4312,
+      "probability": 0.4694,
       "category": "high",
       "qualificationTier": "model",
       "_candidateType": "model",
       "rationale": [
-        "Modellkandidat: 43 % formanslag mot 38 % fra bookmakerodds.",
+        "Modellkandidat: 47 % formanslag mot 43 % fra bookmakerodds.",
         "Ikke historisk kalibrert eller godkjent som dokumentert verdiobjekt."
       ],
-      "fixtureKey": "2026-11-12|armenia|cyprus",
+      "fixtureKey": "2026-11-12|italy|france",
       "marketIdentity": {
-        "family": "match_result",
+        "family": "total_goals",
         "period": "full_time",
-        "line": null,
+        "line": 2.5,
         "subject": null,
-        "outcome": "away"
+        "outcome": "under"
       },
-      "selectionId": "v40:6b3d53bbfc1ff59e6c2f",
+      "selectionId": "v40:1d373bcaf9b06b8ee5e7",
       "result": {
         "status": "scheduled"
       }
@@ -185,7 +185,7 @@
       "label": "Under 2,5 mål",
       "price": 2.48,
       "bookmakers": 3,
-      "oddsUpdatedAt": "2026-11-12T16:19:10Z",
+      "oddsUpdatedAt": "2026-11-12T19:05:51Z",
       "oddsSource": "The Odds API · bookmaker-median",
       "probability": 0.425,
       "category": "high",
@@ -207,53 +207,19 @@
       "result": {
         "status": "scheduled"
       }
-    },
-    {
-      "matchId": "odds:c096e9bfabbbb93326413433b7c63511",
-      "home": "Italy",
-      "away": "France",
-      "kickoff": "2026-11-12T19:45:00+00:00",
-      "league": "UEFA Nations League",
-      "market": "H",
-      "marketType": "match_result",
-      "label": "Hjemmeseier",
-      "price": 3.58,
-      "bookmakers": 18,
-      "oddsUpdatedAt": "2026-11-12T16:19:30Z",
-      "oddsSource": "The Odds API · bookmaker-median",
-      "probability": 0.2664,
-      "category": "high",
-      "qualificationTier": "market",
-      "_candidateType": "market",
-      "rationale": [
-        "Bookmakerbasert risikokandidat: markedsanslag rundt 27 %.",
-        "Ingen dokumentert positiv spillverdi."
-      ],
-      "fixtureKey": "2026-11-12|italy|france",
-      "marketIdentity": {
-        "family": "match_result",
-        "period": "full_time",
-        "line": null,
-        "subject": null,
-        "outcome": "home"
-      },
-      "selectionId": "v40:63f40eb2ded3856e485d",
-      "result": {
-        "status": "scheduled"
-      }
     }
   ],
   "coverage": {
-    "upcomingMatches": 8,
-    "matchedOdds": 8,
-    "withModel": 8,
-    "oddsWithVerifiedForm": 8,
-    "nationalWithModel": 8,
+    "upcomingMatches": 6,
+    "matchedOdds": 6,
+    "withModel": 6,
+    "oddsWithVerifiedForm": 6,
+    "nationalWithModel": 6,
     "externalPredictions": 0,
     "manualPredictions": 0,
     "apiPredictions": 0,
     "safeFound": 3,
-    "highFound": 4,
+    "highFound": 3,
     "targetPerCategory": [
       3,
       5
@@ -303,7 +269,7 @@
     "minimumConservativeScenarioEdge": 0.02,
     "explanation": "Ukalibrert sannsynlighetsmodell. Kun positiv forventet verdi i et konservativt scenario, ikke påvist langsiktig avkastning."
   },
-  "generatedAt": "2026-11-12T16:19:27.691311+00:00",
+  "generatedAt": "2026-11-12T19:05:58.178352+00:00",
   "localDate": "2026-11-12",
   "dataStatus": {
     "fixtures": "ok",
@@ -322,7 +288,7 @@
       "targetDate": "2026-11-12",
       "catalogAvailable": true,
       "matchesBySport": {
-        "soccer_uefa_nations_league": 8
+        "soccer_uefa_nations_league": 6
       },
       "selected": [
         "soccer_uefa_nations_league"
@@ -332,7 +298,7 @@
     "internationalSportsSelected": [
       "soccer_uefa_nations_league"
     ],
-    "oddsCreditsRemaining": 131,
+    "oddsCreditsRemaining": 126,
     "requestedLeagues": [
       "soccer_uefa_nations_league"
     ],
@@ -340,10 +306,10 @@
       "h2h",
       "totals"
     ],
-    "extraEventsLoaded": 1,
-    "oddsEventCount": 35,
+    "extraEventsLoaded": 0,
+    "oddsEventCount": 34,
     "oddsFixtureSource": "The Odds API (bookmaker listings)",
-    "oddsFirstFixtures": 8,
+    "oddsFirstFixtures": 6,
     "externalPredictionsStatus": "not_configured",
     "nationalForm": {
       "state": "ok",
@@ -353,914 +319,25 @@
     },
     "coverageByLeague": {
       "ODDS-UNL": {
-        "upcoming": 8,
-        "withOdds": 8,
-        "withModel": 8,
+        "upcoming": 6,
+        "withOdds": 6,
+        "withModel": 6,
         "eligible": 0
       }
     },
     "analysisReadiness": {
-      "upcoming": 8,
-      "matchedOdds": 8,
-      "withModel": 8,
+      "upcoming": 6,
+      "matchedOdds": 6,
+      "withModel": 6,
       "recommended": 0,
       "safe": 3,
-      "highRisk": 4,
+      "highRisk": 3,
       "message": "Vanligste avvisning skyldtes for lav beregnet spillverdi."
     }
   },
   "errors": [],
   "method": "Konservativ ikke-kalibrert Poisson-baseline fra siste inntil 6 registrerte resultater. Screening er en hypotese, ikke dokumentert positiv forventningsverdi.",
   "matches": [
-    {
-      "id": "odds:c25477408b57267248b491fa5eab2572",
-      "league": "UEFA Nations League",
-      "leagueCode": "ODDS-UNL",
-      "leagueCrest": null,
-      "homeCrest": null,
-      "awayCrest": null,
-      "home": "Armenia",
-      "away": "Cyprus",
-      "homeAliases": [
-        "Armenia"
-      ],
-      "awayAliases": [
-        "Cyprus"
-      ],
-      "kickoff": "2026-11-12T17:00:00+00:00",
-      "status": "SCHEDULED",
-      "formHome": "DLLWDDLLLLLWLDL",
-      "formAway": "WWDLWDWLLLWDDLLD",
-      "formMatchesHome": [
-        {
-          "matchId": "national-match:2026-10-05:national:MNE:national:ARM",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-10-05:national:MNE:national:ARM",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-10-04T22:00:00Z",
-          "localDate": "2026-10-05",
-          "homeTeam": {
-            "id": "national:MNE",
-            "name": "Montenegro"
-          },
-          "awayTeam": {
-            "id": "national:ARM",
-            "name": "Armenia"
-          },
-          "homeGoals": 0,
-          "awayGoals": 0,
-          "analyzedTeamId": "national:ARM",
-          "analyzedTeamSide": "away",
-          "analyzedTeamGoals": 0,
-          "opponentGoals": 0,
-          "resultForAnalyzedTeam": "D",
-          "venueLabel": "Borte",
-          "opponent": "Montenegro",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-10-02:national:CYP:national:ARM",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-10-02:national:CYP:national:ARM",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-10-01T22:00:00Z",
-          "localDate": "2026-10-02",
-          "homeTeam": {
-            "id": "national:CYP",
-            "name": "Cyprus"
-          },
-          "awayTeam": {
-            "id": "national:ARM",
-            "name": "Armenia"
-          },
-          "homeGoals": 2,
-          "awayGoals": 0,
-          "analyzedTeamId": "national:ARM",
-          "analyzedTeamSide": "away",
-          "analyzedTeamGoals": 0,
-          "opponentGoals": 2,
-          "resultForAnalyzedTeam": "L",
-          "venueLabel": "Borte",
-          "opponent": "Cyprus",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-09-28:national:ARM:national:MNE",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-09-28:national:ARM:national:MNE",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-09-27T22:00:00Z",
-          "localDate": "2026-09-28",
-          "homeTeam": {
-            "id": "national:ARM",
-            "name": "Armenia"
-          },
-          "awayTeam": {
-            "id": "national:MNE",
-            "name": "Montenegro"
-          },
-          "homeGoals": 2,
-          "awayGoals": 3,
-          "analyzedTeamId": "national:ARM",
-          "analyzedTeamSide": "home",
-          "analyzedTeamGoals": 2,
-          "opponentGoals": 3,
-          "resultForAnalyzedTeam": "L",
-          "venueLabel": "Hjemme",
-          "opponent": "Montenegro",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-09-25:national:ARM:national:LVA",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-09-25:national:ARM:national:LVA",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-09-24T22:00:00Z",
-          "localDate": "2026-09-25",
-          "homeTeam": {
-            "id": "national:ARM",
-            "name": "Armenia"
-          },
-          "awayTeam": {
-            "id": "national:LVA",
-            "name": "Latvia"
-          },
-          "homeGoals": 2,
-          "awayGoals": 0,
-          "analyzedTeamId": "national:ARM",
-          "analyzedTeamSide": "home",
-          "analyzedTeamGoals": 2,
-          "opponentGoals": 0,
-          "resultForAnalyzedTeam": "W",
-          "venueLabel": "Hjemme",
-          "opponent": "Latvia",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-06-09:national:ARM:national:MDA",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-06-09:national:ARM:national:MDA",
-          "competition": "Friendly",
-          "competitionCode": "",
-          "kickoffUtc": "2026-06-08T22:00:00Z",
-          "localDate": "2026-06-09",
-          "homeTeam": {
-            "id": "national:ARM",
-            "name": "Armenia"
-          },
-          "awayTeam": {
-            "id": "national:MDA",
-            "name": "Moldova"
-          },
-          "homeGoals": 1,
-          "awayGoals": 1,
-          "analyzedTeamId": "national:ARM",
-          "analyzedTeamSide": "home",
-          "analyzedTeamGoals": 1,
-          "opponentGoals": 1,
-          "resultForAnalyzedTeam": "D",
-          "venueLabel": "Hjemme",
-          "opponent": "Moldova",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        }
-      ],
-      "formMatchesAway": [
-        {
-          "matchId": "national-match:2026-10-05:national:CYP:national:LVA",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-10-05:national:CYP:national:LVA",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-10-04T22:00:00Z",
-          "localDate": "2026-10-05",
-          "homeTeam": {
-            "id": "national:CYP",
-            "name": "Cyprus"
-          },
-          "awayTeam": {
-            "id": "national:LVA",
-            "name": "Latvia"
-          },
-          "homeGoals": 2,
-          "awayGoals": 1,
-          "analyzedTeamId": "national:CYP",
-          "analyzedTeamSide": "home",
-          "analyzedTeamGoals": 2,
-          "opponentGoals": 1,
-          "resultForAnalyzedTeam": "W",
-          "venueLabel": "Hjemme",
-          "opponent": "Latvia",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-10-02:national:CYP:national:ARM",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-10-02:national:CYP:national:ARM",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-10-01T22:00:00Z",
-          "localDate": "2026-10-02",
-          "homeTeam": {
-            "id": "national:CYP",
-            "name": "Cyprus"
-          },
-          "awayTeam": {
-            "id": "national:ARM",
-            "name": "Armenia"
-          },
-          "homeGoals": 2,
-          "awayGoals": 0,
-          "analyzedTeamId": "national:CYP",
-          "analyzedTeamSide": "home",
-          "analyzedTeamGoals": 2,
-          "opponentGoals": 0,
-          "resultForAnalyzedTeam": "W",
-          "venueLabel": "Hjemme",
-          "opponent": "Armenia",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-09-28:national:LVA:national:CYP",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-09-28:national:LVA:national:CYP",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-09-27T22:00:00Z",
-          "localDate": "2026-09-28",
-          "homeTeam": {
-            "id": "national:LVA",
-            "name": "Latvia"
-          },
-          "awayTeam": {
-            "id": "national:CYP",
-            "name": "Cyprus"
-          },
-          "homeGoals": 0,
-          "awayGoals": 0,
-          "analyzedTeamId": "national:CYP",
-          "analyzedTeamSide": "away",
-          "analyzedTeamGoals": 0,
-          "opponentGoals": 0,
-          "resultForAnalyzedTeam": "D",
-          "venueLabel": "Borte",
-          "opponent": "Latvia",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-09-25:national:MNE:national:CYP",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-09-25:national:MNE:national:CYP",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-09-24T22:00:00Z",
-          "localDate": "2026-09-25",
-          "homeTeam": {
-            "id": "national:MNE",
-            "name": "Montenegro"
-          },
-          "awayTeam": {
-            "id": "national:CYP",
-            "name": "Cyprus"
-          },
-          "homeGoals": 2,
-          "awayGoals": 1,
-          "analyzedTeamId": "national:CYP",
-          "analyzedTeamSide": "away",
-          "analyzedTeamGoals": 1,
-          "opponentGoals": 2,
-          "resultForAnalyzedTeam": "L",
-          "venueLabel": "Borte",
-          "opponent": "Montenegro",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-06-07:national:LIE:national:CYP",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-06-07:national:LIE:national:CYP",
-          "competition": "Friendly",
-          "competitionCode": "",
-          "kickoffUtc": "2026-06-06T22:00:00Z",
-          "localDate": "2026-06-07",
-          "homeTeam": {
-            "id": "national:LIE",
-            "name": "Liechtenstein"
-          },
-          "awayTeam": {
-            "id": "national:CYP",
-            "name": "Cyprus"
-          },
-          "homeGoals": 0,
-          "awayGoals": 2,
-          "analyzedTeamId": "national:CYP",
-          "analyzedTeamSide": "away",
-          "analyzedTeamGoals": 2,
-          "opponentGoals": 0,
-          "resultForAnalyzedTeam": "W",
-          "venueLabel": "Borte",
-          "opponent": "Liechtenstein",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        }
-      ],
-      "formHistoryDiagnostics": {
-        "home": {
-          "verified": 15,
-          "displayable": 5,
-          "issues": []
-        },
-        "away": {
-          "verified": 16,
-          "displayable": 5,
-          "issues": []
-        }
-      },
-      "model": {
-        "probabilities": {
-          "H": 0.2913,
-          "U": 0.2775,
-          "B": 0.4312,
-          "O25": 0.4133,
-          "U25": 0.5867,
-          "O35": 0.2079,
-          "BTTS": 0.4682,
-          "O15": 0.676,
-          "U15": 0.324,
-          "U35": 0.7932,
-          "BTTSN": 0.5318,
-          "THO05": 0.6394,
-          "THU05": 0.3606,
-          "THO15": 0.2716,
-          "THU15": 0.7284,
-          "THO25": 0.084,
-          "THU25": 0.916,
-          "TAO05": 0.7302,
-          "TAU05": 0.2698,
-          "TAO15": 0.3767,
-          "TAU15": 0.6233,
-          "TAO25": 0.1452,
-          "TAU25": 0.8548
-        },
-        "expectedGoals": [
-          1.02,
-          1.31
-        ],
-        "sample": [
-          15,
-          16
-        ],
-        "quality": "basic",
-        "effectiveSample": [
-          7.45,
-          7.79
-        ],
-        "modelMethod": "national_strength_v49",
-        "historyWindowDays": 548
-      },
-      "odds": {
-        "H": {
-          "price": 2.98,
-          "source": "The Odds API · bookmaker-median",
-          "books": 16,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "winamax_de"
-        },
-        "B": {
-          "price": 2.42,
-          "source": "The Odds API · bookmaker-median",
-          "books": 16,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "nordicbet"
-        },
-        "U": {
-          "price": 3.02,
-          "source": "The Odds API · bookmaker-median",
-          "books": 16,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "betclic_fr"
-        },
-        "O25": {
-          "price": 2.25,
-          "source": "The Odds API · bookmaker-median",
-          "books": 10,
-          "lastUpdated": "2026-11-12T16:19:27Z",
-          "sampleBook": "williamhill"
-        },
-        "U25": {
-          "price": 1.62,
-          "source": "The Odds API · bookmaker-median",
-          "books": 10,
-          "lastUpdated": "2026-11-12T16:19:27Z",
-          "sampleBook": "nordicbet"
-        },
-        "BTTS": {
-          "price": 1.86,
-          "source": "The Odds API · bookmaker-median",
-          "books": 3,
-          "lastUpdated": "2026-11-12T16:19:25Z",
-          "sampleBook": "onexbet"
-        },
-        "BTTSN": {
-          "price": 1.86,
-          "source": "The Odds API · bookmaker-median",
-          "books": 3,
-          "lastUpdated": "2026-11-12T16:19:25Z",
-          "sampleBook": "onexbet"
-        },
-        "O15": {
-          "price": 1.4,
-          "source": "The Odds API · bookmaker-median",
-          "books": 2,
-          "lastUpdated": "2026-11-12T16:19:26Z",
-          "sampleBook": "williamhill"
-        },
-        "U15": {
-          "price": 2.89,
-          "source": "The Odds API · bookmaker-median",
-          "books": 2,
-          "lastUpdated": "2026-11-12T16:19:26Z",
-          "sampleBook": "williamhill"
-        },
-        "O35": {
-          "price": 4.13,
-          "source": "The Odds API · bookmaker-median",
-          "books": 1,
-          "lastUpdated": "2026-11-12T16:19:26Z",
-          "sampleBook": "pinnacle"
-        },
-        "U35": {
-          "price": 1.23,
-          "source": "The Odds API · bookmaker-median",
-          "books": 1,
-          "lastUpdated": "2026-11-12T16:19:26Z",
-          "sampleBook": "pinnacle"
-        }
-      },
-      "predictions": []
-    },
-    {
-      "id": "odds:d598d5e914a905ef70b01fd1b444aecb",
-      "league": "UEFA Nations League",
-      "leagueCode": "ODDS-UNL",
-      "leagueCrest": null,
-      "homeCrest": null,
-      "awayCrest": null,
-      "home": "Turkey",
-      "away": "Belgium",
-      "homeAliases": [
-        "Turkey"
-      ],
-      "awayAliases": [
-        "Belgium"
-      ],
-      "kickoff": "2026-11-12T17:00:00+00:00",
-      "status": "SCHEDULED",
-      "formHome": "LLLLWLLWWDWWWLWLW",
-      "formAway": "LWLWWDDWWDWWDWDWWWD",
-      "formMatchesHome": [
-        {
-          "matchId": "national-match:2026-10-05:national:ITA:national:TUR",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-10-05:national:ITA:national:TUR",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-10-04T22:00:00Z",
-          "localDate": "2026-10-05",
-          "homeTeam": {
-            "id": "national:ITA",
-            "name": "Italy"
-          },
-          "awayTeam": {
-            "id": "national:TUR",
-            "name": "Turkey"
-          },
-          "homeGoals": 3,
-          "awayGoals": 1,
-          "analyzedTeamId": "national:TUR",
-          "analyzedTeamSide": "away",
-          "analyzedTeamGoals": 1,
-          "opponentGoals": 3,
-          "resultForAnalyzedTeam": "L",
-          "venueLabel": "Borte",
-          "opponent": "Italy",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-10-02:national:BEL:national:TUR",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-10-02:national:BEL:national:TUR",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-10-01T22:00:00Z",
-          "localDate": "2026-10-02",
-          "homeTeam": {
-            "id": "national:BEL",
-            "name": "Belgium"
-          },
-          "awayTeam": {
-            "id": "national:TUR",
-            "name": "Turkey"
-          },
-          "homeGoals": 3,
-          "awayGoals": 0,
-          "analyzedTeamId": "national:TUR",
-          "analyzedTeamSide": "away",
-          "analyzedTeamGoals": 0,
-          "opponentGoals": 3,
-          "resultForAnalyzedTeam": "L",
-          "venueLabel": "Borte",
-          "opponent": "Belgium",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-09-28:national:TUR:national:ITA",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-09-28:national:TUR:national:ITA",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-09-27T22:00:00Z",
-          "localDate": "2026-09-28",
-          "homeTeam": {
-            "id": "national:TUR",
-            "name": "Turkey"
-          },
-          "awayTeam": {
-            "id": "national:ITA",
-            "name": "Italy"
-          },
-          "homeGoals": 1,
-          "awayGoals": 4,
-          "analyzedTeamId": "national:TUR",
-          "analyzedTeamSide": "home",
-          "analyzedTeamGoals": 1,
-          "opponentGoals": 4,
-          "resultForAnalyzedTeam": "L",
-          "venueLabel": "Hjemme",
-          "opponent": "Italy",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-09-25:national:TUR:national:FRA",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-09-25:national:TUR:national:FRA",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-09-24T22:00:00Z",
-          "localDate": "2026-09-25",
-          "homeTeam": {
-            "id": "national:TUR",
-            "name": "Turkey"
-          },
-          "awayTeam": {
-            "id": "national:FRA",
-            "name": "France"
-          },
-          "homeGoals": 0,
-          "awayGoals": 1,
-          "analyzedTeamId": "national:TUR",
-          "analyzedTeamSide": "home",
-          "analyzedTeamGoals": 0,
-          "opponentGoals": 1,
-          "resultForAnalyzedTeam": "L",
-          "venueLabel": "Hjemme",
-          "opponent": "France",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-06-25:national-name:unitedstates:national:TUR",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-06-25:national-name:unitedstates:national:TUR",
-          "competition": "FIFA World Cup",
-          "competitionCode": "",
-          "kickoffUtc": "2026-06-24T22:00:00Z",
-          "localDate": "2026-06-25",
-          "homeTeam": {
-            "id": "national-name:unitedstates",
-            "name": "United States"
-          },
-          "awayTeam": {
-            "id": "national:TUR",
-            "name": "Turkey"
-          },
-          "homeGoals": 2,
-          "awayGoals": 3,
-          "analyzedTeamId": "national:TUR",
-          "analyzedTeamSide": "away",
-          "analyzedTeamGoals": 3,
-          "opponentGoals": 2,
-          "resultForAnalyzedTeam": "W",
-          "venueLabel": "Borte",
-          "opponent": "United States",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        }
-      ],
-      "formMatchesAway": [
-        {
-          "matchId": "national-match:2026-10-05:national:FRA:national:BEL",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-10-05:national:FRA:national:BEL",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-10-04T22:00:00Z",
-          "localDate": "2026-10-05",
-          "homeTeam": {
-            "id": "national:FRA",
-            "name": "France"
-          },
-          "awayTeam": {
-            "id": "national:BEL",
-            "name": "Belgium"
-          },
-          "homeGoals": 4,
-          "awayGoals": 1,
-          "analyzedTeamId": "national:BEL",
-          "analyzedTeamSide": "away",
-          "analyzedTeamGoals": 1,
-          "opponentGoals": 4,
-          "resultForAnalyzedTeam": "L",
-          "venueLabel": "Borte",
-          "opponent": "France",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-10-02:national:BEL:national:TUR",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-10-02:national:BEL:national:TUR",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-10-01T22:00:00Z",
-          "localDate": "2026-10-02",
-          "homeTeam": {
-            "id": "national:BEL",
-            "name": "Belgium"
-          },
-          "awayTeam": {
-            "id": "national:TUR",
-            "name": "Turkey"
-          },
-          "homeGoals": 3,
-          "awayGoals": 0,
-          "analyzedTeamId": "national:BEL",
-          "analyzedTeamSide": "home",
-          "analyzedTeamGoals": 3,
-          "opponentGoals": 0,
-          "resultForAnalyzedTeam": "W",
-          "venueLabel": "Hjemme",
-          "opponent": "Turkey",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-09-28:national:BEL:national:FRA",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-09-28:national:BEL:national:FRA",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-09-27T22:00:00Z",
-          "localDate": "2026-09-28",
-          "homeTeam": {
-            "id": "national:BEL",
-            "name": "Belgium"
-          },
-          "awayTeam": {
-            "id": "national:FRA",
-            "name": "France"
-          },
-          "homeGoals": 0,
-          "awayGoals": 1,
-          "analyzedTeamId": "national:BEL",
-          "analyzedTeamSide": "home",
-          "analyzedTeamGoals": 0,
-          "opponentGoals": 1,
-          "resultForAnalyzedTeam": "L",
-          "venueLabel": "Hjemme",
-          "opponent": "France",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-09-25:national:ITA:national:BEL",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-09-25:national:ITA:national:BEL",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-09-24T22:00:00Z",
-          "localDate": "2026-09-25",
-          "homeTeam": {
-            "id": "national:ITA",
-            "name": "Italy"
-          },
-          "awayTeam": {
-            "id": "national:BEL",
-            "name": "Belgium"
-          },
-          "homeGoals": 0,
-          "awayGoals": 2,
-          "analyzedTeamId": "national:BEL",
-          "analyzedTeamSide": "away",
-          "analyzedTeamGoals": 2,
-          "opponentGoals": 0,
-          "resultForAnalyzedTeam": "W",
-          "venueLabel": "Borte",
-          "opponent": "Italy",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-06-26:national-name:newzealand:national:BEL",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-06-26:national-name:newzealand:national:BEL",
-          "competition": "FIFA World Cup",
-          "competitionCode": "",
-          "kickoffUtc": "2026-06-25T22:00:00Z",
-          "localDate": "2026-06-26",
-          "homeTeam": {
-            "id": "national-name:newzealand",
-            "name": "New Zealand"
-          },
-          "awayTeam": {
-            "id": "national:BEL",
-            "name": "Belgium"
-          },
-          "homeGoals": 1,
-          "awayGoals": 5,
-          "analyzedTeamId": "national:BEL",
-          "analyzedTeamSide": "away",
-          "analyzedTeamGoals": 5,
-          "opponentGoals": 1,
-          "resultForAnalyzedTeam": "W",
-          "venueLabel": "Nøytral bane",
-          "opponent": "New Zealand",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true,
-          "neutralVenue": true
-        }
-      ],
-      "formHistoryDiagnostics": {
-        "home": {
-          "verified": 17,
-          "displayable": 5,
-          "issues": []
-        },
-        "away": {
-          "verified": 19,
-          "displayable": 5,
-          "issues": []
-        }
-      },
-      "model": {
-        "probabilities": {
-          "H": 0.1865,
-          "U": 0.1922,
-          "B": 0.6213,
-          "O25": 0.6764,
-          "U25": 0.3236,
-          "O35": 0.4602,
-          "BTTS": 0.6258,
-          "O15": 0.862,
-          "U15": 0.138,
-          "U35": 0.541,
-          "BTTSN": 0.3742,
-          "THO05": 0.6958,
-          "THU05": 0.3042,
-          "THO15": 0.3338,
-          "THU15": 0.6662,
-          "THO25": 0.1184,
-          "THU25": 0.8816,
-          "TAO05": 0.8987,
-          "TAU05": 0.1013,
-          "TAO15": 0.6668,
-          "TAU15": 0.3332,
-          "TAO25": 0.4013,
-          "TAU25": 0.5987
-        },
-        "expectedGoals": [
-          1.19,
-          2.29
-        ],
-        "sample": [
-          17,
-          19
-        ],
-        "quality": "basic",
-        "effectiveSample": [
-          9.11,
-          10.06
-        ],
-        "modelMethod": "national_strength_v49",
-        "historyWindowDays": 548
-      },
-      "odds": {
-        "B": {
-          "price": 1.92,
-          "source": "The Odds API · bookmaker-median",
-          "books": 18,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "nordicbet"
-        },
-        "H": {
-          "price": 3.55,
-          "source": "The Odds API · bookmaker-median",
-          "books": 18,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "nordicbet"
-        },
-        "U": {
-          "price": 3.99,
-          "source": "The Odds API · bookmaker-median",
-          "books": 18,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "winamax_fr"
-        },
-        "O35": {
-          "price": 2.18,
-          "source": "The Odds API · bookmaker-median",
-          "books": 7,
-          "lastUpdated": "2026-11-12T16:19:27Z",
-          "sampleBook": "onexbet"
-        },
-        "U35": {
-          "price": 1.66,
-          "source": "The Odds API · bookmaker-median",
-          "books": 7,
-          "lastUpdated": "2026-11-12T16:19:27Z",
-          "sampleBook": "mybookieag"
-        },
-        "O25": {
-          "price": 1.46,
-          "source": "The Odds API · bookmaker-median",
-          "books": 3,
-          "lastUpdated": "2026-11-12T16:19:10Z",
-          "sampleBook": "nordicbet"
-        },
-        "U25": {
-          "price": 2.68,
-          "source": "The Odds API · bookmaker-median",
-          "books": 3,
-          "lastUpdated": "2026-11-12T16:19:10Z",
-          "sampleBook": "nordicbet"
-        }
-      },
-      "predictions": []
-    },
     {
       "id": "odds:21f1d732a768ec97ab405050ec9be408",
       "league": "UEFA Nations League",
@@ -1641,52 +718,52 @@
       },
       "odds": {
         "H": {
-          "price": 2.09,
+          "price": 2.06,
           "source": "The Odds API · bookmaker-median",
           "books": 16,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "mybookieag"
+          "lastUpdated": "2026-11-12T19:05:57Z",
+          "sampleBook": "marathonbet"
         },
         "B": {
-          "price": 3.83,
+          "price": 4.0,
           "source": "The Odds API · bookmaker-median",
           "books": 16,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "mybookieag"
+          "lastUpdated": "2026-11-12T19:05:57Z",
+          "sampleBook": "leovegas_se"
         },
         "U": {
-          "price": 2.95,
+          "price": 3.02,
           "source": "The Odds API · bookmaker-median",
           "books": 16,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "betanysports"
+          "lastUpdated": "2026-11-12T19:05:57Z",
+          "sampleBook": "mybookieag"
         },
         "O15": {
-          "price": 1.5,
+          "price": 1.53,
           "source": "The Odds API · bookmaker-median",
           "books": 5,
-          "lastUpdated": "2026-11-12T16:19:27Z",
+          "lastUpdated": "2026-11-12T19:05:53Z",
           "sampleBook": "leovegas_se"
         },
         "U15": {
-          "price": 2.38,
+          "price": 2.43,
           "source": "The Odds API · bookmaker-median",
           "books": 5,
-          "lastUpdated": "2026-11-12T16:19:27Z",
-          "sampleBook": "onexbet"
+          "lastUpdated": "2026-11-12T19:05:53Z",
+          "sampleBook": "leovegas_se"
         },
         "O25": {
-          "price": 2.8,
+          "price": 2.69,
           "source": "The Odds API · bookmaker-median",
           "books": 4,
-          "lastUpdated": "2026-11-12T16:19:15Z",
-          "sampleBook": "marathonbet"
+          "lastUpdated": "2026-11-12T19:05:57Z",
+          "sampleBook": "williamhill"
         },
         "U25": {
-          "price": 1.43,
+          "price": 1.44,
           "source": "The Odds API · bookmaker-median",
           "books": 4,
-          "lastUpdated": "2026-11-12T16:19:15Z",
+          "lastUpdated": "2026-11-12T19:05:57Z",
           "sampleBook": "betsson"
         }
       },
@@ -2075,38 +1152,38 @@
       },
       "odds": {
         "B": {
-          "price": 1.12,
+          "price": 1.1,
           "source": "The Odds API · bookmaker-median",
           "books": 16,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "unibet_se"
+          "lastUpdated": "2026-11-12T19:05:57Z",
+          "sampleBook": "sport888"
         },
         "H": {
-          "price": 19.12,
+          "price": 23.0,
           "source": "The Odds API · bookmaker-median",
           "books": 16,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "onexbet"
+          "lastUpdated": "2026-11-12T19:05:57Z",
+          "sampleBook": "unibet_se"
         },
         "U": {
-          "price": 8.45,
+          "price": 9.0,
           "source": "The Odds API · bookmaker-median",
           "books": 16,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "marathonbet"
+          "lastUpdated": "2026-11-12T19:05:57Z",
+          "sampleBook": "williamhill"
         },
         "O25": {
-          "price": 1.63,
+          "price": 1.58,
           "source": "The Odds API · bookmaker-median",
           "books": 9,
-          "lastUpdated": "2026-11-12T16:19:27Z",
-          "sampleBook": "mybookieag"
+          "lastUpdated": "2026-11-12T19:05:57Z",
+          "sampleBook": "nordicbet"
         },
         "U25": {
-          "price": 2.18,
+          "price": 2.28,
           "source": "The Odds API · bookmaker-median",
           "books": 9,
-          "lastUpdated": "2026-11-12T16:19:27Z",
+          "lastUpdated": "2026-11-12T19:05:57Z",
           "sampleBook": "nordicbet"
         }
       },
@@ -2493,52 +1570,52 @@
       },
       "odds": {
         "B": {
-          "price": 9.57,
+          "price": 10.72,
           "source": "The Odds API · bookmaker-median",
           "books": 18,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "leovegas_se"
+          "lastUpdated": "2026-11-12T19:05:57Z",
+          "sampleBook": "onexbet"
         },
         "H": {
-          "price": 1.27,
+          "price": 1.25,
           "source": "The Odds API · bookmaker-median",
           "books": 18,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "unibet_se"
+          "lastUpdated": "2026-11-12T19:05:57Z",
+          "sampleBook": "williamhill"
         },
         "U": {
-          "price": 6.02,
+          "price": 6.25,
           "source": "The Odds API · bookmaker-median",
           "books": 18,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "betclic_fr"
+          "lastUpdated": "2026-11-12T19:05:57Z",
+          "sampleBook": "winamax_de"
         },
         "O35": {
-          "price": 2.12,
+          "price": 2.16,
           "source": "The Odds API · bookmaker-median",
-          "books": 6,
-          "lastUpdated": "2026-11-12T16:19:27Z",
-          "sampleBook": "unibet_se"
-        },
-        "U35": {
-          "price": 1.69,
-          "source": "The Odds API · bookmaker-median",
-          "books": 6,
-          "lastUpdated": "2026-11-12T16:19:27Z",
+          "books": 7,
+          "lastUpdated": "2026-11-12T19:05:57Z",
           "sampleBook": "marathonbet"
         },
+        "U35": {
+          "price": 1.67,
+          "source": "The Odds API · bookmaker-median",
+          "books": 7,
+          "lastUpdated": "2026-11-12T19:05:57Z",
+          "sampleBook": "mybookieag"
+        },
         "O25": {
-          "price": 1.44,
+          "price": 1.41,
           "source": "The Odds API · bookmaker-median",
           "books": 3,
-          "lastUpdated": "2026-11-12T16:19:10Z",
+          "lastUpdated": "2026-11-12T19:05:51Z",
           "sampleBook": "betsson"
         },
         "U25": {
-          "price": 2.72,
+          "price": 2.85,
           "source": "The Odds API · bookmaker-median",
           "books": 3,
-          "lastUpdated": "2026-11-12T16:19:10Z",
+          "lastUpdated": "2026-11-12T19:05:51Z",
           "sampleBook": "betsson"
         }
       },
@@ -2924,52 +2001,52 @@
       },
       "odds": {
         "H": {
-          "price": 11.46,
+          "price": 12.0,
           "source": "The Odds API · bookmaker-median",
           "books": 18,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "pinnacle"
+          "lastUpdated": "2026-11-12T19:05:57Z",
+          "sampleBook": "onexbet"
         },
         "B": {
           "price": 1.23,
           "source": "The Odds API · bookmaker-median",
           "books": 18,
-          "lastUpdated": "2026-11-12T16:19:30Z",
+          "lastUpdated": "2026-11-12T19:05:57Z",
           "sampleBook": "betsson"
         },
         "U": {
           "price": 6.75,
           "source": "The Odds API · bookmaker-median",
           "books": 18,
-          "lastUpdated": "2026-11-12T16:19:30Z",
+          "lastUpdated": "2026-11-12T19:05:57Z",
           "sampleBook": "onexbet"
         },
         "O35": {
-          "price": 2.23,
+          "price": 2.33,
           "source": "The Odds API · bookmaker-median",
           "books": 6,
-          "lastUpdated": "2026-11-12T16:19:27Z",
+          "lastUpdated": "2026-11-12T19:05:57Z",
           "sampleBook": "unibet_se"
         },
         "U35": {
-          "price": 1.61,
+          "price": 1.58,
           "source": "The Odds API · bookmaker-median",
           "books": 6,
-          "lastUpdated": "2026-11-12T16:19:27Z",
-          "sampleBook": "onexbet"
+          "lastUpdated": "2026-11-12T19:05:57Z",
+          "sampleBook": "unibet_se"
         },
         "O25": {
           "price": 1.52,
           "source": "The Odds API · bookmaker-median",
           "books": 3,
-          "lastUpdated": "2026-11-12T16:19:10Z",
+          "lastUpdated": "2026-11-12T19:05:51Z",
           "sampleBook": "betsson"
         },
         "U25": {
           "price": 2.48,
           "source": "The Odds API · bookmaker-median",
           "books": 3,
-          "lastUpdated": "2026-11-12T16:19:10Z",
+          "lastUpdated": "2026-11-12T19:05:51Z",
           "sampleBook": "betsson"
         }
       },
@@ -3355,38 +2432,38 @@
       },
       "odds": {
         "B": {
-          "price": 2.02,
+          "price": 1.9,
           "source": "The Odds API · bookmaker-median",
           "books": 18,
-          "lastUpdated": "2026-11-12T16:19:30Z",
+          "lastUpdated": "2026-11-12T19:05:57Z",
           "sampleBook": "nordicbet"
         },
         "H": {
-          "price": 3.58,
+          "price": 3.8,
           "source": "The Odds API · bookmaker-median",
           "books": 18,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "betclic_fr"
+          "lastUpdated": "2026-11-12T19:05:57Z",
+          "sampleBook": "pmu_fr"
         },
         "U": {
-          "price": 3.65,
+          "price": 3.72,
           "source": "The Odds API · bookmaker-median",
           "books": 18,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "betclic_fr"
+          "lastUpdated": "2026-11-12T19:05:57Z",
+          "sampleBook": "winamax_fr"
         },
         "O25": {
-          "price": 1.67,
+          "price": 1.65,
           "source": "The Odds API · bookmaker-median",
           "books": 9,
-          "lastUpdated": "2026-11-12T16:19:27Z",
-          "sampleBook": "williamhill"
+          "lastUpdated": "2026-11-12T19:05:57Z",
+          "sampleBook": "nordicbet"
         },
         "U25": {
-          "price": 2.17,
+          "price": 2.21,
           "source": "The Odds API · bookmaker-median",
           "books": 9,
-          "lastUpdated": "2026-11-12T16:19:27Z",
+          "lastUpdated": "2026-11-12T19:05:57Z",
           "sampleBook": "mybookieag"
         }
       },
@@ -3771,39 +2848,39 @@
       },
       "odds": {
         "B": {
-          "price": 10.9,
+          "price": 11.0,
           "source": "The Odds API · bookmaker-median",
           "books": 16,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "betclic_fr"
+          "lastUpdated": "2026-11-12T19:05:57Z",
+          "sampleBook": "winamax_fr"
         },
         "H": {
-          "price": 1.25,
+          "price": 1.26,
           "source": "The Odds API · bookmaker-median",
           "books": 16,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "sport888"
+          "lastUpdated": "2026-11-12T19:05:57Z",
+          "sampleBook": "winamax_de"
         },
         "U": {
-          "price": 5.45,
+          "price": 5.47,
           "source": "The Odds API · bookmaker-median",
           "books": 16,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "betclic_fr"
+          "lastUpdated": "2026-11-12T19:05:57Z",
+          "sampleBook": "leovegas_se"
         },
         "O25": {
-          "price": 1.78,
+          "price": 1.77,
           "source": "The Odds API · bookmaker-median",
-          "books": 11,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "betsson"
+          "books": 10,
+          "lastUpdated": "2026-11-12T19:05:57Z",
+          "sampleBook": "mybookieag"
         },
         "U25": {
-          "price": 2.02,
+          "price": 2.01,
           "source": "The Odds API · bookmaker-median",
-          "books": 11,
-          "lastUpdated": "2026-11-12T16:19:30Z",
-          "sampleBook": "unibet_se"
+          "books": 10,
+          "lastUpdated": "2026-11-12T19:05:57Z",
+          "sampleBook": "williamhill"
         }
       },
       "predictions": []
@@ -3811,104 +2888,15 @@
   ],
   "additionalMarkets": {
     "tips": [],
-    "watchlist": [
-      {
-        "matchId": "odds:030f628eb3a7ad16c3bca6884c18c56e",
-        "home": "Montenegro",
-        "away": "Latvia",
-        "league": "UEFA Nations League",
-        "kickoff": "2026-11-12T19:45:00+00:00",
-        "market": "O25",
-        "label": "Over 2,5 mål",
-        "marketType": "goals",
-        "price": 1.78,
-        "bookmakers": 11,
-        "oddsUpdatedAt": "2026-11-12T16:19:30Z",
-        "probability": 0.5032,
-        "verified": false,
-        "rationale": [
-          "Verifisert bookmakerpris, men ikke kvalifisert som et hovedtips",
-          "Pris fra 11 bookmakere",
-          "Eget, ikke-kalibrert modellanslag: 50 %"
-        ],
-        "source": "The Odds API",
-        "sampleSize": 12
-      },
-      {
-        "matchId": "odds:030f628eb3a7ad16c3bca6884c18c56e",
-        "home": "Montenegro",
-        "away": "Latvia",
-        "league": "UEFA Nations League",
-        "kickoff": "2026-11-12T19:45:00+00:00",
-        "market": "U25",
-        "label": "Under 2,5 mål",
-        "marketType": "goals",
-        "price": 2.02,
-        "bookmakers": 11,
-        "oddsUpdatedAt": "2026-11-12T16:19:30Z",
-        "probability": 0.4968,
-        "verified": false,
-        "rationale": [
-          "Verifisert bookmakerpris, men ikke kvalifisert som et hovedtips",
-          "Pris fra 11 bookmakere",
-          "Eget, ikke-kalibrert modellanslag: 50 %"
-        ],
-        "source": "The Odds API",
-        "sampleSize": 12
-      },
-      {
-        "matchId": "odds:c25477408b57267248b491fa5eab2572",
-        "home": "Armenia",
-        "away": "Cyprus",
-        "league": "UEFA Nations League",
-        "kickoff": "2026-11-12T17:00:00+00:00",
-        "market": "O25",
-        "label": "Over 2,5 mål",
-        "marketType": "goals",
-        "price": 2.25,
-        "bookmakers": 10,
-        "oddsUpdatedAt": "2026-11-12T16:19:27Z",
-        "probability": 0.4133,
-        "verified": false,
-        "rationale": [
-          "Verifisert bookmakerpris, men ikke kvalifisert som et hovedtips",
-          "Pris fra 10 bookmakere",
-          "Eget, ikke-kalibrert modellanslag: 41 %"
-        ],
-        "source": "The Odds API",
-        "sampleSize": 15
-      },
-      {
-        "matchId": "odds:c25477408b57267248b491fa5eab2572",
-        "home": "Armenia",
-        "away": "Cyprus",
-        "league": "UEFA Nations League",
-        "kickoff": "2026-11-12T17:00:00+00:00",
-        "market": "BTTS",
-        "label": "Begge lag scorer",
-        "marketType": "btts",
-        "price": 1.86,
-        "bookmakers": 3,
-        "oddsUpdatedAt": "2026-11-12T16:19:25Z",
-        "probability": 0.4682,
-        "verified": false,
-        "rationale": [
-          "Verifisert bookmakerpris, men ikke kvalifisert som et hovedtips",
-          "Pris fra 3 bookmakere",
-          "Eget, ikke-kalibrert modellanslag: 47 %"
-        ],
-        "source": "The Odds API",
-        "sampleSize": 15
-      }
-    ],
+    "watchlist": [],
     "coverage": {
       "Hjørnespark": 0,
       "Kort": 0,
       "Målscorer": 0,
-      "Mål": 36,
+      "Mål": 24,
       "Lagmål": 0,
       "1. omgang": 0,
-      "Begge lag scorer": 2
+      "Begge lag scorer": 0
     },
     "marketFamilies": [
       {
@@ -3929,7 +2917,7 @@
       {
         "key": "goals",
         "label": "Mål",
-        "availableQuotes": 36
+        "availableQuotes": 24
       },
       {
         "key": "team_goals",
@@ -3944,7 +2932,7 @@
       {
         "key": "btts",
         "label": "Begge lag scorer",
-        "availableQuotes": 2
+        "availableQuotes": 0
       }
     ],
     "issues": [],
@@ -4024,38 +3012,10 @@
         }
       },
       {
-        "matchId": "odds:d598d5e914a905ef70b01fd1b444aecb",
-        "home": "Turkey",
-        "away": "Belgium",
-        "kickoff": "2026-11-12T17:00:00+00:00",
-        "league": "UEFA Nations League",
-        "sources": [],
-        "consensus": null,
-        "ownModel": {
-          "homeGoals": 1,
-          "awayGoals": 2,
-          "method": "Uavhengig Poisson-modell fra registrerte kampresultater"
-        }
-      },
-      {
         "matchId": "odds:c096e9bfabbbb93326413433b7c63511",
         "home": "Italy",
         "away": "France",
         "kickoff": "2026-11-12T19:45:00+00:00",
-        "league": "UEFA Nations League",
-        "sources": [],
-        "consensus": null,
-        "ownModel": {
-          "homeGoals": 1,
-          "awayGoals": 1,
-          "method": "Uavhengig Poisson-modell fra registrerte kampresultater"
-        }
-      },
-      {
-        "matchId": "odds:c25477408b57267248b491fa5eab2572",
-        "home": "Armenia",
-        "away": "Cyprus",
-        "kickoff": "2026-11-12T17:00:00+00:00",
         "league": "UEFA Nations League",
         "sources": [],
         "consensus": null,
@@ -4082,9 +3042,9 @@
       "market": "B",
       "marketType": "winner",
       "label": "Borteseier",
-      "price": 10.9,
+      "price": 11.0,
       "probability": 0.1305,
-      "oddsUpdatedAt": "2026-11-12T16:19:30Z",
+      "oddsUpdatedAt": "2026-11-12T19:05:57Z",
       "bookmakers": 16,
       "status": "observation",
       "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
@@ -4098,9 +3058,9 @@
       "market": "B",
       "marketType": "winner",
       "label": "Borteseier",
-      "price": 3.83,
+      "price": 4.0,
       "probability": 0.3525,
-      "oddsUpdatedAt": "2026-11-12T16:19:30Z",
+      "oddsUpdatedAt": "2026-11-12T19:05:57Z",
       "bookmakers": 16,
       "status": "observation",
       "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
@@ -4114,26 +3074,10 @@
       "market": "O35",
       "marketType": "goals",
       "label": "Over 3,5 mål",
-      "price": 2.12,
+      "price": 2.16,
       "probability": 0.6011,
-      "oddsUpdatedAt": "2026-11-12T16:19:27Z",
-      "bookmakers": 6,
-      "status": "observation",
-      "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
-    },
-    {
-      "matchId": "odds:d598d5e914a905ef70b01fd1b444aecb",
-      "home": "Turkey",
-      "away": "Belgium",
-      "league": "UEFA Nations League",
-      "kickoff": "2026-11-12T17:00:00+00:00",
-      "market": "B",
-      "marketType": "winner",
-      "label": "Borteseier",
-      "price": 1.92,
-      "probability": 0.6213,
-      "oddsUpdatedAt": "2026-11-12T16:19:30Z",
-      "bookmakers": 18,
+      "oddsUpdatedAt": "2026-11-12T19:05:57Z",
+      "bookmakers": 7,
       "status": "observation",
       "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
     },
@@ -4146,42 +3090,10 @@
       "market": "O25",
       "marketType": "goals",
       "label": "Over 2,5 mål",
-      "price": 1.63,
+      "price": 1.58,
       "probability": 0.7262,
-      "oddsUpdatedAt": "2026-11-12T16:19:27Z",
+      "oddsUpdatedAt": "2026-11-12T19:05:57Z",
       "bookmakers": 9,
-      "status": "observation",
-      "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
-    },
-    {
-      "matchId": "odds:c096e9bfabbbb93326413433b7c63511",
-      "home": "Italy",
-      "away": "France",
-      "league": "UEFA Nations League",
-      "kickoff": "2026-11-12T19:45:00+00:00",
-      "market": "B",
-      "marketType": "winner",
-      "label": "Borteseier",
-      "price": 2.02,
-      "probability": 0.5415,
-      "oddsUpdatedAt": "2026-11-12T16:19:30Z",
-      "bookmakers": 18,
-      "status": "observation",
-      "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
-    },
-    {
-      "matchId": "odds:8a1174de9079b530bd6612e3fde6e2fa",
-      "home": "England",
-      "away": "Croatia",
-      "league": "UEFA Nations League",
-      "kickoff": "2026-11-12T19:45:00+00:00",
-      "market": "H",
-      "marketType": "winner",
-      "label": "Hjemmeseier",
-      "price": 1.27,
-      "probability": 0.8531,
-      "oddsUpdatedAt": "2026-11-12T16:19:30Z",
-      "bookmakers": 18,
       "status": "observation",
       "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
     },
@@ -4196,63 +3108,83 @@
       "label": "Uavgjort",
       "price": 6.75,
       "probability": 0.1595,
-      "oddsUpdatedAt": "2026-11-12T16:19:30Z",
+      "oddsUpdatedAt": "2026-11-12T19:05:57Z",
       "bookmakers": 18,
+      "status": "observation",
+      "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+    },
+    {
+      "matchId": "odds:21f1d732a768ec97ab405050ec9be408",
+      "home": "Albania",
+      "away": "Finland",
+      "league": "UEFA Nations League",
+      "kickoff": "2026-11-12T19:45:00+00:00",
+      "market": "U15",
+      "marketType": "goals",
+      "label": "Under 1,5 mål",
+      "price": 2.43,
+      "probability": 0.4423,
+      "oddsUpdatedAt": "2026-11-12T19:05:53Z",
+      "bookmakers": 5,
+      "status": "observation",
+      "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+    },
+    {
+      "matchId": "odds:8a1174de9079b530bd6612e3fde6e2fa",
+      "home": "England",
+      "away": "Croatia",
+      "league": "UEFA Nations League",
+      "kickoff": "2026-11-12T19:45:00+00:00",
+      "market": "H",
+      "marketType": "winner",
+      "label": "Hjemmeseier",
+      "price": 1.25,
+      "probability": 0.8531,
+      "oddsUpdatedAt": "2026-11-12T19:05:57Z",
+      "bookmakers": 18,
+      "status": "observation",
+      "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+    },
+    {
+      "matchId": "odds:87441c4ff41ea3d37812826345450408",
+      "home": "Czech Republic",
+      "away": "Spain",
+      "league": "UEFA Nations League",
+      "kickoff": "2026-11-12T19:45:00+00:00",
+      "market": "U25",
+      "marketType": "goals",
+      "label": "Under 2,5 mål",
+      "price": 2.48,
+      "probability": 0.425,
+      "oddsUpdatedAt": "2026-11-12T19:05:51Z",
+      "bookmakers": 3,
       "status": "observation",
       "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
     }
   ],
   "modelVersion": "2.0-foundation",
   "qualityAudit": {
-    "screened": 54,
+    "screened": 36,
     "qualified": 0,
     "topLimit": 5,
     "observations": 8,
     "rejections": {
-      "for_lav_konservativ_verdi": 52,
-      "svak_bookmakerdekning": 2
+      "for_lav_konservativ_verdi": 36
     },
     "calibrated": false,
     "method": "Eksplisitt sensitivitetsscenario, markedsforankring og usikkerhetstrekk; ikke validert som konfidensintervall",
     "coverageLimit": "Tilgjengelige kilde-/bookmakerodds, ikke alle globale markeder",
     "whyNoPicks": "Vanligste avvisning skyldtes for lav beregnet spillverdi."
   },
-  "interestingObjects": [
-    {
-      "matchId": "odds:3caa30ea2ac5a1be30724132ba10d82b",
-      "home": "San Marino",
-      "away": "Belarus",
-      "league": "UEFA Nations League",
-      "kickoff": "2026-11-12T19:45:00+00:00",
-      "market": "O25",
-      "marketType": "goals",
-      "label": "Over 2,5 mål",
-      "price": 1.63,
-      "probability": 0.7262,
-      "oddsUpdatedAt": "2026-11-12T16:19:27Z",
-      "bookmakers": 9,
-      "status": "observation",
-      "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene",
-      "marketIdentity": {
-        "family": "total_goals",
-        "period": "full_time",
-        "line": 2.5,
-        "subject": null,
-        "outcome": "over"
-      },
-      "fixtureKey": "2026-11-12|sanmarino|belarus",
-      "qualificationTier": "observation",
-      "selectionId": "v40:7da0551aa75d9db60cde"
-    }
-  ],
+  "interestingObjects": [],
   "finalSelection": {
     "version": 40,
     "policy": "one_active_selection_per_real_fixture",
     "rankedRecommendations": true,
     "categories": {
       "safe": 3,
-      "high": 4,
-      "watch": 1
+      "high": 3,
+      "watch": 0
     },
     "target": [
       3,
@@ -4264,7 +3196,7 @@
       "watch": "For få konfliktfrie, kildebaserte kandidater."
     },
     "rejected": {
-      "same_fixture_or_correlated_outcome": 19
+      "same_fixture_or_correlated_outcome": 17
     },
     "trace": [
       {
@@ -4275,9 +3207,9 @@
         "reason": "selected"
       },
       {
-        "fixture": "2026-11-12|armenia|cyprus",
-        "selectionId": "v40:6b3d53bbfc1ff59e6c2f",
-        "market": "B",
+        "fixture": "2026-11-12|italy|france",
+        "selectionId": "v40:1d373bcaf9b06b8ee5e7",
+        "market": "U25",
         "group": "high",
         "reason": "selected"
       },
@@ -4315,26 +3247,20 @@
         "reason": "selected"
       },
       {
-        "fixture": "2026-11-12|albania|finland",
-        "market": "U25",
-        "reason": "same_fixture_or_correlated_outcome",
-        "selectedMarket": "B"
-      },
-      {
         "fixture": "2026-11-12|england|croatia",
         "market": "O25",
         "reason": "same_fixture_or_correlated_outcome",
         "selectedMarket": "H"
       },
       {
-        "fixture": "2026-11-12|armenia|cyprus",
+        "fixture": "2026-11-12|albania|finland",
         "market": "U25",
         "reason": "same_fixture_or_correlated_outcome",
         "selectedMarket": "B"
       },
       {
-        "fixture": "2026-11-12|turkey|belgium",
-        "selectionId": "v40:0fa1112803f5e54b7f5e",
+        "fixture": "2026-11-12|sanmarino|belarus",
+        "selectionId": "v40:7da0551aa75d9db60cde",
         "market": "O25",
         "group": "safe",
         "reason": "selected"
@@ -4347,21 +3273,15 @@
       },
       {
         "fixture": "2026-11-12|czechrepublic|spain",
-        "market": "O25",
-        "reason": "same_fixture_or_correlated_outcome",
-        "selectedMarket": "U25"
-      },
-      {
-        "fixture": "2026-11-12|czechrepublic|spain",
         "market": "U35",
         "reason": "same_fixture_or_correlated_outcome",
         "selectedMarket": "U25"
       },
       {
-        "fixture": "2026-11-12|armenia|cyprus",
+        "fixture": "2026-11-12|czechrepublic|spain",
         "market": "O25",
         "reason": "same_fixture_or_correlated_outcome",
-        "selectedMarket": "B"
+        "selectedMarket": "U25"
       },
       {
         "fixture": "2026-11-12|czechrepublic|spain",
@@ -4370,23 +3290,10 @@
         "selectedMarket": "U25"
       },
       {
-        "fixture": "2026-11-12|armenia|cyprus",
-        "market": "H",
-        "reason": "same_fixture_or_correlated_outcome",
-        "selectedMarket": "B"
-      },
-      {
-        "fixture": "2026-11-12|turkey|belgium",
-        "market": "H",
-        "reason": "same_fixture_or_correlated_outcome",
-        "selectedMarket": "O25"
-      },
-      {
         "fixture": "2026-11-12|italy|france",
-        "selectionId": "v40:63f40eb2ded3856e485d",
         "market": "H",
-        "group": "high",
-        "reason": "selected"
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "U25"
       },
       {
         "fixture": "2026-11-12|england|croatia",
@@ -4396,14 +3303,7 @@
       },
       {
         "fixture": "2026-11-12|sanmarino|belarus",
-        "selectionId": "v40:7da0551aa75d9db60cde",
         "market": "O25",
-        "group": "watch",
-        "reason": "selected"
-      },
-      {
-        "fixture": "2026-11-12|turkey|belgium",
-        "market": "B",
         "reason": "same_fixture_or_correlated_outcome",
         "selectedMarket": "O25"
       },
@@ -4414,10 +3314,16 @@
         "selectedMarket": "H"
       },
       {
-        "fixture": "2026-11-12|italy|france",
-        "market": "B",
+        "fixture": "2026-11-12|albania|finland",
+        "market": "U15",
         "reason": "same_fixture_or_correlated_outcome",
-        "selectedMarket": "H"
+        "selectedMarket": "B"
+      },
+      {
+        "fixture": "2026-11-12|czechrepublic|spain",
+        "market": "U25",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "U25"
       },
       {
         "fixture": "2026-11-12|albania|finland",
