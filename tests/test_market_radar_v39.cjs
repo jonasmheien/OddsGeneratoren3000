@@ -51,5 +51,5 @@ const js=fs.readFileSync(path.join(root,'site/three-fields-v26.js'),'utf8');
 assert.doesNotMatch(js,/function safeMarketCandidates\(/);
 assert.match(js,/OddsVisibleV40\?\.selectEdition/);
 const html=fs.readFileSync(path.join(root,'site/index.html'),'utf8');
-assert.match(html,/market-radar-v39\.js\?v=\d+/);assert.match(html,/market-radar-v39\.css\?v=39/);
+assert.match(html,/market-radar-v39\.js\?v=\d+/);assert.match(html,/market-radar-v39\.css\?v=\d+/);
 console.log('PASS v39: safe totals, source-only radar, 7 families, time+odds+date checks, dedup, no invented tips');

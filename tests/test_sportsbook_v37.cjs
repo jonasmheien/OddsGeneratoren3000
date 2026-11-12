@@ -23,7 +23,7 @@ assert.equal(trustFromCard(stub('Kvalifisert i modellens konservative scenario')
 assert.equal(trustFromCard(stub(''),'watch'),'observation');
 assert.equal(trustFromCard(stub(''),'high'),null);
 assert.equal(tokens.market,'Markedskandidat');
-assert.match(html,/sportsbook-v37\.css\?v=37/);
+assert.match(html,/sportsbook-v37\.css\?v=\d+/);
 assert.match(html,/sportsbook-v37\.js\?v=\d+/);
 assert.match(css,/safe-area-inset-bottom/);
 assert.match(css,/@media\(max-width:760px\)/);
