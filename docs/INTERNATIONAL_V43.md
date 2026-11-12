@@ -31,3 +31,9 @@ I en datoordnet prøve ga 548 dager noe bedre treffsikkerhet på kampresultat en
 Kvalifiserte spill rangeres på beregnet verdi i det konservative scenarioet, med ett spill per kamp. De fem øverste vises først. Begge lag scorer og lagmål kan kvalifiseres når modellen har grunnlag og relevante, ferske priser finnes i den ordinære oddshentingen.
 
 Kjør **Oppdater OddsGeneratoren** på **main** med **daily** og **force_refresh** for å beregne dagens utgave på nytt etter installasjon. Bruk **tomorrow** for en separat forhåndsanalyse.
+
+### Motstanderjustert landslagsmodell i v49
+
+Landslagsanalysen estimerer nå hvert lags angrep og forsvar samlet på tvers av motstanderne i de 548 dagene med historikk. Den bruker de samme vektene for alder og treningskamper som før. Modellen estimerer hjemmefordel fra kampene og tar hensyn til kjent nøytral bane. Sannsynlighetene for kampresultat og mål bygger på hvor mange mål modellen forventer per lag.
+
+I den datoordnede kontrollen av 104 Nations League-kamper falt Brier-feilen på kampresultat fra 0,606 til 0,545. I en ny kjøring med de 54 lagrede prisene for 12. november 2026 passerte ingen spill det eksisterende verdifilteret. Sammenligningen på historiske kamper målte prognosefeil mot utfall.

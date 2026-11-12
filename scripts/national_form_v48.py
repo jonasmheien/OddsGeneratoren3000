@@ -175,10 +175,15 @@ def form_records(history, team, before, *, days=HISTORY_DAYS):
     return verified_form_records(history, identity, cutoff, days=days, limit=24)
 
 
+def result_weight(result_date, competition, before_date, *, half_life=HALF_LIFE_DAYS):
+    days = max(0, (before_date - result_date).days)
+    return 0.5 ** (days / half_life) * (FRIENDLY_WEIGHT if competition == 'Friendly' else 1)
+
+
 def form_weights(records, before, *, half_life=HALF_LIFE_DAYS):
     day = before.astimezone(OSLO).date()
     return [
-        0.5 ** (max(0, (day - date.fromisoformat(record['localDate'])).days) / half_life)
-        * (FRIENDLY_WEIGHT if record['competition'] == 'Friendly' else 1)
+        result_weight(date.fromisoformat(record['localDate']), record['competition'], day,
+                      half_life=half_life)
         for record in records
     ]

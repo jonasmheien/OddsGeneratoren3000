@@ -7,6 +7,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 
 from build_data import build_snapshot
 from national_form_v48 import load_history, parse_results, team_identity
+from national_strength_v49 import METHOD, fit_national_strength
 from odds_first_v25 import fixtures_from_quotes
 from qualify_v20 import qualify
 
@@ -68,10 +69,43 @@ class NationalFormTests(unittest.TestCase):
                                       national_history=history)
                 match = data['matches'][0]
                 self.assertEqual(match['model']['sample'], [10, 10])
-                self.assertEqual(match['model']['modelMethod'], 'national_form_v48')
+                self.assertEqual(match['model']['modelMethod'], METHOD)
                 self.assertLess(match['model']['effectiveSample'][0], 10)
                 self.assertEqual(data['coverage']['oddsWithVerifiedForm'], 1)
                 self.assertEqual(len(match['formMatchesHome']), 5)
                 self.assertTrue(match['formMatchesHome'][0]['neutralVenue'])
                 self.assertEqual(match['odds']['B']['books'], 3)
                 self.assertNotIn('manglende_kamphistorikk', qualify(data)['qualityAudit']['rejections'])
+
+    def test_strength_gap_is_retained_and_analysis_day_is_excluded(self):
+        rows = [HEADER]
+        for age in (14, 30, 63, 95, 128, 190, 220, 250, 280, 312):
+            rows.append(f'{DAY - timedelta(days=age)},San Marino,Belarus,0,4,Friendly,FALSE')
+        rows.append(f'{DAY},San Marino,Belarus,9,0,Friendly,FALSE')
+        history = parse_results('\n'.join(rows), DAY - timedelta(days=548), DAY + timedelta(days=1))
+        at = KICKOFF - timedelta(hours=10)
+        home, away = team_identity('San Marino'), team_identity('Belarus')
+        with_same_day_row = fit_national_strength(history, at).scoring_rates(home, away)
+        before_day_only = [m for m in history if m['utcDate'][:10] != str(DAY)]
+        rates = fit_national_strength(before_day_only, at).scoring_rates(home, away)
+        self.assertEqual(with_same_day_row, rates)
+        self.assertLess(rates[0], 0.5)
+        self.assertGreater(rates[1], 3.0)
+
+    def test_unavailable_strength_fit_does_not_use_club_model_for_national_match(self):
+        rows = [HEADER]
+        for age in (12, 27, 61, 91, 117, 151):
+            rows.append(f'{DAY - timedelta(days=age)},Czech Republic,England,1,2,Friendly,FALSE')
+        history = parse_results('\n'.join(rows), DAY - timedelta(days=548), DAY)
+        fixture = {
+            'id': 'official-national', 'utcDate': KICKOFF.isoformat(), 'status': 'SCHEDULED',
+            'competition': {'code': 'UNL', 'name': 'Nations League'},
+            'homeTeam': {'id': team_identity('Czechia'), 'name': 'Czechia'},
+            'awayTeam': {'id': team_identity('England'), 'name': 'England'},
+        }
+        at = KICKOFF - timedelta(hours=10)
+        snapshot = build_snapshot(at, [fixture, *history], None, [], [], {})
+        match = snapshot['matches'][0]
+        self.assertEqual(len(match['formMatchesHome']), 5)
+        self.assertEqual(len(match['formMatchesAway']), 5)
+        self.assertIsNone(match['model'])

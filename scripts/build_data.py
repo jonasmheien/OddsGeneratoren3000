@@ -34,6 +34,7 @@ from sportmonks_v45 import discover as discover_sportmonks
 from market_expansion import (TEAM_TOTAL_LINES, extend_goal_probabilities,
                               first_half_probabilities, corner_probabilities)
 import national_form_v48 as national_form
+from national_strength_v49 import METHOD as NATIONAL_METHOD, fit_national_strength
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = Path(os.environ['ODDS_OUTPUT_PATH']) if os.environ.get('ODDS_OUTPUT_PATH') else ROOT / 'site' / 'data' / 'today.json'
@@ -230,13 +231,17 @@ def model_probabilities(home_form: list, away_form: list, *, weights=None, neutr
     home_def = rate(home_form, home_weights, 2, away_prior)
     lh = max(.35, min(3.4, (home_attack * away_def) ** .5 * (1 if neutral else 1.06)))
     la = max(.30, min(3.2, (away_attack * home_def) ** .5 * (1 if neutral else .95)))
-    hp = [poisson_pmf(lh, x) for x in range(13)]
-    ap = [poisson_pmf(la, x) for x in range(13)]
+    return score_probabilities(lh, la, (n_h, n_a))
+
+
+def score_probabilities(lh, la, samples, *, max_goals=12):
+    hp = [poisson_pmf(lh, goals) for goals in range(max_goals + 1)]
+    ap = [poisson_pmf(la, goals) for goals in range(max_goals + 1)]
     norm = sum(hp) * sum(ap)
     prob = {k: 0.0 for k in MARKETS}
-    for h in range(13):
-        for a in range(13):
-            p = hp[h] * ap[a] / norm
+    for h, home_probability in enumerate(hp):
+        for a, away_probability in enumerate(ap):
+            p = home_probability * away_probability / norm
             prob['H' if h > a else 'U' if h == a else 'B'] += p
             prob['O25' if h + a >= 3 else 'U25'] += p
             if h + a >= 4:
@@ -245,7 +250,7 @@ def model_probabilities(home_form: list, away_form: list, *, weights=None, neutr
                 prob['BTTS'] += p
     model={'probabilities': {k: round(v, 4) for k,v in prob.items()},
            'expectedGoals': [round(lh,2), round(la,2)],
-           'sample': [n_h, n_a], 'quality': 'exploratory' if min(n_h,n_a) < 5 else 'basic'}
+           'sample': list(samples), 'quality': 'exploratory' if min(samples) < 5 else 'basic'}
     extend_goal_probabilities(model)
     return model
 
@@ -496,7 +501,7 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
     output = []
     strengths = opponent_indices(fixtures, now)
     national_history = national_history or []
-    national_strengths = opponent_indices(national_history, now, days=national_form.HISTORY_DAYS)
+    national_strength = fit_national_strength(national_history, now) if national_history else None
     for raw in fixtures:
         if raw.get('status') in ('CANCELLED','POSTPONED'):
             continue
@@ -517,8 +522,9 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
         form_before = min(k, now)
         h_details, h_issues = verified_form_records(fixtures, home['id'], form_before)
         a_details, a_issues = verified_form_records(fixtures, away['id'], form_before)
+        is_national = national_form.is_national_fixture(raw)
         national_weights = None
-        if national_history and national_form.is_national_fixture(raw):
+        if national_history and is_national:
             h_national, h_national_issues = national_form.form_records(national_history, home, form_before)
             a_national, a_national_issues = national_form.form_records(national_history, away, form_before)
             if h_national and a_national:
@@ -541,10 +547,18 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
                 a_details=[]
                 a_issues.append('team_match_uncertain')
         hf, af = model_rows(h_details), model_rows(a_details)
-        opponent_strength = national_strengths if national_weights is not None else strengths
-        model = model_probabilities(adjusted_form(hf, opponent_strength, k),
-                                    adjusted_form(af, opponent_strength, k),
-                                    weights=national_weights, neutral=raw.get('neutralVenue') is True)
+        neutral = raw.get('neutralVenue') is True
+        model = None
+        if is_national:
+            if national_strength and national_weights is not None and min(len(hf), len(af)) >= 3:
+                h_id = national_form.team_identity(home.get('name') or home.get('shortName'))
+                a_id = national_form.team_identity(away.get('name') or away.get('shortName'))
+                rates = national_strength.scoring_rates(h_id, a_id, neutral=neutral)
+                if rates is not None:
+                    model = score_probabilities(*rates, samples=(len(hf), len(af)), max_goals=30)
+        else:
+            model = model_probabilities(adjusted_form(hf, strengths, k),
+                                        adjusted_form(af, strengths, k), neutral=neutral)
         m = {'id': str(raw.get('id') or ''), 'league': (raw.get('competition') or {}).get('name') or 'Annen',
              'leagueCode': (raw.get('competition') or {}).get('code') or '',
              'leagueCrest': (raw.get('competition') or {}).get('emblem'),
@@ -567,7 +581,7 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
         if model is not None:
             if national_weights is not None:
                 model['effectiveSample'] = [round(sum(weights), 2) for weights in national_weights]
-                model['modelMethod'] = 'national_form_v48'
+                model['modelMethod'] = NATIONAL_METHOD
                 model['historyWindowDays'] = national_form.HISTORY_DAYS
             else:
                 model['effectiveSample'] = [effective_form_sample(hf, k), effective_form_sample(af, k)]
@@ -624,7 +638,7 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
         'withModel': sum(bool(m.get('model')) for m in active_today),
         'oddsWithVerifiedForm': sum(bool(m['odds'] and m['formMatchesHome'] and m['formMatchesAway'])
                                     for m in active_today),
-        'nationalWithModel': sum((m['model'] or {}).get('modelMethod') == 'national_form_v48'
+        'nationalWithModel': sum((m['model'] or {}).get('modelMethod') == NATIONAL_METHOD
                                  for m in active_today),
         'externalPredictions': sum(len(m.get('predictions') or []) for m in active_today),
         'manualPredictions': sum(1 for m in active_today for pred in (m.get('predictions') or []) if pred.get('entry')=='manual'),
