@@ -297,6 +297,304 @@
         ],
         "watch": []
       }
+    },
+    {
+      "id": "62532bdb8a53a7663be367f4",
+      "editionGeneratedAt": "2026-11-11T18:00:03.692660+00:00",
+      "recordedAt": "2026-11-12T07:57:18.890Z",
+      "summary": {
+        "total": 8,
+        "qualified": 0,
+        "high": 3,
+        "safe": 5,
+        "watch": 0,
+        "withBothFive": 0,
+        "withFormModel": 0,
+        "marketBased": 8,
+        "expertWritten": 0,
+        "modelMarketConflicts": 0,
+        "unverifiedResults": 8
+      },
+      "groups": {
+        "qualified": [],
+        "high": [
+          {
+            "matchId": "odds:c25477408b57267248b491fa5eab2572",
+            "home": "Armenia",
+            "away": "Cyprus",
+            "league": "UEFA Nations League",
+            "kickoff": "2026-11-12T17:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 2.3,
+            "probability": 0.4005,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-11T18:00:11Z",
+            "bookmakerCount": 15,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "odds_only",
+              "homeLastFive": "",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.4005085823267642,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "odds:c096e9bfabbbb93326413433b7c63511",
+            "home": "Italy",
+            "away": "France",
+            "league": "UEFA Nations League",
+            "kickoff": "2026-11-12T19:45:00+00:00",
+            "market": "U25",
+            "label": "Under 2,5 mål",
+            "price": 2.2,
+            "probability": 0.4241,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-11T18:00:11Z",
+            "bookmakerCount": 9,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "odds_only",
+              "homeLastFive": "",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.42408376963350786,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "odds:d598d5e914a905ef70b01fd1b444aecb",
+            "home": "Turkey",
+            "away": "Belgium",
+            "league": "UEFA Nations League",
+            "kickoff": "2026-11-12T17:00:00+00:00",
+            "market": "O35",
+            "label": "Over 3,5 mål",
+            "price": 2.2,
+            "probability": 0.4271,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-11T18:00:11Z",
+            "bookmakerCount": 7,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "odds_only",
+              "homeLastFive": "",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.42708333333333337,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          }
+        ],
+        "safe": [
+          {
+            "matchId": "odds:87441c4ff41ea3d37812826345450408",
+            "home": "Czech Republic",
+            "away": "Spain",
+            "league": "UEFA Nations League",
+            "kickoff": "2026-11-12T19:45:00+00:00",
+            "market": "B",
+            "label": "Borteseier",
+            "price": 1.19,
+            "probability": 0.7941,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-11T18:00:11Z",
+            "bookmakerCount": 18,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "odds_only",
+              "homeLastFive": "",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.7940680379400232,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "odds:8a1174de9079b530bd6612e3fde6e2fa",
+            "home": "England",
+            "away": "Croatia",
+            "league": "UEFA Nations League",
+            "kickoff": "2026-11-12T19:45:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 1.24,
+            "probability": 0.7605,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-11T18:00:11Z",
+            "bookmakerCount": 18,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "odds_only",
+              "homeLastFive": "",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.7604618252880793,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "odds:030f628eb3a7ad16c3bca6884c18c56e",
+            "home": "Montenegro",
+            "away": "Latvia",
+            "league": "UEFA Nations League",
+            "kickoff": "2026-11-12T19:45:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 1.28,
+            "probability": 0.7277,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-11T18:00:11Z",
+            "bookmakerCount": 15,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "odds_only",
+              "homeLastFive": "",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.7277205553067622,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "odds:21f1d732a768ec97ab405050ec9be408",
+            "home": "Albania",
+            "away": "Finland",
+            "league": "UEFA Nations League",
+            "kickoff": "2026-11-12T19:45:00+00:00",
+            "market": "U25",
+            "label": "Under 2,5 mål",
+            "price": 1.59,
+            "probability": 0.5954,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-11T18:00:11Z",
+            "bookmakerCount": 9,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "odds_only",
+              "homeLastFive": "",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.5954198473282442,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "odds:3caa30ea2ac5a1be30724132ba10d82b",
+            "home": "San Marino",
+            "away": "Belarus",
+            "league": "UEFA Nations League",
+            "kickoff": "2026-11-12T19:45:00+00:00",
+            "market": "O25",
+            "label": "Over 2,5 mål",
+            "price": 1.58,
+            "probability": 0.5864,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-11T18:00:11Z",
+            "bookmakerCount": 8,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "odds_only",
+              "homeLastFive": "",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.5863874345549738,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          }
+        ],
+        "watch": []
+      }
     }
   ]
 }
