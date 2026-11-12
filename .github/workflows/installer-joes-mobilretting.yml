@@ -1,0 +1,335 @@
+# Last opp denne filen til .github/workflows/ på main.
+# GitHub tester designet i Chromium og WebKit før endringen publiseres.
+name: Rett mobilvisningen i Joe's betting lounge
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/installer-joes-mobilretting.yml']
+  workflow_dispatch:
+
+concurrency:
+  group: oddsgeneratoren-state-and-pages
+  cancel-in-progress: false
+  queue: max
+
+jobs:
+  installer:
+    if: github.repository == 'jonasmheien/OddsGeneratoren3000' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Klargjør mobilrettingen
+        shell: bash
+        run: |
+          cat > "$RUNNER_TEMP/oddsgen-lounge.patch" <<'LOUNGE_DESIGN_PATCH'
+          diff --git a/site/index.html b/site/index.html
+          index c8e685ca985bf9272e9382404f5b202a9c4c4e59..27a9d605e3ae2ae4ac58f9044a8c474616af5e67 100644
+          --- a/site/index.html
+          +++ b/site/index.html
+          @@ -22,7 +22,7 @@
+             <link rel="stylesheet" href="three-fields-v26.css?v=50">
+             <link rel="stylesheet" href="market-board-v14.css?v=15">
+             <link rel="stylesheet" href="score-consensus-v14.css?v=15">
+          -  <link rel="stylesheet" href="sportsbook-v37.css?v=50">
+          +  <link rel="stylesheet" href="sportsbook-v37.css?v=51">
+             <script src="sportsbook-v37.js?v=48" defer></script>
+             <link rel="stylesheet" href="market-radar-v39.css?v=50">
+             <script src="market-radar-v39.js?v=48" defer></script>
+          diff --git a/site/sportsbook-v37.css b/site/sportsbook-v37.css
+          index 56e4e27c70424efb10953f076fbd2c89d0c04e63..2ed03aeb092f27d5b2b907a50a40726bb240a012 100644
+          --- a/site/sportsbook-v37.css
+          +++ b/site/sportsbook-v37.css
+          @@ -43,7 +43,7 @@ body.og-v37 #last-updated{color:var(--gold-light)}
+           body.og-v37 .hero-micro{display:none}
+           /* The legacy selector hides all non-hero children; explicitly expose ONLY our surfaces. */
+           body.three-v26.og-v37 main > #og-tools,
+          -body.three-v26.og-v37 main > #og-featured{display:block!important}
+          +body.three-v26.og-v37 main > #og-featured:not([hidden]){display:block!important}
+           body.og-v37 .og-tools{margin:12px 0 26px}
+           body.og-v37 .og-search-wrap{height:56px;border-radius:17px;border:1px solid var(--gold-edge);background:var(--surface);display:flex;align-items:center;gap:12px;padding:0 16px;transition:border-color .18s,box-shadow .18s}
+           body.og-v37 .og-search-wrap:focus-within{border-color:var(--gold);box-shadow:0 0 0 3px #e6b5441c}
+          @@ -91,6 +91,7 @@ body.og-v37 .tf-section header{display:grid;grid-template-columns:44px minmax(0,
+           body.og-v37 .tf-section header .og-section-icon{grid-column:1;grid-row:1/3;height:44px;width:44px;border-radius:13px;background:var(--gold-dark);color:var(--gold);display:grid;place-items:center;border:1px solid var(--gold-edge)}
+           body.og-v37 .og-category-watch header .og-section-icon{background:var(--surface-2);border-color:var(--edge);color:var(--muted)}
+           body.og-v37 .tf-section header h2{grid-column:2;grid-row:1;font-size:clamp(20px,2.5vw,25px);font-weight:830;letter-spacing:-.5px;margin:0}
+          +body.og-v37 .tf-ranked header h2{grid-column:1/3}
+           body.og-v37 .tf-section header .og-category-subtitle{grid-column:2;grid-row:2;margin:1px 0 0;color:var(--muted);font-size:12px}
+           body.og-v37 .tf-section header > span:not(.og-section-icon){grid-column:3;grid-row:1/3;background:var(--gold-dark);border-color:var(--gold-edge);color:var(--gold);font-size:13px;font-weight:850;padding:5px 12px;border-radius:999px}
+           body.og-v37 .tf-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;align-items:start}
+          @@ -150,7 +151,7 @@ body.og-v37 :is(.og-shortcut,.og-dock-link).og-current:focus-visible{outline-col
+             body.og-v37 .hero h1 em{display:block}
+             body.og-v37 .og-search-wrap{height:52px}
+             body.og-v37 .og-search{font-size:16px}
+          -  body.og-v37 .og-shortcut{min-width:116px;min-height:64px;padding:10px 12px;font-size:12px}
+          +  body.og-v37 .og-shortcuts{display:none}
+             body.og-v37 .og-featured{margin:4px 0 25px}
+             body.og-v37 .og-featured-list{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;scrollbar-width:none;padding-bottom:3px}
+             body.og-v37 .og-featured-list::-webkit-scrollbar{display:none}
+          LOUNGE_DESIGN_PATCH
+      - name: Kontroller og bruk designendringen
+        id: apply
+        shell: bash
+        run: |
+          patch_file="$RUNNER_TEMP/oddsgen-lounge.patch"
+          trap 'rm -f "$patch_file"' EXIT
+          if git apply --reverse --check --index "$patch_file" 2>/dev/null; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+            echo 'Designet er allerede installert.'
+          else
+            git apply --check --index "$patch_file"
+            git apply --index "$patch_file"
+            git diff --cached --check
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Test generatoren
+        if: steps.apply.outputs.changed == 'true'
+        shell: bash
+        run: |
+          python -m unittest discover -s tests -q
+          for test_file in tests/*.cjs; do node "$test_file"; done
+      - name: Test mobilvisning i Chromium og WebKit
+        if: steps.apply.outputs.changed == 'true'
+        shell: bash
+        run: |
+          qa_dir="$(mktemp -d "$RUNNER_TEMP/oddsgen-mobile.XXXXXX")"
+          cat > "$qa_dir/check-mobile.cjs" <<'LOUNGE_MOBILE_TEST'
+          'use strict';
+
+          const assert = require('node:assert/strict');
+          const fs = require('node:fs');
+          const path = require('node:path');
+
+          const clock = new Date('2026-11-12T13:30:00Z');
+          const kickoff = '2026-11-12T19:45:00Z';
+          const origin = 'http://127.0.0.1:8123';
+          const home = "Joe's betting lounge";
+          const codes = ['O25', 'BTTS', 'H1O05', 'THO15', 'COO95', 'CAO45', 'O35', 'U25', 'U35', 'BTTSN'];
+          const markets = codes.map((code, index) => {
+            const quote = {price: 1.87, books: 4, lastUpdated: clock.toISOString()};
+            return {
+              id: String(index + 1),
+              home: index === 1 ? 'Søkelaget' : `Borussia Mönchengladbach Akademi ${index}`,
+              away: `FussballspielgemeinschaftInternational ${index}`,
+              league: 'Internasjonal klubbturnering for utviklingslag',
+              kickoff,
+              status: 'SCHEDULED',
+              formHome: 'WWDWL',
+              formAway: 'LDWLW',
+              odds: {[code]: quote},
+            };
+          });
+
+          function snapshot(hasQualified) {
+            const picks = markets.map((match, index) => ({
+              matchId: match.id,
+              home: match.home,
+              away: match.away,
+              league: match.league,
+              kickoff,
+              market: codes[index],
+              label: 'Over 2,5 mål i ordinær tid, inkludert tilleggstid',
+              price: 1.87,
+              category: 'safe',
+              qualificationTier: 'qualified',
+              conservativeProbability: 0.61,
+            }));
+            return {
+              editionDate: '2026-11-12',
+              generatedAt: clock.toISOString(),
+              finalSelection: {version: 40, rankedRecommendations: true},
+              matches: markets,
+              recommendations: hasQualified ? picks.slice(0, 7) : [],
+              safeBets: [{...picks[7], _candidateType: 'market'}],
+              highRisk: [{...picks[8], category: 'high', _candidateType: 'model'}],
+              interestingObjects: [picks[9]],
+            };
+          }
+
+          async function checkLayout(page, width, mobile) {
+            const layout = await page.evaluate(() => {
+              const rect = element => {
+                const box = element.getBoundingClientRect();
+                return {left: box.left, right: box.right, width: box.width, height: box.height};
+              };
+              const active = document.querySelector('.og-dock-link.og-current');
+              return {
+                viewport: document.documentElement.clientWidth,
+                windowWidth: window.innerWidth,
+                scrollWidth: document.documentElement.scrollWidth,
+                title: document.querySelector('h1').textContent.trim(),
+                titleColor: getComputedStyle(document.querySelector('h1 em')).color,
+                fontSize: Number.parseFloat(getComputedStyle(document.querySelector('#og-search')).fontSize),
+                bounds: Array.from(document.querySelectorAll(
+                  '.header,.identity,.refresh,.hero,.og-search-wrap,.tf-card,.mr-card,.og-dock,.og-dock-link',
+                )).filter(element => element.getClientRects().length).map(rect),
+                featuredHidden: getComputedStyle(document.querySelector('#og-featured')).display === 'none',
+              shortcutsHidden: getComputedStyle(document.querySelector('.og-shortcuts')).display === 'none',
+              dock: Array.from(document.querySelectorAll('.og-dock-link'))
+                  .filter(element => element.getClientRects().length).map(rect),
+                activeColor: getComputedStyle(active).backgroundColor,
+              };
+            });
+            assert.equal(layout.windowWidth, width, 'Layout viewport follows the device width');
+            assert.ok(layout.scrollWidth <= layout.viewport, 'Page has no horizontal scrolling');
+            assert.equal(layout.title, home);
+            assert.equal(layout.featuredHidden, true, 'Ranked editions hide the duplicate spotlight');
+            assert.equal(layout.shortcutsHidden, mobile, 'The dock replaces shortcuts on mobile');
+            assert.equal(layout.titleColor, 'rgb(230, 181, 68)');
+            for (const box of layout.bounds) {
+              assert.ok(box.left >= -1 && box.right <= layout.viewport + 1, 'Visible controls and cards stay inside the viewport');
+            }
+            if (mobile) {
+              assert.equal(layout.dock.length, 5);
+              assert.ok(layout.dock.every(box => box.height >= 44 && box.width >= 44));
+              assert.ok(layout.fontSize >= 16, 'Mobile search avoids automatic iOS zoom');
+              assert.equal(layout.activeColor, 'rgb(230, 181, 68)');
+            } else {
+              assert.equal(layout.dock.length, 0);
+            }
+          }
+
+          async function runCase(browser, site, width, height, mobile, hasQualified) {
+            const context = await browser.newContext({
+              viewport: {width, height},
+              isMobile: mobile,
+              hasTouch: mobile,
+              reducedMotion: 'reduce',
+            });
+            try {
+              const page = await context.newPage();
+              page.setDefaultTimeout(8000);
+              const pageErrors = [];
+              page.on('pageerror', error => pageErrors.push(error.message));
+              const data = snapshot(hasQualified);
+              await page.clock.setFixedTime(clock);
+              await page.route(`${origin}/**`, async route => {
+                const name = new URL(route.request().url()).pathname;
+                if (name === '/data/today.json') return route.fulfill({json: data});
+                if (name === '/data/tomorrow.json') return route.fulfill({status: 404});
+                const file = path.resolve(site, `.${name === '/' ? '/index.html' : name}`);
+                if (!file.startsWith(site + path.sep) || !fs.existsSync(file)) {
+                  return route.fulfill({status: 404});
+                }
+                return route.fulfill({path: file});
+              });
+              await page.goto(origin);
+              const rank = page.locator('#tf-qualified');
+              const cards = rank.locator('.tf-card:visible');
+              const market = page.locator('#og-markets');
+              await market.locator('.mr-card').first().waitFor();
+              await page.locator('#og-safe .tf-card').first().waitFor();
+              await checkLayout(page, width, mobile);
+
+              const tap = async locator => {
+                await locator.evaluate(element => element.scrollIntoView({block: 'center', inline: 'nearest'}));
+                return mobile ? locator.tap() : locator.click();
+              };
+              if (hasQualified) {
+                assert.equal(await cards.count(), 5);
+                await tap(rank.getByText('Vis 2 flere', {exact: true}));
+                assert.equal(await cards.count(), 7);
+                await tap(cards.first().locator('.tf-analysis summary'));
+                await cards.first().locator('.tf-probability').waitFor({state: 'visible'});
+                await checkLayout(page, width, mobile);
+                await page.locator('#og-search').fill('Søkelaget');
+                assert.equal(await cards.count(), 1);
+                assert.match(await cards.first().textContent(), /Søkelaget/);
+              } else {
+                await rank.locator('.tf-empty').waitFor({state: 'visible'});
+                await page.locator('#og-search').fill('ikke-eksisterende-lagnavn');
+                assert.equal(await page.locator('.tf-card:visible').count(), 0);
+              }
+              await tap(page.getByRole('button', {name: 'Tøm søket'}));
+              assert.equal(await page.locator('#og-search').inputValue(), '');
+              assert.equal(await page.locator('#og-safe .tf-card:visible').count(), 1);
+
+              const navigation = page.locator(mobile ? '#og-dock' : '.og-shortcuts');
+              await tap(navigation.locator('[href="#og-safe"]'));
+              assert.equal(await navigation.locator('[href="#og-safe"]').getAttribute('aria-current'), 'location');
+              await page.waitForFunction(() => {
+                const top = document.querySelector('#og-safe').getBoundingClientRect().top;
+                const header = document.querySelector('.header').getBoundingClientRect().bottom;
+                return top >= header - 1 && top < header + 40;
+              });
+              await tap(navigation.locator('[href="#og-markets"]'));
+              assert.equal(await navigation.locator('[href="#og-markets"]').getAttribute('aria-current'), 'location');
+              const filter = market.getByRole('button', {name: /^Mål ·/});
+              await tap(filter);
+              assert.equal(await filter.getAttribute('aria-pressed'), 'true');
+              const shownMarkets = market.locator('.mr-card:visible');
+              assert.ok(await shownMarkets.count() > 0);
+              assert.ok((await shownMarkets.evaluateAll(cards => cards.map(card => card.dataset.family)))
+                .every(family => family === 'goals'));
+              await tap(shownMarkets.first().locator('summary'));
+              await shownMarkets.first().locator('.mr-info').waitFor({state: 'visible'});
+              await checkLayout(page, width, mobile);
+              await tap(navigation.locator('[href="#toppen"]'));
+              await page.waitForFunction(() => window.scrollY < 2);
+              assert.deepEqual(pageErrors, []);
+              console.log(`PASS ${width}×${height} · ${hasQualified ? 'kvalifiserte spill' : 'tom kvalifisertliste'}`);
+            } finally {
+              await context.close();
+            }
+          }
+
+          async function main() {
+            const {chromium, webkit} = require('playwright');
+            const site = path.resolve('site');
+            for (const engine of [chromium, webkit]) {
+              const browser = await engine.launch();
+              try {
+                console.log(engine.name());
+                for (const [width, height, mobile, qualified] of [
+                  [320, 700, true, true],
+                  [375, 812, true, false],
+                  [390, 844, true, true],
+                  [430, 932, true, true],
+                  [844, 390, true, true],
+                  [1366, 900, false, true],
+                ]) {
+                  await runCase(browser, site, width, height, mobile, qualified);
+                }
+              } finally {
+                await browser.close();
+              }
+            }
+          }
+
+          if (require.main === module) {
+            main().catch(error => {
+              console.error(error);
+              process.exitCode = 1;
+            });
+          }
+          module.exports = {snapshot, clock};
+          LOUNGE_MOBILE_TEST
+          npm install --prefix "$qa_dir" --no-save --no-package-lock --no-audit --no-fund --ignore-scripts playwright@1.62.1
+          node "$qa_dir/node_modules/playwright/cli.js" install --with-deps chromium webkit
+          node "$qa_dir/check-mobile.cjs"
+      - name: Installer på main
+        if: steps.apply.outputs.changed == 'true'
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "Rett snarveier og tomme toppvalg på mobil"
+          git push origin HEAD:main
+      - name: Publiser designet
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run publish.yml --repo "$GITHUB_REPOSITORY" --ref main -f mode=deploy
