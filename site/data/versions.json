@@ -1,5 +1,31 @@
 [
   {
+    "date": "2026-11-12",
+    "before": "2026-11-12T07:58:51.301908+00:00",
+    "after": "2026-11-12T08:57:40.440983+00:00",
+    "added": [],
+    "removed": [],
+    "repriced": [
+      {
+        "matchId": "odds:3caa30ea2ac5a1be30724132ba10d82b",
+        "market": "H",
+        "oldPrice": 18.38,
+        "newPrice": 18.75
+      },
+      {
+        "matchId": "odds:87441c4ff41ea3d37812826345450408",
+        "market": "H",
+        "oldPrice": 11.0,
+        "newPrice": 11.31
+      }
+    ],
+    "changeCounts": {
+      "removed": 0,
+      "added": 0,
+      "repriced": 2
+    }
+  },
+  {
     "date": "2026-11-11",
     "before": "2026-11-11T19:14:05.989391+00:00",
     "after": "2026-11-11T19:17:18.717978+00:00",
