@@ -1,22 +1,22 @@
 {
   "schemaVersion": 42,
   "editionDate": "2026-11-13",
-  "editionGeneratedAt": "2026-11-13T19:09:40.888523+00:00",
-  "checkedAt": "2026-11-13T19:10:34.782194+00:00",
+  "editionGeneratedAt": "2026-11-13T19:13:58.932390+00:00",
+  "checkedAt": "2026-11-13T19:14:05.162789+00:00",
   "freshness": "current",
-  "analysisAgeHours": 0.01,
+  "analysisAgeHours": 0.0,
   "data": {
-    "upcomingMatches": 10,
-    "matchesWithOdds": 10,
+    "upcomingMatches": 9,
+    "matchesWithOdds": 9,
     "oddsCoveragePct": 100.0,
     "withModel": 9,
     "oddsFixturesWithLinkedForm": 9,
     "externalPredictions": 0,
     "qualifiedRecommendations": 0,
-    "safeBets": 5,
+    "safeBets": 4,
     "highRisk": 5,
     "interestingObjects": 0,
-    "oddsCreditsRemaining": 60
+    "oddsCreditsRemaining": 56
   },
   "issues": [
     "Ingen eksterne prognoser er koblet til analysen"
