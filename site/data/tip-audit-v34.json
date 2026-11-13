@@ -1,9 +1,9 @@
 {
   "schemaVersion": 34,
   "editionDate": "2026-11-13",
-  "revisionId": "193ccfb4a3dadb8bdc266e9c",
-  "editionGeneratedAt": "2026-11-13T08:56:37.927947+00:00",
-  "recordedAt": "2026-11-13T08:57:34.215Z",
+  "revisionId": "4d64647999ecb5ec247bbe31",
+  "editionGeneratedAt": "2026-11-13T13:15:38.407782+00:00",
+  "recordedAt": "2026-11-13T13:16:33.664Z",
   "summary": {
     "total": 10,
     "qualified": 0,
@@ -14,7 +14,7 @@
     "withFormModel": 10,
     "marketBased": 3,
     "expertWritten": 0,
-    "modelMarketConflicts": 1,
+    "modelMarketConflicts": 0,
     "unverifiedResults": 10
   },
   "notes": [
