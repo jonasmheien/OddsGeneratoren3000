@@ -1,6 +1,19 @@
 [
   {
     "date": "2026-11-13",
+    "before": "2026-11-13T19:03:43.968182+00:00",
+    "after": "2026-11-13T19:09:40.888523+00:00",
+    "added": [],
+    "removed": [],
+    "repriced": [],
+    "changeCounts": {
+      "removed": 0,
+      "added": 0,
+      "repriced": 0
+    }
+  },
+  {
+    "date": "2026-11-13",
     "before": "2026-11-13T16:05:30.585489+00:00",
     "after": "2026-11-13T19:03:43.968182+00:00",
     "added": [],
@@ -853,31 +866,6 @@
       "removed": 0,
       "added": 3,
       "repriced": 1
-    }
-  },
-  {
-    "date": "2026-11-05",
-    "before": "2026-11-05T11:08:43.764862+00:00",
-    "after": "2026-11-05T18:05:32.642721+00:00",
-    "added": [],
-    "removed": [
-      {
-        "matchId": "odds:35d4f8b2b7ec249fd22afd235c31ef2d",
-        "market": "B",
-        "home": "AS Monaco",
-        "away": "FC Nordsjaelland",
-        "label": "Borteseier",
-        "price": 6.75,
-        "category": "high",
-        "kickoff": "2026-11-05T20:00:00+00:00",
-        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
-      }
-    ],
-    "repriced": [],
-    "changeCounts": {
-      "removed": 1,
-      "added": 0,
-      "repriced": 0
     }
   }
 ]
