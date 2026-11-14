@@ -1237,6 +1237,134 @@
           }
         ]
       }
+    },
+    {
+      "id": "f567c61cda2608c5d0052d69",
+      "editionGeneratedAt": "2026-11-14T15:54:29.897477+00:00",
+      "recordedAt": "2026-11-14T15:55:23.410Z",
+      "summary": {
+        "total": 3,
+        "qualified": 0,
+        "high": 1,
+        "safe": 2,
+        "watch": 0,
+        "withBothFive": 0,
+        "withFormModel": 0,
+        "marketBased": 3,
+        "expertWritten": 0,
+        "modelMarketConflicts": 0,
+        "unverifiedResults": 3
+      },
+      "groups": {
+        "qualified": [],
+        "high": [
+          {
+            "matchId": "odds:beaf0bb6252d3b1d42a720aa385e9414",
+            "home": "Oviedo",
+            "away": "Girona FC",
+            "league": "La Liga 2",
+            "kickoff": "2026-11-14T20:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 2.4,
+            "probability": 0.3844,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-14T15:54:28Z",
+            "bookmakerCount": 21,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "odds_only",
+              "homeLastFive": "",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.38435228730226595,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          }
+        ],
+        "safe": [
+          {
+            "matchId": "odds:570ec7734e1f7d9e813ab0013291f5f5",
+            "home": "Almería",
+            "away": "Andorra CF",
+            "league": "La Liga 2",
+            "kickoff": "2026-11-14T17:30:00+00:00",
+            "market": "O15",
+            "label": "Over 1,5 mål",
+            "price": 1.2,
+            "probability": 0.7818,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-14T15:54:25Z",
+            "bookmakerCount": 4,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "odds_only",
+              "homeLastFive": "",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": null,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          },
+          {
+            "matchId": "odds:6bc4aff371a2a5eaf38c73700a5c14d4",
+            "home": "Mallorca",
+            "away": "Córdoba",
+            "league": "La Liga 2",
+            "kickoff": "2026-11-14T17:30:00+00:00",
+            "market": "U35",
+            "label": "Under 3,5 mål",
+            "price": 1.54,
+            "probability": 0.5958,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-14T15:54:25Z",
+            "bookmakerCount": 8,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "odds_only",
+              "homeLastFive": "",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.5958005249343833,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          }
+        ],
+        "watch": []
+      }
     }
   ]
 }

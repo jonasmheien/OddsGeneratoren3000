@@ -1,24 +1,25 @@
 {
   "schemaVersion": 42,
   "editionDate": "2026-11-14",
-  "editionGeneratedAt": "2026-11-14T08:50:32.354167+00:00",
-  "checkedAt": "2026-11-14T15:52:27.884675+00:00",
+  "editionGeneratedAt": "2026-11-14T15:54:29.897477+00:00",
+  "checkedAt": "2026-11-14T15:55:23.368925+00:00",
   "freshness": "current",
-  "analysisAgeHours": 7.03,
+  "analysisAgeHours": 0.01,
   "data": {
-    "upcomingMatches": 9,
-    "matchesWithOdds": 8,
-    "oddsCoveragePct": 88.9,
-    "withModel": 8,
-    "oddsFixturesWithLinkedForm": 8,
+    "upcomingMatches": 4,
+    "matchesWithOdds": 3,
+    "oddsCoveragePct": 75.0,
+    "withModel": 0,
+    "oddsFixturesWithLinkedForm": 0,
     "externalPredictions": 0,
-    "qualifiedRecommendations": 1,
+    "qualifiedRecommendations": 0,
     "safeBets": 2,
-    "highRisk": 5,
-    "interestingObjects": 1,
+    "highRisk": 1,
+    "interestingObjects": 0,
     "oddsCreditsRemaining": null
   },
   "issues": [
+    "Ingen odds-kamper har fullstendig koblet ekstern laghistorikk",
     "Ingen eksterne prognoser er koblet til analysen"
   ],
   "note": "Dekning og kildetilgang er ikke et mål på historisk kalibrering, avkastning eller positiv forventet verdi."
