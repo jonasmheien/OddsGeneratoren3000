@@ -30,6 +30,8 @@ from form_bridge_v30 import load_cached_history, attach_additional_form
 from odds_first_v25 import fixtures_from_quotes
 from international_v43 import INTERNATIONAL_KEYS
 from matchday_sports_v44 import discover_matchday_sports
+from morning_refresh_v29 import DEFERRED_ODDS_REFRESH, has_morning_edition, load_edition
+from nations_league_fixtures import verify_events as verify_nations_league_events
 from sportmonks_v45 import discover as discover_sportmonks
 from market_expansion import (TEAM_TOTAL_LINES, extend_goal_probabilities,
                               first_half_probabilities, corner_probabilities)
@@ -84,6 +86,18 @@ def sports_today(fixtures: list, now: datetime, max_sports: int = ODDS_SPORTS_PE
         if code in SPORT_BY_COMPETITION:
             counts[SPORT_BY_COMPETITION[code]] += 1
     return [key for key, count in sorted(counts.items(), key=lambda x: (-x[1], x[0]))[:max_sports]]
+
+
+def affordable_sports(sports, remaining, now, *, preview=False):
+    if remaining is None or not sports:
+        return sports
+    # Matchwinner and totals for one region cost two credits per league.
+    reserve = 20 if preview else 54
+    budget = max(0, (remaining - reserve) // 2)
+    # At low quota, spend only on the first daily edition, ahead of refreshes.
+    if budget == 0 and remaining >= 2 and not preview and not has_morning_edition(load_edition(), now):
+        budget = 1
+    return sports[:budget]
 
 
 def fetch_json(url: str, headers: dict | None = None):
@@ -790,15 +804,19 @@ def main():
         except (OSError,ValueError,TimeoutError) as exc:
             errors.append('Odds quota check: '+type(exc).__name__)
         status['oddsCreditsRemaining']=remaining
-        if remaining is not None:
-            # Each h2h + totals request costs two credits (one region).
-            # Reserve 48 credits and up to 6 credits for potential extras.
-            # Previews need only four credits for the two standard markets.
-            # Keep at least 20 credits for the regular morning analysis.
-            reserve=20 if preview_offset == 1 else 54
-            affordable=max(0,(remaining-reserve)//2)
-            sports=sports[:affordable]
+        discovered_sports_count = len(sports)
+        sports = affordable_sports(sports, remaining, now, preview=preview_offset == 1)
         status['requestedLeagues'] = sports[:ODDS_SPORTS_PER_RUN]
+        print(f'ODDS_QUOTA remaining={remaining} leagues_found={discovered_sports_count} '
+              f'leagues_requested={len(status["requestedLeagues"])}')
+        if (discovered_sports_count and not sports and preview_offset == 0
+                and status['fixtures'] == 'ok' and has_morning_edition(load_edition(), now)):
+            if OUT.resolve() != ROOT / 'site' / 'data' / 'today.json':
+                OUT.parent.mkdir(parents=True, exist_ok=True)
+                OUT.write_text(json.dumps({DEFERRED_ODDS_REFRESH: True, 'localDate': date.isoformat()}),
+                               encoding='utf-8')
+            print('Lav oddskvote. Beholder dagens publiserte utgave.')
+            return
         status['oddsMarketKeys'] = ['h2h', 'totals']
         for sport in sports[:ODDS_SPORTS_PER_RUN]:
             try:
@@ -809,6 +827,10 @@ def main():
                 odds_events.extend(items)
             except Exception as exc:
                 errors.append(f'Odds ({sport}): hentefeil ({type(exc).__name__})')
+        odds_events, fixture_check = verify_nations_league_events(odds_events, date, fetch_json)
+        if fixture_check is not None:
+            status['nationsLeagueFixtureCheck'] = fixture_check
+            print('NATIONS_LEAGUE_FIXTURES', fixture_check)
         if odds_events and (remaining is None or remaining >= 64):
             odds_events,extra_issues=fetch_extra_event_markets(sports,odds_events,now)
             errors.extend(extra_issues)

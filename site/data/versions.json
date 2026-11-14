@@ -1,5 +1,18 @@
 [
   {
+    "date": "2026-11-14",
+    "before": "2026-11-14T08:50:32.354167+00:00",
+    "after": "2026-11-14T09:51:32.765475+00:00",
+    "added": [],
+    "removed": [],
+    "repriced": [],
+    "changeCounts": {
+      "removed": 0,
+      "added": 0,
+      "repriced": 0
+    }
+  },
+  {
     "date": "2026-11-13",
     "before": "2026-11-13T19:09:40.888523+00:00",
     "after": "2026-11-13T19:13:58.932390+00:00",
@@ -746,86 +759,6 @@
     "repriced": [],
     "changeCounts": {
       "removed": 0,
-      "added": 0,
-      "repriced": 0
-    }
-  },
-  {
-    "date": "2026-11-06",
-    "before": "2026-11-06T11:00:28.984062+00:00",
-    "after": "2026-11-06T12:32:05.331112+00:00",
-    "added": [],
-    "removed": [
-      {
-        "matchId": "560640",
-        "market": "B",
-        "home": "Arsenal",
-        "away": "Hull City",
-        "label": "Borteseier",
-        "price": 17.95,
-        "category": "high",
-        "kickoff": "2026-11-07T15:00:00+00:00",
-        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
-      },
-      {
-        "matchId": "561934",
-        "market": "H",
-        "home": "Watford",
-        "away": "Middlesbrough",
-        "label": "Hjemmeseier",
-        "price": 5.25,
-        "category": "high",
-        "kickoff": "2026-11-07T15:00:00+00:00",
-        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
-      },
-      {
-        "matchId": "561935",
-        "market": "H",
-        "home": "Blackburn",
-        "away": "West Ham",
-        "label": "Hjemmeseier",
-        "price": 4.66,
-        "category": "high",
-        "kickoff": "2026-11-07T15:00:00+00:00",
-        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
-      },
-      {
-        "matchId": "564741",
-        "market": "H",
-        "home": "Valencia",
-        "away": "Real Madrid",
-        "label": "Hjemmeseier",
-        "price": 9.24,
-        "category": "high",
-        "kickoff": "2026-11-07T20:00:00+00:00",
-        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
-      },
-      {
-        "matchId": "564741",
-        "market": "U25",
-        "home": "Valencia",
-        "away": "Real Madrid",
-        "label": "Under 2,5 mål",
-        "price": 2.88,
-        "category": "high",
-        "kickoff": "2026-11-07T20:00:00+00:00",
-        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
-      },
-      {
-        "matchId": "565850",
-        "market": "U25",
-        "home": "Dortmund",
-        "away": "Elversberg",
-        "label": "Under 2,5 mål",
-        "price": 3.2,
-        "category": "high",
-        "kickoff": "2026-11-07T14:30:00+00:00",
-        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
-      }
-    ],
-    "repriced": [],
-    "changeCounts": {
-      "removed": 6,
       "added": 0,
       "repriced": 0
     }

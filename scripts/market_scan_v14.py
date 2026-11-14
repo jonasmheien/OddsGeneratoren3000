@@ -25,6 +25,7 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / 'scripts'))
 from build_data import SPORT_BY_COMPETITION, fixed_odds_event, iso_datetime, name_score, normalized
+from morning_refresh_v29 import DEFERRED_ODDS_REFRESH
 
 ODDS_URL = 'https://api.the-odds-api.com/v4'
 FD_URL = 'https://api.football-data.org/v4'
@@ -499,6 +500,8 @@ def main():
     a=p.parse_args()
     if not a.snapshot.exists():raise SystemExit('Kandidatfil finnes ikke')
     original=json.loads(a.snapshot.read_text(encoding='utf8'))
+    if original.get(DEFERRED_ODDS_REFRESH) is True:
+        return
     at=iso_datetime(original.get('generatedAt') or datetime.now(timezone.utc).isoformat())
     # No loss of core analysis if the optional scanner cannot fetch supplementary odds.
     try:

@@ -17,6 +17,7 @@ from quality_v20 import (dt, family, fresh_quote, number, overlaps, ranking, scr
                          rejection_reason, reference_probability)
 from recommend import MARKET_LABELS
 from final_selection_v40 import finalize as finalize_v40
+from morning_refresh_v29 import DEFERRED_ODDS_REFRESH
 
 
 def _candidate(match, code, quote, metrics, label=None, kind=None):
@@ -242,6 +243,8 @@ def main(path):
     if not target.is_file() or target.name == 'active.json' or target.parent.name == 'data':
         raise SystemExit('Refuse to modify active/public snapshots; candidate path required')
     obj = json.loads(target.read_text(encoding='utf-8'))
+    if obj.get(DEFERRED_ODDS_REFRESH) is True:
+        return
     obj = qualify(obj)
     temp = target.with_name(target.name+'.v20.tmp')
     temp.write_text(json.dumps(obj,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

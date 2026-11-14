@@ -8,6 +8,7 @@ from urllib.parse import urlparse
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 from international_v43 import (INTERNATIONAL_KEYS, available_on_day,
                                discover_international, prioritize_sports)
+from nations_league_fixtures import verify_events
 from odds_first_v25 import COMPETITIONS, fixtures_from_quotes
 
 NOW = datetime(2026, 11, 12, 8, 15, tzinfo=timezone.utc)
@@ -48,6 +49,31 @@ class InternationalV43Tests(unittest.TestCase):
         self.assertIsNone(fixture['score']['fullTime']['home'])
         self.assertNotIn('model', fixture)
         self.assertIsNone(fixture['formSource'])
+
+    def test_calendar_verifies_both_countries_before_creating_a_fixture(self):
+        ireland = event('correct-ireland', 'Austria', 'Republic of Ireland')
+        iceland = event('incorrect-iceland', 'Austria', 'Iceland')
+        wrong_time = event('incorrect-time', 'Austria', 'Ireland', '2026-11-12T15:45:00Z')
+        official = [{'kickOffTime': {'dateTime': ireland['commence_time']},
+                     'homeTeam': {'teamCode': 'AUT'}, 'awayTeam': {'teamCode': 'IRL'},
+                     'status': 'UPCOMING'}]
+        vetted, status = verify_events([iceland, wrong_time, ireland], DAY, lambda _: official)
+        self.assertEqual(status, {'state': 'checked', 'excluded': 2})
+        self.assertEqual([m['awayTeam']['name'] for m in fixtures_from_quotes(vetted, NOW, DAY)],
+                         ['Republic of Ireland'])
+
+    def test_calendar_outage_withholds_both_conflicting_listings(self):
+        ireland = event('correct-ireland', 'Austria', 'Ireland')
+        iceland = event('incorrect-iceland', 'Austria', 'Iceland')
+        other = event('other-fixture', 'France', 'Italy')
+        domestic = {**event('domestic-fixture', 'Arsenal', 'Chelsea'), 'sport_key': 'soccer_epl'}
+
+        def offline(_):
+            raise TimeoutError
+
+        vetted, status = verify_events([ireland, other, domestic, iceland], DAY, offline)
+        self.assertEqual(vetted, [other, domestic])
+        self.assertEqual(status, {'state': 'unavailable', 'error': 'TimeoutError', 'excluded': 2})
 
     def test_discovery_only_uses_catalogued_active_sports_and_real_events(self):
         urls = []

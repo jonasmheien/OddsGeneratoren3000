@@ -18,6 +18,7 @@ from versions_v22 import record_revision, publish_version_history
 from expanded_sources_v23 import results_for
 from sportmonks_v45 import results_for as sportmonks_results_for
 from market_expansion import TEAM_TOTAL_LINES
+from morning_refresh_v29 import DEFERRED_ODDS_REFRESH, has_morning_edition
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE = ROOT / 'state' / 'active.json'
@@ -283,27 +284,35 @@ def create_edition(new_snapshot: dict, prior: dict | None, api_key: str):
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('mode', choices=('daily','results','deploy','is-current'))
-    args = p.parse_args()
+    mode = p.parse_args().mode
     previous = read_json(STATE) or published_edition_fallback()
-    if args.mode == 'is-current':
+    if mode == 'is-current':
         # Used by the morning retry schedule: never spend API credits twice on a good edition.
         from zoneinfo import ZoneInfo
         today = datetime.now(ZoneInfo('Europe/Oslo')).date().isoformat()
         print('CURRENT_EDITION='+str(bool(previous and previous.get('editionDate') == today)).lower())
         raise SystemExit(0 if previous and previous.get('editionDate') == today else 1)
-    if args.mode == 'daily':
+    if mode == 'daily':
         # The data builder writes a candidate; publishing happens only after all checks.
         data = read_json(CANDIDATE)
         if data is None:
             raise SystemExit('Snapshot not generated')
-        revised = create_edition(data, previous, os.getenv('FOOTBALL_DATA_API_KEY','').strip())
-        if previous and os.getenv('FORCE_REPLACE_EDITION') == '1':
-            record_revision(previous, revised, ROOT)
-        save_active(revised)
-        if CANDIDATE != PUBLIC:
-            CANDIDATE.unlink(missing_ok=True)
-        print('EDITION_CREATED='+str(revised.get('editionDate')))
-    elif args.mode == 'results':
+        if not isinstance(data, dict) or data.get(DEFERRED_ODDS_REFRESH) is not True:
+            revised = create_edition(data, previous, os.getenv('FOOTBALL_DATA_API_KEY','').strip())
+            if previous and os.getenv('FORCE_REPLACE_EDITION') == '1':
+                record_revision(previous, revised, ROOT)
+            save_active(revised)
+            if CANDIDATE != PUBLIC:
+                CANDIDATE.unlink(missing_ok=True)
+            print('EDITION_CREATED='+str(revised.get('editionDate')))
+            return
+        if (CANDIDATE.resolve() == PUBLIC or not has_morning_edition(previous, datetime.now(timezone.utc))
+                or data.get('localDate') != (previous.get('editionDate') or previous.get('localDate'))):
+            raise SystemExit('No current edition to retain after odds quota deferral')
+        CANDIDATE.unlink()
+        mode = 'results'
+        print('ODDS_REFRESH_DEFERRED')
+    if mode == 'results':
         if not previous:
             print('NO_ACTIVE_EDITION')
             return

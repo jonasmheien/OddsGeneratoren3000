@@ -58,7 +58,7 @@ def preview_sports(selected: list[str], *, max_sports: int = 2) -> list[str]:
     return unique[:max(0, max_sports)]
 
 
-def _utc(value):
+def parse_kickoff(value):
     if not isinstance(value, str):
         return None
     try:
@@ -66,7 +66,7 @@ def _utc(value):
         if parsed.tzinfo is None:
             return None
         return parsed.astimezone(timezone.utc)
-    except ValueError:
+    except (ValueError, OverflowError):
         return None
 
 
@@ -122,7 +122,7 @@ def _already_listed(name_home, name_away, kickoff, existing):
             continue
         if away not in {_fixture_team_key(x) for x in a_names if isinstance(x, str)}:
             continue
-        current = _utc(item.get('utcDate'))
+        current = parse_kickoff(item.get('utcDate'))
         if current is not None and abs((current - kickoff).total_seconds()) <= 3600:
             return True
     return False
@@ -146,7 +146,7 @@ def fixtures_from_quotes(events: list, now: datetime, target_date: date,
         sport = event.get('sport_key')
         if sport not in COMPETITIONS:
             continue
-        kickoff = _utc(event.get('commence_time'))
+        kickoff = parse_kickoff(event.get('commence_time'))
         if kickoff is None or kickoff <= now or kickoff.astimezone(OSLO).date() != target_date:
             continue
         home, away = _team_name(event.get('home_team')), _team_name(event.get('away_team'))

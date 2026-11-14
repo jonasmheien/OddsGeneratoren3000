@@ -25,6 +25,7 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / 'scripts'))
 from build_data import iso_datetime, name_score
+from morning_refresh_v29 import DEFERRED_ODDS_REFRESH
 
 KNOWN_SITES = {
     'forebet': ('Forebet', ('forebet.com',)),
@@ -255,6 +256,8 @@ def main():
     args=p.parse_args()
     if not args.snapshot.is_file():raise SystemExit('Kandidatfil mangler')
     original=json.loads(args.snapshot.read_text(encoding='utf-8'))
+    if original.get(DEFERRED_ODDS_REFRESH) is True:
+        return
     at=iso_datetime(original.get('generatedAt') or datetime.now(timezone.utc).isoformat())
     try:
         changed=build(original,at,ROOT/'data'/'score_predictions.csv',

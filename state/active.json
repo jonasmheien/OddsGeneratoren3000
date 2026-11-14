@@ -333,11 +333,11 @@
     }
   ],
   "coverage": {
-    "upcomingMatches": 10,
-    "matchedOdds": 9,
-    "withModel": 9,
-    "oddsWithVerifiedForm": 9,
-    "nationalWithModel": 9,
+    "upcomingMatches": 9,
+    "matchedOdds": 8,
+    "withModel": 8,
+    "oddsWithVerifiedForm": 8,
+    "nationalWithModel": 8,
     "externalPredictions": 0,
     "manualPredictions": 0,
     "apiPredictions": 0,
@@ -433,9 +433,9 @@
       "totals"
     ],
     "extraEventsLoaded": 1,
-    "oddsEventCount": 35,
+    "oddsEventCount": 34,
     "oddsFixtureSource": "The Odds API (bookmaker listings)",
-    "oddsFirstFixtures": 9,
+    "oddsFirstFixtures": 8,
     "externalPredictionsStatus": "not_configured",
     "nationalForm": {
       "state": "ok",
@@ -445,9 +445,9 @@
     },
     "coverageByLeague": {
       "ODDS-UNL": {
-        "upcoming": 9,
-        "withOdds": 9,
-        "withModel": 9,
+        "upcoming": 8,
+        "withOdds": 8,
+        "withModel": 8,
         "eligible": 1
       },
       "BSA": {
@@ -458,13 +458,17 @@
       }
     },
     "analysisReadiness": {
-      "upcoming": 10,
-      "matchedOdds": 9,
-      "withModel": 9,
+      "upcoming": 9,
+      "matchedOdds": 8,
+      "withModel": 8,
       "recommended": 1,
       "safe": 2,
       "highRisk": 5,
       "message": "analysert"
+    },
+    "nationsLeagueFixtureCheck": {
+      "state": "checked",
+      "excluded": 1
     }
   },
   "errors": [
@@ -1778,424 +1782,6 @@
           "books": 3,
           "lastUpdated": "2026-11-14T08:50:10Z",
           "sampleBook": "betsson"
-        }
-      },
-      "predictions": []
-    },
-    {
-      "id": "odds:30b32c194d8c2ae2bc5a209be5df44a9",
-      "league": "UEFA Nations League",
-      "leagueCode": "ODDS-UNL",
-      "leagueCrest": null,
-      "homeCrest": null,
-      "awayCrest": null,
-      "home": "Austria",
-      "away": "Iceland",
-      "homeAliases": [
-        "Austria"
-      ],
-      "awayAliases": [
-        "Iceland"
-      ],
-      "kickoff": "2026-11-14T19:45:00+00:00",
-      "status": "SCHEDULED",
-      "formHome": "DDWWDLWWWWDWLWWWWW",
-      "formAway": "DWWDLLDDLLWDLLWLW",
-      "formMatchesHome": [
-        {
-          "matchId": "national-match:2026-10-04:national:KOS:national:AUT",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-10-04:national:KOS:national:AUT",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-10-03T22:00:00Z",
-          "localDate": "2026-10-04",
-          "homeTeam": {
-            "id": "national:KOS",
-            "name": "Kosovo"
-          },
-          "awayTeam": {
-            "id": "national:AUT",
-            "name": "Austria"
-          },
-          "homeGoals": 1,
-          "awayGoals": 1,
-          "analyzedTeamId": "national:AUT",
-          "analyzedTeamSide": "away",
-          "analyzedTeamGoals": 1,
-          "opponentGoals": 1,
-          "resultForAnalyzedTeam": "D",
-          "venueLabel": "Borte",
-          "opponent": "Kosovo",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-10-01:national:IRL:national:AUT",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-10-01:national:IRL:national:AUT",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-09-30T22:00:00Z",
-          "localDate": "2026-10-01",
-          "homeTeam": {
-            "id": "national:IRL",
-            "name": "Republic of Ireland"
-          },
-          "awayTeam": {
-            "id": "national:AUT",
-            "name": "Austria"
-          },
-          "homeGoals": 2,
-          "awayGoals": 2,
-          "analyzedTeamId": "national:AUT",
-          "analyzedTeamSide": "away",
-          "analyzedTeamGoals": 2,
-          "opponentGoals": 2,
-          "resultForAnalyzedTeam": "D",
-          "venueLabel": "Borte",
-          "opponent": "Republic of Ireland",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-09-27:national:AUT:national:KOS",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-09-27:national:AUT:national:KOS",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-09-26T22:00:00Z",
-          "localDate": "2026-09-27",
-          "homeTeam": {
-            "id": "national:AUT",
-            "name": "Austria"
-          },
-          "awayTeam": {
-            "id": "national:KOS",
-            "name": "Kosovo"
-          },
-          "homeGoals": 3,
-          "awayGoals": 1,
-          "analyzedTeamId": "national:AUT",
-          "analyzedTeamSide": "home",
-          "analyzedTeamGoals": 3,
-          "opponentGoals": 1,
-          "resultForAnalyzedTeam": "W",
-          "venueLabel": "Hjemme",
-          "opponent": "Kosovo",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-09-24:national:AUT:national:ISR",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-09-24:national:AUT:national:ISR",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-09-23T22:00:00Z",
-          "localDate": "2026-09-24",
-          "homeTeam": {
-            "id": "national:AUT",
-            "name": "Austria"
-          },
-          "awayTeam": {
-            "id": "national:ISR",
-            "name": "Israel"
-          },
-          "homeGoals": 3,
-          "awayGoals": 1,
-          "analyzedTeamId": "national:AUT",
-          "analyzedTeamSide": "home",
-          "analyzedTeamGoals": 3,
-          "opponentGoals": 1,
-          "resultForAnalyzedTeam": "W",
-          "venueLabel": "Hjemme",
-          "opponent": "Israel",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-06-27:national-name:algeria:national:AUT",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-06-27:national-name:algeria:national:AUT",
-          "competition": "FIFA World Cup",
-          "competitionCode": "",
-          "kickoffUtc": "2026-06-26T22:00:00Z",
-          "localDate": "2026-06-27",
-          "homeTeam": {
-            "id": "national-name:algeria",
-            "name": "Algeria"
-          },
-          "awayTeam": {
-            "id": "national:AUT",
-            "name": "Austria"
-          },
-          "homeGoals": 3,
-          "awayGoals": 3,
-          "analyzedTeamId": "national:AUT",
-          "analyzedTeamSide": "away",
-          "analyzedTeamGoals": 3,
-          "opponentGoals": 3,
-          "resultForAnalyzedTeam": "D",
-          "venueLabel": "Nøytral bane",
-          "opponent": "Algeria",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true,
-          "neutralVenue": true
-        }
-      ],
-      "formMatchesAway": [
-        {
-          "matchId": "national-match:2026-10-06:national:EST:national:ISL",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-10-06:national:EST:national:ISL",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-10-05T22:00:00Z",
-          "localDate": "2026-10-06",
-          "homeTeam": {
-            "id": "national:EST",
-            "name": "Estonia"
-          },
-          "awayTeam": {
-            "id": "national:ISL",
-            "name": "Iceland"
-          },
-          "homeGoals": 0,
-          "awayGoals": 0,
-          "analyzedTeamId": "national:ISL",
-          "analyzedTeamSide": "away",
-          "analyzedTeamGoals": 0,
-          "opponentGoals": 0,
-          "resultForAnalyzedTeam": "D",
-          "venueLabel": "Borte",
-          "opponent": "Estonia",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-10-03:national:ISL:national:BUL",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-10-03:national:ISL:national:BUL",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-10-02T22:00:00Z",
-          "localDate": "2026-10-03",
-          "homeTeam": {
-            "id": "national:ISL",
-            "name": "Iceland"
-          },
-          "awayTeam": {
-            "id": "national:BUL",
-            "name": "Bulgaria"
-          },
-          "homeGoals": 3,
-          "awayGoals": 0,
-          "analyzedTeamId": "national:ISL",
-          "analyzedTeamSide": "home",
-          "analyzedTeamGoals": 3,
-          "opponentGoals": 0,
-          "resultForAnalyzedTeam": "W",
-          "venueLabel": "Hjemme",
-          "opponent": "Bulgaria",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-09-29:national:LUX:national:ISL",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-09-29:national:LUX:national:ISL",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-09-28T22:00:00Z",
-          "localDate": "2026-09-29",
-          "homeTeam": {
-            "id": "national:LUX",
-            "name": "Luxembourg"
-          },
-          "awayTeam": {
-            "id": "national:ISL",
-            "name": "Iceland"
-          },
-          "homeGoals": 0,
-          "awayGoals": 3,
-          "analyzedTeamId": "national:ISL",
-          "analyzedTeamSide": "away",
-          "analyzedTeamGoals": 3,
-          "opponentGoals": 0,
-          "resultForAnalyzedTeam": "W",
-          "venueLabel": "Borte",
-          "opponent": "Luxembourg",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-09-26:national:ISL:national:EST",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-09-26:national:ISL:national:EST",
-          "competition": "UEFA Nations League",
-          "competitionCode": "",
-          "kickoffUtc": "2026-09-25T22:00:00Z",
-          "localDate": "2026-09-26",
-          "homeTeam": {
-            "id": "national:ISL",
-            "name": "Iceland"
-          },
-          "awayTeam": {
-            "id": "national:EST",
-            "name": "Estonia"
-          },
-          "homeGoals": 1,
-          "awayGoals": 1,
-          "analyzedTeamId": "national:ISL",
-          "analyzedTeamSide": "home",
-          "analyzedTeamGoals": 1,
-          "opponentGoals": 1,
-          "resultForAnalyzedTeam": "D",
-          "venueLabel": "Hjemme",
-          "opponent": "Estonia",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true
-        },
-        {
-          "matchId": "national-match:2026-06-09:national-name:argentina:national:ISL",
-          "source": "International football results (Mart Jürisoo)",
-          "sourceMatchId": "national-match:2026-06-09:national-name:argentina:national:ISL",
-          "competition": "Friendly",
-          "competitionCode": "",
-          "kickoffUtc": "2026-06-08T22:00:00Z",
-          "localDate": "2026-06-09",
-          "homeTeam": {
-            "id": "national-name:argentina",
-            "name": "Argentina"
-          },
-          "awayTeam": {
-            "id": "national:ISL",
-            "name": "Iceland"
-          },
-          "homeGoals": 3,
-          "awayGoals": 0,
-          "analyzedTeamId": "national:ISL",
-          "analyzedTeamSide": "away",
-          "analyzedTeamGoals": 0,
-          "opponentGoals": 3,
-          "resultForAnalyzedTeam": "L",
-          "venueLabel": "Nøytral bane",
-          "opponent": "Argentina",
-          "status": "FINISHED",
-          "verified": true,
-          "displayComplete": true,
-          "dateOnly": true,
-          "neutralVenue": true
-        }
-      ],
-      "formHistoryDiagnostics": {
-        "home": {
-          "verified": 18,
-          "displayable": 5,
-          "issues": []
-        },
-        "away": {
-          "verified": 17,
-          "displayable": 5,
-          "issues": []
-        }
-      },
-      "model": {
-        "probabilities": {
-          "H": 0.6108,
-          "U": 0.1959,
-          "B": 0.1933,
-          "O25": 0.6695,
-          "U25": 0.3305,
-          "O35": 0.4522,
-          "BTTS": 0.6248,
-          "O15": 0.8587,
-          "U15": 0.1413,
-          "U35": 0.5475,
-          "BTTSN": 0.3752,
-          "THO05": 0.8946,
-          "THU05": 0.1054,
-          "THO15": 0.6575,
-          "THU15": 0.3425,
-          "THO25": 0.3907,
-          "THU25": 0.6093,
-          "TAO05": 0.6988,
-          "TAU05": 0.3012,
-          "TAO15": 0.3374,
-          "TAU15": 0.6626,
-          "TAO25": 0.1205,
-          "TAU25": 0.8795
-        },
-        "expectedGoals": [
-          2.25,
-          1.2
-        ],
-        "sample": [
-          18,
-          17
-        ],
-        "quality": "basic",
-        "effectiveSample": [
-          9.54,
-          8.16
-        ],
-        "modelMethod": "national_strength_v49",
-        "historyWindowDays": 548
-      },
-      "odds": {
-        "H": {
-          "price": 1.65,
-          "source": "The Odds API · bookmaker-median",
-          "books": 5,
-          "lastUpdated": "2026-11-14T08:50:10Z",
-          "sampleBook": "betanysports"
-        },
-        "B": {
-          "price": 5.35,
-          "source": "The Odds API · bookmaker-median",
-          "books": 5,
-          "lastUpdated": "2026-11-14T08:50:10Z",
-          "sampleBook": "pinnacle"
-        },
-        "U": {
-          "price": 3.7,
-          "source": "The Odds API · bookmaker-median",
-          "books": 5,
-          "lastUpdated": "2026-11-14T08:50:10Z",
-          "sampleBook": "mybookieag"
-        },
-        "O25": {
-          "price": 1.9,
-          "source": "The Odds API · bookmaker-median",
-          "books": 5,
-          "lastUpdated": "2026-11-14T08:50:10Z",
-          "sampleBook": "betsson"
-        },
-        "U25": {
-          "price": 1.85,
-          "source": "The Odds API · bookmaker-median",
-          "books": 5,
-          "lastUpdated": "2026-11-14T08:50:10Z",
-          "sampleBook": "mybookieag"
         }
       },
       "predictions": []
@@ -4502,7 +4088,7 @@
       "Hjørnespark": 0,
       "Kort": 0,
       "Målscorer": 0,
-      "Mål": 39,
+      "Mål": 36,
       "Lagmål": 0,
       "1. omgang": 0,
       "Begge lag scorer": 2
@@ -4526,7 +4112,7 @@
       {
         "key": "goals",
         "label": "Mål",
-        "availableQuotes": 39
+        "availableQuotes": 36
       },
       {
         "key": "team_goals",
@@ -4574,20 +4160,6 @@
         "consensus": null,
         "ownModel": {
           "homeGoals": 1,
-          "awayGoals": 1,
-          "method": "Uavhengig Poisson-modell fra registrerte kampresultater"
-        }
-      },
-      {
-        "matchId": "odds:30b32c194d8c2ae2bc5a209be5df44a9",
-        "home": "Austria",
-        "away": "Iceland",
-        "kickoff": "2026-11-14T19:45:00+00:00",
-        "league": "UEFA Nations League",
-        "sources": [],
-        "consensus": null,
-        "ownModel": {
-          "homeGoals": 2,
           "awayGoals": 1,
           "method": "Uavhengig Poisson-modell fra registrerte kampresultater"
         }
@@ -4719,22 +4291,6 @@
       "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
     },
     {
-      "matchId": "odds:30b32c194d8c2ae2bc5a209be5df44a9",
-      "home": "Austria",
-      "away": "Iceland",
-      "league": "UEFA Nations League",
-      "kickoff": "2026-11-14T19:45:00+00:00",
-      "market": "O25",
-      "marketType": "goals",
-      "label": "Over 2,5 mål",
-      "price": 1.9,
-      "probability": 0.6695,
-      "oddsUpdatedAt": "2026-11-14T08:50:10Z",
-      "bookmakers": 5,
-      "status": "observation",
-      "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
-    },
-    {
       "matchId": "odds:d548fa34308b91eb158670eb18e1deae",
       "home": "Georgia",
       "away": "Hungary",
@@ -4797,16 +4353,32 @@
       "bookmakers": 1,
       "status": "observation",
       "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+    },
+    {
+      "matchId": "odds:159554f486f93d1d8d4213c570117a0e",
+      "home": "Portugal",
+      "away": "Denmark",
+      "league": "UEFA Nations League",
+      "kickoff": "2026-11-14T19:45:00+00:00",
+      "market": "O35",
+      "marketType": "goals",
+      "label": "Over 3,5 mål",
+      "price": 2.31,
+      "probability": 0.4701,
+      "oddsUpdatedAt": "2026-11-14T08:50:07Z",
+      "bookmakers": 4,
+      "status": "observation",
+      "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
     }
   ],
   "modelVersion": "2.0-foundation",
   "qualityAudit": {
-    "screened": 59,
+    "screened": 54,
     "qualified": 1,
     "topLimit": 5,
     "observations": 8,
     "rejections": {
-      "for_lav_konservativ_verdi": 56,
+      "for_lav_konservativ_verdi": 51,
       "svak_bookmakerdekning": 2
     },
     "calibrated": false,
@@ -4815,32 +4387,6 @@
     "whyNoPicks": null
   },
   "interestingObjects": [
-    {
-      "matchId": "odds:30b32c194d8c2ae2bc5a209be5df44a9",
-      "home": "Austria",
-      "away": "Iceland",
-      "league": "UEFA Nations League",
-      "kickoff": "2026-11-14T19:45:00+00:00",
-      "market": "O25",
-      "marketType": "goals",
-      "label": "Over 2,5 mål",
-      "price": 1.9,
-      "probability": 0.6695,
-      "oddsUpdatedAt": "2026-11-14T08:50:10Z",
-      "bookmakers": 5,
-      "status": "observation",
-      "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene",
-      "marketIdentity": {
-        "family": "total_goals",
-        "period": "full_time",
-        "line": 2.5,
-        "subject": null,
-        "outcome": "over"
-      },
-      "fixtureKey": "2026-11-14|austria|iceland",
-      "qualificationTier": "observation",
-      "selectionId": "v40:5bdfcde1e064c0b5da35"
-    },
     {
       "matchId": "odds:3ce5eabe80d52d3ed6056b6c141bbea8",
       "home": "Romania",
@@ -4875,7 +4421,7 @@
     "categories": {
       "safe": 2,
       "high": 5,
-      "watch": 2
+      "watch": 1
     },
     "target": [
       3,
@@ -4887,7 +4433,7 @@
       "watch": "For få konfliktfrie, kildebaserte kandidater."
     },
     "rejected": {
-      "same_fixture_or_correlated_outcome": 16,
+      "same_fixture_or_correlated_outcome": 17,
       "category_full": 3
     },
     "trace": [
@@ -5013,13 +4559,6 @@
         "selectedMarket": "B"
       },
       {
-        "fixture": "2026-11-14|austria|iceland",
-        "selectionId": "v40:5bdfcde1e064c0b5da35",
-        "market": "O25",
-        "group": "watch",
-        "reason": "selected"
-      },
-      {
         "fixture": "2026-11-14|romania|poland",
         "selectionId": "v40:90d17d737c45c991c861",
         "market": "B",
@@ -5029,6 +4568,12 @@
       {
         "fixture": "2026-11-14|northernireland|ukraine",
         "market": "H",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "H"
+      },
+      {
+        "fixture": "2026-11-14|portugal|denmark",
+        "market": "O35",
         "reason": "same_fixture_or_correlated_outcome",
         "selectedMarket": "H"
       },
@@ -5054,5 +4599,17 @@
   },
   "editionDate": "2026-11-14",
   "resultUpdatedAt": null,
-  "editionLocked": true
+  "editionLocked": true,
+  "fixtureCorrection": {
+    "checkedAt": "2026-11-14T09:51:32.765475+00:00",
+    "source": "https://www.uefa.com/uefanationsleague/news/02a2-1fea18abbcbc-456e846509e7-1000--uefa-nations-league-all-the-league-phase-fixtures-f/",
+    "excludedFixtures": [
+      {
+        "matchId": "odds:30b32c194d8c2ae2bc5a209be5df44a9",
+        "home": "Austria",
+        "away": "Iceland",
+        "kickoff": "2026-11-14T19:45:00+00:00"
+      }
+    ]
+  }
 }
