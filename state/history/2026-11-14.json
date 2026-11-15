@@ -1,0 +1,902 @@
+{
+  "version": 3,
+  "recommendations": [],
+  "safeBets": [
+    {
+      "matchId": "odds:570ec7734e1f7d9e813ab0013291f5f5",
+      "home": "Almería",
+      "away": "Andorra CF",
+      "kickoff": "2026-11-14T17:30:00+00:00",
+      "league": "La Liga 2",
+      "market": "O15",
+      "marketType": "total_goals",
+      "label": "Over 1,5 mål",
+      "price": 1.2,
+      "bookmakers": 4,
+      "oddsUpdatedAt": "2026-11-14T15:54:25Z",
+      "oddsSource": "The Odds API · bookmaker-median",
+      "probability": 0.7818,
+      "category": "safe",
+      "qualificationTier": "market",
+      "_candidateType": "market",
+      "rationale": [
+        "Markedsbasert kandidat: omtrent 78 % etter bookmaker-marginkorreksjon.",
+        "Pris fra 4 bookmakere. Ikke dokumentert spillverdi."
+      ],
+      "fixtureKey": "2026-11-14|almeria|andorracf",
+      "marketIdentity": {
+        "family": "total_goals",
+        "period": "full_time",
+        "line": 1.5,
+        "subject": null,
+        "outcome": "over"
+      },
+      "selectionId": "v40:611570727b649258669f",
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "matchId": "odds:6bc4aff371a2a5eaf38c73700a5c14d4",
+      "home": "Mallorca",
+      "away": "Córdoba",
+      "kickoff": "2026-11-14T17:30:00+00:00",
+      "league": "La Liga 2",
+      "market": "U35",
+      "marketType": "total_goals",
+      "label": "Under 3,5 mål",
+      "price": 1.54,
+      "bookmakers": 8,
+      "oddsUpdatedAt": "2026-11-14T15:54:25Z",
+      "oddsSource": "The Odds API · bookmaker-median",
+      "probability": 0.5958,
+      "category": "safe",
+      "qualificationTier": "market",
+      "_candidateType": "market",
+      "rationale": [
+        "Markedsbasert kandidat: omtrent 60 % etter bookmaker-marginkorreksjon.",
+        "Pris fra 8 bookmakere. Ikke dokumentert spillverdi."
+      ],
+      "fixtureKey": "2026-11-14|mallorca|cordoba",
+      "marketIdentity": {
+        "family": "total_goals",
+        "period": "full_time",
+        "line": 3.5,
+        "subject": null,
+        "outcome": "under"
+      },
+      "selectionId": "v40:7b5ff7ad52089a857eab",
+      "result": {
+        "status": "scheduled"
+      }
+    }
+  ],
+  "highRisk": [
+    {
+      "matchId": "odds:beaf0bb6252d3b1d42a720aa385e9414",
+      "home": "Oviedo",
+      "away": "Girona FC",
+      "kickoff": "2026-11-14T20:00:00+00:00",
+      "league": "La Liga 2",
+      "market": "H",
+      "marketType": "match_result",
+      "label": "Hjemmeseier",
+      "price": 2.4,
+      "bookmakers": 21,
+      "oddsUpdatedAt": "2026-11-14T15:54:28Z",
+      "oddsSource": "The Odds API · bookmaker-median",
+      "probability": 0.3844,
+      "category": "high",
+      "qualificationTier": "market",
+      "_candidateType": "market",
+      "rationale": [
+        "Bookmakerbasert risikokandidat: markedsanslag rundt 38 %.",
+        "Ingen dokumentert positiv spillverdi."
+      ],
+      "fixtureKey": "2026-11-14|oviedo|gironafc",
+      "marketIdentity": {
+        "family": "match_result",
+        "period": "full_time",
+        "line": null,
+        "subject": null,
+        "outcome": "home"
+      },
+      "selectionId": "v40:049cd865f798c4ad4d59",
+      "result": {
+        "status": "scheduled"
+      }
+    }
+  ],
+  "coverage": {
+    "upcomingMatches": 4,
+    "matchedOdds": 3,
+    "withModel": 0,
+    "oddsWithVerifiedForm": 0,
+    "nationalWithModel": 0,
+    "externalPredictions": 0,
+    "manualPredictions": 0,
+    "apiPredictions": 0,
+    "safeFound": 2,
+    "highFound": 1,
+    "targetPerCategory": [
+      3,
+      5
+    ],
+    "qualified": 0
+  },
+  "sources": [
+    {
+      "name": "football-data.org",
+      "role": "Kampdata og form",
+      "state": "connected"
+    },
+    {
+      "name": "The Odds API",
+      "role": "Bookmakerodds",
+      "state": "connected"
+    },
+    {
+      "name": "API-Football Predictions",
+      "role": "Uavhengig modell",
+      "state": "not_connected"
+    },
+    {
+      "name": "Eksterne prognoser",
+      "role": "Kildeangitte, manuelt innlagte vurderinger",
+      "state": "not_connected"
+    },
+    {
+      "name": "Sportmonks",
+      "role": "Verifisert kampform og oppsett i Danmark og Skottland",
+      "state": "connected"
+    }
+  ],
+  "visualAssets": {
+    "licensedCrests": false
+  },
+  "qualityGate": {
+    "minimumFormMatchesPerTeam": 5,
+    "minimumSpecialStatisticsPerTeam": 8,
+    "maximumOddsAgeHours": 6,
+    "oneBookmakerRequiresSamples": 8,
+    "minimumConservativeScenarioEdge": 0.02,
+    "explanation": "Ukalibrert sannsynlighetsmodell. Kun positiv forventet verdi i et konservativt scenario, ikke påvist langsiktig avkastning."
+  },
+  "generatedAt": "2026-11-14T15:54:29.897477+00:00",
+  "localDate": "2026-11-14",
+  "dataStatus": {
+    "fixtures": "ok",
+    "odds": "ok",
+    "teamFormRequests": 0,
+    "fixtureCount": 2167,
+    "sportmonks": {
+      "state": "ok",
+      "matches": 131,
+      "finished": 131,
+      "upcoming": 0,
+      "pages": 3,
+      "error": null
+    },
+    "matchdayDiscovery": {
+      "targetDate": "2026-11-14",
+      "catalogAvailable": true,
+      "matchesBySport": {
+        "soccer_uefa_nations_league": 8,
+        "soccer_spain_segunda_division": 3
+      },
+      "selected": [
+        "soccer_uefa_nations_league",
+        "soccer_spain_segunda_division"
+      ],
+      "errors": []
+    },
+    "internationalSportsSelected": [
+      "soccer_uefa_nations_league"
+    ],
+    "oddsCreditsRemaining": null,
+    "requestedLeagues": [
+      "soccer_uefa_nations_league",
+      "soccer_spain_segunda_division"
+    ],
+    "oddsMarketKeys": [
+      "h2h",
+      "totals"
+    ],
+    "extraEventsLoaded": 1,
+    "oddsEventCount": 12,
+    "oddsFixtureSource": "The Odds API (bookmaker listings)",
+    "oddsFirstFixtures": 3,
+    "officialFormBridge": {
+      "historyFixturesAvailable": 706,
+      "matchedOddsTeams": 0,
+      "oddsFixturesWithBothTeamsMatched": 0
+    },
+    "additionalFormBridge": {
+      "mode": "cached",
+      "sourceCount": 12,
+      "completedFixtures": 1325,
+      "lastAttempt": "2026-11-11T18:00:03.692660+00:00",
+      "errors": [],
+      "teamsLinked": 0,
+      "fixturesTouched": 0,
+      "historyMatches": 1325
+    },
+    "externalPredictionsStatus": "not_configured",
+    "coverageByLeague": {
+      "ODDS-SP2": {
+        "upcoming": 3,
+        "withOdds": 3,
+        "withModel": 0,
+        "eligible": 0
+      },
+      "BSA": {
+        "upcoming": 1,
+        "withOdds": 0,
+        "withModel": 0,
+        "eligible": 0
+      }
+    },
+    "analysisReadiness": {
+      "upcoming": 4,
+      "matchedOdds": 3,
+      "withModel": 0,
+      "recommended": 0,
+      "safe": 2,
+      "highRisk": 1,
+      "message": "Vanligste avvisning skyldtes manglende verifisert kamphistorikk."
+    }
+  },
+  "errors": [
+    "Odds quota check: HTTPError",
+    "Odds (soccer_uefa_nations_league): hentefeil (HTTPError)"
+  ],
+  "method": "Konservativ ikke-kalibrert Poisson-baseline fra siste inntil 6 registrerte resultater. Screening er en hypotese, ikke dokumentert positiv forventningsverdi.",
+  "matches": [
+    {
+      "id": "odds:570ec7734e1f7d9e813ab0013291f5f5",
+      "league": "La Liga 2",
+      "leagueCode": "ODDS-SP2",
+      "leagueCrest": null,
+      "homeCrest": null,
+      "awayCrest": null,
+      "home": "Almería",
+      "away": "Andorra CF",
+      "homeAliases": [
+        "Almería"
+      ],
+      "awayAliases": [
+        "Andorra CF"
+      ],
+      "kickoff": "2026-11-14T17:30:00+00:00",
+      "status": "SCHEDULED",
+      "formHome": "",
+      "formAway": "",
+      "formMatchesHome": [],
+      "formMatchesAway": [],
+      "formHistoryDiagnostics": {
+        "home": {
+          "verified": 0,
+          "displayable": 0,
+          "issues": []
+        },
+        "away": {
+          "verified": 0,
+          "displayable": 0,
+          "issues": []
+        }
+      },
+      "model": null,
+      "odds": {
+        "H": {
+          "price": 1.76,
+          "source": "The Odds API · bookmaker-median",
+          "books": 21,
+          "lastUpdated": "2026-11-14T15:54:28Z",
+          "sampleBook": "unibet_nl"
+        },
+        "B": {
+          "price": 4.05,
+          "source": "The Odds API · bookmaker-median",
+          "books": 21,
+          "lastUpdated": "2026-11-14T15:54:28Z",
+          "sampleBook": "marathonbet"
+        },
+        "U": {
+          "price": 3.7,
+          "source": "The Odds API · bookmaker-median",
+          "books": 21,
+          "lastUpdated": "2026-11-14T15:54:28Z",
+          "sampleBook": "winamax_fr"
+        },
+        "O25": {
+          "price": 1.63,
+          "source": "The Odds API · bookmaker-median",
+          "books": 12,
+          "lastUpdated": "2026-11-14T15:54:25Z",
+          "sampleBook": "williamhill"
+        },
+        "U25": {
+          "price": 2.17,
+          "source": "The Odds API · bookmaker-median",
+          "books": 12,
+          "lastUpdated": "2026-11-14T15:54:25Z",
+          "sampleBook": "williamhill"
+        },
+        "O35": {
+          "price": 2.59,
+          "source": "The Odds API · bookmaker-median",
+          "books": 4,
+          "lastUpdated": "2026-11-14T15:54:25Z",
+          "sampleBook": "codere_it"
+        },
+        "U35": {
+          "price": 1.47,
+          "source": "The Odds API · bookmaker-median",
+          "books": 4,
+          "lastUpdated": "2026-11-14T15:54:25Z",
+          "sampleBook": "pinnacle"
+        },
+        "O15": {
+          "price": 1.2,
+          "source": "The Odds API · bookmaker-median",
+          "books": 4,
+          "lastUpdated": "2026-11-14T15:54:25Z",
+          "sampleBook": "codere_it"
+        },
+        "U15": {
+          "price": 4.3,
+          "source": "The Odds API · bookmaker-median",
+          "books": 4,
+          "lastUpdated": "2026-11-14T15:54:25Z",
+          "sampleBook": "coolbet"
+        },
+        "BTTS": {
+          "price": 1.6,
+          "source": "The Odds API · bookmaker-median",
+          "books": 3,
+          "lastUpdated": "2026-11-14T15:54:22Z",
+          "sampleBook": "williamhill"
+        },
+        "BTTSN": {
+          "price": 2.25,
+          "source": "The Odds API · bookmaker-median",
+          "books": 3,
+          "lastUpdated": "2026-11-14T15:54:22Z",
+          "sampleBook": "onexbet"
+        }
+      },
+      "predictions": []
+    },
+    {
+      "id": "odds:6bc4aff371a2a5eaf38c73700a5c14d4",
+      "league": "La Liga 2",
+      "leagueCode": "ODDS-SP2",
+      "leagueCrest": null,
+      "homeCrest": null,
+      "awayCrest": null,
+      "home": "Mallorca",
+      "away": "Córdoba",
+      "homeAliases": [
+        "Mallorca"
+      ],
+      "awayAliases": [
+        "Córdoba"
+      ],
+      "kickoff": "2026-11-14T17:30:00+00:00",
+      "status": "SCHEDULED",
+      "formHome": "",
+      "formAway": "",
+      "formMatchesHome": [],
+      "formMatchesAway": [],
+      "formHistoryDiagnostics": {
+        "home": {
+          "verified": 0,
+          "displayable": 0,
+          "issues": []
+        },
+        "away": {
+          "verified": 0,
+          "displayable": 0,
+          "issues": []
+        }
+      },
+      "model": null,
+      "odds": {
+        "B": {
+          "price": 3.95,
+          "source": "The Odds API · bookmaker-median",
+          "books": 21,
+          "lastUpdated": "2026-11-14T15:54:28Z",
+          "sampleBook": "nordicbet"
+        },
+        "H": {
+          "price": 1.75,
+          "source": "The Odds API · bookmaker-median",
+          "books": 21,
+          "lastUpdated": "2026-11-14T15:54:28Z",
+          "sampleBook": "nordicbet"
+        },
+        "U": {
+          "price": 3.9,
+          "source": "The Odds API · bookmaker-median",
+          "books": 21,
+          "lastUpdated": "2026-11-14T15:54:28Z",
+          "sampleBook": "unibet_se"
+        },
+        "O35": {
+          "price": 2.27,
+          "source": "The Odds API · bookmaker-median",
+          "books": 8,
+          "lastUpdated": "2026-11-14T15:54:25Z",
+          "sampleBook": "unibet_se"
+        },
+        "U35": {
+          "price": 1.54,
+          "source": "The Odds API · bookmaker-median",
+          "books": 8,
+          "lastUpdated": "2026-11-14T15:54:25Z",
+          "sampleBook": "unibet_se"
+        },
+        "O25": {
+          "price": 1.52,
+          "source": "The Odds API · bookmaker-median",
+          "books": 3,
+          "lastUpdated": "2026-11-14T15:54:24Z",
+          "sampleBook": "nordicbet"
+        },
+        "U25": {
+          "price": 2.32,
+          "source": "The Odds API · bookmaker-median",
+          "books": 3,
+          "lastUpdated": "2026-11-14T15:54:24Z",
+          "sampleBook": "nordicbet"
+        }
+      },
+      "predictions": []
+    },
+    {
+      "id": "odds:beaf0bb6252d3b1d42a720aa385e9414",
+      "league": "La Liga 2",
+      "leagueCode": "ODDS-SP2",
+      "leagueCrest": null,
+      "homeCrest": null,
+      "awayCrest": null,
+      "home": "Oviedo",
+      "away": "Girona FC",
+      "homeAliases": [
+        "Oviedo"
+      ],
+      "awayAliases": [
+        "Girona FC"
+      ],
+      "kickoff": "2026-11-14T20:00:00+00:00",
+      "status": "SCHEDULED",
+      "formHome": "",
+      "formAway": "",
+      "formMatchesHome": [],
+      "formMatchesAway": [],
+      "formHistoryDiagnostics": {
+        "home": {
+          "verified": 0,
+          "displayable": 0,
+          "issues": []
+        },
+        "away": {
+          "verified": 0,
+          "displayable": 0,
+          "issues": []
+        }
+      },
+      "model": null,
+      "odds": {
+        "B": {
+          "price": 2.9,
+          "source": "The Odds API · bookmaker-median",
+          "books": 21,
+          "lastUpdated": "2026-11-14T15:54:28Z",
+          "sampleBook": "unibet_se"
+        },
+        "H": {
+          "price": 2.4,
+          "source": "The Odds API · bookmaker-median",
+          "books": 21,
+          "lastUpdated": "2026-11-14T15:54:28Z",
+          "sampleBook": "nordicbet"
+        },
+        "U": {
+          "price": 3.1,
+          "source": "The Odds API · bookmaker-median",
+          "books": 21,
+          "lastUpdated": "2026-11-14T15:54:28Z",
+          "sampleBook": "nordicbet"
+        },
+        "O25": {
+          "price": 2.11,
+          "source": "The Odds API · bookmaker-median",
+          "books": 13,
+          "lastUpdated": "2026-11-14T15:54:25Z",
+          "sampleBook": "codere_it"
+        },
+        "U25": {
+          "price": 1.66,
+          "source": "The Odds API · bookmaker-median",
+          "books": 13,
+          "lastUpdated": "2026-11-14T15:54:25Z",
+          "sampleBook": "coolbet"
+        }
+      },
+      "predictions": []
+    },
+    {
+      "id": "555085",
+      "league": "Campeonato Brasileiro Série A",
+      "leagueCode": "BSA",
+      "leagueCrest": "https://crests.football-data.org/bsa.png",
+      "homeCrest": "https://crests.football-data.org/4364.png",
+      "awayCrest": "https://crests.football-data.org/1766.png",
+      "home": "Mirassol",
+      "away": "Mineiro",
+      "homeAliases": [
+        "Mirassol FC"
+      ],
+      "awayAliases": [
+        "CA Mineiro"
+      ],
+      "kickoff": "2026-11-14T21:30:00+00:00",
+      "status": "TIMED",
+      "formHome": "",
+      "formAway": "",
+      "formMatchesHome": [],
+      "formMatchesAway": [],
+      "formHistoryDiagnostics": {
+        "home": {
+          "verified": 0,
+          "displayable": 0,
+          "issues": []
+        },
+        "away": {
+          "verified": 0,
+          "displayable": 0,
+          "issues": []
+        }
+      },
+      "model": null,
+      "odds": {},
+      "predictions": []
+    },
+    {
+      "id": "554942",
+      "league": "Campeonato Brasileiro Série A",
+      "leagueCode": "BSA",
+      "leagueCrest": "https://crests.football-data.org/bsa.png",
+      "homeCrest": "https://crests.football-data.org/1772_large.png",
+      "awayCrest": "https://crests.football-data.org/1780.png",
+      "home": "Chapecoense",
+      "away": "Vasco da Gama",
+      "homeAliases": [
+        "Chapecoense AF"
+      ],
+      "awayAliases": [
+        "CR Vasco da Gama"
+      ],
+      "kickoff": "2026-11-14T23:30:00+00:00",
+      "status": "TIMED",
+      "formHome": "",
+      "formAway": "",
+      "formMatchesHome": [],
+      "formMatchesAway": [],
+      "formHistoryDiagnostics": {
+        "home": {
+          "verified": 0,
+          "displayable": 0,
+          "issues": []
+        },
+        "away": {
+          "verified": 0,
+          "displayable": 0,
+          "issues": []
+        }
+      },
+      "model": null,
+      "odds": {},
+      "predictions": []
+    }
+  ],
+  "additionalMarkets": {
+    "tips": [],
+    "watchlist": [
+      {
+        "matchId": "odds:beaf0bb6252d3b1d42a720aa385e9414",
+        "home": "Oviedo",
+        "away": "Girona FC",
+        "league": "La Liga 2",
+        "kickoff": "2026-11-14T20:00:00+00:00",
+        "market": "O25",
+        "label": "Over 2,5 mål",
+        "marketType": "goals",
+        "price": 2.11,
+        "bookmakers": 13,
+        "oddsUpdatedAt": "2026-11-14T15:54:25Z",
+        "probability": null,
+        "verified": false,
+        "rationale": [
+          "Verifisert bookmakerpris, men ikke kvalifisert som et hovedtips",
+          "Pris fra 13 bookmakere"
+        ],
+        "source": "The Odds API",
+        "sampleSize": 0
+      },
+      {
+        "matchId": "odds:beaf0bb6252d3b1d42a720aa385e9414",
+        "home": "Oviedo",
+        "away": "Girona FC",
+        "league": "La Liga 2",
+        "kickoff": "2026-11-14T20:00:00+00:00",
+        "market": "U25",
+        "label": "Under 2,5 mål",
+        "marketType": "goals",
+        "price": 1.66,
+        "bookmakers": 13,
+        "oddsUpdatedAt": "2026-11-14T15:54:25Z",
+        "probability": null,
+        "verified": false,
+        "rationale": [
+          "Verifisert bookmakerpris, men ikke kvalifisert som et hovedtips",
+          "Pris fra 13 bookmakere"
+        ],
+        "source": "The Odds API",
+        "sampleSize": 0
+      },
+      {
+        "matchId": "odds:570ec7734e1f7d9e813ab0013291f5f5",
+        "home": "Almería",
+        "away": "Andorra CF",
+        "league": "La Liga 2",
+        "kickoff": "2026-11-14T17:30:00+00:00",
+        "market": "O25",
+        "label": "Over 2,5 mål",
+        "marketType": "goals",
+        "price": 1.63,
+        "bookmakers": 12,
+        "oddsUpdatedAt": "2026-11-14T15:54:25Z",
+        "probability": null,
+        "verified": false,
+        "rationale": [
+          "Verifisert bookmakerpris, men ikke kvalifisert som et hovedtips",
+          "Pris fra 12 bookmakere"
+        ],
+        "source": "The Odds API",
+        "sampleSize": 0
+      },
+      {
+        "matchId": "odds:570ec7734e1f7d9e813ab0013291f5f5",
+        "home": "Almería",
+        "away": "Andorra CF",
+        "league": "La Liga 2",
+        "kickoff": "2026-11-14T17:30:00+00:00",
+        "market": "BTTS",
+        "label": "Begge lag scorer",
+        "marketType": "btts",
+        "price": 1.6,
+        "bookmakers": 3,
+        "oddsUpdatedAt": "2026-11-14T15:54:22Z",
+        "probability": null,
+        "verified": false,
+        "rationale": [
+          "Verifisert bookmakerpris, men ikke kvalifisert som et hovedtips",
+          "Pris fra 3 bookmakere"
+        ],
+        "source": "The Odds API",
+        "sampleSize": 0
+      }
+    ],
+    "coverage": {
+      "Hjørnespark": 0,
+      "Kort": 0,
+      "Målscorer": 0,
+      "Mål": 15,
+      "Lagmål": 0,
+      "1. omgang": 0,
+      "Begge lag scorer": 2
+    },
+    "marketFamilies": [
+      {
+        "key": "corners",
+        "label": "Hjørnespark",
+        "availableQuotes": 0
+      },
+      {
+        "key": "cards",
+        "label": "Kort",
+        "availableQuotes": 0
+      },
+      {
+        "key": "goalscorer",
+        "label": "Målscorer",
+        "availableQuotes": 0
+      },
+      {
+        "key": "goals",
+        "label": "Mål",
+        "availableQuotes": 15
+      },
+      {
+        "key": "team_goals",
+        "label": "Lagmål",
+        "availableQuotes": 0
+      },
+      {
+        "key": "first_half",
+        "label": "1. omgang",
+        "availableQuotes": 0
+      },
+      {
+        "key": "btts",
+        "label": "Begge lag scorer",
+        "availableQuotes": 2
+      }
+    ],
+    "issues": [],
+    "providerRequests": 0,
+    "notes": "Kun verifiserte bookmakerpriser. For kort/hjørnespark kreves historiske data. Målscorer krever bekreftet startoppstilling."
+  },
+  "scorePredictions": {
+    "games": [
+      {
+        "matchId": "odds:570ec7734e1f7d9e813ab0013291f5f5",
+        "home": "Almería",
+        "away": "Andorra CF",
+        "kickoff": "2026-11-14T17:30:00+00:00",
+        "league": "La Liga 2",
+        "sources": [],
+        "consensus": null,
+        "ownModel": null
+      },
+      {
+        "matchId": "odds:6bc4aff371a2a5eaf38c73700a5c14d4",
+        "home": "Mallorca",
+        "away": "Córdoba",
+        "kickoff": "2026-11-14T17:30:00+00:00",
+        "league": "La Liga 2",
+        "sources": [],
+        "consensus": null,
+        "ownModel": null
+      },
+      {
+        "matchId": "odds:beaf0bb6252d3b1d42a720aa385e9414",
+        "home": "Oviedo",
+        "away": "Girona FC",
+        "kickoff": "2026-11-14T20:00:00+00:00",
+        "league": "La Liga 2",
+        "sources": [],
+        "consensus": null,
+        "ownModel": null
+      },
+      {
+        "matchId": "555085",
+        "home": "Mirassol",
+        "away": "Mineiro",
+        "kickoff": "2026-11-14T21:30:00+00:00",
+        "league": "Campeonato Brasileiro Série A",
+        "sources": [],
+        "consensus": null,
+        "ownModel": null
+      },
+      {
+        "matchId": "554942",
+        "home": "Chapecoense",
+        "away": "Vasco da Gama",
+        "kickoff": "2026-11-14T23:30:00+00:00",
+        "league": "Campeonato Brasileiro Série A",
+        "sources": [],
+        "consensus": null,
+        "ownModel": null
+      }
+    ],
+    "sourceForecasts": 0,
+    "fixturesWithConsensus": 0,
+    "issues": [],
+    "method": "Lik vekt for ulike, kildeangitte resultattips; krever minst to uavhengige kilder for samlet prognose",
+    "coverageNote": "Forebet, Vitibet, PredictZ og WinDrawWin kan inkluderes ved manuelt registrerte, datostemplede resultattips med kildelenker. Kildeinnholdet kontrolleres ikke automatisk. API-Football krever egen API-nøkkel. Egen modell holdes separat."
+  },
+  "observations": [],
+  "modelVersion": "2.0-foundation",
+  "qualityAudit": {
+    "screened": 23,
+    "qualified": 0,
+    "topLimit": 5,
+    "observations": 0,
+    "rejections": {
+      "manglende_kamphistorikk": 23
+    },
+    "calibrated": false,
+    "method": "Eksplisitt sensitivitetsscenario, markedsforankring og usikkerhetstrekk; ikke validert som konfidensintervall",
+    "coverageLimit": "Tilgjengelige kilde-/bookmakerodds, ikke alle globale markeder",
+    "whyNoPicks": "Vanligste avvisning skyldtes manglende verifisert kamphistorikk."
+  },
+  "interestingObjects": [],
+  "finalSelection": {
+    "version": 40,
+    "policy": "one_active_selection_per_real_fixture",
+    "rankedRecommendations": true,
+    "categories": {
+      "safe": 2,
+      "high": 1,
+      "watch": 0
+    },
+    "target": [
+      3,
+      5
+    ],
+    "shortfalls": {
+      "safe": "For få konfliktfrie, kildebaserte kandidater.",
+      "high": "For få konfliktfrie, kildebaserte kandidater.",
+      "watch": "For få konfliktfrie, kildebaserte kandidater."
+    },
+    "rejected": {
+      "same_fixture_or_correlated_outcome": 6
+    },
+    "trace": [
+      {
+        "fixture": "2026-11-14|almeria|andorracf",
+        "selectionId": "v40:611570727b649258669f",
+        "market": "O15",
+        "group": "safe",
+        "reason": "selected"
+      },
+      {
+        "fixture": "2026-11-14|almeria|andorracf",
+        "market": "U35",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "O15"
+      },
+      {
+        "fixture": "2026-11-14|mallorca|cordoba",
+        "selectionId": "v40:7b5ff7ad52089a857eab",
+        "market": "U35",
+        "group": "safe",
+        "reason": "selected"
+      },
+      {
+        "fixture": "2026-11-14|mallorca|cordoba",
+        "market": "O25",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "U35"
+      },
+      {
+        "fixture": "2026-11-14|oviedo|gironafc",
+        "selectionId": "v40:049cd865f798c4ad4d59",
+        "market": "H",
+        "group": "high",
+        "reason": "selected"
+      },
+      {
+        "fixture": "2026-11-14|mallorca|cordoba",
+        "market": "O35",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "U35"
+      },
+      {
+        "fixture": "2026-11-14|oviedo|gironafc",
+        "market": "B",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "H"
+      },
+      {
+        "fixture": "2026-11-14|mallorca|cordoba",
+        "market": "B",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "U35"
+      },
+      {
+        "fixture": "2026-11-14|almeria|andorracf",
+        "market": "B",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "O15"
+      }
+    ]
+  },
+  "editionDate": "2026-11-14",
+  "resultUpdatedAt": null,
+  "editionLocked": true
+}
