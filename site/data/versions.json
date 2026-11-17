@@ -1,5 +1,30 @@
 [
   {
+    "date": "2026-11-17",
+    "before": "2026-11-17T08:57:57.563867+00:00",
+    "after": "2026-11-17T19:21:27.017679+00:00",
+    "added": [],
+    "removed": [
+      {
+        "matchId": "odds:955a201ba2266b8b6b0519e0265eb354",
+        "market": "U35",
+        "home": "Wales",
+        "away": "Portugal",
+        "label": "Under 3,5 mål",
+        "price": 1.67,
+        "category": "standard",
+        "kickoff": "2026-11-17T19:45:00+00:00",
+        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
+      }
+    ],
+    "repriced": [],
+    "changeCounts": {
+      "removed": 1,
+      "added": 0,
+      "repriced": 0
+    }
+  },
+  {
     "date": "2026-11-14",
     "before": "2026-11-14T08:50:32.354167+00:00",
     "after": "2026-11-14T15:54:29.897477+00:00",
@@ -719,60 +744,6 @@
       "removed": 2,
       "added": 1,
       "repriced": 0
-    }
-  },
-  {
-    "date": "2026-11-07",
-    "before": "2026-11-07T08:49:42.109324+00:00",
-    "after": "2026-11-07T13:12:00.113945+00:00",
-    "added": [],
-    "removed": [
-      {
-        "matchId": "558535",
-        "market": "H",
-        "home": "Parma",
-        "away": "Bologna",
-        "label": "Hjemmeseier",
-        "price": 4.9,
-        "category": "high",
-        "kickoff": "2026-11-07T17:00:00+00:00",
-        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
-      },
-      {
-        "matchId": "560640",
-        "market": "B",
-        "home": "Arsenal",
-        "away": "Hull City",
-        "label": "Borteseier",
-        "price": 19.0,
-        "category": "high",
-        "kickoff": "2026-11-07T15:00:00+00:00",
-        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
-      },
-      {
-        "matchId": "564741",
-        "market": "H",
-        "home": "Valencia",
-        "away": "Real Madrid",
-        "label": "Hjemmeseier",
-        "price": 10.5,
-        "category": "high",
-        "kickoff": "2026-11-07T20:00:00+00:00",
-        "reason": "Ikke kvalifisert i den nye analysen; årsak ikke bekreftet"
-      }
-    ],
-    "repriced": [
-      {
-        "matchId": "561934",
-        "market": "H",
-        "oldPrice": 5.96,
-        "newPrice": 6.35
-      }
-    ],
-    "changeCounts": {
-      "removed": 3,
-      "added": 0,
-      "repriced": 1
     }
   }
 ]
