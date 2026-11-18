@@ -63,7 +63,10 @@
         "score": {
           "home": 1,
           "away": 0
-        }
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "559635"
       }
     }
   ],
@@ -166,7 +169,10 @@
         "score": {
           "home": 1,
           "away": 0
-        }
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "559635"
       }
     },
     {
@@ -204,7 +210,10 @@
         "score": {
           "home": 3,
           "away": 0
-        }
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "558531"
       }
     }
   ],
@@ -18397,6 +18406,6 @@
     ]
   },
   "editionDate": "2026-11-07",
-  "resultUpdatedAt": "2026-11-07T22:26:17.787734+00:00",
+  "resultUpdatedAt": "2026-11-18T08:58:37.102255+00:00",
   "editionLocked": true
 }

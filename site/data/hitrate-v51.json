@@ -1,50 +1,50 @@
 {
   "schemaVersion": 51,
-  "generatedAt": "2026-11-18T08:57:54.147828+00:00",
+  "generatedAt": "2026-11-18T08:58:37.102255+00:00",
   "trackedFrom": "2026-11-05T19:10:01.819000+00:00",
   "overall": {
     "total": 176,
-    "wins": 39,
-    "losses": 56,
-    "settled": 95,
+    "wins": 50,
+    "losses": 86,
+    "settled": 136,
     "voids": 0,
-    "unverified": 81,
+    "unverified": 40,
     "pending": 0,
-    "hitRatePct": 41.1
+    "hitRatePct": 36.8
   },
   "categories": {
     "safe": {
       "label": "Safe Bets",
       "total": 65,
-      "wins": 20,
-      "losses": 8,
-      "settled": 28,
+      "wins": 26,
+      "losses": 14,
+      "settled": 40,
       "voids": 0,
-      "unverified": 37,
+      "unverified": 25,
       "pending": 0,
-      "hitRatePct": 71.4
+      "hitRatePct": 65.0
     },
     "high": {
       "label": "High Risk",
       "total": 77,
-      "wins": 12,
-      "losses": 36,
-      "settled": 48,
+      "wins": 15,
+      "losses": 52,
+      "settled": 67,
       "voids": 0,
-      "unverified": 29,
+      "unverified": 10,
       "pending": 0,
-      "hitRatePct": 25.0
+      "hitRatePct": 22.4
     },
     "watch": {
       "label": "Interessante objekter",
       "total": 27,
-      "wins": 6,
-      "losses": 6,
-      "settled": 12,
+      "wins": 8,
+      "losses": 14,
+      "settled": 22,
       "voids": 0,
-      "unverified": 15,
+      "unverified": 5,
       "pending": 0,
-      "hitRatePct": 50.0
+      "hitRatePct": 36.4
     },
     "qualified": {
       "label": "Kvalifiserte spill",
@@ -334,33 +334,33 @@
       "categories": {
         "safe": {
           "total": 15,
-          "wins": 0,
-          "losses": 0,
-          "settled": 0,
+          "wins": 3,
+          "losses": 2,
+          "settled": 5,
           "voids": 0,
-          "unverified": 15,
+          "unverified": 10,
           "pending": 0,
-          "hitRatePct": null
+          "hitRatePct": 60.0
         },
         "high": {
           "total": 8,
           "wins": 0,
-          "losses": 0,
-          "settled": 0,
+          "losses": 7,
+          "settled": 7,
           "voids": 0,
-          "unverified": 8,
+          "unverified": 1,
           "pending": 0,
-          "hitRatePct": null
+          "hitRatePct": 0.0
         },
         "watch": {
           "total": 7,
-          "wins": 0,
-          "losses": 0,
-          "settled": 0,
+          "wins": 2,
+          "losses": 5,
+          "settled": 7,
           "voids": 0,
-          "unverified": 7,
+          "unverified": 0,
           "pending": 0,
-          "hitRatePct": null
+          "hitRatePct": 28.6
         },
         "qualified": {
           "total": 0,
@@ -379,33 +379,33 @@
       "categories": {
         "safe": {
           "total": 10,
-          "wins": 0,
-          "losses": 0,
-          "settled": 0,
+          "wins": 3,
+          "losses": 4,
+          "settled": 7,
           "voids": 0,
-          "unverified": 10,
+          "unverified": 3,
           "pending": 0,
-          "hitRatePct": null
+          "hitRatePct": 42.9
         },
         "high": {
           "total": 12,
-          "wins": 0,
-          "losses": 0,
-          "settled": 0,
+          "wins": 3,
+          "losses": 9,
+          "settled": 12,
           "voids": 0,
-          "unverified": 12,
+          "unverified": 0,
           "pending": 0,
-          "hitRatePct": null
+          "hitRatePct": 25.0
         },
         "watch": {
           "total": 3,
           "wins": 0,
-          "losses": 0,
-          "settled": 0,
+          "losses": 3,
+          "settled": 3,
           "voids": 0,
-          "unverified": 3,
+          "unverified": 0,
           "pending": 0,
-          "hitRatePct": null
+          "hitRatePct": 0.0
         },
         "qualified": {
           "total": 0,
@@ -2477,7 +2477,14 @@
       "price": 1.19,
       "firstPublishedAt": "2026-11-08T18:59:05+00:00",
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 1,
+          "away": 2
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "559630"
       }
     },
     {
@@ -2492,7 +2499,14 @@
       "price": 3.17,
       "firstPublishedAt": "2026-11-08T18:59:05+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 2
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "564746"
       }
     },
     {
@@ -2507,7 +2521,14 @@
       "price": 1.94,
       "firstPublishedAt": "2026-11-08T15:44:08.332000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 2
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "567349"
       }
     },
     {
@@ -2537,7 +2558,14 @@
       "price": 2.65,
       "firstPublishedAt": "2026-11-08T15:44:08.332000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 0
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "558530"
       }
     },
     {
@@ -2552,7 +2580,14 @@
       "price": 5.95,
       "firstPublishedAt": "2026-11-08T15:44:08.332000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 0,
+          "away": 1
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "567354"
       }
     },
     {
@@ -2567,7 +2602,14 @@
       "price": 6.3,
       "firstPublishedAt": "2026-11-08T15:44:08.332000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 2,
+          "away": 0
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "564747"
       }
     },
     {
@@ -2582,7 +2624,14 @@
       "price": 1.34,
       "firstPublishedAt": "2026-11-08T15:44:08.332000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 1,
+          "away": 2
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "564746"
       }
     },
     {
@@ -2627,7 +2676,14 @@
       "price": 1.6,
       "firstPublishedAt": "2026-11-08T13:13:00.269000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 2,
+          "away": 0
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "560638"
       }
     },
     {
@@ -2642,7 +2698,14 @@
       "price": 2.9,
       "firstPublishedAt": "2026-11-08T13:13:00.269000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 0,
+          "away": 2
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "559633"
       }
     },
     {
@@ -2672,7 +2735,14 @@
       "price": 1.5,
       "firstPublishedAt": "2026-11-08T13:13:00.269000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 4,
+          "away": 4
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "560639"
       }
     },
     {
@@ -2717,7 +2787,14 @@
       "price": 4.22,
       "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 2
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "558536"
       }
     },
     {
@@ -2732,7 +2809,14 @@
       "price": 3.58,
       "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 1,
+          "away": 0
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "560636"
       }
     },
     {
@@ -2777,7 +2861,14 @@
       "price": 4.75,
       "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 1
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "559631"
       }
     },
     {
@@ -2792,7 +2883,14 @@
       "price": 1.58,
       "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 1
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "558533"
       }
     },
     {
@@ -2822,7 +2920,14 @@
       "price": 5.25,
       "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 3
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "560635"
       }
     },
     {
@@ -2852,7 +2957,14 @@
       "price": 3.41,
       "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 2,
+          "away": 2
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "558529"
       }
     },
     {
@@ -2867,7 +2979,14 @@
       "price": 3,
       "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 5,
+          "away": 3
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "558840"
       }
     },
     {
@@ -2882,7 +3001,14 @@
       "price": 3.37,
       "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 0,
+          "away": 1
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "558538"
       }
     },
     {
@@ -2897,7 +3023,14 @@
       "price": 3.95,
       "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 2
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "560637"
       }
     },
     {
@@ -2927,7 +3060,14 @@
       "price": 3.04,
       "firstPublishedAt": "2026-11-07T18:59:08.094000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 3,
+          "away": 0
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "558531"
       }
     },
     {
@@ -2942,7 +3082,14 @@
       "price": 2.75,
       "firstPublishedAt": "2026-11-07T15:45:51.157000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 0,
+          "away": 1
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "558843"
       }
     },
     {
@@ -2957,7 +3104,14 @@
       "price": 2.47,
       "firstPublishedAt": "2026-11-07T15:45:51.157000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 3,
+          "away": 1
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "558841"
       }
     },
     {
@@ -2987,7 +3141,14 @@
       "price": 3.15,
       "firstPublishedAt": "2026-11-07T15:45:51.157000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 1,
+          "away": 0
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "559635"
       }
     },
     {
@@ -3002,7 +3163,14 @@
       "price": 1.39,
       "firstPublishedAt": "2026-11-07T15:45:51.157000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 0
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "567350"
       }
     },
     {
@@ -3017,7 +3185,14 @@
       "price": 1.57,
       "firstPublishedAt": "2026-11-07T13:13:11.657000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 0
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "561937"
       }
     },
     {
@@ -3032,7 +3207,14 @@
       "price": 1.46,
       "firstPublishedAt": "2026-11-07T13:13:11.657000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 5,
+          "away": 4
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "561930"
       }
     },
     {
@@ -3047,7 +3229,14 @@
       "price": 6.2,
       "firstPublishedAt": "2026-11-07T13:13:11.657000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 5,
+          "away": 2
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "565848"
       }
     },
     {
@@ -3062,7 +3251,14 @@
       "price": 10.5,
       "firstPublishedAt": "2026-11-07T08:51:34.629000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 0,
+          "away": 3
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "564741"
       }
     },
     {
@@ -3077,7 +3273,14 @@
       "price": 4.6,
       "firstPublishedAt": "2026-11-07T08:51:34.629000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 0,
+          "away": 1
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "559637"
       }
     },
     {
@@ -3092,7 +3295,14 @@
       "price": 4.9,
       "firstPublishedAt": "2026-11-07T08:51:34.629000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 2
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "558535"
       }
     },
     {
@@ -3107,7 +3317,14 @@
       "price": 19,
       "firstPublishedAt": "2026-11-07T08:51:34.629000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 0
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "560640"
       }
     },
     {
@@ -3122,7 +3339,14 @@
       "price": 17.6,
       "firstPublishedAt": "2026-11-07T08:51:34.629000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 0
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "559635"
       }
     },
     {
@@ -3152,7 +3376,14 @@
       "price": 1.29,
       "firstPublishedAt": "2026-11-07T08:51:34.629000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 3,
+          "away": 0
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "558531"
       }
     },
     {
@@ -3167,7 +3398,14 @@
       "price": 1.25,
       "firstPublishedAt": "2026-11-07T08:51:34.629000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 5,
+          "away": 2
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "565848"
       }
     },
     {
@@ -3182,7 +3420,14 @@
       "price": 4.75,
       "firstPublishedAt": "2026-11-06T20:03:09.019000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 1
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "561935"
       }
     },
     {
@@ -3197,7 +3442,14 @@
       "price": 1.55,
       "firstPublishedAt": "2026-11-06T20:03:09.019000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 0
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "561937"
       }
     },
     {
@@ -3212,7 +3464,14 @@
       "price": 2.52,
       "firstPublishedAt": "2026-11-06T20:03:09.019000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 2,
+          "away": 2
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "565853"
       }
     },
     {
@@ -3227,7 +3486,14 @@
       "price": 3,
       "firstPublishedAt": "2026-11-06T20:03:09.019000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 2,
+          "away": 1
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "565850"
       }
     },
     {
@@ -3242,7 +3508,14 @@
       "price": 2.23,
       "firstPublishedAt": "2026-11-06T20:03:09.019000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 5,
+          "away": 2
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "565848"
       }
     },
     {
@@ -3272,7 +3545,14 @@
       "price": 5.32,
       "firstPublishedAt": "2026-11-06T20:03:09.019000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 0,
+          "away": 0
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "561934"
       }
     },
     {
@@ -3287,7 +3567,14 @@
       "price": 1.32,
       "firstPublishedAt": "2026-11-06T20:03:09.019000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 0
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "565849"
       }
     },
     {
@@ -3819,7 +4106,7 @@
   ],
   "resultFeed": {
     "state": "checked",
-    "matchedFixtures": 63
+    "matchedFixtures": 35
   },
   "method": "Vunnet / (vunnet + tapt). Hvert tips telles én gang i kategorien det først ble vist i.",
   "note": "Kun arkiverte tips vist før kampstart inngår. Uavklarte, ventende og annullerte tips er utenfor treffprosenten. Interessante objekter er observasjoner."

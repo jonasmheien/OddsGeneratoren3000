@@ -278,6 +278,12 @@
         "matchId": "567354",
         "market": "H",
         "price": 5.9
+      },
+      {
+        "status": "lost",
+        "matchId": "564746",
+        "market": "BTTSN",
+        "price": 3.17
       }
     ]
   },
