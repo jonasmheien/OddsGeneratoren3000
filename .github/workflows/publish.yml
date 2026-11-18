@@ -66,7 +66,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      should_deploy: ${{ steps.mode.outputs.should_deploy }}
+      should_deploy: ${{ steps.mode.outputs.should_deploy == 'true' || steps.hitrate.outputs.changed == 'true' }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -87,6 +87,8 @@ jobs:
           node --check site/three-fields-v26.js
           node tests/test_tip_ui_v32.cjs
           node tests/test_tip_audit_v34.cjs
+          node --check site/hitrate-v51.js
+          node tests/test_hitrate_v51.cjs
           node --check site/market-radar-v39.js
           node tests/test_market_radar_v39.cjs
           node tests/test_market_radar_v41.cjs
@@ -200,27 +202,37 @@ jobs:
           FORCE_REPLACE_EDITION: ${{ ((github.event_name == 'workflow_dispatch' && inputs.mode == 'daily' && inputs.force_refresh) || steps.trigger.outputs.refresh_on_push == 'true' || steps.trigger.outputs.refresh_on_schedule == 'true') && '1' || '0' }}
         run: |
           if [[ "$MODE" == "tomorrow" ]]; then
-            python scripts/tomorrow_v24.py state/.candidate.json
-            echo 'should_deploy=true' >> "$GITHUB_OUTPUT"
+            python scripts/tomorrow_v24.py state/.candidate.json | tee /tmp/odds-preview.txt
+            if grep -q 'TOMORROW_PREVIEW_CREATED=' /tmp/odds-preview.txt; then
+              echo 'should_deploy=true' >> "$GITHUB_OUTPUT"
+            else
+              echo 'should_deploy=false' >> "$GITHUB_OUTPUT"
+            fi
+          elif [[ "$MODE" == "results" ]]; then
+            # The journal reconciles both current and archived tips below.
+            echo 'should_deploy=false' >> "$GITHUB_OUTPUT"
           else
             python scripts/lifecycle.py "$MODE" | tee /tmp/odds-lifecycle.txt
-            if [[ "$MODE" == "results" ]] && ! grep -q 'RESULTS_CHANGED=1' /tmp/odds-lifecycle.txt; then
-              echo 'should_deploy=false' >> "$GITHUB_OUTPUT"
-            else
-              echo 'should_deploy=true' >> "$GITHUB_OUTPUT"
-            fi
+            echo 'should_deploy=true' >> "$GITHUB_OUTPUT"
           fi
-      - name: Publiser datadekning, historiske resultater og fjern gammel forhåndsanalyse
-        # Read-only for pick and score data, zero extra API requests.
-        if: steps.trigger.outputs.mode != 'results' || steps.mode.outputs.should_deploy == 'true'
-        run: python scripts/quality_monitor_v42.py
       - name: Arkiver viste tips og kontroller datagrunnlag v34
         id: tip_audit
         if: steps.trigger.outputs.mode != 'results'
-        continue-on-error: true
         run: node scripts/capture_visible_v34.cjs
+      - name: Oppdater treffprosent og kontroller tidligere tips
+        id: hitrate
+        env:
+          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
+          SPORTMONKS_API_TOKEN: ${{ secrets.SPORTMONKS_API_TOKEN }}
+          # API-Sports is suspended. Never retry its paid/suspended result feed.
+          API_FOOTBALL_KEY: ''
+        run: python scripts/hitrate_v51.py
+      - name: Publiser datadekning, historiske resultater og fjern gammel forhåndsanalyse
+        # Read-only for pick and score data, zero extra API requests.
+        if: steps.trigger.outputs.mode != 'results' || steps.hitrate.outputs.changed == 'true'
+        run: python scripts/quality_monitor_v42.py
       - name: Lagre den valgte utgaven og resultatene
-        if: steps.trigger.outputs.mode != 'deploy' || steps.tip_audit.outputs.changed == 'true'
+        if: steps.trigger.outputs.mode != 'deploy' || steps.tip_audit.outputs.changed == 'true' || steps.hitrate.outputs.changed == 'true'
         shell: bash
         env:
           MODE: ${{ steps.trigger.outputs.mode }}
@@ -251,9 +263,9 @@ jobs:
             git push origin HEAD:main
           fi
       - uses: actions/configure-pages@v5
-        if: steps.mode.outputs.should_deploy == 'true'
+        if: steps.mode.outputs.should_deploy == 'true' || steps.hitrate.outputs.changed == 'true'
       - uses: actions/upload-pages-artifact@v4
-        if: steps.mode.outputs.should_deploy == 'true'
+        if: steps.mode.outputs.should_deploy == 'true' || steps.hitrate.outputs.changed == 'true'
         with:
           path: site
   deploy:
