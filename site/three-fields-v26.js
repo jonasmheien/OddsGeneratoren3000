@@ -251,8 +251,8 @@
     if(loading)return;
     loading=true;
     try{
-      const [today,preview,quality,performance]=await Promise.all([
-        get('today'),get('tomorrow'),get('quality-v42'),get('performance-v42')]);
+      const [today,preview,quality,performance,update]=await Promise.all([
+        get('today'),get('tomorrow'),get('quality-v42'),get('performance-v42'),get('update-status-v51')]);
       const now=new Date();
       const chosen=window.OddsVisibleV40?.selectEdition(today,preview,now)||null;
       const useTomorrow=Boolean(chosen?.useTomorrow);
@@ -327,6 +327,9 @@
       $('tf-status').textContent=expired?'Dagens kamper har startet. Neste utvalg publiseres automatisk når analysen er klar.':
         !chosen?.authoritative?'Dagsutgaven mangler sentral konfliktkontroll. Ingen gamle frontendforslag vises.':
         'Alle tips er valgt i backend og kontrollert for kampkonflikter. Odds er ikke sanntidspriser. '+lack;
+      if(update?.state==='waiting_for_odds'&&update.targetDate===window.OddsVisibleV40?.osloDay(now)&&(!selectedDay||editionDay<update.targetDate)){
+        $('tf-status').textContent='Dagens analyse avventer tilgjengelige bookmakerodds. Vi prøver igjen automatisk.';
+      }
     }finally{loading=false;}
   }
   document.addEventListener('DOMContentLoaded',()=>{

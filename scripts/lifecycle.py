@@ -19,13 +19,15 @@ from expanded_sources_v23 import results_for
 from sportmonks_v45 import results_for as sportmonks_results_for
 from market_expansion import TEAM_TOTAL_LINES
 from morning_refresh_v29 import DEFERRED_ODDS_REFRESH, has_morning_edition
+from result_sources_v51 import match_saved_picks, uefa_results, uefa_competition, national
+from edition_status_v51 import WAITING_FOR_ODDS, no_supported_prices
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE = ROOT / 'state' / 'active.json'
 PUBLIC = ROOT / 'site' / 'data' / 'today.json'
 HISTORY = ROOT / 'state' / 'history'
 from final_selection_v40 import validate as validate_v40, finalize as finalize_v40, dt as v40_dt
-CATEGORIES = ('recommendations', 'safeBets', 'highRisk')
+CATEGORIES = ('recommendations', 'safeBets', 'highRisk', 'interestingObjects')
 CANDIDATE = Path(os.environ['ODDS_OUTPUT_PATH']) if os.environ.get('ODDS_OUTPUT_PATH') else PUBLIC
 CANCELLED = {'CANCELLED', 'POSTPONED', 'SUSPENDED', 'AWARDED'}
 IN_PLAY = {'IN_PLAY', 'PAUSED', 'LIVE', 'EXTRA_TIME', 'PENALTY_SHOOTOUT'}
@@ -102,6 +104,9 @@ def score_pick(pick: dict, match: dict) -> dict:
         dh,da=display.get('home'),display.get('away')
         if type(dh) is int and type(da) is int:
             result['score']={'home':dh,'away':da}
+    if result['status'] in ('won', 'lost', 'void') and match.get('resultSource'):
+        result.update(source=match['resultSource'], sourceUrl=match.get('resultSourceUrl'),
+                      sourceMatchId=str(match.get('sourceMatchId') or match.get('id')))
     out['result']=result
     return out
 
@@ -149,29 +154,44 @@ def fetch_results(snapshot: dict, key: str):
     A bare `ids=...` query is not a documented list filter and must not be
     relied on for result matching. Nothing is fetched from the browser.
     """
-    if not key:
-        raise RuntimeError('FOOTBALL_DATA_API_KEY is missing')
+    picks = [p for category in CATEGORIES for p in snapshot.get(category, [])]
     all_ids = {str(p.get('matchId')) for category in CATEGORIES
                for p in snapshot.get(category, []) if p.get('matchId') is not None}
     ids = {x for x in all_ids if x.isdigit()}
     apf_ids = {x for x in all_ids if x.startswith('apf:') and x[4:].isdigit()}
     sm_ids = {x for x in all_ids if x.startswith('sm-match:') and x[9:].isdigit()}
-    if not ids and not apf_ids and not sm_ids:
-        return []
+    odds_picks = [p for p in picks if str(p.get('matchId', '')).startswith('odds:')]
     found=[]
-    if ids:
+    if (ids or any(not national(p) for p in odds_picks)) and key:
         edition = date.fromisoformat(snapshot.get('editionDate') or snapshot['localDate'])
+        days = [v40_dt(p.get('kickoff')).date() for p in picks if v40_dt(p.get('kickoff'))]
         url = 'https://api.football-data.org/v4/matches?' + urlencode({
-            'dateFrom': (edition - timedelta(days=1)).isoformat(),
-            'dateTo': (edition + timedelta(days=2)).isoformat()})
+            'dateFrom': (min(days, default=edition) - timedelta(days=1)).isoformat(),
+            'dateTo': (max(days, default=edition) + timedelta(days=2)).isoformat()})
         req = Request(url, headers={'X-Auth-Token': key,
                                     'User-Agent': 'OddsGeneratoren/0.9 (personal research)'})
-        with urlopen(req, timeout=35) as resp:
-            data = json.load(resp)
-        rows = data.get('matches')
-        if not isinstance(rows, list):
-            raise ValueError('Unknown match results response')
-        found.extend(m for m in rows if str(m.get('id')) in ids)
+        try:
+            with urlopen(req, timeout=35) as resp:
+                data = json.load(resp)
+            rows = data.get('matches')
+            if not isinstance(rows, list):
+                raise ValueError('Unknown match results response')
+            for row in rows:
+                row.update(resultSource='football-data.org', resultSourceUrl=url)
+            found.extend(match_saved_picks(picks, rows))
+        except (OSError, ValueError, TimeoutError) as exc:
+            print('WARN: football-data.org results unavailable:', type(exc).__name__)
+    matched_ids = {str(row.get('id')) for row in found}
+    uefa_picks = [p for p in picks if uefa_competition(p) and str(p.get('matchId')) not in matched_ids]
+    if uefa_picks:
+        def fetch_public(url):
+            request = Request(url, headers={'User-Agent': 'OddsGeneratoren3000/5.1'})
+            with urlopen(request, timeout=25) as response:
+                return json.load(response)
+        try:
+            found.extend(match_saved_picks(uefa_picks, uefa_results(uefa_picks, fetch_public)))
+        except (OSError, ValueError, TimeoutError) as exc:
+            print('WARN: UEFA results unavailable:', type(exc).__name__)
     if apf_ids and os.getenv('API_FOOTBALL_KEY', '').strip():
         try:
             found.extend(results_for(apf_ids, os.environ['API_FOOTBALL_KEY']))
@@ -185,15 +205,16 @@ def fetch_results(snapshot: dict, key: str):
     return found
 
 
-def published_history(active: dict | None):
+def published_history(active: dict | None, *, root=None):
     """Build a compact, verifiable results feed from archived editions.
 
     Only a real, official FINISHED state ('won'/'lost') is counted. A
     recommendation repeated in multiple visible categories counts once.
     """
     archive=[]
-    if HISTORY.exists():
-        for f in sorted(HISTORY.glob('????-??-??.json'), reverse=True)[:30]:
+    archive_dir = Path(root) / 'state/history' if root is not None else HISTORY
+    if archive_dir.exists():
+        for f in sorted(archive_dir.glob('????-??-??.json'), reverse=True)[:30]:
             obj=read_json(f)
             if isinstance(obj,dict): archive.append(obj)
     if active:
@@ -254,6 +275,8 @@ def validate_edition(new_snapshot: dict):
     if new_snapshot.get("finalSelection") is not None:
         validate_v40(new_snapshot)
     for key in CATEGORIES:
+        if key == 'interestingObjects' and key not in new_snapshot:
+            continue  # Editions before v40 did not have this visible category.
         if not isinstance(new_snapshot.get(key), list):
             raise ValueError(f'Malformed picks list {key}')
     try:
@@ -297,11 +320,25 @@ def main():
         data = read_json(CANDIDATE)
         if data is None:
             raise SystemExit('Snapshot not generated')
+        if isinstance(data, dict) and data.get(WAITING_FOR_ODDS) is True:
+            from zoneinfo import ZoneInfo
+            today = datetime.now(ZoneInfo('Europe/Oslo')).date().isoformat()
+            if data.get('localDate') != today or not no_supported_prices(data) or CANDIDATE == PUBLIC:
+                raise SystemExit('Invalid deferred edition')
+            atomic_json(ROOT / 'site/data/update-status-v51.json', {
+                'targetDate': today, 'state': 'waiting_for_odds',
+                'checkedAt': datetime.now(timezone.utc).isoformat(),
+                'message': 'Dagens analyse avventer tilgjengelige bookmakerodds. Vi prøver igjen automatisk.',
+            })
+            CANDIDATE.unlink(missing_ok=True)
+            print('EDITION_DEFERRED=no_supported_bookmaker_odds')
+            return
         if not isinstance(data, dict) or data.get(DEFERRED_ODDS_REFRESH) is not True:
             revised = create_edition(data, previous, os.getenv('FOOTBALL_DATA_API_KEY','').strip())
             if previous and os.getenv('FORCE_REPLACE_EDITION') == '1':
                 record_revision(previous, revised, ROOT)
             save_active(revised)
+            (ROOT / 'site/data/update-status-v51.json').unlink(missing_ok=True)
             if CANDIDATE != PUBLIC:
                 CANDIDATE.unlink(missing_ok=True)
             print('EDITION_CREATED='+str(revised.get('editionDate')))

@@ -31,6 +31,7 @@ from odds_first_v25 import fixtures_from_quotes
 from international_v43 import INTERNATIONAL_KEYS
 from matchday_sports_v44 import discover_matchday_sports
 from morning_refresh_v29 import DEFERRED_ODDS_REFRESH, has_morning_edition, load_edition
+from edition_status_v51 import WAITING_FOR_ODDS, no_supported_prices
 from nations_league_fixtures import verify_events as verify_nations_league_events
 from sportmonks_v45 import discover as discover_sportmonks
 from market_expansion import (TEAM_TOTAL_LINES, extend_goal_probabilities,
@@ -940,6 +941,11 @@ def main():
     if not odds_key or status['odds'] == 'error':
         print('ERROR: odds-kilden er ikke tilgjengelig, behold forrige utgave', file=sys.stderr)
         sys.exit(1)
+    if no_supported_prices(snapshot):
+        snapshot[WAITING_FOR_ODDS] = True
+        OUT.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2), encoding='utf-8')
+        print('EDITION_WAITING_FOR_ODDS: ingen støttede odds tilgjengelig, behold publisert utgave')
+        return
     if snapshot['coverage']['upcomingMatches'] and not snapshot['coverage']['matchedOdds']:
         print('ERROR: kommende kamper uten noen matchede odds, prøv igjen i neste morgenkjøring', file=sys.stderr)
         sys.exit(1)

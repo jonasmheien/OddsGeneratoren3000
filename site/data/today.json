@@ -33,7 +33,14 @@
       },
       "selectionId": "v40:ec140a62ba8b2da948b4",
       "result": {
-        "status": "scheduled"
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 3
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047920"
       }
     },
     {
@@ -67,7 +74,14 @@
       },
       "selectionId": "v40:f5cab283ea4467f799f9",
       "result": {
-        "status": "scheduled"
+        "status": "lost",
+        "score": {
+          "home": 3,
+          "away": 0
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047923"
       }
     },
     {
@@ -101,7 +115,14 @@
       },
       "selectionId": "v40:8fb5a7fcb75250f9a079",
       "result": {
-        "status": "scheduled"
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047916"
       }
     },
     {
@@ -135,7 +156,14 @@
       },
       "selectionId": "v40:9b96734a55a1875ccf34",
       "result": {
-        "status": "scheduled"
+        "status": "won",
+        "score": {
+          "home": 1,
+          "away": 0
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047918"
       }
     }
   ],
@@ -171,7 +199,14 @@
       },
       "selectionId": "v40:23171470b3e539ddcfaf",
       "result": {
-        "status": "scheduled"
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047921"
       }
     },
     {
@@ -205,7 +240,14 @@
       },
       "selectionId": "v40:430000aeec57de079bb6",
       "result": {
-        "status": "scheduled"
+        "status": "lost",
+        "score": {
+          "home": 2,
+          "away": 3
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047919"
       }
     },
     {
@@ -239,7 +281,14 @@
       },
       "selectionId": "v40:65b6b46d8f8d77e48b24",
       "result": {
-        "status": "scheduled"
+        "status": "won",
+        "score": {
+          "home": 1,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047922"
       }
     }
   ],
@@ -4162,7 +4211,17 @@
       },
       "fixtureKey": "2026-11-17|bosniaherzegovina|romania",
       "qualificationTier": "observation",
-      "selectionId": "v40:147bae23bb79b77454b1"
+      "selectionId": "v40:147bae23bb79b77454b1",
+      "result": {
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047917"
+      }
     }
   ],
   "finalSelection": {
@@ -4366,6 +4425,6 @@
     ]
   },
   "editionDate": "2026-11-17",
-  "resultUpdatedAt": null,
+  "resultUpdatedAt": "2026-11-18T08:57:54.147828+00:00",
   "editionLocked": true
 }

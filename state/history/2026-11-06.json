@@ -38,7 +38,10 @@
         "score": {
           "home": 3,
           "away": 1
-        }
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-05&dateTo=2026-11-08",
+        "sourceMatchId": "560634"
       }
     },
     {
@@ -76,7 +79,10 @@
         "score": {
           "home": 3,
           "away": 1
-        }
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-05&dateTo=2026-11-08",
+        "sourceMatchId": "565852"
       }
     },
     {
@@ -114,7 +120,10 @@
         "score": {
           "home": 3,
           "away": 1
-        }
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-05&dateTo=2026-11-08",
+        "sourceMatchId": "561932"
       }
     },
     {
@@ -152,7 +161,10 @@
         "score": {
           "home": 3,
           "away": 1
-        }
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-05&dateTo=2026-11-08",
+        "sourceMatchId": "559638"
       }
     }
   ],
@@ -18402,7 +18414,7 @@
     "whyNoPicks": "Ingen tips bestod den usikkerhetsjusterte verdikontrollen. Se rejection-tall for årsaker."
   },
   "editionDate": "2026-11-06",
-  "resultUpdatedAt": "2026-11-06T22:06:00.828408+00:00",
+  "resultUpdatedAt": "2026-11-18T08:57:54.147828+00:00",
   "editionLocked": true,
   "interestingObjects": [],
   "finalSelection": {

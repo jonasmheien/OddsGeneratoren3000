@@ -168,6 +168,13 @@ def publish(root, now=None):
         raise ValueError('Time must be timezone-aware')
     active = read_json(root/'site/data/today.json')
     history = read_json(root/'site/data/history.json')
+    hitrate = read_json(root/'site/data/hitrate-v51.json')
+    if isinstance(hitrate, dict) and hitrate.get('schemaVersion') == 51 and isinstance(hitrate.get('tips'), list):
+        # Use the same immutable first-publication prices/outcomes as the
+        # category counters, including tips removed in subsequent editions.
+        history = [{'date': tip.get('editionDate'), 'picks': [{
+            'matchId': tip.get('id'), 'market': tip.get('market'), 'price': tip.get('price'),
+            'status': (tip.get('result') or {}).get('status')}]} for tip in hitrate['tips']]
     data = root/'site/data'
     quality = quality_report(active, now)
     performance = performance_report(history, now)

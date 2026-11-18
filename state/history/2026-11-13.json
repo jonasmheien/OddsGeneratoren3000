@@ -33,7 +33,14 @@
       },
       "selectionId": "v40:4ba70d63082fed524413",
       "result": {
-        "status": "scheduled"
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047888"
       }
     },
     {
@@ -67,7 +74,14 @@
       },
       "selectionId": "v40:6c084f4c73edb372b04a",
       "result": {
-        "status": "scheduled"
+        "status": "lost",
+        "score": {
+          "home": 2,
+          "away": 2
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047880"
       }
     },
     {
@@ -101,7 +115,14 @@
       },
       "selectionId": "v40:99b169c16e63c5850dee",
       "result": {
-        "status": "scheduled"
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 0
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047884"
       }
     },
     {
@@ -135,7 +156,14 @@
       },
       "selectionId": "v40:256ff5be71ce14c2283f",
       "result": {
-        "status": "scheduled"
+        "status": "won",
+        "score": {
+          "home": 0,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047885"
       }
     }
   ],
@@ -171,7 +199,14 @@
       },
       "selectionId": "v40:f5f09c9318200b935d8f",
       "result": {
-        "status": "scheduled"
+        "status": "won",
+        "score": {
+          "home": 0,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047881"
       }
     },
     {
@@ -205,7 +240,14 @@
       },
       "selectionId": "v40:cd5f223b227c79341881",
       "result": {
-        "status": "scheduled"
+        "status": "lost",
+        "score": {
+          "home": 7,
+          "away": 0
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047886"
       }
     },
     {
@@ -239,7 +281,14 @@
       },
       "selectionId": "v40:5747d1da02963a7aebdf",
       "result": {
-        "status": "scheduled"
+        "status": "lost",
+        "score": {
+          "home": 0,
+          "away": 0
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047889"
       }
     },
     {
@@ -273,7 +322,14 @@
       },
       "selectionId": "v40:9546265bac065cd46906",
       "result": {
-        "status": "scheduled"
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 3
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047887"
       }
     },
     {
@@ -307,7 +363,14 @@
       },
       "selectionId": "v40:f0bac5d678e5315a2eb9",
       "result": {
-        "status": "scheduled"
+        "status": "lost",
+        "score": {
+          "home": 0,
+          "away": 5
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047882"
       }
     }
   ],
@@ -4805,6 +4868,6 @@
     ]
   },
   "editionDate": "2026-11-13",
-  "resultUpdatedAt": null,
+  "resultUpdatedAt": "2026-11-18T08:57:54.147828+00:00",
   "editionLocked": true
 }
