@@ -22,6 +22,43 @@
       "budget": null,
       "checkedAt": "2026-11-19T19:18:04.069360+00:00",
       "runId": "44596824361"
+    },
+    "preview": {
+      "targetDate": "2026-11-20",
+      "reason": "quota_limited",
+      "coverage": {
+        "upcoming": 5,
+        "withOdds": 0,
+        "withModel": 3
+      },
+      "providers": {
+        "fixtures": "ok",
+        "odds": "empty",
+        "sportmonks": "ok",
+        "catalogAvailable": true,
+        "failedEventLists": 0,
+        "failedOddsRequests": 0
+      },
+      "requestedLeagues": [],
+      "oddsCreditsRemaining": 11,
+      "budget": {
+        "remaining": 11,
+        "checkedAt": "2026-11-19T22:50:40.839218+00:00",
+        "dailyCredits": {
+          "core": 2,
+          "requests": 1
+        },
+        "dailyLimits": {
+          "core": 2,
+          "preview": 0,
+          "extra": 0
+        },
+        "cacheHits": 0,
+        "denied": [],
+        "uncertainCredits": 0
+      },
+      "checkedAt": "2026-11-19T22:50:40.839218+00:00",
+      "runId": "44632311132"
     }
   }
 }
