@@ -36,6 +36,6 @@ const rankedEdition={...current,finalSelection:{version:40,rankedRecommendations
   recommendations:ranked,safeBets:[ranked[1],p('alternate','Czechia','Spain'),
     p('remaining','Germany','Netherlands')]};
 chosen=vis.selectEdition(rankedEdition,null,now);
-assert.deepEqual(chosen.groups.qualified,ranked,'All ranked picks, including the sixth, are available');
-assert.deepEqual(chosen.groups.safe.map(x=>x.matchId),['remaining']);
+assert.deepEqual(chosen.groups.qualified,[],'There is no fourth display category');
+assert.deepEqual(chosen.groups.safe.map(x=>x.matchId),['ranked1','alternate','remaining']);
 console.log('PASS: provider aliases, no duplicate fixtures, same-day preview, immutable odds');

@@ -1,20 +1,3 @@
-/* The legacy dashboards remain available to the data readers. */
-body.three-v26 main > :not(.hero):not(.tf-root),
-body.three-v26 #dagens,
-body.three-v26 #safe,
-body.three-v26 #high,
-body.three-v26 #q20-root,
-body.three-v26 #morgendagen,
-body.three-v26 #live,
-body.three-v26 #resultater,
-body.three-v26 .categories,
-body.three-v26 .top-nav,
-body.three-v26 #market-board,
-body.three-v26 #score-consensus,
-body.three-v26 #versions-v22,
-body.three-v26 .market-board,
-body.three-v26 .score-consensus,
-body.three-v26 .versions-v22 {display:none!important}
 .tf-root {margin:30px 0 40px;color:var(--body)}
 .tf-date {font-size:12px;letter-spacing:.7px;color:var(--gold);margin:0 0 16px;font-weight:650}
 .tf-columns {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}
@@ -102,4 +85,34 @@ body.three-v26 .versions-v22 {display:none!important}
 .tf-form-report>.tf-form-badges{justify-content:flex-start;margin:8px 0}
 .tf-form-limited{font-size:11px;color:var(--muted);margin:8px 0 0!important;line-height:1.5}
 @media(max-width:480px){.tf-form-match-result>span:first-child{font-size:11px}}
-.tf-monitor {font-size:11px;line-height:1.55;color:var(--muted);border-top:1px solid var(--edge);padding-top:11px;margin:12px 0 0;}
+
+/* v53: only match, kickoff, selection and odds are visible on a closed card. */
+.tf-root{margin:0 0 3rem}
+.tf-columns{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.75rem}
+.tf-section{border:0;border-radius:0;background:none;padding:0;min-height:0;scroll-margin-top:1.5rem}
+.tf-section header{padding:0 0 1rem;margin-bottom:0;border-color:var(--edge);gap:.75rem}
+.tf-section h2{font-size:1.125rem;font-weight:600;letter-spacing:-.02em}
+.tf-section header>span{border:0;padding:0;color:var(--soft);font-size:.875rem}
+.tf-list{gap:0}
+.tf-card{border:0;border-bottom:1px solid var(--edge);background:none;border-radius:0;padding:1.25rem 0;min-width:0}
+.tf-meta{font-size:.8125rem;color:var(--muted);display:flex;justify-content:space-between;gap:.75rem;flex-wrap:wrap}
+.tf-meta span{color:var(--muted);white-space:nowrap}
+.tf-teams{font-size:1rem;font-weight:600;line-height:1.5;margin:.75rem 0;overflow-wrap:anywhere}
+.tf-teams .tf-versus{font-size:.875rem;font-weight:400;color:var(--muted)}
+.tf-market{font-size:.875rem;color:var(--body);gap:1rem}
+.tf-market strong{font-size:1.25rem;font-weight:600;white-space:nowrap}
+.tf-empty{font-size:.875rem;margin:1.5rem 0;color:var(--muted)}
+.tf-status{font-size:.875rem;margin:0 0 1.5rem;color:var(--muted)}
+.tf-analysis{margin-top:1rem;padding-top:0;border-top:0}
+.tf-analysis summary{font-size:.875rem;font-weight:400;color:var(--muted);min-height:2.75rem}
+.tf-analysis summary::after{font-size:1.125rem}
+.tf-analysis-body,.tf-analysis-body h3,.tf-compact-block h3,.tf-compact-block p{font-size:.875rem;line-height:1.6}
+.tf-attribution,.tf-form-order,.tf-form-scope,.tf-missing,.tf-form-limited{font-size:.8125rem}
+.tf-probability-source{font-size:.8125rem!important}
+.tf-form-side strong,.tf-form-name,.tf-form-match-result>span:first-child{font-size:.875rem}
+.tf-form-side>span,.tf-form-match-info{font-size:.8125rem;font-weight:400;letter-spacing:0}
+.tf-form-side{flex-wrap:wrap}
+.tf-form-match{border-radius:.375rem;padding:.625rem;background:var(--surface)}
+.tf-form-badge{font-size:.8125rem}
+@media(max-width:1000px){.tf-columns{grid-template-columns:1fr;gap:2.25rem}.tf-section:last-child{grid-column:auto}.tf-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:1.75rem;align-items:start}}
+@media(max-width:640px){.tf-columns{gap:2rem}.tf-list{display:block}.tf-section{padding:0}.tf-section h2{font-size:1.125rem}.tf-root{margin-top:0}}

@@ -39,8 +39,8 @@ class MarketViewV15Tests(unittest.TestCase):
 
     def test_no_site_data_or_state_is_overwritten_by_patch(self):
         index=(ROOT/'site'/'index.html').read_text(encoding='utf-8')
-        self.assertIn('market-board-v14.js?v=16', index)
-        self.assertIn('score-consensus-v14.js?v=16', index)
+        self.assertNotIn('market-board-v14.js', index)
+        self.assertNotIn('score-consensus-v14.js', index)
         self.assertIn('Data provided by football-data.org', index)
         self.assertTrue((ROOT/'site'/'data'/'today.json').exists())
 

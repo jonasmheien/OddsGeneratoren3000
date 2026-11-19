@@ -132,8 +132,8 @@ class RiskAwareScreeningTests(unittest.TestCase):
 
     def test_versioned_source_files_exist(self):
         html=(ROOT/'site/index.html').read_text()
-        self.assertIn('quality-v20.js?v=20',html)
-        self.assertIn('quality-v20.css?v=20',html)
+        self.assertNotIn('quality-v20.js',html)
+        self.assertIn('hitrate-v51.css?v=53',html)
         js=(ROOT/'site/quality-v20.js').read_text()
         self.assertIn('v20-active',js)
         self.assertIn('Ikke anbefalt',js)

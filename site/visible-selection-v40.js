@@ -45,8 +45,7 @@
     osloDay(p.kickoff)===dayOf(edition)&&!!p.home&&!!p.away&&
     !!p.matchId&&!!p.market&&!!p.label&&Number.isFinite(Number(p.price))&&Number(p.price)>1;
   const groups=edition=>({
-    qualified:edition?.finalSelection?.rankedRecommendations===true&&Array.isArray(edition?.recommendations)
-      ?edition.recommendations.filter(p=>p?.qualificationTier==='qualified'):[],
+    qualified:[],
     safe:Array.isArray(edition?.safeBets)?edition.safeBets:[],
     high:Array.isArray(edition?.highRisk)?edition.highRisk:[],
     watch:Array.isArray(edition?.interestingObjects)?edition.interestingObjects:[]});
@@ -74,12 +73,12 @@
     // Never show the same real match twice, even in older v40 preview JSON.
     // This only removes invalid duplicates, never creates or promotes bets.
     const selected={qualified:[],safe:[],high:[],watch:[]},seen=new Set();
-    for(const group of ['qualified','safe','high','watch']){
+    for(const group of ['safe','high','watch']){
       for(const p of (expired?[]:original[group])){
         if(!upcoming(p,edition,now))continue;
         const identity=fixtureIdentity(p);
         if(!identity||seen.has(identity))continue;
-        if(group!=='qualified'&&selected[group].length>=5)break;
+        if(selected[group].length>=5)break;
         seen.add(identity);
         selected[group].push(p);
       }

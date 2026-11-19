@@ -1,5 +1,5 @@
 'use strict';
-/* Render the backend's qualified list and candidate sections. */
+/* Display the three backend categories. No client-side tip generation. */
 (() => {
   const $ = id => document.getElementById(id);
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -19,56 +19,8 @@
     return new Intl.DateTimeFormat('nb-NO',{timeZone:'Europe/Oslo',hour:'2-digit',minute:'2-digit'}).format(date);
   };
   const price = value => Number(value).toLocaleString('nb-NO',{minimumFractionDigits:2,maximumFractionDigits:2});
-  const key = pick => String(pick.matchId??pick.id??'')+'|'+String(pick.market??'');
   const dayOf = edition => String(edition?.editionDate||edition?.localDate||'');
-  const futureKickoff = (p, now) => Number.isFinite(+new Date(p?.kickoff)) && +new Date(p.kickoff) > +now;
-  const shownKickoffs = (edition, now) => {
-    let picks = ['recommendations','safeBets','highRisk','observations']
-      .flatMap(k => Array.isArray(edition?.[k])?edition[k]:[])
-      .map(p => +new Date(p?.kickoff)).filter(n => Number.isFinite(n) && n > 0 && osloDate(new Date(n))===dayOf(edition));
-    if(!picks.length) picks=(edition?.matches||[]).filter(m=>m && m.odds && Object.keys(m.odds).length)
-      .map(m=>+new Date(m.kickoff)).filter(n=>Number.isFinite(n)&&n>0&&osloDate(new Date(n))===dayOf(edition));
-    return picks;
-  };
-  function shouldShowTomorrow(today, preview, now){
-    if(!preview || preview.previewEdition!==true || !/^\d{4}-\d{2}-\d{2}$/.test(dayOf(preview)))return false;
-    const local=osloDate(now);
-    if(dayOf(preview)<local)return false;
-    if(today && dayOf(today)>=dayOf(preview))return false;
-    if(!today || dayOf(today)<local)return true;
-    const starts=shownKickoffs(today,now);
-    // No recommendations and no quoted fixtures: don't hold a blank day forever.
-    if(!starts.length)return Number(new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Oslo',hour:'2-digit',hourCycle:'h23'}).format(now))>=18;
-    return starts.every(t=>t<=+now);
-  }
-  // Identity is per real match, not per provider-specific numeric/odds ID.
-  // Only narrow, known team-name aliases are used. Never guess unrelated teams.
-  const gameToken = p => {
-    const canon = name => {
-      const n=String(name||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'')
-        .toLowerCase().replace(/[^a-z0-9]/g,'');
-      const aliases={boltonwanderers:'bolton',silkeborgif:'silkeborg',
-        fczwolle:'zwolle',peczwolle:'zwolle'};
-      return aliases[n]||n;
-    };
-    const h=canon(p.home),a=canon(p.away),k=new Date(p.kickoff);
-    return h&&a&&Number.isFinite(+k)?`game:${h}|${a}|${osloDate(k)}`:null;
-  };
-  const alreadyUsed = (seen,p) => seen.has(String(p.matchId??p.id)) ||
-    (gameToken(p)!==null && seen.has(gameToken(p)));
-  const markUsed = (seen,p) => {
-    seen.add(String(p.matchId??p.id));
-    const k=gameToken(p);if(k)seen.add(k);
-  };
-  const unique = picks => {
-    const used=new Set();return picks.filter(p=>{if(!p || !p.home || !p.away || !futureKickoff(p,new Date()))return false;
-      const k=key(p);if(used.has(k))return false;used.add(k);return true;});
-  };
-  // Additional opportunities are candidates, NEVER substitutes for the strict
-  // uncalibrated value gate. Every listed price must exist in this edition.
   const numberIn = value => value !== null && value !== undefined && value !== '' && Number.isFinite(Number(value)) ? Number(value) : null;
-  const labels = {H:'Hjemmeseier',B:'Borteseier',U:'Uavgjort',O25:'Over 2,5 mål',U25:'Under 2,5 mål',O35:'Over 3,5 mål',U35:'Under 3,5 mål',BTTS:'Begge lag scorer'};
-  const isOnDay = (p,edition,now) => futureKickoff(p,now) && osloDate(new Date(p.kickoff))===dayOf(edition);
   function freshBookmaker(q, now){
     const odds=numberIn(q?.price), books=numberIn(q?.books ?? q?.bookmakers);
     const stamped=+new Date(q?.lastUpdated ?? q?.oddsUpdatedAt);
@@ -96,14 +48,6 @@
   const fraction = value => {
     const n=finiteNumber(value);
     return n!==null && n>=0 && n<=1 ? `${(n*100).toLocaleString('nb-NO',{maximumFractionDigits:1})} %` : null;
-  };
-  const decimal = value => {
-    const n=finiteNumber(value);
-    return n!==null && n>=0 && n<100 ? n.toLocaleString('nb-NO',{maximumFractionDigits:2}) : null;
-  };
-  const recordedAt = value => {
-    if(!value || !Number.isFinite(+new Date(value)))return null;
-    return new Intl.DateTimeFormat('nb-NO',{timeZone:'Europe/Oslo',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).format(new Date(value));
   };
   function analysisDetails(p,recommended,edition){
     const match=(Array.isArray(edition?.matches)?edition.matches:[])
@@ -194,13 +138,13 @@
       heading='Ekspertens begrunnelse';
       reason=`${esc(verifiedExpert.reason)} <span class="tf-attribution">${esc(verifiedExpert.source)}</span>`;
     }else if(p._candidateType==='market'){
-      reason='Spillet er valgt ut fra registrerte bookmakerodds. Det er en markedsbasert kandidat, ikke et dokumentert verdiobjekt.';
+      reason='Basert på bookmakerodds.';
     }else if(p._candidateType==='model'){
-      reason='Spillet er valgt som modellkandidat ut fra registrert lagform og bookmakerpriser. Modellens treffsikkerhet er ikke dokumentert.';
+      reason='Basert på lagform og bookmakerodds.';
     }else if(recommended){
-      reason='Spillet har passert modellens verdifilter. Beregningen er foreløpig og er ikke historisk kalibrert.';
+      reason='Basert på modellens konservative scenario.';
     }else{
-      reason=esc(p.reason || p._why || 'Kampen er under vurdering, men datagrunnlaget er foreløpig utilstrekkelig.');
+      reason='Til vurdering.';
     }
 
     const analysisKey=`${dayOf(edition)}|${String(p.matchId??'')}|${String(p.market??'')}`;
@@ -219,16 +163,12 @@
       </div>
     </details>`;
   }
-  function card(p,recommended,edition,ranked=false){
+  function card(p,recommended,edition){
     const validPrice=Number.isFinite(Number(p.price))&&Number(p.price)>1;
-    const rationale=Array.isArray(p.rationale)?p.rationale.find(s=>typeof s==='string'):null;
-    const risk=ranked?({safe:'Safe',high:'High Risk'}[p.category]||''):'';
     return `<article class="tf-card">
-      <div class="tf-meta">${esc(p.league||'Fotball')} <span>· ${esc(kickoff(p.kickoff))}${risk?' · '+risk:''}</span></div>
-      <div class="tf-teams">${esc(p.home)} <span>–</span> ${esc(p.away)}</div>
+      <div class="tf-meta">${esc(p.league||'Fotball')} <span>· ${esc(kickoff(p.kickoff))}</span></div>
+      <div class="tf-teams">${esc(p.home)} <span class="tf-versus">mot</span> ${esc(p.away)}</div>
       <div class="tf-market"><span>${esc(p.label||'Marked under vurdering')}</span>${validPrice?`<strong>${esc(price(p.price))}</strong>`:''}</div>
-      <div class="tf-reason">${esc(recommended?(rationale||'Kvalifisert av analysemodellen.'):(p._why||p.reason||'Ikke anbefalt.'))}</div>
-      ${recommended?`<div class="tf-note">${p._candidateType==='market'?(p.category==='high'?'Markedsbasert High Risk · ingen modellbekreftet verdi':'Markedsbasert Safe Bet · ikke modellbekreftet'):p._candidateType==='model'?'Modellkandidat · ikke kvalifisert verdiobjekt':'Kvalifisert i modellens konservative scenario'} · Sjekk oppdatert bookmakerodds.</div>`:''}
       ${analysisDetails(p,recommended,edition)}
     </article>`;
   }
@@ -251,99 +191,39 @@
     if(loading)return;
     loading=true;
     try{
-      const [today,preview,quality,performance,update]=await Promise.all([
-        get('today'),get('tomorrow'),get('quality-v42'),get('performance-v42'),get('update-status-v51')]);
+      const [today,preview,update]=await Promise.all([get('today'),get('tomorrow'),get('update-status-v51')]);
       const now=new Date();
       const chosen=window.OddsVisibleV40?.selectEdition(today,preview,now)||null;
-      const useTomorrow=Boolean(chosen?.useTomorrow);
-      const edition=chosen?.edition||null;
-      const editionDay=dayOf(edition);
-      // Share the actual edition selected by the existing picker with the
-      // supplementary market radar. No new odds or tips are calculated here.
-      const marketRoot=$('tf-root');
-      if(marketRoot?.dataset){
-        marketRoot.dataset.ogEditionDate=editionDay;
-        marketRoot.dataset.ogEditionFile=edition===preview?'tomorrow':'today';
-      }
-      const expired=Boolean(chosen?.expired);
-      const qualified=chosen?.groups.qualified||[];
-      const safe=chosen?.groups.safe||[];
-      const high=chosen?.groups.high||[];
-      const watch=chosen?.groups.watch||[];
-      const selectedDay=!expired?editionDay:'';
-      $('tf-date').textContent=selectedDay?`Forslag for ${dateText(selectedDay)}${useTomorrow?' · forhåndsanalyse':''}`:
-        'Venter på neste dags utvalg';
-      const heroDate=$('today-date');if(heroDate)heroDate.textContent=selectedDay?dateText(selectedDay):'Neste dags utvalg kommer';
-      const editionIndicator=$('edition-indicator');if(editionIndicator)editionIndicator.textContent=useTomorrow?'MORGENDAGENS UTGAVE':'DAGENS UTGAVE';
-      const lastUpdated=$('last-updated');if(lastUpdated)lastUpdated.textContent=edition?.generatedAt?`Analyse ${kickoff(edition.generatedAt)}`:'Oppdatering ikke klar';
-      const showRanked=chosen?.authoritative&&edition.finalSelection.rankedRecommendations===true&&!expired;
-      $('tf-qualified').hidden=!showRanked;
-      $('tf-qualified-count').textContent=String(qualified.length);
-      if(showRanked){
-        const reason=edition.qualityAudit?.whyNoPicks||'Ingen aktive kvalifiserte spill.';
-        renderList($('tf-qualified-list'),moreOpen=>{
-          if(!qualified.length)return `<p class="tf-empty">${esc(reason)}</p>`;
-          const top=qualified.slice(0,5).map(p=>card(p,true,edition,true)).join('');
-          const remaining=qualified.slice(5);
-          return `<div class="tf-ranked-grid">${top}</div>`+
-            (remaining.length?`<details class="tf-more"${moreOpen?' open':''}><summary>Vis ${remaining.length} flere</summary>
-              <div class="tf-ranked-grid">${remaining.map(p=>card(p,true,edition,true)).join('')}</div></details>`:'');
-        });
-      }
-      const sections=[['high',high],['safe',safe],['watch',watch]];
-      for(const [id,entries] of sections){
+      const edition=chosen?.edition;
+      const selectedDay=chosen&&!chosen.expired?dayOf(edition):'';
+      $('today-date').textContent=selectedDay?dateText(selectedDay):dateText(osloDate(now));
+      $('last-updated').textContent=selectedDay&&edition?.generatedAt?`Oppdatert ${kickoff(edition.generatedAt)}`:'';
+      for(const id of ['safe','high','watch']){
+        const entries=chosen?.groups[id]||[];
         $('tf-'+id+'-count').textContent=String(entries.length);
-        const list=$('tf-'+id+'-list');
-        renderList(list,()=>entries.length?entries.map(p=>card(p,id!=='watch',edition)).join(''):
-          `<p class="tf-empty">${id==='watch'?'Ingen aktuelle objekter under vurdering.':
-            'Ingen kandidater fra dagens datagrunnlag.'}</p>`);
+        renderList($('tf-'+id+'-list'),()=>entries.length?
+          entries.map(p=>card(p,id!=='watch',edition)).join(''):
+          '<p class="tf-empty">Ingen aktuelle tips.</p>');
       }
-      const lack=Object.entries({safe:'Safe Bets',high:'High Risk',watch:'Interessante objekter'})
-        .filter(([key])=>(chosen?.groups[key]||[]).length<3)
-        .map(([key,name])=>`${name}: færre enn tre konfliktfrie kandidater med gyldig datagrunnlag.`).join(' ');
-      const monitor=$('tf-monitor');
-      if(monitor){
-        const previewCoverage=useTomorrow && edition?.coverage ? {
-          matchesWithOdds:Number(edition.coverage.matchedOdds||0),
-          upcomingMatches:Number(edition.coverage.upcomingMatches||0),
-          oddsFixturesWithLinkedForm:Number(edition.coverage.oddsWithVerifiedForm??
-            edition.dataStatus?.officialFormBridge?.oddsFixturesWithBothTeamsMatched??0),
-          externalPredictions:Number(edition.dataStatus?.externalPredictionsCount||0)
-        }:null;
-        const coverage=quality?.editionDate===editionDay?quality?.data:previewCoverage;
-        const issues=quality?.editionDate===editionDay?quality?.issues||[]:[];
-        const source=coverage?`Oddsdekning ${coverage.matchesWithOdds}/${coverage.upcomingMatches} kamper · `+
-          `Formkobling ${coverage.oddsFixturesWithLinkedForm} · Eksterne prognoser ${coverage.externalPredictions}`:
-          'Kildekontroll for denne utgaven er ennå ikke publisert';
-        const stats=performance?.sample;
-        const roi=performance?.flatStake?.roiPct;
-        const results=stats?`Historikk: ${stats.wins} vunnet, ${stats.losses} tapt`+
-          (roi!==null&&roi!==undefined?` · Flat innsats ROI ${Number(roi).toLocaleString('nb-NO')} %`: '')+
-          (performance.insufficientSample?' · For få kamper til å fastslå dokumentert verdi':
-           ' · Historiske resultater er ingen garanti for framtidig verdi'):'Ingen publisert resultatanalyse ennå';
-        monitor.textContent=source+'. '+results+'. '+
-          (issues.length?`Databegrensninger: ${issues.join('; ')}.`:'');
-      }
-      $('tf-status').textContent=expired?'Dagens kamper har startet. Neste utvalg publiseres automatisk når analysen er klar.':
-        !chosen?.authoritative?'Dagsutgaven mangler sentral konfliktkontroll. Ingen gamle frontendforslag vises.':
-        'Alle tips er valgt i backend og kontrollert for kampkonflikter. Odds er ikke sanntidspriser. '+lack;
-      if(update?.state==='waiting_for_odds'&&update.targetDate===window.OddsVisibleV40?.osloDay(now)&&(!selectedDay||editionDay<update.targetDate)){
-        $('tf-status').textContent='Dagens analyse avventer tilgjengelige bookmakerodds. Vi prøver igjen automatisk.';
-      }
+      const status=$('tf-status');
+      const any=Object.values(chosen?.groups||{}).some(list=>list.length);
+      parent.querySelector('.tf-columns').hidden=!any;
+      status.textContent=!today&&!preview?'Tipsene kunne ikke lastes.':
+        !any&&update?.state==='waiting_for_odds'&&update.targetDate===osloDate(now)?'Venter på odds.':
+        !any?'Ingen kommende tips.':'';
+      status.hidden=!status.textContent;
     }finally{loading=false;}
   }
   document.addEventListener('DOMContentLoaded',()=>{
     parent=document.createElement('section');parent.className='tf-root';parent.id='tf-root';
-    parent.innerHTML='<div class="tf-date" id="tf-date">Henter siste utvalg …</div>'+
-    '<section class="tf-section tf-ranked" id="tf-qualified" aria-labelledby="tf-qualified-title" hidden><header><h2 id="tf-qualified-title">Kvalifiserte spill</h2><span id="tf-qualified-count">0</span></header><div id="tf-qualified-list" class="tf-list"></div></section>'+
+    parent.innerHTML='<p class="tf-status" id="tf-status" role="status" hidden></p>'+
     '<div class="tf-columns">'+
-    '<section class="tf-section" aria-labelledby="tf-high-title"><header><h2 id="tf-high-title">High Risk</h2><span id="tf-high-count">0</span></header><div id="tf-high-list" class="tf-list"></div></section>'+
-    '<section class="tf-section" aria-labelledby="tf-safe-title"><header><h2 id="tf-safe-title">Safe Bets</h2><span id="tf-safe-count">0</span></header><div id="tf-safe-list" class="tf-list"></div></section>'+
-    '<section class="tf-section" aria-labelledby="tf-watch-title"><header><h2 id="tf-watch-title">Interessante objekter</h2><span id="tf-watch-count">0</span></header><p class="tf-subtitle">Til vurdering, ikke anbefalt</p><div id="tf-watch-list" class="tf-list"></div></section>'+
-    '</div><p class="tf-status" id="tf-status" role="status"></p>'+
-    '<p class="tf-monitor" id="tf-monitor"></p>';
-    const main=document.querySelector('main');if(!main)return;const hero=main.querySelector('.hero');
-    if(hero && typeof hero.after==='function')hero.after(parent);else main.prepend(parent);
+    '<section class="tf-section" id="safe-bets" aria-labelledby="tf-safe-title"><header><h2 id="tf-safe-title">Safe Bets</h2><span id="tf-safe-count">0</span></header><div id="tf-safe-list" class="tf-list"><p class="tf-empty">Laster tips …</p></div></section>'+
+    '<section class="tf-section" id="high-risk" aria-labelledby="tf-high-title"><header><h2 id="tf-high-title">High Risk</h2><span id="tf-high-count">0</span></header><div id="tf-high-list" class="tf-list"><p class="tf-empty">Laster tips …</p></div></section>'+
+    '<section class="tf-section" id="objekter" aria-labelledby="tf-watch-title"><header><h2 id="tf-watch-title">Interessante objekter</h2><span id="tf-watch-count">0</span></header><div id="tf-watch-list" class="tf-list"><p class="tf-empty">Laster tips …</p></div></section>'+
+    '</div>';
+    const main=document.querySelector('main');if(!main)return;
+    main.append(parent);
     document.body.classList.add('three-v26');
     load();$('refresh-data')?.addEventListener('click',load);
     setInterval(()=>{if(document.visibilityState==='visible')load();},60000);

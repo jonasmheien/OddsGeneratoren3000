@@ -1,61 +1,50 @@
 {
   "schemaVersion": 51,
-  "generatedAt": "2026-11-18T08:58:37.102255+00:00",
+  "generatedAt": "2026-11-19T08:32:48.332919+00:00",
   "trackedFrom": "2026-11-05T19:10:01.819000+00:00",
   "overall": {
-    "total": 176,
-    "wins": 50,
-    "losses": 86,
-    "settled": 136,
+    "total": 131,
+    "wins": 38,
+    "losses": 59,
+    "settled": 97,
     "voids": 0,
-    "unverified": 40,
+    "unverified": 34,
     "pending": 0,
-    "hitRatePct": 36.8
+    "hitRatePct": 39.2
   },
   "categories": {
     "safe": {
       "label": "Safe Bets",
-      "total": 65,
-      "wins": 26,
-      "losses": 14,
-      "settled": 40,
+      "total": 51,
+      "wins": 20,
+      "losses": 10,
+      "settled": 30,
       "voids": 0,
-      "unverified": 25,
+      "unverified": 21,
       "pending": 0,
-      "hitRatePct": 65.0
+      "hitRatePct": 66.7
     },
     "high": {
       "label": "High Risk",
-      "total": 77,
-      "wins": 15,
-      "losses": 52,
-      "settled": 67,
+      "total": 58,
+      "wins": 10,
+      "losses": 39,
+      "settled": 49,
       "voids": 0,
-      "unverified": 10,
+      "unverified": 9,
       "pending": 0,
-      "hitRatePct": 22.4
+      "hitRatePct": 20.4
     },
     "watch": {
       "label": "Interessante objekter",
-      "total": 27,
+      "total": 22,
       "wins": 8,
-      "losses": 14,
-      "settled": 22,
+      "losses": 10,
+      "settled": 18,
       "voids": 0,
-      "unverified": 5,
+      "unverified": 4,
       "pending": 0,
-      "hitRatePct": 36.4
-    },
-    "qualified": {
-      "label": "Kvalifiserte spill",
-      "total": 7,
-      "wins": 1,
-      "losses": 6,
-      "settled": 7,
-      "voids": 0,
-      "unverified": 0,
-      "pending": 0,
-      "hitRatePct": 14.3
+      "hitRatePct": 44.4
     }
   },
   "days": [
@@ -63,24 +52,24 @@
       "date": "2026-11-17",
       "categories": {
         "safe": {
-          "total": 3,
-          "wins": 1,
-          "losses": 2,
-          "settled": 3,
+          "total": 1,
+          "wins": 0,
+          "losses": 1,
+          "settled": 1,
           "voids": 0,
           "unverified": 0,
           "pending": 0,
-          "hitRatePct": 33.3
+          "hitRatePct": 0.0
         },
         "high": {
-          "total": 7,
-          "wins": 3,
-          "losses": 4,
-          "settled": 7,
+          "total": 5,
+          "wins": 2,
+          "losses": 3,
+          "settled": 5,
           "voids": 0,
           "unverified": 0,
           "pending": 0,
-          "hitRatePct": 42.9
+          "hitRatePct": 40.0
         },
         "watch": {
           "total": 2,
@@ -91,16 +80,6 @@
           "unverified": 0,
           "pending": 0,
           "hitRatePct": 100.0
-        },
-        "qualified": {
-          "total": 1,
-          "wins": 0,
-          "losses": 1,
-          "settled": 1,
-          "voids": 0,
-          "unverified": 0,
-          "pending": 0,
-          "hitRatePct": 0.0
         }
       }
     },
@@ -108,24 +87,24 @@
       "date": "2026-11-16",
       "categories": {
         "safe": {
-          "total": 5,
-          "wins": 3,
+          "total": 6,
+          "wins": 4,
           "losses": 1,
-          "settled": 4,
+          "settled": 5,
           "voids": 0,
           "unverified": 1,
           "pending": 0,
-          "hitRatePct": 75.0
+          "hitRatePct": 80.0
         },
         "high": {
-          "total": 6,
-          "wins": 1,
-          "losses": 5,
-          "settled": 6,
+          "total": 4,
+          "wins": 0,
+          "losses": 4,
+          "settled": 4,
           "voids": 0,
           "unverified": 0,
           "pending": 0,
-          "hitRatePct": 16.7
+          "hitRatePct": 0.0
         },
         "watch": {
           "total": 1,
@@ -136,16 +115,6 @@
           "unverified": 0,
           "pending": 0,
           "hitRatePct": 0.0
-        },
-        "qualified": {
-          "total": 1,
-          "wins": 1,
-          "losses": 0,
-          "settled": 1,
-          "voids": 0,
-          "unverified": 0,
-          "pending": 0,
-          "hitRatePct": 100.0
         }
       }
     },
@@ -153,20 +122,20 @@
       "date": "2026-11-15",
       "categories": {
         "safe": {
-          "total": 5,
-          "wins": 4,
+          "total": 4,
+          "wins": 3,
           "losses": 0,
-          "settled": 4,
+          "settled": 3,
           "voids": 0,
           "unverified": 1,
           "pending": 0,
           "hitRatePct": 100.0
         },
         "high": {
-          "total": 4,
+          "total": 5,
           "wins": 0,
-          "losses": 4,
-          "settled": 4,
+          "losses": 5,
+          "settled": 5,
           "voids": 0,
           "unverified": 0,
           "pending": 0,
@@ -181,16 +150,6 @@
           "unverified": 0,
           "pending": 0,
           "hitRatePct": null
-        },
-        "qualified": {
-          "total": 2,
-          "wins": 0,
-          "losses": 2,
-          "settled": 2,
-          "voids": 0,
-          "unverified": 0,
-          "pending": 0,
-          "hitRatePct": 0.0
         }
       }
     },
@@ -198,14 +157,14 @@
       "date": "2026-11-14",
       "categories": {
         "safe": {
-          "total": 7,
+          "total": 5,
           "wins": 1,
-          "losses": 2,
-          "settled": 3,
+          "losses": 1,
+          "settled": 2,
           "voids": 0,
-          "unverified": 4,
+          "unverified": 3,
           "pending": 0,
-          "hitRatePct": 33.3
+          "hitRatePct": 50.0
         },
         "high": {
           "total": 6,
@@ -218,16 +177,6 @@
           "hitRatePct": 60.0
         },
         "watch": {
-          "total": 2,
-          "wins": 0,
-          "losses": 1,
-          "settled": 1,
-          "voids": 0,
-          "unverified": 1,
-          "pending": 0,
-          "hitRatePct": 0.0
-        },
-        "qualified": {
           "total": 1,
           "wins": 0,
           "losses": 1,
@@ -243,36 +192,61 @@
       "date": "2026-11-13",
       "categories": {
         "safe": {
-          "total": 8,
-          "wins": 6,
+          "total": 4,
+          "wins": 3,
           "losses": 1,
-          "settled": 7,
+          "settled": 4,
           "voids": 0,
-          "unverified": 1,
+          "unverified": 0,
           "pending": 0,
-          "hitRatePct": 85.7
+          "hitRatePct": 75.0
         },
         "high": {
-          "total": 10,
+          "total": 6,
           "wins": 2,
-          "losses": 7,
-          "settled": 9,
+          "losses": 3,
+          "settled": 5,
           "voids": 0,
           "unverified": 1,
           "pending": 0,
-          "hitRatePct": 22.2
+          "hitRatePct": 40.0
         },
         "watch": {
-          "total": 3,
+          "total": 1,
           "wins": 1,
-          "losses": 2,
+          "losses": 0,
+          "settled": 1,
+          "voids": 0,
+          "unverified": 0,
+          "pending": 0,
+          "hitRatePct": 100.0
+        }
+      }
+    },
+    {
+      "date": "2026-11-12",
+      "categories": {
+        "safe": {
+          "total": 5,
+          "wins": 4,
+          "losses": 1,
+          "settled": 5,
+          "voids": 0,
+          "unverified": 0,
+          "pending": 0,
+          "hitRatePct": 80.0
+        },
+        "high": {
+          "total": 3,
+          "wins": 0,
+          "losses": 3,
           "settled": 3,
           "voids": 0,
           "unverified": 0,
           "pending": 0,
-          "hitRatePct": 33.3
+          "hitRatePct": 0.0
         },
-        "qualified": {
+        "watch": {
           "total": 0,
           "wins": 0,
           "losses": 0,
@@ -285,60 +259,15 @@
       }
     },
     {
-      "date": "2026-11-12",
-      "categories": {
-        "safe": {
-          "total": 6,
-          "wins": 5,
-          "losses": 1,
-          "settled": 6,
-          "voids": 0,
-          "unverified": 0,
-          "pending": 0,
-          "hitRatePct": 83.3
-        },
-        "high": {
-          "total": 9,
-          "wins": 2,
-          "losses": 7,
-          "settled": 9,
-          "voids": 0,
-          "unverified": 0,
-          "pending": 0,
-          "hitRatePct": 22.2
-        },
-        "watch": {
-          "total": 1,
-          "wins": 0,
-          "losses": 1,
-          "settled": 1,
-          "voids": 0,
-          "unverified": 0,
-          "pending": 0,
-          "hitRatePct": 0.0
-        },
-        "qualified": {
-          "total": 2,
-          "wins": 0,
-          "losses": 2,
-          "settled": 2,
-          "voids": 0,
-          "unverified": 0,
-          "pending": 0,
-          "hitRatePct": 0.0
-        }
-      }
-    },
-    {
       "date": "2026-11-08",
       "categories": {
         "safe": {
-          "total": 15,
+          "total": 14,
           "wins": 3,
           "losses": 2,
           "settled": 5,
           "voids": 0,
-          "unverified": 10,
+          "unverified": 9,
           "pending": 0,
           "hitRatePct": 60.0
         },
@@ -353,24 +282,14 @@
           "hitRatePct": 0.0
         },
         "watch": {
-          "total": 7,
+          "total": 6,
           "wins": 2,
-          "losses": 5,
-          "settled": 7,
+          "losses": 4,
+          "settled": 6,
           "voids": 0,
           "unverified": 0,
           "pending": 0,
-          "hitRatePct": 28.6
-        },
-        "qualified": {
-          "total": 0,
-          "wins": 0,
-          "losses": 0,
-          "settled": 0,
-          "voids": 0,
-          "unverified": 0,
-          "pending": 0,
-          "hitRatePct": null
+          "hitRatePct": 33.3
         }
       }
     },
@@ -378,24 +297,24 @@
       "date": "2026-11-07",
       "categories": {
         "safe": {
-          "total": 10,
-          "wins": 3,
-          "losses": 4,
-          "settled": 7,
+          "total": 7,
+          "wins": 2,
+          "losses": 3,
+          "settled": 5,
           "voids": 0,
-          "unverified": 3,
+          "unverified": 2,
           "pending": 0,
-          "hitRatePct": 42.9
+          "hitRatePct": 40.0
         },
         "high": {
-          "total": 12,
-          "wins": 3,
-          "losses": 9,
-          "settled": 12,
+          "total": 9,
+          "wins": 2,
+          "losses": 7,
+          "settled": 9,
           "voids": 0,
           "unverified": 0,
           "pending": 0,
-          "hitRatePct": 25.0
+          "hitRatePct": 22.2
         },
         "watch": {
           "total": 3,
@@ -406,8 +325,13 @@
           "unverified": 0,
           "pending": 0,
           "hitRatePct": 0.0
-        },
-        "qualified": {
+        }
+      }
+    },
+    {
+      "date": "2026-11-06",
+      "categories": {
+        "safe": {
           "total": 0,
           "wins": 0,
           "losses": 0,
@@ -416,31 +340,16 @@
           "unverified": 0,
           "pending": 0,
           "hitRatePct": null
-        }
-      }
-    },
-    {
-      "date": "2026-11-06",
-      "categories": {
-        "safe": {
-          "total": 1,
-          "wins": 0,
-          "losses": 1,
-          "settled": 1,
-          "voids": 0,
-          "unverified": 0,
-          "pending": 0,
-          "hitRatePct": 0.0
         },
         "high": {
-          "total": 10,
+          "total": 7,
           "wins": 1,
-          "losses": 7,
-          "settled": 8,
+          "losses": 5,
+          "settled": 6,
           "voids": 0,
-          "unverified": 2,
+          "unverified": 1,
           "pending": 0,
-          "hitRatePct": 12.5
+          "hitRatePct": 16.7
         },
         "watch": {
           "total": 3,
@@ -451,16 +360,6 @@
           "unverified": 1,
           "pending": 0,
           "hitRatePct": 100.0
-        },
-        "qualified": {
-          "total": 0,
-          "wins": 0,
-          "losses": 0,
-          "settled": 0,
-          "voids": 0,
-          "unverified": 0,
-          "pending": 0,
-          "hitRatePct": null
         }
       }
     },
@@ -496,151 +395,31 @@
           "unverified": 3,
           "pending": 0,
           "hitRatePct": 50.0
-        },
-        "qualified": {
-          "total": 0,
-          "wins": 0,
-          "losses": 0,
-          "settled": 0,
-          "voids": 0,
-          "unverified": 0,
-          "pending": 0,
-          "hitRatePct": null
         }
       }
     }
   ],
   "tips": [
     {
-      "id": "ec845f12d6040c43f9f1193f",
-      "editionDate": "2026-11-17",
-      "category": "safe",
-      "home": "Wales",
-      "away": "Portugal",
-      "kickoff": "2026-11-17T19:45:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 1.37,
-      "firstPublishedAt": "2026-11-17T19:21:36.148000+00:00",
-      "result": {
-        "status": "won",
-        "score": {
-          "home": 2,
-          "away": 3
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047920"
-      }
-    },
-    {
-      "id": "e19efce866cb6490d85d71a0",
+      "id": "8e89a7aff6c98198541f0424",
       "editionDate": "2026-11-17",
       "category": "high",
-      "home": "Poland",
-      "away": "Sweden",
+      "home": "Wales",
+      "away": "Portugal",
       "kickoff": "2026-11-17T19:45:00+00:00",
       "market": "U25",
       "label": "Under 2,5 mål",
-      "price": 2.52,
-      "firstPublishedAt": "2026-11-17T08:58:05.381000+00:00",
-      "result": {
-        "status": "won",
-        "score": {
-          "home": 1,
-          "away": 1
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047922"
-      }
-    },
-    {
-      "id": "8f800fc38e2dd04a38604cc1",
-      "editionDate": "2026-11-17",
-      "category": "qualified",
-      "home": "Wales",
-      "away": "Portugal",
-      "kickoff": "2026-11-17T19:45:00+00:00",
-      "market": "U35",
-      "label": "Under 3,5 mål",
-      "price": 1.67,
-      "firstPublishedAt": "2026-11-17T08:58:05.381000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 2,
-          "away": 3
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047920"
-      }
-    },
-    {
-      "id": "6b510e9228d912fb246dd798",
-      "editionDate": "2026-11-17",
-      "category": "safe",
-      "home": "Israel",
-      "away": "Austria",
-      "kickoff": "2026-11-17T19:45:00+00:00",
-      "market": "O25",
-      "label": "Over 2,5 mål",
-      "price": 1.62,
-      "firstPublishedAt": "2026-11-17T08:58:05.381000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 1,
-          "away": 1
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047916"
-      }
-    },
-    {
-      "id": "0517d79010970615eb424ab6",
-      "editionDate": "2026-11-17",
-      "category": "high",
-      "home": "Denmark",
-      "away": "Norway",
-      "kickoff": "2026-11-17T19:45:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 2.35,
-      "firstPublishedAt": "2026-11-17T08:58:05.381000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 2,
-          "away": 3
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047919"
-      }
-    },
-    {
-      "id": "a8b1a4d56419ce823a97288e",
-      "editionDate": "2026-11-17",
-      "category": "high",
-      "home": "Hungary",
-      "away": "Northern Ireland",
-      "kickoff": "2026-11-17T19:45:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 4.1,
+      "price": 2.38,
       "firstPublishedAt": "2026-11-16T20:51:23.828000+00:00",
       "result": {
         "status": "lost",
         "score": {
-          "home": 1,
-          "away": 1
+          "home": 2,
+          "away": 3
         },
         "source": "UEFA",
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047921"
+        "sourceMatchId": "uefa:2047920"
       }
     },
     {
@@ -666,69 +445,25 @@
       }
     },
     {
-      "id": "96f5a9d8921ca55c95ed203e",
-      "editionDate": "2026-11-17",
-      "category": "watch",
-      "home": "Bosnia & Herzegovina",
-      "away": "Romania",
-      "kickoff": "2026-11-17T19:45:00+00:00",
-      "market": "O25",
-      "label": "Over 2,5 mål",
-      "price": 1.83,
-      "firstPublishedAt": "2026-11-16T20:51:23.828000+00:00",
-      "result": {
-        "status": "won",
-        "score": {
-          "home": 2,
-          "away": 1
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047917"
-      }
-    },
-    {
-      "id": "8e89a7aff6c98198541f0424",
+      "id": "307bcfc6ece36b249c350a45",
       "editionDate": "2026-11-17",
       "category": "high",
-      "home": "Wales",
-      "away": "Portugal",
+      "home": "Poland",
+      "away": "Sweden",
       "kickoff": "2026-11-17T19:45:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
-      "price": 2.38,
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 2.28,
       "firstPublishedAt": "2026-11-16T20:51:23.828000+00:00",
       "result": {
         "status": "lost",
         "score": {
-          "home": 2,
-          "away": 3
+          "home": 1,
+          "away": 1
         },
         "source": "UEFA",
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047920"
-      }
-    },
-    {
-      "id": "77713bde91254df48dc040e8",
-      "editionDate": "2026-11-17",
-      "category": "high",
-      "home": "Denmark",
-      "away": "Norway",
-      "kickoff": "2026-11-17T19:45:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 2.79,
-      "firstPublishedAt": "2026-11-16T20:51:23.828000+00:00",
-      "result": {
-        "status": "won",
-        "score": {
-          "home": 2,
-          "away": 3
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047919"
+        "sourceMatchId": "uefa:2047922"
       }
     },
     {
@@ -754,28 +489,6 @@
       }
     },
     {
-      "id": "307bcfc6ece36b249c350a45",
-      "editionDate": "2026-11-17",
-      "category": "high",
-      "home": "Poland",
-      "away": "Sweden",
-      "kickoff": "2026-11-17T19:45:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 2.28,
-      "firstPublishedAt": "2026-11-16T20:51:23.828000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 1,
-          "away": 1
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047922"
-      }
-    },
-    {
       "id": "20be6e5022b2969f7262db79",
       "editionDate": "2026-11-17",
       "category": "safe",
@@ -798,112 +511,75 @@
       }
     },
     {
-      "id": "db84ccfbbf3c7f8e3d23de59",
-      "editionDate": "2026-11-16",
+      "id": "a8b1a4d56419ce823a97288e",
+      "editionDate": "2026-11-17",
       "category": "high",
-      "home": "Greece",
-      "away": "Serbia",
-      "kickoff": "2026-11-16T19:45:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
-      "price": 2.2,
-      "firstPublishedAt": "2026-11-16T10:14:23.819000+00:00",
+      "home": "Hungary",
+      "away": "Northern Ireland",
+      "kickoff": "2026-11-17T19:45:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 4.1,
+      "firstPublishedAt": "2026-11-16T20:51:23.828000+00:00",
       "result": {
-        "status": "won",
+        "status": "lost",
         "score": {
           "home": 1,
-          "away": 0
+          "away": 1
         },
         "source": "UEFA",
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047912"
+        "sourceMatchId": "uefa:2047921"
       }
     },
     {
-      "id": "68c0f4c97c98b627032759f7",
-      "editionDate": "2026-11-16",
+      "id": "77713bde91254df48dc040e8",
+      "editionDate": "2026-11-17",
       "category": "high",
-      "home": "Estonia",
-      "away": "Bulgaria",
-      "kickoff": "2026-11-16T17:00:00+00:00",
+      "home": "Denmark",
+      "away": "Norway",
+      "kickoff": "2026-11-17T19:45:00+00:00",
       "market": "B",
       "label": "Borteseier",
-      "price": 3.95,
-      "firstPublishedAt": "2026-11-16T10:14:23.819000+00:00",
+      "price": 2.79,
+      "firstPublishedAt": "2026-11-16T20:51:23.828000+00:00",
       "result": {
-        "status": "lost",
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 3
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047919"
+      }
+    },
+    {
+      "id": "96f5a9d8921ca55c95ed203e",
+      "editionDate": "2026-11-17",
+      "category": "watch",
+      "home": "Bosnia & Herzegovina",
+      "away": "Romania",
+      "kickoff": "2026-11-17T19:45:00+00:00",
+      "market": "O25",
+      "label": "Over 2,5 mål",
+      "price": 1.83,
+      "firstPublishedAt": "2026-11-16T20:51:23.828000+00:00",
+      "result": {
+        "status": "won",
         "score": {
           "home": 2,
           "away": 1
         },
         "source": "UEFA",
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047907"
-      }
-    },
-    {
-      "id": "e751d522f46f9e1849553797",
-      "editionDate": "2026-11-16",
-      "category": "safe",
-      "home": "Iceland",
-      "away": "Luxembourg",
-      "kickoff": "2026-11-16T17:00:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 1.25,
-      "firstPublishedAt": "2026-11-15T20:41:16.293000+00:00",
-      "result": {
-        "status": "won",
-        "score": {
-          "home": 3,
-          "away": 0
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047906"
-      }
-    },
-    {
-      "id": "cfd7c51ba779f5d94cc30be5",
-      "editionDate": "2026-11-16",
-      "category": "safe",
-      "home": "Albacete",
-      "away": "Celta Fortuna",
-      "kickoff": "2026-11-16T19:30:00+00:00",
-      "market": "O25",
-      "label": "Over 2,5 mål",
-      "price": 1.58,
-      "firstPublishedAt": "2026-11-15T20:41:16.293000+00:00",
-      "result": {
-        "status": "unverified"
-      }
-    },
-    {
-      "id": "b8b90ed13e3624f96f6166c2",
-      "editionDate": "2026-11-16",
-      "category": "high",
-      "home": "Kazakhstan",
-      "away": "Slovakia",
-      "kickoff": "2026-11-16T15:00:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 4.05,
-      "firstPublishedAt": "2026-11-15T20:41:16.293000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 2,
-          "away": 2
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047913"
+        "sourceMatchId": "uefa:2047917"
       }
     },
     {
       "id": "aed6d61bfcabfce37eae5783",
       "editionDate": "2026-11-16",
-      "category": "qualified",
+      "category": "safe",
       "home": "Switzerland",
       "away": "Scotland",
       "kickoff": "2026-11-16T19:45:00+00:00",
@@ -920,94 +596,6 @@
         "source": "UEFA",
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
         "sourceMatchId": "uefa:2047914"
-      }
-    },
-    {
-      "id": "a16e83eaa9cab9fc6cfd48ed",
-      "editionDate": "2026-11-16",
-      "category": "safe",
-      "home": "Greece",
-      "away": "Serbia",
-      "kickoff": "2026-11-16T19:45:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 1.43,
-      "firstPublishedAt": "2026-11-15T20:41:16.293000+00:00",
-      "result": {
-        "status": "won",
-        "score": {
-          "home": 1,
-          "away": 0
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047912"
-      }
-    },
-    {
-      "id": "9da7e7bd4a15a45f595cfa06",
-      "editionDate": "2026-11-16",
-      "category": "high",
-      "home": "Germany",
-      "away": "Netherlands",
-      "kickoff": "2026-11-16T19:45:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
-      "price": 2.95,
-      "firstPublishedAt": "2026-11-15T20:41:16.293000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 5,
-          "away": 0
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047909"
-      }
-    },
-    {
-      "id": "91bbd23f4a4c8cb520ff4b9f",
-      "editionDate": "2026-11-16",
-      "category": "high",
-      "home": "Gibraltar",
-      "away": "Malta",
-      "kickoff": "2026-11-16T19:45:00+00:00",
-      "market": "O25",
-      "label": "Over 2,5 mål",
-      "price": 2.38,
-      "firstPublishedAt": "2026-11-15T20:41:16.293000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 1,
-          "away": 1
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047908"
-      }
-    },
-    {
-      "id": "438d7c06d24e4346c7c4bd24",
-      "editionDate": "2026-11-16",
-      "category": "watch",
-      "home": "Lithuania",
-      "away": "Liechtenstein",
-      "kickoff": "2026-11-16T17:00:00+00:00",
-      "market": "U",
-      "label": "Uavgjort",
-      "price": 8,
-      "firstPublishedAt": "2026-11-15T20:41:16.293000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 2,
-          "away": 1
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047911"
       }
     },
     {
@@ -1033,15 +621,15 @@
       }
     },
     {
-      "id": "1362348a3527eaafc922fd71",
+      "id": "438d7c06d24e4346c7c4bd24",
       "editionDate": "2026-11-16",
-      "category": "safe",
-      "home": "Estonia",
-      "away": "Bulgaria",
+      "category": "watch",
+      "home": "Lithuania",
+      "away": "Liechtenstein",
       "kickoff": "2026-11-16T17:00:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
-      "price": 1.5,
+      "market": "U",
+      "label": "Uavgjort",
+      "price": 8,
       "firstPublishedAt": "2026-11-15T20:41:16.293000+00:00",
       "result": {
         "status": "lost",
@@ -1051,7 +639,117 @@
         },
         "source": "UEFA",
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047907"
+        "sourceMatchId": "uefa:2047911"
+      }
+    },
+    {
+      "id": "b8b90ed13e3624f96f6166c2",
+      "editionDate": "2026-11-16",
+      "category": "high",
+      "home": "Kazakhstan",
+      "away": "Slovakia",
+      "kickoff": "2026-11-16T15:00:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 4.05,
+      "firstPublishedAt": "2026-11-15T20:41:16.293000+00:00",
+      "result": {
+        "status": "lost",
+        "score": {
+          "home": 2,
+          "away": 2
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047913"
+      }
+    },
+    {
+      "id": "e751d522f46f9e1849553797",
+      "editionDate": "2026-11-16",
+      "category": "safe",
+      "home": "Iceland",
+      "away": "Luxembourg",
+      "kickoff": "2026-11-16T17:00:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 1.25,
+      "firstPublishedAt": "2026-11-15T20:41:16.293000+00:00",
+      "result": {
+        "status": "won",
+        "score": {
+          "home": 3,
+          "away": 0
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047906"
+      }
+    },
+    {
+      "id": "a16e83eaa9cab9fc6cfd48ed",
+      "editionDate": "2026-11-16",
+      "category": "safe",
+      "home": "Greece",
+      "away": "Serbia",
+      "kickoff": "2026-11-16T19:45:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 1.43,
+      "firstPublishedAt": "2026-11-15T20:41:16.293000+00:00",
+      "result": {
+        "status": "won",
+        "score": {
+          "home": 1,
+          "away": 0
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047912"
+      }
+    },
+    {
+      "id": "91bbd23f4a4c8cb520ff4b9f",
+      "editionDate": "2026-11-16",
+      "category": "high",
+      "home": "Gibraltar",
+      "away": "Malta",
+      "kickoff": "2026-11-16T19:45:00+00:00",
+      "market": "O25",
+      "label": "Over 2,5 mål",
+      "price": 2.38,
+      "firstPublishedAt": "2026-11-15T20:41:16.293000+00:00",
+      "result": {
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047908"
+      }
+    },
+    {
+      "id": "9da7e7bd4a15a45f595cfa06",
+      "editionDate": "2026-11-16",
+      "category": "high",
+      "home": "Germany",
+      "away": "Netherlands",
+      "kickoff": "2026-11-16T19:45:00+00:00",
+      "market": "U25",
+      "label": "Under 2,5 mål",
+      "price": 2.95,
+      "firstPublishedAt": "2026-11-15T20:41:16.293000+00:00",
+      "result": {
+        "status": "lost",
+        "score": {
+          "home": 5,
+          "away": 0
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047909"
       }
     },
     {
@@ -1077,150 +775,40 @@
       }
     },
     {
-      "id": "ec50220c922414225c37d836",
-      "editionDate": "2026-11-15",
-      "category": "high",
-      "home": "Belgium",
-      "away": "Italy",
-      "kickoff": "2026-11-15T19:45:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 3.2,
-      "firstPublishedAt": "2026-11-15T08:50:54.239000+00:00",
+      "id": "1362348a3527eaafc922fd71",
+      "editionDate": "2026-11-16",
+      "category": "safe",
+      "home": "Estonia",
+      "away": "Bulgaria",
+      "kickoff": "2026-11-16T17:00:00+00:00",
+      "market": "U25",
+      "label": "Under 2,5 mål",
+      "price": 1.5,
+      "firstPublishedAt": "2026-11-15T20:41:16.293000+00:00",
       "result": {
         "status": "lost",
-        "score": {
-          "home": 4,
-          "away": 1
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047900"
-      }
-    },
-    {
-      "id": "81f449c1af0c60f3d01640a6",
-      "editionDate": "2026-11-15",
-      "category": "safe",
-      "home": "Latvia",
-      "away": "Armenia",
-      "kickoff": "2026-11-15T14:00:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
-      "price": 1.61,
-      "firstPublishedAt": "2026-11-15T08:50:54.239000+00:00",
-      "result": {
-        "status": "won",
-        "score": {
-          "home": 0,
-          "away": 0
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047899"
-      }
-    },
-    {
-      "id": "e6392f0980bb58b87c072337",
-      "editionDate": "2026-11-15",
-      "category": "safe",
-      "home": "CD Eldense",
-      "away": "Sabadell FC",
-      "kickoff": "2026-11-15T17:30:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
-      "price": 1.57,
-      "firstPublishedAt": "2026-11-14T20:06:44.067000+00:00",
-      "result": {
-        "status": "unverified"
-      }
-    },
-    {
-      "id": "ddc2b7bae8c051c312821322",
-      "editionDate": "2026-11-15",
-      "category": "safe",
-      "home": "Croatia",
-      "away": "Czech Republic",
-      "kickoff": "2026-11-15T19:45:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 1.55,
-      "firstPublishedAt": "2026-11-14T20:06:44.067000+00:00",
-      "result": {
-        "status": "won",
         "score": {
           "home": 2,
           "away": 1
         },
         "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047902"
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047907"
       }
     },
     {
-      "id": "dcc4b6e817ed8891f57a88ef",
-      "editionDate": "2026-11-15",
+      "id": "cfd7c51ba779f5d94cc30be5",
+      "editionDate": "2026-11-16",
       "category": "safe",
-      "home": "Finland",
-      "away": "San Marino",
-      "kickoff": "2026-11-15T17:00:00+00:00",
+      "home": "Albacete",
+      "away": "Celta Fortuna",
+      "kickoff": "2026-11-16T19:30:00+00:00",
       "market": "O25",
       "label": "Over 2,5 mål",
-      "price": 1.21,
-      "firstPublishedAt": "2026-11-14T20:06:44.067000+00:00",
+      "price": 1.58,
+      "firstPublishedAt": "2026-11-15T20:41:16.293000+00:00",
       "result": {
-        "status": "won",
-        "score": {
-          "home": 7,
-          "away": 2
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047901"
-      }
-    },
-    {
-      "id": "d44b3cabca9139d3814ec333",
-      "editionDate": "2026-11-15",
-      "category": "qualified",
-      "home": "Spain",
-      "away": "England",
-      "kickoff": "2026-11-15T19:45:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
-      "price": 2.28,
-      "firstPublishedAt": "2026-11-14T20:06:44.067000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 2,
-          "away": 3
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047904"
-      }
-    },
-    {
-      "id": "b15153855f0cd8ff8e64eafc",
-      "editionDate": "2026-11-15",
-      "category": "qualified",
-      "home": "Belarus",
-      "away": "Albania",
-      "kickoff": "2026-11-15T17:00:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 4.2,
-      "firstPublishedAt": "2026-11-14T20:06:44.067000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 0,
-          "away": 2
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047905"
+        "status": "unverified"
       }
     },
     {
@@ -1268,6 +856,50 @@
       }
     },
     {
+      "id": "dcc4b6e817ed8891f57a88ef",
+      "editionDate": "2026-11-15",
+      "category": "safe",
+      "home": "Finland",
+      "away": "San Marino",
+      "kickoff": "2026-11-15T17:00:00+00:00",
+      "market": "O25",
+      "label": "Over 2,5 mål",
+      "price": 1.21,
+      "firstPublishedAt": "2026-11-14T20:06:44.067000+00:00",
+      "result": {
+        "status": "won",
+        "score": {
+          "home": 7,
+          "away": 2
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047901"
+      }
+    },
+    {
+      "id": "d44b3cabca9139d3814ec333",
+      "editionDate": "2026-11-15",
+      "category": "high",
+      "home": "Spain",
+      "away": "England",
+      "kickoff": "2026-11-15T19:45:00+00:00",
+      "market": "U25",
+      "label": "Under 2,5 mål",
+      "price": 2.28,
+      "firstPublishedAt": "2026-11-14T20:06:44.067000+00:00",
+      "result": {
+        "status": "lost",
+        "score": {
+          "home": 2,
+          "away": 3
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047904"
+      }
+    },
+    {
       "id": "3b622300941a063e326edd56",
       "editionDate": "2026-11-15",
       "category": "high",
@@ -1287,6 +919,50 @@
         "source": "UEFA",
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
         "sourceMatchId": "uefa:2047903"
+      }
+    },
+    {
+      "id": "ddc2b7bae8c051c312821322",
+      "editionDate": "2026-11-15",
+      "category": "safe",
+      "home": "Croatia",
+      "away": "Czech Republic",
+      "kickoff": "2026-11-15T19:45:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 1.55,
+      "firstPublishedAt": "2026-11-14T20:06:44.067000+00:00",
+      "result": {
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047902"
+      }
+    },
+    {
+      "id": "b15153855f0cd8ff8e64eafc",
+      "editionDate": "2026-11-15",
+      "category": "high",
+      "home": "Belarus",
+      "away": "Albania",
+      "kickoff": "2026-11-15T17:00:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 4.2,
+      "firstPublishedAt": "2026-11-14T20:06:44.067000+00:00",
+      "result": {
+        "status": "lost",
+        "score": {
+          "home": 0,
+          "away": 2
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047905"
       }
     },
     {
@@ -1312,16 +988,16 @@
       }
     },
     {
-      "id": "f0d6439b68a71bf4c42ff66a",
-      "editionDate": "2026-11-14",
+      "id": "e6392f0980bb58b87c072337",
+      "editionDate": "2026-11-15",
       "category": "safe",
-      "home": "Almería",
-      "away": "Andorra CF",
-      "kickoff": "2026-11-14T17:30:00+00:00",
-      "market": "O15",
-      "label": "Over 1,5 mål",
-      "price": 1.2,
-      "firstPublishedAt": "2026-11-14T15:55:23.410000+00:00",
+      "home": "CD Eldense",
+      "away": "Sabadell FC",
+      "kickoff": "2026-11-15T17:30:00+00:00",
+      "market": "U25",
+      "label": "Under 2,5 mål",
+      "price": 1.57,
+      "firstPublishedAt": "2026-11-14T20:06:44.067000+00:00",
       "result": {
         "status": "unverified"
       }
@@ -1339,28 +1015,6 @@
       "firstPublishedAt": "2026-11-14T15:55:23.410000+00:00",
       "result": {
         "status": "unverified"
-      }
-    },
-    {
-      "id": "bc7f6eb8b565ac0e6f957b2c",
-      "editionDate": "2026-11-14",
-      "category": "high",
-      "home": "Norway",
-      "away": "Wales",
-      "kickoff": "2026-11-14T17:00:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
-      "price": 3.05,
-      "firstPublishedAt": "2026-11-14T08:50:35.478000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 3,
-          "away": 1
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047893"
       }
     },
     {
@@ -1386,40 +1040,25 @@
       }
     },
     {
-      "id": "6ad3308e6c662f45b555ad55",
+      "id": "80188cafd9da4f3db43f600d",
       "editionDate": "2026-11-14",
-      "category": "safe",
-      "home": "Portugal",
-      "away": "Denmark",
+      "category": "high",
+      "home": "Sweden",
+      "away": "Bosnia & Herzegovina",
       "kickoff": "2026-11-14T19:45:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 1.53,
-      "firstPublishedAt": "2026-11-14T08:50:35.478000+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 5.96,
+      "firstPublishedAt": "2026-11-13T20:09:30.148000+00:00",
       "result": {
         "status": "lost",
         "score": {
-          "home": 1,
-          "away": 4
+          "home": 3,
+          "away": 2
         },
         "source": "UEFA",
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047892"
-      }
-    },
-    {
-      "id": "10a5bc0ba8853dad36bd49de",
-      "editionDate": "2026-11-14",
-      "category": "watch",
-      "home": "Austria",
-      "away": "Iceland",
-      "kickoff": "2026-11-14T19:45:00+00:00",
-      "market": "O25",
-      "label": "Over 2,5 mål",
-      "price": 1.9,
-      "firstPublishedAt": "2026-11-14T08:50:35.478000+00:00",
-      "result": {
-        "status": "unverified"
+        "sourceMatchId": "uefa:2047890"
       }
     },
     {
@@ -1445,6 +1084,28 @@
       }
     },
     {
+      "id": "26cd7269356ea6579ea1f5fb",
+      "editionDate": "2026-11-14",
+      "category": "high",
+      "home": "Portugal",
+      "away": "Denmark",
+      "kickoff": "2026-11-14T19:45:00+00:00",
+      "market": "O35",
+      "label": "Over 3,5 mål",
+      "price": 2.4,
+      "firstPublishedAt": "2026-11-13T20:09:30.148000+00:00",
+      "result": {
+        "status": "won",
+        "score": {
+          "home": 1,
+          "away": 4
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047892"
+      }
+    },
+    {
       "id": "d5d1c617c5861b70aacf04ed",
       "editionDate": "2026-11-14",
       "category": "safe",
@@ -1464,117 +1125,6 @@
         "source": "UEFA",
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
         "sourceMatchId": "uefa:2047893"
-      }
-    },
-    {
-      "id": "93392a93534e7fa5c98b012f",
-      "editionDate": "2026-11-14",
-      "category": "high",
-      "home": "Austria",
-      "away": "Republic of Ireland",
-      "kickoff": "2026-11-14T19:45:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 5.5,
-      "firstPublishedAt": "2026-11-13T20:09:30.148000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 1,
-          "away": 0
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047894"
-      }
-    },
-    {
-      "id": "8b8764e1fa5ad5c4d3295180",
-      "editionDate": "2026-11-14",
-      "category": "safe",
-      "home": "Almería",
-      "away": "Andorra CF",
-      "kickoff": "2026-11-14T17:30:00+00:00",
-      "market": "U35",
-      "label": "Under 3,5 mål",
-      "price": 1.53,
-      "firstPublishedAt": "2026-11-13T20:09:30.148000+00:00",
-      "result": {
-        "status": "unverified"
-      }
-    },
-    {
-      "id": "83174ef6e38f67028fb3c00b",
-      "editionDate": "2026-11-14",
-      "category": "safe",
-      "home": "Austria",
-      "away": "Iceland",
-      "kickoff": "2026-11-14T19:45:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 1.58,
-      "firstPublishedAt": "2026-11-13T20:09:30.148000+00:00",
-      "result": {
-        "status": "unverified"
-      }
-    },
-    {
-      "id": "80188cafd9da4f3db43f600d",
-      "editionDate": "2026-11-14",
-      "category": "qualified",
-      "home": "Sweden",
-      "away": "Bosnia & Herzegovina",
-      "kickoff": "2026-11-14T19:45:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 5.96,
-      "firstPublishedAt": "2026-11-13T20:09:30.148000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 3,
-          "away": 2
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047890"
-      }
-    },
-    {
-      "id": "6c6ac3658c79631cb25ee405",
-      "editionDate": "2026-11-14",
-      "category": "high",
-      "home": "Georgia",
-      "away": "Hungary",
-      "kickoff": "2026-11-14T17:00:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 2.45,
-      "firstPublishedAt": "2026-11-13T20:09:30.148000+00:00",
-      "result": {
-        "status": "won",
-        "score": {
-          "home": 0,
-          "away": 2
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047895"
-      }
-    },
-    {
-      "id": "5045302c24d36a401fe41e1d",
-      "editionDate": "2026-11-14",
-      "category": "safe",
-      "home": "Mallorca",
-      "away": "Córdoba",
-      "kickoff": "2026-11-14T17:30:00+00:00",
-      "market": "U35",
-      "label": "Under 3,5 mål",
-      "price": 1.54,
-      "firstPublishedAt": "2026-11-13T20:09:30.148000+00:00",
-      "result": {
-        "status": "unverified"
       }
     },
     {
@@ -1600,172 +1150,92 @@
       }
     },
     {
-      "id": "26cd7269356ea6579ea1f5fb",
+      "id": "6c6ac3658c79631cb25ee405",
       "editionDate": "2026-11-14",
       "category": "high",
-      "home": "Portugal",
-      "away": "Denmark",
-      "kickoff": "2026-11-14T19:45:00+00:00",
-      "market": "O35",
-      "label": "Over 3,5 mål",
-      "price": 2.4,
+      "home": "Georgia",
+      "away": "Hungary",
+      "kickoff": "2026-11-14T17:00:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 2.45,
       "firstPublishedAt": "2026-11-13T20:09:30.148000+00:00",
       "result": {
         "status": "won",
         "score": {
-          "home": 1,
-          "away": 4
+          "home": 0,
+          "away": 2
         },
         "source": "UEFA",
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047892"
+        "sourceMatchId": "uefa:2047895"
       }
     },
     {
-      "id": "f490ae28a99dce983473553f",
-      "editionDate": "2026-11-13",
+      "id": "83174ef6e38f67028fb3c00b",
+      "editionDate": "2026-11-14",
       "category": "safe",
-      "home": "Leganés",
-      "away": "Burgos CF",
-      "kickoff": "2026-11-13T19:30:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
+      "home": "Austria",
+      "away": "Iceland",
+      "kickoff": "2026-11-14T19:45:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
       "price": 1.58,
-      "firstPublishedAt": "2026-11-13T19:04:37.614000+00:00",
+      "firstPublishedAt": "2026-11-13T20:09:30.148000+00:00",
       "result": {
         "status": "unverified"
       }
     },
     {
-      "id": "b0fe95d93f92a4904571f002",
-      "editionDate": "2026-11-13",
+      "id": "93392a93534e7fa5c98b012f",
+      "editionDate": "2026-11-14",
       "category": "high",
-      "home": "Bulgaria",
-      "away": "Iceland",
-      "kickoff": "2026-11-13T19:45:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 4.65,
-      "firstPublishedAt": "2026-11-13T19:04:37.614000+00:00",
+      "home": "Austria",
+      "away": "Republic of Ireland",
+      "kickoff": "2026-11-14T19:45:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 5.5,
+      "firstPublishedAt": "2026-11-13T20:09:30.148000+00:00",
       "result": {
         "status": "lost",
         "score": {
-          "home": 0,
-          "away": 5
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047882"
-      }
-    },
-    {
-      "id": "a81cb3ce17b1c6f8f6e1a40b",
-      "editionDate": "2026-11-13",
-      "category": "safe",
-      "home": "Slovenia",
-      "away": "Switzerland",
-      "kickoff": "2026-11-13T19:45:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
-      "price": 1.47,
-      "firstPublishedAt": "2026-11-13T16:03:12.018000+00:00",
-      "result": {
-        "status": "won",
-        "score": {
-          "home": 0,
+          "home": 1,
           "away": 0
         },
         "source": "UEFA",
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047889"
+        "sourceMatchId": "uefa:2047894"
       }
     },
     {
-      "id": "8214650455c01464717b9b1e",
-      "editionDate": "2026-11-13",
-      "category": "watch",
-      "home": "Slovakia",
-      "away": "Faroe Islands",
-      "kickoff": "2026-11-13T19:45:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 9.32,
-      "firstPublishedAt": "2026-11-13T16:03:12.018000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 2,
-          "away": 2
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047880"
-      }
-    },
-    {
-      "id": "5ae0cb298c39f493b312ef10",
-      "editionDate": "2026-11-13",
+      "id": "5045302c24d36a401fe41e1d",
+      "editionDate": "2026-11-14",
       "category": "safe",
-      "home": "Liechtenstein",
-      "away": "Azerbaijan",
-      "kickoff": "2026-11-13T19:45:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
-      "price": 1.6,
-      "firstPublishedAt": "2026-11-13T16:03:12.018000+00:00",
+      "home": "Mallorca",
+      "away": "Córdoba",
+      "kickoff": "2026-11-14T17:30:00+00:00",
+      "market": "U35",
+      "label": "Under 3,5 mål",
+      "price": 1.54,
+      "firstPublishedAt": "2026-11-13T20:09:30.148000+00:00",
       "result": {
-        "status": "won",
-        "score": {
-          "home": 0,
-          "away": 1
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047885"
+        "status": "unverified"
       }
     },
     {
-      "id": "59941cefa9f828b825e86837",
-      "editionDate": "2026-11-13",
-      "category": "high",
-      "home": "Moldova",
-      "away": "Kazakhstan",
-      "kickoff": "2026-11-13T17:00:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 3.25,
-      "firstPublishedAt": "2026-11-13T16:03:12.018000+00:00",
+      "id": "8b8764e1fa5ad5c4d3295180",
+      "editionDate": "2026-11-14",
+      "category": "safe",
+      "home": "Almería",
+      "away": "Andorra CF",
+      "kickoff": "2026-11-14T17:30:00+00:00",
+      "market": "U35",
+      "label": "Under 3,5 mål",
+      "price": 1.53,
+      "firstPublishedAt": "2026-11-13T20:09:30.148000+00:00",
       "result": {
-        "status": "lost",
-        "score": {
-          "home": 2,
-          "away": 1
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047883"
-      }
-    },
-    {
-      "id": "3063940f1c9371cc5ed07eda",
-      "editionDate": "2026-11-13",
-      "category": "high",
-      "home": "Netherlands",
-      "away": "Greece",
-      "kickoff": "2026-11-13T19:45:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
-      "price": 2.43,
-      "firstPublishedAt": "2026-11-13T13:16:33.664000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 7,
-          "away": 0
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047886"
+        "status": "unverified"
       }
     },
     {
@@ -1791,135 +1261,25 @@
       }
     },
     {
-      "id": "738a134d9bf4225760a18595",
+      "id": "a6d937aef2ca7276f90f107c",
       "editionDate": "2026-11-13",
       "category": "safe",
-      "home": "Serbia",
-      "away": "Germany",
-      "kickoff": "2026-11-13T19:45:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 1.29,
-      "firstPublishedAt": "2026-11-13T08:57:34.215000+00:00",
-      "result": {
-        "status": "won",
-        "score": {
-          "home": 1,
-          "away": 3
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047887"
-      }
-    },
-    {
-      "id": "6e92bffec18c65a2647342d4",
-      "editionDate": "2026-11-13",
-      "category": "high",
-      "home": "Scotland",
-      "away": "North Macedonia",
-      "kickoff": "2026-11-13T19:45:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
-      "price": 2.25,
-      "firstPublishedAt": "2026-11-13T08:57:34.215000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 2,
-          "away": 1
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047888"
-      }
-    },
-    {
-      "id": "29b46a182ae233f170c89dfe",
-      "editionDate": "2026-11-13",
-      "category": "watch",
-      "home": "Liechtenstein",
-      "away": "Azerbaijan",
-      "kickoff": "2026-11-13T19:45:00+00:00",
-      "market": "U",
-      "label": "Uavgjort",
-      "price": 5.22,
-      "firstPublishedAt": "2026-11-13T08:57:34.215000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 0,
-          "away": 1
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047885"
-      }
-    },
-    {
-      "id": "f2e2a3c52bf6c8a37480a0f2",
-      "editionDate": "2026-11-13",
-      "category": "high",
-      "home": "Netherlands",
-      "away": "Greece",
-      "kickoff": "2026-11-13T19:45:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 5.7,
-      "firstPublishedAt": "2026-11-12T20:51:03.171000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 7,
-          "away": 0
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047886"
-      }
-    },
-    {
-      "id": "d70db3c258bf4af734577caf",
-      "editionDate": "2026-11-13",
-      "category": "safe",
-      "home": "Andorra",
-      "away": "Gibraltar",
-      "kickoff": "2026-11-13T19:45:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
-      "price": 1.32,
-      "firstPublishedAt": "2026-11-12T20:51:03.171000+00:00",
-      "result": {
-        "status": "won",
-        "score": {
-          "home": 2,
-          "away": 0
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047884"
-      }
-    },
-    {
-      "id": "cfc13b0af663eb649c1bd240",
-      "editionDate": "2026-11-13",
-      "category": "safe",
-      "home": "Scotland",
-      "away": "North Macedonia",
+      "home": "Slovakia",
+      "away": "Faroe Islands",
       "kickoff": "2026-11-13T19:45:00+00:00",
       "market": "H",
       "label": "Hjemmeseier",
-      "price": 1.19,
+      "price": 1.33,
       "firstPublishedAt": "2026-11-12T20:51:03.171000+00:00",
       "result": {
-        "status": "won",
+        "status": "lost",
         "score": {
           "home": 2,
-          "away": 1
+          "away": 2
         },
         "source": "UEFA",
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047888"
+        "sourceMatchId": "uefa:2047880"
       }
     },
     {
@@ -1945,106 +1305,47 @@
       }
     },
     {
-      "id": "a6d937aef2ca7276f90f107c",
+      "id": "cfc13b0af663eb649c1bd240",
       "editionDate": "2026-11-13",
       "category": "safe",
-      "home": "Slovakia",
-      "away": "Faroe Islands",
+      "home": "Scotland",
+      "away": "North Macedonia",
       "kickoff": "2026-11-13T19:45:00+00:00",
       "market": "H",
       "label": "Hjemmeseier",
-      "price": 1.33,
+      "price": 1.19,
+      "firstPublishedAt": "2026-11-12T20:51:03.171000+00:00",
+      "result": {
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047888"
+      }
+    },
+    {
+      "id": "f2e2a3c52bf6c8a37480a0f2",
+      "editionDate": "2026-11-13",
+      "category": "high",
+      "home": "Netherlands",
+      "away": "Greece",
+      "kickoff": "2026-11-13T19:45:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 5.7,
       "firstPublishedAt": "2026-11-12T20:51:03.171000+00:00",
       "result": {
         "status": "lost",
         "score": {
-          "home": 2,
-          "away": 2
+          "home": 7,
+          "away": 0
         },
         "source": "UEFA",
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047880"
-      }
-    },
-    {
-      "id": "877591698623009eeb31f164",
-      "editionDate": "2026-11-13",
-      "category": "watch",
-      "home": "Bulgaria",
-      "away": "Iceland",
-      "kickoff": "2026-11-13T19:45:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 1.81,
-      "firstPublishedAt": "2026-11-12T20:51:03.171000+00:00",
-      "result": {
-        "status": "won",
-        "score": {
-          "home": 0,
-          "away": 5
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047882"
-      }
-    },
-    {
-      "id": "6203511b0c5c58fd901406a8",
-      "editionDate": "2026-11-13",
-      "category": "safe",
-      "home": "Liechtenstein",
-      "away": "Azerbaijan",
-      "kickoff": "2026-11-13T19:45:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 1.27,
-      "firstPublishedAt": "2026-11-12T20:51:03.171000+00:00",
-      "result": {
-        "status": "won",
-        "score": {
-          "home": 0,
-          "away": 1
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047885"
-      }
-    },
-    {
-      "id": "4a12d037807aca3da6747080",
-      "editionDate": "2026-11-13",
-      "category": "high",
-      "home": "Leganés",
-      "away": "Burgos CF",
-      "kickoff": "2026-11-13T19:30:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 2.3,
-      "firstPublishedAt": "2026-11-12T20:51:03.171000+00:00",
-      "result": {
-        "status": "unverified"
-      }
-    },
-    {
-      "id": "401f2b6aeccfabdcd023ad06",
-      "editionDate": "2026-11-13",
-      "category": "high",
-      "home": "Luxembourg",
-      "away": "Estonia",
-      "kickoff": "2026-11-13T19:45:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 3.25,
-      "firstPublishedAt": "2026-11-12T20:51:03.171000+00:00",
-      "result": {
-        "status": "won",
-        "score": {
-          "home": 0,
-          "away": 1
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047881"
+        "sourceMatchId": "uefa:2047886"
       }
     },
     {
@@ -2070,324 +1371,82 @@
       }
     },
     {
-      "id": "49091da52a547ed98ed4e80b",
-      "editionDate": "2026-11-12",
+      "id": "401f2b6aeccfabdcd023ad06",
+      "editionDate": "2026-11-13",
+      "category": "high",
+      "home": "Luxembourg",
+      "away": "Estonia",
+      "kickoff": "2026-11-13T19:45:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 3.25,
+      "firstPublishedAt": "2026-11-12T20:51:03.171000+00:00",
+      "result": {
+        "status": "won",
+        "score": {
+          "home": 0,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047881"
+      }
+    },
+    {
+      "id": "6203511b0c5c58fd901406a8",
+      "editionDate": "2026-11-13",
       "category": "safe",
-      "home": "Turkey",
-      "away": "Belgium",
-      "kickoff": "2026-11-12T17:00:00+00:00",
-      "market": "O25",
-      "label": "Over 2,5 mål",
-      "price": 1.47,
-      "firstPublishedAt": "2026-11-12T13:20:02.887000+00:00",
-      "result": {
-        "status": "won",
-        "score": {
-          "home": 1,
-          "away": 2
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047873"
-      }
-    },
-    {
-      "id": "ee5672dc42ecc48b09bbc8c8",
-      "editionDate": "2026-11-12",
-      "category": "high",
-      "home": "Albania",
-      "away": "Finland",
-      "kickoff": "2026-11-12T19:45:00+00:00",
+      "home": "Liechtenstein",
+      "away": "Azerbaijan",
+      "kickoff": "2026-11-13T19:45:00+00:00",
       "market": "B",
       "label": "Borteseier",
-      "price": 3.62,
-      "firstPublishedAt": "2026-11-12T09:59:44.648000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 2,
-          "away": 0
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047874"
-      }
-    },
-    {
-      "id": "2133cf9defd7e30ab3ce815c",
-      "editionDate": "2026-11-12",
-      "category": "high",
-      "home": "Czech Republic",
-      "away": "Spain",
-      "kickoff": "2026-11-12T19:45:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
-      "price": 2.72,
-      "firstPublishedAt": "2026-11-12T09:59:44.648000+00:00",
+      "price": 1.27,
+      "firstPublishedAt": "2026-11-12T20:51:03.171000+00:00",
       "result": {
         "status": "won",
         "score": {
           "home": 0,
-          "away": 2
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047872"
-      }
-    },
-    {
-      "id": "18b57d55e53744a9323722f8",
-      "editionDate": "2026-11-12",
-      "category": "high",
-      "home": "Armenia",
-      "away": "Cyprus",
-      "kickoff": "2026-11-12T17:00:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 2.62,
-      "firstPublishedAt": "2026-11-12T09:59:44.648000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 1,
           "away": 1
         },
         "source": "UEFA",
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047876"
+        "sourceMatchId": "uefa:2047885"
       }
     },
     {
-      "id": "ecd0fca05096d4b6fdc12b72",
-      "editionDate": "2026-11-12",
-      "category": "qualified",
-      "home": "Czech Republic",
-      "away": "Spain",
-      "kickoff": "2026-11-12T19:45:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 11,
-      "firstPublishedAt": "2026-11-12T07:58:58.403000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 0,
-          "away": 2
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047872"
-      }
-    },
-    {
-      "id": "e27f2ebda2eb24aca1b17ee3",
-      "editionDate": "2026-11-12",
-      "category": "high",
-      "home": "Italy",
-      "away": "France",
-      "kickoff": "2026-11-12T19:45:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 3.62,
-      "firstPublishedAt": "2026-11-12T07:58:58.403000+00:00",
-      "result": {
-        "status": "won",
-        "score": {
-          "home": 3,
-          "away": 1
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047878"
-      }
-    },
-    {
-      "id": "d1eebe994b0bc77017fad5fb",
-      "editionDate": "2026-11-12",
+      "id": "877591698623009eeb31f164",
+      "editionDate": "2026-11-13",
       "category": "watch",
-      "home": "Montenegro",
-      "away": "Latvia",
-      "kickoff": "2026-11-12T19:45:00+00:00",
+      "home": "Bulgaria",
+      "away": "Iceland",
+      "kickoff": "2026-11-13T19:45:00+00:00",
       "market": "B",
       "label": "Borteseier",
-      "price": 10.25,
-      "firstPublishedAt": "2026-11-12T07:58:58.403000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 2,
-          "away": 1
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047875"
-      }
-    },
-    {
-      "id": "47733404d0502597b2b9d262",
-      "editionDate": "2026-11-12",
-      "category": "high",
-      "home": "England",
-      "away": "Croatia",
-      "kickoff": "2026-11-12T19:45:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
-      "price": 2.75,
-      "firstPublishedAt": "2026-11-12T07:58:58.403000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 2,
-          "away": 1
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047879"
-      }
-    },
-    {
-      "id": "3f37af6d76d70537f7c1ed65",
-      "editionDate": "2026-11-12",
-      "category": "high",
-      "home": "Turkey",
-      "away": "Belgium",
-      "kickoff": "2026-11-12T17:00:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 3.95,
-      "firstPublishedAt": "2026-11-12T07:58:58.403000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 1,
-          "away": 2
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047873"
-      }
-    },
-    {
-      "id": "0a1089490c4141bd48ea738f",
-      "editionDate": "2026-11-12",
-      "category": "qualified",
-      "home": "San Marino",
-      "away": "Belarus",
-      "kickoff": "2026-11-12T19:45:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 18.38,
-      "firstPublishedAt": "2026-11-12T07:58:58.403000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 0,
-          "away": 2
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047877"
-      }
-    },
-    {
-      "id": "fbe0c925d4b6d4fb537e6716",
-      "editionDate": "2026-11-12",
-      "category": "safe",
-      "home": "San Marino",
-      "away": "Belarus",
-      "kickoff": "2026-11-12T19:45:00+00:00",
-      "market": "O25",
-      "label": "Over 2,5 mål",
-      "price": 1.58,
-      "firstPublishedAt": "2026-11-11T18:01:23.458000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 0,
-          "away": 2
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047877"
-      }
-    },
-    {
-      "id": "c3ef0f549fd973e84595ed18",
-      "editionDate": "2026-11-12",
-      "category": "high",
-      "home": "Italy",
-      "away": "France",
-      "kickoff": "2026-11-12T19:45:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
-      "price": 2.2,
-      "firstPublishedAt": "2026-11-11T18:01:23.458000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 3,
-          "away": 1
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047878"
-      }
-    },
-    {
-      "id": "68f47e4102b05ea586065db7",
-      "editionDate": "2026-11-12",
-      "category": "safe",
-      "home": "Montenegro",
-      "away": "Latvia",
-      "kickoff": "2026-11-12T19:45:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 1.28,
-      "firstPublishedAt": "2026-11-11T18:01:23.458000+00:00",
+      "price": 1.81,
+      "firstPublishedAt": "2026-11-12T20:51:03.171000+00:00",
       "result": {
         "status": "won",
         "score": {
-          "home": 2,
-          "away": 1
+          "home": 0,
+          "away": 5
         },
         "source": "UEFA",
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047875"
+        "sourceMatchId": "uefa:2047882"
       }
     },
     {
-      "id": "4d8494e20db8ffd0ed246284",
-      "editionDate": "2026-11-12",
+      "id": "d70db3c258bf4af734577caf",
+      "editionDate": "2026-11-13",
       "category": "safe",
-      "home": "England",
-      "away": "Croatia",
-      "kickoff": "2026-11-12T19:45:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 1.24,
-      "firstPublishedAt": "2026-11-11T18:01:23.458000+00:00",
-      "result": {
-        "status": "won",
-        "score": {
-          "home": 2,
-          "away": 1
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047879"
-      }
-    },
-    {
-      "id": "496fd99440a52813ec6696ba",
-      "editionDate": "2026-11-12",
-      "category": "safe",
-      "home": "Albania",
-      "away": "Finland",
-      "kickoff": "2026-11-12T19:45:00+00:00",
+      "home": "Andorra",
+      "away": "Gibraltar",
+      "kickoff": "2026-11-13T19:45:00+00:00",
       "market": "U25",
       "label": "Under 2,5 mål",
-      "price": 1.59,
-      "firstPublishedAt": "2026-11-11T18:01:23.458000+00:00",
+      "price": 1.32,
+      "firstPublishedAt": "2026-11-12T20:51:03.171000+00:00",
       "result": {
         "status": "won",
         "score": {
@@ -2396,51 +1455,22 @@
         },
         "source": "UEFA",
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047874"
+        "sourceMatchId": "uefa:2047884"
       }
     },
     {
-      "id": "2d3e31f1ad9cbb69eaf878ca",
-      "editionDate": "2026-11-12",
+      "id": "4a12d037807aca3da6747080",
+      "editionDate": "2026-11-13",
       "category": "high",
-      "home": "Armenia",
-      "away": "Cyprus",
-      "kickoff": "2026-11-12T17:00:00+00:00",
+      "home": "Leganés",
+      "away": "Burgos CF",
+      "kickoff": "2026-11-13T19:30:00+00:00",
       "market": "H",
       "label": "Hjemmeseier",
       "price": 2.3,
-      "firstPublishedAt": "2026-11-11T18:01:23.458000+00:00",
+      "firstPublishedAt": "2026-11-12T20:51:03.171000+00:00",
       "result": {
-        "status": "lost",
-        "score": {
-          "home": 1,
-          "away": 1
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047876"
-      }
-    },
-    {
-      "id": "2bb0f389d3400b18ed216934",
-      "editionDate": "2026-11-12",
-      "category": "safe",
-      "home": "Czech Republic",
-      "away": "Spain",
-      "kickoff": "2026-11-12T19:45:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 1.19,
-      "firstPublishedAt": "2026-11-11T18:01:23.458000+00:00",
-      "result": {
-        "status": "won",
-        "score": {
-          "home": 0,
-          "away": 2
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2047872"
+        "status": "unverified"
       }
     },
     {
@@ -2466,6 +1496,160 @@
       }
     },
     {
+      "id": "fbe0c925d4b6d4fb537e6716",
+      "editionDate": "2026-11-12",
+      "category": "safe",
+      "home": "San Marino",
+      "away": "Belarus",
+      "kickoff": "2026-11-12T19:45:00+00:00",
+      "market": "O25",
+      "label": "Over 2,5 mål",
+      "price": 1.58,
+      "firstPublishedAt": "2026-11-11T18:01:23.458000+00:00",
+      "result": {
+        "status": "lost",
+        "score": {
+          "home": 0,
+          "away": 2
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047877"
+      }
+    },
+    {
+      "id": "68f47e4102b05ea586065db7",
+      "editionDate": "2026-11-12",
+      "category": "safe",
+      "home": "Montenegro",
+      "away": "Latvia",
+      "kickoff": "2026-11-12T19:45:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 1.28,
+      "firstPublishedAt": "2026-11-11T18:01:23.458000+00:00",
+      "result": {
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047875"
+      }
+    },
+    {
+      "id": "c3ef0f549fd973e84595ed18",
+      "editionDate": "2026-11-12",
+      "category": "high",
+      "home": "Italy",
+      "away": "France",
+      "kickoff": "2026-11-12T19:45:00+00:00",
+      "market": "U25",
+      "label": "Under 2,5 mål",
+      "price": 2.2,
+      "firstPublishedAt": "2026-11-11T18:01:23.458000+00:00",
+      "result": {
+        "status": "lost",
+        "score": {
+          "home": 3,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047878"
+      }
+    },
+    {
+      "id": "4d8494e20db8ffd0ed246284",
+      "editionDate": "2026-11-12",
+      "category": "safe",
+      "home": "England",
+      "away": "Croatia",
+      "kickoff": "2026-11-12T19:45:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 1.24,
+      "firstPublishedAt": "2026-11-11T18:01:23.458000+00:00",
+      "result": {
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047879"
+      }
+    },
+    {
+      "id": "2bb0f389d3400b18ed216934",
+      "editionDate": "2026-11-12",
+      "category": "safe",
+      "home": "Czech Republic",
+      "away": "Spain",
+      "kickoff": "2026-11-12T19:45:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 1.19,
+      "firstPublishedAt": "2026-11-11T18:01:23.458000+00:00",
+      "result": {
+        "status": "won",
+        "score": {
+          "home": 0,
+          "away": 2
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047872"
+      }
+    },
+    {
+      "id": "2d3e31f1ad9cbb69eaf878ca",
+      "editionDate": "2026-11-12",
+      "category": "high",
+      "home": "Armenia",
+      "away": "Cyprus",
+      "kickoff": "2026-11-12T17:00:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 2.3,
+      "firstPublishedAt": "2026-11-11T18:01:23.458000+00:00",
+      "result": {
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047876"
+      }
+    },
+    {
+      "id": "496fd99440a52813ec6696ba",
+      "editionDate": "2026-11-12",
+      "category": "safe",
+      "home": "Albania",
+      "away": "Finland",
+      "kickoff": "2026-11-12T19:45:00+00:00",
+      "market": "U25",
+      "label": "Under 2,5 mål",
+      "price": 1.59,
+      "firstPublishedAt": "2026-11-11T18:01:23.458000+00:00",
+      "result": {
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 0
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2047874"
+      }
+    },
+    {
       "id": "882e9f5bfe1bde6e4f6feb45",
       "editionDate": "2026-11-08",
       "category": "safe",
@@ -2485,28 +1669,6 @@
         "source": "football-data.org",
         "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
         "sourceMatchId": "559630"
-      }
-    },
-    {
-      "id": "24129b13bc9147422aa3f6e1",
-      "editionDate": "2026-11-08",
-      "category": "watch",
-      "home": "Atleti",
-      "away": "Barça",
-      "kickoff": "2026-11-08T20:00:00+00:00",
-      "market": "BTTSN",
-      "label": "Begge lag scorer: Nei",
-      "price": 3.17,
-      "firstPublishedAt": "2026-11-08T18:59:05+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 1,
-          "away": 2
-        },
-        "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
-        "sourceMatchId": "564746"
       }
     },
     {
@@ -2532,40 +1694,25 @@
       }
     },
     {
-      "id": "e5ff5ae700a0a0816911cb59",
+      "id": "959357f060da135c433b39fe",
       "editionDate": "2026-11-08",
-      "category": "safe",
-      "home": "SC Cambuur",
-      "away": "PSV Eindhoven",
-      "kickoff": "2026-11-08T15:45:00+00:00",
-      "market": "O25",
-      "label": "Over 2,5 mål",
-      "price": 1.23,
+      "category": "high",
+      "home": "Villarreal",
+      "away": "Getafe",
+      "kickoff": "2026-11-08T17:30:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 6.3,
       "firstPublishedAt": "2026-11-08T15:44:08.332000+00:00",
       "result": {
-        "status": "unverified"
-      }
-    },
-    {
-      "id": "bb9d22424f1060dad9dbb3ca",
-      "editionDate": "2026-11-08",
-      "category": "watch",
-      "home": "Inter",
-      "away": "Como 1907",
-      "kickoff": "2026-11-08T17:00:00+00:00",
-      "market": "BTTSN",
-      "label": "Begge lag scorer: Nei",
-      "price": 2.65,
-      "firstPublishedAt": "2026-11-08T15:44:08.332000+00:00",
-      "result": {
-        "status": "won",
+        "status": "lost",
         "score": {
           "home": 2,
           "away": 0
         },
         "source": "football-data.org",
         "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
-        "sourceMatchId": "558530"
+        "sourceMatchId": "564747"
       }
     },
     {
@@ -2591,25 +1738,55 @@
       }
     },
     {
-      "id": "959357f060da135c433b39fe",
+      "id": "bb9d22424f1060dad9dbb3ca",
       "editionDate": "2026-11-08",
-      "category": "high",
-      "home": "Villarreal",
-      "away": "Getafe",
-      "kickoff": "2026-11-08T17:30:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 6.3,
+      "category": "watch",
+      "home": "Inter",
+      "away": "Como 1907",
+      "kickoff": "2026-11-08T17:00:00+00:00",
+      "market": "BTTSN",
+      "label": "Begge lag scorer: Nei",
+      "price": 2.65,
       "firstPublishedAt": "2026-11-08T15:44:08.332000+00:00",
       "result": {
-        "status": "lost",
+        "status": "won",
         "score": {
           "home": 2,
           "away": 0
         },
         "source": "football-data.org",
         "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
-        "sourceMatchId": "564747"
+        "sourceMatchId": "558530"
+      }
+    },
+    {
+      "id": "11e8190d2b70b7a8888ad31c",
+      "editionDate": "2026-11-08",
+      "category": "safe",
+      "home": "CF Estrela",
+      "away": "Benfica",
+      "kickoff": "2026-11-08T20:30:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 1.19,
+      "firstPublishedAt": "2026-11-08T15:44:08.332000+00:00",
+      "result": {
+        "status": "unverified"
+      }
+    },
+    {
+      "id": "31106447cf3637c9c0baa12d",
+      "editionDate": "2026-11-08",
+      "category": "safe",
+      "home": "Celta Vigo",
+      "away": "Levante",
+      "kickoff": "2026-11-08T17:30:00+00:00",
+      "market": "O15",
+      "label": "Over 1,5 mål",
+      "price": 1.29,
+      "firstPublishedAt": "2026-11-08T15:44:08.332000+00:00",
+      "result": {
+        "status": "unverified"
       }
     },
     {
@@ -2635,89 +1812,15 @@
       }
     },
     {
-      "id": "31106447cf3637c9c0baa12d",
+      "id": "5619dbf389cbc8f471bd0d04",
       "editionDate": "2026-11-08",
       "category": "safe",
-      "home": "Celta Vigo",
-      "away": "Levante",
-      "kickoff": "2026-11-08T17:30:00+00:00",
+      "home": "Rennes",
+      "away": "Lille",
+      "kickoff": "2026-11-08T14:00:00+00:00",
       "market": "O15",
       "label": "Over 1,5 mål",
-      "price": 1.29,
-      "firstPublishedAt": "2026-11-08T15:44:08.332000+00:00",
-      "result": {
-        "status": "unverified"
-      }
-    },
-    {
-      "id": "11e8190d2b70b7a8888ad31c",
-      "editionDate": "2026-11-08",
-      "category": "safe",
-      "home": "CF Estrela",
-      "away": "Benfica",
-      "kickoff": "2026-11-08T20:30:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 1.19,
-      "firstPublishedAt": "2026-11-08T15:44:08.332000+00:00",
-      "result": {
-        "status": "unverified"
-      }
-    },
-    {
-      "id": "f9cf7a6bde5ad2d27a113ed4",
-      "editionDate": "2026-11-08",
-      "category": "safe",
-      "home": "Brighton Hove",
-      "away": "Brentford",
-      "kickoff": "2026-11-08T14:00:00+00:00",
-      "market": "O25",
-      "label": "Over 2,5 mål",
-      "price": 1.6,
-      "firstPublishedAt": "2026-11-08T13:13:00.269000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 2,
-          "away": 0
-        },
-        "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
-        "sourceMatchId": "560638"
-      }
-    },
-    {
-      "id": "eb4e62ef10325dae0eec7832",
-      "editionDate": "2026-11-08",
-      "category": "high",
-      "home": "Le Havre",
-      "away": "Lorient",
-      "kickoff": "2026-11-08T16:15:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 2.9,
-      "firstPublishedAt": "2026-11-08T13:13:00.269000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 0,
-          "away": 2
-        },
-        "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
-        "sourceMatchId": "559633"
-      }
-    },
-    {
-      "id": "dfd4d7970b998d0344182d50",
-      "editionDate": "2026-11-08",
-      "category": "safe",
-      "home": "Manchester United",
-      "away": "Aston Villa",
-      "kickoff": "2026-11-08T16:30:00+00:00",
-      "market": "O25",
-      "label": "Over 2,5 mål",
-      "price": 1.5,
+      "price": 1.22,
       "firstPublishedAt": "2026-11-08T13:13:00.269000+00:00",
       "result": {
         "status": "unverified"
@@ -2746,18 +1849,62 @@
       }
     },
     {
-      "id": "5619dbf389cbc8f471bd0d04",
+      "id": "dfd4d7970b998d0344182d50",
       "editionDate": "2026-11-08",
       "category": "safe",
-      "home": "Rennes",
-      "away": "Lille",
-      "kickoff": "2026-11-08T14:00:00+00:00",
-      "market": "O15",
-      "label": "Over 1,5 mål",
-      "price": 1.22,
+      "home": "Manchester United",
+      "away": "Aston Villa",
+      "kickoff": "2026-11-08T16:30:00+00:00",
+      "market": "O25",
+      "label": "Over 2,5 mål",
+      "price": 1.5,
       "firstPublishedAt": "2026-11-08T13:13:00.269000+00:00",
       "result": {
         "status": "unverified"
+      }
+    },
+    {
+      "id": "eb4e62ef10325dae0eec7832",
+      "editionDate": "2026-11-08",
+      "category": "high",
+      "home": "Le Havre",
+      "away": "Lorient",
+      "kickoff": "2026-11-08T16:15:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 2.9,
+      "firstPublishedAt": "2026-11-08T13:13:00.269000+00:00",
+      "result": {
+        "status": "lost",
+        "score": {
+          "home": 0,
+          "away": 2
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "559633"
+      }
+    },
+    {
+      "id": "f9cf7a6bde5ad2d27a113ed4",
+      "editionDate": "2026-11-08",
+      "category": "safe",
+      "home": "Brighton Hove",
+      "away": "Brentford",
+      "kickoff": "2026-11-08T14:00:00+00:00",
+      "market": "O25",
+      "label": "Over 2,5 mål",
+      "price": 1.6,
+      "firstPublishedAt": "2026-11-08T13:13:00.269000+00:00",
+      "result": {
+        "status": "lost",
+        "score": {
+          "home": 2,
+          "away": 0
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "560638"
       }
     },
     {
@@ -2773,6 +1920,168 @@
       "firstPublishedAt": "2026-11-08T13:13:00.269000+00:00",
       "result": {
         "status": "unverified"
+      }
+    },
+    {
+      "id": "ea495d7a6562510822008593",
+      "editionDate": "2026-11-08",
+      "category": "watch",
+      "home": "Sunderland",
+      "away": "Chelsea",
+      "kickoff": "2026-11-08T14:00:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 3.58,
+      "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
+      "result": {
+        "status": "won",
+        "score": {
+          "home": 1,
+          "away": 0
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "560636"
+      }
+    },
+    {
+      "id": "7f70c7fcc0db2eea6f68801d",
+      "editionDate": "2026-11-08",
+      "category": "safe",
+      "home": "SC Cambuur",
+      "away": "PSV Eindhoven",
+      "kickoff": "2026-11-08T15:45:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 1.36,
+      "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
+      "result": {
+        "status": "unverified"
+      }
+    },
+    {
+      "id": "8673340166879bb464692cc2",
+      "editionDate": "2026-11-08",
+      "category": "safe",
+      "home": "Napoli",
+      "away": "Lazio",
+      "kickoff": "2026-11-08T11:30:00+00:00",
+      "market": "O25",
+      "label": "Over 2,5 mål",
+      "price": 1.58,
+      "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
+      "result": {
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 1
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "558533"
+      }
+    },
+    {
+      "id": "24e734837e0e71939c6179d9",
+      "editionDate": "2026-11-08",
+      "category": "high",
+      "home": "Monza",
+      "away": "Atalanta",
+      "kickoff": "2026-11-08T14:00:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 3.37,
+      "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
+      "result": {
+        "status": "lost",
+        "score": {
+          "home": 0,
+          "away": 1
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "558538"
+      }
+    },
+    {
+      "id": "a3bb09acb54aefb5c2d1f6ba",
+      "editionDate": "2026-11-08",
+      "category": "high",
+      "home": "Le Mans",
+      "away": "Monaco",
+      "kickoff": "2026-11-08T16:15:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 4.75,
+      "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
+      "result": {
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 1
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "559631"
+      }
+    },
+    {
+      "id": "087f8a7825efb6290d971d45",
+      "editionDate": "2026-11-08",
+      "category": "high",
+      "home": "Le Mans FC",
+      "away": "AS Monaco",
+      "kickoff": "2026-11-08T16:15:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 4.75,
+      "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
+      "result": {
+        "status": "unverified"
+      }
+    },
+    {
+      "id": "219a3f821456aae64d18f3f3",
+      "editionDate": "2026-11-08",
+      "category": "watch",
+      "home": "Ipswich Town",
+      "away": "Bournemouth",
+      "kickoff": "2026-11-08T14:00:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 3.95,
+      "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
+      "result": {
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 2
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "560637"
+      }
+    },
+    {
+      "id": "25e60de94583e43e59d8d373",
+      "editionDate": "2026-11-08",
+      "category": "high",
+      "home": "Heerenveen",
+      "away": "Feyenoord",
+      "kickoff": "2026-11-08T11:15:00+00:00",
+      "market": "U25",
+      "label": "Under 2,5 mål",
+      "price": 3,
+      "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
+      "result": {
+        "status": "lost",
+        "score": {
+          "home": 5,
+          "away": 3
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "558840"
       }
     },
     {
@@ -2798,25 +2107,25 @@
       }
     },
     {
-      "id": "ea495d7a6562510822008593",
+      "id": "3082cc1031efc19971138892",
       "editionDate": "2026-11-08",
       "category": "watch",
-      "home": "Sunderland",
-      "away": "Chelsea",
-      "kickoff": "2026-11-08T14:00:00+00:00",
+      "home": "Fiorentina",
+      "away": "Juventus",
+      "kickoff": "2026-11-08T19:45:00+00:00",
       "market": "H",
       "label": "Hjemmeseier",
-      "price": 3.58,
+      "price": 3.41,
       "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
       "result": {
-        "status": "won",
+        "status": "lost",
         "score": {
-          "home": 1,
-          "away": 0
+          "home": 2,
+          "away": 2
         },
         "source": "football-data.org",
         "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
-        "sourceMatchId": "560636"
+        "sourceMatchId": "558529"
       }
     },
     {
@@ -2844,65 +2153,6 @@
       "market": "O25",
       "label": "Over 2,5 mål",
       "price": 1.38,
-      "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
-      "result": {
-        "status": "unverified"
-      }
-    },
-    {
-      "id": "a3bb09acb54aefb5c2d1f6ba",
-      "editionDate": "2026-11-08",
-      "category": "high",
-      "home": "Le Mans",
-      "away": "Monaco",
-      "kickoff": "2026-11-08T16:15:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 4.75,
-      "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 1,
-          "away": 1
-        },
-        "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
-        "sourceMatchId": "559631"
-      }
-    },
-    {
-      "id": "8673340166879bb464692cc2",
-      "editionDate": "2026-11-08",
-      "category": "safe",
-      "home": "Napoli",
-      "away": "Lazio",
-      "kickoff": "2026-11-08T11:30:00+00:00",
-      "market": "O25",
-      "label": "Over 2,5 mål",
-      "price": 1.58,
-      "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 1,
-          "away": 1
-        },
-        "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
-        "sourceMatchId": "558533"
-      }
-    },
-    {
-      "id": "7f70c7fcc0db2eea6f68801d",
-      "editionDate": "2026-11-08",
-      "category": "safe",
-      "home": "SC Cambuur",
-      "away": "PSV Eindhoven",
-      "kickoff": "2026-11-08T15:45:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 1.36,
       "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
       "result": {
         "status": "unverified"
@@ -2946,128 +2196,25 @@
       }
     },
     {
-      "id": "3082cc1031efc19971138892",
-      "editionDate": "2026-11-08",
-      "category": "watch",
-      "home": "Fiorentina",
-      "away": "Juventus",
-      "kickoff": "2026-11-08T19:45:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 3.41,
-      "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 2,
-          "away": 2
-        },
-        "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
-        "sourceMatchId": "558529"
-      }
-    },
-    {
-      "id": "25e60de94583e43e59d8d373",
-      "editionDate": "2026-11-08",
-      "category": "high",
-      "home": "Heerenveen",
-      "away": "Feyenoord",
-      "kickoff": "2026-11-08T11:15:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
-      "price": 3,
-      "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 5,
-          "away": 3
-        },
-        "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
-        "sourceMatchId": "558840"
-      }
-    },
-    {
-      "id": "24e734837e0e71939c6179d9",
-      "editionDate": "2026-11-08",
-      "category": "high",
-      "home": "Monza",
-      "away": "Atalanta",
-      "kickoff": "2026-11-08T14:00:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 3.37,
-      "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 0,
-          "away": 1
-        },
-        "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
-        "sourceMatchId": "558538"
-      }
-    },
-    {
-      "id": "219a3f821456aae64d18f3f3",
-      "editionDate": "2026-11-08",
-      "category": "watch",
-      "home": "Ipswich Town",
-      "away": "Bournemouth",
-      "kickoff": "2026-11-08T14:00:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 3.95,
-      "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
+      "id": "037abb12e70b463225eeb1ef",
+      "editionDate": "2026-11-07",
+      "category": "safe",
+      "home": "Sporting Lisbon",
+      "away": "Moreirense FC",
+      "kickoff": "2026-11-07T20:30:00+00:00",
+      "market": "O25",
+      "label": "Over 2,5 mål",
+      "price": 1.39,
+      "firstPublishedAt": "2026-11-07T15:45:51.157000+00:00",
       "result": {
         "status": "lost",
         "score": {
           "home": 1,
-          "away": 2
-        },
-        "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
-        "sourceMatchId": "560637"
-      }
-    },
-    {
-      "id": "087f8a7825efb6290d971d45",
-      "editionDate": "2026-11-08",
-      "category": "high",
-      "home": "Le Mans FC",
-      "away": "AS Monaco",
-      "kickoff": "2026-11-08T16:15:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 4.75,
-      "firstPublishedAt": "2026-11-08T08:49:07.473000+00:00",
-      "result": {
-        "status": "unverified"
-      }
-    },
-    {
-      "id": "90013733694ebe966ec5a569",
-      "editionDate": "2026-11-07",
-      "category": "high",
-      "home": "Roma",
-      "away": "Sassuolo",
-      "kickoff": "2026-11-07T19:45:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
-      "price": 3.04,
-      "firstPublishedAt": "2026-11-07T18:59:08.094000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 3,
           "away": 0
         },
         "source": "football-data.org",
         "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
-        "sourceMatchId": "558531"
+        "sourceMatchId": "567350"
       }
     },
     {
@@ -3115,87 +2262,6 @@
       }
     },
     {
-      "id": "5711970158a73419e93c2af0",
-      "editionDate": "2026-11-07",
-      "category": "safe",
-      "home": "Paris Saint Germain",
-      "away": "Troyes",
-      "kickoff": "2026-11-07T20:05:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 1.17,
-      "firstPublishedAt": "2026-11-07T15:45:51.157000+00:00",
-      "result": {
-        "status": "unverified"
-      }
-    },
-    {
-      "id": "049d07a5365247e522a47b25",
-      "editionDate": "2026-11-07",
-      "category": "high",
-      "home": "PSG",
-      "away": "Troyes",
-      "kickoff": "2026-11-07T20:05:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
-      "price": 3.15,
-      "firstPublishedAt": "2026-11-07T15:45:51.157000+00:00",
-      "result": {
-        "status": "won",
-        "score": {
-          "home": 1,
-          "away": 0
-        },
-        "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
-        "sourceMatchId": "559635"
-      }
-    },
-    {
-      "id": "037abb12e70b463225eeb1ef",
-      "editionDate": "2026-11-07",
-      "category": "safe",
-      "home": "Sporting Lisbon",
-      "away": "Moreirense FC",
-      "kickoff": "2026-11-07T20:30:00+00:00",
-      "market": "O25",
-      "label": "Over 2,5 mål",
-      "price": 1.39,
-      "firstPublishedAt": "2026-11-07T15:45:51.157000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 1,
-          "away": 0
-        },
-        "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
-        "sourceMatchId": "567350"
-      }
-    },
-    {
-      "id": "f29bbe5004cfab214db27334",
-      "editionDate": "2026-11-07",
-      "category": "safe",
-      "home": "Preston NE",
-      "away": "Southampton",
-      "kickoff": "2026-11-07T15:00:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 1.57,
-      "firstPublishedAt": "2026-11-07T13:13:11.657000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 1,
-          "away": 0
-        },
-        "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
-        "sourceMatchId": "561937"
-      }
-    },
-    {
       "id": "81f931225475f481e4529718",
       "editionDate": "2026-11-07",
       "category": "safe",
@@ -3215,28 +2281,6 @@
         "source": "football-data.org",
         "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
         "sourceMatchId": "561930"
-      }
-    },
-    {
-      "id": "1e59e3ed9abc5e2e337f317f",
-      "editionDate": "2026-11-07",
-      "category": "high",
-      "home": "RB Leipzig",
-      "away": "Augsburg",
-      "kickoff": "2026-11-07T14:30:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 6.2,
-      "firstPublishedAt": "2026-11-07T13:13:11.657000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 5,
-          "away": 2
-        },
-        "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
-        "sourceMatchId": "565848"
       }
     },
     {
@@ -3262,69 +2306,25 @@
       }
     },
     {
-      "id": "a9959215a89e87c064adb4de",
+      "id": "2691fa6409a58650c812ea51",
       "editionDate": "2026-11-07",
-      "category": "watch",
-      "home": "Auxerre",
-      "away": "Paris FC",
-      "kickoff": "2026-11-07T18:00:00+00:00",
+      "category": "safe",
+      "home": "Roma",
+      "away": "Sassuolo",
+      "kickoff": "2026-11-07T19:45:00+00:00",
       "market": "H",
       "label": "Hjemmeseier",
-      "price": 4.6,
+      "price": 1.29,
       "firstPublishedAt": "2026-11-07T08:51:34.629000+00:00",
       "result": {
-        "status": "lost",
+        "status": "won",
         "score": {
-          "home": 0,
-          "away": 1
-        },
-        "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
-        "sourceMatchId": "559637"
-      }
-    },
-    {
-      "id": "8c3192e461bbefa90d80deae",
-      "editionDate": "2026-11-07",
-      "category": "high",
-      "home": "Parma",
-      "away": "Bologna",
-      "kickoff": "2026-11-07T17:00:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 4.9,
-      "firstPublishedAt": "2026-11-07T08:51:34.629000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 1,
-          "away": 2
-        },
-        "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
-        "sourceMatchId": "558535"
-      }
-    },
-    {
-      "id": "84887d08542bac0e10b114a4",
-      "editionDate": "2026-11-07",
-      "category": "high",
-      "home": "Arsenal",
-      "away": "Hull City",
-      "kickoff": "2026-11-07T15:00:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 19,
-      "firstPublishedAt": "2026-11-07T08:51:34.629000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 1,
+          "home": 3,
           "away": 0
         },
         "source": "football-data.org",
         "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
-        "sourceMatchId": "560640"
+        "sourceMatchId": "558531"
       }
     },
     {
@@ -3350,6 +2350,28 @@
       }
     },
     {
+      "id": "8c3192e461bbefa90d80deae",
+      "editionDate": "2026-11-07",
+      "category": "high",
+      "home": "Parma",
+      "away": "Bologna",
+      "kickoff": "2026-11-07T17:00:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 4.9,
+      "firstPublishedAt": "2026-11-07T08:51:34.629000+00:00",
+      "result": {
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 2
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "558535"
+      }
+    },
+    {
       "id": "5e2870cd10fbef008a2efb70",
       "editionDate": "2026-11-07",
       "category": "safe",
@@ -3365,82 +2387,38 @@
       }
     },
     {
-      "id": "2691fa6409a58650c812ea51",
+      "id": "a9959215a89e87c064adb4de",
       "editionDate": "2026-11-07",
-      "category": "safe",
-      "home": "Roma",
-      "away": "Sassuolo",
-      "kickoff": "2026-11-07T19:45:00+00:00",
+      "category": "watch",
+      "home": "Auxerre",
+      "away": "Paris FC",
+      "kickoff": "2026-11-07T18:00:00+00:00",
       "market": "H",
       "label": "Hjemmeseier",
-      "price": 1.29,
+      "price": 4.6,
       "firstPublishedAt": "2026-11-07T08:51:34.629000+00:00",
       "result": {
-        "status": "won",
+        "status": "lost",
         "score": {
-          "home": 3,
-          "away": 0
-        },
-        "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
-        "sourceMatchId": "558531"
-      }
-    },
-    {
-      "id": "2263c8c50ab42f881a3896e0",
-      "editionDate": "2026-11-07",
-      "category": "safe",
-      "home": "RB Leipzig",
-      "away": "Augsburg",
-      "kickoff": "2026-11-07T14:30:00+00:00",
-      "market": "O25",
-      "label": "Over 2,5 mål",
-      "price": 1.25,
-      "firstPublishedAt": "2026-11-07T08:51:34.629000+00:00",
-      "result": {
-        "status": "won",
-        "score": {
-          "home": 5,
-          "away": 2
-        },
-        "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
-        "sourceMatchId": "565848"
-      }
-    },
-    {
-      "id": "fbccf310955b8d9953314926",
-      "editionDate": "2026-11-07",
-      "category": "high",
-      "home": "Blackburn",
-      "away": "West Ham",
-      "kickoff": "2026-11-07T15:00:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 4.75,
-      "firstPublishedAt": "2026-11-06T20:03:09.019000+00:00",
-      "result": {
-        "status": "won",
-        "score": {
-          "home": 2,
+          "home": 0,
           "away": 1
         },
         "source": "football-data.org",
         "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
-        "sourceMatchId": "561935"
+        "sourceMatchId": "559637"
       }
     },
     {
-      "id": "b7e476cca8ceb111941792e1",
+      "id": "84887d08542bac0e10b114a4",
       "editionDate": "2026-11-07",
-      "category": "safe",
-      "home": "Preston NE",
-      "away": "Southampton",
+      "category": "high",
+      "home": "Arsenal",
+      "away": "Hull City",
       "kickoff": "2026-11-07T15:00:00+00:00",
-      "market": "O25",
-      "label": "Over 2,5 mål",
-      "price": 1.55,
-      "firstPublishedAt": "2026-11-06T20:03:09.019000+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 19,
+      "firstPublishedAt": "2026-11-07T08:51:34.629000+00:00",
       "result": {
         "status": "lost",
         "score": {
@@ -3449,88 +2427,7 @@
         },
         "source": "football-data.org",
         "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
-        "sourceMatchId": "561937"
-      }
-    },
-    {
-      "id": "914c8f516d67ba400107afe2",
-      "editionDate": "2026-11-07",
-      "category": "watch",
-      "home": "SC Paderborn",
-      "away": "Frankfurt",
-      "kickoff": "2026-11-07T14:30:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
-      "price": 2.52,
-      "firstPublishedAt": "2026-11-06T20:03:09.019000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 2,
-          "away": 2
-        },
-        "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
-        "sourceMatchId": "565853"
-      }
-    },
-    {
-      "id": "6bbb5d85a16fd7b53adcf638",
-      "editionDate": "2026-11-07",
-      "category": "high",
-      "home": "Dortmund",
-      "away": "Elversberg",
-      "kickoff": "2026-11-07T14:30:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
-      "price": 3,
-      "firstPublishedAt": "2026-11-06T20:03:09.019000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 2,
-          "away": 1
-        },
-        "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
-        "sourceMatchId": "565850"
-      }
-    },
-    {
-      "id": "6924206714ce7cadbf56ffe6",
-      "editionDate": "2026-11-07",
-      "category": "high",
-      "home": "RB Leipzig",
-      "away": "Augsburg",
-      "kickoff": "2026-11-07T14:30:00+00:00",
-      "market": "U35",
-      "label": "Under 3,5 mål",
-      "price": 2.23,
-      "firstPublishedAt": "2026-11-06T20:03:09.019000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 5,
-          "away": 2
-        },
-        "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
-        "sourceMatchId": "565848"
-      }
-    },
-    {
-      "id": "33444581eb809818deebe73d",
-      "editionDate": "2026-11-07",
-      "category": "safe",
-      "home": "FSV Mainz 05",
-      "away": "Bayern Munich",
-      "kickoff": "2026-11-07T14:30:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 1.3,
-      "firstPublishedAt": "2026-11-06T20:03:09.019000+00:00",
-      "result": {
-        "status": "unverified"
+        "sourceMatchId": "560640"
       }
     },
     {
@@ -3578,119 +2475,119 @@
       }
     },
     {
-      "id": "073c1c6605ee4003c1bb6292",
-      "editionDate": "2026-11-06",
-      "category": "high",
-      "home": "HSV",
-      "away": "M'gladbach",
-      "kickoff": "2026-11-06T19:30:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 2.95,
-      "firstPublishedAt": "2026-11-06T18:02:48.765000+00:00",
+      "id": "914c8f516d67ba400107afe2",
+      "editionDate": "2026-11-07",
+      "category": "watch",
+      "home": "SC Paderborn",
+      "away": "Frankfurt",
+      "kickoff": "2026-11-07T14:30:00+00:00",
+      "market": "U25",
+      "label": "Under 2,5 mål",
+      "price": 2.52,
+      "firstPublishedAt": "2026-11-06T20:03:09.019000+00:00",
       "result": {
         "status": "lost",
         "score": {
-          "home": 3,
-          "away": 1
+          "home": 2,
+          "away": 2
         },
         "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-05&dateTo=2026-11-08",
-        "sourceMatchId": "565852"
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "565853"
       }
     },
     {
-      "id": "ad420cf43abf7ad5c56f20ba",
-      "editionDate": "2026-11-06",
+      "id": "6924206714ce7cadbf56ffe6",
+      "editionDate": "2026-11-07",
       "category": "high",
-      "home": "Toulouse",
-      "away": "Strasbourg",
-      "kickoff": "2026-11-06T19:45:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 3.1,
-      "firstPublishedAt": "2026-11-06T15:56:13.224000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 3,
-          "away": 1
-        },
-        "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-05&dateTo=2026-11-08",
-        "sourceMatchId": "559638"
-      }
-    },
-    {
-      "id": "74ead34f392246bb9c17e0d9",
-      "editionDate": "2026-11-06",
-      "category": "safe",
-      "home": "HSV",
-      "away": "M'gladbach",
-      "kickoff": "2026-11-06T19:30:00+00:00",
+      "home": "RB Leipzig",
+      "away": "Augsburg",
+      "kickoff": "2026-11-07T14:30:00+00:00",
       "market": "U35",
       "label": "Under 3,5 mål",
-      "price": 1.44,
-      "firstPublishedAt": "2026-11-06T15:56:13.224000+00:00",
+      "price": 2.23,
+      "firstPublishedAt": "2026-11-06T20:03:09.019000+00:00",
       "result": {
         "status": "lost",
         "score": {
-          "home": 3,
-          "away": 1
+          "home": 5,
+          "away": 2
         },
         "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-05&dateTo=2026-11-08",
-        "sourceMatchId": "565852"
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "565848"
       }
     },
     {
-      "id": "eff794b2ba799d61984508c0",
-      "editionDate": "2026-11-06",
-      "category": "watch",
-      "home": "Venezia",
-      "away": "Udinese",
-      "kickoff": "2026-11-06T19:45:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 2.3,
-      "firstPublishedAt": "2026-11-06T11:02:19.652000+00:00",
+      "id": "b7e476cca8ceb111941792e1",
+      "editionDate": "2026-11-07",
+      "category": "safe",
+      "home": "Preston NE",
+      "away": "Southampton",
+      "kickoff": "2026-11-07T15:00:00+00:00",
+      "market": "O25",
+      "label": "Over 2,5 mål",
+      "price": 1.55,
+      "firstPublishedAt": "2026-11-06T20:03:09.019000+00:00",
+      "result": {
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 0
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "561937"
+      }
+    },
+    {
+      "id": "33444581eb809818deebe73d",
+      "editionDate": "2026-11-07",
+      "category": "safe",
+      "home": "FSV Mainz 05",
+      "away": "Bayern Munich",
+      "kickoff": "2026-11-07T14:30:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 1.3,
+      "firstPublishedAt": "2026-11-06T20:03:09.019000+00:00",
       "result": {
         "status": "unverified"
       }
     },
     {
-      "id": "a0de075d93f0a0d7bc62e634",
-      "editionDate": "2026-11-06",
+      "id": "6bbb5d85a16fd7b53adcf638",
+      "editionDate": "2026-11-07",
       "category": "high",
-      "home": "Sevilla FC",
-      "away": "Alavés",
-      "kickoff": "2026-11-06T20:00:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 4.55,
-      "firstPublishedAt": "2026-11-06T11:02:19.652000+00:00",
+      "home": "Dortmund",
+      "away": "Elversberg",
+      "kickoff": "2026-11-07T14:30:00+00:00",
+      "market": "U25",
+      "label": "Under 2,5 mål",
+      "price": 3,
+      "firstPublishedAt": "2026-11-06T20:03:09.019000+00:00",
       "result": {
         "status": "lost",
         "score": {
-          "home": 0,
-          "away": 0
+          "home": 2,
+          "away": 1
         },
         "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-05&dateTo=2026-11-08",
-        "sourceMatchId": "564740"
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "565850"
       }
     },
     {
-      "id": "930a2e755597b8de57771735",
-      "editionDate": "2026-11-06",
-      "category": "watch",
-      "home": "Venezia FC",
-      "away": "Udinese",
-      "kickoff": "2026-11-06T19:45:00+00:00",
+      "id": "fbccf310955b8d9953314926",
+      "editionDate": "2026-11-07",
+      "category": "high",
+      "home": "Blackburn",
+      "away": "West Ham",
+      "kickoff": "2026-11-07T15:00:00+00:00",
       "market": "H",
       "label": "Hjemmeseier",
-      "price": 2.3,
-      "firstPublishedAt": "2026-11-06T11:02:19.652000+00:00",
+      "price": 4.75,
+      "firstPublishedAt": "2026-11-06T20:03:09.019000+00:00",
       "result": {
         "status": "won",
         "score": {
@@ -3698,8 +2595,8 @@
           "away": 1
         },
         "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-05&dateTo=2026-11-08",
-        "sourceMatchId": "558537"
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "561935"
       }
     },
     {
@@ -3725,25 +2622,62 @@
       }
     },
     {
-      "id": "8ad07685177137c0fda1b23f",
+      "id": "eff794b2ba799d61984508c0",
+      "editionDate": "2026-11-06",
+      "category": "watch",
+      "home": "Venezia",
+      "away": "Udinese",
+      "kickoff": "2026-11-06T19:45:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 2.3,
+      "firstPublishedAt": "2026-11-06T11:02:19.652000+00:00",
+      "result": {
+        "status": "unverified"
+      }
+    },
+    {
+      "id": "930a2e755597b8de57771735",
+      "editionDate": "2026-11-06",
+      "category": "watch",
+      "home": "Venezia FC",
+      "away": "Udinese",
+      "kickoff": "2026-11-06T19:45:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 2.3,
+      "firstPublishedAt": "2026-11-06T11:02:19.652000+00:00",
+      "result": {
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 1
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-05&dateTo=2026-11-08",
+        "sourceMatchId": "558537"
+      }
+    },
+    {
+      "id": "a0de075d93f0a0d7bc62e634",
       "editionDate": "2026-11-06",
       "category": "high",
-      "home": "Famalicão",
-      "away": "Arouca",
-      "kickoff": "2026-11-06T20:45:00+00:00",
+      "home": "Sevilla FC",
+      "away": "Alavés",
+      "kickoff": "2026-11-06T20:00:00+00:00",
       "market": "B",
       "label": "Borteseier",
-      "price": 3.08,
+      "price": 4.55,
       "firstPublishedAt": "2026-11-06T11:02:19.652000+00:00",
       "result": {
         "status": "lost",
         "score": {
-          "home": 1,
+          "home": 0,
           "away": 0
         },
         "source": "football-data.org",
         "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-05&dateTo=2026-11-08",
-        "sourceMatchId": "567353"
+        "sourceMatchId": "564740"
       }
     },
     {
@@ -3769,40 +2703,25 @@
       }
     },
     {
-      "id": "cbb19419e8c3ee103d63b530",
+      "id": "8ad07685177137c0fda1b23f",
       "editionDate": "2026-11-06",
       "category": "high",
-      "home": "Silkeborg IF",
-      "away": "Lyngby",
-      "kickoff": "2026-11-06T18:00:00+00:00",
-      "market": "U25",
-      "label": "Under 2,5 mål",
-      "price": 2.25,
-      "firstPublishedAt": "2026-11-06T09:15:25.100000+00:00",
-      "result": {
-        "status": "unverified"
-      }
-    },
-    {
-      "id": "444812f47d41ac3ae679fe4d",
-      "editionDate": "2026-11-06",
-      "category": "high",
-      "home": "Everton",
-      "away": "Coventry City",
-      "kickoff": "2026-11-06T20:00:00+00:00",
+      "home": "Famalicão",
+      "away": "Arouca",
+      "kickoff": "2026-11-06T20:45:00+00:00",
       "market": "B",
       "label": "Borteseier",
-      "price": 4.95,
-      "firstPublishedAt": "2026-11-06T09:15:25.100000+00:00",
+      "price": 3.08,
+      "firstPublishedAt": "2026-11-06T11:02:19.652000+00:00",
       "result": {
         "status": "lost",
         "score": {
-          "home": 3,
-          "away": 1
+          "home": 1,
+          "away": 0
         },
         "source": "football-data.org",
         "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-05&dateTo=2026-11-08",
-        "sourceMatchId": "560634"
+        "sourceMatchId": "567353"
       }
     },
     {
@@ -3825,6 +2744,28 @@
         "source": "football-data.org",
         "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-05&dateTo=2026-11-08",
         "sourceMatchId": "559638"
+      }
+    },
+    {
+      "id": "444812f47d41ac3ae679fe4d",
+      "editionDate": "2026-11-06",
+      "category": "high",
+      "home": "Everton",
+      "away": "Coventry City",
+      "kickoff": "2026-11-06T20:00:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 4.95,
+      "firstPublishedAt": "2026-11-06T09:15:25.100000+00:00",
+      "result": {
+        "status": "lost",
+        "score": {
+          "home": 3,
+          "away": 1
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-05&dateTo=2026-11-08",
+        "sourceMatchId": "560634"
       }
     },
     {
@@ -3865,6 +2806,66 @@
       }
     },
     {
+      "id": "3e39e80e3151a1b78336fc35",
+      "editionDate": "2026-11-05",
+      "category": "safe",
+      "home": "Universitatea Craiova",
+      "away": "KF Egnatia",
+      "kickoff": "2026-11-05T20:00:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 1.33,
+      "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
+      "result": {
+        "status": "unverified"
+      }
+    },
+    {
+      "id": "6885e7caaaf657356fd1238b",
+      "editionDate": "2026-11-05",
+      "category": "watch",
+      "home": "Torreense",
+      "away": "FC Ararat-Armenia",
+      "kickoff": "2026-11-05T20:00:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 1.7,
+      "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
+      "result": {
+        "status": "unverified"
+      }
+    },
+    {
+      "id": "18597bd2ee4ac314e54b2281",
+      "editionDate": "2026-11-05",
+      "category": "safe",
+      "home": "Sunderland",
+      "away": "Dinamo Zagreb",
+      "kickoff": "2026-11-05T20:00:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 1.42,
+      "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
+      "result": {
+        "status": "unverified"
+      }
+    },
+    {
+      "id": "111fce7a78d7d1a3fa448b30",
+      "editionDate": "2026-11-05",
+      "category": "safe",
+      "home": "Panathinaikos FC",
+      "away": "PFC CSKA Sofia",
+      "kickoff": "2026-11-05T20:00:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 1.32,
+      "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
+      "result": {
+        "status": "unverified"
+      }
+    },
+    {
       "id": "ed4930601faadd594f54e5df",
       "editionDate": "2026-11-05",
       "category": "watch",
@@ -3877,50 +2878,6 @@
       "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
       "result": {
         "status": "unverified"
-      }
-    },
-    {
-      "id": "e828be92440ed2294a944ede",
-      "editionDate": "2026-11-05",
-      "category": "watch",
-      "home": "AZ Alkmaar",
-      "away": "Juventus",
-      "kickoff": "2026-11-05T20:00:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 3.9,
-      "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
-      "result": {
-        "status": "lost",
-        "score": {
-          "home": 1,
-          "away": 2
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=14&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2050114"
-      }
-    },
-    {
-      "id": "e4fcb37406d56afa27a065ea",
-      "editionDate": "2026-11-05",
-      "category": "watch",
-      "home": "Benfica",
-      "away": "Lech Poznań",
-      "kickoff": "2026-11-05T20:00:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 1.12,
-      "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
-      "result": {
-        "status": "won",
-        "score": {
-          "home": 3,
-          "away": 1
-        },
-        "source": "UEFA",
-        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=14&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
-        "sourceMatchId": "uefa:2050112"
       }
     },
     {
@@ -3939,30 +2896,15 @@
       }
     },
     {
-      "id": "cddb42aecd104e3b87d02b74",
+      "id": "6e958e54a90a3e2dc1132c16",
       "editionDate": "2026-11-05",
-      "category": "high",
-      "home": "AS Monaco",
-      "away": "FC Nordsjaelland",
-      "kickoff": "2026-11-05T20:00:00+00:00",
-      "market": "B",
-      "label": "Borteseier",
-      "price": 5.96,
-      "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
-      "result": {
-        "status": "unverified"
-      }
-    },
-    {
-      "id": "c5f46303374f82c3f25c13ed",
-      "editionDate": "2026-11-05",
-      "category": "high",
-      "home": "Celta Vigo",
-      "away": "Union Saint-Gilloise",
+      "category": "safe",
+      "home": "FC Twente Enschede",
+      "away": "Pafos FC",
       "kickoff": "2026-11-05T20:00:00+00:00",
       "market": "H",
       "label": "Hjemmeseier",
-      "price": 2.37,
+      "price": 1.22,
       "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
       "result": {
         "status": "unverified"
@@ -4014,48 +2956,40 @@
       }
     },
     {
-      "id": "6e958e54a90a3e2dc1132c16",
+      "id": "c5f46303374f82c3f25c13ed",
       "editionDate": "2026-11-05",
-      "category": "safe",
-      "home": "FC Twente Enschede",
-      "away": "Pafos FC",
+      "category": "high",
+      "home": "Celta Vigo",
+      "away": "Union Saint-Gilloise",
       "kickoff": "2026-11-05T20:00:00+00:00",
       "market": "H",
       "label": "Hjemmeseier",
-      "price": 1.22,
+      "price": 2.37,
       "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
       "result": {
         "status": "unverified"
       }
     },
     {
-      "id": "6885e7caaaf657356fd1238b",
+      "id": "e4fcb37406d56afa27a065ea",
       "editionDate": "2026-11-05",
       "category": "watch",
-      "home": "Torreense",
-      "away": "FC Ararat-Armenia",
+      "home": "Benfica",
+      "away": "Lech Poznań",
       "kickoff": "2026-11-05T20:00:00+00:00",
       "market": "H",
       "label": "Hjemmeseier",
-      "price": 1.7,
+      "price": 1.12,
       "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
       "result": {
-        "status": "unverified"
-      }
-    },
-    {
-      "id": "3e39e80e3151a1b78336fc35",
-      "editionDate": "2026-11-05",
-      "category": "safe",
-      "home": "Universitatea Craiova",
-      "away": "KF Egnatia",
-      "kickoff": "2026-11-05T20:00:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 1.33,
-      "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
-      "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 3,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=14&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050112"
       }
     },
     {
@@ -4074,30 +3008,37 @@
       }
     },
     {
-      "id": "18597bd2ee4ac314e54b2281",
+      "id": "e828be92440ed2294a944ede",
       "editionDate": "2026-11-05",
-      "category": "safe",
-      "home": "Sunderland",
-      "away": "Dinamo Zagreb",
+      "category": "watch",
+      "home": "AZ Alkmaar",
+      "away": "Juventus",
       "kickoff": "2026-11-05T20:00:00+00:00",
       "market": "H",
       "label": "Hjemmeseier",
-      "price": 1.42,
+      "price": 3.9,
       "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 2
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=14&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050114"
       }
     },
     {
-      "id": "111fce7a78d7d1a3fa448b30",
+      "id": "cddb42aecd104e3b87d02b74",
       "editionDate": "2026-11-05",
-      "category": "safe",
-      "home": "Panathinaikos FC",
-      "away": "PFC CSKA Sofia",
+      "category": "high",
+      "home": "AS Monaco",
+      "away": "FC Nordsjaelland",
       "kickoff": "2026-11-05T20:00:00+00:00",
-      "market": "H",
-      "label": "Hjemmeseier",
-      "price": 1.32,
+      "market": "B",
+      "label": "Borteseier",
+      "price": 5.96,
       "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
       "result": {
         "status": "unverified"
@@ -4105,9 +3046,13 @@
     }
   ],
   "resultFeed": {
-    "state": "checked",
-    "matchedFixtures": 35
+    "state": "not_checked"
   },
-  "method": "Vunnet / (vunnet + tapt). Hvert tips telles én gang i kategorien det først ble vist i.",
-  "note": "Kun arkiverte tips vist før kampstart inngår. Uavklarte, ventende og annullerte tips er utenfor treffprosenten. Interessante objekter er observasjoner."
+  "publicationPolicy": {
+    "version": 53,
+    "rule": "first_published_tip_per_fixture",
+    "excludedAlternatives": 45
+  },
+  "method": "Første publiserte tips per kamp. Vunnet / (vunnet + tapt).",
+  "note": "Kun avgjorte tips inngår i treffprosenten."
 }

@@ -1,0 +1,23 @@
+:root{color-scheme:dark;--bg:#171612;--surface:#1e1d18;--surface-2:#28261f;--edge:#39362d;--body:#f3f1e9;--muted:#bfbbae;--soft:#a6a291;--gold:#d9b45b;--gold-light:#e4c780}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:1.5rem}
+body{margin:0;background:var(--bg);color:var(--body);font:1rem/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+[hidden]{display:none!important}
+a{color:inherit;text-decoration:none}
+button,select{font:inherit}
+button,summary,select{touch-action:manipulation}
+button:focus-visible,a:focus-visible,summary:focus-visible,select:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+.shell{max-width:78rem;margin:auto;padding:0 2.25rem 1.5rem}
+.header{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:5.5rem;border-bottom:1px solid var(--edge)}
+.identity{display:flex;align-items:center;gap:.75rem;font-size:.8125rem;letter-spacing:.08em;font-weight:500}
+.identity img{flex:none}.identity b{color:var(--gold);font-weight:500}
+.refresh{background:none;border:1px solid var(--edge);border-radius:.375rem;color:var(--muted);padding:.625rem 1rem;min-height:2.75rem;font-size:.875rem;cursor:pointer}
+.refresh:hover{color:var(--body);border-color:var(--soft)}
+.hero{padding:3.25rem 0 2.5rem}
+.hero h1{font-size:clamp(2rem,4.2vw,3.5rem);font-weight:500;line-height:1.15;letter-spacing:-.045em;margin:0 0 1rem}
+.hero h1 span{color:var(--gold)}
+.edition-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem 1rem;color:var(--muted);font-size:.875rem}
+.edition-meta span:empty{display:none}
+.footer{padding-top:1.25rem;border-top:1px solid var(--edge);color:var(--soft);font-size:.8125rem}
+@media(max-width:640px){.shell{padding:0 1.25rem 1.25rem}.header{min-height:4.75rem}.identity{font-size:.6875rem;letter-spacing:.045em;gap:.5rem}.identity img{width:26px;height:26px}.refresh{padding:.625rem .75rem}.hero{padding:2.25rem 0 2rem}.hero h1{max-width:24rem;font-size:2.5rem}.hero h1 span{display:block}.edition-meta{font-size:.8125rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

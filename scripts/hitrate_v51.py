@@ -17,10 +17,11 @@ from pathlib import Path
 
 from lifecycle import CATEGORIES, apply_results, atomic_json, fetch_results, published_history, read_json, score_pick
 from result_sources_v51 import dt, match_saved_picks, selection_key
+from publication_policy_v53 import display_category, first_records
 
 ROOT = Path(__file__).resolve().parents[1]
 CATEGORY_NAMES = {'safe': 'Safe Bets', 'high': 'High Risk',
-                  'watch': 'Interessante objekter', 'qualified': 'Kvalifiserte spill'}
+                  'watch': 'Interessante objekter'}
 FINAL = {'won', 'lost', 'void'}
 
 
@@ -35,15 +36,17 @@ def publications(root):
             recorded = dt(revision.get('recordedAt'))
             if recorded is None:
                 continue
-            for group in ('qualified', 'safe', 'high', 'watch'):
+            groups = revision.get('groups') or {}
+            for group in ('safe', 'high', 'watch', 'qualified'):
                 for pick in (revision.get('groups') or {}).get(group) or []:
                     kickoff = dt(pick.get('kickoff'))
                     if (not kickoff or recorded >= kickoff or not selection_key(pick)
                             or not pick.get('matchId') or type(pick.get('price')) not in (int, float)
                             or not 1 < pick['price'] < 100):
                         continue
-                    entries.append((recorded, group, journal.get('editionDate'), revision.get('id'), pick))
-    return sorted(entries, key=lambda row: (row[0], ('qualified', 'safe', 'high', 'watch').index(row[1])))
+                    category = display_category(group, pick, groups)
+                    entries.append((recorded, category, journal.get('editionDate'), revision.get('id'), pick))
+    return sorted(entries, key=lambda row: (row[0], ('safe', 'high', 'watch').index(row[1])))
 
 
 def ingest(ledger, entries, now):
@@ -64,6 +67,8 @@ def ingest(ledger, entries, now):
         mid = str(pick['matchId'])
         if mid not in record['sourceIds']:
             record['sourceIds'].append(mid)
+        if record['category'] == 'qualified' and not record.get('displayCategory'):
+            record['displayCategory'] = group
     for record in ledger['records']:
         if (record['result'].get('status') not in FINAL | {'postponed', 'unverified'}
                 and (kickoff := dt(record.get('kickoff'))) and now > kickoff + timedelta(hours=3)):
@@ -83,7 +88,10 @@ def count(records):
 
 
 def report(ledger, now, feed):
-    records = ledger['records']
+    # Keep the complete journal. Exclude later alternatives by publication time,
+    # including when the first tip lost and a later alternative won.
+    records = [dict(p, category=p.get('displayCategory') or display_category(p['category'], p))
+               for p in first_records(ledger['records'])]
     by_category = {key: dict(label=label, **count([p for p in records if p['category'] == key]))
                    for key, label in CATEGORY_NAMES.items()}
     dates = sorted({p['editionDate'] for p in records if p.get('editionDate')}, reverse=True)
@@ -99,8 +107,10 @@ def report(ledger, now, feed):
             'label', 'price', 'firstPublishedAt', 'result')}
                  for p in reversed(records)],
         'resultFeed': feed,
-        'method': 'Vunnet / (vunnet + tapt). Hvert tips telles én gang i kategorien det først ble vist i.',
-        'note': 'Kun arkiverte tips vist før kampstart inngår. Uavklarte, ventende og annullerte tips er utenfor treffprosenten. Interessante objekter er observasjoner.',
+        'publicationPolicy': {'version': 53, 'rule': 'first_published_tip_per_fixture',
+                              'excludedAlternatives': len(ledger['records']) - len(records)},
+        'method': 'Første publiserte tips per kamp. Vunnet / (vunnet + tapt).',
+        'note': 'Kun avgjorte tips inngår i treffprosenten.',
     }
 
 

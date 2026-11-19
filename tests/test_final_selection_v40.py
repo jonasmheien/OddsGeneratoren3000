@@ -87,7 +87,7 @@ class FinalSelectionTests(unittest.TestCase):
         a=finalize(snap([m]),NOW)
         self.assertEqual(a['safeBets'],[])
 
-    def test_standard_and_sixth_qualifier_survive_category_limits(self):
+    def test_qualified_picks_use_three_categories_and_respect_limits(self):
         fixtures = [game(f'm{i}', f'Home {i}', 'Away') for i in range(7)]
         picks = [
             {'matchId': m['id'], 'home': m['home'], 'away': m['away'], 'kickoff': KO,
@@ -99,10 +99,12 @@ class FinalSelectionTests(unittest.TestCase):
         conflicting = {**picks[-1], 'market': 'U25', 'category': 'high', 'conservativeEdge': .025}
         result = finalize(snap(fixtures, recommendations=[*picks, conflicting]), NOW)
         self.assertEqual([p['matchId'] for p in result['recommendations']],
-                         [m['id'] for m in reversed(fixtures)])
-        self.assertEqual(result['recommendations'][0]['category'], 'standard')
+                         [m['id'] for m in reversed(fixtures[1:])])
+        self.assertEqual(result['recommendations'][0]['category'], 'watch')
+        self.assertEqual(len(result['interestingObjects']), 1)
         self.assertEqual(len(result['safeBets']), 5)
         self.assertEqual(result['highRisk'], [])
-        self.assertEqual(result['coverage']['qualified'], 7)
+        self.assertEqual(result['coverage']['qualified'], 6)
+        self.assertFalse(result['finalSelection']['rankedRecommendations'])
 
 if __name__=='__main__':unittest.main()

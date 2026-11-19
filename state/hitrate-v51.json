@@ -2641,7 +2641,8 @@
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
         "sourceMatchId": "uefa:2047877"
       },
-      "settledAt": "2026-11-18T08:57:54.147828+00:00"
+      "settledAt": "2026-11-18T08:57:54.147828+00:00",
+      "displayCategory": "high"
     },
     {
       "matchId": "odds:d598d5e914a905ef70b01fd1b444aecb",
@@ -2791,7 +2792,8 @@
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
         "sourceMatchId": "uefa:2047872"
       },
-      "settledAt": "2026-11-18T08:57:54.147828+00:00"
+      "settledAt": "2026-11-18T08:57:54.147828+00:00",
+      "displayCategory": "high"
     },
     {
       "matchId": "odds:c25477408b57267248b491fa5eab2572",
@@ -3667,7 +3669,8 @@
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
         "sourceMatchId": "uefa:2047890"
       },
-      "settledAt": "2026-11-18T08:57:54.147828+00:00"
+      "settledAt": "2026-11-18T08:57:54.147828+00:00",
+      "displayCategory": "high"
     },
     {
       "matchId": "odds:30b32c194d8c2ae2bc5a209be5df44a9",
@@ -4107,7 +4110,8 @@
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
         "sourceMatchId": "uefa:2047905"
       },
-      "settledAt": "2026-11-18T08:57:54.147828+00:00"
+      "settledAt": "2026-11-18T08:57:54.147828+00:00",
+      "displayCategory": "high"
     },
     {
       "matchId": "odds:bef3dd0d3dad6760e4e531bc9565fb8c",
@@ -4137,7 +4141,8 @@
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-12&toDate=2026-11-15&order=ASC&limit=100&offset=0",
         "sourceMatchId": "uefa:2047904"
       },
-      "settledAt": "2026-11-18T08:57:54.147828+00:00"
+      "settledAt": "2026-11-18T08:57:54.147828+00:00",
+      "displayCategory": "high"
     },
     {
       "matchId": "odds:b37cfed1f792e0804c4f1e6a1c951f65",
@@ -4519,7 +4524,8 @@
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
         "sourceMatchId": "uefa:2047914"
       },
-      "settledAt": "2026-11-18T08:57:54.147828+00:00"
+      "settledAt": "2026-11-18T08:57:54.147828+00:00",
+      "displayCategory": "safe"
     },
     {
       "matchId": "odds:624805725e5cd075b0c5d77eb755bded",
@@ -4991,7 +4997,8 @@
         "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2014&seasonYear=2027&fromDate=2026-11-15&toDate=2026-11-18&order=ASC&limit=100&offset=0",
         "sourceMatchId": "uefa:2047920"
       },
-      "settledAt": "2026-11-18T08:57:54.147828+00:00"
+      "settledAt": "2026-11-18T08:57:54.147828+00:00",
+      "displayCategory": "safe"
     },
     {
       "matchId": "odds:aab74efad72e8096e774c7104189ff09",

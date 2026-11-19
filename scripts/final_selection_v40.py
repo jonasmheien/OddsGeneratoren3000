@@ -173,10 +173,11 @@ def _candidates(snapshot, now):
         if not quote({'price':p.get('price'),'books':p.get('bookmakers'),
                       'lastUpdated':p.get('oddsUpdatedAt')},now,min_books=1,max_age=6):continue
         cat=p.get('category')
-        if cat not in ('safe','high','standard'):
+        if cat not in ('safe','high','standard','watch'):
             continue
+        cat = 'watch' if cat == 'standard' else cat
         ident=market_identity(p['market'])
-        obj={**p,'marketIdentity':ident,'fixtureKey':fixture_key(m),
+        obj={**p,'category':cat,'marketIdentity':ident,'fixtureKey':fixture_key(m),
              'qualificationTier':'qualified'}
         out.append((cat,obj))
     for m in matches:
@@ -229,8 +230,8 @@ def _candidates(snapshot, now):
         out.append(('watch',obj))
     return out
 
-def finalize(snapshot, now=None):
-    """Rank every qualified match and fill remaining places with candidates."""
+def finalize(snapshot, now=None, *, publication_locks=None):
+    """Choose three categories while retaining each match's first published side."""
     at=now or dt(snapshot.get('generatedAt'))
     if not at:raise ValueError('Missing generatedAt')
     if not isinstance(snapshot.get('matches'),list):raise ValueError('Missing matches')
@@ -250,6 +251,15 @@ def finalize(snapshot, now=None):
     occupied={}
     blocked=Counter()
     for category,p in candidates:
+        if publication_locks:
+            from publication_policy_v53 import fixture_identity
+            locked = publication_locks.get(fixture_identity(p))
+            if locked and (p['market'] != locked['market'] or category != locked['category']):
+                blocked['previously_published_selection'] += 1
+                trace.append({'fixture':p['fixtureKey'],'market':p['market'],
+                              'reason':'previously_published_selection',
+                              'selectedMarket':locked['market']})
+                continue
         identity=p['fixtureKey']
         if identity in occupied:
             blocked['same_fixture_or_correlated_outcome']+=1
@@ -257,7 +267,7 @@ def finalize(snapshot, now=None):
                           'selectedMarket':occupied[identity]['market']})
             continue
         is_qualified = p['qualificationTier'] == 'qualified'
-        if not is_qualified and len(groups[category]) >= 5:
+        if len(groups[category]) >= 5:
             blocked['category_full']+=1
             continue
         # Strip sorting/internal fields. Preserve identity and original quote.
@@ -277,7 +287,7 @@ def finalize(snapshot, now=None):
     snapshot['interestingObjects']=groups['watch']
     snapshot['recommendations'] = qualified
     snapshot['finalSelection']={'version':40,'policy':'one_active_selection_per_real_fixture',
-        'rankedRecommendations':True,
+        'rankedRecommendations':False,'mainCategoriesOnly':True,
         'categories':{'safe':len(groups['safe']),'high':len(groups['high']),
                       'watch':len(groups['watch'])},
         'target':[3,5],'shortfalls':{g:('For få konfliktfrie, kildebaserte kandidater.' if len(v)<3 else None)
@@ -296,7 +306,7 @@ def validate(snapshot):
     ranked = snapshot['finalSelection'].get('rankedRecommendations') is True
     seen={};ids=set()
     def selection_identity(p):
-        k = fixture_key(p, national_aliases=ranked)
+        k = fixture_key(p, national_aliases=ranked or snapshot['finalSelection'].get('mainCategoriesOnly') is True)
         m = market_identity(p.get('market'))
         ident = p.get('selectionId')
         if not k or not m or p.get('fixtureKey') != k or p.get('marketIdentity') != m or not ident:
@@ -314,7 +324,7 @@ def validate(snapshot):
             if ident in ids:raise ValueError('Repeated selectionId')
             seen[k] = ident
             ids.add(ident)
-    qualified={p['selectionId'] for g in ('safeBets','highRisk') for p in snapshot[g]
+    qualified={p['selectionId'] for g in ('safeBets','highRisk','interestingObjects') for p in snapshot[g]
                if p.get('qualificationTier')=='qualified'}
     recommendations = snapshot.get('recommendations', [])
     if not ranked:

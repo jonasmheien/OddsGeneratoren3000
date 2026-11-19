@@ -6,9 +6,11 @@ const report={overall:stats,categories:{safe:stats},tips:[
   {category:'safe',home:'Home <script>',away:'Away',label:'Hjemmeseier',result:{status:'won'}},
   {category:'high',home:'Home',away:'Away',label:'Borteseier',result:{status:'unverified'}}]};
 const html=markup(report);
-assert.match(html,/2 av 3 avgjorte tips/);
+assert.match(html,/2 av 3 avgjorte/);
 assert.match(html,/66,7 %/);
-assert.match(html,/1 venter · 1 uavklart/);
+assert.doesNotMatch(html,/venter ·|Kvalifiserte|Vunnet delt/);
+assert.match(html,/Første tips per kamp/);
+assert.equal((html.match(/class="hr51-card"/g)||[]).length,3);
 assert.match(html,/Ingen avgjorte/,'an empty category never claims a zero-percent losing record');
 assert.match(html,/&lt;script&gt;/);assert.doesNotMatch(html,/<script>/);
 assert.equal(filtered(report.tips,'safe','won').length,1);

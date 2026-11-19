@@ -48,6 +48,9 @@ def validate_preview(snapshot: dict, now: datetime) -> dict:
 
 
 def publish_preview(snapshot: dict, now: datetime, destination: Path = PREVIEW) -> Path:
+    from publication_policy_v53 import lock_edition
+    from copy import deepcopy
+    snapshot = lock_edition(deepcopy(snapshot), destination.parent.parent.parent, now)
     preview = validate_preview(snapshot, now)
     destination.parent.mkdir(parents=True, exist_ok=True)
     temporary = destination.with_name(destination.name + '.tmp')

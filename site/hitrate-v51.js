@@ -5,7 +5,7 @@
   if(typeof module==='object'&&module.exports)module.exports=api;
   if(root?.document)api.mount(root);
 })(typeof globalThis==='object'?globalThis:null,function(){
-  const groups={safe:'Safe Bets',high:'High Risk',watch:'Interessante objekter',qualified:'Kvalifiserte spill'};
+  const groups={safe:'Safe Bets',high:'High Risk',watch:'Interessante objekter'};
   const statuses={won:'Vunnet',lost:'Tapt',void:'Annullert',unverified:'Uavklart',scheduled:'Venter',live:'Pågår',postponed:'Utsatt'};
   const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const num=v=>Number.isFinite(Number(v))?Number(v):0;
@@ -18,14 +18,9 @@
     return Object.entries(groups).map(([key,label])=>{
       const stats=report.categories?.[key]||{};
       const rate=stats.hitRatePct, decided=num(stats.settled);
-      const width=rate===null||rate===undefined?0:Math.max(0,Math.min(100,num(rate)));
       return `<article class="hr51-card"><h3>${label}</h3>`+
         `<strong class="hr51-rate${decided?'':' hr51-no-rate'}">${esc(percent(rate))}</strong>`+
-        `<p class="hr51-denominator">${num(stats.wins)} av ${decided} avgjorte tips</p>`+
-        `<div class="hr51-bar" aria-hidden="true"><span style="width:${width}%"></span></div>`+
-        `<dl class="hr51-outcomes"><div><dt>Vunnet</dt><dd class="hr51-won">${num(stats.wins)}</dd></div>`+
-        `<div><dt>Tapt</dt><dd class="hr51-lost">${num(stats.losses)}</dd></div></dl>`+
-        `<p class="hr51-pending">${num(stats.pending)} venter · ${num(stats.unverified)} uavklart · ${num(stats.voids)} annullert</p></article>`;
+        `<p class="hr51-denominator">${num(stats.wins)} av ${decided} avgjorte</p></article>`;
     }).join('');
   }
   function filtered(tips,category='all',outcome='all'){
@@ -43,13 +38,9 @@
     }).join(''):'<tr><td colspan="4" class="hr51-empty">Ingen tips med dette filteret.</td></tr>';
   }
   function markup(report){
-    const summary=report.overall||{};
-    return `<header class="hr51-heading"><div><p class="hr51-kicker">RESULTATLOGG</p><h2 id="hr51-title">Treffprosent</h2></div>`+
-      `<span class="hr51-since">${report.trackedFrom?'Fra '+esc(date(report.trackedFrom)):'Ingen arkiverte tips ennå'}</span></header>`+
-      `<p class="hr51-intro">${num(summary.total)} publiserte tips. Vunnet delt på vunnet og tapt. Hvert tips telles én gang, i kategorien det først ble vist i.</p>`+
+    return `<header class="hr51-heading"><h2 id="hr51-title">Treffprosent</h2></header>`+
       `<div class="hr51-cards">${cards(report)}</div>`+
-      '<p class="hr51-note">Ventende, uavklarte og annullerte tips er utenfor treffprosenten. Interessante objekter er observasjoner.</p>'+
-      '<details class="hr51-log"><summary>Vis tips og resultater</summary><div class="hr51-filters">'+
+      '<details class="hr51-log" id="historikk"><summary>Historikk</summary><p class="hr51-note">Første tips per kamp. Kun avgjorte tips teller i treffprosenten.</p><div class="hr51-filters">'+
       '<label>Kategori<select id="hr51-category"><option value="all">Alle kategorier</option>'+
       Object.entries(groups).map(([key,label])=>`<option value="${key}">${label}</option>`).join('')+
       '</select></label><label>Resultat<select id="hr51-outcome"><option value="all">Alle resultater</option>'+ 
@@ -62,7 +53,7 @@
   }
   function mount(window){
     const document=window.document;
-    let section, current, busy=false, limit=30;
+    let section, current, signature, busy=false, limit=30;
     function drawLog(){
       const tips=filtered(current?.tips,section.querySelector('#hr51-category')?.value,
         section.querySelector('#hr51-outcome')?.value);
@@ -76,25 +67,27 @@
         if(!response.ok)throw new Error('Statistics unavailable');
         const report=await response.json();
         if(report.schemaVersion!==51||!report.categories)throw new Error('Unknown statistics');
+        const nextSignature=JSON.stringify([report.categories,report.tips]);
+        if(nextSignature===signature)return;
         const previous=section.querySelector('.hr51-log');
         const open=Boolean(previous?.open);
         const category=section.querySelector('#hr51-category')?.value||'all';
         const outcome=section.querySelector('#hr51-outcome')?.value||'all';
-        current=report;section.innerHTML=markup(report);
+        current=report;signature=nextSignature;section.innerHTML=markup(report);
         section.querySelector('.hr51-log').open=open;
         section.querySelector('#hr51-category').value=category;
         section.querySelector('#hr51-outcome').value=outcome;
         drawLog();
       }catch{
-        if(!current)section.innerHTML='<h2 id="hr51-title">Treffprosent</h2><p class="hr51-note">Statistikken er ikke tilgjengelig akkurat nå.</p>';
+        if(!current)section.innerHTML='<h2 id="hr51-title">Treffprosent</h2><p class="hr51-note">Statistikken kunne ikke lastes.</p>';
       }finally{busy=false;}
     }
     document.addEventListener('DOMContentLoaded',()=>{
       const parent=document.getElementById('tf-root');if(!parent)return;
       section=document.createElement('section');section.id='hitrate';section.className='hr51';
       section.setAttribute('aria-labelledby','hr51-title');
-      section.innerHTML='<h2 id="hr51-title">Treffprosent</h2><p class="hr51-note">Henter resultatlogg ...</p>';
-      parent.append(section);
+      section.innerHTML='<h2 id="hr51-title">Treffprosent</h2><p class="hr51-note">Laster historikk …</p>';
+      parent.prepend(section);
       section.addEventListener('change',()=>{limit=30;drawLog();});
       section.addEventListener('click',event=>{if(event.target.closest('#hr51-more')){limit+=30;drawLog();}});
       document.getElementById('refresh-data')?.addEventListener('click',load);

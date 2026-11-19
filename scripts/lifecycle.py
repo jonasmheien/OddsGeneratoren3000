@@ -287,6 +287,8 @@ def validate_edition(new_snapshot: dict):
 
 
 def create_edition(new_snapshot: dict, prior: dict | None, api_key: str):
+    from publication_policy_v53 import lock_edition
+    new_snapshot = lock_edition(deepcopy(new_snapshot), ROOT)
     validate_edition(new_snapshot)
     if prior and prior.get('editionDate') == new_snapshot.get('localDate') and os.getenv('FORCE_REPLACE_EDITION') != '1':
         # The daily edition is immutable, including manual retries on the same day.

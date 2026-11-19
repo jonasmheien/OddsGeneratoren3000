@@ -59,9 +59,10 @@ class LiveV09Tests(unittest.TestCase):
         html=(ROOT/'site/index.html').read_text()
         for phrase in ('Dekning begrenset','Data og statistikk','Kamper analysert','KAMPDEKNING'):
             self.assertNotIn(phrase,html)
-        self.assertIn('id="live"',html)
-        self.assertIn('id="top-picks"',html)
-        self.assertIn('id="safe-list"',html)
-        self.assertIn('id="high-list"',html)
+        renderer=(ROOT/'site/three-fields-v26.js').read_text()
+        for key in ('tf-safe-list', 'tf-high-list', 'tf-watch-list'):
+            self.assertIn(key,renderer)
+        self.assertNotIn('app.js',html)
+
 
 if __name__=='__main__': unittest.main()

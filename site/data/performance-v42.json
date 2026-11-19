@@ -1,20 +1,20 @@
 {
   "schemaVersion": 42,
-  "generatedAt": "2026-11-18T19:15:31.801380+00:00",
+  "generatedAt": "2026-11-19T08:32:48.438986+00:00",
   "sample": {
-    "settled": 136,
-    "wins": 50,
-    "losses": 86,
+    "settled": 97,
+    "wins": 38,
+    "losses": 59,
     "voids": 0
   },
   "flatStake": {
     "unit": 1,
-    "totalStaked": 136,
-    "profitUnits": -39.97,
-    "roiPct": -29.4,
-    "winRatePct": 36.8
+    "totalStaked": 97,
+    "profitUnits": -25.24,
+    "roiPct": -26.0,
+    "winRatePct": 39.2
   },
-  "insufficientSample": false,
+  "insufficientSample": true,
   "closingLineValue": {
     "available": false,
     "reason": "Verifiserte sluttodds lagres ikke i dagens historikk"

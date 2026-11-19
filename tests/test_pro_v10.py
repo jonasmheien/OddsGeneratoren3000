@@ -59,7 +59,7 @@ class ProV10Tests(unittest.TestCase):
         self.assertIn('viewBox="0 0 80 80"',mark)
         self.assertIn('canUseCrests',js)
         self.assertIn('crests.football-data.org',js)
-        self.assertIn('id="resultater"',html)
+        self.assertIn('hitrate-v51.js?v=53',html)
         self.assertNotIn('Dekning begrenset',html)
         self.assertNotIn('Data og statistikk',html)
 
