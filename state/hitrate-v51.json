@@ -5205,7 +5205,12 @@
         "555088"
       ],
       "result": {
-        "status": "scheduled"
+        "status": "live",
+        "phase": "Pause",
+        "score": {
+          "home": 1,
+          "away": 0
+        }
       }
     }
   ]

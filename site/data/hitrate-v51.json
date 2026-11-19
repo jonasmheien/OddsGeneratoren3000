@@ -1,6 +1,6 @@
 {
   "schemaVersion": 51,
-  "generatedAt": "2026-11-19T23:06:10.245813+00:00",
+  "generatedAt": "2026-11-19T23:38:58.278503+00:00",
   "trackedFrom": "2026-11-05T19:10:01.819000+00:00",
   "overall": {
     "total": 133,
@@ -462,7 +462,12 @@
       "price": 5.37,
       "firstPublishedAt": "2026-11-19T13:40:41.457000+00:00",
       "result": {
-        "status": "scheduled"
+        "status": "live",
+        "phase": "Pause",
+        "score": {
+          "home": 1,
+          "away": 0
+        }
       }
     },
     {
