@@ -1,0 +1,106 @@
+name: Installer glassdesign v54
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/installer-glass-v54.yml']
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: oddsgeneratoren-state-and-pages
+  cancel-in-progress: false
+  queue: max
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Hent nyeste utgave
+        run: |
+          git fetch --quiet origin main
+          git reset --hard origin/main
+      - name: Installer glassdesign
+        run: |
+          python - <<'PYCODE'
+          import base64,gzip,hashlib,json
+          from pathlib import Path
+          PAYLOAD = 'H4sIAAAAAAACA7VaW3PjthX+K6g9nloJKRMgqQvl3TYzm8lMH5JOmrc4DxAJSsxSpIakZCuafe9zf2J/SQ9uJEhClt1uZ2ctGQQODs7lOx8O/ev5Zk+b7U10U2cNe8iKhL1Mt80uv3Fu1iwtKwaPPH8R+PMlianP0sBngU8SHBBv4QXBMvBiTJZeOvcoTtfMT/10iSnxMVsyPKM0ZgnIisuiYUUDwh7/lJRxc9ozxLf5+FQ88k+U02Lz4emmWD/diDFGE/hE6HHHGoriLa1q1sCEQ5O6CzFHPyvojsGDY8ae92XVPN0gtRkMPmdJs/2QsGMWM1f84mRF1mQ0d+uY5uwDdvQ6N82aD3F5ZJVNerNlO+bGZV5WvQ1u8RzPMLEtSVgdV9m+ycqit+RvJftzjdasabJig/LyUGzYFP2S7WsHNRVL031V1jAVlRtUsfqQN7Rh1VRv0WRNzj7ahDw+yGdiWp4Vn2F5DhtmsdCA25z/tqMb9lAfN9++7HIY3sKWMExrsG/9UG7cHa0+T+H5X44fQl/vaoirm1PO6i1jTbdaKuAeQ38a1/V7VjbwycD2LE9q90hm712/zZoK7ANb4/cu3eRwaFgY6IWBXigdh+oqFoFVZ+ucuTXLWcy96R4Db/q73golLGXVx8cHucgiYHTEd6w1j/fKsscHlTCP6zI5STlJdkQxPyI//pbl3NlZwvUp93tWqLPCRL6UVe1c+Wv7GCbQ9lmWQGBmzakz4q2WhmiVUTena2HvX7Ictfs8ZruNOs/FMEMyVZ9ufMKFs2yzbfRvNOdfuaB6T4uPP3369I8fvv/x+5+/++Wnn7//ET2uP/qe5z0+rLlJ+IzHB9ppvz40TVm0RwC1Iau2XULI59o46rGb0IbCjj/t9wlPPxAupmmbPUgr6V93NCu6HWsZJ4ZFq7JnoJwl61OXNiJtDYNzn2CpzmCGTHtphmHyq5NvsSnHDAKWZCJ8OUhpY+qISOiJH5nvoSV1j2F94x6EIRJjwgMI7w79oE7dWsiwyWNalo0RYvLX1qGfwNYIUO8I4ZWg9Qnx52ua58IL07LatFvKlTLA1f7gGhnzcHZZUW6+OP2y1st0o7IVhzw3a9PDN+g7JCaDOoyDMBWOzOkJEBj9/bDOM0ilBDUCrWv+uG6yuEa0SADi9yc+dkIZLIybKfrm4amIKlD5zBV23fUmusUYE+yt5EB9qFKokNEtIbxi9kddAuOUrEmgxlmyYVG1WdN7EngO8UOH4NCZYjJRE7ghots0TH2WqKHdAZwW3cZhTNZzLb9Mm+iWxnS51NM2ZQ6zGFmzWWwMuTnPQxDpJYvlQj/gBooAXBmt3E1FkwwMdY+DMGEbR6oXgmr8fwDqefNwYhsmZDIxJZrHExMxHBHD8fz+tHpLk/I58hBe7F9QwH+4JICfYqnn8H9TvmdWANYgmAfPPDTWAOzWznGNSUoEnvF9vzwV3KrnNY0/bypItSQ60uqe+3KyyuoyFxESyW9MzY4iGWHC7Sq8Io5g4iD7shaJGKXZi/KTUCOSUfGHK1hY5GI1G6KJVS47gpA6KspChomhkEwy7gjgNa1DAGYgShkKwzuw0h2iDVoGd2C1O+kNvFg44DQn5KaYTxwoNAVkWcWpx8K7mzhXxHp3QjSIhW+zUEudg9TFzMHhEnwchgO54Zvk+lIu//DujNjxlw5eEpAbXFR3FJYzj4flLQ6Ap2EuTmUgCgP+fQ7/MMIeSJDenopaed7RF0kYo4VXsd1qT5ME0NaFohbhKQlhjE+WZeDccytHhM8n4SQxmy83Hauyf5cVrqxzUTAN9SS1TwQRDENIbSU9XlawV8QjFaItS5AMxC55JsY0rqjkq2ZKEYEaU+L3pnJbHWo41szYrAuvkUl9W6b79kznwySc6PHAITOHgAtnC5XVz2z9OWtcvl9Sgc5plkO4R+v8UN3ztJ6gmjYHToI4xNxNWu3eMbt80ahhmkwOabdranPOoa6CUSC2YuEIOJX0tZ6BgM6c1cZCCSno3kMEXIOJhiJC5hCu2MFeIMBmwoUofuFMt1WI3R2AhPqal5uP9WEHtOh0tnrbgozhdY+rqSS0eXy5XO5fVhKk+DqFbIBgk6tBcBHul3a0DycjZ1wDaG82cSBPuVFnHOWxN0R57Txl1XObPTKSIX2wDOkUQNitsz9YNF3Mu+StynaJLzMNqQ8yNWehLT53IoDG7Pb3coYTTBfHZyeArxO5y7PM6dDzVoNQcgEQQRduSp35oOAKXL4BLFiXQDB3fXAROyPOfc5DL/HyfN1LWKJfGiRs7Tm3Sbz2Q8BYqAG3LE2WSzbOQinKjQGOo4a9NIM9Bg/0Sj7AszFXIWjAs/KRST/P5kk4HRG5wfOg9YcHIUG46wbm4UMqitWQp9e6HI1h7dmypBNr2BfWoC0xPIvbWDG8aOoq6FSrrBvTKqnPGypRvjfsdF+h0FfAoONtlif9UgGXU+APR1nRR2xCjPKORJpDtmyzBADoa1UCjQsXKsGoHhlDRuHC3tRWMV6v8FDZeb3tSjuBsr5YOktgDBj3K/uctJXdOOMbSgcnh2Yx8F8tHZdnv6V0dI6OaNooOnCZ9tE1OO2g3PsK8+v7JCsADrLmrZxwjASX8NofcLQA/NJzQesnfuHwiIOhhLeA3js/2vrnEdL28imw5pPKcZHzJj5zudwhhlAyHQu1Q21gw1oBU+0NgpdqsujqNdDWpQf1egGB6E16KshvRTnURyCGuYvPTWMeAJK2hJShTVn1jKMq00VrCKqpClkrDFjC2XiMB89aBpFk9R5urVGas5cVhVtc4cJFeFdHMeORs/r9ACw1Pbk6SrndmLtmzTMDjBGAJjNbcmDOhtXUlZH+2hlvL7tgKkBC0Y0TYWtTPop0ZidQKrK8Fr0iSCt9qMsLZfp1qfct5J7hK61WLypWo6pqyv613LPit3MHg1LCGxDYCqmja6TCsys4cx3qVpcfjY/ThomhjlmwlerjSm6oKUCnraq2Kj3ilJcVGXvu3//819NNW6Rl7/XcN6kOqZ62Fj8Y1MWoglAAA0h3QSLfw0mD7hhFCVDQXRT9hckrmu1lkiN4/0Wyymc1qSv6Rn2zdqQUnoP0w65Q7GNqrlSduAve7U9C6gY75EfIRrQsuT+U1mNTPRjQYB3awJqEY1GywyrI73vhTA1zdaVvsEIqk7sMwQurC4A9wcfcCW46K9t9yjC7vdzaMH9cGZQ5OGAKHxuFkXsfyu25T9C+aqdA80PPzg/9+dflfVCtJ0PW8XWIH3kX8SMW4gdgwNuL/szaaVy8odPoLTRVAs+J+4+FCPSpSrgaocdKZrwrgsEIBfHSUaSJFXBgRsPoru4lpjezbzrMVEXMOBhwbmZGoCjKzdmSjULB8VRUN1UJtzNTD3/+foCgBc1PdVafzZ6clmRyp359EHzptXSehZPBDkjXySsJO8KWPjgOxXXVzkI8jPmyRlqVaOupMV0M9o1iapGW1Q480cTb8xChIA+JA6SXLCb9amqxEsT7APV6u8TlDpwGuZmX8edvRyPnq+L1qfjLlUNtEC9Meh3R/4KBkf+Fgtm7AKAo2+2b04gg6hvNmwrJYqyrCufXawmREStfig1V0IXcu+7SycqGHH/dMQDy+y3vQETi50S857pX188oBfCYiCKkK5Jj9j/6rU6DpxvNz7PAfHkvNtVEU7yoEaM1c4b8zXzUuqwb/GLqI9U2WzFiwBaF/tIhGC6AMwJ5MOuFg37VREQBIMMC8IY3TYI0glrKJD21zAuMOc7N8zZ1OaW4wHLH1LVzbMdcoSx7UAc7VxrUksjclg8EGTHKkCCJVfnsGi0w2wazoJMv36+0waq5Juo4LExSrLQDsVXvdYkqmUMGPe0B/jCXzLoJW7QNfwPJZ/qWOnwHwMvPUMClpnNH1MRBjB6z5O9ti7k3yd5ilqo72JvOjs+OL7rMlqvWoM3Rk4p6DFqgsHputFu77nOvjKpR49CDtqftyaXOZ8/l+l3T0FfKs70e43gLe6OpV4BnxHYQO+0xpA/aO9IPOoSc+RSDG7DacDK0e7h63gITEnHD+xvPFd0PZF/qI12ggcFAYrWjee+cfdtc6TUN2Z610aRlWZofNodZlrXthdENd4QlOiw3VZas+A/gqrs9b35rEIrgPAAkgLY4rSYt2PSSTN+HhmThAhK0i+x34DZYhlv0Ltz9ZxcZtmGZhvI/I+MxcTYoqXcBMv1ZB5lWqCJjKBNvJuVy4sNNVAcJfL8CWXN7hl93yBtz/71+RvTQlL0LzyjFZ2YFwHaMMKYPW1SKpwld5D4RHuSqcyltzUVEioC4jPCDr5oTNctTfRsyg2IxtPPrkKCxWMfE/HK2985hJraOr/qw53/mWqOibND9vf02DBE3QUCx7l+/YvNpKjRV6hg89ZaEZI7TUWD0KWKLLo5B9q+/b+Z/EBUTHz49QnDcJzT7iv9dZO1WLDnEDEKs7SfEp0gO/p+17ksRmzhvkHa+ZG7RZLUNvnruXaleLhon/hoEvdv45stv/wEqOsVsOi4AAA=='
+          DIGEST = '8e70cd9415d97275304dbc96da1717c1af8e539ee6da0f2e6502cfee307cc08e'
+          blob=gzip.decompress(base64.b64decode(PAYLOAD))
+          if hashlib.sha256(blob).hexdigest()!=DIGEST:
+              raise SystemExit('Oppdateringspakken er skadet')
+          manifest=json.loads(blob)
+          if {p['path'] for p in manifest}!={'site/index.html','site/glass-v54.css'}:
+              raise SystemExit('Uventede filer i designpakken')
+          conflicts=[]
+          for entry in manifest:
+              path=Path(entry['path'])
+              current=hashlib.sha256(path.read_bytes()).hexdigest() if path.exists() else None
+              after=hashlib.sha256(entry['content'].encode()).hexdigest()
+              if current not in (entry['before'],after):
+                  conflicts.append(entry['path'])
+          if conflicts:
+              raise SystemExit('Nyere designkode beholdt. Oppdateringen er stoppet: '+', '.join(conflicts))
+          for entry in manifest:
+              path=Path(entry['path'])
+              path.parent.mkdir(parents=True,exist_ok=True)
+              temporary=path.with_name(path.name+'.v54.tmp')
+              temporary.write_text(entry['content'],encoding='utf-8')
+              temporary.replace(path)
+          print('V54_INSTALLERT: glassdesign, Swedish Gold og samme innhold.')
+          PYCODE
+      - name: Kontroller designfiler
+        run: |
+          python - <<'PYCODE'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          class Styles(HTMLParser):
+              def handle_starttag(self,tag,attrs):
+                  attr=dict(attrs)
+                  if tag=='link' and attr.get('rel')=='stylesheet':
+                      assert (Path('site')/attr['href'].split('?')[0]).is_file(),attr['href']
+          html=Path('site/index.html').read_text()
+          Styles().feed(html)
+          assert html.count('glass-v54.css?v=54')==1
+          assert 'backdrop-filter:blur(' in Path('site/glass-v54.css').read_text()
+          print('PASS: glassdesign og lokale stilfiler')
+          PYCODE
+      - name: Kontroller innhold, historikk og analyser
+        run: |
+          node tests/test_monitor_ui_v42.cjs
+          node tests/test_hitrate_v51.cjs
+          node tests/test_analysis_compact_v33.cjs
+      - name: Lagre kun designendringen
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- site/index.html site/glass-v54.css
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add frosted glass presentation in Swedish Gold v54'
+            git push origin HEAD:main
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+  deploy:
+    needs: install
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment
