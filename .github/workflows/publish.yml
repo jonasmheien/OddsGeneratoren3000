@@ -1,38 +1,31 @@
 name: Oppdater OddsGeneratoren
-
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   schedule:
-    # New edition: one analysis and odds request each morning, Norwegian time.
     - cron: '07 9 * * *'
       timezone: 'Europe/Oslo'
     - cron: '17 9 * * *'
       timezone: 'Europe/Oslo'
     - cron: '37 9 * * *'
       timezone: 'Europe/Oslo'
-    # Retry on transient provider errors; skip if today's edition already exists.
     - cron: '17 10 * * *'
       timezone: 'Europe/Oslo'
     - cron: '17 11 * * *'
       timezone: 'Europe/Oslo'
-    # Additional midday analysis (reduced bookmaker coverage).
     - cron: '17 13 * * *'
       timezone: 'Europe/Oslo'
-    # Second bookmaker snapshot before the evening fixtures (Norwegian local time).
     - cron: '17 16 * * *'
       timezone: 'Europe/Oslo'
-    # Additional early-evening analysis (reduced bookmaker coverage).
     - cron: '17 19 * * *'
       timezone: 'Europe/Oslo'
-    # Targeted preview attempts, tolerant of delayed GitHub schedules.
     - cron: '07 21 * * *'
       timezone: 'Europe/Oslo'
     - cron: '07 22 * * *'
       timezone: 'Europe/Oslo'
     - cron: '07 23 * * *'
       timezone: 'Europe/Oslo'
-    # Check automatically after kickoffs; standard results updates spend no odds credits.
     - cron: '*/10 11-15 * * *'
       timezone: 'Europe/Oslo'
     - cron: '*/10 16-23 * * *'
@@ -42,31 +35,33 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'daily = ny utgave, results = oppdater resultater, deploy = vis lagret utgave'
+        description: daily = ny utgave, results = oppdater resultater, deploy = vis lagret utgave
         type: choice
-        options: [deploy, results, daily, tomorrow]
+        options:
+          - deploy
+          - results
+          - daily
+          - tomorrow
         default: deploy
       force_refresh:
-        description: 'Erstatt dagens utgave med en ny analyse med gjeldende kode'
+        description: Erstatt dagens utgave med en ny analyse med gjeldende kode
         type: boolean
         required: false
         default: false
-
 permissions:
   contents: write
   pages: write
   id-token: write
-
 concurrency:
   group: oddsgeneratoren-state-and-pages
   cancel-in-progress: false
   queue: max
-
 jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      should_deploy: ${{ steps.mode.outputs.should_deploy == 'true' || steps.hitrate.outputs.changed == 'true' }}
+      should_deploy: ${{ steps.mode.outputs.should_deploy == 'true' || steps.hitrate.outputs.changed == 'true' || steps.health.outputs.changed == 'true' }}
+      artifact_ready: ${{ steps.artifact.outcome == 'success' }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -78,11 +73,22 @@ jobs:
         run: |
           git fetch --quiet origin main
           git reset --hard origin/main
+      - name: Kontroller at driftsoppdateringen er installert
+        id: ready
+        shell: bash
+        run: |
+          if [[ -f scripts/operations_v55.py ]]; then
+            echo 'ready=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'ready=false' >> "$GITHUB_OUTPUT"
+            echo 'Last opp og kjør installer-drift-v55.yml for å fullføre oppdateringen.'
+          fi
       - name: Test modeller, resultatkontroll og kvalitet
-        if: github.event_name != 'schedule' || (github.event.schedule == '07 9 * * *' || github.event.schedule == '17 9 * * *' || github.event.schedule == '37 9 * * *' || github.event.schedule == '17 10 * * *' || github.event.schedule == '17 11 * * *' || github.event.schedule == '17 13 * * *' || github.event.schedule == '17 16 * * *' || github.event.schedule == '17 19 * * *')
+        if: steps.ready.outputs.ready == 'true' && (github.event_name != 'schedule' || (github.event.schedule == '07 9 * * *' || github.event.schedule == '17 9 * * *' || github.event.schedule == '37 9 * * *' || github.event.schedule == '17 10 * * *' || github.event.schedule == '17 11 * * *' || github.event.schedule == '17 13 * * *' || github.event.schedule == '17 16 * * *' || github.event.schedule == '17 19 * * *'))
         run: python -m unittest discover -s tests -v
+        id: tests
       - name: Test tipsvisning og datakvalitet
-        if: github.event_name != 'schedule' || (github.event.schedule == '07 9 * * *' || github.event.schedule == '17 9 * * *' || github.event.schedule == '37 9 * * *' || github.event.schedule == '17 10 * * *' || github.event.schedule == '17 11 * * *' || github.event.schedule == '17 13 * * *' || github.event.schedule == '17 16 * * *' || github.event.schedule == '17 19 * * *')
+        if: steps.ready.outputs.ready == 'true' && (github.event_name != 'schedule' || (github.event.schedule == '07 9 * * *' || github.event.schedule == '17 9 * * *' || github.event.schedule == '37 9 * * *' || github.event.schedule == '17 10 * * *' || github.event.schedule == '17 11 * * *' || github.event.schedule == '17 13 * * *' || github.event.schedule == '17 16 * * *' || github.event.schedule == '17 19 * * *'))
         run: |
           node --check site/three-fields-v26.js
           node tests/test_tip_ui_v32.cjs
@@ -98,6 +104,9 @@ jobs:
           node tests/test_monitor_ui_v42.cjs
           node tests/test_selection_v36.cjs
           node tests/test_tip_audit_v34.cjs
+
+          node tests/test_operations_v55.cjs
+        id: ui_tests
       - name: Velg riktig oppdatering
         id: trigger
         shell: bash
@@ -150,52 +159,62 @@ jobs:
           else
             echo "mode=${INPUT_MODE:-daily}" >> "$GITHUB_OUTPUT"
           fi
-      - name: Bruk privat mellomlager for ligahistorikk
-        if: steps.trigger.outputs.mode == 'daily' || steps.trigger.outputs.mode == 'tomorrow'
+        if: steps.ready.outputs.ready == 'true'
+      - name: Bruk privat mellomlager for form, odds og resultater
+        if: steps.ready.outputs.ready == 'true'
         uses: actions/cache@v4
         with:
-          path: .cache/form-v29.json
-          key: form-v30-${{ github.run_id }}
+          path: |
+            .cache/form-v29.json
+            .cache/odds-v55
+            .cache/results-v55
+          key: runtime-v55-${{ github.run_id }}
           restore-keys: |
+            runtime-v55-
             form-v30-
             form-v29-
       - name: Generer nytt dagsutvalg
-        if: steps.trigger.outputs.mode == 'daily' || steps.trigger.outputs.mode == 'tomorrow'
+        if: steps.ready.outputs.ready == 'true' && (steps.trigger.outputs.mode == 'daily' || steps.trigger.outputs.mode == 'tomorrow')
         env:
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           ODDS_OUTPUT_PATH: state/.candidate.json
-          # Limit credits (free plan), while keeping multiple leagues.
           ODDS_SPORTS_PER_RUN: ${{ steps.trigger.outputs.low_volume == 'true' && '2' || (steps.trigger.outputs.refresh_on_push == 'true' && '9' || (steps.trigger.outputs.mode == 'tomorrow' && '2' || '4')) }}
           ODDS_EXTRA_EVENTS: ${{ steps.trigger.outputs.mode == 'tomorrow' && '0' || '1' }}
           ODDS_TARGET_DAY_OFFSET: ${{ steps.trigger.outputs.mode == 'tomorrow' && '1' || '0' }}
-          # API-Sports account suspended; retain source code for later reactivation.
           API_FOOTBALL_KEY: ''
           SPORTMONKS_API_TOKEN: ${{ secrets.SPORTMONKS_API_TOKEN }}
-          # Only enable when the rights holder has approved use of club/league crests.
           SHOW_LICENSED_CRESTS: ${{ vars.SHOW_LICENSED_CRESTS }}
         run: python scripts/build_data.py
+        id: analysis
+        continue-on-error: true
       - name: Kontroller hjørnespark, kort og målscorere
-        if: steps.trigger.outputs.mode == 'daily'
+        if: steps.trigger.outputs.mode == 'daily' && steps.ready.outputs.ready == 'true' && steps.analysis.outcome == 'success'
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
           ODDS_V14_EXTRA_EVENTS: '1'
         run: python scripts/market_scan_v14.py state/.candidate.json
+        id: extra
+        continue-on-error: true
       - name: Samle kildebaserte resultatprognoser
-        if: steps.trigger.outputs.mode == 'daily'
+        if: steps.trigger.outputs.mode == 'daily' && steps.ready.outputs.ready == 'true' && steps.analysis.outcome == 'success'
         env:
           API_FOOTBALL_KEY: ''
         run: python scripts/score_consensus_v14.py state/.candidate.json
+        id: consensus
+        continue-on-error: true
       - name: Kvalifiser anbefalinger og observasjoner v2.0
-        if: steps.trigger.outputs.mode == 'daily' || steps.trigger.outputs.mode == 'tomorrow'
+        if: steps.ready.outputs.ready == 'true' && (steps.trigger.outputs.mode == 'daily' || steps.trigger.outputs.mode == 'tomorrow') && steps.analysis.outcome == 'success'
         run: python scripts/qualify_v20.py state/.candidate.json
+        id: qualify
+        continue-on-error: true
       - name: Behold tips og oppdater resultatstatus
         id: mode
         shell: bash
         env:
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
-          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          API_FOOTBALL_KEY: ''
           MODE: ${{ steps.trigger.outputs.mode }}
           SPORTMONKS_API_TOKEN: ${{ secrets.SPORTMONKS_API_TOKEN }}
           ODDS_OUTPUT_PATH: state/.candidate.json
@@ -215,28 +234,45 @@ jobs:
             python scripts/lifecycle.py "$MODE" | tee /tmp/odds-lifecycle.txt
             echo 'should_deploy=true' >> "$GITHUB_OUTPUT"
           fi
+        if: steps.ready.outputs.ready == 'true' && ((steps.trigger.outputs.mode != 'daily' && steps.trigger.outputs.mode != 'tomorrow') || (steps.analysis.outcome == 'success' && steps.qualify.outcome == 'success'))
+        continue-on-error: true
       - name: Arkiver viste tips og kontroller datagrunnlag v34
         id: tip_audit
-        if: steps.trigger.outputs.mode != 'results'
+        if: always() && steps.ready.outputs.ready == 'true' && (steps.tests.outcome == 'success' || steps.tests.outcome == 'skipped') && (steps.ui_tests.outcome == 'success' || steps.ui_tests.outcome == 'skipped') && steps.mode.outcome == 'success' && steps.trigger.outputs.mode != 'results'
         run: node scripts/capture_visible_v34.cjs
+        continue-on-error: true
       - name: Oppdater treffprosent og kontroller tidligere tips
         id: hitrate
         env:
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
           SPORTMONKS_API_TOKEN: ${{ secrets.SPORTMONKS_API_TOKEN }}
-          # API-Sports is suspended. Never retry its paid/suspended result feed.
           API_FOOTBALL_KEY: ''
         run: python scripts/hitrate_v51.py
+        if: always() && steps.ready.outputs.ready == 'true' && (steps.tests.outcome == 'success' || steps.tests.outcome == 'skipped') && (steps.ui_tests.outcome == 'success' || steps.ui_tests.outcome == 'skipped')
+        continue-on-error: true
       - name: Publiser datadekning, historiske resultater og fjern gammel forhåndsanalyse
-        # Read-only for pick and score data, zero extra API requests.
-        if: steps.trigger.outputs.mode != 'results' || steps.hitrate.outputs.changed == 'true'
+        if: always() && steps.ready.outputs.ready == 'true' && (steps.tests.outcome == 'success' || steps.tests.outcome == 'skipped') && (steps.ui_tests.outcome == 'success' || steps.ui_tests.outcome == 'skipped')
         run: python scripts/quality_monitor_v42.py
+        id: monitor
+        continue-on-error: true
+      - name: Publiser faktisk driftsstatus
+        id: health
+        if: always() && steps.ready.outputs.ready == 'true' && (steps.tests.outcome == 'success' || steps.tests.outcome == 'skipped') && (steps.ui_tests.outcome == 'success' || steps.ui_tests.outcome == 'skipped')
+        env:
+          MODE: ${{ steps.trigger.outputs.mode }}
+          ANALYSIS_FAILED: ${{ steps.analysis.outcome == 'failure' || steps.qualify.outcome == 'failure' || steps.mode.outcome == 'failure' || steps.tip_audit.outcome == 'failure' }}
+          RESULTS_FAILED: ${{ steps.hitrate.outcome == 'failure' }}
+        run: python scripts/operations_v55.py
       - name: Lagre den valgte utgaven og resultatene
-        if: steps.trigger.outputs.mode != 'deploy' || steps.tip_audit.outputs.changed == 'true' || steps.hitrate.outputs.changed == 'true'
+        if: always() && steps.ready.outputs.ready == 'true' && (steps.tests.outcome == 'success' || steps.tests.outcome == 'skipped') && (steps.ui_tests.outcome == 'success' || steps.ui_tests.outcome == 'skipped') && steps.health.outcome == 'success' && (steps.trigger.outputs.mode == 'daily' || steps.trigger.outputs.mode == 'tomorrow' || steps.tip_audit.outputs.changed == 'true' || steps.hitrate.outputs.changed == 'true' || steps.hitrate.outputs.journal_changed == 'true' || steps.health.outputs.changed == 'true')
         shell: bash
         env:
           MODE: ${{ steps.trigger.outputs.mode }}
         run: |
+          python - <<'PYCODE'
+          from pathlib import Path
+          Path('state/.candidate.json').unlink(missing_ok=True)
+          PYCODE
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A -- state/ site/data/today.json site/data/history.json site/data/versions.json
@@ -253,24 +289,35 @@ jobs:
           # The trigger disappears only after a successful new daily edition.
           # A failed data pull leaves the trigger available for a job re-run.
           if [[ "${MODE}" == 'daily' ]] && [[ -f .github/refresh-once-v15 ]]; then
-            git rm -f -- .github/refresh-once-v15
+            if grep -q '^EDITION_CREATED=' /tmp/odds-lifecycle.txt; then
+              git rm -f -- .github/refresh-once-v15
+            fi
           fi
           if [[ "${MODE}" == 'tomorrow' ]] && [[ -f .github/preview-once-v24 ]]; then
-            git rm -f -- .github/preview-once-v24
+            if grep -q '^TOMORROW_PREVIEW_CREATED=' /tmp/odds-preview.txt; then
+              git rm -f -- .github/preview-once-v24
+            fi
           fi
           if ! git diff --cached --quiet; then
             git commit -m '[snapshot] Keep daily tips and their settled results'
             git push origin HEAD:main
           fi
+        id: save
       - uses: actions/configure-pages@v5
-        if: steps.mode.outputs.should_deploy == 'true' || steps.hitrate.outputs.changed == 'true'
+        if: always() && steps.ready.outputs.ready == 'true' && (steps.tests.outcome == 'success' || steps.tests.outcome == 'skipped') && (steps.ui_tests.outcome == 'success' || steps.ui_tests.outcome == 'skipped') && steps.health.outcome == 'success' && (steps.save.outcome == 'success' || steps.save.outcome == 'skipped') && (steps.mode.outputs.should_deploy == 'true' || steps.hitrate.outputs.changed == 'true' || steps.health.outputs.changed == 'true')
       - uses: actions/upload-pages-artifact@v4
-        if: steps.mode.outputs.should_deploy == 'true' || steps.hitrate.outputs.changed == 'true'
+        if: always() && steps.ready.outputs.ready == 'true' && (steps.tests.outcome == 'success' || steps.tests.outcome == 'skipped') && (steps.ui_tests.outcome == 'success' || steps.ui_tests.outcome == 'skipped') && steps.health.outcome == 'success' && (steps.save.outcome == 'success' || steps.save.outcome == 'skipped') && (steps.mode.outputs.should_deploy == 'true' || steps.hitrate.outputs.changed == 'true' || steps.health.outputs.changed == 'true')
         with:
           path: site
+        id: artifact
+      - name: Marker reelle feil i kjøringen
+        if: always() && steps.ready.outputs.ready == 'true' && (steps.analysis.outcome == 'failure' || steps.qualify.outcome == 'failure' || steps.mode.outcome == 'failure' || steps.tip_audit.outcome == 'failure' || steps.hitrate.outcome == 'failure' || steps.monitor.outcome == 'failure')
+        run: |
+          echo 'Oppdateringen feilet. Siste gyldige utgave og aktuell driftsstatus er bevart.'
+          exit 1
   deploy:
     needs: build
-    if: needs.build.outputs.should_deploy == 'true'
+    if: always() && needs.build.outputs.should_deploy == 'true' && needs.build.outputs.artifact_ready == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
