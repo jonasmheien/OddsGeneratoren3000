@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 55,
+  "checkedAt": "2026-11-19T13:40:43.691473+00:00",
+  "checkedHour": "2026-11-19T13:00:00+00:00",
+  "targetDate": "2026-11-19",
+  "reason": "ready",
+  "editionDate": "2026-11-19",
+  "editionGeneratedAt": "2026-11-19T13:39:19.981427+00:00",
+  "lastAnalysis": {
+    "targetDate": "2026-11-19",
+    "reason": "ready",
+    "coverage": {
+      "upcoming": 3,
+      "withOdds": 2,
+      "withModel": 2
+    },
+    "providers": {
+      "fixtures": "ok",
+      "odds": "ok",
+      "sportmonks": "ok",
+      "catalogAvailable": true,
+      "failedEventLists": 0,
+      "failedOddsRequests": 0
+    },
+    "requestedLeagues": [
+      "soccer_brazil_campeonato"
+    ],
+    "oddsCreditsRemaining": 11,
+    "budget": {
+      "remaining": 11,
+      "checkedAt": "2026-11-19T13:39:19.981427+00:00",
+      "dailyCredits": {
+        "core": 2,
+        "requests": 1
+      },
+      "dailyLimits": {
+        "core": 2,
+        "preview": 0,
+        "extra": 0
+      },
+      "cacheHits": 0,
+      "denied": [],
+      "uncertainCredits": 0
+    },
+    "checkedAt": "2026-11-19T13:39:19.981427+00:00",
+    "runId": "44535540166"
+  },
+  "previewAnalysis": null,
+  "results": {
+    "state": "checked",
+    "sources": [
+      {
+        "provider": "football-data.org",
+        "state": "checked",
+        "matchedFixtures": 0,
+        "error": null
+      },
+      {
+        "provider": "UEFA",
+        "state": "checked",
+        "matchedFixtures": 0,
+        "error": null
+      }
+    ],
+    "matchedFixtures": 0,
+    "checkedAt": "2026-11-19T13:40:41.546132+00:00",
+    "unresolved": 21,
+    "pending": 2
+  }
+}

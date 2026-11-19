@@ -211,3 +211,29 @@ def results_for(identifiers, token: str, *, request=None) -> list[dict]:
             if fixture and fixture['status'] == 'FINISHED':
                 completed.append(fixture)
     return completed
+
+
+def results_on_dates(days, token, *, request=None, now=None):
+    """Find senior free-plan fixtures when saved picks use bookmaker IDs."""
+    request = request or fetch_page
+    now = now or datetime.now(timezone.utc)
+    rows = []
+    for day in sorted(set(days)):
+        base = f'{BASE}/fixtures/date/{day}'
+        # A whole date may paginate even with just two supported leagues.
+        for page in range(1, 13):
+            url = base + '?' + urlencode({'include': 'participants;scores', 'per_page': 50, 'page': page})
+            payload = request(url, token)
+            if not isinstance(payload, dict) or not isinstance(payload.get('data'), list):
+                raise ValueError('Unexpected Sportmonks dated results')
+            for raw in payload['data']:
+                row = normalize(raw, now)
+                if row and row['status'] == 'FINISHED':
+                    row.update(resultSource='Sportmonks', resultSourceUrl=url)
+                    rows.append(row)
+            pagination = payload.get('pagination') or {}
+            if pagination.get('has_more') is not True:
+                break
+        else:
+            raise ValueError('Incomplete Sportmonks dated results')
+    return rows

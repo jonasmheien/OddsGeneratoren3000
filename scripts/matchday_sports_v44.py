@@ -24,7 +24,8 @@ def discover_matchday_sports(odds_key: str, target_day: date, now: datetime,
     known = list(dict.fromkeys(
         sport for sport in (known_sports or []) if sport in COMPETITIONS))
     diagnostic = {'targetDate': target_day.isoformat(), 'catalogAvailable': False,
-                  'matchesBySport': {}, 'selected': [], 'errors': []}
+                  'matchesBySport': {}, 'selected': [], 'errors': [],
+                  'checkedSports': 0, 'failedSports': 0}
     if not odds_key or max_sports <= 0:
         return [], diagnostic
 
@@ -45,6 +46,7 @@ def discover_matchday_sports(odds_key: str, target_day: date, now: datetime,
     for sport in COMPETITIONS:
         if sport not in active:
             continue
+        diagnostic['checkedSports'] += 1
         try:
             url = base + '/sports/' + quote(sport, safe='') + '/events?' + urlencode({'apiKey': odds_key})
             events = fetch(url)
@@ -55,6 +57,7 @@ def discover_matchday_sports(odds_key: str, target_day: date, now: datetime,
                 counts[sport] = count
         except (OSError, TimeoutError, ValueError, TypeError, RuntimeError):
             failed.add(sport)
+            diagnostic['failedSports'] += 1
             diagnostic['errors'].append('Events unavailable for ' + sport)
 
     for sport in known:

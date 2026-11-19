@@ -1,53 +1,88 @@
 {
   "schemaVersion": 51,
-  "generatedAt": "2026-11-19T08:32:48.332919+00:00",
+  "generatedAt": "2026-11-19T13:40:41.546132+00:00",
   "trackedFrom": "2026-11-05T19:10:01.819000+00:00",
   "overall": {
-    "total": 131,
-    "wins": 38,
-    "losses": 59,
-    "settled": 97,
+    "total": 133,
+    "wins": 46,
+    "losses": 64,
+    "settled": 110,
     "voids": 0,
-    "unverified": 34,
-    "pending": 0,
-    "hitRatePct": 39.2
+    "unverified": 21,
+    "pending": 2,
+    "hitRatePct": 41.8
   },
   "categories": {
     "safe": {
       "label": "Safe Bets",
       "total": 51,
-      "wins": 20,
-      "losses": 10,
-      "settled": 30,
+      "wins": 24,
+      "losses": 11,
+      "settled": 35,
       "voids": 0,
-      "unverified": 21,
+      "unverified": 16,
       "pending": 0,
-      "hitRatePct": 66.7
+      "hitRatePct": 68.6
     },
     "high": {
       "label": "High Risk",
-      "total": 58,
-      "wins": 10,
-      "losses": 39,
-      "settled": 49,
+      "total": 60,
+      "wins": 12,
+      "losses": 42,
+      "settled": 54,
       "voids": 0,
-      "unverified": 9,
-      "pending": 0,
-      "hitRatePct": 20.4
+      "unverified": 4,
+      "pending": 2,
+      "hitRatePct": 22.2
     },
     "watch": {
       "label": "Interessante objekter",
       "total": 22,
-      "wins": 8,
-      "losses": 10,
-      "settled": 18,
+      "wins": 10,
+      "losses": 11,
+      "settled": 21,
       "voids": 0,
-      "unverified": 4,
+      "unverified": 1,
       "pending": 0,
-      "hitRatePct": 44.4
+      "hitRatePct": 47.6
     }
   },
   "days": [
+    {
+      "date": "2026-11-19",
+      "categories": {
+        "safe": {
+          "total": 0,
+          "wins": 0,
+          "losses": 0,
+          "settled": 0,
+          "voids": 0,
+          "unverified": 0,
+          "pending": 0,
+          "hitRatePct": null
+        },
+        "high": {
+          "total": 2,
+          "wins": 0,
+          "losses": 0,
+          "settled": 0,
+          "voids": 0,
+          "unverified": 0,
+          "pending": 2,
+          "hitRatePct": null
+        },
+        "watch": {
+          "total": 0,
+          "wins": 0,
+          "losses": 0,
+          "settled": 0,
+          "voids": 0,
+          "unverified": 0,
+          "pending": 0,
+          "hitRatePct": null
+        }
+      }
+    },
     {
       "date": "2026-11-17",
       "categories": {
@@ -368,38 +403,68 @@
       "categories": {
         "safe": {
           "total": 5,
-          "wins": 0,
-          "losses": 0,
-          "settled": 0,
+          "wins": 4,
+          "losses": 1,
+          "settled": 5,
           "voids": 0,
-          "unverified": 5,
+          "unverified": 0,
           "pending": 0,
-          "hitRatePct": null
+          "hitRatePct": 80.0
         },
         "high": {
           "total": 5,
-          "wins": 0,
-          "losses": 0,
-          "settled": 0,
+          "wins": 2,
+          "losses": 3,
+          "settled": 5,
           "voids": 0,
-          "unverified": 5,
+          "unverified": 0,
           "pending": 0,
-          "hitRatePct": null
+          "hitRatePct": 40.0
         },
         "watch": {
           "total": 5,
-          "wins": 1,
-          "losses": 1,
-          "settled": 2,
+          "wins": 3,
+          "losses": 2,
+          "settled": 5,
           "voids": 0,
-          "unverified": 3,
+          "unverified": 0,
           "pending": 0,
-          "hitRatePct": 50.0
+          "hitRatePct": 60.0
         }
       }
     }
   ],
   "tips": [
+    {
+      "id": "528bc65d05d7917246a88901",
+      "editionDate": "2026-11-19",
+      "category": "high",
+      "home": "Vitoria",
+      "away": "Bragantino-SP",
+      "kickoff": "2026-11-19T22:30:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 2.5,
+      "firstPublishedAt": "2026-11-19T13:40:41.457000+00:00",
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "id": "66c64d21e13fe56e14f5904e",
+      "editionDate": "2026-11-19",
+      "category": "high",
+      "home": "Vasco da Gama",
+      "away": "Internacional",
+      "kickoff": "2026-11-19T22:30:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 5.37,
+      "firstPublishedAt": "2026-11-19T13:40:41.457000+00:00",
+      "result": {
+        "status": "scheduled"
+      }
+    },
     {
       "id": "8e89a7aff6c98198541f0424",
       "editionDate": "2026-11-17",
@@ -2817,7 +2882,14 @@
       "price": 1.33,
       "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 0
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2019&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050358"
       }
     },
     {
@@ -2832,7 +2904,14 @@
       "price": 1.7,
       "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 3,
+          "away": 2
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=14&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050124"
       }
     },
     {
@@ -2847,7 +2926,14 @@
       "price": 1.42,
       "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 0,
+          "away": 2
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=14&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050122"
       }
     },
     {
@@ -2862,7 +2948,14 @@
       "price": 1.32,
       "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2019&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050350"
       }
     },
     {
@@ -2877,7 +2970,14 @@
       "price": 2.13,
       "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 0,
+          "away": 2
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=14&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050125"
       }
     },
     {
@@ -2892,7 +2992,14 @@
       "price": 6.25,
       "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 0,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2019&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050352"
       }
     },
     {
@@ -2907,7 +3014,14 @@
       "price": 1.22,
       "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 3,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2019&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050354"
       }
     },
     {
@@ -2922,7 +3036,14 @@
       "price": 1.15,
       "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 3,
+          "away": 0
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2019&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050351"
       }
     },
     {
@@ -2937,7 +3058,14 @@
       "price": 1.11,
       "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2019&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050347"
       }
     },
     {
@@ -2952,7 +3080,14 @@
       "price": 3,
       "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 3,
+          "away": 2
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=14&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050116"
       }
     },
     {
@@ -2967,7 +3102,14 @@
       "price": 2.37,
       "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 2
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=14&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050123"
       }
     },
     {
@@ -3004,7 +3146,14 @@
       "price": 3.35,
       "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 0,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=14&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050111"
       }
     },
     {
@@ -3041,12 +3190,34 @@
       "price": 5.96,
       "firstPublishedAt": "2026-11-05T19:10:01.819000+00:00",
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 2,
+          "away": 0
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2019&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050346"
       }
     }
   ],
   "resultFeed": {
-    "state": "not_checked"
+    "state": "checked",
+    "sources": [
+      {
+        "provider": "football-data.org",
+        "state": "checked",
+        "matchedFixtures": 0,
+        "error": null
+      },
+      {
+        "provider": "UEFA",
+        "state": "checked",
+        "matchedFixtures": 0,
+        "error": null
+      }
+    ],
+    "matchedFixtures": 0
   },
   "publicationPolicy": {
     "version": 53,

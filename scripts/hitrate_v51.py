@@ -18,6 +18,7 @@ from pathlib import Path
 from lifecycle import CATEGORIES, apply_results, atomic_json, fetch_results, published_history, read_json, score_pick
 from result_sources_v51 import dt, match_saved_picks, selection_key
 from publication_policy_v53 import display_category, first_records
+from result_cache_v55 import verified_evidence
 
 ROOT = Path(__file__).resolve().parents[1]
 CATEGORY_NAMES = {'safe': 'Safe Bets', 'high': 'High Risk',
@@ -142,24 +143,36 @@ def sync(root=ROOT, now=None, *, fetcher=fetch_results, offline=False):
     old_days = sorted({record['editionDate'] for record in old})[:2]
     batches = [recent] + [[record for record in old if record['editionDate'] == day] for day in old_days]
     batches = [batch for batch in batches if batch]
-    rows = []
+    # Bundled historical evidence contains official scores, never tip choices.
+    # It passes the same identity, kickoff and period checks as live responses.
+    rows = verified_evidence(root)
     feed = {'state': 'idle'}
     if batches and not offline:
         feed = {'state': 'checked'}
+        feed['sources'] = []
         for batch in batches:
             candidate = {'editionDate': min(p['editionDate'] for p in batch),
                          'recommendations': [dict(record, matchId=mid) for record in batch for mid in record['sourceIds']]}
             try:
-                rows.extend(fetcher(candidate, os.getenv('FOOTBALL_DATA_API_KEY', '').strip()))
+                key = os.getenv('FOOTBALL_DATA_API_KEY', '').strip()
+                fetched = fetcher(candidate, key, cache_root=root) if fetcher is fetch_results else fetcher(candidate, key)
+                rows.extend(fetched)
+                feed['sources'].extend(getattr(fetched, 'diagnostics', []))
             except (OSError, ValueError, RuntimeError) as exc:
-                feed = {'state': 'unavailable', 'error': type(exc).__name__}
+                feed.update(state='unavailable', error=type(exc).__name__)
                 print('WARN: hit-rate results unavailable:', type(exc).__name__)
             for record in batch:
                 if record not in recent:
                     record['lastHistoricalCheckDay'] = now.date().isoformat()
         feed['matchedFixtures'] = len(rows)
+        states = {source['state'] for source in feed['sources']}
+        if 'unavailable' in states:
+            feed['state'] = 'degraded' if 'checked' in states else 'unavailable'
+        elif states and states <= {'not_configured'}:
+            feed['state'] = 'not_configured'
     elif offline:
         feed = {'state': 'not_checked'}
+    matched_records = set()
     for record in ledger['records']:
         if record['result'].get('status') in FINAL:
             continue
@@ -167,6 +180,7 @@ def sync(root=ROOT, now=None, *, fetcher=fetch_results, offline=False):
         matches = match_saved_picks(aliases, rows)
         if not matches:
             continue
+        matched_records.add(record['id'])
         result = score_pick(record, matches[0])['result']
         if result['status'] == 'scheduled' and record['result'].get('status') == 'unverified':
             continue
@@ -174,6 +188,8 @@ def sync(root=ROOT, now=None, *, fetcher=fetch_results, offline=False):
             record['result'] = result
             if result['status'] in FINAL:
                 record['settledAt'] = now.isoformat()
+
+    feed['matchedFixtures'] = len(matched_records)
 
     # Reconcile the public edition and historical result copies with the same
     # official rows. Immutable publication/version journals stay unchanged.
@@ -209,8 +225,11 @@ def sync(root=ROOT, now=None, *, fetcher=fetch_results, offline=False):
     # deployments when the actual results have not changed.
     public_changed = write_if_changed(root / 'site/data/hitrate-v51.json', public,
                                       ignored=('generatedAt', 'resultFeed'))
+    # Save the actual check even when scores and the public percentage stay put.
+    atomic_json(root / 'state/result-status-v55.json', dict(feed, checkedAt=now.isoformat(),
+                unresolved=public['overall']['unverified'], pending=public['overall']['pending']))
     return {'changed': public_changed or edition_changed, 'journalChanged': journal_changed,
-            'overall': public['overall'], 'categories': public['categories']}
+            'overall': public['overall'], 'categories': public['categories'], 'resultFeed': feed['state']}
 
 
 def main():
@@ -223,6 +242,9 @@ def main():
     if os.getenv('GITHUB_OUTPUT'):
         with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as output:
             output.write('changed=' + str(result['changed']).lower() + '\n')
+            output.write('journal_changed=' + str(result['journalChanged']).lower() + '\n')
+    if not args.offline and result['resultFeed'] == 'unavailable':
+        raise SystemExit(1)
 
 
 if __name__ == '__main__':

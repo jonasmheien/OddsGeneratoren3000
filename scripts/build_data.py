@@ -34,6 +34,7 @@ from morning_refresh_v29 import DEFERRED_ODDS_REFRESH, has_morning_edition, load
 from edition_status_v51 import WAITING_FOR_ODDS, no_supported_prices
 from nations_league_fixtures import verify_events as verify_nations_league_events
 from sportmonks_v45 import discover as discover_sportmonks
+from odds_budget_v55 import OddsClient, BudgetExceeded
 from market_expansion import (TEAM_TOTAL_LINES, extend_goal_probabilities,
                               first_half_probabilities, corner_probabilities)
 import national_form_v48 as national_form
@@ -44,6 +45,7 @@ OUT = Path(os.environ['ODDS_OUTPUT_PATH']) if os.environ.get('ODDS_OUTPUT_PATH')
 OSLO = ZoneInfo('Europe/Oslo')
 BASE = 'https://api.football-data.org/v4'
 ODDS_BASE = 'https://api.the-odds-api.com/v4'
+_ODDS_CLIENT = None
 # Match competition codes from football-data.org to The Odds API sports keys.
 SPORT_BY_COMPETITION = {
     'PL':'soccer_epl', 'CL':'soccer_uefa_champs_league',
@@ -55,6 +57,7 @@ SPORT_BY_COMPETITION = {
     'APF-SE2':'soccer_sweden_superettan', 'APF-DK1':'soccer_denmark_superliga',
     'APF-ES2':'soccer_spain_segunda_division', 'APF-FI1':'soccer_finland_veikkausliiga',
     'SM-DK1':'soccer_denmark_superliga', 'SM-SC1':'soccer_spl',
+    'BSA':'soccer_brazil_campeonato',
 }
 # Free plan: 500 credits/month as of project setup. One region × two markets
 # costs about 2 credits per league per run (provider rules may change).
@@ -102,6 +105,8 @@ def affordable_sports(sports, remaining, now, *, preview=False):
 
 
 def fetch_json(url: str, headers: dict | None = None):
+    if _ODDS_CLIENT is not None and url.startswith(ODDS_BASE + '/'):
+        return _ODDS_CLIENT.get(url)
     req = Request(url, headers={'User-Agent': 'OddsGeneratoren/0.3 (personal research)', **(headers or {})})
     with urlopen(req, timeout=28) as response:
         return json.load(response)
@@ -364,10 +369,14 @@ def fetch_extra_event_markets(sports: list[str], odds_events: list[dict], now: d
         args=urlencode({'apiKey':key,'regions':'eu','markets':EXTRA_MARKET_KEYS,'oddsFormat':'decimal'})
         url=f'{ODDS_BASE}/sports/{sport}/events/{eid}/odds?{args}'
         try:
-            req=Request(url,headers={'User-Agent':'OddsGeneratoren/1.2'})
-            with urlopen(req,timeout=28) as response:
-                remaining=response.headers.get('x-requests-remaining')
-                extra=json.load(response)
+            if _ODDS_CLIENT is not None:
+                extra = _ODDS_CLIENT.get(url, purpose='extra')
+                remaining = _ODDS_CLIENT.remaining
+            else:
+                req=Request(url,headers={'User-Agent':'OddsGeneratoren/1.2'})
+                with urlopen(req,timeout=28) as response:
+                    remaining=response.headers.get('x-requests-remaining')
+                    extra=json.load(response)
             if isinstance(extra,dict) and isinstance(extra.get('bookmakers'),list):
                 # Keep featured and extra market entries. The parser deduplicates
                 # by bookmaker ID and exact selection market.
@@ -688,11 +697,15 @@ def build_snapshot(now: datetime, fixtures: list, odds_events: list | None, manu
 
 
 def main():
+    global _ODDS_CLIENT
     now = datetime.now(timezone.utc)
     preview_offset = int(os.getenv('ODDS_TARGET_DAY_OFFSET', '0'))
     if preview_offset not in (0, 1):
         raise ValueError('ODDS_TARGET_DAY_OFFSET must be 0 or 1')
     date = now.astimezone(OSLO).date() + timedelta(days=preview_offset)
+    output_path = OUT.resolve()
+    execution_root = ROOT if output_path.is_relative_to(ROOT.resolve()) else output_path.parent
+    _ODDS_CLIENT = OddsClient(execution_root, now, preview=preview_offset == 1)
     key = os.getenv('FOOTBALL_DATA_API_KEY', '').strip()
     odds_key = os.getenv('ODDS_API_KEY', '').strip()
     errors = []
@@ -805,8 +818,11 @@ def main():
         except (OSError,ValueError,TimeoutError) as exc:
             errors.append('Odds quota check: '+type(exc).__name__)
         status['oddsCreditsRemaining']=remaining
+        _ODDS_CLIENT.note_remaining(remaining)
         discovered_sports_count = len(sports)
         sports = affordable_sports(sports, remaining, now, preview=preview_offset == 1)
+        purpose = 'preview' if preview_offset else 'core'
+        status['oddsBudgetLimited'] = bool(discovered_sports_count and not sports)
         status['requestedLeagues'] = sports[:ODDS_SPORTS_PER_RUN]
         print(f'ODDS_QUOTA remaining={remaining} leagues_found={discovered_sports_count} '
               f'leagues_requested={len(status["requestedLeagues"])}')
@@ -817,29 +833,52 @@ def main():
                 OUT.write_text(json.dumps({DEFERRED_ODDS_REFRESH: True, 'localDate': date.isoformat()}),
                                encoding='utf-8')
             print('Lav oddskvote. Beholder dagens publiserte utgave.')
+            from operations_v55 import record_attempt
+            record_attempt(execution_root, {'localDate':date.isoformat(), 'dataStatus':status,
+                           DEFERRED_ODDS_REFRESH:True}, now, mode=purpose)
             return
         status['oddsMarketKeys'] = ['h2h', 'totals']
+        successful_requests = failed_requests = 0
         for sport in sports[:ODDS_SPORTS_PER_RUN]:
             try:
-                params = urlencode({'apiKey': odds_key, 'regions': 'eu', 'markets': 'h2h,totals', 'oddsFormat':'decimal'})
+                start = datetime.combine(date, datetime.min.time(), OSLO).astimezone(timezone.utc)
+                end = datetime.combine(date + timedelta(days=1), datetime.min.time(), OSLO).astimezone(timezone.utc)
+                params = urlencode({'apiKey': odds_key, 'regions': 'eu', 'markets': 'h2h,totals', 'oddsFormat':'decimal',
+                                    'commenceTimeFrom':start.strftime('%Y-%m-%dT%H:%M:%SZ'),
+                                    'commenceTimeTo':end.strftime('%Y-%m-%dT%H:%M:%SZ')})
                 items = fetch_json(f'{ODDS_BASE}/sports/{sport}/odds/?{params}')
                 if not isinstance(items, list):
                     raise ValueError('Unknown API odds response')
+                successful_requests += 1
                 odds_events.extend(items)
+            except BudgetExceeded:
+                status['oddsBudgetLimited'] = True
+                break
             except Exception as exc:
+                failed_requests += 1
                 errors.append(f'Odds ({sport}): hentefeil ({type(exc).__name__})')
         odds_events, fixture_check = verify_nations_league_events(odds_events, date, fetch_json)
         if fixture_check is not None:
             status['nationsLeagueFixtureCheck'] = fixture_check
             print('NATIONS_LEAGUE_FIXTURES', fixture_check)
-        if odds_events and (remaining is None or remaining >= 64):
+        if odds_events and preview_offset == 0 and _ODDS_CLIENT.allowance('extra') >= 4:
             odds_events,extra_issues=fetch_extra_event_markets(sports,odds_events,now)
             errors.extend(extra_issues)
         elif odds_events:
             status['extraMarketsSkippedQuota']=True
         status['extraEventsLoaded']=sum(bool(e.get('extraMarketsLoaded')) for e in odds_events)
-        status['odds'] = 'ok' if odds_events else 'empty' if not sports else 'error'
+        status['successfulOddsRequests'] = successful_requests
+        status['failedOddsRequests'] = failed_requests
+        status['odds'] = 'ok' if odds_events else 'error' if failed_requests and not successful_requests else 'empty'
         status['oddsEventCount'] = len(odds_events)
+        status['oddsBudget'] = _ODDS_CLIENT.summary()
+        if _ODDS_CLIENT.remaining is not None:
+            status['oddsCreditsRemaining'] = _ODDS_CLIENT.remaining
+        discovery = status.get('matchdayDiscovery') or {}
+        if (not sports and not status['oddsBudgetLimited'] and
+                (not explicit and not discovery.get('catalogAvailable') or
+                 discovery.get('checkedSports') and discovery.get('failedSports') == discovery['checkedSports'])):
+            status['odds'] = 'error'
         if odds_events:
             # True bookmaker-listed fixtures, even when another feed omits them.
             # Synthetic provider-scoped IDs carry NO fake historical form.
@@ -931,6 +970,8 @@ def main():
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2), encoding='utf-8')
     print(f"Built {len(snapshot['matches'])} fixtures. Fixture status={status['fixtures']}, odds status={status['odds']}; candidates={len(snapshot['recommendations'])}; requested leagues={status.get('requestedLeagues', [])}")
+    from operations_v55 import record_attempt
+    record_attempt(execution_root, snapshot, now, mode='preview' if preview_offset else 'core')
     if errors:
         for error in errors:
             print('WARN:', error, file=sys.stderr)

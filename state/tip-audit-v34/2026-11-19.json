@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 34,
+  "editionDate": "2026-11-19",
+  "revisions": [
+    {
+      "id": "676769589a49a32d5423ab27",
+      "editionGeneratedAt": "2026-11-19T13:39:19.981427+00:00",
+      "recordedAt": "2026-11-19T13:40:41.457Z",
+      "summary": {
+        "total": 2,
+        "qualified": 0,
+        "high": 2,
+        "safe": 0,
+        "watch": 0,
+        "withBothFive": 1,
+        "withFormModel": 1,
+        "marketBased": 1,
+        "expertWritten": 0,
+        "modelMarketConflicts": 0,
+        "unverifiedResults": 2
+      },
+      "groups": {
+        "qualified": [],
+        "high": [
+          {
+            "matchId": "555088",
+            "home": "Vasco da Gama",
+            "away": "Internacional",
+            "league": "Campeonato Brasileiro Série A",
+            "kickoff": "2026-11-19T22:30:00+00:00",
+            "market": "B",
+            "label": "Borteseier",
+            "price": 5.37,
+            "probability": 0.2844,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-19T13:39:22Z",
+            "bookmakerCount": 24,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "WWLWL",
+              "awayLastFive": "WLWLD",
+              "modelSample": [
+                16,
+                16
+              ],
+              "formModelProbability": 0.2844,
+              "bookmakerImpliedProbability": 0.1736568117080837,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "odds:fa3ad7ccd23c6fe47c3062a2b69d3ddd",
+            "home": "Vitoria",
+            "away": "Bragantino-SP",
+            "league": "Brasileirão Série A",
+            "kickoff": "2026-11-19T22:30:00+00:00",
+            "market": "B",
+            "label": "Borteseier",
+            "price": 2.5,
+            "probability": 0.3752,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-19T13:39:22Z",
+            "bookmakerCount": 24,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "odds_only",
+              "homeLastFive": "",
+              "awayLastFive": "",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.3751541560470279,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "away_form_missing",
+                "model_unavailable"
+              ]
+            }
+          }
+        ],
+        "safe": [],
+        "watch": []
+      }
+    }
+  ]
+}

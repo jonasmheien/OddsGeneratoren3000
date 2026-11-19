@@ -191,7 +191,7 @@
     if(loading)return;
     loading=true;
     try{
-      const [today,preview,update]=await Promise.all([get('today'),get('tomorrow'),get('update-status-v51')]);
+      const [today,preview,update,operations]=await Promise.all([get('today'),get('tomorrow'),get('update-status-v51'),get('operations-v55')]);
       const now=new Date();
       const chosen=window.OddsVisibleV40?.selectEdition(today,preview,now)||null;
       const edition=chosen?.edition;
@@ -208,7 +208,15 @@
       const status=$('tf-status');
       const any=Object.values(chosen?.groups||{}).some(list=>list.length);
       parent.querySelector('.tf-columns').hidden=!any;
+      const messages={source_error:'Datakilden er midlertidig utilgjengelig.',
+        analysis_error:'Oppdateringen kunne ikke fullføres.',quota_limited:'Avventer tilgjengelig oddskvote.',
+        coverage_limited:'Ingen odds for dagens kamper.',waiting_for_odds:'Venter på odds.',
+        no_fixtures:'Ingen kommende kamper.',no_qualified_tips:'Ingen aktuelle tips.',
+        not_checked:'Dagens analyse er ikke klar.'};
+      const currentStatus=operations?.schemaVersion===55&&operations.targetDate===osloDate(now)?operations.reason:null;
+      const delayed=['source_error','analysis_error'].includes(currentStatus);
       status.textContent=!today&&!preview?'Tipsene kunne ikke lastes.':
+        currentStatus&&(!any||delayed)?messages[currentStatus]||(!any?'Ingen kommende tips.':''):
         !any&&update?.state==='waiting_for_odds'&&update.targetDate===osloDate(now)?'Venter på odds.':
         !any?'Ingen kommende tips.':'';
       status.hidden=!status.textContent;

@@ -20,9 +20,17 @@
         "odds:8a2c155e7fe5e67981b44e12c0c6eba6"
       ],
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2019&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050350"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-19",
+      "settledAt": "2026-11-19T13:39:19.617349+00:00"
     },
     {
       "matchId": "odds:6dad8d4dd99ba6f5dae0b3abdf8f669b",
@@ -43,9 +51,17 @@
         "odds:6dad8d4dd99ba6f5dae0b3abdf8f669b"
       ],
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 0,
+          "away": 2
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=14&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050122"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-19",
+      "settledAt": "2026-11-19T13:39:19.617349+00:00"
     },
     {
       "matchId": "odds:e1c3625feeebcd65317e17a4e9a38c4f",
@@ -66,9 +82,17 @@
         "odds:e1c3625feeebcd65317e17a4e9a38c4f"
       ],
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 0,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=14&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050111"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-19",
+      "settledAt": "2026-11-19T13:39:19.617349+00:00"
     },
     {
       "matchId": "odds:fdfe43b1709a68218ab42934f7355032",
@@ -89,9 +113,17 @@
         "odds:fdfe43b1709a68218ab42934f7355032"
       ],
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 0
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2019&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050358"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-19",
+      "settledAt": "2026-11-19T13:39:19.617349+00:00"
     },
     {
       "matchId": "odds:402e102fa845ed84ab7e59b3b17f8c29",
@@ -112,9 +144,17 @@
         "odds:402e102fa845ed84ab7e59b3b17f8c29"
       ],
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 3,
+          "away": 2
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=14&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050124"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-19",
+      "settledAt": "2026-11-19T13:39:19.617349+00:00"
     },
     {
       "matchId": "odds:91f5f46805156c8d245a9bb89f59969a",
@@ -135,9 +175,17 @@
         "odds:91f5f46805156c8d245a9bb89f59969a"
       ],
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 3,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2019&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050354"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-19",
+      "settledAt": "2026-11-19T13:39:19.617349+00:00"
     },
     {
       "matchId": "odds:5ecf6578ba030a1e99abaa3200319e37",
@@ -158,9 +206,17 @@
         "odds:5ecf6578ba030a1e99abaa3200319e37"
       ],
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 3,
+          "away": 2
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=14&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050116"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-19",
+      "settledAt": "2026-11-19T13:39:19.617349+00:00"
     },
     {
       "matchId": "odds:5d2de41c72a26f06f5b1f85676a7df00",
@@ -181,9 +237,17 @@
         "odds:5d2de41c72a26f06f5b1f85676a7df00"
       ],
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2019&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050347"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-19",
+      "settledAt": "2026-11-19T13:39:19.617349+00:00"
     },
     {
       "matchId": "odds:158d65d9ca4cd4baf93be0a4c2b9e83a",
@@ -204,9 +268,17 @@
         "odds:158d65d9ca4cd4baf93be0a4c2b9e83a"
       ],
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 3,
+          "away": 0
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2019&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050351"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-19",
+      "settledAt": "2026-11-19T13:39:19.617349+00:00"
     },
     {
       "matchId": "odds:b828d43ba5fa1c8cdd2e34aabea9d0ce",
@@ -227,9 +299,17 @@
         "odds:b828d43ba5fa1c8cdd2e34aabea9d0ce"
       ],
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 2
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=14&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050123"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-19",
+      "settledAt": "2026-11-19T13:39:19.617349+00:00"
     },
     {
       "matchId": "odds:35d4f8b2b7ec249fd22afd235c31ef2d",
@@ -250,9 +330,17 @@
         "odds:35d4f8b2b7ec249fd22afd235c31ef2d"
       ],
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 2,
+          "away": 0
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2019&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050346"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-19",
+      "settledAt": "2026-11-19T13:39:19.617349+00:00"
     },
     {
       "matchId": "odds:5f12be0b4bcb21b30f6f0cd3326c14ba",
@@ -273,9 +361,17 @@
         "odds:5f12be0b4bcb21b30f6f0cd3326c14ba"
       ],
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 0,
+          "away": 1
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=2019&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050352"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-19",
+      "settledAt": "2026-11-19T13:39:19.617349+00:00"
     },
     {
       "matchId": "odds:bc4a4cc34a2219d9564b7b0c17ba2934",
@@ -358,9 +454,17 @@
         "odds:2af127e906ae56f3543d283b85f7b54e"
       ],
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 0,
+          "away": 2
+        },
+        "source": "UEFA",
+        "sourceUrl": "https://match.uefa.com/v5/matches?competitionId=14&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+        "sourceMatchId": "uefa:2050125"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-19",
+      "settledAt": "2026-11-19T13:39:19.617349+00:00"
     },
     {
       "matchId": "561932",
@@ -5059,6 +5163,50 @@
         "sourceMatchId": "uefa:2047920"
       },
       "settledAt": "2026-11-18T08:57:54.147828+00:00"
+    },
+    {
+      "matchId": "odds:fa3ad7ccd23c6fe47c3062a2b69d3ddd",
+      "home": "Vitoria",
+      "away": "Bragantino-SP",
+      "league": "Brasileirão Série A",
+      "kickoff": "2026-11-19T22:30:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 2.5,
+      "id": "528bc65d05d7917246a88901",
+      "selectionKey": "2026-11-19|vitoria|bragantinosp|B",
+      "category": "high",
+      "editionDate": "2026-11-19",
+      "firstPublishedAt": "2026-11-19T13:40:41.457000+00:00",
+      "publicationRevision": "676769589a49a32d5423ab27",
+      "sourceIds": [
+        "odds:fa3ad7ccd23c6fe47c3062a2b69d3ddd"
+      ],
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "matchId": "555088",
+      "home": "Vasco da Gama",
+      "away": "Internacional",
+      "league": "Campeonato Brasileiro Série A",
+      "kickoff": "2026-11-19T22:30:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 5.37,
+      "id": "66c64d21e13fe56e14f5904e",
+      "selectionKey": "2026-11-19|vascodagama|internacional|B",
+      "category": "high",
+      "editionDate": "2026-11-19",
+      "firstPublishedAt": "2026-11-19T13:40:41.457000+00:00",
+      "publicationRevision": "676769589a49a32d5423ab27",
+      "sourceIds": [
+        "555088"
+      ],
+      "result": {
+        "status": "scheduled"
+      }
     }
   ]
 }

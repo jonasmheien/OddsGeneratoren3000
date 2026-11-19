@@ -42,6 +42,7 @@ COMPETITIONS = {
     'soccer_denmark_superliga': ('ODDS-DNK', 'Superliga'),
     'soccer_spl': ('ODDS-SPL', 'Scottish Premiership'),
     'soccer_spain_segunda_division': ('ODDS-SP2', 'La Liga 2'),
+    'soccer_brazil_campeonato': ('ODDS-BSA', 'Brasileirão Série A'),
 }
 
 

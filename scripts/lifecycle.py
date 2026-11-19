@@ -16,7 +16,8 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from versions_v22 import record_revision, publish_version_history
 from expanded_sources_v23 import results_for
-from sportmonks_v45 import results_for as sportmonks_results_for
+from sportmonks_v45 import results_for as sportmonks_results_for, results_on_dates as sportmonks_dated_results
+from result_cache_v55 import Results, cached_fetch
 from market_expansion import TEAM_TOTAL_LINES
 from morning_refresh_v29 import DEFERRED_ODDS_REFRESH, has_morning_edition
 from result_sources_v51 import match_saved_picks, uefa_results, uefa_competition, national
@@ -147,7 +148,7 @@ def apply_results(snapshot: dict, matches: list, at: str | None = None):
     return updated, changed
 
 
-def fetch_results(snapshot: dict, key: str):
+def fetch_results(snapshot: dict, key: str, *, cache_root=None):
     """Fetch one date-scoped match list; filter locally by the saved match IDs.
 
     football-data.org documents dateFrom/dateTo for the matches endpoint.
@@ -161,7 +162,10 @@ def fetch_results(snapshot: dict, key: str):
     apf_ids = {x for x in all_ids if x.startswith('apf:') and x[4:].isdigit()}
     sm_ids = {x for x in all_ids if x.startswith('sm-match:') and x[9:].isdigit()}
     odds_picks = [p for p in picks if str(p.get('matchId', '')).startswith('odds:')]
-    found=[]
+    found=Results()
+    def diagnostic(provider, state, matched=0, error=None):
+        found.diagnostics.append({'provider': provider, 'state': state,
+                                  'matchedFixtures': matched, 'error': error})
     if (ids or any(not national(p) for p in odds_picks)) and key:
         edition = date.fromisoformat(snapshot.get('editionDate') or snapshot['localDate'])
         days = [v40_dt(p.get('kickoff')).date() for p in picks if v40_dt(p.get('kickoff'))]
@@ -171,37 +175,66 @@ def fetch_results(snapshot: dict, key: str):
         req = Request(url, headers={'X-Auth-Token': key,
                                     'User-Agent': 'OddsGeneratoren/0.9 (personal research)'})
         try:
-            with urlopen(req, timeout=35) as resp:
-                data = json.load(resp)
+            def fetch_football():
+                with urlopen(req, timeout=35) as resp:
+                    return json.load(resp)
+            data = cached_fetch(cache_root, 'football-data.org', url, fetch_football)
             rows = data.get('matches')
             if not isinstance(rows, list):
                 raise ValueError('Unknown match results response')
             for row in rows:
                 row.update(resultSource='football-data.org', resultSourceUrl=url)
-            found.extend(match_saved_picks(picks, rows))
+            matched = match_saved_picks(picks, rows)
+            found.extend(matched)
+            diagnostic('football-data.org', 'checked', len(matched))
         except (OSError, ValueError, TimeoutError) as exc:
+            diagnostic('football-data.org', 'unavailable', error=type(exc).__name__)
             print('WARN: football-data.org results unavailable:', type(exc).__name__)
+    elif ids or any(not national(p) for p in odds_picks):
+        diagnostic('football-data.org', 'not_configured')
     matched_ids = {str(row.get('id')) for row in found}
     uefa_picks = [p for p in picks if uefa_competition(p) and str(p.get('matchId')) not in matched_ids]
     if uefa_picks:
         def fetch_public(url):
             request = Request(url, headers={'User-Agent': 'OddsGeneratoren3000/5.1'})
-            with urlopen(request, timeout=25) as response:
-                return json.load(response)
+            def fetch():
+                with urlopen(request, timeout=25) as response:
+                    return json.load(response)
+            return cached_fetch(cache_root, 'UEFA', url, fetch)
         try:
-            found.extend(match_saved_picks(uefa_picks, uefa_results(uefa_picks, fetch_public)))
+            matched = match_saved_picks(uefa_picks, uefa_results(uefa_picks, fetch_public))
+            found.extend(matched)
+            diagnostic('UEFA', 'checked', len(matched))
         except (OSError, ValueError, TimeoutError) as exc:
+            diagnostic('UEFA', 'unavailable', error=type(exc).__name__)
             print('WARN: UEFA results unavailable:', type(exc).__name__)
     if apf_ids and os.getenv('API_FOOTBALL_KEY', '').strip():
         try:
-            found.extend(results_for(apf_ids, os.environ['API_FOOTBALL_KEY']))
+            rows = results_for(apf_ids, os.environ['API_FOOTBALL_KEY'])
+            found.extend(rows)
+            diagnostic('API-Football', 'checked', len(rows))
         except (OSError, ValueError, TimeoutError) as exc:
+            diagnostic('API-Football', 'unavailable', error=type(exc).__name__)
             print('WARN: API-Football result feed unavailable:', type(exc).__name__)
-    if sm_ids and os.getenv('SPORTMONKS_API_TOKEN', '').strip():
+    sm_picks = [p for p in odds_picks if p.get('league') in
+                ('Superliga', 'Danish Superliga', 'Scottish Premiership', 'Superliga Play-offs')]
+    if (sm_ids or sm_picks) and os.getenv('SPORTMONKS_API_TOKEN', '').strip():
         try:
-            found.extend(sportmonks_results_for(sm_ids, os.environ['SPORTMONKS_API_TOKEN']))
+            from sportmonks_v45 import fetch_page
+            def fetch_sm(url, token):
+                return cached_fetch(cache_root, 'Sportmonks', url, lambda: fetch_page(url, token))
+            rows = sportmonks_results_for(sm_ids, os.environ['SPORTMONKS_API_TOKEN'], request=fetch_sm)
+            if sm_picks:
+                days = [v40_dt(p['kickoff']).date().isoformat() for p in sm_picks if v40_dt(p.get('kickoff'))]
+                rows.extend(sportmonks_dated_results(days, os.environ['SPORTMONKS_API_TOKEN'], request=fetch_sm))
+            matched = match_saved_picks(picks, rows)
+            found.extend(matched)
+            diagnostic('Sportmonks', 'checked', len(matched))
         except (OSError, ValueError, TimeoutError) as exc:
+            diagnostic('Sportmonks', 'unavailable', error=type(exc).__name__)
             print('WARN: Sportmonks results unavailable:', type(exc).__name__)
+    elif sm_ids or sm_picks:
+        diagnostic('Sportmonks', 'not_configured')
     return found
 
 

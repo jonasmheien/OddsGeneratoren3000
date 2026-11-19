@@ -1,0 +1,21 @@
+{
+  "state": "checked",
+  "sources": [
+    {
+      "provider": "football-data.org",
+      "state": "checked",
+      "matchedFixtures": 0,
+      "error": null
+    },
+    {
+      "provider": "UEFA",
+      "state": "checked",
+      "matchedFixtures": 0,
+      "error": null
+    }
+  ],
+  "matchedFixtures": 0,
+  "checkedAt": "2026-11-19T13:40:41.546132+00:00",
+  "unresolved": 21,
+  "pending": 2
+}

@@ -26,6 +26,9 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / 'scripts'))
 from build_data import SPORT_BY_COMPETITION, fixed_odds_event, iso_datetime, name_score, normalized
 from morning_refresh_v29 import DEFERRED_ODDS_REFRESH
+from edition_status_v51 import WAITING_FOR_ODDS
+from odds_budget_v55 import OddsClient
+from zoneinfo import ZoneInfo
 
 ODDS_URL = 'https://api.the-odds-api.com/v4'
 FD_URL = 'https://api.football-data.org/v4'
@@ -38,9 +41,13 @@ CATEGORY_NAMES = {
     'goals': 'Mål', 'team_goals': 'Lagmål', 'first_half': '1. omgang',
     'btts': 'Begge lag scorer',
 }
+_ODDS_CLIENT = None
 
 
 def get_json(url: str, headers=None):
+    if _ODDS_CLIENT is not None and url.startswith(ODDS_URL + '/'):
+        data = _ODDS_CLIENT.get(url, purpose='extra')
+        return data, _ODDS_CLIENT.remaining
     request = Request(url, headers={'User-Agent': 'OddsGeneratoren-v1.4', **(headers or {})})
     with urlopen(request, timeout=22) as response:
         remaining = response.headers.get('x-requests-remaining')
@@ -331,13 +338,16 @@ def label(code,person=None):
 def run(snapshot,key,stats_key,at,cap=1):
     """Returns augmented JSON; unsupported/missing data never crashes core pipeline."""
     issues=[]; watch=[]; tips=[]; counted=enrich_existing_coverage(snapshot)
-    remaining=None; budgets={'events':0,'odds_requests':0}
+    remaining=(snapshot.get('dataStatus') or {}).get('oddsCreditsRemaining')
+    budgets={'events':0,'odds_requests':0}
+    target_day = str(snapshot.get('editionDate') or snapshot.get('localDate') or
+                     at.astimezone(ZoneInfo('Europe/Oslo')).date())
     scheduled=[]
     for m in snapshot.get('matches') or []:
         try:kick=iso_datetime(m['kickoff'])
         except (ValueError,TypeError,KeyError):continue
         if (m.get('status') in ('SCHEDULED','TIMED') and kick>at+timedelta(minutes=50)
-            and kick.astimezone().date()>=at.astimezone().date()
+            and kick.astimezone(ZoneInfo('Europe/Oslo')).date().isoformat()==target_day
             and m.get('leagueCode') in SPORT_BY_COMPETITION):scheduled.append(m)
     # Match the fixture ID only after a two-sided name + kickoff cross-check.
     by_sport=defaultdict(list)
@@ -361,7 +371,7 @@ def run(snapshot,key,stats_key,at,cap=1):
     # free-plan credits and breaking matchwinner / goals odds.
     for m,e,sport in matched[:max(0,min(cap,2))]:
         if not key:break
-        if remaining is not None and remaining<35:break
+        if remaining is None or remaining<128:break
         query=urlencode({'apiKey':key,'regions':'eu',
                          'markets':'alternate_totals_corners,alternate_totals_cards',
                          'oddsFormat':'decimal'})
@@ -406,7 +416,7 @@ def run(snapshot,key,stats_key,at,cap=1):
             (tips if good else watch).append(pick)
     # Optional extra team totals (including UNDER), both-teams-NO, and half goals.
     # Quote-only until sufficient independent match history is available.
-    if matched and key and (remaining is None or remaining>=35):
+    if matched and key and remaining is not None and remaining>=128:
         m,e,sport=matched[0]
         params=urlencode({'apiKey':key,'regions':'eu','markets':'team_totals,btts,totals_h1','oddsFormat':'decimal'})
         try:
@@ -421,7 +431,7 @@ def run(snapshot,key,stats_key,at,cap=1):
     # Player props: US bookmaker coverage is limited to the major leagues.
     # The player and team must match unique, real season-scorer statistics.
     eligible=next(((m,e,s) for m,e,s in matched if s in LEAGUE_CODES),None)
-    if eligible and key and (remaining is None or remaining>=35):
+    if eligible and key and remaining is not None and remaining>=128:
         m,e,sport=eligible
         query=urlencode({'apiKey':key,'regions':'us',
                          'markets':'player_goal_scorer_anytime','oddsFormat':'decimal'})
@@ -495,14 +505,25 @@ def run(snapshot,key,stats_key,at,cap=1):
 
 
 def main():
+    global _ODDS_CLIENT
     import argparse
     p=argparse.ArgumentParser();p.add_argument('snapshot',type=Path)
     a=p.parse_args()
     if not a.snapshot.exists():raise SystemExit('Kandidatfil finnes ikke')
     original=json.loads(a.snapshot.read_text(encoding='utf8'))
-    if original.get(DEFERRED_ODDS_REFRESH) is True:
+    if original.get(DEFERRED_ODDS_REFRESH) is True or original.get(WAITING_FOR_ODDS) is True:
+        return
+    coverage = original.get('coverage') or {}
+    if coverage.get('matchedOdds', 0) < 1:
+        print('V14_SKIPPED=no_core_odds')
         return
     at=iso_datetime(original.get('generatedAt') or datetime.now(timezone.utc).isoformat())
+    snapshot_path = a.snapshot.resolve()
+    execution_root = ROOT if snapshot_path.is_relative_to(ROOT.resolve()) else snapshot_path.parent
+    _ODDS_CLIENT = OddsClient(execution_root, at)
+    if _ODDS_CLIENT.allowance('extra') < 2:
+        print('V14_SKIPPED=credit_reserve')
+        return
     # No loss of core analysis if the optional scanner cannot fetch supplementary odds.
     try:
         updated=run(original,os.environ.get('ODDS_API_KEY','').strip(),

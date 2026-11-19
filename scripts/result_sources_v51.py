@@ -16,7 +16,8 @@ from nations_league_fixtures import CALENDAR_URL, MATCH_LIMIT
 
 UEFA_COMPETITIONS = {'UEFA Nations League': '2014',
                      'UEFA Champions League': '1', 'Champions League': '1',
-                     'UEFA Europa League': '14', 'Europa League': '14'}
+                     'UEFA Europa League': '14', 'Europa League': '14',
+                     'UEFA Conference League': '2019', 'Conference League': '2019'}
 
 
 def uefa_competition(pick):
@@ -29,6 +30,56 @@ def national(pick):
 
 def team_key(name, is_national=False):
     return team_identity(name) if is_national else club(canonical_name(name))
+
+
+# Explicit senior-team aliases. Publication keys above stay immutable. Do not
+# strip arbitrary prefixes/suffixes: Ajax, Jong Ajax and Ajax U19 differ.
+CLUB_ALIASES = (
+    ('Bayer Leverkusen', 'Bayer 04 Leverkusen', 'Leverkusen'),
+    ('Dinamo Zagreb', 'GNK Dinamo', 'GNK Dinamo Zagreb'),
+    ('Celta Vigo', 'RC Celta de Vigo', 'Celta'),
+    ('Union Saint-Gilloise', 'Royale Union Saint-Gilloise', 'Union SG'),
+    ('Besiktas JK', 'Beşiktaş', 'Beşiktaş JK'),
+    ('FC Ararat-Armenia', 'Ararat-Armenia'),
+    ('Hapoel Be’er Sheva', 'Hapoel Beer Sheva', 'H. Beer-Sheva'),
+    ('Panathinaikos FC', 'Panathinaikos'),
+    ('PFC CSKA Sofia', 'CSKA Sofia'),
+    ('Universitatea Craiova', 'CS Universitatea Craiova', 'Univ. Craiova'),
+    ('KF Egnatia', 'Egnatia'),
+    ('FC Twente Enschede', 'FC Twente', 'Twente'),
+    ('Pafos FC', 'Pafos'),
+    ('FC Copenhagen', 'FC København', 'Copenhagen'),
+    ('FC Iberia 1999', 'Iberia Tbilisi'),
+    ('FC Lugano', 'Lugano'),
+    ('FK Kauno Žalgiris', 'Kauno Žalgiris'),
+    ('AS Monaco', 'AS Monaco FC', 'Monaco'),
+    ('FC Nordsjaelland', 'FC Nordsjælland', 'Nordsjælland'),
+    ('Brighton and Hove Albion', 'Brighton & Hove Albion FC', 'Brighton'),
+    ('Manchester United', 'Manchester United FC'),
+    ('Bayern Munich', 'FC Bayern München', 'Bayern München'),
+    ('FSV Mainz 05', '1. FSV Mainz 05', 'Mainz 05'),
+    ('Paris Saint Germain', 'Paris Saint-Germain FC', 'Paris Saint-Germain'),
+    ('Troyes', 'ES Troyes AC'),
+    ('AZ Alkmaar', 'AZ'),
+    ('Groningen', 'FC Groningen'),
+    ('PSV Eindhoven', 'PSV'),
+    ('Ajax', 'AFC Ajax'),
+    ('SC Cambuur', 'SC Cambuur-Leeuwarden'),
+    ('NEC Nijmegen', 'N.E.C.', 'Nijmegen Eendracht Combinatie'),
+    ('Rennes', 'Stade Rennais FC'),
+    ('Lille', 'Lille OSC'),
+    ('CF Estrela', 'CF Estrela da Amadora'),
+    ('Benfica', 'SL Benfica'),
+    ('Levante', 'Levante UD'),
+    ('Venezia', 'Venezia FC'),
+    ('Udinese', 'Udinese Calcio'),
+)
+_RESULT_KEYS = {team_key(alias): team_key(group[0]) for group in CLUB_ALIASES for alias in group}
+
+
+def result_team_key(name, is_national=False):
+    key = team_key(name, is_national)
+    return key if is_national else _RESULT_KEYS.get(key, key)
 
 
 def selection_key(pick):
@@ -59,7 +110,7 @@ def match_saved_picks(picks, rows):
                 if kickoff.astimezone(OSLO).date() != start.astimezone(OSLO).date():
                     continue
                 is_national = national(pick)
-                if any(team_key(pick.get(side), is_national) != team_key(
+                if any(result_team_key(pick.get(side), is_national) != result_team_key(
                         (row.get(side + 'Team') or {}).get('name'), is_national)
                        for side in ('home', 'away')):
                     continue

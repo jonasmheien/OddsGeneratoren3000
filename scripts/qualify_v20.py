@@ -249,6 +249,12 @@ def main(path):
     temp = target.with_name(target.name+'.v20.tmp')
     temp.write_text(json.dumps(obj,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     temp.replace(target)
+    from operations_v55 import record_attempt
+    project = Path(__file__).resolve().parents[1]
+    execution_root = project if target.resolve().is_relative_to(project) else target.parent
+    at = dt(obj['generatedAt'])
+    preview = obj.get('localDate') != at.astimezone(ZoneInfo('Europe/Oslo')).date().isoformat()
+    record_attempt(execution_root, obj, at, mode='preview' if preview else 'core')
     print('V20_QUALIFIED='+str(len(obj['recommendations']))+' OBSERVATIONS='+str(len(obj['observations'])))
 
 

@@ -28,7 +28,7 @@ def bookmaker(name='book1'):
 
 def snapshot():
     kickoff=NOW+timedelta(hours=12)
-    return {'generatedAt':STAMP,'matches':[
+    return {'generatedAt':STAMP,'dataStatus':{'oddsCreditsRemaining':250},'matches':[
         {'id':'112233','status':'SCHEDULED','kickoff':kickoff.isoformat(),
          'home':'Liverpool','away':'Brentford','league':'Premier League',
          'leagueCode':'PL', 'odds':{'O25':{'price':1.75},'THO15':{'price':1.6},'H1O05':{'price':1.50},'BTTS':{'price':1.92}},

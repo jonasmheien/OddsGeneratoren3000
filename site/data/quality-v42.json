@@ -1,25 +1,24 @@
 {
   "schemaVersion": 42,
-  "editionDate": "2026-11-17",
-  "editionGeneratedAt": "2026-11-17T19:21:27.017679+00:00",
-  "checkedAt": "2026-11-19T13:36:48.479859+00:00",
-  "freshness": "not_published",
-  "analysisAgeHours": 42.26,
+  "editionDate": "2026-11-19",
+  "editionGeneratedAt": "2026-11-19T13:39:19.981427+00:00",
+  "checkedAt": "2026-11-19T13:40:43.621876+00:00",
+  "freshness": "current",
+  "analysisAgeHours": 0.02,
   "data": {
-    "upcomingMatches": 8,
-    "matchesWithOdds": 8,
-    "oddsCoveragePct": 100.0,
-    "withModel": 8,
-    "oddsFixturesWithLinkedForm": 8,
+    "upcomingMatches": 3,
+    "matchesWithOdds": 2,
+    "oddsCoveragePct": 66.7,
+    "withModel": 2,
+    "oddsFixturesWithLinkedForm": 1,
     "externalPredictions": 0,
     "qualifiedRecommendations": 0,
-    "safeBets": 4,
-    "highRisk": 3,
-    "interestingObjects": 1,
-    "oddsCreditsRemaining": null
+    "safeBets": 0,
+    "highRisk": 2,
+    "interestingObjects": 0,
+    "oddsCreditsRemaining": 11
   },
   "issues": [
-    "Ingen dagsutgave publisert for i dag",
     "Ingen eksterne prognoser er koblet til analysen"
   ],
   "note": "Dekning og kildetilgang er ikke et mål på historisk kalibrering, avkastning eller positiv forventet verdi."

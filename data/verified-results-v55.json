@@ -1,0 +1,1069 @@
+{
+  "schemaVersion": 55,
+  "responses": [
+    {
+      "url": "https://match.uefa.com/v5/matches?competitionId=14&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+      "competition": "14",
+      "retrievedAt": "2026-11-19T12:48:40.423913+00:00",
+      "matches": [
+        {
+          "id": "2050113",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 2,
+              "home": 0
+            },
+            "total": {
+              "away": 2,
+              "home": 0
+            }
+          },
+          "competition": {
+            "id": "14"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T17:45:00Z"
+          },
+          "homeTeam": {
+            "id": "50058",
+            "internationalName": "Milan",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "52298",
+            "internationalName": "Ferencváros",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050115",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 1,
+              "home": 1
+            },
+            "total": {
+              "away": 1,
+              "home": 1
+            }
+          },
+          "competition": {
+            "id": "14"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T17:45:00Z"
+          },
+          "homeTeam": {
+            "id": "50123",
+            "internationalName": "Real Sociedad",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "5312",
+            "internationalName": "Lyon",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050117",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 3,
+              "home": 1
+            },
+            "total": {
+              "away": 3,
+              "home": 1
+            }
+          },
+          "competition": {
+            "id": "14"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T17:45:00Z"
+          },
+          "homeTeam": {
+            "id": "50033",
+            "internationalName": "Sparta Praha",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "2601124",
+            "internationalName": "Bournemouth",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050119",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 0,
+              "home": 2
+            },
+            "total": {
+              "away": 0,
+              "home": 2
+            }
+          },
+          "competition": {
+            "id": "14"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T17:45:00Z"
+          },
+          "homeTeam": {
+            "id": "50074",
+            "internationalName": "Anderlecht",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "50030",
+            "internationalName": "Salzburg",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050121",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 1,
+              "home": 1
+            },
+            "total": {
+              "away": 1,
+              "home": 1
+            }
+          },
+          "competition": {
+            "id": "14"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T17:45:00Z"
+          },
+          "homeTeam": {
+            "id": "52916",
+            "internationalName": "Crystal Palace",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "2600431",
+            "internationalName": "Hoffenheim",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050126",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 1,
+              "home": 3
+            },
+            "total": {
+              "away": 1,
+              "home": 3
+            }
+          },
+          "competition": {
+            "id": "14"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T17:45:00Z"
+          },
+          "homeTeam": {
+            "id": "52330",
+            "internationalName": "N.E.C.",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "50077",
+            "internationalName": "Omonia",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050127",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 1,
+              "home": 0
+            },
+            "total": {
+              "away": 1,
+              "home": 0
+            }
+          },
+          "competition": {
+            "id": "14"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T17:45:00Z"
+          },
+          "homeTeam": {
+            "id": "52314",
+            "internationalName": "Lillestrøm",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "64388",
+            "internationalName": "Viktoria Plzeň",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050128",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 0,
+              "home": 1
+            },
+            "total": {
+              "away": 0,
+              "home": 1
+            }
+          },
+          "competition": {
+            "id": "14"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T17:45:00Z"
+          },
+          "homeTeam": {
+            "id": "50044",
+            "internationalName": "Levski Sofia",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "2600277",
+            "internationalName": "Jagiellonia",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050111",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 1,
+              "home": 0
+            },
+            "total": {
+              "away": 1,
+              "home": 0
+            }
+          },
+          "competition": {
+            "id": "14"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T20:00:00Z"
+          },
+          "homeTeam": {
+            "id": "50109",
+            "internationalName": "Leverkusen",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "52748",
+            "internationalName": "Marseille",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050112",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 1,
+              "home": 3
+            },
+            "total": {
+              "away": 1,
+              "home": 3
+            }
+          },
+          "competition": {
+            "id": "14"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T20:00:00Z"
+          },
+          "homeTeam": {
+            "id": "50147",
+            "internationalName": "Benfica",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "64227",
+            "internationalName": "Lech Poznań",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050114",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 2,
+              "home": 1
+            },
+            "total": {
+              "away": 2,
+              "home": 1
+            }
+          },
+          "competition": {
+            "id": "14"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T20:00:00Z"
+          },
+          "homeTeam": {
+            "id": "52327",
+            "internationalName": "AZ Alkmaar",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "50139",
+            "internationalName": "Juventus",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050116",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 2,
+              "home": 3
+            },
+            "total": {
+              "away": 2,
+              "home": 3
+            }
+          },
+          "competition": {
+            "id": "14"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T20:00:00Z"
+          },
+          "homeTeam": {
+            "id": "50050",
+            "internationalName": "Celtic",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "50157",
+            "internationalName": "Beşiktaş",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050120",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 3,
+              "home": 2
+            },
+            "total": {
+              "away": 3,
+              "home": 2
+            }
+          },
+          "competition": {
+            "id": "14"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T20:00:00Z"
+          },
+          "homeTeam": {
+            "id": "50111",
+            "internationalName": "Sturm Graz",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "59030",
+            "internationalName": "Celje",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050122",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 2,
+              "home": 0
+            },
+            "total": {
+              "away": 2,
+              "home": 0
+            }
+          },
+          "competition": {
+            "id": "14"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T20:00:00Z"
+          },
+          "homeTeam": {
+            "id": "53360",
+            "internationalName": "Sunderland",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "50164",
+            "internationalName": "GNK Dinamo",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050123",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 2,
+              "home": 1
+            },
+            "total": {
+              "away": 2,
+              "home": 1
+            }
+          },
+          "competition": {
+            "id": "14"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T20:00:00Z"
+          },
+          "homeTeam": {
+            "id": "53043",
+            "internationalName": "Celta",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "64125",
+            "internationalName": "Union SG",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050124",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 2,
+              "home": 3
+            },
+            "total": {
+              "away": 2,
+              "home": 3
+            }
+          },
+          "competition": {
+            "id": "14"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T20:00:00Z"
+          },
+          "homeTeam": {
+            "id": "2603107",
+            "internationalName": "Torreense",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "2610304",
+            "internationalName": "Ararat-Armenia",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050125",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 2,
+              "home": 0
+            },
+            "total": {
+              "away": 2,
+              "home": 0
+            }
+          },
+          "competition": {
+            "id": "14"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T20:00:00Z"
+          },
+          "homeTeam": {
+            "id": "59340",
+            "internationalName": "H. Beer-Sheva",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "52953",
+            "internationalName": "OFI Crete",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        }
+      ]
+    },
+    {
+      "url": "https://match.uefa.com/v5/matches?competitionId=2019&seasonYear=2027&fromDate=2026-11-05&toDate=2026-11-06&order=ASC&limit=100&offset=0",
+      "competition": "2019",
+      "retrievedAt": "2026-11-19T12:49:58.184474+00:00",
+      "matches": [
+        {
+          "id": "2050345",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 1,
+              "home": 1
+            },
+            "total": {
+              "away": 1,
+              "home": 1
+            }
+          },
+          "competition": {
+            "id": "2019"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T17:45:00Z"
+          },
+          "homeTeam": {
+            "id": "52816",
+            "internationalName": "Atalanta",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "79970",
+            "internationalName": "Kairat Almaty",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050348",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 6,
+              "home": 1
+            },
+            "total": {
+              "away": 6,
+              "home": 1
+            }
+          },
+          "competition": {
+            "id": "2019"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T17:45:00Z"
+          },
+          "homeTeam": {
+            "id": "75795",
+            "internationalName": "Midtjylland",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "50143",
+            "internationalName": "Ajax",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050349",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 1,
+              "home": 2
+            },
+            "total": {
+              "away": 1,
+              "home": 2
+            }
+          },
+          "competition": {
+            "id": "2019"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T17:45:00Z"
+          },
+          "homeTeam": {
+            "id": "50069",
+            "internationalName": "Crvena Zvezda",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "63401",
+            "internationalName": "Inter Escaldes",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050353",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 0,
+              "home": 0
+            },
+            "total": {
+              "away": 0,
+              "home": 0
+            }
+          },
+          "competition": {
+            "id": "2019"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T17:45:00Z"
+          },
+          "homeTeam": {
+            "id": "52350",
+            "internationalName": "KuPS Kuopio",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "4608",
+            "internationalName": "Gent",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050355",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 0,
+              "home": 1
+            },
+            "total": {
+              "away": 0,
+              "home": 1
+            }
+          },
+          "competition": {
+            "id": "2019"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T17:45:00Z"
+          },
+          "homeTeam": {
+            "id": "2605572",
+            "internationalName": "L. Red Imps",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "52359",
+            "internationalName": "Hajduk Split",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050357",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 1,
+              "home": 0
+            },
+            "total": {
+              "away": 1,
+              "home": 0
+            }
+          },
+          "competition": {
+            "id": "2019"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T17:45:00Z"
+          },
+          "homeTeam": {
+            "id": "52731",
+            "internationalName": "Trabzonspor",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "59880",
+            "internationalName": "Freiburg",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050360",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 0,
+              "home": 0
+            },
+            "total": {
+              "away": 0,
+              "home": 0
+            }
+          },
+          "competition": {
+            "id": "2019"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T17:45:00Z"
+          },
+          "homeTeam": {
+            "id": "50019",
+            "internationalName": "Aarhus",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "52336",
+            "internationalName": "Braga",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050361",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 1,
+              "home": 3
+            },
+            "total": {
+              "away": 1,
+              "home": 3
+            }
+          },
+          "competition": {
+            "id": "2019"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T17:45:00Z"
+          },
+          "homeTeam": {
+            "id": "80409",
+            "internationalName": "Thun",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "50120",
+            "internationalName": "Hearts",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050362",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 0,
+              "home": 2
+            },
+            "total": {
+              "away": 0,
+              "home": 2
+            }
+          },
+          "competition": {
+            "id": "2019"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T17:45:00Z"
+          },
+          "homeTeam": {
+            "id": "74233",
+            "internationalName": "Mjällby",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "50104",
+            "internationalName": "Borac",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050346",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 0,
+              "home": 2
+            },
+            "total": {
+              "away": 0,
+              "home": 2
+            }
+          },
+          "competition": {
+            "id": "2019"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T20:00:00Z"
+          },
+          "homeTeam": {
+            "id": "50023",
+            "internationalName": "Monaco",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "79940",
+            "internationalName": "Nordsjælland",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050347",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 1,
+              "home": 2
+            },
+            "total": {
+              "away": 1,
+              "home": 2
+            }
+          },
+          "competition": {
+            "id": "2019"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T20:00:00Z"
+          },
+          "homeTeam": {
+            "id": "52709",
+            "internationalName": "Copenhagen",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "2605905",
+            "internationalName": "Iberia Tbilisi",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050350",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 1,
+              "home": 2
+            },
+            "total": {
+              "away": 1,
+              "home": 2
+            }
+          },
+          "competition": {
+            "id": "2019"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T20:00:00Z"
+          },
+          "homeTeam": {
+            "id": "50084",
+            "internationalName": "Panathinaikos",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "2608297",
+            "internationalName": "CSKA Sofia",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050351",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 0,
+              "home": 3
+            },
+            "total": {
+              "away": 0,
+              "home": 3
+            }
+          },
+          "competition": {
+            "id": "2019"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T20:00:00Z"
+          },
+          "homeTeam": {
+            "id": "8538",
+            "internationalName": "Lugano",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "2605907",
+            "internationalName": "Kauno Žalgiris",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050352",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 1,
+              "home": 0
+            },
+            "total": {
+              "away": 1,
+              "home": 0
+            }
+          },
+          "competition": {
+            "id": "2019"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T20:00:00Z"
+          },
+          "homeTeam": {
+            "id": "87960",
+            "internationalName": "Getafe",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "2601105",
+            "internationalName": "Brighton",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050354",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 1,
+              "home": 3
+            },
+            "total": {
+              "away": 1,
+              "home": 3
+            }
+          },
+          "competition": {
+            "id": "2019"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T20:00:00Z"
+          },
+          "homeTeam": {
+            "id": "52818",
+            "internationalName": "Twente",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "2609532",
+            "internationalName": "Pafos",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050356",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 1,
+              "home": 1
+            },
+            "total": {
+              "away": 1,
+              "home": 1
+            }
+          },
+          "competition": {
+            "id": "2019"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T20:00:00Z"
+          },
+          "homeTeam": {
+            "id": "52883",
+            "internationalName": "Sint-Truidense",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "52770",
+            "internationalName": "Brann",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050358",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 0,
+              "home": 2
+            },
+            "total": {
+              "away": 0,
+              "home": 2
+            }
+          },
+          "competition": {
+            "id": "2019"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T20:00:00Z"
+          },
+          "homeTeam": {
+            "id": "2606501",
+            "internationalName": "Univ. Craiova",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "88148",
+            "internationalName": "Egnatia",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        },
+        {
+          "id": "2050359",
+          "status": "FINISHED",
+          "score": {
+            "regular": {
+              "away": 1,
+              "home": 1
+            },
+            "total": {
+              "away": 1,
+              "home": 1
+            }
+          },
+          "competition": {
+            "id": "2019"
+          },
+          "kickOffTime": {
+            "dateTime": "2026-11-05T20:00:00Z"
+          },
+          "homeTeam": {
+            "id": "2607924",
+            "internationalName": "Riga",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          },
+          "awayTeam": {
+            "id": "62169",
+            "internationalName": "Jablonec",
+            "teamTypeDetail": "DOMESTIC_MEN_TEAM_A"
+          }
+        }
+      ]
+    }
+  ]
+}
