@@ -1,49 +1,32 @@
 {
   "schemaVersion": 55,
-  "checkedAt": "2026-11-19T15:48:19.387988+00:00",
-  "checkedHour": "2026-11-19T15:00:00+00:00",
+  "checkedAt": "2026-11-19T16:17:05.478906+00:00",
+  "checkedHour": "2026-11-19T16:00:00+00:00",
   "targetDate": "2026-11-19",
-  "reason": "ready",
+  "reason": "source_error",
   "editionDate": "2026-11-19",
   "editionGeneratedAt": "2026-11-19T13:39:19.981427+00:00",
   "lastAnalysis": {
     "targetDate": "2026-11-19",
-    "reason": "ready",
+    "reason": "source_error",
     "coverage": {
-      "upcoming": 3,
-      "withOdds": 2,
-      "withModel": 2
+      "upcoming": 0,
+      "withOdds": 0,
+      "withModel": 0
     },
     "providers": {
       "fixtures": "ok",
-      "odds": "ok",
+      "odds": "not_configured",
       "sportmonks": "ok",
       "catalogAvailable": true,
       "failedEventLists": 0,
       "failedOddsRequests": 0
     },
-    "requestedLeagues": [
-      "soccer_brazil_campeonato"
-    ],
+    "requestedLeagues": [],
     "oddsCreditsRemaining": 11,
-    "budget": {
-      "remaining": 11,
-      "checkedAt": "2026-11-19T13:39:19.981427+00:00",
-      "dailyCredits": {
-        "core": 2,
-        "requests": 1
-      },
-      "dailyLimits": {
-        "core": 2,
-        "preview": 0,
-        "extra": 0
-      },
-      "cacheHits": 0,
-      "denied": [],
-      "uncertainCredits": 0
-    },
-    "checkedAt": "2026-11-19T13:39:19.981427+00:00",
-    "runId": "44535540166"
+    "budget": null,
+    "checkedAt": "2026-11-19T16:16:44.832635+00:00",
+    "runId": "44564205691"
   },
   "previewAnalysis": null,
   "results": {
@@ -63,7 +46,7 @@
       }
     ],
     "matchedFixtures": 0,
-    "checkedAt": "2026-11-19T15:48:17.072483+00:00",
+    "checkedAt": "2026-11-19T16:17:00.202255+00:00",
     "unresolved": 21,
     "pending": 2
   }
