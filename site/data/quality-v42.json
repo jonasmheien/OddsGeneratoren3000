@@ -2,9 +2,9 @@
   "schemaVersion": 42,
   "editionDate": "2026-11-19",
   "editionGeneratedAt": "2026-11-19T13:39:19.981427+00:00",
-  "checkedAt": "2026-11-19T22:51:08.954573+00:00",
-  "freshness": "current",
-  "analysisAgeHours": 9.2,
+  "checkedAt": "2026-11-19T23:06:12.759310+00:00",
+  "freshness": "not_published",
+  "analysisAgeHours": 9.45,
   "data": {
     "upcomingMatches": 3,
     "matchesWithOdds": 2,
@@ -19,7 +19,6 @@
     "oddsCreditsRemaining": 11
   },
   "issues": [
-    "Dagens analyse er mer enn åtte timer gammel",
     "Ingen eksterne prognoser er koblet til analysen"
   ],
   "note": "Dekning og kildetilgang er ikke et mål på historisk kalibrering, avkastning eller positiv forventet verdi."
