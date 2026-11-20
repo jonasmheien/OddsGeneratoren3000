@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 34,
+  "editionDate": "2026-11-20",
+  "revisions": [
+    {
+      "id": "c788d637b349987a8224279a",
+      "editionGeneratedAt": "2026-11-20T09:04:38.878891+00:00",
+      "recordedAt": "2026-11-20T09:05:55.280Z",
+      "summary": {
+        "total": 1,
+        "qualified": 0,
+        "high": 0,
+        "safe": 1,
+        "watch": 0,
+        "withBothFive": 0,
+        "withFormModel": 0,
+        "marketBased": 1,
+        "expertWritten": 0,
+        "modelMarketConflicts": 0,
+        "unverifiedResults": 1
+      },
+      "groups": {
+        "qualified": [],
+        "high": [],
+        "safe": [
+          {
+            "matchId": "odds:02d5f40630d0280cd520175f22b7a25c",
+            "home": "AGF Aarhus",
+            "away": "Lyngby",
+            "league": "Superliga",
+            "kickoff": "2026-11-20T18:00:00+00:00",
+            "market": "O25",
+            "label": "Over 2,5 mål",
+            "price": 1.55,
+            "probability": 0.6026,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-20T09:04:57Z",
+            "bookmakerCount": 8,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "partial_form",
+              "homeLastFive": "",
+              "awayLastFive": "LWLDL",
+              "modelSample": null,
+              "formModelProbability": null,
+              "bookmakerImpliedProbability": 0.6025641025641025,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": [
+                "home_form_missing",
+                "model_unavailable"
+              ]
+            }
+          }
+        ],
+        "watch": []
+      }
+    }
+  ]
+}

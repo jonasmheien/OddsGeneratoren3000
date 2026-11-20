@@ -5295,6 +5295,28 @@
         "sourceMatchId": "555088"
       },
       "settledAt": "2026-11-20T01:52:44.358336+00:00"
+    },
+    {
+      "matchId": "odds:02d5f40630d0280cd520175f22b7a25c",
+      "home": "AGF Aarhus",
+      "away": "Lyngby",
+      "league": "Superliga",
+      "kickoff": "2026-11-20T18:00:00+00:00",
+      "market": "O25",
+      "label": "Over 2,5 mål",
+      "price": 1.55,
+      "id": "6a29d17a0a3b005e7d22a294",
+      "selectionKey": "2026-11-20|agfaarhus|lyngby|O25",
+      "category": "safe",
+      "editionDate": "2026-11-20",
+      "firstPublishedAt": "2026-11-20T09:05:55.280000+00:00",
+      "publicationRevision": "c788d637b349987a8224279a",
+      "sourceIds": [
+        "odds:02d5f40630d0280cd520175f22b7a25c"
+      ],
+      "result": {
+        "status": "scheduled"
+      }
     }
   ]
 }

@@ -1,0 +1,3091 @@
+{
+  "version": 3,
+  "recommendations": [],
+  "safeBets": [],
+  "highRisk": [
+    {
+      "matchId": "555088",
+      "home": "Vasco da Gama",
+      "away": "Internacional",
+      "kickoff": "2026-11-19T22:30:00+00:00",
+      "league": "Campeonato Brasileiro Série A",
+      "market": "B",
+      "marketType": "match_result",
+      "label": "Borteseier",
+      "price": 5.37,
+      "bookmakers": 24,
+      "oddsUpdatedAt": "2026-11-19T13:39:22Z",
+      "oddsSource": "The Odds API · bookmaker-median",
+      "probability": 0.2844,
+      "category": "high",
+      "qualificationTier": "model",
+      "_candidateType": "model",
+      "rationale": [
+        "Modellkandidat: 28 % formanslag mot 17 % fra bookmakerodds.",
+        "Ikke historisk kalibrert eller godkjent som dokumentert verdiobjekt."
+      ],
+      "fixtureKey": "2026-11-19|vascodagama|internacional",
+      "marketIdentity": {
+        "family": "match_result",
+        "period": "full_time",
+        "line": null,
+        "subject": null,
+        "outcome": "away"
+      },
+      "selectionId": "v40:25377f291c5ef7a8c823",
+      "result": {
+        "status": "lost",
+        "score": {
+          "home": 2,
+          "away": 1
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-18&dateTo=2026-11-21",
+        "sourceMatchId": "555088"
+      }
+    },
+    {
+      "matchId": "odds:fa3ad7ccd23c6fe47c3062a2b69d3ddd",
+      "home": "Vitoria",
+      "away": "Bragantino-SP",
+      "kickoff": "2026-11-19T22:30:00+00:00",
+      "league": "Brasileirão Série A",
+      "market": "B",
+      "marketType": "match_result",
+      "label": "Borteseier",
+      "price": 2.5,
+      "bookmakers": 24,
+      "oddsUpdatedAt": "2026-11-19T13:39:22Z",
+      "oddsSource": "The Odds API · bookmaker-median",
+      "probability": 0.3752,
+      "category": "high",
+      "qualificationTier": "market",
+      "_candidateType": "market",
+      "rationale": [
+        "Bookmakerbasert risikokandidat: markedsanslag rundt 38 %.",
+        "Ingen dokumentert positiv spillverdi."
+      ],
+      "fixtureKey": "2026-11-19|vitoria|bragantinosp",
+      "marketIdentity": {
+        "family": "match_result",
+        "period": "full_time",
+        "line": null,
+        "subject": null,
+        "outcome": "away"
+      },
+      "selectionId": "v40:3529aee2efc91c2a0a70",
+      "result": {
+        "status": "scheduled"
+      }
+    }
+  ],
+  "coverage": {
+    "upcomingMatches": 3,
+    "matchedOdds": 2,
+    "withModel": 2,
+    "oddsWithVerifiedForm": 1,
+    "nationalWithModel": 0,
+    "externalPredictions": 0,
+    "manualPredictions": 0,
+    "apiPredictions": 0,
+    "safeFound": 0,
+    "highFound": 2,
+    "targetPerCategory": [
+      3,
+      5
+    ],
+    "qualified": 0
+  },
+  "sources": [
+    {
+      "name": "football-data.org",
+      "role": "Kampdata og form",
+      "state": "connected"
+    },
+    {
+      "name": "The Odds API",
+      "role": "Bookmakerodds",
+      "state": "connected"
+    },
+    {
+      "name": "API-Football Predictions",
+      "role": "Uavhengig modell",
+      "state": "not_connected"
+    },
+    {
+      "name": "Eksterne prognoser",
+      "role": "Kildeangitte, manuelt innlagte vurderinger",
+      "state": "not_connected"
+    },
+    {
+      "name": "Sportmonks",
+      "role": "Verifisert kampform og oppsett i Danmark og Skottland",
+      "state": "connected"
+    }
+  ],
+  "visualAssets": {
+    "licensedCrests": false
+  },
+  "qualityGate": {
+    "minimumFormMatchesPerTeam": 5,
+    "minimumSpecialStatisticsPerTeam": 8,
+    "maximumOddsAgeHours": 6,
+    "oneBookmakerRequiresSamples": 8,
+    "minimumConservativeScenarioEdge": 0.02,
+    "explanation": "Ukalibrert sannsynlighetsmodell. Kun positiv forventet verdi i et konservativt scenario, ikke påvist langsiktig avkastning."
+  },
+  "generatedAt": "2026-11-19T13:39:19.981427+00:00",
+  "localDate": "2026-11-19",
+  "dataStatus": {
+    "fixtures": "ok",
+    "odds": "ok",
+    "teamFormRequests": 0,
+    "fixtureCount": 2336,
+    "sportmonks": {
+      "state": "ok",
+      "matches": 133,
+      "finished": 126,
+      "upcoming": 0,
+      "pages": 7,
+      "error": null
+    },
+    "matchdayDiscovery": {
+      "targetDate": "2026-11-19",
+      "catalogAvailable": true,
+      "matchesBySport": {
+        "soccer_brazil_campeonato": 2
+      },
+      "selected": [
+        "soccer_brazil_campeonato"
+      ],
+      "errors": [],
+      "checkedSports": 18,
+      "failedSports": 0
+    },
+    "internationalSportsSelected": [],
+    "oddsCreditsRemaining": 11,
+    "oddsBudgetLimited": false,
+    "requestedLeagues": [
+      "soccer_brazil_campeonato"
+    ],
+    "oddsMarketKeys": [
+      "h2h",
+      "totals"
+    ],
+    "extraMarketsSkippedQuota": true,
+    "extraEventsLoaded": 0,
+    "successfulOddsRequests": 1,
+    "failedOddsRequests": 0,
+    "oddsEventCount": 2,
+    "oddsBudget": {
+      "remaining": 11,
+      "checkedAt": "2026-11-19T13:39:19.981427+00:00",
+      "dailyCredits": {
+        "core": 2,
+        "requests": 1
+      },
+      "dailyLimits": {
+        "core": 2,
+        "preview": 0,
+        "extra": 0
+      },
+      "cacheHits": 0,
+      "denied": [],
+      "uncertainCredits": 0
+    },
+    "oddsFixtureSource": "The Odds API (bookmaker listings)",
+    "oddsFirstFixtures": 1,
+    "officialFormBridge": {
+      "historyFixturesAvailable": 761,
+      "matchedOddsTeams": 1,
+      "oddsFixturesWithBothTeamsMatched": 0
+    },
+    "additionalFormBridge": {
+      "mode": "fetched",
+      "sourceCount": 12,
+      "completedFixtures": 1242,
+      "lastAttempt": "2026-11-19T13:39:19.981427+00:00",
+      "errors": [],
+      "attemptedSources": [
+        "B1",
+        "T1",
+        "G1",
+        "SC0",
+        "NOR",
+        "SWE",
+        "DNK",
+        "POL",
+        "AUT",
+        "FIN",
+        "SWZ",
+        "ROU"
+      ],
+      "teamsLinked": 0,
+      "fixturesTouched": 0,
+      "historyMatches": 1242
+    },
+    "externalPredictionsStatus": "not_configured",
+    "coverageByLeague": {
+      "BSA": {
+        "upcoming": 2,
+        "withOdds": 1,
+        "withModel": 2,
+        "eligible": 0
+      },
+      "ODDS-BSA": {
+        "upcoming": 1,
+        "withOdds": 1,
+        "withModel": 0,
+        "eligible": 0
+      }
+    },
+    "analysisReadiness": {
+      "upcoming": 3,
+      "matchedOdds": 2,
+      "withModel": 2,
+      "recommended": 0,
+      "safe": 0,
+      "highRisk": 2,
+      "message": "Vanligste avvisning skyldtes for lav beregnet spillverdi."
+    }
+  },
+  "errors": [],
+  "method": "Konservativ ikke-kalibrert Poisson-baseline fra siste inntil 6 registrerte resultater. Screening er en hypotese, ikke dokumentert positiv forventningsverdi.",
+  "matches": [
+    {
+      "id": "555088",
+      "league": "Campeonato Brasileiro Série A",
+      "leagueCode": "BSA",
+      "leagueCrest": "https://crests.football-data.org/bsa.png",
+      "homeCrest": "https://crests.football-data.org/1780.png",
+      "awayCrest": "https://crests.football-data.org/6684.png",
+      "home": "Vasco da Gama",
+      "away": "Internacional",
+      "homeAliases": [
+        "CR Vasco da Gama"
+      ],
+      "awayAliases": [
+        "SC Internacional"
+      ],
+      "kickoff": "2026-11-19T22:30:00+00:00",
+      "status": "TIMED",
+      "formHome": "WWLWLDWWWLWLLDDL",
+      "formAway": "WLWLDWLWLLDDDDLL",
+      "formMatchesHome": [
+        {
+          "matchId": "554942",
+          "source": "football-data.org",
+          "sourceMatchId": "554942",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-11-14T23:30:00Z",
+          "localDate": "2026-11-15",
+          "homeTeam": {
+            "id": 1772,
+            "name": "Chapecoense AF"
+          },
+          "awayTeam": {
+            "id": 1780,
+            "name": "CR Vasco da Gama"
+          },
+          "homeGoals": 0,
+          "awayGoals": 2,
+          "analyzedTeamId": 1780,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 2,
+          "opponentGoals": 0,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Borte",
+          "opponent": "Chapecoense AF",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555070",
+          "source": "football-data.org",
+          "sourceMatchId": "555070",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-11-04T22:30:00Z",
+          "localDate": "2026-11-04",
+          "homeTeam": {
+            "id": 1768,
+            "name": "CA Paranaense"
+          },
+          "awayTeam": {
+            "id": 1780,
+            "name": "CR Vasco da Gama"
+          },
+          "homeGoals": 1,
+          "awayGoals": 3,
+          "analyzedTeamId": 1780,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 3,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Borte",
+          "opponent": "CA Paranaense",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555069",
+          "source": "football-data.org",
+          "sourceMatchId": "555069",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-29T23:00:00Z",
+          "localDate": "2026-10-30",
+          "homeTeam": {
+            "id": 1780,
+            "name": "CR Vasco da Gama"
+          },
+          "awayTeam": {
+            "id": 1783,
+            "name": "CR Flamengo"
+          },
+          "homeGoals": 1,
+          "awayGoals": 4,
+          "analyzedTeamId": 1780,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 4,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Hjemme",
+          "opponent": "CR Flamengo",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555058",
+          "source": "football-data.org",
+          "sourceMatchId": "555058",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-24T21:30:00Z",
+          "localDate": "2026-10-24",
+          "homeTeam": {
+            "id": 1780,
+            "name": "CR Vasco da Gama"
+          },
+          "awayTeam": {
+            "id": 1779,
+            "name": "SC Corinthians Paulista"
+          },
+          "homeGoals": 3,
+          "awayGoals": 2,
+          "analyzedTeamId": 1780,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 3,
+          "opponentGoals": 2,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Hjemme",
+          "opponent": "SC Corinthians Paulista",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555049",
+          "source": "football-data.org",
+          "sourceMatchId": "555049",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-18T00:00:00Z",
+          "localDate": "2026-10-18",
+          "homeTeam": {
+            "id": 1776,
+            "name": "São Paulo FC"
+          },
+          "awayTeam": {
+            "id": 1780,
+            "name": "CR Vasco da Gama"
+          },
+          "homeGoals": 1,
+          "awayGoals": 0,
+          "analyzedTeamId": 1780,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 0,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Borte",
+          "opponent": "São Paulo FC",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        }
+      ],
+      "formMatchesAway": [
+        {
+          "matchId": "555076",
+          "source": "football-data.org",
+          "sourceMatchId": "555076",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-11-04T00:30:00Z",
+          "localDate": "2026-11-04",
+          "homeTeam": {
+            "id": 6684,
+            "name": "SC Internacional"
+          },
+          "awayTeam": {
+            "id": 4241,
+            "name": "Coritiba FBC"
+          },
+          "homeGoals": 1,
+          "awayGoals": 0,
+          "analyzedTeamId": 6684,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 0,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Hjemme",
+          "opponent": "Coritiba FBC",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555065",
+          "source": "football-data.org",
+          "sourceMatchId": "555065",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-28T22:30:00Z",
+          "localDate": "2026-10-28",
+          "homeTeam": {
+            "id": 1765,
+            "name": "Fluminense FC"
+          },
+          "awayTeam": {
+            "id": 6684,
+            "name": "SC Internacional"
+          },
+          "homeGoals": 2,
+          "awayGoals": 1,
+          "analyzedTeamId": 6684,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 2,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Borte",
+          "opponent": "Fluminense FC",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555054",
+          "source": "football-data.org",
+          "sourceMatchId": "555054",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-24T19:30:00Z",
+          "localDate": "2026-10-24",
+          "homeTeam": {
+            "id": 6684,
+            "name": "SC Internacional"
+          },
+          "awayTeam": {
+            "id": 1770,
+            "name": "Botafogo FR"
+          },
+          "homeGoals": 3,
+          "awayGoals": 0,
+          "analyzedTeamId": 6684,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 3,
+          "opponentGoals": 0,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Hjemme",
+          "opponent": "Botafogo FR",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555047",
+          "source": "football-data.org",
+          "sourceMatchId": "555047",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-16T23:00:00Z",
+          "localDate": "2026-10-17",
+          "homeTeam": {
+            "id": 4364,
+            "name": "Mirassol FC"
+          },
+          "awayTeam": {
+            "id": 6684,
+            "name": "SC Internacional"
+          },
+          "homeGoals": 2,
+          "awayGoals": 0,
+          "analyzedTeamId": 6684,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 0,
+          "opponentGoals": 2,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Borte",
+          "opponent": "Mirassol FC",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555036",
+          "source": "football-data.org",
+          "sourceMatchId": "555036",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-11T20:30:00Z",
+          "localDate": "2026-10-11",
+          "homeTeam": {
+            "id": 1767,
+            "name": "Grêmio FBPA"
+          },
+          "awayTeam": {
+            "id": 6684,
+            "name": "SC Internacional"
+          },
+          "homeGoals": 1,
+          "awayGoals": 1,
+          "analyzedTeamId": 6684,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "D",
+          "venueLabel": "Borte",
+          "opponent": "Grêmio FBPA",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        }
+      ],
+      "formHistoryDiagnostics": {
+        "home": {
+          "verified": 16,
+          "displayable": 5,
+          "issues": []
+        },
+        "away": {
+          "verified": 16,
+          "displayable": 5,
+          "issues": []
+        }
+      },
+      "model": {
+        "probabilities": {
+          "H": 0.4509,
+          "U": 0.2646,
+          "B": 0.2844,
+          "O25": 0.4576,
+          "U25": 0.5424,
+          "O35": 0.2436,
+          "BTTS": 0.5013,
+          "O15": 0.7147,
+          "U15": 0.2853,
+          "U35": 0.7554,
+          "BTTSN": 0.4987,
+          "THO05": 0.7607,
+          "THU05": 0.2393,
+          "THO15": 0.4185,
+          "THU15": 0.5815,
+          "THO25": 0.1738,
+          "THU25": 0.8262,
+          "TAO05": 0.6604,
+          "TAU05": 0.3396,
+          "TAO15": 0.2936,
+          "TAU15": 0.7064,
+          "TAO25": 0.0956,
+          "TAU25": 0.9044,
+          "H1O05": 0.6406,
+          "H1O15": 0.2728,
+          "H1U15": 0.7272
+        },
+        "expectedGoals": [
+          1.43,
+          1.08
+        ],
+        "sample": [
+          16,
+          16
+        ],
+        "quality": "basic",
+        "effectiveSample": [
+          10.72,
+          10.22
+        ],
+        "modelMethod": "strength_adjusted_v21",
+        "historyWindowDays": 180
+      },
+      "odds": {
+        "B": {
+          "price": 5.37,
+          "source": "The Odds API · bookmaker-median",
+          "books": 24,
+          "lastUpdated": "2026-11-19T13:39:22Z",
+          "sampleBook": "betsson"
+        },
+        "H": {
+          "price": 1.56,
+          "source": "The Odds API · bookmaker-median",
+          "books": 24,
+          "lastUpdated": "2026-11-19T13:39:22Z",
+          "sampleBook": "mybookieag"
+        },
+        "U": {
+          "price": 4.08,
+          "source": "The Odds API · bookmaker-median",
+          "books": 24,
+          "lastUpdated": "2026-11-19T13:39:22Z",
+          "sampleBook": "codere_it"
+        },
+        "O25": {
+          "price": 1.72,
+          "source": "The Odds API · bookmaker-median",
+          "books": 17,
+          "lastUpdated": "2026-11-19T13:39:22Z",
+          "sampleBook": "marathonbet"
+        },
+        "U25": {
+          "price": 2.05,
+          "source": "The Odds API · bookmaker-median",
+          "books": 17,
+          "lastUpdated": "2026-11-19T13:39:22Z",
+          "sampleBook": "marathonbet"
+        }
+      },
+      "predictions": []
+    },
+    {
+      "id": "555089",
+      "league": "Campeonato Brasileiro Série A",
+      "leagueCode": "BSA",
+      "leagueCrest": "https://crests.football-data.org/bsa.png",
+      "homeCrest": "https://crests.football-data.org/1782.png",
+      "awayCrest": "https://crests.football-data.org/4286.png",
+      "home": "Vitória",
+      "away": "Bragantino",
+      "homeAliases": [
+        "EC Vitória"
+      ],
+      "awayAliases": [
+        "RB Bragantino"
+      ],
+      "kickoff": "2026-11-19T22:30:00+00:00",
+      "status": "TIMED",
+      "formHome": "LLDDLWLDWLLWLLLD",
+      "formAway": "WWLDWDLLDLLWDLDD",
+      "formMatchesHome": [
+        {
+          "matchId": "555079",
+          "source": "football-data.org",
+          "sourceMatchId": "555079",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-11-06T23:00:00Z",
+          "localDate": "2026-11-07",
+          "homeTeam": {
+            "id": 1782,
+            "name": "EC Vitória"
+          },
+          "awayTeam": {
+            "id": 1765,
+            "name": "Fluminense FC"
+          },
+          "homeGoals": 0,
+          "awayGoals": 3,
+          "analyzedTeamId": 1782,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 0,
+          "opponentGoals": 3,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Hjemme",
+          "opponent": "Fluminense FC",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555064",
+          "source": "football-data.org",
+          "sourceMatchId": "555064",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-31T19:00:00Z",
+          "localDate": "2026-10-31",
+          "homeTeam": {
+            "id": 4241,
+            "name": "Coritiba FBC"
+          },
+          "awayTeam": {
+            "id": 1782,
+            "name": "EC Vitória"
+          },
+          "homeGoals": 2,
+          "awayGoals": 0,
+          "analyzedTeamId": 1782,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 0,
+          "opponentGoals": 2,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Borte",
+          "opponent": "Coritiba FBC",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555059",
+          "source": "football-data.org",
+          "sourceMatchId": "555059",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-24T19:30:00Z",
+          "localDate": "2026-10-24",
+          "homeTeam": {
+            "id": 1782,
+            "name": "EC Vitória"
+          },
+          "awayTeam": {
+            "id": 1768,
+            "name": "CA Paranaense"
+          },
+          "homeGoals": 1,
+          "awayGoals": 1,
+          "analyzedTeamId": 1782,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "D",
+          "venueLabel": "Hjemme",
+          "opponent": "CA Paranaense",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555044",
+          "source": "football-data.org",
+          "sourceMatchId": "555044",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-19T23:00:00Z",
+          "localDate": "2026-10-20",
+          "homeTeam": {
+            "id": 1779,
+            "name": "SC Corinthians Paulista"
+          },
+          "awayTeam": {
+            "id": 1782,
+            "name": "EC Vitória"
+          },
+          "homeGoals": 1,
+          "awayGoals": 1,
+          "analyzedTeamId": 1782,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "D",
+          "venueLabel": "Borte",
+          "opponent": "SC Corinthians Paulista",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555038",
+          "source": "football-data.org",
+          "sourceMatchId": "555038",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-11T00:00:00Z",
+          "localDate": "2026-10-11",
+          "homeTeam": {
+            "id": 1776,
+            "name": "São Paulo FC"
+          },
+          "awayTeam": {
+            "id": 1782,
+            "name": "EC Vitória"
+          },
+          "homeGoals": 2,
+          "awayGoals": 1,
+          "analyzedTeamId": 1782,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 2,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Borte",
+          "opponent": "São Paulo FC",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        }
+      ],
+      "formMatchesAway": [
+        {
+          "matchId": "555072",
+          "source": "football-data.org",
+          "sourceMatchId": "555072",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-11-02T23:00:00Z",
+          "localDate": "2026-11-03",
+          "homeTeam": {
+            "id": 4286,
+            "name": "RB Bragantino"
+          },
+          "awayTeam": {
+            "id": 6685,
+            "name": "Santos FC"
+          },
+          "homeGoals": 2,
+          "awayGoals": 1,
+          "analyzedTeamId": 4286,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 2,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Hjemme",
+          "opponent": "Santos FC",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555062",
+          "source": "football-data.org",
+          "sourceMatchId": "555062",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-28T22:30:00Z",
+          "localDate": "2026-10-28",
+          "homeTeam": {
+            "id": 4286,
+            "name": "RB Bragantino"
+          },
+          "awayTeam": {
+            "id": 1772,
+            "name": "Chapecoense AF"
+          },
+          "homeGoals": 3,
+          "awayGoals": 0,
+          "analyzedTeamId": 4286,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 3,
+          "opponentGoals": 0,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Hjemme",
+          "opponent": "Chapecoense AF",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555056",
+          "source": "football-data.org",
+          "sourceMatchId": "555056",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-24T21:30:00Z",
+          "localDate": "2026-10-24",
+          "homeTeam": {
+            "id": 1769,
+            "name": "SE Palmeiras"
+          },
+          "awayTeam": {
+            "id": 4286,
+            "name": "RB Bragantino"
+          },
+          "homeGoals": 2,
+          "awayGoals": 0,
+          "analyzedTeamId": 4286,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 0,
+          "opponentGoals": 2,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Borte",
+          "opponent": "SE Palmeiras",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555048",
+          "source": "football-data.org",
+          "sourceMatchId": "555048",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-18T22:30:00Z",
+          "localDate": "2026-10-19",
+          "homeTeam": {
+            "id": 4287,
+            "name": "Clube do Remo"
+          },
+          "awayTeam": {
+            "id": 4286,
+            "name": "RB Bragantino"
+          },
+          "homeGoals": 1,
+          "awayGoals": 1,
+          "analyzedTeamId": 4286,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "D",
+          "venueLabel": "Borte",
+          "opponent": "Clube do Remo",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555032",
+          "source": "football-data.org",
+          "sourceMatchId": "555032",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-13T00:00:00Z",
+          "localDate": "2026-10-13",
+          "homeTeam": {
+            "id": 4286,
+            "name": "RB Bragantino"
+          },
+          "awayTeam": {
+            "id": 1771,
+            "name": "Cruzeiro EC"
+          },
+          "homeGoals": 4,
+          "awayGoals": 2,
+          "analyzedTeamId": 4286,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 4,
+          "opponentGoals": 2,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Hjemme",
+          "opponent": "Cruzeiro EC",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        }
+      ],
+      "formHistoryDiagnostics": {
+        "home": {
+          "verified": 16,
+          "displayable": 5,
+          "issues": []
+        },
+        "away": {
+          "verified": 16,
+          "displayable": 5,
+          "issues": []
+        }
+      },
+      "model": {
+        "probabilities": {
+          "H": 0.3448,
+          "U": 0.2756,
+          "B": 0.3796,
+          "O25": 0.4335,
+          "U25": 0.5665,
+          "O35": 0.2238,
+          "BTTS": 0.4905,
+          "O15": 0.6937,
+          "U15": 0.3063,
+          "U35": 0.7766,
+          "BTTSN": 0.5095,
+          "THO05": 0.6896,
+          "THU05": 0.3104,
+          "THO15": 0.3265,
+          "THU15": 0.6735,
+          "THO25": 0.1141,
+          "THU25": 0.8859,
+          "TAO05": 0.7106,
+          "TAU05": 0.2894,
+          "TAO15": 0.3518,
+          "TAU15": 0.6482,
+          "TAO25": 0.1293,
+          "TAU25": 0.8707,
+          "H1O05": 0.7441,
+          "H1O15": 0.3953,
+          "H1U15": 0.6047
+        },
+        "expectedGoals": [
+          1.17,
+          1.24
+        ],
+        "sample": [
+          16,
+          16
+        ],
+        "quality": "basic",
+        "effectiveSample": [
+          10.28,
+          10.48
+        ],
+        "modelMethod": "strength_adjusted_v21",
+        "historyWindowDays": 180
+      },
+      "odds": {},
+      "predictions": []
+    },
+    {
+      "id": "odds:fa3ad7ccd23c6fe47c3062a2b69d3ddd",
+      "league": "Brasileirão Série A",
+      "leagueCode": "ODDS-BSA",
+      "leagueCrest": null,
+      "homeCrest": null,
+      "awayCrest": null,
+      "home": "Vitoria",
+      "away": "Bragantino-SP",
+      "homeAliases": [
+        "Vitoria"
+      ],
+      "awayAliases": [
+        "Bragantino-SP"
+      ],
+      "kickoff": "2026-11-19T22:30:00+00:00",
+      "status": "SCHEDULED",
+      "formHome": "",
+      "formAway": "",
+      "formMatchesHome": [],
+      "formMatchesAway": [],
+      "formHistoryDiagnostics": {
+        "home": {
+          "verified": 0,
+          "displayable": 0,
+          "issues": [
+            "team_match_uncertain"
+          ]
+        },
+        "away": {
+          "verified": 0,
+          "displayable": 0,
+          "issues": []
+        }
+      },
+      "model": null,
+      "odds": {
+        "B": {
+          "price": 2.5,
+          "source": "The Odds API · bookmaker-median",
+          "books": 24,
+          "lastUpdated": "2026-11-19T13:39:22Z",
+          "sampleBook": "williamhill"
+        },
+        "H": {
+          "price": 2.7,
+          "source": "The Odds API · bookmaker-median",
+          "books": 24,
+          "lastUpdated": "2026-11-19T13:39:22Z",
+          "sampleBook": "tipico_de"
+        },
+        "U": {
+          "price": 3.38,
+          "source": "The Odds API · bookmaker-median",
+          "books": 24,
+          "lastUpdated": "2026-11-19T13:39:22Z",
+          "sampleBook": "betsson"
+        },
+        "O25": {
+          "price": 1.78,
+          "source": "The Odds API · bookmaker-median",
+          "books": 17,
+          "lastUpdated": "2026-11-19T13:39:22Z",
+          "sampleBook": "marathonbet"
+        },
+        "U25": {
+          "price": 1.99,
+          "source": "The Odds API · bookmaker-median",
+          "books": 17,
+          "lastUpdated": "2026-11-19T13:39:22Z",
+          "sampleBook": "gtbets"
+        }
+      },
+      "predictions": []
+    },
+    {
+      "id": "555087",
+      "league": "Campeonato Brasileiro Série A",
+      "leagueCode": "BSA",
+      "leagueCrest": "https://crests.football-data.org/bsa.png",
+      "homeCrest": "https://crests.football-data.org/1776.png",
+      "awayCrest": "https://crests.football-data.org/1765.png",
+      "home": "São Paulo",
+      "away": "Fluminense",
+      "homeAliases": [
+        "São Paulo FC"
+      ],
+      "awayAliases": [
+        "Fluminense FC"
+      ],
+      "kickoff": "2026-11-20T00:30:00+00:00",
+      "status": "TIMED",
+      "formHome": "DLDWWLLWLWWLDLDL",
+      "formAway": "WWLLLWWLWDWWDDDD",
+      "formMatchesHome": [
+        {
+          "matchId": "555078",
+          "source": "football-data.org",
+          "sourceMatchId": "555078",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-11-05T00:30:00Z",
+          "localDate": "2026-11-05",
+          "homeTeam": {
+            "id": 1776,
+            "name": "São Paulo FC"
+          },
+          "awayTeam": {
+            "id": 1779,
+            "name": "SC Corinthians Paulista"
+          },
+          "homeGoals": 0,
+          "awayGoals": 0,
+          "analyzedTeamId": 1776,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 0,
+          "opponentGoals": 0,
+          "resultForAnalyzedTeam": "D",
+          "venueLabel": "Hjemme",
+          "opponent": "SC Corinthians Paulista",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555061",
+          "source": "football-data.org",
+          "sourceMatchId": "555061",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-29T00:30:00Z",
+          "localDate": "2026-10-29",
+          "homeTeam": {
+            "id": 1777,
+            "name": "EC Bahia"
+          },
+          "awayTeam": {
+            "id": 1776,
+            "name": "São Paulo FC"
+          },
+          "homeGoals": 3,
+          "awayGoals": 2,
+          "analyzedTeamId": 1776,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 2,
+          "opponentGoals": 3,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Borte",
+          "opponent": "EC Bahia",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555055",
+          "source": "football-data.org",
+          "sourceMatchId": "555055",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-24T19:30:00Z",
+          "localDate": "2026-10-24",
+          "homeTeam": {
+            "id": 4364,
+            "name": "Mirassol FC"
+          },
+          "awayTeam": {
+            "id": 1776,
+            "name": "São Paulo FC"
+          },
+          "homeGoals": 1,
+          "awayGoals": 1,
+          "analyzedTeamId": 1776,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "D",
+          "venueLabel": "Borte",
+          "opponent": "Mirassol FC",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555049",
+          "source": "football-data.org",
+          "sourceMatchId": "555049",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-18T00:00:00Z",
+          "localDate": "2026-10-18",
+          "homeTeam": {
+            "id": 1776,
+            "name": "São Paulo FC"
+          },
+          "awayTeam": {
+            "id": 1780,
+            "name": "CR Vasco da Gama"
+          },
+          "homeGoals": 1,
+          "awayGoals": 0,
+          "analyzedTeamId": 1776,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 0,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Hjemme",
+          "opponent": "CR Vasco da Gama",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555038",
+          "source": "football-data.org",
+          "sourceMatchId": "555038",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-11T00:00:00Z",
+          "localDate": "2026-10-11",
+          "homeTeam": {
+            "id": 1776,
+            "name": "São Paulo FC"
+          },
+          "awayTeam": {
+            "id": 1782,
+            "name": "EC Vitória"
+          },
+          "homeGoals": 2,
+          "awayGoals": 1,
+          "analyzedTeamId": 1776,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 2,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Hjemme",
+          "opponent": "EC Vitória",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        }
+      ],
+      "formMatchesAway": [
+        {
+          "matchId": "555079",
+          "source": "football-data.org",
+          "sourceMatchId": "555079",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-11-06T23:00:00Z",
+          "localDate": "2026-11-07",
+          "homeTeam": {
+            "id": 1782,
+            "name": "EC Vitória"
+          },
+          "awayTeam": {
+            "id": 1765,
+            "name": "Fluminense FC"
+          },
+          "homeGoals": 0,
+          "awayGoals": 3,
+          "analyzedTeamId": 1765,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 3,
+          "opponentGoals": 0,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Borte",
+          "opponent": "EC Vitória",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555065",
+          "source": "football-data.org",
+          "sourceMatchId": "555065",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-28T22:30:00Z",
+          "localDate": "2026-10-28",
+          "homeTeam": {
+            "id": 1765,
+            "name": "Fluminense FC"
+          },
+          "awayTeam": {
+            "id": 6684,
+            "name": "SC Internacional"
+          },
+          "homeGoals": 2,
+          "awayGoals": 1,
+          "analyzedTeamId": 1765,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 2,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Hjemme",
+          "opponent": "SC Internacional",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555050",
+          "source": "football-data.org",
+          "sourceMatchId": "555050",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-24T22:30:00Z",
+          "localDate": "2026-10-25",
+          "homeTeam": {
+            "id": 1772,
+            "name": "Chapecoense AF"
+          },
+          "awayTeam": {
+            "id": 1765,
+            "name": "Fluminense FC"
+          },
+          "homeGoals": 2,
+          "awayGoals": 1,
+          "analyzedTeamId": 1765,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 2,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Borte",
+          "opponent": "Chapecoense AF",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555045",
+          "source": "football-data.org",
+          "sourceMatchId": "555045",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-18T19:00:00Z",
+          "localDate": "2026-10-18",
+          "homeTeam": {
+            "id": 1765,
+            "name": "Fluminense FC"
+          },
+          "awayTeam": {
+            "id": 6685,
+            "name": "Santos FC"
+          },
+          "homeGoals": 1,
+          "awayGoals": 2,
+          "analyzedTeamId": 1765,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 2,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Hjemme",
+          "opponent": "Santos FC",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "555035",
+          "source": "football-data.org",
+          "sourceMatchId": "555035",
+          "competition": "Campeonato Brasileiro Série A",
+          "competitionCode": "BSA",
+          "kickoffUtc": "2026-10-11T20:30:00Z",
+          "localDate": "2026-10-11",
+          "homeTeam": {
+            "id": 1783,
+            "name": "CR Flamengo"
+          },
+          "awayTeam": {
+            "id": 1765,
+            "name": "Fluminense FC"
+          },
+          "homeGoals": 1,
+          "awayGoals": 0,
+          "analyzedTeamId": 1765,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 0,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Borte",
+          "opponent": "CR Flamengo",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        }
+      ],
+      "formHistoryDiagnostics": {
+        "home": {
+          "verified": 16,
+          "displayable": 5,
+          "issues": []
+        },
+        "away": {
+          "verified": 16,
+          "displayable": 5,
+          "issues": []
+        }
+      },
+      "model": {
+        "probabilities": {
+          "H": 0.3714,
+          "U": 0.2668,
+          "B": 0.3618,
+          "O25": 0.4693,
+          "U25": 0.5307,
+          "O35": 0.2535,
+          "BTTS": 0.5195,
+          "O15": 0.7248,
+          "U15": 0.2752,
+          "U35": 0.7447,
+          "BTTSN": 0.4805,
+          "THO05": 0.7247,
+          "THU05": 0.2753,
+          "THO15": 0.3696,
+          "THU15": 0.6304,
+          "THO25": 0.1406,
+          "THU25": 0.8594,
+          "TAO05": 0.7192,
+          "TAU05": 0.2808,
+          "TAO15": 0.3625,
+          "TAU15": 0.6375,
+          "TAO25": 0.136,
+          "TAU25": 0.864,
+          "H1O05": 0.7094,
+          "H1O15": 0.3503,
+          "H1U15": 0.6497
+        },
+        "expectedGoals": [
+          1.29,
+          1.27
+        ],
+        "sample": [
+          16,
+          16
+        ],
+        "quality": "basic",
+        "effectiveSample": [
+          10.47,
+          10.23
+        ],
+        "modelMethod": "strength_adjusted_v21",
+        "historyWindowDays": 180
+      },
+      "odds": {},
+      "predictions": []
+    },
+    {
+      "id": "sm-match:19713849",
+      "league": "Superliga",
+      "leagueCode": "SM-DK1",
+      "leagueCrest": null,
+      "homeCrest": null,
+      "awayCrest": null,
+      "home": "AGF",
+      "away": "Lyngby Boldklub",
+      "homeAliases": [
+        "AGF"
+      ],
+      "awayAliases": [
+        "Lyngby Boldklub"
+      ],
+      "kickoff": "2026-11-20T18:00:00+00:00",
+      "status": "SCHEDULED",
+      "formHome": "WLWDWDLDLLD",
+      "formAway": "LWLDLLDWDL",
+      "formMatchesHome": [
+        {
+          "matchId": "sm-match:19713860",
+          "source": "Sportmonks",
+          "sourceMatchId": "sm-match:19713860",
+          "competition": "Superliga",
+          "competitionCode": "SM-DK1",
+          "kickoffUtc": "2026-11-08T13:00:00Z",
+          "localDate": "2026-11-08",
+          "homeTeam": {
+            "id": "sm:2905",
+            "name": "AGF"
+          },
+          "awayTeam": {
+            "id": "sm:211",
+            "name": "Horsens"
+          },
+          "homeGoals": 2,
+          "awayGoals": 0,
+          "analyzedTeamId": "sm:2905",
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 2,
+          "opponentGoals": 0,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Hjemme",
+          "opponent": "Horsens",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "sm-match:19713874",
+          "source": "Sportmonks",
+          "sourceMatchId": "sm-match:19713874",
+          "competition": "Superliga",
+          "competitionCode": "SM-DK1",
+          "kickoffUtc": "2026-11-01T17:00:00Z",
+          "localDate": "2026-11-01",
+          "homeTeam": {
+            "id": "sm:293",
+            "name": "Brøndby IF"
+          },
+          "awayTeam": {
+            "id": "sm:2905",
+            "name": "AGF"
+          },
+          "homeGoals": 2,
+          "awayGoals": 0,
+          "analyzedTeamId": "sm:2905",
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 0,
+          "opponentGoals": 2,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Borte",
+          "opponent": "Brøndby IF",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "sm-match:19713886",
+          "source": "Sportmonks",
+          "sourceMatchId": "sm-match:19713886",
+          "competition": "Superliga",
+          "competitionCode": "SM-DK1",
+          "kickoffUtc": "2026-10-25T17:00:00Z",
+          "localDate": "2026-10-25",
+          "homeTeam": {
+            "id": "sm:2905",
+            "name": "AGF"
+          },
+          "awayTeam": {
+            "id": "sm:2447",
+            "name": "Viborg FF"
+          },
+          "homeGoals": 2,
+          "awayGoals": 1,
+          "analyzedTeamId": "sm:2905",
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 2,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Hjemme",
+          "opponent": "Viborg FF",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "sm-match:19713899",
+          "source": "Sportmonks",
+          "sourceMatchId": "sm-match:19713899",
+          "competition": "Superliga",
+          "competitionCode": "SM-DK1",
+          "kickoffUtc": "2026-10-18T16:00:00Z",
+          "localDate": "2026-10-18",
+          "homeTeam": {
+            "id": "sm:85",
+            "name": "FC København"
+          },
+          "awayTeam": {
+            "id": "sm:2905",
+            "name": "AGF"
+          },
+          "homeGoals": 1,
+          "awayGoals": 1,
+          "analyzedTeamId": "sm:2905",
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "D",
+          "venueLabel": "Borte",
+          "opponent": "FC København",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "sm-match:19713909",
+          "source": "Sportmonks",
+          "sourceMatchId": "sm-match:19713909",
+          "competition": "Superliga",
+          "competitionCode": "SM-DK1",
+          "kickoffUtc": "2026-10-12T17:00:00Z",
+          "localDate": "2026-10-12",
+          "homeTeam": {
+            "id": "sm:2905",
+            "name": "AGF"
+          },
+          "awayTeam": {
+            "id": "sm:390",
+            "name": "Sønderjyske Fodbold"
+          },
+          "homeGoals": 3,
+          "awayGoals": 0,
+          "analyzedTeamId": "sm:2905",
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 3,
+          "opponentGoals": 0,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Hjemme",
+          "opponent": "Sønderjyske Fodbold",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        }
+      ],
+      "formMatchesAway": [
+        {
+          "matchId": "sm-match:19713858",
+          "source": "Sportmonks",
+          "sourceMatchId": "sm-match:19713858",
+          "competition": "Superliga",
+          "competitionCode": "SM-DK1",
+          "kickoffUtc": "2026-11-06T18:00:00Z",
+          "localDate": "2026-11-06",
+          "homeTeam": {
+            "id": "sm:86",
+            "name": "Silkeborg IF"
+          },
+          "awayTeam": {
+            "id": "sm:2650",
+            "name": "Lyngby Boldklub"
+          },
+          "homeGoals": 1,
+          "awayGoals": 0,
+          "analyzedTeamId": "sm:2650",
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 0,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Borte",
+          "opponent": "Silkeborg IF",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "sm-match:19713876",
+          "source": "Sportmonks",
+          "sourceMatchId": "sm-match:19713876",
+          "competition": "Superliga",
+          "competitionCode": "SM-DK1",
+          "kickoffUtc": "2026-10-30T18:00:00Z",
+          "localDate": "2026-10-30",
+          "homeTeam": {
+            "id": "sm:2650",
+            "name": "Lyngby Boldklub"
+          },
+          "awayTeam": {
+            "id": "sm:2356",
+            "name": "Randers FC"
+          },
+          "homeGoals": 2,
+          "awayGoals": 1,
+          "analyzedTeamId": "sm:2650",
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 2,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Hjemme",
+          "opponent": "Randers FC",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "sm-match:19713888",
+          "source": "Sportmonks",
+          "sourceMatchId": "sm-match:19713888",
+          "competition": "Superliga",
+          "competitionCode": "SM-DK1",
+          "kickoffUtc": "2026-10-25T13:00:00Z",
+          "localDate": "2026-10-25",
+          "homeTeam": {
+            "id": "sm:939",
+            "name": "FC Midtjylland"
+          },
+          "awayTeam": {
+            "id": "sm:2650",
+            "name": "Lyngby Boldklub"
+          },
+          "homeGoals": 3,
+          "awayGoals": 2,
+          "analyzedTeamId": "sm:2650",
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 2,
+          "opponentGoals": 3,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Borte",
+          "opponent": "FC Midtjylland",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "sm-match:19713898",
+          "source": "Sportmonks",
+          "sourceMatchId": "sm-match:19713898",
+          "competition": "Superliga",
+          "competitionCode": "SM-DK1",
+          "kickoffUtc": "2026-10-18T12:00:00Z",
+          "localDate": "2026-10-18",
+          "homeTeam": {
+            "id": "sm:2650",
+            "name": "Lyngby Boldklub"
+          },
+          "awayTeam": {
+            "id": "sm:2394",
+            "name": "Nordsjælland"
+          },
+          "homeGoals": 3,
+          "awayGoals": 3,
+          "analyzedTeamId": "sm:2650",
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 3,
+          "opponentGoals": 3,
+          "resultForAnalyzedTeam": "D",
+          "venueLabel": "Hjemme",
+          "opponent": "Nordsjælland",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "sm-match:19713911",
+          "source": "Sportmonks",
+          "sourceMatchId": "sm-match:19713911",
+          "competition": "Superliga",
+          "competitionCode": "SM-DK1",
+          "kickoffUtc": "2026-10-11T14:00:00Z",
+          "localDate": "2026-10-11",
+          "homeTeam": {
+            "id": "sm:293",
+            "name": "Brøndby IF"
+          },
+          "awayTeam": {
+            "id": "sm:2650",
+            "name": "Lyngby Boldklub"
+          },
+          "homeGoals": 5,
+          "awayGoals": 2,
+          "analyzedTeamId": "sm:2650",
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 2,
+          "opponentGoals": 5,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Borte",
+          "opponent": "Brøndby IF",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        }
+      ],
+      "formHistoryDiagnostics": {
+        "home": {
+          "verified": 11,
+          "displayable": 5,
+          "issues": []
+        },
+        "away": {
+          "verified": 10,
+          "displayable": 5,
+          "issues": []
+        }
+      },
+      "model": {
+        "probabilities": {
+          "H": 0.4657,
+          "U": 0.2491,
+          "B": 0.2851,
+          "O25": 0.5213,
+          "U25": 0.4787,
+          "O35": 0.2994,
+          "BTTS": 0.5504,
+          "O15": 0.762,
+          "U15": 0.238,
+          "U35": 0.7008,
+          "BTTSN": 0.4496,
+          "THO05": 0.794,
+          "THU05": 0.206,
+          "THO15": 0.4686,
+          "THU15": 0.5314,
+          "THO25": 0.2115,
+          "THU25": 0.7885,
+          "TAO05": 0.6927,
+          "TAU05": 0.3073,
+          "TAO15": 0.3301,
+          "TAU15": 0.6699,
+          "TAO25": 0.1162,
+          "TAU25": 0.8838
+        },
+        "expectedGoals": [
+          1.58,
+          1.18
+        ],
+        "sample": [
+          11,
+          10
+        ],
+        "quality": "basic",
+        "effectiveSample": [
+          7.74,
+          7.12
+        ],
+        "modelMethod": "strength_adjusted_v21",
+        "historyWindowDays": 180
+      },
+      "odds": {},
+      "predictions": []
+    },
+    {
+      "id": "565859",
+      "league": "Bundesliga",
+      "leagueCode": "BL1",
+      "leagueCrest": "https://crests.football-data.org/BL1.png",
+      "homeCrest": "https://crests.football-data.org/5.png",
+      "awayCrest": "https://crests.football-data.org/1.png",
+      "home": "Bayern",
+      "away": "1. FC Köln",
+      "homeAliases": [
+        "FC Bayern München"
+      ],
+      "awayAliases": [
+        "1. FC Köln"
+      ],
+      "kickoff": "2026-11-20T19:30:00+00:00",
+      "status": "TIMED",
+      "formHome": "WDWWDWWDW",
+      "formAway": "LDDLWLDLW",
+      "formMatchesHome": [
+        {
+          "matchId": "565851",
+          "source": "football-data.org",
+          "sourceMatchId": "565851",
+          "competition": "Bundesliga",
+          "competitionCode": "BL1",
+          "kickoffUtc": "2026-11-07T14:30:00Z",
+          "localDate": "2026-11-07",
+          "homeTeam": {
+            "id": 15,
+            "name": "1. FSV Mainz 05"
+          },
+          "awayTeam": {
+            "id": 5,
+            "name": "FC Bayern München"
+          },
+          "homeGoals": 1,
+          "awayGoals": 2,
+          "analyzedTeamId": 5,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 2,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Borte",
+          "opponent": "1. FSV Mainz 05",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "565845",
+          "source": "football-data.org",
+          "sourceMatchId": "565845",
+          "competition": "Bundesliga",
+          "competitionCode": "BL1",
+          "kickoffUtc": "2026-10-31T17:30:00Z",
+          "localDate": "2026-10-31",
+          "homeTeam": {
+            "id": 5,
+            "name": "FC Bayern München"
+          },
+          "awayTeam": {
+            "id": 4,
+            "name": "Borussia Dortmund"
+          },
+          "homeGoals": 2,
+          "awayGoals": 2,
+          "analyzedTeamId": 5,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 2,
+          "opponentGoals": 2,
+          "resultForAnalyzedTeam": "D",
+          "venueLabel": "Hjemme",
+          "opponent": "Borussia Dortmund",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "565836",
+          "source": "football-data.org",
+          "sourceMatchId": "565836",
+          "competition": "Bundesliga",
+          "competitionCode": "BL1",
+          "kickoffUtc": "2026-10-25T16:30:00Z",
+          "localDate": "2026-10-25",
+          "homeTeam": {
+            "id": 17,
+            "name": "SC Freiburg"
+          },
+          "awayTeam": {
+            "id": 5,
+            "name": "FC Bayern München"
+          },
+          "homeGoals": 1,
+          "awayGoals": 3,
+          "analyzedTeamId": 5,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 3,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Borte",
+          "opponent": "SC Freiburg",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "565825",
+          "source": "football-data.org",
+          "sourceMatchId": "565825",
+          "competition": "Bundesliga",
+          "competitionCode": "BL1",
+          "kickoffUtc": "2026-10-17T16:30:00Z",
+          "localDate": "2026-10-17",
+          "homeTeam": {
+            "id": 5,
+            "name": "FC Bayern München"
+          },
+          "awayTeam": {
+            "id": 721,
+            "name": "RB Leipzig"
+          },
+          "homeGoals": 6,
+          "awayGoals": 1,
+          "analyzedTeamId": 5,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 6,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Hjemme",
+          "opponent": "RB Leipzig",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "565819",
+          "source": "football-data.org",
+          "sourceMatchId": "565819",
+          "competition": "Bundesliga",
+          "competitionCode": "BL1",
+          "kickoffUtc": "2026-10-10T13:30:00Z",
+          "localDate": "2026-10-10",
+          "homeTeam": {
+            "id": 16,
+            "name": "FC Augsburg"
+          },
+          "awayTeam": {
+            "id": 5,
+            "name": "FC Bayern München"
+          },
+          "homeGoals": 2,
+          "awayGoals": 2,
+          "analyzedTeamId": 5,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 2,
+          "opponentGoals": 2,
+          "resultForAnalyzedTeam": "D",
+          "venueLabel": "Borte",
+          "opponent": "FC Augsburg",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        }
+      ],
+      "formMatchesAway": [
+        {
+          "matchId": "565855",
+          "source": "football-data.org",
+          "sourceMatchId": "565855",
+          "competition": "Bundesliga",
+          "competitionCode": "BL1",
+          "kickoffUtc": "2026-11-08T14:30:00Z",
+          "localDate": "2026-11-08",
+          "homeTeam": {
+            "id": 1,
+            "name": "1. FC Köln"
+          },
+          "awayTeam": {
+            "id": 3,
+            "name": "Bayer 04 Leverkusen"
+          },
+          "homeGoals": 1,
+          "awayGoals": 2,
+          "analyzedTeamId": 1,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 2,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Hjemme",
+          "opponent": "Bayer 04 Leverkusen",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "565841",
+          "source": "football-data.org",
+          "sourceMatchId": "565841",
+          "competition": "Bundesliga",
+          "competitionCode": "BL1",
+          "kickoffUtc": "2026-11-01T14:30:00Z",
+          "localDate": "2026-11-01",
+          "homeTeam": {
+            "id": 28,
+            "name": "1. FC Union Berlin"
+          },
+          "awayTeam": {
+            "id": 1,
+            "name": "1. FC Köln"
+          },
+          "homeGoals": 1,
+          "awayGoals": 1,
+          "analyzedTeamId": 1,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "D",
+          "venueLabel": "Borte",
+          "opponent": "1. FC Union Berlin",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "565831",
+          "source": "football-data.org",
+          "sourceMatchId": "565831",
+          "competition": "Bundesliga",
+          "competitionCode": "BL1",
+          "kickoffUtc": "2026-10-24T13:30:00Z",
+          "localDate": "2026-10-24",
+          "homeTeam": {
+            "id": 1,
+            "name": "1. FC Köln"
+          },
+          "awayTeam": {
+            "id": 6,
+            "name": "FC Schalke 04"
+          },
+          "homeGoals": 0,
+          "awayGoals": 0,
+          "analyzedTeamId": 1,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 0,
+          "opponentGoals": 0,
+          "resultForAnalyzedTeam": "D",
+          "venueLabel": "Hjemme",
+          "opponent": "FC Schalke 04",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "565828",
+          "source": "football-data.org",
+          "sourceMatchId": "565828",
+          "competition": "Bundesliga",
+          "competitionCode": "BL1",
+          "kickoffUtc": "2026-10-16T18:30:00Z",
+          "localDate": "2026-10-16",
+          "homeTeam": {
+            "id": 19,
+            "name": "Eintracht Frankfurt"
+          },
+          "awayTeam": {
+            "id": 1,
+            "name": "1. FC Köln"
+          },
+          "homeGoals": 1,
+          "awayGoals": 0,
+          "analyzedTeamId": 1,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 0,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Borte",
+          "opponent": "Eintracht Frankfurt",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "565814",
+          "source": "football-data.org",
+          "sourceMatchId": "565814",
+          "competition": "Bundesliga",
+          "competitionCode": "BL1",
+          "kickoffUtc": "2026-10-11T13:30:00Z",
+          "localDate": "2026-10-11",
+          "homeTeam": {
+            "id": 1,
+            "name": "1. FC Köln"
+          },
+          "awayTeam": {
+            "id": 18,
+            "name": "Borussia Mönchengladbach"
+          },
+          "homeGoals": 2,
+          "awayGoals": 1,
+          "analyzedTeamId": 1,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 2,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Hjemme",
+          "opponent": "Borussia Mönchengladbach",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        }
+      ],
+      "formHistoryDiagnostics": {
+        "home": {
+          "verified": 9,
+          "displayable": 5,
+          "issues": []
+        },
+        "away": {
+          "verified": 9,
+          "displayable": 5,
+          "issues": []
+        }
+      },
+      "model": {
+        "probabilities": {
+          "H": 0.611,
+          "U": 0.2152,
+          "B": 0.1738,
+          "O25": 0.5469,
+          "U25": 0.4531,
+          "O35": 0.3235,
+          "BTTS": 0.5176,
+          "O15": 0.7806,
+          "U15": 0.2194,
+          "U35": 0.6763,
+          "BTTSN": 0.4824,
+          "THO05": 0.8563,
+          "THU05": 0.1437,
+          "THO15": 0.5775,
+          "THU15": 0.4225,
+          "THO25": 0.3071,
+          "THU25": 0.6929,
+          "TAO05": 0.6054,
+          "TAU05": 0.3946,
+          "TAO15": 0.2385,
+          "TAU15": 0.7615,
+          "TAO25": 0.0679,
+          "TAU25": 0.9321,
+          "H1O05": 0.7157,
+          "H1O15": 0.3581,
+          "H1U15": 0.6419
+        },
+        "expectedGoals": [
+          1.94,
+          0.93
+        ],
+        "sample": [
+          9,
+          9
+        ],
+        "quality": "basic",
+        "effectiveSample": [
+          6.58,
+          6.58
+        ],
+        "modelMethod": "strength_adjusted_v21",
+        "historyWindowDays": 180
+      },
+      "odds": {},
+      "predictions": []
+    },
+    {
+      "id": "559622",
+      "league": "Ligue 1",
+      "leagueCode": "FL1",
+      "leagueCrest": "https://crests.football-data.org/FL1.png",
+      "homeCrest": "https://crests.football-data.org/531.png",
+      "awayCrest": "https://crests.football-data.org/533.png",
+      "home": "Troyes",
+      "away": "Le Havre",
+      "homeAliases": [
+        "ES Troyes AC"
+      ],
+      "awayAliases": [
+        "Le Havre AC"
+      ],
+      "kickoff": "2026-11-20T19:45:00+00:00",
+      "status": "TIMED",
+      "formHome": "LWDLLLLLWD",
+      "formAway": "LLLLLLDLDL",
+      "formMatchesHome": [
+        {
+          "matchId": "559635",
+          "source": "football-data.org",
+          "sourceMatchId": "559635",
+          "competition": "Ligue 1",
+          "competitionCode": "FL1",
+          "kickoffUtc": "2026-11-07T20:05:00Z",
+          "localDate": "2026-11-07",
+          "homeTeam": {
+            "id": 524,
+            "name": "Paris Saint-Germain FC"
+          },
+          "awayTeam": {
+            "id": 531,
+            "name": "ES Troyes AC"
+          },
+          "homeGoals": 1,
+          "awayGoals": 0,
+          "analyzedTeamId": 531,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 0,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Borte",
+          "opponent": "Paris Saint-Germain FC",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "559643",
+          "source": "football-data.org",
+          "sourceMatchId": "559643",
+          "competition": "Ligue 1",
+          "competitionCode": "FL1",
+          "kickoffUtc": "2026-10-31T19:45:00Z",
+          "localDate": "2026-10-31",
+          "homeTeam": {
+            "id": 531,
+            "name": "ES Troyes AC"
+          },
+          "awayTeam": {
+            "id": 535,
+            "name": "Le Mans FC"
+          },
+          "homeGoals": 2,
+          "awayGoals": 0,
+          "analyzedTeamId": 531,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 2,
+          "opponentGoals": 0,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Hjemme",
+          "opponent": "Le Mans FC",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "559655",
+          "source": "football-data.org",
+          "sourceMatchId": "559655",
+          "competition": "Ligue 1",
+          "competitionCode": "FL1",
+          "kickoffUtc": "2026-10-25T16:15:00Z",
+          "localDate": "2026-10-25",
+          "homeTeam": {
+            "id": 511,
+            "name": "Toulouse FC"
+          },
+          "awayTeam": {
+            "id": 531,
+            "name": "ES Troyes AC"
+          },
+          "homeGoals": 0,
+          "awayGoals": 0,
+          "analyzedTeamId": 531,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 0,
+          "opponentGoals": 0,
+          "resultForAnalyzedTeam": "D",
+          "venueLabel": "Borte",
+          "opponent": "Toulouse FC",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "559659",
+          "source": "football-data.org",
+          "sourceMatchId": "559659",
+          "competition": "Ligue 1",
+          "competitionCode": "FL1",
+          "kickoffUtc": "2026-10-17T18:45:00Z",
+          "localDate": "2026-10-17",
+          "homeTeam": {
+            "id": 531,
+            "name": "ES Troyes AC"
+          },
+          "awayTeam": {
+            "id": 546,
+            "name": "Racing Club de Lens"
+          },
+          "homeGoals": 1,
+          "awayGoals": 3,
+          "analyzedTeamId": 531,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 3,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Hjemme",
+          "opponent": "Racing Club de Lens",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "559671",
+          "source": "football-data.org",
+          "sourceMatchId": "559671",
+          "competition": "Ligue 1",
+          "competitionCode": "FL1",
+          "kickoffUtc": "2026-10-11T18:45:00Z",
+          "localDate": "2026-10-11",
+          "homeTeam": {
+            "id": 531,
+            "name": "ES Troyes AC"
+          },
+          "awayTeam": {
+            "id": 516,
+            "name": "Olympique de Marseille"
+          },
+          "homeGoals": 0,
+          "awayGoals": 2,
+          "analyzedTeamId": 531,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 0,
+          "opponentGoals": 2,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Hjemme",
+          "opponent": "Olympique de Marseille",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        }
+      ],
+      "formMatchesAway": [
+        {
+          "matchId": "559633",
+          "source": "football-data.org",
+          "sourceMatchId": "559633",
+          "competition": "Ligue 1",
+          "competitionCode": "FL1",
+          "kickoffUtc": "2026-11-08T16:15:00Z",
+          "localDate": "2026-11-08",
+          "homeTeam": {
+            "id": 533,
+            "name": "Le Havre AC"
+          },
+          "awayTeam": {
+            "id": 525,
+            "name": "FC Lorient"
+          },
+          "homeGoals": 0,
+          "awayGoals": 2,
+          "analyzedTeamId": 533,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 0,
+          "opponentGoals": 2,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Hjemme",
+          "opponent": "FC Lorient",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "559644",
+          "source": "football-data.org",
+          "sourceMatchId": "559644",
+          "competition": "Ligue 1",
+          "competitionCode": "FL1",
+          "kickoffUtc": "2026-10-30T18:00:00Z",
+          "localDate": "2026-10-30",
+          "homeTeam": {
+            "id": 533,
+            "name": "Le Havre AC"
+          },
+          "awayTeam": {
+            "id": 524,
+            "name": "Paris Saint-Germain FC"
+          },
+          "homeGoals": 1,
+          "awayGoals": 5,
+          "analyzedTeamId": 533,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 5,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Hjemme",
+          "opponent": "Paris Saint-Germain FC",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "559649",
+          "source": "football-data.org",
+          "sourceMatchId": "559649",
+          "competition": "Ligue 1",
+          "competitionCode": "FL1",
+          "kickoffUtc": "2026-10-25T16:15:00Z",
+          "localDate": "2026-10-25",
+          "homeTeam": {
+            "id": 516,
+            "name": "Olympique de Marseille"
+          },
+          "awayTeam": {
+            "id": 533,
+            "name": "Le Havre AC"
+          },
+          "homeGoals": 4,
+          "awayGoals": 3,
+          "analyzedTeamId": 533,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 3,
+          "opponentGoals": 4,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Borte",
+          "opponent": "Olympique de Marseille",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "559663",
+          "source": "football-data.org",
+          "sourceMatchId": "559663",
+          "competition": "Ligue 1",
+          "competitionCode": "FL1",
+          "kickoffUtc": "2026-10-18T15:15:00Z",
+          "localDate": "2026-10-18",
+          "homeTeam": {
+            "id": 533,
+            "name": "Le Havre AC"
+          },
+          "awayTeam": {
+            "id": 519,
+            "name": "AJ Auxerre"
+          },
+          "homeGoals": 1,
+          "awayGoals": 3,
+          "analyzedTeamId": 533,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 3,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Hjemme",
+          "opponent": "AJ Auxerre",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "559674",
+          "source": "football-data.org",
+          "sourceMatchId": "559674",
+          "competition": "Ligue 1",
+          "competitionCode": "FL1",
+          "kickoffUtc": "2026-10-10T15:15:00Z",
+          "localDate": "2026-10-10",
+          "homeTeam": {
+            "id": 521,
+            "name": "Lille OSC"
+          },
+          "awayTeam": {
+            "id": 533,
+            "name": "Le Havre AC"
+          },
+          "homeGoals": 1,
+          "awayGoals": 0,
+          "analyzedTeamId": 533,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 0,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Borte",
+          "opponent": "Lille OSC",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        }
+      ],
+      "formHistoryDiagnostics": {
+        "home": {
+          "verified": 10,
+          "displayable": 5,
+          "issues": []
+        },
+        "away": {
+          "verified": 10,
+          "displayable": 5,
+          "issues": []
+        }
+      },
+      "model": {
+        "probabilities": {
+          "H": 0.4282,
+          "U": 0.2666,
+          "B": 0.3052,
+          "O25": 0.4592,
+          "U25": 0.5408,
+          "O35": 0.2449,
+          "BTTS": 0.5067,
+          "O15": 0.7168,
+          "U15": 0.2832,
+          "U35": 0.7533,
+          "BTTSN": 0.4933,
+          "THO05": 0.7509,
+          "THU05": 0.2491,
+          "THO15": 0.4047,
+          "THU15": 0.5953,
+          "THO25": 0.1641,
+          "THU25": 0.8359,
+          "TAO05": 0.677,
+          "TAU05": 0.323,
+          "TAO15": 0.3119,
+          "TAU15": 0.6881,
+          "TAO25": 0.1057,
+          "TAU25": 0.8943,
+          "H1O05": 0.6869,
+          "H1O15": 0.3233,
+          "H1U15": 0.6767
+        },
+        "expectedGoals": [
+          1.39,
+          1.13
+        ],
+        "sample": [
+          10,
+          10
+        ],
+        "quality": "basic",
+        "effectiveSample": [
+          7.13,
+          7.13
+        ],
+        "modelMethod": "strength_adjusted_v21",
+        "historyWindowDays": 180
+      },
+      "odds": {},
+      "predictions": []
+    },
+    {
+      "id": "564748",
+      "league": "Primera Division",
+      "leagueCode": "PD",
+      "leagueCrest": "https://crests.football-data.org/laliga.png",
+      "homeCrest": "https://crests.football-data.org/77.png",
+      "awayCrest": "https://crests.football-data.org/80.png",
+      "home": "Athletic",
+      "away": "Espanyol",
+      "homeAliases": [
+        "Athletic Club"
+      ],
+      "awayAliases": [
+        "RCD Espanyol de Barcelona"
+      ],
+      "kickoff": "2026-11-20T20:00:00+00:00",
+      "status": "TIMED",
+      "formHome": "DWWLDDDWWLL",
+      "formAway": "DWLLDLLWDLLW",
+      "formMatchesHome": [
+        {
+          "matchId": "564739",
+          "source": "football-data.org",
+          "sourceMatchId": "564739",
+          "competition": "Primera Division",
+          "competitionCode": "PD",
+          "kickoffUtc": "2026-11-07T17:30:00Z",
+          "localDate": "2026-11-07",
+          "homeTeam": {
+            "id": 79,
+            "name": "CA Osasuna"
+          },
+          "awayTeam": {
+            "id": 77,
+            "name": "Athletic Club"
+          },
+          "homeGoals": 1,
+          "awayGoals": 1,
+          "analyzedTeamId": 77,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "D",
+          "venueLabel": "Borte",
+          "opponent": "CA Osasuna",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "564729",
+          "source": "football-data.org",
+          "sourceMatchId": "564729",
+          "competition": "Primera Division",
+          "competitionCode": "PD",
+          "kickoffUtc": "2026-11-01T20:00:00Z",
+          "localDate": "2026-11-01",
+          "homeTeam": {
+            "id": 77,
+            "name": "Athletic Club"
+          },
+          "awayTeam": {
+            "id": 92,
+            "name": "Real Sociedad de Fútbol"
+          },
+          "homeGoals": 2,
+          "awayGoals": 1,
+          "analyzedTeamId": 77,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 2,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Hjemme",
+          "opponent": "Real Sociedad de Fútbol",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "564720",
+          "source": "football-data.org",
+          "sourceMatchId": "564720",
+          "competition": "Primera Division",
+          "competitionCode": "PD",
+          "kickoffUtc": "2026-10-25T13:00:00Z",
+          "localDate": "2026-10-25",
+          "homeTeam": {
+            "id": 77,
+            "name": "Athletic Club"
+          },
+          "awayTeam": {
+            "id": 82,
+            "name": "Getafe CF"
+          },
+          "homeGoals": 4,
+          "awayGoals": 0,
+          "analyzedTeamId": 77,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 4,
+          "opponentGoals": 0,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Hjemme",
+          "opponent": "Getafe CF",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "564685",
+          "source": "football-data.org",
+          "sourceMatchId": "564685",
+          "competition": "Primera Division",
+          "competitionCode": "PD",
+          "kickoffUtc": "2026-10-21T18:00:00Z",
+          "localDate": "2026-10-21",
+          "homeTeam": {
+            "id": 88,
+            "name": "Levante UD"
+          },
+          "awayTeam": {
+            "id": 77,
+            "name": "Athletic Club"
+          },
+          "homeGoals": 3,
+          "awayGoals": 1,
+          "analyzedTeamId": 77,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 3,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Borte",
+          "opponent": "Levante UD",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "564711",
+          "source": "football-data.org",
+          "sourceMatchId": "564711",
+          "competition": "Primera Division",
+          "competitionCode": "PD",
+          "kickoffUtc": "2026-10-17T19:00:00Z",
+          "localDate": "2026-10-17",
+          "homeTeam": {
+            "id": 95,
+            "name": "Valencia CF"
+          },
+          "awayTeam": {
+            "id": 77,
+            "name": "Athletic Club"
+          },
+          "homeGoals": 0,
+          "awayGoals": 0,
+          "analyzedTeamId": 77,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 0,
+          "opponentGoals": 0,
+          "resultForAnalyzedTeam": "D",
+          "venueLabel": "Borte",
+          "opponent": "Valencia CF",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        }
+      ],
+      "formMatchesAway": [
+        {
+          "matchId": "564745",
+          "source": "football-data.org",
+          "sourceMatchId": "564745",
+          "competition": "Primera Division",
+          "competitionCode": "PD",
+          "kickoffUtc": "2026-11-07T15:15:00Z",
+          "localDate": "2026-11-07",
+          "homeTeam": {
+            "id": 80,
+            "name": "RCD Espanyol de Barcelona"
+          },
+          "awayTeam": {
+            "id": 560,
+            "name": "RC Deportivo La Coruña"
+          },
+          "homeGoals": 0,
+          "awayGoals": 0,
+          "analyzedTeamId": 80,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 0,
+          "opponentGoals": 0,
+          "resultForAnalyzedTeam": "D",
+          "venueLabel": "Hjemme",
+          "opponent": "RC Deportivo La Coruña",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "564737",
+          "source": "football-data.org",
+          "sourceMatchId": "564737",
+          "competition": "Primera Division",
+          "competitionCode": "PD",
+          "kickoffUtc": "2026-10-30T20:00:00Z",
+          "localDate": "2026-10-30",
+          "homeTeam": {
+            "id": 94,
+            "name": "Villarreal CF"
+          },
+          "awayTeam": {
+            "id": 80,
+            "name": "RCD Espanyol de Barcelona"
+          },
+          "homeGoals": 0,
+          "awayGoals": 1,
+          "analyzedTeamId": 80,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 0,
+          "resultForAnalyzedTeam": "W",
+          "venueLabel": "Borte",
+          "opponent": "Villarreal CF",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "564727",
+          "source": "football-data.org",
+          "sourceMatchId": "564727",
+          "competition": "Primera Division",
+          "competitionCode": "PD",
+          "kickoffUtc": "2026-10-24T14:15:00Z",
+          "localDate": "2026-10-24",
+          "homeTeam": {
+            "id": 5335,
+            "name": "Real Racing Club de Santander"
+          },
+          "awayTeam": {
+            "id": 80,
+            "name": "RCD Espanyol de Barcelona"
+          },
+          "homeGoals": 2,
+          "awayGoals": 1,
+          "analyzedTeamId": 80,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 2,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Borte",
+          "opponent": "Real Racing Club de Santander",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "564710",
+          "source": "football-data.org",
+          "sourceMatchId": "564710",
+          "competition": "Primera Division",
+          "competitionCode": "PD",
+          "kickoffUtc": "2026-10-17T12:00:00Z",
+          "localDate": "2026-10-17",
+          "homeTeam": {
+            "id": 80,
+            "name": "RCD Espanyol de Barcelona"
+          },
+          "awayTeam": {
+            "id": 78,
+            "name": "Club Atlético de Madrid"
+          },
+          "homeGoals": 0,
+          "awayGoals": 1,
+          "analyzedTeamId": 80,
+          "analyzedTeamSide": "home",
+          "analyzedTeamGoals": 0,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "L",
+          "venueLabel": "Hjemme",
+          "opponent": "Club Atlético de Madrid",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        },
+        {
+          "matchId": "564706",
+          "source": "football-data.org",
+          "sourceMatchId": "564706",
+          "competition": "Primera Division",
+          "competitionCode": "PD",
+          "kickoffUtc": "2026-10-09T19:00:00Z",
+          "localDate": "2026-10-09",
+          "homeTeam": {
+            "id": 84,
+            "name": "Málaga CF"
+          },
+          "awayTeam": {
+            "id": 80,
+            "name": "RCD Espanyol de Barcelona"
+          },
+          "homeGoals": 1,
+          "awayGoals": 1,
+          "analyzedTeamId": 80,
+          "analyzedTeamSide": "away",
+          "analyzedTeamGoals": 1,
+          "opponentGoals": 1,
+          "resultForAnalyzedTeam": "D",
+          "venueLabel": "Borte",
+          "opponent": "Málaga CF",
+          "status": "FINISHED",
+          "verified": true,
+          "displayComplete": true
+        }
+      ],
+      "formHistoryDiagnostics": {
+        "home": {
+          "verified": 11,
+          "displayable": 5,
+          "issues": []
+        },
+        "away": {
+          "verified": 12,
+          "displayable": 5,
+          "issues": []
+        }
+      },
+      "model": {
+        "probabilities": {
+          "H": 0.4674,
+          "U": 0.2705,
+          "B": 0.262,
+          "O25": 0.4235,
+          "U25": 0.5765,
+          "O35": 0.2159,
+          "BTTS": 0.469,
+          "O15": 0.685,
+          "U15": 0.315,
+          "U35": 0.785,
+          "BTTSN": 0.531,
+          "THO05": 0.7534,
+          "THU05": 0.2466,
+          "THO15": 0.4082,
+          "THU15": 0.5918,
+          "THO25": 0.1665,
+          "THU25": 0.8335,
+          "TAO05": 0.6209,
+          "TAU05": 0.3791,
+          "TAO15": 0.2532,
+          "TAU15": 0.7468,
+          "TAO25": 0.0749,
+          "TAU25": 0.9251,
+          "H1O05": 0.6422,
+          "H1O15": 0.2745,
+          "H1U15": 0.7255
+        },
+        "expectedGoals": [
+          1.4,
+          0.97
+        ],
+        "sample": [
+          11,
+          12
+        ],
+        "quality": "basic",
+        "effectiveSample": [
+          7.74,
+          8.24
+        ],
+        "modelMethod": "strength_adjusted_v21",
+        "historyWindowDays": 180
+      },
+      "odds": {},
+      "predictions": []
+    }
+  ],
+  "observations": [
+    {
+      "matchId": "555088",
+      "home": "Vasco da Gama",
+      "away": "Internacional",
+      "league": "Campeonato Brasileiro Série A",
+      "kickoff": "2026-11-19T22:30:00+00:00",
+      "market": "B",
+      "marketType": "winner",
+      "label": "Borteseier",
+      "price": 5.37,
+      "probability": 0.2844,
+      "oddsUpdatedAt": "2026-11-19T13:39:22Z",
+      "bookmakers": 24,
+      "status": "observation",
+      "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+    },
+    {
+      "matchId": "555088",
+      "home": "Vasco da Gama",
+      "away": "Internacional",
+      "league": "Campeonato Brasileiro Série A",
+      "kickoff": "2026-11-19T22:30:00+00:00",
+      "market": "U25",
+      "marketType": "goals",
+      "label": "Under 2,5 mål",
+      "price": 2.05,
+      "probability": 0.5424,
+      "oddsUpdatedAt": "2026-11-19T13:39:22Z",
+      "bookmakers": 17,
+      "status": "observation",
+      "reason": "Foreløpig statistisk signal, men usikkerhet eller datagrunnlag oppfyller ikke anbefalingskravene"
+    }
+  ],
+  "modelVersion": "2.0-foundation",
+  "qualityAudit": {
+    "screened": 10,
+    "qualified": 0,
+    "topLimit": 5,
+    "observations": 2,
+    "rejections": {
+      "for_lav_konservativ_verdi": 5,
+      "manglende_kamphistorikk": 5
+    },
+    "calibrated": false,
+    "method": "Eksplisitt sensitivitetsscenario, markedsforankring og usikkerhetstrekk; ikke validert som konfidensintervall",
+    "coverageLimit": "Tilgjengelige kilde-/bookmakerodds, ikke alle globale markeder",
+    "whyNoPicks": "Vanligste avvisning skyldtes for lav beregnet spillverdi."
+  },
+  "interestingObjects": [],
+  "finalSelection": {
+    "version": 40,
+    "policy": "one_active_selection_per_real_fixture",
+    "rankedRecommendations": false,
+    "mainCategoriesOnly": true,
+    "categories": {
+      "safe": 0,
+      "high": 2,
+      "watch": 0
+    },
+    "target": [
+      3,
+      5
+    ],
+    "shortfalls": {
+      "safe": "For få konfliktfrie, kildebaserte kandidater.",
+      "high": "For få konfliktfrie, kildebaserte kandidater.",
+      "watch": "For få konfliktfrie, kildebaserte kandidater."
+    },
+    "rejected": {
+      "same_fixture_or_correlated_outcome": 4
+    },
+    "trace": [
+      {
+        "fixture": "2026-11-19|vascodagama|internacional",
+        "selectionId": "v40:25377f291c5ef7a8c823",
+        "market": "B",
+        "group": "high",
+        "reason": "selected"
+      },
+      {
+        "fixture": "2026-11-19|vascodagama|internacional",
+        "market": "H",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "B"
+      },
+      {
+        "fixture": "2026-11-19|vitoria|bragantinosp",
+        "selectionId": "v40:3529aee2efc91c2a0a70",
+        "market": "B",
+        "group": "high",
+        "reason": "selected"
+      },
+      {
+        "fixture": "2026-11-19|vitoria|bragantinosp",
+        "market": "H",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "B"
+      },
+      {
+        "fixture": "2026-11-19|vascodagama|internacional",
+        "market": "U25",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "B"
+      },
+      {
+        "fixture": "2026-11-19|vascodagama|internacional",
+        "market": "B",
+        "reason": "same_fixture_or_correlated_outcome",
+        "selectedMarket": "B"
+      }
+    ]
+  },
+  "editionDate": "2026-11-19",
+  "resultUpdatedAt": "2026-11-20T09:05:55.158041+00:00",
+  "editionLocked": true
+}

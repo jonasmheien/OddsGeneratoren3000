@@ -1,32 +1,49 @@
 {
   "schemaVersion": 55,
-  "checkedAt": "2026-11-20T01:52:48.811981+00:00",
-  "checkedHour": "2026-11-20T01:00:00+00:00",
+  "checkedAt": "2026-11-20T09:05:57.755185+00:00",
+  "checkedHour": "2026-11-20T09:00:00+00:00",
   "targetDate": "2026-11-20",
-  "reason": "not_checked",
-  "editionDate": "2026-11-19",
-  "editionGeneratedAt": "2026-11-19T13:39:19.981427+00:00",
+  "reason": "ready",
+  "editionDate": "2026-11-20",
+  "editionGeneratedAt": "2026-11-20T09:04:38.878891+00:00",
   "lastAnalysis": {
-    "targetDate": "2026-11-19",
-    "reason": "source_error",
+    "targetDate": "2026-11-20",
+    "reason": "ready",
     "coverage": {
-      "upcoming": 0,
-      "withOdds": 0,
-      "withModel": 0
+      "upcoming": 5,
+      "withOdds": 1,
+      "withModel": 4
     },
     "providers": {
       "fixtures": "ok",
-      "odds": "not_configured",
+      "odds": "ok",
       "sportmonks": "ok",
       "catalogAvailable": true,
       "failedEventLists": 0,
       "failedOddsRequests": 0
     },
-    "requestedLeagues": [],
-    "oddsCreditsRemaining": 11,
-    "budget": null,
-    "checkedAt": "2026-11-19T19:18:04.069360+00:00",
-    "runId": "44596824361"
+    "requestedLeagues": [
+      "soccer_denmark_superliga"
+    ],
+    "oddsCreditsRemaining": 9,
+    "budget": {
+      "remaining": 9,
+      "checkedAt": "2026-11-20T09:04:38.878891+00:00",
+      "dailyCredits": {
+        "core": 2,
+        "requests": 1
+      },
+      "dailyLimits": {
+        "core": 2,
+        "preview": 0,
+        "extra": 0
+      },
+      "cacheHits": 0,
+      "denied": [],
+      "uncertainCredits": 0
+    },
+    "checkedAt": "2026-11-20T09:04:38.878891+00:00",
+    "runId": "44707554086"
   },
   "previewAnalysis": {
     "targetDate": "2026-11-20",
@@ -71,7 +88,7 @@
       {
         "provider": "football-data.org",
         "state": "checked",
-        "matchedFixtures": 1,
+        "matchedFixtures": 0,
         "error": null
       },
       {
@@ -79,17 +96,11 @@
         "state": "checked",
         "matchedFixtures": 0,
         "error": null
-      },
-      {
-        "provider": "football-data.org",
-        "state": "checked",
-        "matchedFixtures": 5,
-        "error": null
       }
     ],
-    "matchedFixtures": 7,
-    "checkedAt": "2026-11-20T01:52:44.358336+00:00",
+    "matchedFixtures": 0,
+    "checkedAt": "2026-11-20T09:05:55.349362+00:00",
     "unresolved": 14,
-    "pending": 0
+    "pending": 1
   }
 }

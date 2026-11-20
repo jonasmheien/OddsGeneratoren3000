@@ -1,27 +1,27 @@
 {
   "schemaVersion": 51,
-  "generatedAt": "2026-11-20T01:52:44.358336+00:00",
+  "generatedAt": "2026-11-20T09:05:55.349362+00:00",
   "trackedFrom": "2026-11-05T19:10:01.819000+00:00",
   "overall": {
-    "total": 133,
+    "total": 134,
     "wins": 51,
     "losses": 68,
     "settled": 119,
     "voids": 0,
     "unverified": 14,
-    "pending": 0,
+    "pending": 1,
     "hitRatePct": 42.9
   },
   "categories": {
     "safe": {
       "label": "Safe Bets",
-      "total": 51,
+      "total": 52,
       "wins": 28,
       "losses": 13,
       "settled": 41,
       "voids": 0,
       "unverified": 10,
-      "pending": 0,
+      "pending": 1,
       "hitRatePct": 68.3
     },
     "high": {
@@ -48,6 +48,41 @@
     }
   },
   "days": [
+    {
+      "date": "2026-11-20",
+      "categories": {
+        "safe": {
+          "total": 1,
+          "wins": 0,
+          "losses": 0,
+          "settled": 0,
+          "voids": 0,
+          "unverified": 0,
+          "pending": 1,
+          "hitRatePct": null
+        },
+        "high": {
+          "total": 0,
+          "wins": 0,
+          "losses": 0,
+          "settled": 0,
+          "voids": 0,
+          "unverified": 0,
+          "pending": 0,
+          "hitRatePct": null
+        },
+        "watch": {
+          "total": 0,
+          "wins": 0,
+          "losses": 0,
+          "settled": 0,
+          "voids": 0,
+          "unverified": 0,
+          "pending": 0,
+          "hitRatePct": null
+        }
+      }
+    },
     {
       "date": "2026-11-19",
       "categories": {
@@ -435,6 +470,21 @@
     }
   ],
   "tips": [
+    {
+      "id": "6a29d17a0a3b005e7d22a294",
+      "editionDate": "2026-11-20",
+      "category": "safe",
+      "home": "AGF Aarhus",
+      "away": "Lyngby",
+      "kickoff": "2026-11-20T18:00:00+00:00",
+      "market": "O25",
+      "label": "Over 2,5 mål",
+      "price": 1.55,
+      "firstPublishedAt": "2026-11-20T09:05:55.280000+00:00",
+      "result": {
+        "status": "scheduled"
+      }
+    },
     {
       "id": "528bc65d05d7917246a88901",
       "editionDate": "2026-11-19",
@@ -3270,7 +3320,7 @@
       {
         "provider": "football-data.org",
         "state": "checked",
-        "matchedFixtures": 1,
+        "matchedFixtures": 0,
         "error": null
       },
       {
@@ -3278,15 +3328,9 @@
         "state": "checked",
         "matchedFixtures": 0,
         "error": null
-      },
-      {
-        "provider": "football-data.org",
-        "state": "checked",
-        "matchedFixtures": 5,
-        "error": null
       }
     ],
-    "matchedFixtures": 7
+    "matchedFixtures": 0
   },
   "publicationPolicy": {
     "version": 53,
