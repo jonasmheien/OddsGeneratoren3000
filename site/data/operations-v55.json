@@ -1,7 +1,7 @@
 {
   "schemaVersion": 55,
-  "checkedAt": "2026-11-20T18:40:30.374588+00:00",
-  "checkedHour": "2026-11-20T18:00:00+00:00",
+  "checkedAt": "2026-11-20T19:20:25.834768+00:00",
+  "checkedHour": "2026-11-20T19:00:00+00:00",
   "targetDate": "2026-11-20",
   "reason": "source_error",
   "editionDate": "2026-11-20",
@@ -25,8 +25,8 @@
     "requestedLeagues": [],
     "oddsCreditsRemaining": 9,
     "budget": null,
-    "checkedAt": "2026-11-20T16:10:49.211252+00:00",
-    "runId": "44770668897"
+    "checkedAt": "2026-11-20T19:19:58.591268+00:00",
+    "runId": "44801075716"
   },
   "previewAnalysis": {
     "targetDate": "2026-11-20",
@@ -88,7 +88,7 @@
       }
     ],
     "matchedFixtures": 0,
-    "checkedAt": "2026-11-20T18:40:26.945784+00:00",
+    "checkedAt": "2026-11-20T19:20:22.904044+00:00",
     "unresolved": 14,
     "pending": 1
   }
