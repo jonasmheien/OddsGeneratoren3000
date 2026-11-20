@@ -1,9 +1,9 @@
 {
   "schemaVersion": 55,
-  "checkedAt": "2026-11-20T22:48:14.331066+00:00",
-  "checkedHour": "2026-11-20T22:00:00+00:00",
-  "targetDate": "2026-11-20",
-  "reason": "source_error",
+  "checkedAt": "2026-11-20T23:01:57.546332+00:00",
+  "checkedHour": "2026-11-20T23:00:00+00:00",
+  "targetDate": "2026-11-21",
+  "reason": "not_checked",
   "editionDate": "2026-11-20",
   "editionGeneratedAt": "2026-11-20T09:04:38.878891+00:00",
   "lastAnalysis": {
@@ -88,7 +88,7 @@
       }
     ],
     "matchedFixtures": 0,
-    "checkedAt": "2026-11-20T22:48:12.574414+00:00",
+    "checkedAt": "2026-11-20T23:01:54.186346+00:00",
     "unresolved": 15,
     "pending": 0
   }
