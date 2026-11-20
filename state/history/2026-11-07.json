@@ -102,7 +102,14 @@
       },
       "selectionId": "v40:de8f312bfc55318eaaae",
       "result": {
-        "status": "scheduled"
+        "status": "won",
+        "score": {
+          "home": 1,
+          "away": 0
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-06&dateTo=2026-11-09",
+        "sourceMatchId": "559635"
       }
     }
   ],
@@ -18406,6 +18413,6 @@
     ]
   },
   "editionDate": "2026-11-07",
-  "resultUpdatedAt": "2026-11-18T08:58:37.102255+00:00",
+  "resultUpdatedAt": "2026-11-20T00:26:45.456127+00:00",
   "editionLocked": true
 }
