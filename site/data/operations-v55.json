@@ -1,7 +1,7 @@
 {
   "schemaVersion": 55,
-  "checkedAt": "2026-11-20T17:41:46.457277+00:00",
-  "checkedHour": "2026-11-20T17:00:00+00:00",
+  "checkedAt": "2026-11-20T18:40:30.374588+00:00",
+  "checkedHour": "2026-11-20T18:00:00+00:00",
   "targetDate": "2026-11-20",
   "reason": "source_error",
   "editionDate": "2026-11-20",
@@ -79,10 +79,16 @@
         "state": "checked",
         "matchedFixtures": 0,
         "error": null
+      },
+      {
+        "provider": "Sportmonks",
+        "state": "checked",
+        "matchedFixtures": 0,
+        "error": null
       }
     ],
     "matchedFixtures": 0,
-    "checkedAt": "2026-11-20T17:41:43.866242+00:00",
+    "checkedAt": "2026-11-20T18:40:26.945784+00:00",
     "unresolved": 14,
     "pending": 1
   }

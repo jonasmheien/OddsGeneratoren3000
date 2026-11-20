@@ -12,10 +12,16 @@
       "state": "checked",
       "matchedFixtures": 0,
       "error": null
+    },
+    {
+      "provider": "Sportmonks",
+      "state": "checked",
+      "matchedFixtures": 0,
+      "error": null
     }
   ],
   "matchedFixtures": 0,
-  "checkedAt": "2026-11-20T17:41:43.866242+00:00",
+  "checkedAt": "2026-11-20T18:40:26.945784+00:00",
   "unresolved": 14,
   "pending": 1
 }
