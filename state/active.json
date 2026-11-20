@@ -34,12 +34,14 @@
       },
       "selectionId": "v40:25377f291c5ef7a8c823",
       "result": {
-        "status": "live",
-        "phase": "Live",
+        "status": "lost",
         "score": {
           "home": 2,
           "away": 1
-        }
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-12&dateTo=2026-11-21",
+        "sourceMatchId": "555088"
       }
     },
     {
@@ -3084,6 +3086,6 @@
     ]
   },
   "editionDate": "2026-11-19",
-  "resultUpdatedAt": "2026-11-20T00:26:45.456127+00:00",
+  "resultUpdatedAt": "2026-11-20T01:52:44.358336+00:00",
   "editionLocked": true
 }

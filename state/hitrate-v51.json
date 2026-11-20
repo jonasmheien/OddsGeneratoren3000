@@ -1686,9 +1686,17 @@
         "odds:a529e5762f18d97981194ec3668dc3d3"
       ],
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 1,
+          "away": 1
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "559631"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-20",
+      "settledAt": "2026-11-20T01:52:44.358336+00:00"
     },
     {
       "matchId": "560637",
@@ -1833,9 +1841,17 @@
         "odds:c22d673775e6a4dc0810cc88b0ed75ec"
       ],
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 4,
+          "away": 3
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "558837"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-20",
+      "settledAt": "2026-11-20T01:52:44.358336+00:00"
     },
     {
       "matchId": "560635",
@@ -1887,9 +1903,17 @@
         "odds:547e4e8cf5577a50926272e0e1a7e677"
       ],
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 5
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "558842"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-20",
+      "settledAt": "2026-11-20T01:52:44.358336+00:00"
     },
     {
       "matchId": "558533",
@@ -1974,7 +1998,7 @@
       "result": {
         "status": "unverified"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-20"
     },
     {
       "matchId": "odds:bf796f8b2085a46e0be2b6c6ece5c340",
@@ -1995,9 +2019,17 @@
         "odds:bf796f8b2085a46e0be2b6c6ece5c340"
       ],
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 3
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "558838"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-20",
+      "settledAt": "2026-11-20T01:52:44.358336+00:00"
     },
     {
       "matchId": "560636",
@@ -2082,7 +2114,7 @@
       "result": {
         "status": "unverified"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-20"
     },
     {
       "matchId": "odds:4288fbe018e6e6fb223e389bcf3e57dd",
@@ -2105,7 +2137,7 @@
       "result": {
         "status": "unverified"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-20"
     },
     {
       "matchId": "560639",
@@ -2159,7 +2191,7 @@
       "result": {
         "status": "unverified"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-20"
     },
     {
       "matchId": "559633",
@@ -2244,7 +2276,7 @@
       "result": {
         "status": "unverified"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-20"
     },
     {
       "matchId": "odds:0d2e199bfba0db42871696c10037bad3",
@@ -2265,9 +2297,17 @@
         "odds:0d2e199bfba0db42871696c10037bad3"
       ],
       "result": {
-        "status": "unverified"
+        "status": "lost",
+        "score": {
+          "home": 0,
+          "away": 0
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "564742"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-20",
+      "settledAt": "2026-11-20T01:52:44.358336+00:00"
     },
     {
       "matchId": "564746",
@@ -2412,9 +2452,17 @@
         "odds:547e4e8cf5577a50926272e0e1a7e677"
       ],
       "result": {
-        "status": "unverified"
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 5
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-07&dateTo=2026-11-10",
+        "sourceMatchId": "558842"
       },
-      "lastHistoricalCheckDay": "2026-11-19"
+      "lastHistoricalCheckDay": "2026-11-20",
+      "settledAt": "2026-11-20T01:52:44.358336+00:00"
     },
     {
       "matchId": "567349",
@@ -5215,7 +5263,7 @@
         "odds:fa3ad7ccd23c6fe47c3062a2b69d3ddd"
       ],
       "result": {
-        "status": "scheduled"
+        "status": "unverified"
       }
     },
     {
@@ -5237,13 +5285,16 @@
         "555088"
       ],
       "result": {
-        "status": "live",
-        "phase": "Live",
+        "status": "lost",
         "score": {
           "home": 2,
           "away": 1
-        }
-      }
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-12&dateTo=2026-11-21",
+        "sourceMatchId": "555088"
+      },
+      "settledAt": "2026-11-20T01:52:44.358336+00:00"
     }
   ]
 }
