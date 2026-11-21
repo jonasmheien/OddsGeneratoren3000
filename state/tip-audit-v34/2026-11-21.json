@@ -258,6 +258,197 @@
         ],
         "watch": []
       }
+    },
+    {
+      "id": "f06ae945681a9f98ba15dd4e",
+      "editionGeneratedAt": "2026-11-21T08:52:34.106909+00:00",
+      "recordedAt": "2026-11-21T13:17:42.379Z",
+      "summary": {
+        "total": 5,
+        "qualified": 0,
+        "high": 4,
+        "safe": 1,
+        "watch": 0,
+        "withBothFive": 5,
+        "withFormModel": 5,
+        "marketBased": 1,
+        "expertWritten": 0,
+        "modelMarketConflicts": 0,
+        "unverifiedResults": 5
+      },
+      "groups": {
+        "qualified": [],
+        "high": [
+          {
+            "matchId": "561952",
+            "home": "Wolverhampton",
+            "away": "Charlton",
+            "league": "Championship",
+            "kickoff": "2026-11-21T15:00:00+00:00",
+            "market": "U25",
+            "label": "Under 2,5 mål",
+            "price": 2.32,
+            "probability": 0.535,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-21T08:52:40Z",
+            "bookmakerCount": 11,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "DWWWD",
+              "awayLastFive": "WLLLL",
+              "modelSample": [
+                15,
+                15
+              ],
+              "formModelProbability": 0.535,
+              "bookmakerImpliedProbability": 0.4005167958656331,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "561943",
+            "home": "Middlesbrough",
+            "away": "Bristol City",
+            "league": "Championship",
+            "kickoff": "2026-11-21T15:00:00+00:00",
+            "market": "B",
+            "label": "Borteseier",
+            "price": 7.33,
+            "probability": 0.2319,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-21T08:52:58Z",
+            "bookmakerCount": 22,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "DLWWD",
+              "awayLastFive": "LLWDL",
+              "modelSample": [
+                15,
+                15
+              ],
+              "formModelProbability": 0.2319,
+              "bookmakerImpliedProbability": 0.12729600814694453,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "561941",
+            "home": "Sheffield Utd",
+            "away": "Watford",
+            "league": "Championship",
+            "kickoff": "2026-11-21T15:00:00+00:00",
+            "market": "B",
+            "label": "Borteseier",
+            "price": 5.4,
+            "probability": 0.2654,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-21T08:52:58Z",
+            "bookmakerCount": 21,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LWWDW",
+              "awayLastFive": "DWLLW",
+              "modelSample": [
+                15,
+                15
+              ],
+              "formModelProbability": 0.2654,
+              "bookmakerImpliedProbability": 0.17227056962025317,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "561946",
+            "home": "Stoke",
+            "away": "Birmingham",
+            "league": "Championship",
+            "kickoff": "2026-11-21T15:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 2.85,
+            "probability": 0.3835,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-21T08:52:58Z",
+            "bookmakerCount": 22,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "WWWDW",
+              "awayLastFive": "WWWLW",
+              "modelSample": [
+                15,
+                15
+              ],
+              "formModelProbability": 0.3835,
+              "bookmakerImpliedProbability": 0.32749716588991057,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          }
+        ],
+        "safe": [
+          {
+            "matchId": "561951",
+            "home": "West Ham",
+            "away": "Preston NE",
+            "league": "Championship",
+            "kickoff": "2026-11-21T15:00:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 1.24,
+            "probability": 0.7524,
+            "probabilitySource": "no_vig_bookmaker_market",
+            "quotedAt": "2026-11-21T08:52:58Z",
+            "bookmakerCount": 22,
+            "sourceType": "bookmaker_market",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LDLLW",
+              "awayLastFive": "WLLDL",
+              "modelSample": [
+                15,
+                15
+              ],
+              "formModelProbability": 0.5978,
+              "bookmakerImpliedProbability": 0.7524231764252581,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          }
+        ],
+        "watch": []
+      }
     }
   ]
 }

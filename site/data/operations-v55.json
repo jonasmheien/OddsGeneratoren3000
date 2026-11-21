@@ -1,49 +1,32 @@
 {
   "schemaVersion": 55,
-  "checkedAt": "2026-11-21T12:59:15.449676+00:00",
-  "checkedHour": "2026-11-21T12:00:00+00:00",
+  "checkedAt": "2026-11-21T13:17:45.153261+00:00",
+  "checkedHour": "2026-11-21T13:00:00+00:00",
   "targetDate": "2026-11-21",
-  "reason": "ready",
+  "reason": "source_error",
   "editionDate": "2026-11-21",
   "editionGeneratedAt": "2026-11-21T08:52:34.106909+00:00",
   "lastAnalysis": {
     "targetDate": "2026-11-21",
-    "reason": "ready",
+    "reason": "source_error",
     "coverage": {
-      "upcoming": 57,
-      "withOdds": 18,
-      "withModel": 55
+      "upcoming": 0,
+      "withOdds": 0,
+      "withModel": 0
     },
     "providers": {
       "fixtures": "ok",
-      "odds": "ok",
+      "odds": "not_configured",
       "sportmonks": "ok",
       "catalogAvailable": true,
       "failedEventLists": 0,
       "failedOddsRequests": 0
     },
-    "requestedLeagues": [
-      "soccer_efl_champ"
-    ],
+    "requestedLeagues": [],
     "oddsCreditsRemaining": 7,
-    "budget": {
-      "remaining": 7,
-      "checkedAt": "2026-11-21T08:52:34.106909+00:00",
-      "dailyCredits": {
-        "core": 2,
-        "requests": 1
-      },
-      "dailyLimits": {
-        "core": 2,
-        "preview": 0,
-        "extra": 0
-      },
-      "cacheHits": 0,
-      "denied": [],
-      "uncertainCredits": 0
-    },
-    "checkedAt": "2026-11-21T08:52:34.106909+00:00",
-    "runId": "44886889279"
+    "budget": null,
+    "checkedAt": "2026-11-21T13:17:21.359072+00:00",
+    "runId": "44908078913"
   },
   "previewAnalysis": {
     "targetDate": "2026-11-21",
@@ -105,7 +88,7 @@
       }
     ],
     "matchedFixtures": 2,
-    "checkedAt": "2026-11-21T12:59:11.829159+00:00",
+    "checkedAt": "2026-11-21T13:17:42.467095+00:00",
     "unresolved": 15,
     "pending": 7
   }
