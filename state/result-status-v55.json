@@ -4,7 +4,7 @@
     {
       "provider": "football-data.org",
       "state": "checked",
-      "matchedFixtures": 0,
+      "matchedFixtures": 2,
       "error": null
     },
     {
@@ -20,8 +20,8 @@
       "error": null
     }
   ],
-  "matchedFixtures": 0,
-  "checkedAt": "2026-11-21T12:08:54.333472+00:00",
+  "matchedFixtures": 2,
+  "checkedAt": "2026-11-21T12:59:11.829159+00:00",
   "unresolved": 15,
   "pending": 7
 }
