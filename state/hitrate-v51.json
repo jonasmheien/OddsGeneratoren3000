@@ -5364,7 +5364,7 @@
         "status": "live",
         "phase": "Live",
         "score": {
-          "home": 0,
+          "home": 1,
           "away": 0
         }
       }
@@ -5479,8 +5479,8 @@
         "status": "live",
         "phase": "Live",
         "score": {
-          "home": 0,
-          "away": 0
+          "home": 1,
+          "away": 1
         }
       }
     }
