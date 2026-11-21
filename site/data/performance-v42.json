@@ -1,18 +1,18 @@
 {
   "schemaVersion": 42,
-  "generatedAt": "2026-11-21T16:22:57.723707+00:00",
+  "generatedAt": "2026-11-21T17:11:53.915329+00:00",
   "sample": {
-    "settled": 121,
-    "wins": 52,
-    "losses": 69,
+    "settled": 126,
+    "wins": 53,
+    "losses": 73,
     "voids": 0
   },
   "flatStake": {
     "unit": 1,
-    "totalStaked": 121,
-    "profitUnits": -25.88,
-    "roiPct": -21.4,
-    "winRatePct": 43.0
+    "totalStaked": 126,
+    "profitUnits": -28.03,
+    "roiPct": -22.2,
+    "winRatePct": 42.1
   },
   "insufficientSample": false,
   "closingLineValue": {

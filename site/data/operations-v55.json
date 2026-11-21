@@ -1,7 +1,7 @@
 {
   "schemaVersion": 55,
-  "checkedAt": "2026-11-21T16:22:57.782955+00:00",
-  "checkedHour": "2026-11-21T16:00:00+00:00",
+  "checkedAt": "2026-11-21T17:11:53.978901+00:00",
+  "checkedHour": "2026-11-21T17:00:00+00:00",
   "targetDate": "2026-11-21",
   "reason": "source_error",
   "editionDate": "2026-11-21",
@@ -88,8 +88,8 @@
       }
     ],
     "matchedFixtures": 5,
-    "checkedAt": "2026-11-21T16:22:54.326990+00:00",
+    "checkedAt": "2026-11-21T17:11:50.120590+00:00",
     "unresolved": 15,
-    "pending": 5
+    "pending": 0
   }
 }

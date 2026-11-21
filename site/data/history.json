@@ -3,10 +3,40 @@
     "date": "2026-11-21",
     "picks": [
       {
+        "status": "lost",
+        "matchId": "561951",
+        "market": "H",
+        "price": 1.24
+      },
+      {
         "status": "won",
         "matchId": "561944",
         "market": "H",
         "price": 1.36
+      },
+      {
+        "status": "lost",
+        "matchId": "561952",
+        "market": "U25",
+        "price": 2.32
+      },
+      {
+        "status": "lost",
+        "matchId": "561943",
+        "market": "B",
+        "price": 7.33
+      },
+      {
+        "status": "lost",
+        "matchId": "561941",
+        "market": "B",
+        "price": 5.4
+      },
+      {
+        "status": "won",
+        "matchId": "561946",
+        "market": "H",
+        "price": 2.85
       },
       {
         "status": "lost",

@@ -5339,13 +5339,16 @@
         "561952"
       ],
       "result": {
-        "status": "live",
-        "phase": "Live",
+        "status": "lost",
         "score": {
           "home": 2,
-          "away": 0
-        }
-      }
+          "away": 1
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-13&dateTo=2026-11-23",
+        "sourceMatchId": "561952"
+      },
+      "settledAt": "2026-11-21T17:11:50.120590+00:00"
     },
     {
       "matchId": "561944",
@@ -5396,13 +5399,16 @@
         "561951"
       ],
       "result": {
-        "status": "live",
-        "phase": "Live",
+        "status": "lost",
         "score": {
-          "home": 0,
+          "home": 1,
           "away": 1
-        }
-      }
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-13&dateTo=2026-11-23",
+        "sourceMatchId": "561951"
+      },
+      "settledAt": "2026-11-21T17:11:50.120590+00:00"
     },
     {
       "matchId": "561946",
@@ -5423,13 +5429,16 @@
         "561946"
       ],
       "result": {
-        "status": "live",
-        "phase": "Live",
+        "status": "won",
         "score": {
           "home": 1,
           "away": 0
-        }
-      }
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-13&dateTo=2026-11-23",
+        "sourceMatchId": "561946"
+      },
+      "settledAt": "2026-11-21T17:11:50.120590+00:00"
     },
     {
       "matchId": "561941",
@@ -5450,13 +5459,16 @@
         "561941"
       ],
       "result": {
-        "status": "live",
-        "phase": "Live",
+        "status": "lost",
         "score": {
-          "home": 2,
+          "home": 4,
           "away": 0
-        }
-      }
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-13&dateTo=2026-11-23",
+        "sourceMatchId": "561941"
+      },
+      "settledAt": "2026-11-21T17:11:50.120590+00:00"
     },
     {
       "matchId": "561943",
@@ -5477,13 +5489,16 @@
         "561943"
       ],
       "result": {
-        "status": "live",
-        "phase": "Live",
+        "status": "lost",
         "score": {
           "home": 2,
           "away": 0
-        }
-      }
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-13&dateTo=2026-11-23",
+        "sourceMatchId": "561943"
+      },
+      "settledAt": "2026-11-21T17:11:50.120590+00:00"
     },
     {
       "matchId": "561948",
