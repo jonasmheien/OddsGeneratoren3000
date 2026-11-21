@@ -1,38 +1,38 @@
 {
   "schemaVersion": 51,
-  "generatedAt": "2026-11-20T21:25:20.645688+00:00",
+  "generatedAt": "2026-11-21T08:53:55.404169+00:00",
   "trackedFrom": "2026-11-05T19:10:01.819000+00:00",
   "overall": {
-    "total": 134,
+    "total": 141,
     "wins": 51,
     "losses": 68,
     "settled": 119,
     "voids": 0,
     "unverified": 15,
-    "pending": 0,
+    "pending": 7,
     "hitRatePct": 42.9
   },
   "categories": {
     "safe": {
       "label": "Safe Bets",
-      "total": 52,
+      "total": 54,
       "wins": 28,
       "losses": 13,
       "settled": 41,
       "voids": 0,
       "unverified": 11,
-      "pending": 0,
+      "pending": 2,
       "hitRatePct": 68.3
     },
     "high": {
       "label": "High Risk",
-      "total": 60,
+      "total": 65,
       "wins": 12,
       "losses": 44,
       "settled": 56,
       "voids": 0,
       "unverified": 4,
-      "pending": 0,
+      "pending": 5,
       "hitRatePct": 21.4
     },
     "watch": {
@@ -48,6 +48,41 @@
     }
   },
   "days": [
+    {
+      "date": "2026-11-21",
+      "categories": {
+        "safe": {
+          "total": 2,
+          "wins": 0,
+          "losses": 0,
+          "settled": 0,
+          "voids": 0,
+          "unverified": 0,
+          "pending": 2,
+          "hitRatePct": null
+        },
+        "high": {
+          "total": 5,
+          "wins": 0,
+          "losses": 0,
+          "settled": 0,
+          "voids": 0,
+          "unverified": 0,
+          "pending": 5,
+          "hitRatePct": null
+        },
+        "watch": {
+          "total": 0,
+          "wins": 0,
+          "losses": 0,
+          "settled": 0,
+          "voids": 0,
+          "unverified": 0,
+          "pending": 0,
+          "hitRatePct": null
+        }
+      }
+    },
     {
       "date": "2026-11-20",
       "categories": {
@@ -470,6 +505,111 @@
     }
   ],
   "tips": [
+    {
+      "id": "5870d83022f4c4bfb86445eb",
+      "editionDate": "2026-11-21",
+      "category": "high",
+      "home": "Wolverhampton",
+      "away": "Charlton",
+      "kickoff": "2026-11-21T15:00:00+00:00",
+      "market": "U25",
+      "label": "Under 2,5 mål",
+      "price": 2.32,
+      "firstPublishedAt": "2026-11-21T08:53:55.314000+00:00",
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "id": "730b5e0a416e2907c481d5df",
+      "editionDate": "2026-11-21",
+      "category": "safe",
+      "home": "West Ham",
+      "away": "Preston NE",
+      "kickoff": "2026-11-21T15:00:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 1.24,
+      "firstPublishedAt": "2026-11-21T08:53:55.314000+00:00",
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "id": "83aa10fd7f21a237b32fb2d5",
+      "editionDate": "2026-11-21",
+      "category": "high",
+      "home": "Stoke",
+      "away": "Birmingham",
+      "kickoff": "2026-11-21T15:00:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 2.85,
+      "firstPublishedAt": "2026-11-21T08:53:55.314000+00:00",
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "id": "689a41819a19c3b3457f7360",
+      "editionDate": "2026-11-21",
+      "category": "safe",
+      "home": "Southampton",
+      "away": "Derby County",
+      "kickoff": "2026-11-21T12:30:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 1.36,
+      "firstPublishedAt": "2026-11-21T08:53:55.314000+00:00",
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "id": "8797619db31561bce0f78086",
+      "editionDate": "2026-11-21",
+      "category": "high",
+      "home": "Sheffield Utd",
+      "away": "Watford",
+      "kickoff": "2026-11-21T15:00:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 5.4,
+      "firstPublishedAt": "2026-11-21T08:53:55.314000+00:00",
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "id": "c2427d60976bf5d4b9c34b4a",
+      "editionDate": "2026-11-21",
+      "category": "high",
+      "home": "Norwich",
+      "away": "Cardiff",
+      "kickoff": "2026-11-21T12:30:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 3.9,
+      "firstPublishedAt": "2026-11-21T08:53:55.314000+00:00",
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "id": "9f8426d45c4770c8b949ca90",
+      "editionDate": "2026-11-21",
+      "category": "high",
+      "home": "Middlesbrough",
+      "away": "Bristol City",
+      "kickoff": "2026-11-21T15:00:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 7.33,
+      "firstPublishedAt": "2026-11-21T08:53:55.314000+00:00",
+      "result": {
+        "status": "scheduled"
+      }
+    },
     {
       "id": "6a29d17a0a3b005e7d22a294",
       "editionDate": "2026-11-20",

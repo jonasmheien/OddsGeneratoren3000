@@ -2,26 +2,43 @@
   "schemaVersion": 55,
   "attempts": {
     "core": {
-      "targetDate": "2026-11-20",
-      "reason": "source_error",
+      "targetDate": "2026-11-21",
+      "reason": "ready",
       "coverage": {
-        "upcoming": 0,
-        "withOdds": 0,
-        "withModel": 0
+        "upcoming": 57,
+        "withOdds": 18,
+        "withModel": 55
       },
       "providers": {
         "fixtures": "ok",
-        "odds": "not_configured",
+        "odds": "ok",
         "sportmonks": "ok",
         "catalogAvailable": true,
         "failedEventLists": 0,
         "failedOddsRequests": 0
       },
-      "requestedLeagues": [],
-      "oddsCreditsRemaining": 9,
-      "budget": null,
-      "checkedAt": "2026-11-20T19:19:58.591268+00:00",
-      "runId": "44801075716"
+      "requestedLeagues": [
+        "soccer_efl_champ"
+      ],
+      "oddsCreditsRemaining": 7,
+      "budget": {
+        "remaining": 7,
+        "checkedAt": "2026-11-21T08:52:34.106909+00:00",
+        "dailyCredits": {
+          "core": 2,
+          "requests": 1
+        },
+        "dailyLimits": {
+          "core": 2,
+          "preview": 0,
+          "extra": 0
+        },
+        "cacheHits": 0,
+        "denied": [],
+        "uncertainCredits": 0
+      },
+      "checkedAt": "2026-11-21T08:52:34.106909+00:00",
+      "runId": "44886889279"
     },
     "preview": {
       "targetDate": "2026-11-21",

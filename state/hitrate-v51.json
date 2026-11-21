@@ -5319,6 +5319,160 @@
       "result": {
         "status": "unverified"
       }
+    },
+    {
+      "matchId": "561952",
+      "home": "Wolverhampton",
+      "away": "Charlton",
+      "league": "Championship",
+      "kickoff": "2026-11-21T15:00:00+00:00",
+      "market": "U25",
+      "label": "Under 2,5 mål",
+      "price": 2.32,
+      "id": "5870d83022f4c4bfb86445eb",
+      "selectionKey": "2026-11-21|wolverhampton|charlton|U25",
+      "category": "high",
+      "editionDate": "2026-11-21",
+      "firstPublishedAt": "2026-11-21T08:53:55.314000+00:00",
+      "publicationRevision": "19fe27f358def748476660c2",
+      "sourceIds": [
+        "561952"
+      ],
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "matchId": "561944",
+      "home": "Southampton",
+      "away": "Derby County",
+      "league": "Championship",
+      "kickoff": "2026-11-21T12:30:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 1.36,
+      "id": "689a41819a19c3b3457f7360",
+      "selectionKey": "2026-11-21|southampton|derbycounty|H",
+      "category": "safe",
+      "editionDate": "2026-11-21",
+      "firstPublishedAt": "2026-11-21T08:53:55.314000+00:00",
+      "publicationRevision": "19fe27f358def748476660c2",
+      "sourceIds": [
+        "561944"
+      ],
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "matchId": "561951",
+      "home": "West Ham",
+      "away": "Preston NE",
+      "league": "Championship",
+      "kickoff": "2026-11-21T15:00:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 1.24,
+      "id": "730b5e0a416e2907c481d5df",
+      "selectionKey": "2026-11-21|westham|prestonne|H",
+      "category": "safe",
+      "editionDate": "2026-11-21",
+      "firstPublishedAt": "2026-11-21T08:53:55.314000+00:00",
+      "publicationRevision": "19fe27f358def748476660c2",
+      "sourceIds": [
+        "561951"
+      ],
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "matchId": "561946",
+      "home": "Stoke",
+      "away": "Birmingham",
+      "league": "Championship",
+      "kickoff": "2026-11-21T15:00:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 2.85,
+      "id": "83aa10fd7f21a237b32fb2d5",
+      "selectionKey": "2026-11-21|stoke|birmingham|H",
+      "category": "high",
+      "editionDate": "2026-11-21",
+      "firstPublishedAt": "2026-11-21T08:53:55.314000+00:00",
+      "publicationRevision": "19fe27f358def748476660c2",
+      "sourceIds": [
+        "561946"
+      ],
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "matchId": "561941",
+      "home": "Sheffield Utd",
+      "away": "Watford",
+      "league": "Championship",
+      "kickoff": "2026-11-21T15:00:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 5.4,
+      "id": "8797619db31561bce0f78086",
+      "selectionKey": "2026-11-21|sheffieldutd|watford|B",
+      "category": "high",
+      "editionDate": "2026-11-21",
+      "firstPublishedAt": "2026-11-21T08:53:55.314000+00:00",
+      "publicationRevision": "19fe27f358def748476660c2",
+      "sourceIds": [
+        "561941"
+      ],
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "matchId": "561943",
+      "home": "Middlesbrough",
+      "away": "Bristol City",
+      "league": "Championship",
+      "kickoff": "2026-11-21T15:00:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 7.33,
+      "id": "9f8426d45c4770c8b949ca90",
+      "selectionKey": "2026-11-21|middlesbrough|bristolcity|B",
+      "category": "high",
+      "editionDate": "2026-11-21",
+      "firstPublishedAt": "2026-11-21T08:53:55.314000+00:00",
+      "publicationRevision": "19fe27f358def748476660c2",
+      "sourceIds": [
+        "561943"
+      ],
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "matchId": "561948",
+      "home": "Norwich",
+      "away": "Cardiff",
+      "league": "Championship",
+      "kickoff": "2026-11-21T12:30:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 3.9,
+      "id": "c2427d60976bf5d4b9c34b4a",
+      "selectionKey": "2026-11-21|norwich|cardiff|B",
+      "category": "high",
+      "editionDate": "2026-11-21",
+      "firstPublishedAt": "2026-11-21T08:53:55.314000+00:00",
+      "publicationRevision": "19fe27f358def748476660c2",
+      "sourceIds": [
+        "561948"
+      ],
+      "result": {
+        "status": "scheduled"
+      }
     }
   ]
 }
