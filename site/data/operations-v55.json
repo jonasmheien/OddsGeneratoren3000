@@ -1,7 +1,7 @@
 {
   "schemaVersion": 55,
-  "checkedAt": "2026-11-21T21:31:35.369030+00:00",
-  "checkedHour": "2026-11-21T21:00:00+00:00",
+  "checkedAt": "2026-11-21T22:16:53.726819+00:00",
+  "checkedHour": "2026-11-21T22:00:00+00:00",
   "targetDate": "2026-11-21",
   "reason": "source_error",
   "editionDate": "2026-11-21",
@@ -48,7 +48,7 @@
     "oddsCreditsRemaining": 7,
     "budget": {
       "remaining": 7,
-      "checkedAt": "2026-11-21T20:44:58.102090+00:00",
+      "checkedAt": "2026-11-21T21:40:31.150938+00:00",
       "dailyCredits": {
         "core": 2,
         "requests": 1
@@ -62,8 +62,8 @@
       "denied": [],
       "uncertainCredits": 0
     },
-    "checkedAt": "2026-11-21T20:44:58.102090+00:00",
-    "runId": "44947891542"
+    "checkedAt": "2026-11-21T21:40:31.150938+00:00",
+    "runId": "44952746225"
   },
   "results": {
     "state": "checked",
@@ -82,7 +82,7 @@
       }
     ],
     "matchedFixtures": 0,
-    "checkedAt": "2026-11-21T21:31:33.967615+00:00",
+    "checkedAt": "2026-11-21T22:16:51.890612+00:00",
     "unresolved": 15,
     "pending": 0
   }
