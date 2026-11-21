@@ -24,12 +24,12 @@
       "runId": "44939093379"
     },
     "preview": {
-      "targetDate": "2026-11-21",
+      "targetDate": "2026-11-22",
       "reason": "quota_limited",
       "coverage": {
-        "upcoming": 50,
+        "upcoming": 29,
         "withOdds": 0,
-        "withModel": 24
+        "withModel": 13
       },
       "providers": {
         "fixtures": "ok",
@@ -40,10 +40,10 @@
         "failedOddsRequests": 0
       },
       "requestedLeagues": [],
-      "oddsCreditsRemaining": 9,
+      "oddsCreditsRemaining": 7,
       "budget": {
-        "remaining": 9,
-        "checkedAt": "2026-11-20T22:47:50.429128+00:00",
+        "remaining": 7,
+        "checkedAt": "2026-11-21T20:44:58.102090+00:00",
         "dailyCredits": {
           "core": 2,
           "requests": 1
@@ -53,12 +53,12 @@
           "preview": 0,
           "extra": 0
         },
-        "cacheHits": 0,
+        "cacheHits": 1,
         "denied": [],
         "uncertainCredits": 0
       },
-      "checkedAt": "2026-11-20T22:47:50.429128+00:00",
-      "runId": "44831837046"
+      "checkedAt": "2026-11-21T20:44:58.102090+00:00",
+      "runId": "44947891542"
     }
   }
 }
