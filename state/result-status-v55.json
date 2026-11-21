@@ -24,22 +24,10 @@
       "state": "checked",
       "matchedFixtures": 0,
       "error": null
-    },
-    {
-      "provider": "Sportmonks",
-      "state": "checked",
-      "matchedFixtures": 0,
-      "error": null
-    },
-    {
-      "provider": "football-data.org",
-      "state": "checked",
-      "matchedFixtures": 0,
-      "error": null
     }
   ],
   "matchedFixtures": 0,
-  "checkedAt": "2026-11-21T00:56:14.329802+00:00",
+  "checkedAt": "2026-11-21T02:07:05.584178+00:00",
   "unresolved": 15,
   "pending": 0
 }
