@@ -5480,7 +5480,7 @@
         "status": "live",
         "phase": "Live",
         "score": {
-          "home": 0,
+          "home": 1,
           "away": 0
         }
       }

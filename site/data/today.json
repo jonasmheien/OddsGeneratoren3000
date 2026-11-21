@@ -78,7 +78,7 @@
           "away": 0
         },
         "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-13&dateTo=2026-11-23",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-20&dateTo=2026-11-23",
         "sourceMatchId": "561944"
       }
     }
@@ -157,7 +157,7 @@
         "status": "live",
         "phase": "Live",
         "score": {
-          "home": 0,
+          "home": 1,
           "away": 0
         }
       }
@@ -277,7 +277,7 @@
           "away": 1
         },
         "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-13&dateTo=2026-11-23",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-20&dateTo=2026-11-23",
         "sourceMatchId": "561948"
       }
     }
@@ -31861,6 +31861,6 @@
     ]
   },
   "editionDate": "2026-11-21",
-  "resultUpdatedAt": "2026-11-21T15:28:21.023094+00:00",
+  "resultUpdatedAt": "2026-11-21T15:58:34.752273+00:00",
   "editionLocked": true
 }
