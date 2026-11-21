@@ -1,6 +1,6 @@
 {
   "schemaVersion": 51,
-  "generatedAt": "2026-11-21T13:55:04.096494+00:00",
+  "generatedAt": "2026-11-21T14:40:32.290818+00:00",
   "trackedFrom": "2026-11-05T19:10:01.819000+00:00",
   "overall": {
     "total": 141,
@@ -562,12 +562,7 @@
       "price": 1.36,
       "firstPublishedAt": "2026-11-21T08:53:55.314000+00:00",
       "result": {
-        "status": "live",
-        "phase": "Live",
-        "score": {
-          "home": 1,
-          "away": 0
-        }
+        "status": "scheduled"
       }
     },
     {
@@ -597,12 +592,7 @@
       "price": 3.9,
       "firstPublishedAt": "2026-11-21T08:53:55.314000+00:00",
       "result": {
-        "status": "live",
-        "phase": "Live",
-        "score": {
-          "home": 1,
-          "away": 1
-        }
+        "status": "scheduled"
       }
     },
     {

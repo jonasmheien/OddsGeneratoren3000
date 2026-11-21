@@ -5361,12 +5361,7 @@
         "561944"
       ],
       "result": {
-        "status": "live",
-        "phase": "Live",
-        "score": {
-          "home": 1,
-          "away": 0
-        }
+        "status": "scheduled"
       }
     },
     {
@@ -5476,12 +5471,7 @@
         "561948"
       ],
       "result": {
-        "status": "live",
-        "phase": "Live",
-        "score": {
-          "home": 1,
-          "away": 1
-        }
+        "status": "scheduled"
       }
     }
   ]
