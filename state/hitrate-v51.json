@@ -3879,7 +3879,8 @@
       ],
       "result": {
         "status": "unverified"
-      }
+      },
+      "lastHistoricalCheckDay": "2026-11-21"
     },
     {
       "matchId": "odds:570ec7734e1f7d9e813ab0013291f5f5",
@@ -4014,7 +4015,8 @@
       ],
       "result": {
         "status": "unverified"
-      }
+      },
+      "lastHistoricalCheckDay": "2026-11-21"
     },
     {
       "matchId": "odds:159554f486f93d1d8d4213c570117a0e",
@@ -4126,7 +4128,8 @@
       ],
       "result": {
         "status": "unverified"
-      }
+      },
+      "lastHistoricalCheckDay": "2026-11-21"
     },
     {
       "matchId": "odds:570ec7734e1f7d9e813ab0013291f5f5",
