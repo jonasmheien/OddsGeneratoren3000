@@ -5339,7 +5339,12 @@
         "561952"
       ],
       "result": {
-        "status": "scheduled"
+        "status": "live",
+        "phase": "Live",
+        "score": {
+          "home": 0,
+          "away": 0
+        }
       }
     },
     {
@@ -5361,8 +5366,16 @@
         "561944"
       ],
       "result": {
-        "status": "scheduled"
-      }
+        "status": "won",
+        "score": {
+          "home": 2,
+          "away": 0
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-13&dateTo=2026-11-23",
+        "sourceMatchId": "561944"
+      },
+      "settledAt": "2026-11-21T15:28:21.023094+00:00"
     },
     {
       "matchId": "561951",
@@ -5383,7 +5396,12 @@
         "561951"
       ],
       "result": {
-        "status": "scheduled"
+        "status": "live",
+        "phase": "Live",
+        "score": {
+          "home": 0,
+          "away": 1
+        }
       }
     },
     {
@@ -5405,7 +5423,12 @@
         "561946"
       ],
       "result": {
-        "status": "scheduled"
+        "status": "live",
+        "phase": "Live",
+        "score": {
+          "home": 0,
+          "away": 0
+        }
       }
     },
     {
@@ -5427,7 +5450,12 @@
         "561941"
       ],
       "result": {
-        "status": "scheduled"
+        "status": "live",
+        "phase": "Live",
+        "score": {
+          "home": 2,
+          "away": 0
+        }
       }
     },
     {
@@ -5449,7 +5477,12 @@
         "561943"
       ],
       "result": {
-        "status": "scheduled"
+        "status": "live",
+        "phase": "Live",
+        "score": {
+          "home": 0,
+          "away": 0
+        }
       }
     },
     {
@@ -5471,8 +5504,16 @@
         "561948"
       ],
       "result": {
-        "status": "scheduled"
-      }
+        "status": "lost",
+        "score": {
+          "home": 2,
+          "away": 1
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-13&dateTo=2026-11-23",
+        "sourceMatchId": "561948"
+      },
+      "settledAt": "2026-11-21T15:28:21.023094+00:00"
     }
   ]
 }

@@ -1,5 +1,22 @@
 [
   {
+    "date": "2026-11-21",
+    "picks": [
+      {
+        "status": "won",
+        "matchId": "561944",
+        "market": "H",
+        "price": 1.36
+      },
+      {
+        "status": "lost",
+        "matchId": "561948",
+        "market": "B",
+        "price": 3.9
+      }
+    ]
+  },
+  {
     "date": "2026-11-19",
     "picks": [
       {
