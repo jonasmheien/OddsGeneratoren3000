@@ -2,26 +2,43 @@
   "schemaVersion": 55,
   "attempts": {
     "core": {
-      "targetDate": "2026-11-21",
-      "reason": "source_error",
+      "targetDate": "2026-11-22",
+      "reason": "ready",
       "coverage": {
-        "upcoming": 0,
-        "withOdds": 0,
-        "withModel": 0
+        "upcoming": 30,
+        "withOdds": 7,
+        "withModel": 30
       },
       "providers": {
         "fixtures": "ok",
-        "odds": "not_configured",
+        "odds": "ok",
         "sportmonks": "ok",
         "catalogAvailable": true,
         "failedEventLists": 0,
         "failedOddsRequests": 0
       },
-      "requestedLeagues": [],
-      "oddsCreditsRemaining": 7,
-      "budget": null,
-      "checkedAt": "2026-11-21T19:06:16.928201+00:00",
-      "runId": "44939093379"
+      "requestedLeagues": [
+        "soccer_italy_serie_a"
+      ],
+      "oddsCreditsRemaining": 5,
+      "budget": {
+        "remaining": 5,
+        "checkedAt": "2026-11-22T08:52:18.281966+00:00",
+        "dailyCredits": {
+          "core": 2,
+          "requests": 1
+        },
+        "dailyLimits": {
+          "core": 2,
+          "preview": 0,
+          "extra": 0
+        },
+        "cacheHits": 0,
+        "denied": [],
+        "uncertainCredits": 0
+      },
+      "checkedAt": "2026-11-22T08:52:18.281966+00:00",
+      "runId": "45004794799"
     },
     "preview": {
       "targetDate": "2026-11-22",

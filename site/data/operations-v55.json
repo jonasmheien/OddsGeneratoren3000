@@ -1,32 +1,49 @@
 {
   "schemaVersion": 55,
-  "checkedAt": "2026-11-22T02:33:32.430259+00:00",
-  "checkedHour": "2026-11-22T02:00:00+00:00",
+  "checkedAt": "2026-11-22T08:53:46.451631+00:00",
+  "checkedHour": "2026-11-22T08:00:00+00:00",
   "targetDate": "2026-11-22",
-  "reason": "not_checked",
-  "editionDate": "2026-11-21",
-  "editionGeneratedAt": "2026-11-21T08:52:34.106909+00:00",
+  "reason": "ready",
+  "editionDate": "2026-11-22",
+  "editionGeneratedAt": "2026-11-22T08:52:18.281966+00:00",
   "lastAnalysis": {
-    "targetDate": "2026-11-21",
-    "reason": "source_error",
+    "targetDate": "2026-11-22",
+    "reason": "ready",
     "coverage": {
-      "upcoming": 0,
-      "withOdds": 0,
-      "withModel": 0
+      "upcoming": 30,
+      "withOdds": 7,
+      "withModel": 30
     },
     "providers": {
       "fixtures": "ok",
-      "odds": "not_configured",
+      "odds": "ok",
       "sportmonks": "ok",
       "catalogAvailable": true,
       "failedEventLists": 0,
       "failedOddsRequests": 0
     },
-    "requestedLeagues": [],
-    "oddsCreditsRemaining": 7,
-    "budget": null,
-    "checkedAt": "2026-11-21T19:06:16.928201+00:00",
-    "runId": "44939093379"
+    "requestedLeagues": [
+      "soccer_italy_serie_a"
+    ],
+    "oddsCreditsRemaining": 5,
+    "budget": {
+      "remaining": 5,
+      "checkedAt": "2026-11-22T08:52:18.281966+00:00",
+      "dailyCredits": {
+        "core": 2,
+        "requests": 1
+      },
+      "dailyLimits": {
+        "core": 2,
+        "preview": 0,
+        "extra": 0
+      },
+      "cacheHits": 0,
+      "denied": [],
+      "uncertainCredits": 0
+    },
+    "checkedAt": "2026-11-22T08:52:18.281966+00:00",
+    "runId": "45004794799"
   },
   "previewAnalysis": {
     "targetDate": "2026-11-22",
@@ -82,8 +99,8 @@
       }
     ],
     "matchedFixtures": 0,
-    "checkedAt": "2026-11-22T02:33:29.573380+00:00",
+    "checkedAt": "2026-11-22T08:53:43.918447+00:00",
     "unresolved": 15,
-    "pending": 0
+    "pending": 5
   }
 }

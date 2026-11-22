@@ -5535,6 +5535,116 @@
         "sourceMatchId": "561948"
       },
       "settledAt": "2026-11-21T15:28:21.023094+00:00"
+    },
+    {
+      "matchId": "558521",
+      "home": "Juventus",
+      "away": "Venezia FC",
+      "league": "Serie A",
+      "kickoff": "2026-11-22T11:30:00+00:00",
+      "market": "U25",
+      "label": "Under 2,5 mål",
+      "price": 2.3,
+      "id": "03f72aa354fae99037b95ee3",
+      "selectionKey": "2026-11-22|juventus|veneziafc|U25",
+      "category": "high",
+      "editionDate": "2026-11-22",
+      "firstPublishedAt": "2026-11-22T08:53:43.829000+00:00",
+      "publicationRevision": "1e98786454d908e2765483c0",
+      "sourceIds": [
+        "558521"
+      ],
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "matchId": "odds:be2fcabc408be29ca01ce92ab266f8b7",
+      "home": "Juventus",
+      "away": "Venezia",
+      "league": "Serie A",
+      "kickoff": "2026-11-22T11:30:00+00:00",
+      "market": "U25",
+      "label": "Under 2,5 mål",
+      "price": 2.3,
+      "id": "41f7c98af577295da39e826a",
+      "selectionKey": "2026-11-22|juventus|venezia|U25",
+      "category": "high",
+      "editionDate": "2026-11-22",
+      "firstPublishedAt": "2026-11-22T08:53:43.829000+00:00",
+      "publicationRevision": "1e98786454d908e2765483c0",
+      "sourceIds": [
+        "odds:be2fcabc408be29ca01ce92ab266f8b7"
+      ],
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "matchId": "558523",
+      "home": "Milan",
+      "away": "Frosinone",
+      "league": "Serie A",
+      "kickoff": "2026-11-22T17:00:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 4.93,
+      "id": "490b009db16cc36320e07079",
+      "selectionKey": "2026-11-22|milan|frosinone|B",
+      "category": "high",
+      "editionDate": "2026-11-22",
+      "firstPublishedAt": "2026-11-22T08:53:43.829000+00:00",
+      "publicationRevision": "1e98786454d908e2765483c0",
+      "sourceIds": [
+        "558523"
+      ],
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "matchId": "odds:e22f82b10fe71d230248b88fef87e58f",
+      "home": "Atalanta BC",
+      "away": "Inter Milan",
+      "league": "Serie A",
+      "kickoff": "2026-11-22T19:45:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 5.28,
+      "id": "8fdf18955d6409ff828b636c",
+      "selectionKey": "2026-11-22|atalantabc|internazionale|H",
+      "category": "high",
+      "editionDate": "2026-11-22",
+      "firstPublishedAt": "2026-11-22T08:53:43.829000+00:00",
+      "publicationRevision": "1e98786454d908e2765483c0",
+      "sourceIds": [
+        "odds:e22f82b10fe71d230248b88fef87e58f"
+      ],
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "matchId": "558520",
+      "home": "Atalanta",
+      "away": "Inter",
+      "league": "Serie A",
+      "kickoff": "2026-11-22T19:45:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 5.28,
+      "id": "a1d872ec9ffafa4a290aef98",
+      "selectionKey": "2026-11-22|atalanta|inter|H",
+      "category": "high",
+      "editionDate": "2026-11-22",
+      "firstPublishedAt": "2026-11-22T08:53:43.829000+00:00",
+      "publicationRevision": "1e98786454d908e2765483c0",
+      "sourceIds": [
+        "558520"
+      ],
+      "result": {
+        "status": "scheduled"
+      }
     }
   ]
 }

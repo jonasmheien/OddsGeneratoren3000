@@ -1,15 +1,15 @@
 {
   "schemaVersion": 51,
-  "generatedAt": "2026-11-21T17:11:50.120590+00:00",
+  "generatedAt": "2026-11-22T08:53:43.918447+00:00",
   "trackedFrom": "2026-11-05T19:10:01.819000+00:00",
   "overall": {
-    "total": 141,
+    "total": 146,
     "wins": 53,
     "losses": 73,
     "settled": 126,
     "voids": 0,
     "unverified": 15,
-    "pending": 0,
+    "pending": 5,
     "hitRatePct": 42.1
   },
   "categories": {
@@ -26,13 +26,13 @@
     },
     "high": {
       "label": "High Risk",
-      "total": 65,
+      "total": 70,
       "wins": 13,
       "losses": 48,
       "settled": 61,
       "voids": 0,
       "unverified": 4,
-      "pending": 0,
+      "pending": 5,
       "hitRatePct": 21.3
     },
     "watch": {
@@ -48,6 +48,41 @@
     }
   },
   "days": [
+    {
+      "date": "2026-11-22",
+      "categories": {
+        "safe": {
+          "total": 0,
+          "wins": 0,
+          "losses": 0,
+          "settled": 0,
+          "voids": 0,
+          "unverified": 0,
+          "pending": 0,
+          "hitRatePct": null
+        },
+        "high": {
+          "total": 5,
+          "wins": 0,
+          "losses": 0,
+          "settled": 0,
+          "voids": 0,
+          "unverified": 0,
+          "pending": 5,
+          "hitRatePct": null
+        },
+        "watch": {
+          "total": 0,
+          "wins": 0,
+          "losses": 0,
+          "settled": 0,
+          "voids": 0,
+          "unverified": 0,
+          "pending": 0,
+          "hitRatePct": null
+        }
+      }
+    },
     {
       "date": "2026-11-21",
       "categories": {
@@ -505,6 +540,81 @@
     }
   ],
   "tips": [
+    {
+      "id": "490b009db16cc36320e07079",
+      "editionDate": "2026-11-22",
+      "category": "high",
+      "home": "Milan",
+      "away": "Frosinone",
+      "kickoff": "2026-11-22T17:00:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 4.93,
+      "firstPublishedAt": "2026-11-22T08:53:43.829000+00:00",
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "id": "41f7c98af577295da39e826a",
+      "editionDate": "2026-11-22",
+      "category": "high",
+      "home": "Juventus",
+      "away": "Venezia",
+      "kickoff": "2026-11-22T11:30:00+00:00",
+      "market": "U25",
+      "label": "Under 2,5 mål",
+      "price": 2.3,
+      "firstPublishedAt": "2026-11-22T08:53:43.829000+00:00",
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "id": "03f72aa354fae99037b95ee3",
+      "editionDate": "2026-11-22",
+      "category": "high",
+      "home": "Juventus",
+      "away": "Venezia FC",
+      "kickoff": "2026-11-22T11:30:00+00:00",
+      "market": "U25",
+      "label": "Under 2,5 mål",
+      "price": 2.3,
+      "firstPublishedAt": "2026-11-22T08:53:43.829000+00:00",
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "id": "a1d872ec9ffafa4a290aef98",
+      "editionDate": "2026-11-22",
+      "category": "high",
+      "home": "Atalanta",
+      "away": "Inter",
+      "kickoff": "2026-11-22T19:45:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 5.28,
+      "firstPublishedAt": "2026-11-22T08:53:43.829000+00:00",
+      "result": {
+        "status": "scheduled"
+      }
+    },
+    {
+      "id": "8fdf18955d6409ff828b636c",
+      "editionDate": "2026-11-22",
+      "category": "high",
+      "home": "Atalanta BC",
+      "away": "Inter Milan",
+      "kickoff": "2026-11-22T19:45:00+00:00",
+      "market": "H",
+      "label": "Hjemmeseier",
+      "price": 5.28,
+      "firstPublishedAt": "2026-11-22T08:53:43.829000+00:00",
+      "result": {
+        "status": "scheduled"
+      }
+    },
     {
       "id": "5870d83022f4c4bfb86445eb",
       "editionDate": "2026-11-21",
@@ -3509,12 +3619,6 @@
       {
         "provider": "football-data.org",
         "state": "checked",
-        "matchedFixtures": 5,
-        "error": null
-      },
-      {
-        "provider": "UEFA",
-        "state": "checked",
         "matchedFixtures": 0,
         "error": null
       },
@@ -3525,7 +3629,7 @@
         "error": null
       }
     ],
-    "matchedFixtures": 5
+    "matchedFixtures": 0
   },
   "publicationPolicy": {
     "version": 53,
