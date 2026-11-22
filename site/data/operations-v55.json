@@ -1,6 +1,6 @@
 {
   "schemaVersion": 55,
-  "checkedAt": "2026-11-22T22:27:26.265685+00:00",
+  "checkedAt": "2026-11-22T22:45:41.838054+00:00",
   "checkedHour": "2026-11-22T22:00:00+00:00",
   "targetDate": "2026-11-22",
   "reason": "source_error",
@@ -48,7 +48,7 @@
     "oddsCreditsRemaining": 5,
     "budget": {
       "remaining": 5,
-      "checkedAt": "2026-11-22T21:42:20.570931+00:00",
+      "checkedAt": "2026-11-22T22:45:17.799929+00:00",
       "dailyCredits": {
         "core": 2,
         "requests": 1
@@ -58,12 +58,12 @@
         "preview": 0,
         "extra": 0
       },
-      "cacheHits": 1,
+      "cacheHits": 0,
       "denied": [],
       "uncertainCredits": 0
     },
-    "checkedAt": "2026-11-22T21:42:20.570931+00:00",
-    "runId": "45073570418"
+    "checkedAt": "2026-11-22T22:45:17.799929+00:00",
+    "runId": "45079450303"
   },
   "results": {
     "state": "checked",
@@ -71,7 +71,7 @@
       {
         "provider": "football-data.org",
         "state": "checked",
-        "matchedFixtures": 2,
+        "matchedFixtures": 0,
         "error": null
       },
       {
@@ -81,8 +81,8 @@
         "error": null
       }
     ],
-    "matchedFixtures": 2,
-    "checkedAt": "2026-11-22T22:27:23.458652+00:00",
+    "matchedFixtures": 0,
+    "checkedAt": "2026-11-22T22:45:39.417949+00:00",
     "unresolved": 16,
     "pending": 0
   }
