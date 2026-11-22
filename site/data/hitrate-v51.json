@@ -1,6 +1,6 @@
 {
   "schemaVersion": 51,
-  "generatedAt": "2026-11-22T17:55:22.305306+00:00",
+  "generatedAt": "2026-11-22T18:33:50.192162+00:00",
   "trackedFrom": "2026-11-05T19:10:01.819000+00:00",
   "overall": {
     "total": 146,
@@ -555,7 +555,7 @@
         "status": "live",
         "phase": "Live",
         "score": {
-          "home": 2,
+          "home": 5,
           "away": 1
         }
       }
@@ -3636,12 +3636,6 @@
       },
       {
         "provider": "Sportmonks",
-        "state": "checked",
-        "matchedFixtures": 0,
-        "error": null
-      },
-      {
-        "provider": "football-data.org",
         "state": "checked",
         "matchedFixtures": 0,
         "error": null
