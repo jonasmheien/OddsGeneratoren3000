@@ -5641,8 +5641,8 @@
         "status": "live",
         "phase": "Live",
         "score": {
-          "home": 0,
-          "away": 1
+          "home": 1,
+          "away": 2
         }
       }
     },
@@ -5668,8 +5668,8 @@
         "status": "live",
         "phase": "Live",
         "score": {
-          "home": 0,
-          "away": 1
+          "home": 1,
+          "away": 2
         }
       }
     }

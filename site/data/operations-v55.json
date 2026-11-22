@@ -1,6 +1,6 @@
 {
   "schemaVersion": 55,
-  "checkedAt": "2026-11-22T20:18:53.639770+00:00",
+  "checkedAt": "2026-11-22T20:48:09.891731+00:00",
   "checkedHour": "2026-11-22T20:00:00+00:00",
   "targetDate": "2026-11-22",
   "reason": "source_error",
@@ -29,26 +29,29 @@
     "runId": "45058980213"
   },
   "previewAnalysis": {
-    "targetDate": "2026-11-22",
+    "targetDate": "2026-11-23",
     "reason": "quota_limited",
     "coverage": {
-      "upcoming": 29,
+      "upcoming": 5,
       "withOdds": 0,
-      "withModel": 13
+      "withModel": 3
     },
     "providers": {
       "fixtures": "ok",
       "odds": "empty",
       "sportmonks": "ok",
       "catalogAvailable": true,
-      "failedEventLists": 0,
+      "failedEventLists": 1,
       "failedOddsRequests": 0
     },
-    "requestedLeagues": [],
-    "oddsCreditsRemaining": 7,
+    "requestedLeagues": [
+      "soccer_brazil_campeonato",
+      "soccer_denmark_superliga"
+    ],
+    "oddsCreditsRemaining": 5,
     "budget": {
-      "remaining": 7,
-      "checkedAt": "2026-11-21T22:42:57.993365+00:00",
+      "remaining": 5,
+      "checkedAt": "2026-11-22T20:47:46.889530+00:00",
       "dailyCredits": {
         "core": 2,
         "requests": 1
@@ -58,12 +61,14 @@
         "preview": 0,
         "extra": 0
       },
-      "cacheHits": 0,
-      "denied": [],
+      "cacheHits": 1,
+      "denied": [
+        "preview"
+      ],
       "uncertainCredits": 0
     },
-    "checkedAt": "2026-11-21T22:42:57.993365+00:00",
-    "runId": "44958155855"
+    "checkedAt": "2026-11-22T20:47:46.889530+00:00",
+    "runId": "45068426156"
   },
   "results": {
     "state": "checked",
@@ -82,7 +87,7 @@
       }
     ],
     "matchedFixtures": 2,
-    "checkedAt": "2026-11-22T20:18:51.437813+00:00",
+    "checkedAt": "2026-11-22T20:48:08.736721+00:00",
     "unresolved": 16,
     "pending": 2
   }
