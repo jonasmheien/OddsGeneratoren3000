@@ -1,6 +1,6 @@
 {
   "schemaVersion": 51,
-  "generatedAt": "2026-11-22T14:36:28.171073+00:00",
+  "generatedAt": "2026-11-22T17:10:43.629693+00:00",
   "trackedFrom": "2026-11-05T19:10:01.819000+00:00",
   "overall": {
     "total": 146,
@@ -552,7 +552,12 @@
       "price": 4.93,
       "firstPublishedAt": "2026-11-22T08:53:43.829000+00:00",
       "result": {
-        "status": "scheduled"
+        "status": "live",
+        "phase": "Live",
+        "score": {
+          "home": 0,
+          "away": 0
+        }
       }
     },
     {
@@ -3626,7 +3631,7 @@
       {
         "provider": "football-data.org",
         "state": "checked",
-        "matchedFixtures": 0,
+        "matchedFixtures": 1,
         "error": null
       },
       {
@@ -3636,7 +3641,7 @@
         "error": null
       }
     ],
-    "matchedFixtures": 0
+    "matchedFixtures": 1
   },
   "publicationPolicy": {
     "version": 53,
