@@ -1,7 +1,7 @@
 {
   "schemaVersion": 55,
-  "checkedAt": "2026-11-21T23:32:11.901446+00:00",
-  "checkedHour": "2026-11-21T23:00:00+00:00",
+  "checkedAt": "2026-11-22T00:16:22.180331+00:00",
+  "checkedHour": "2026-11-22T00:00:00+00:00",
   "targetDate": "2026-11-22",
   "reason": "not_checked",
   "editionDate": "2026-11-21",
@@ -79,10 +79,28 @@
         "state": "checked",
         "matchedFixtures": 0,
         "error": null
+      },
+      {
+        "provider": "football-data.org",
+        "state": "checked",
+        "matchedFixtures": 0,
+        "error": null
+      },
+      {
+        "provider": "Sportmonks",
+        "state": "checked",
+        "matchedFixtures": 0,
+        "error": null
+      },
+      {
+        "provider": "football-data.org",
+        "state": "checked",
+        "matchedFixtures": 0,
+        "error": null
       }
     ],
     "matchedFixtures": 0,
-    "checkedAt": "2026-11-21T23:32:09.129347+00:00",
+    "checkedAt": "2026-11-22T00:16:15.921928+00:00",
     "unresolved": 15,
     "pending": 0
   }
