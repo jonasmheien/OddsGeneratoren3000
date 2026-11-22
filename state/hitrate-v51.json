@@ -5555,7 +5555,12 @@
         "558521"
       ],
       "result": {
-        "status": "scheduled"
+        "status": "live",
+        "phase": "Live",
+        "score": {
+          "home": 2,
+          "away": 0
+        }
       }
     },
     {
