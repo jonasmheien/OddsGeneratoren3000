@@ -1,6 +1,6 @@
 {
   "schemaVersion": 51,
-  "generatedAt": "2026-11-22T13:49:45.142180+00:00",
+  "generatedAt": "2026-11-22T14:36:28.171073+00:00",
   "trackedFrom": "2026-11-05T19:10:01.819000+00:00",
   "overall": {
     "total": 146,
@@ -8,8 +8,8 @@
     "losses": 74,
     "settled": 127,
     "voids": 0,
-    "unverified": 15,
-    "pending": 4,
+    "unverified": 16,
+    "pending": 3,
     "hitRatePct": 41.7
   },
   "categories": {
@@ -31,8 +31,8 @@
       "losses": 49,
       "settled": 62,
       "voids": 0,
-      "unverified": 4,
-      "pending": 4,
+      "unverified": 5,
+      "pending": 3,
       "hitRatePct": 21.0
     },
     "watch": {
@@ -67,8 +67,8 @@
           "losses": 1,
           "settled": 1,
           "voids": 0,
-          "unverified": 0,
-          "pending": 4,
+          "unverified": 1,
+          "pending": 3,
           "hitRatePct": 0.0
         },
         "watch": {
@@ -567,7 +567,7 @@
       "price": 2.3,
       "firstPublishedAt": "2026-11-22T08:53:43.829000+00:00",
       "result": {
-        "status": "scheduled"
+        "status": "unverified"
       }
     },
     {
@@ -3626,7 +3626,7 @@
       {
         "provider": "football-data.org",
         "state": "checked",
-        "matchedFixtures": 1,
+        "matchedFixtures": 0,
         "error": null
       },
       {
@@ -3636,7 +3636,7 @@
         "error": null
       }
     ],
-    "matchedFixtures": 1
+    "matchedFixtures": 0
   },
   "publicationPolicy": {
     "version": 53,
