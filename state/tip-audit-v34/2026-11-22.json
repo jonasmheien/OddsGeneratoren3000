@@ -315,6 +315,97 @@
         "safe": [],
         "watch": []
       }
+    },
+    {
+      "id": "5537fb4bfc5bf5ea34637170",
+      "editionGeneratedAt": "2026-11-22T08:52:18.281966+00:00",
+      "recordedAt": "2026-11-22T19:08:32.135Z",
+      "summary": {
+        "total": 2,
+        "qualified": 0,
+        "high": 2,
+        "safe": 0,
+        "watch": 0,
+        "withBothFive": 2,
+        "withFormModel": 2,
+        "marketBased": 0,
+        "expertWritten": 0,
+        "modelMarketConflicts": 0,
+        "unverifiedResults": 2
+      },
+      "groups": {
+        "qualified": [],
+        "high": [
+          {
+            "matchId": "558520",
+            "home": "Atalanta",
+            "away": "Inter",
+            "league": "Serie A",
+            "kickoff": "2026-11-22T19:45:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 5.28,
+            "probability": 0.3269,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-22T08:52:50Z",
+            "bookmakerCount": 23,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "WLDDL",
+              "awayLastFive": "WLWWW",
+              "modelSample": [
+                11,
+                11
+              ],
+              "formModelProbability": 0.3269,
+              "bookmakerImpliedProbability": 0.1798822428878006,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          },
+          {
+            "matchId": "odds:e22f82b10fe71d230248b88fef87e58f",
+            "home": "Atalanta BC",
+            "away": "Inter Milan",
+            "league": "Serie A",
+            "kickoff": "2026-11-22T19:45:00+00:00",
+            "market": "H",
+            "label": "Hjemmeseier",
+            "price": 5.28,
+            "probability": 0.3269,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-22T08:52:50Z",
+            "bookmakerCount": 23,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "WLDDL",
+              "awayLastFive": "WLWWW",
+              "modelSample": [
+                11,
+                11
+              ],
+              "formModelProbability": 0.3269,
+              "bookmakerImpliedProbability": 0.1798822428878006,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          }
+        ],
+        "safe": [],
+        "watch": []
+      }
     }
   ]
 }

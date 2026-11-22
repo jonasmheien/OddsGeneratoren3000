@@ -7,6 +7,12 @@
         "matchId": "558521",
         "market": "U25",
         "price": 2.3
+      },
+      {
+        "status": "lost",
+        "matchId": "558523",
+        "market": "B",
+        "price": 4.93
       }
     ]
   },
