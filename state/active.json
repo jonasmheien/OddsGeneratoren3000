@@ -180,8 +180,8 @@
         "status": "live",
         "phase": "Live",
         "score": {
-          "home": 0,
-          "away": 0
+          "home": 2,
+          "away": 1
         }
       }
     }
@@ -14213,6 +14213,6 @@
     ]
   },
   "editionDate": "2026-11-22",
-  "resultUpdatedAt": "2026-11-22T17:10:43.629693+00:00",
+  "resultUpdatedAt": "2026-11-22T17:55:22.305306+00:00",
   "editionLocked": true
 }
