@@ -5638,12 +5638,7 @@
         "odds:e22f82b10fe71d230248b88fef87e58f"
       ],
       "result": {
-        "status": "live",
-        "phase": "Live",
-        "score": {
-          "home": 1,
-          "away": 2
-        }
+        "status": "scheduled"
       }
     },
     {
@@ -5665,12 +5660,7 @@
         "558520"
       ],
       "result": {
-        "status": "live",
-        "phase": "Live",
-        "score": {
-          "home": 1,
-          "away": 2
-        }
+        "status": "scheduled"
       }
     }
   ]

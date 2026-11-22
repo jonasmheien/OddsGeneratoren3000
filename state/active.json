@@ -34,12 +34,7 @@
       },
       "selectionId": "v40:c5487a3fbab4bc4a06e7",
       "result": {
-        "status": "live",
-        "phase": "Live",
-        "score": {
-          "home": 1,
-          "away": 2
-        }
+        "status": "scheduled"
       }
     },
     {
@@ -73,12 +68,7 @@
       },
       "selectionId": "v40:5e4e33426e1394cf48eb",
       "result": {
-        "status": "live",
-        "phase": "Live",
-        "score": {
-          "home": 1,
-          "away": 2
-        }
+        "status": "scheduled"
       }
     },
     {
@@ -14225,6 +14215,6 @@
     ]
   },
   "editionDate": "2026-11-22",
-  "resultUpdatedAt": "2026-11-22T20:48:08.736721+00:00",
+  "resultUpdatedAt": "2026-11-22T21:03:24.582526+00:00",
   "editionLocked": true
 }
