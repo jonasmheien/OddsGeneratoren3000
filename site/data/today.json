@@ -108,7 +108,7 @@
           "away": 0
         },
         "source": "football-data.org",
-        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-14&dateTo=2026-11-24",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-21&dateTo=2026-11-24",
         "sourceMatchId": "558521"
       }
     },
@@ -14208,6 +14208,6 @@
     ]
   },
   "editionDate": "2026-11-22",
-  "resultUpdatedAt": "2026-11-22T13:49:45.142180+00:00",
+  "resultUpdatedAt": "2026-11-22T15:58:00.845691+00:00",
   "editionLocked": true
 }
