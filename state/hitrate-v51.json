@@ -5638,8 +5638,16 @@
         "odds:e22f82b10fe71d230248b88fef87e58f"
       ],
       "result": {
-        "status": "scheduled"
-      }
+        "status": "lost",
+        "score": {
+          "home": 4,
+          "away": 4
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-15&dateTo=2026-11-24",
+        "sourceMatchId": "558520"
+      },
+      "settledAt": "2026-11-22T22:27:23.458652+00:00"
     },
     {
       "matchId": "558520",
@@ -5660,8 +5668,16 @@
         "558520"
       ],
       "result": {
-        "status": "scheduled"
-      }
+        "status": "lost",
+        "score": {
+          "home": 4,
+          "away": 4
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-15&dateTo=2026-11-24",
+        "sourceMatchId": "558520"
+      },
+      "settledAt": "2026-11-22T22:27:23.458652+00:00"
     }
   ]
 }

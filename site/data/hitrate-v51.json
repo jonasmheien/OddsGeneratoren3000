@@ -1,16 +1,16 @@
 {
   "schemaVersion": 51,
-  "generatedAt": "2026-11-22T21:03:24.582526+00:00",
+  "generatedAt": "2026-11-22T22:27:23.458652+00:00",
   "trackedFrom": "2026-11-05T19:10:01.819000+00:00",
   "overall": {
     "total": 146,
     "wins": 53,
-    "losses": 75,
-    "settled": 128,
+    "losses": 77,
+    "settled": 130,
     "voids": 0,
     "unverified": 16,
-    "pending": 2,
-    "hitRatePct": 41.4
+    "pending": 0,
+    "hitRatePct": 40.8
   },
   "categories": {
     "safe": {
@@ -28,12 +28,12 @@
       "label": "High Risk",
       "total": 70,
       "wins": 13,
-      "losses": 50,
-      "settled": 63,
+      "losses": 52,
+      "settled": 65,
       "voids": 0,
       "unverified": 5,
-      "pending": 2,
-      "hitRatePct": 20.6
+      "pending": 0,
+      "hitRatePct": 20.0
     },
     "watch": {
       "label": "Interessante objekter",
@@ -64,11 +64,11 @@
         "high": {
           "total": 5,
           "wins": 0,
-          "losses": 2,
-          "settled": 2,
+          "losses": 4,
+          "settled": 4,
           "voids": 0,
           "unverified": 1,
-          "pending": 2,
+          "pending": 0,
           "hitRatePct": 0.0
         },
         "watch": {
@@ -611,7 +611,14 @@
       "price": 5.28,
       "firstPublishedAt": "2026-11-22T08:53:43.829000+00:00",
       "result": {
-        "status": "scheduled"
+        "status": "lost",
+        "score": {
+          "home": 4,
+          "away": 4
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-15&dateTo=2026-11-24",
+        "sourceMatchId": "558520"
       }
     },
     {
@@ -626,7 +633,14 @@
       "price": 5.28,
       "firstPublishedAt": "2026-11-22T08:53:43.829000+00:00",
       "result": {
-        "status": "scheduled"
+        "status": "lost",
+        "score": {
+          "home": 4,
+          "away": 4
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-15&dateTo=2026-11-24",
+        "sourceMatchId": "558520"
       }
     },
     {

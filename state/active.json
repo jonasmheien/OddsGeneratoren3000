@@ -34,7 +34,14 @@
       },
       "selectionId": "v40:c5487a3fbab4bc4a06e7",
       "result": {
-        "status": "scheduled"
+        "status": "lost",
+        "score": {
+          "home": 4,
+          "away": 4
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-15&dateTo=2026-11-24",
+        "sourceMatchId": "558520"
       }
     },
     {
@@ -68,7 +75,14 @@
       },
       "selectionId": "v40:5e4e33426e1394cf48eb",
       "result": {
-        "status": "scheduled"
+        "status": "lost",
+        "score": {
+          "home": 4,
+          "away": 4
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-15&dateTo=2026-11-24",
+        "sourceMatchId": "558520"
       }
     },
     {
@@ -14215,6 +14229,6 @@
     ]
   },
   "editionDate": "2026-11-22",
-  "resultUpdatedAt": "2026-11-22T21:03:24.582526+00:00",
+  "resultUpdatedAt": "2026-11-22T22:27:23.458652+00:00",
   "editionLocked": true
 }
