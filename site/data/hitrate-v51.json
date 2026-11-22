@@ -1,16 +1,16 @@
 {
   "schemaVersion": 51,
-  "generatedAt": "2026-11-22T13:16:23.227849+00:00",
+  "generatedAt": "2026-11-22T13:49:45.142180+00:00",
   "trackedFrom": "2026-11-05T19:10:01.819000+00:00",
   "overall": {
     "total": 146,
     "wins": 53,
-    "losses": 73,
-    "settled": 126,
+    "losses": 74,
+    "settled": 127,
     "voids": 0,
     "unverified": 15,
-    "pending": 5,
-    "hitRatePct": 42.1
+    "pending": 4,
+    "hitRatePct": 41.7
   },
   "categories": {
     "safe": {
@@ -28,12 +28,12 @@
       "label": "High Risk",
       "total": 70,
       "wins": 13,
-      "losses": 48,
-      "settled": 61,
+      "losses": 49,
+      "settled": 62,
       "voids": 0,
       "unverified": 4,
-      "pending": 5,
-      "hitRatePct": 21.3
+      "pending": 4,
+      "hitRatePct": 21.0
     },
     "watch": {
       "label": "Interessante objekter",
@@ -64,12 +64,12 @@
         "high": {
           "total": 5,
           "wins": 0,
-          "losses": 0,
-          "settled": 0,
+          "losses": 1,
+          "settled": 1,
           "voids": 0,
           "unverified": 0,
-          "pending": 5,
-          "hitRatePct": null
+          "pending": 4,
+          "hitRatePct": 0.0
         },
         "watch": {
           "total": 0,
@@ -582,12 +582,14 @@
       "price": 2.3,
       "firstPublishedAt": "2026-11-22T08:53:43.829000+00:00",
       "result": {
-        "status": "live",
-        "phase": "Live",
+        "status": "lost",
         "score": {
           "home": 4,
           "away": 0
-        }
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-14&dateTo=2026-11-24",
+        "sourceMatchId": "558521"
       }
     },
     {
