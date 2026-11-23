@@ -14,14 +14,14 @@
         "odds": "not_configured",
         "sportmonks": "ok",
         "catalogAvailable": true,
-        "failedEventLists": 1,
+        "failedEventLists": 0,
         "failedOddsRequests": 0
       },
       "requestedLeagues": [],
       "oddsCreditsRemaining": 3,
       "budget": null,
-      "checkedAt": "2026-11-23T13:41:43.400632+00:00",
-      "runId": "45186408714"
+      "checkedAt": "2026-11-23T16:21:12.412069+00:00",
+      "runId": "45215468400"
     },
     "preview": {
       "targetDate": "2026-11-23",
