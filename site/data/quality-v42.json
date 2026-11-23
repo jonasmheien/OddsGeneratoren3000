@@ -2,9 +2,9 @@
   "schemaVersion": 42,
   "editionDate": "2026-11-23",
   "editionGeneratedAt": "2026-11-23T09:26:40.421933+00:00",
-  "checkedAt": "2026-11-23T22:57:04.983689+00:00",
-  "freshness": "current",
-  "analysisAgeHours": 13.51,
+  "checkedAt": "2026-11-23T23:19:29.223943+00:00",
+  "freshness": "not_published",
+  "analysisAgeHours": 13.88,
   "data": {
     "upcomingMatches": 6,
     "matchesWithOdds": 2,
@@ -19,7 +19,6 @@
     "oddsCreditsRemaining": 3
   },
   "issues": [
-    "Dagens analyse er mer enn åtte timer gammel",
     "Bookmakerodds er koblet til færre enn halvparten av kampene",
     "Ingen eksterne prognoser er koblet til analysen"
   ],

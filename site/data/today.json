@@ -37,7 +37,7 @@
         "status": "live",
         "phase": "Live",
         "score": {
-          "home": 0,
+          "home": 1,
           "away": 2
         }
       }
@@ -9735,6 +9735,6 @@
     ]
   },
   "editionDate": "2026-11-23",
-  "resultUpdatedAt": "2026-11-23T22:57:01.293393+00:00",
+  "resultUpdatedAt": "2026-11-23T23:19:26.542940+00:00",
   "editionLocked": true
 }
