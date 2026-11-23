@@ -1,32 +1,49 @@
 {
   "schemaVersion": 55,
-  "checkedAt": "2026-11-23T01:58:26.714676+00:00",
-  "checkedHour": "2026-11-23T01:00:00+00:00",
+  "checkedAt": "2026-11-23T09:28:09.022849+00:00",
+  "checkedHour": "2026-11-23T09:00:00+00:00",
   "targetDate": "2026-11-23",
-  "reason": "not_checked",
-  "editionDate": "2026-11-22",
-  "editionGeneratedAt": "2026-11-22T08:52:18.281966+00:00",
+  "reason": "ready",
+  "editionDate": "2026-11-23",
+  "editionGeneratedAt": "2026-11-23T09:26:40.421933+00:00",
   "lastAnalysis": {
-    "targetDate": "2026-11-22",
-    "reason": "source_error",
+    "targetDate": "2026-11-23",
+    "reason": "ready",
     "coverage": {
-      "upcoming": 0,
-      "withOdds": 0,
-      "withModel": 0
+      "upcoming": 6,
+      "withOdds": 2,
+      "withModel": 5
     },
     "providers": {
       "fixtures": "ok",
-      "odds": "not_configured",
+      "odds": "ok",
       "sportmonks": "ok",
       "catalogAvailable": true,
       "failedEventLists": 0,
       "failedOddsRequests": 0
     },
-    "requestedLeagues": [],
-    "oddsCreditsRemaining": 5,
-    "budget": null,
-    "checkedAt": "2026-11-22T19:08:08.983425+00:00",
-    "runId": "45058980213"
+    "requestedLeagues": [
+      "soccer_brazil_campeonato"
+    ],
+    "oddsCreditsRemaining": 3,
+    "budget": {
+      "remaining": 3,
+      "checkedAt": "2026-11-23T09:26:40.421933+00:00",
+      "dailyCredits": {
+        "core": 2,
+        "requests": 1
+      },
+      "dailyLimits": {
+        "core": 2,
+        "preview": 0,
+        "extra": 0
+      },
+      "cacheHits": 0,
+      "denied": [],
+      "uncertainCredits": 0
+    },
+    "checkedAt": "2026-11-23T09:26:40.421933+00:00",
+    "runId": "45147028137"
   },
   "previewAnalysis": {
     "targetDate": "2026-11-23",
@@ -85,23 +102,11 @@
         "state": "checked",
         "matchedFixtures": 0,
         "error": null
-      },
-      {
-        "provider": "football-data.org",
-        "state": "checked",
-        "matchedFixtures": 0,
-        "error": null
-      },
-      {
-        "provider": "UEFA",
-        "state": "checked",
-        "matchedFixtures": 0,
-        "error": null
       }
     ],
     "matchedFixtures": 0,
-    "checkedAt": "2026-11-23T01:58:21.511336+00:00",
+    "checkedAt": "2026-11-23T09:28:01.035796+00:00",
     "unresolved": 16,
-    "pending": 0
+    "pending": 1
   }
 }

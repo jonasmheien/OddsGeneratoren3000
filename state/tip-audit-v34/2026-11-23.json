@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 34,
+  "editionDate": "2026-11-23",
+  "revisions": [
+    {
+      "id": "0b57419dd92c76ed859f7757",
+      "editionGeneratedAt": "2026-11-23T09:26:40.421933+00:00",
+      "recordedAt": "2026-11-23T09:28:00.932Z",
+      "summary": {
+        "total": 1,
+        "qualified": 0,
+        "high": 1,
+        "safe": 0,
+        "watch": 0,
+        "withBothFive": 1,
+        "withFormModel": 1,
+        "marketBased": 0,
+        "expertWritten": 0,
+        "modelMarketConflicts": 0,
+        "unverifiedResults": 1
+      },
+      "groups": {
+        "qualified": [],
+        "high": [
+          {
+            "matchId": "555097",
+            "home": "Internacional",
+            "away": "Vitória",
+            "league": "Campeonato Brasileiro Série A",
+            "kickoff": "2026-11-23T22:30:00+00:00",
+            "market": "B",
+            "label": "Borteseier",
+            "price": 4.9,
+            "probability": 0.2707,
+            "probabilitySource": "uncalibrated_form_model",
+            "quotedAt": "2026-11-23T09:26:57Z",
+            "bookmakerCount": 24,
+            "sourceType": "form_model",
+            "result": {
+              "status": "not_verified"
+            },
+            "quality": {
+              "evidenceTier": "form_and_model",
+              "homeLastFive": "LWLWL",
+              "awayLastFive": "WLLDD",
+              "modelSample": [
+                16,
+                16
+              ],
+              "formModelProbability": 0.2707,
+              "bookmakerImpliedProbability": 0.1914386557663881,
+              "quoteFresh": true,
+              "quoteMatchesListing": true,
+              "independentlySourcedWrittenExpert": false,
+              "issues": []
+            }
+          }
+        ],
+        "safe": [],
+        "watch": []
+      }
+    }
+  ]
+}

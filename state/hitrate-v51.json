@@ -4417,7 +4417,7 @@
       "result": {
         "status": "unverified"
       },
-      "lastHistoricalCheckDay": "2026-11-22"
+      "lastHistoricalCheckDay": "2026-11-23"
     },
     {
       "matchId": "odds:beaee55c19760e22fdf6291286debb08",
@@ -5678,6 +5678,28 @@
         "sourceMatchId": "558520"
       },
       "settledAt": "2026-11-22T22:27:23.458652+00:00"
+    },
+    {
+      "matchId": "555097",
+      "home": "Internacional",
+      "away": "Vitória",
+      "league": "Campeonato Brasileiro Série A",
+      "kickoff": "2026-11-23T22:30:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 4.9,
+      "id": "68d0ccb610de34c5aa4a543f",
+      "selectionKey": "2026-11-23|internacional|vitoria|B",
+      "category": "high",
+      "editionDate": "2026-11-23",
+      "firstPublishedAt": "2026-11-23T09:28:00.932000+00:00",
+      "publicationRevision": "0b57419dd92c76ed859f7757",
+      "sourceIds": [
+        "555097"
+      ],
+      "result": {
+        "status": "scheduled"
+      }
     }
   ]
 }

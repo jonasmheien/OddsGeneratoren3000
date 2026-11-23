@@ -1,15 +1,15 @@
 {
   "schemaVersion": 51,
-  "generatedAt": "2026-11-22T22:27:23.458652+00:00",
+  "generatedAt": "2026-11-23T09:28:01.035796+00:00",
   "trackedFrom": "2026-11-05T19:10:01.819000+00:00",
   "overall": {
-    "total": 146,
+    "total": 147,
     "wins": 53,
     "losses": 77,
     "settled": 130,
     "voids": 0,
     "unverified": 16,
-    "pending": 0,
+    "pending": 1,
     "hitRatePct": 40.8
   },
   "categories": {
@@ -26,13 +26,13 @@
     },
     "high": {
       "label": "High Risk",
-      "total": 70,
+      "total": 71,
       "wins": 13,
       "losses": 52,
       "settled": 65,
       "voids": 0,
       "unverified": 5,
-      "pending": 0,
+      "pending": 1,
       "hitRatePct": 20.0
     },
     "watch": {
@@ -48,6 +48,41 @@
     }
   },
   "days": [
+    {
+      "date": "2026-11-23",
+      "categories": {
+        "safe": {
+          "total": 0,
+          "wins": 0,
+          "losses": 0,
+          "settled": 0,
+          "voids": 0,
+          "unverified": 0,
+          "pending": 0,
+          "hitRatePct": null
+        },
+        "high": {
+          "total": 1,
+          "wins": 0,
+          "losses": 0,
+          "settled": 0,
+          "voids": 0,
+          "unverified": 0,
+          "pending": 1,
+          "hitRatePct": null
+        },
+        "watch": {
+          "total": 0,
+          "wins": 0,
+          "losses": 0,
+          "settled": 0,
+          "voids": 0,
+          "unverified": 0,
+          "pending": 0,
+          "hitRatePct": null
+        }
+      }
+    },
     {
       "date": "2026-11-22",
       "categories": {
@@ -540,6 +575,21 @@
     }
   ],
   "tips": [
+    {
+      "id": "68d0ccb610de34c5aa4a543f",
+      "editionDate": "2026-11-23",
+      "category": "high",
+      "home": "Internacional",
+      "away": "Vitória",
+      "kickoff": "2026-11-23T22:30:00+00:00",
+      "market": "B",
+      "label": "Borteseier",
+      "price": 4.9,
+      "firstPublishedAt": "2026-11-23T09:28:00.932000+00:00",
+      "result": {
+        "status": "scheduled"
+      }
+    },
     {
       "id": "490b009db16cc36320e07079",
       "editionDate": "2026-11-22",
@@ -3647,7 +3697,7 @@
       {
         "provider": "football-data.org",
         "state": "checked",
-        "matchedFixtures": 2,
+        "matchedFixtures": 0,
         "error": null
       },
       {
@@ -3655,9 +3705,15 @@
         "state": "checked",
         "matchedFixtures": 0,
         "error": null
+      },
+      {
+        "provider": "football-data.org",
+        "state": "checked",
+        "matchedFixtures": 0,
+        "error": null
       }
     ],
-    "matchedFixtures": 2
+    "matchedFixtures": 0
   },
   "publicationPolicy": {
     "version": 53,
