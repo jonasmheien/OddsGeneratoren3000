@@ -1,6 +1,6 @@
 {
   "schemaVersion": 51,
-  "generatedAt": "2026-11-23T23:19:26.542940+00:00",
+  "generatedAt": "2026-11-23T23:44:43.803252+00:00",
   "trackedFrom": "2026-11-05T19:10:01.819000+00:00",
   "overall": {
     "total": 147,
@@ -588,7 +588,7 @@
       "firstPublishedAt": "2026-11-23T09:28:00.932000+00:00",
       "result": {
         "status": "live",
-        "phase": "Live",
+        "phase": "Pause",
         "score": {
           "home": 1,
           "away": 2

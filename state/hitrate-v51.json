@@ -5700,7 +5700,7 @@
       ],
       "result": {
         "status": "live",
-        "phase": "Live",
+        "phase": "Pause",
         "score": {
           "home": 1,
           "away": 2
