@@ -5699,7 +5699,12 @@
         "555097"
       ],
       "result": {
-        "status": "scheduled"
+        "status": "live",
+        "phase": "Live",
+        "score": {
+          "home": 0,
+          "away": 2
+        }
       }
     }
   ]
