@@ -1,6 +1,6 @@
 {
   "schemaVersion": 55,
-  "checkedAt": "2026-11-23T09:28:09.022849+00:00",
+  "checkedAt": "2026-11-23T09:31:29.180993+00:00",
   "checkedHour": "2026-11-23T09:00:00+00:00",
   "targetDate": "2026-11-23",
   "reason": "ready",
@@ -96,16 +96,10 @@
         "state": "checked",
         "matchedFixtures": 0,
         "error": null
-      },
-      {
-        "provider": "football-data.org",
-        "state": "checked",
-        "matchedFixtures": 0,
-        "error": null
       }
     ],
     "matchedFixtures": 0,
-    "checkedAt": "2026-11-23T09:28:01.035796+00:00",
+    "checkedAt": "2026-11-23T09:31:28.907580+00:00",
     "unresolved": 16,
     "pending": 1
   }
