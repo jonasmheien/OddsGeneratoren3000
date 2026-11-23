@@ -12,16 +12,10 @@
       "state": "checked",
       "matchedFixtures": 0,
       "error": null
-    },
-    {
-      "provider": "football-data.org",
-      "state": "checked",
-      "matchedFixtures": 0,
-      "error": null
     }
   ],
   "matchedFixtures": 0,
-  "checkedAt": "2026-11-23T19:49:42.283356+00:00",
+  "checkedAt": "2026-11-23T20:35:44.543745+00:00",
   "unresolved": 16,
   "pending": 1
 }
