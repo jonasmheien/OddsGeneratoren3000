@@ -20,20 +20,20 @@
       "error": null
     },
     {
-      "provider": "Sportmonks",
+      "provider": "football-data.org",
       "state": "checked",
       "matchedFixtures": 0,
       "error": null
     },
     {
-      "provider": "football-data.org",
+      "provider": "UEFA",
       "state": "checked",
       "matchedFixtures": 0,
       "error": null
     }
   ],
   "matchedFixtures": 0,
-  "checkedAt": "2026-11-23T00:24:15.636233+00:00",
+  "checkedAt": "2026-11-23T01:58:21.511336+00:00",
   "unresolved": 16,
   "pending": 0
 }
