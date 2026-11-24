@@ -43,7 +43,7 @@
       "oddsCreditsRemaining": 1,
       "budget": {
         "remaining": 1,
-        "checkedAt": "2026-11-24T20:57:42.088022+00:00",
+        "checkedAt": "2026-11-24T21:57:16.710729+00:00",
         "dailyCredits": {
           "core": 2,
           "requests": 1
@@ -57,8 +57,8 @@
         "denied": [],
         "uncertainCredits": 0
       },
-      "checkedAt": "2026-11-24T20:57:42.088022+00:00",
-      "runId": "45486137070"
+      "checkedAt": "2026-11-24T21:57:16.710729+00:00",
+      "runId": "45496168648"
     }
   }
 }
