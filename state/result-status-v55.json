@@ -24,16 +24,10 @@
       "state": "checked",
       "matchedFixtures": 0,
       "error": null
-    },
-    {
-      "provider": "UEFA",
-      "state": "checked",
-      "matchedFixtures": 0,
-      "error": null
     }
   ],
   "matchedFixtures": 0,
-  "checkedAt": "2026-11-24T02:13:26.199687+00:00",
+  "checkedAt": "2026-11-24T09:10:10.768536+00:00",
   "unresolved": 16,
   "pending": 0
 }
