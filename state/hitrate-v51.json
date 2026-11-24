@@ -519,7 +519,7 @@
       "result": {
         "status": "unverified"
       },
-      "lastHistoricalCheckDay": "2026-11-23"
+      "lastHistoricalCheckDay": "2026-11-24"
     },
     {
       "matchId": "559638",
@@ -604,7 +604,7 @@
       "result": {
         "status": "unverified"
       },
-      "lastHistoricalCheckDay": "2026-11-23"
+      "lastHistoricalCheckDay": "2026-11-24"
     },
     {
       "matchId": "565852",
@@ -1998,7 +1998,7 @@
       "result": {
         "status": "unverified"
       },
-      "lastHistoricalCheckDay": "2026-11-23"
+      "lastHistoricalCheckDay": "2026-11-24"
     },
     {
       "matchId": "odds:bf796f8b2085a46e0be2b6c6ece5c340",
@@ -2114,7 +2114,7 @@
       "result": {
         "status": "unverified"
       },
-      "lastHistoricalCheckDay": "2026-11-23"
+      "lastHistoricalCheckDay": "2026-11-24"
     },
     {
       "matchId": "odds:4288fbe018e6e6fb223e389bcf3e57dd",
@@ -2137,7 +2137,7 @@
       "result": {
         "status": "unverified"
       },
-      "lastHistoricalCheckDay": "2026-11-23"
+      "lastHistoricalCheckDay": "2026-11-24"
     },
     {
       "matchId": "560639",
@@ -2191,7 +2191,7 @@
       "result": {
         "status": "unverified"
       },
-      "lastHistoricalCheckDay": "2026-11-23"
+      "lastHistoricalCheckDay": "2026-11-24"
     },
     {
       "matchId": "559633",
@@ -2276,7 +2276,7 @@
       "result": {
         "status": "unverified"
       },
-      "lastHistoricalCheckDay": "2026-11-23"
+      "lastHistoricalCheckDay": "2026-11-24"
     },
     {
       "matchId": "odds:0d2e199bfba0db42871696c10037bad3",
@@ -5699,13 +5699,16 @@
         "555097"
       ],
       "result": {
-        "status": "live",
-        "phase": "Pause",
+        "status": "won",
         "score": {
-          "home": 1,
-          "away": 2
-        }
-      }
+          "home": 2,
+          "away": 5
+        },
+        "source": "football-data.org",
+        "sourceUrl": "https://api.football-data.org/v4/matches?dateFrom=2026-11-18&dateTo=2026-11-25",
+        "sourceMatchId": "555097"
+      },
+      "settledAt": "2026-11-24T00:56:12.888745+00:00"
     }
   ]
 }
