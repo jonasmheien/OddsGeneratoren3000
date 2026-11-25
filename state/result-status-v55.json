@@ -1,5 +1,5 @@
 {
-  "state": "checked",
+  "state": "degraded",
   "sources": [
     {
       "provider": "football-data.org",
@@ -15,25 +15,19 @@
     },
     {
       "provider": "football-data.org",
-      "state": "checked",
+      "state": "unavailable",
       "matchedFixtures": 0,
-      "error": null
+      "error": "HTTPError"
     },
     {
       "provider": "football-data.org",
-      "state": "checked",
+      "state": "unavailable",
       "matchedFixtures": 0,
-      "error": null
-    },
-    {
-      "provider": "UEFA",
-      "state": "checked",
-      "matchedFixtures": 0,
-      "error": null
+      "error": "HTTPError"
     }
   ],
   "matchedFixtures": 0,
-  "checkedAt": "2026-11-25T02:21:19.351349+00:00",
+  "checkedAt": "2026-11-25T09:14:12.818120+00:00",
   "unresolved": 16,
   "pending": 0
 }

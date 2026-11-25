@@ -1,32 +1,49 @@
 {
   "schemaVersion": 55,
-  "checkedAt": "2026-11-25T02:21:26.574354+00:00",
-  "checkedHour": "2026-11-25T02:00:00+00:00",
+  "checkedAt": "2026-11-25T09:14:15.474440+00:00",
+  "checkedHour": "2026-11-25T09:00:00+00:00",
   "targetDate": "2026-11-25",
-  "reason": "not_checked",
+  "reason": "quota_limited",
   "editionDate": "2026-11-24",
   "editionGeneratedAt": "2026-11-24T09:06:42.881582+00:00",
   "lastAnalysis": {
-    "targetDate": "2026-11-24",
-    "reason": "source_error",
+    "targetDate": "2026-11-25",
+    "reason": "quota_limited",
     "coverage": {
-      "upcoming": 0,
+      "upcoming": 13,
       "withOdds": 0,
-      "withModel": 0
+      "withModel": 13
     },
     "providers": {
       "fixtures": "ok",
-      "odds": "not_configured",
+      "odds": "empty",
       "sportmonks": "ok",
       "catalogAvailable": true,
-      "failedEventLists": 0,
+      "failedEventLists": 1,
       "failedOddsRequests": 0
     },
-    "requestedLeagues": [],
+    "requestedLeagues": [
+      "soccer_uefa_champs_league",
+      "soccer_efl_champ"
+    ],
     "oddsCreditsRemaining": 1,
-    "budget": null,
-    "checkedAt": "2026-11-24T19:18:10.278260+00:00",
-    "runId": "45468700059"
+    "budget": {
+      "remaining": 1,
+      "checkedAt": "2026-11-25T09:12:10.300325+00:00",
+      "dailyCredits": {},
+      "dailyLimits": {
+        "core": 2,
+        "preview": 0,
+        "extra": 0
+      },
+      "cacheHits": 0,
+      "denied": [
+        "core"
+      ],
+      "uncertainCredits": 0
+    },
+    "checkedAt": "2026-11-25T09:12:10.300325+00:00",
+    "runId": "45583110126"
   },
   "previewAnalysis": {
     "targetDate": "2026-11-25",
@@ -66,7 +83,7 @@
     "runId": "45505752320"
   },
   "results": {
-    "state": "checked",
+    "state": "degraded",
     "sources": [
       {
         "provider": "football-data.org",
@@ -82,25 +99,19 @@
       },
       {
         "provider": "football-data.org",
-        "state": "checked",
+        "state": "unavailable",
         "matchedFixtures": 0,
-        "error": null
+        "error": "HTTPError"
       },
       {
         "provider": "football-data.org",
-        "state": "checked",
+        "state": "unavailable",
         "matchedFixtures": 0,
-        "error": null
-      },
-      {
-        "provider": "UEFA",
-        "state": "checked",
-        "matchedFixtures": 0,
-        "error": null
+        "error": "HTTPError"
       }
     ],
     "matchedFixtures": 0,
-    "checkedAt": "2026-11-25T02:21:19.351349+00:00",
+    "checkedAt": "2026-11-25T09:14:12.818120+00:00",
     "unresolved": 16,
     "pending": 0
   }
