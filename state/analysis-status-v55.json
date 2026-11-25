@@ -14,31 +14,26 @@
         "odds": "empty",
         "sportmonks": "ok",
         "catalogAvailable": true,
-        "failedEventLists": 1,
+        "failedEventLists": 0,
         "failedOddsRequests": 0
       },
-      "requestedLeagues": [
-        "soccer_uefa_champs_league",
-        "soccer_efl_champ"
-      ],
+      "requestedLeagues": [],
       "oddsCreditsRemaining": 1,
       "budget": {
         "remaining": 1,
-        "checkedAt": "2026-11-25T09:12:10.300325+00:00",
+        "checkedAt": "2026-11-25T09:19:44.291459+00:00",
         "dailyCredits": {},
         "dailyLimits": {
           "core": 2,
           "preview": 0,
           "extra": 0
         },
-        "cacheHits": 0,
-        "denied": [
-          "core"
-        ],
+        "cacheHits": 19,
+        "denied": [],
         "uncertainCredits": 0
       },
-      "checkedAt": "2026-11-25T09:12:10.300325+00:00",
-      "runId": "45583110126"
+      "checkedAt": "2026-11-25T09:19:44.291459+00:00",
+      "runId": "45584301025"
     },
     "preview": {
       "targetDate": "2026-11-25",
