@@ -1,6 +1,6 @@
 {
   "schemaVersion": 55,
-  "checkedAt": "2026-11-26T09:08:38.601598+00:00",
+  "checkedAt": "2026-11-26T09:16:42.053007+00:00",
   "checkedHour": "2026-11-26T09:00:00+00:00",
   "targetDate": "2026-11-26",
   "reason": "quota_limited",
@@ -26,19 +26,19 @@
     "oddsCreditsRemaining": 1,
     "budget": {
       "remaining": 1,
-      "checkedAt": "2026-11-26T09:08:22.777884+00:00",
+      "checkedAt": "2026-11-26T09:16:35.451021+00:00",
       "dailyCredits": {},
       "dailyLimits": {
         "core": 2,
         "preview": 0,
         "extra": 0
       },
-      "cacheHits": 0,
+      "cacheHits": 20,
       "denied": [],
       "uncertainCredits": 0
     },
-    "checkedAt": "2026-11-26T09:08:22.777884+00:00",
-    "runId": "45789144167"
+    "checkedAt": "2026-11-26T09:16:35.451021+00:00",
+    "runId": "45790411639"
   },
   "previewAnalysis": {
     "targetDate": "2026-11-25",
@@ -91,22 +91,10 @@
         "state": "checked",
         "matchedFixtures": 0,
         "error": null
-      },
-      {
-        "provider": "football-data.org",
-        "state": "checked",
-        "matchedFixtures": 0,
-        "error": null
-      },
-      {
-        "provider": "football-data.org",
-        "state": "checked",
-        "matchedFixtures": 0,
-        "error": null
       }
     ],
     "matchedFixtures": 0,
-    "checkedAt": "2026-11-26T09:08:32.341952+00:00",
+    "checkedAt": "2026-11-26T09:16:41.736354+00:00",
     "unresolved": 16,
     "pending": 0
   }
