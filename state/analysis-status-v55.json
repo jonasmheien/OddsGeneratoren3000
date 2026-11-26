@@ -14,26 +14,31 @@
         "odds": "empty",
         "sportmonks": "ok",
         "catalogAvailable": true,
-        "failedEventLists": 0,
+        "failedEventLists": 1,
         "failedOddsRequests": 0
       },
-      "requestedLeagues": [],
+      "requestedLeagues": [
+        "soccer_uefa_europa_conference_league",
+        "soccer_uefa_europa_league"
+      ],
       "oddsCreditsRemaining": 1,
       "budget": {
         "remaining": 1,
-        "checkedAt": "2026-11-26T09:16:35.451021+00:00",
+        "checkedAt": "2026-11-26T09:43:48.053857+00:00",
         "dailyCredits": {},
         "dailyLimits": {
           "core": 2,
           "preview": 0,
           "extra": 0
         },
-        "cacheHits": 20,
-        "denied": [],
+        "cacheHits": 1,
+        "denied": [
+          "core"
+        ],
         "uncertainCredits": 0
       },
-      "checkedAt": "2026-11-26T09:16:35.451021+00:00",
-      "runId": "45790411639"
+      "checkedAt": "2026-11-26T09:43:48.053857+00:00",
+      "runId": "45794622088"
     },
     "preview": {
       "targetDate": "2026-11-25",
