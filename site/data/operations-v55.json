@@ -1,18 +1,18 @@
 {
   "schemaVersion": 55,
-  "checkedAt": "2026-11-27T02:29:57.644866+00:00",
-  "checkedHour": "2026-11-27T02:00:00+00:00",
+  "checkedAt": "2026-11-27T09:10:14.206190+00:00",
+  "checkedHour": "2026-11-27T09:00:00+00:00",
   "targetDate": "2026-11-27",
-  "reason": "not_checked",
+  "reason": "quota_limited",
   "editionDate": "2026-11-24",
   "editionGeneratedAt": "2026-11-24T09:06:42.881582+00:00",
   "lastAnalysis": {
-    "targetDate": "2026-11-26",
+    "targetDate": "2026-11-27",
     "reason": "quota_limited",
     "coverage": {
-      "upcoming": 0,
+      "upcoming": 9,
       "withOdds": 0,
-      "withModel": 0
+      "withModel": 5
     },
     "providers": {
       "fixtures": "ok",
@@ -26,19 +26,19 @@
     "oddsCreditsRemaining": 1,
     "budget": {
       "remaining": 1,
-      "checkedAt": "2026-11-26T19:20:24.775295+00:00",
+      "checkedAt": "2026-11-27T09:09:32.362679+00:00",
       "dailyCredits": {},
       "dailyLimits": {
         "core": 2,
         "preview": 0,
         "extra": 0
       },
-      "cacheHits": 1,
+      "cacheHits": 0,
       "denied": [],
       "uncertainCredits": 0
     },
-    "checkedAt": "2026-11-26T19:20:24.775295+00:00",
-    "runId": "45882869558"
+    "checkedAt": "2026-11-27T09:09:32.362679+00:00",
+    "runId": "45971312163"
   },
   "previewAnalysis": {
     "targetDate": "2026-11-25",
@@ -103,16 +103,10 @@
         "state": "checked",
         "matchedFixtures": 0,
         "error": null
-      },
-      {
-        "provider": "UEFA",
-        "state": "checked",
-        "matchedFixtures": 0,
-        "error": null
       }
     ],
     "matchedFixtures": 0,
-    "checkedAt": "2026-11-27T02:29:50.688874+00:00",
+    "checkedAt": "2026-11-27T09:10:08.609024+00:00",
     "unresolved": 16,
     "pending": 0
   }
