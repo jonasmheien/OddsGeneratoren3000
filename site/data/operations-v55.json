@@ -1,7 +1,7 @@
 {
   "schemaVersion": 55,
-  "checkedAt": "2026-11-27T12:41:28.362787+00:00",
-  "checkedHour": "2026-11-27T12:00:00+00:00",
+  "checkedAt": "2026-11-27T13:37:35.012118+00:00",
+  "checkedHour": "2026-11-27T13:00:00+00:00",
   "targetDate": "2026-11-27",
   "reason": "quota_limited",
   "editionDate": "2026-11-24",
@@ -12,7 +12,7 @@
     "coverage": {
       "upcoming": 9,
       "withOdds": 0,
-      "withModel": 5
+      "withModel": 3
     },
     "providers": {
       "fixtures": "ok",
@@ -26,7 +26,7 @@
     "oddsCreditsRemaining": 1,
     "budget": {
       "remaining": 1,
-      "checkedAt": "2026-11-27T10:59:48.677125+00:00",
+      "checkedAt": "2026-11-27T13:37:13.304240+00:00",
       "dailyCredits": {},
       "dailyLimits": {
         "core": 2,
@@ -37,8 +37,8 @@
       "denied": [],
       "uncertainCredits": 0
     },
-    "checkedAt": "2026-11-27T10:59:48.677125+00:00",
-    "runId": "45986700410"
+    "checkedAt": "2026-11-27T13:37:13.304240+00:00",
+    "runId": "46008646801"
   },
   "previewAnalysis": {
     "targetDate": "2026-11-25",
@@ -94,7 +94,7 @@
       }
     ],
     "matchedFixtures": 0,
-    "checkedAt": "2026-11-27T12:41:24.298252+00:00",
+    "checkedAt": "2026-11-27T13:37:32.710742+00:00",
     "unresolved": 16,
     "pending": 0
   }
