@@ -1,7 +1,7 @@
 {
   "schemaVersion": 55,
-  "checkedAt": "2026-11-28T08:59:31.453023+00:00",
-  "checkedHour": "2026-11-28T08:00:00+00:00",
+  "checkedAt": "2026-11-28T09:25:58.513732+00:00",
+  "checkedHour": "2026-11-28T09:00:00+00:00",
   "targetDate": "2026-11-28",
   "reason": "quota_limited",
   "editionDate": "2026-11-24",
@@ -26,19 +26,19 @@
     "oddsCreditsRemaining": 1,
     "budget": {
       "remaining": 1,
-      "checkedAt": "2026-11-28T08:58:57.373308+00:00",
+      "checkedAt": "2026-11-28T09:25:22.088344+00:00",
       "dailyCredits": {},
       "dailyLimits": {
         "core": 2,
         "preview": 0,
         "extra": 0
       },
-      "cacheHits": 20,
+      "cacheHits": 1,
       "denied": [],
       "uncertainCredits": 0
     },
-    "checkedAt": "2026-11-28T08:58:57.373308+00:00",
-    "runId": "46128268820"
+    "checkedAt": "2026-11-28T09:25:22.088344+00:00",
+    "runId": "46130378492"
   },
   "previewAnalysis": {
     "targetDate": "2026-11-25",
@@ -85,28 +85,10 @@
         "state": "checked",
         "matchedFixtures": 0,
         "error": null
-      },
-      {
-        "provider": "football-data.org",
-        "state": "checked",
-        "matchedFixtures": 0,
-        "error": null
-      },
-      {
-        "provider": "football-data.org",
-        "state": "checked",
-        "matchedFixtures": 0,
-        "error": null
-      },
-      {
-        "provider": "Sportmonks",
-        "state": "checked",
-        "matchedFixtures": 0,
-        "error": null
       }
     ],
     "matchedFixtures": 0,
-    "checkedAt": "2026-11-28T08:59:27.888891+00:00",
+    "checkedAt": "2026-11-28T09:25:56.140169+00:00",
     "unresolved": 16,
     "pending": 0
   }
