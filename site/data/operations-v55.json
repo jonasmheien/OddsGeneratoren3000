@@ -1,6 +1,6 @@
 {
   "schemaVersion": 55,
-  "checkedAt": "2026-11-28T08:55:33.248185+00:00",
+  "checkedAt": "2026-11-28T08:59:31.453023+00:00",
   "checkedHour": "2026-11-28T08:00:00+00:00",
   "targetDate": "2026-11-28",
   "reason": "quota_limited",
@@ -26,19 +26,19 @@
     "oddsCreditsRemaining": 1,
     "budget": {
       "remaining": 1,
-      "checkedAt": "2026-11-28T08:54:55.056993+00:00",
+      "checkedAt": "2026-11-28T08:58:57.373308+00:00",
       "dailyCredits": {},
       "dailyLimits": {
         "core": 2,
         "preview": 0,
         "extra": 0
       },
-      "cacheHits": 0,
+      "cacheHits": 20,
       "denied": [],
       "uncertainCredits": 0
     },
-    "checkedAt": "2026-11-28T08:54:55.056993+00:00",
-    "runId": "46127986941"
+    "checkedAt": "2026-11-28T08:58:57.373308+00:00",
+    "runId": "46128268820"
   },
   "previewAnalysis": {
     "targetDate": "2026-11-25",
@@ -97,10 +97,16 @@
         "state": "checked",
         "matchedFixtures": 0,
         "error": null
+      },
+      {
+        "provider": "Sportmonks",
+        "state": "checked",
+        "matchedFixtures": 0,
+        "error": null
       }
     ],
     "matchedFixtures": 0,
-    "checkedAt": "2026-11-28T08:55:29.132899+00:00",
+    "checkedAt": "2026-11-28T08:59:27.888891+00:00",
     "unresolved": 16,
     "pending": 0
   }
